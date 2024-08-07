@@ -1,0 +1,27 @@
+var _license_8cpp =
+[
+    [ "LIC_ERR_BAD_PRODNUM", "_license_8cpp.html#ae2f7e27128218c25f5006b6b36f423c7", null ],
+    [ "LIC_ERR_KEY_FORMAT", "_license_8cpp.html#ab1165d6bec016e2b171088066a9f7353", null ],
+    [ "LIC_ERR_KEY_INVALID", "_license_8cpp.html#a186325303452af9fefb59573403fc714", null ],
+    [ "LIC_HW_INDEPENDENT_INST_KEY", "_license_8cpp.html#a87f28094ce5a8ffec34b18a33fd74cc7", null ],
+    [ "LIC_KEY_BYTES", "_license_8cpp.html#a9d00681bd3b38c5e6eeacc90b76398fd", null ],
+    [ "LIC_KEY_CHARS", "_license_8cpp.html#ae480767149837b5d8026f17194a41a20", null ],
+    [ "LIC_OK", "_license_8cpp.html#acf5fcfc277a248d7d15b8b71aff4d145", null ],
+    [ "OT_LICENSEBIT_DT", "_license_8cpp.html#ae55d53eab7530cbb9b2e254fd1535b67", null ],
+    [ "OT_LICENSEBIT_RECHECK", "_license_8cpp.html#a1353ea337e88816663bff6da2a820b31", null ],
+    [ "OT_LICENSEBIT_RT_HW", "_license_8cpp.html#ad5fa9c87902ce49bf05db645ec33cbee", null ],
+    [ "OT_LICENSEBIT_RT_SW", "_license_8cpp.html#a1c5c19784afe6cbd89d8eca33d829a6e", null ],
+    [ "OT_LICENSEMASK_LICENSED", "_license_8cpp.html#a4f46ccc5254be38ca748abbbd98cd563", null ],
+    [ "pFeatureBits", "_license_8cpp.html#a6271feae24ab07ca7fc74d9204299e2f", null ],
+    [ "pHoursLeft", "_license_8cpp.html#ac7b2324a48478cc957761da9a09026ad", null ],
+    [ "pLicMedia", "_license_8cpp.html#a2a3f444fe93c645c3bfcbfe06d6ad817", null ],
+    [ "checkLicense", "_license_8cpp.html#a08118b20e22a3c3d7d0ffa1aa4f9adf4", null ],
+    [ "demoElapsed", "_license_8cpp.html#ad992cfdf7a9686e11569f42c322d4a9e", null ],
+    [ "HexToByte", "_license_8cpp.html#aaa53ed722bcd95056058744d87702ec0", null ],
+    [ "isDemoMode", "_license_8cpp.html#a6b94b033f53343628a9ed8d4519db8df", null ],
+    [ "isLicensed", "_license_8cpp.html#a23b2ac1257727f25f9b4dd93d16fa75b", null ],
+    [ "long", "_license_8cpp.html#aaf1f7b6acafbef3c53f7b8155ac6e734", null ],
+    [ "OTActivate", "_license_8cpp.html#ab4d27a529de2af6e2d86d8590bfaa969", null ],
+    [ "updateLicenseInfo", "_license_8cpp.html#a03e3a8f120ce74d470832be6b8b929ab", null ],
+    [ "g_demoStamp", "_license_8cpp.html#a706b7626d60f8212e477365b1282f821", null ]
+];

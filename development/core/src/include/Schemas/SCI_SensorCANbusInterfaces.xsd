@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Chris Lesslie (Vetco Gray Controls Limited) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SCI_SurfaceTypes.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="SCI_DeviceMapping.xsd"/>
+	<xs:include schemaLocation="SCI_GenericSensor.xsd"/>
+	<xs:include schemaLocation="ScanDataMessages.xsd"/>
+	<xs:complexType name="SensorCANbusInterfacesTypes">
+		<xs:choice>
+			<xs:element name="GenericCANbusDevice" type="GenericCANbusType">
+				<xs:annotation>
+					<xs:documentation>Interface to generic CANbus device.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="GenericCANbusType">
+		<xs:annotation>
+			<xs:documentation>Generic CANbus Interface Card</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the Interface (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CANbusDeviceType" type="string32">
+				<xs:annotation>
+					<xs:documentation>The device type allows for specialized behaviour, dependent on the type. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandWriteScanList" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Identifies the Write Scan List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeID" type="uint8">
+				<xs:annotation>
+					<xs:documentation>CANbus Node Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CANbusCommand" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Command for the CANbus device</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Name" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Name of the command</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SDOList" type="uint8">
+							<xs:annotation>
+								<xs:documentation>SDO List Number for the command</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="CommandType">
+							<xs:annotation>
+								<xs:documentation>Determines whether the command is user-initiated or system-initiated, or both.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="UserInitiated"/>
+									<xs:enumeration value="SystemInitiated"/>
+									<xs:enumeration value="BothUserAndSystemInitiated"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="CommandFrequency" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The frequency for System-initiated commands.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="IsInitialisation" type="bool">
+										<xs:annotation>
+											<xs:documentation>Flag to determine whether the command is part of the initialisation sequence for the device</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Frequency" type="int32">
+										<xs:annotation>
+											<xs:documentation>Frequency in seconds. 0 means never.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ControlParameter" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Control parameters</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Name" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Name of the parameter.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ValueType">
+										<xs:annotation>
+											<xs:documentation>Determines whether the value is user-entered, constant value or system time.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="UserEntered"/>
+												<xs:enumeration value="SystemTime"/>
+												<xs:enumeration value="Constant"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="Value" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Hard-coded constant value if Value Type is 'constant value'.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="MinEngValue" type="float" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Min engineering value</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="MaxEngValue" type="float" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Max engineering value</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:choice>
+										<xs:element name="Analogue" type="AnalogueSensorType">
+											<xs:annotation>
+												<xs:documentation>Contains information for the command only. Does NOT specify an Analogue device.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Discrete" type="DiscreteSensorType">
+											<xs:annotation>
+												<xs:documentation>Contains information for the command only. Does NOT specify a Discrete device</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+							<xs:annotation>
+								<xs:documentation>Structure holding CANbus and OPC mapping data</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<!--The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Structure holding CANbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorsList" type="SCI_SensorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>List of sensors for the device</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VariantBehaviour" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TBD</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="WGFM">
+							<xs:annotation>
+								<xs:documentation>TBD</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="PigDetector">
+							<xs:annotation>
+								<xs:documentation>TBD</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

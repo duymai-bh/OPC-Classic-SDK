@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <xs:include schemaLocation="BaseTypes.xsd"/>
+  <xs:include schemaLocation="SemStar5.xsd"/>
+  <xs:include schemaLocation="SCI_SCMSurfaceType.xsd"/>
+
+  <xs:simpleType name="SemAddressType">
+    <xs:annotation>
+      <xs:documentation>The SEM is divided into bays, the number is depends on the SEM size.  Each bay contains a number of slots for function cards.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="uint8">
+      <xs:minInclusive value="1">
+        <xs:annotation>
+          <xs:documentation>The minimum SEM address is 1</xs:documentation>
+        </xs:annotation>
+      </xs:minInclusive>
+      <xs:maxInclusive value="127">
+        <xs:annotation>
+          <xs:documentation>The maximum SEM address is 127.</xs:documentation>
+        </xs:annotation>
+      </xs:maxInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="SCMType">
+		<xs:sequence>
+      <xs:element name="SemAddress" type="SemAddressType">
+        <xs:annotation>
+          <xs:documentation>This is the SEM address which is used in conjuction with the Bay&amp;Slot positions to determine the IP Address for each Module.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SEM" type="SEM5Type">
+				<xs:annotation>
+					<xs:documentation>Definition for the SEM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Surface" type="SCI_SCMSurfaceType">
+				<xs:annotation>
+					<xs:documentation>Config data for the SCM required by the surface only such as ATE.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+  <xs:element name="SCM" type="SCMType">
+    <xs:annotation>
+      <xs:documentation>A Subsea Control Module which the root level specification for the subsea parts of the project.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+</xs:schema>

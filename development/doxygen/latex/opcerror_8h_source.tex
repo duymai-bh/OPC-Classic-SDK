@@ -1,0 +1,336 @@
+\doxysection{opcerror.\+h}
+\hypertarget{opcerror_8h_source}{}\label{opcerror_8h_source}\index{core/src/opc/opcerror.h@{core/src/opc/opcerror.h}}
+\mbox{\hyperlink{opcerror_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00001}00001\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00002}00002\ \textcolor{comment}{//\ TITLE:\ operror.h}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00004}00004\ \textcolor{comment}{//\ CONTENTS:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00005}00005\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00006}00006\ \textcolor{comment}{//\ Defines\ error\ codes\ for\ the\ Data\ Access\ specifications.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00008}00008\ \textcolor{comment}{//\ (c)\ Copyright\ 1997-\/2003\ The\ OPC\ Foundation}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00009}00009\ \textcolor{comment}{//\ ALL\ RIGHTS\ RESERVED.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00010}00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00011}00011\ \textcolor{comment}{//\ DISCLAIMER:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00012}00012\ \textcolor{comment}{//\ \ This\ code\ is\ provided\ by\ the\ OPC\ Foundation\ solely\ to\ assist\ in\ }}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00013}00013\ \textcolor{comment}{//\ \ understanding\ and\ use\ of\ the\ appropriate\ OPC\ Specification(s)\ and\ may\ be\ }}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00014}00014\ \textcolor{comment}{//\ \ used\ as\ set\ forth\ in\ the\ License\ Grant\ section\ of\ the\ OPC\ Specification.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00015}00015\ \textcolor{comment}{//\ \ This\ code\ is\ provided\ as-\/is\ and\ without\ warranty\ or\ support\ of\ any\ sort}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00016}00016\ \textcolor{comment}{//\ \ and\ is\ subject\ to\ the\ Warranty\ and\ Liability\ Disclaimers\ which\ appear}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00017}00017\ \textcolor{comment}{//\ \ in\ the\ printed\ OPC\ Specification.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00018}00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00019}00019\ \textcolor{comment}{//\ MODIFICATION\ LOG:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00020}00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00021}00021\ \textcolor{comment}{//\ Date\ \ \ \ \ \ \ By\ \ \ \ Notes}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00022}00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ -\/-\/-\/\ \ \ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00023}00023\ \textcolor{comment}{//\ 1997/05/12\ ACC\ \ \ Removed\ Unused\ messages}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00024}00024\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Added\ OPC\_S\_INUSE,\ OPC\_E\_INVALIDCONFIGFILE,\ OPC\_E\_NOTFOUND}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00025}00025\ \textcolor{comment}{//\ 1997/05/12\ ACC\ \ \ Added\ OPC\_E\_INVALID\_PID}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00026}00026\ \textcolor{comment}{//\ 2002/08/12\ CRT\ \ \ Added\ new\ error\ codes\ for\ DA3.0}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00027}00027\ \textcolor{comment}{//\ 2003/01/02\ RSA\ \ \ Updated\ formatting.\ Added\ messages\ to\ proxy/stub\ resource\ block.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00028}00028\ \textcolor{comment}{//\ 2003/10/12\ RSA\ \ \ Added\ error\ codes\ for\ complex\ data.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00029}00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00031}00031\ \textcolor{preprocessor}{\#ifndef\ \_\_OPCERROR\_H}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00032}00032\ \textcolor{preprocessor}{\#define\ \_\_OPCERROR\_H}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00034}00034\ \textcolor{preprocessor}{\#if\ \_MSC\_VER\ >=\ 1000}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00035}00035\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00036}00036\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MSC\_VER\ >=\ 1000}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00038}00038\ \textcolor{comment}{//\ The\ 'Facility'\ is\ set\ to\ the\ standard\ for\ COM\ interfaces\ or\ FACILITY\_ITF\ (i.e.\ 0x004)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00039}00039\ \textcolor{comment}{//\ The\ 'Code'\ is\ set\ in\ the\ range\ defined\ OPC\ Commmon\ for\ DA\ (i.e.\ 0x0400\ to\ 0x04FF)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00040}00040\ \textcolor{comment}{//\ Note\ that\ for\ backward\ compatibility\ not\ all\ existing\ codes\ use\ this\ range.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00042}00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00043}00043\ \textcolor{comment}{//\ \ Values\ are\ 32\ bit\ values\ layed\ out\ as\ follows:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00044}00044\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00045}00045\ \textcolor{comment}{//\ \ \ 3\ 3\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 1\ 1\ 1\ 1\ 1\ 1\ 1\ 1\ 1\ 1}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00046}00046\ \textcolor{comment}{//\ \ \ 1\ 0\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1\ 0\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1\ 0\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1\ 0}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00047}00047\ \textcolor{comment}{//\ \ +-\/-\/-\/+-\/+-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00048}00048\ \textcolor{comment}{//\ \ |Sev|C|R|\ \ \ \ \ Facility\ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Code\ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00049}00049\ \textcolor{comment}{//\ \ +-\/-\/-\/+-\/+-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00050}00050\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00051}00051\ \textcolor{comment}{//\ \ where}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00052}00052\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00053}00053\ \textcolor{comment}{//\ \ \ \ \ \ Sev\ -\/\ is\ the\ severity\ code}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00054}00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00055}00055\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 00\ -\/\ Success}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00056}00056\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 01\ -\/\ Informational}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00057}00057\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 10\ -\/\ Warning}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00058}00058\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 11\ -\/\ Error}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00059}00059\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00060}00060\ \textcolor{comment}{//\ \ \ \ \ \ C\ -\/\ is\ the\ Customer\ code\ flag}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00061}00061\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00062}00062\ \textcolor{comment}{//\ \ \ \ \ \ R\ -\/\ is\ a\ reserved\ bit}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00063}00063\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00064}00064\ \textcolor{comment}{//\ \ \ \ \ \ Facility\ -\/\ is\ the\ facility\ code}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00065}00065\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00066}00066\ \textcolor{comment}{//\ \ \ \ \ \ Code\ -\/\ is\ the\ facility's\ status\ code}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00067}00067\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00068}00068\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00069}00069\ \textcolor{comment}{//\ Define\ the\ facility\ codes}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00070}00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00073}00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00074}00074\ \textcolor{comment}{//\ Define\ the\ severity\ codes}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00075}00075\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00078}00078\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00079}00079\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDHANDLE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00080}00080\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00081}00081\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00082}00082\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00083}00083\ \textcolor{comment}{//\ \ The\ value\ of\ the\ handle\ is\ invalid.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00084}00084\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00085}\mbox{\hyperlink{opcerror_8h_a06b7c245d4346b5afeabf9542f77779d}{00085}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDHANDLE\ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040001L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00087}00087\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00088}00088\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_BADTYPE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00089}00089\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00090}00090\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00091}00091\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00092}00092\ \textcolor{comment}{//\ \ The\ server\ cannot\ convert\ the\ data\ between\ the\ specified\ format\ and/or\ requested\ data\ type\ and\ the\ canonical\ data\ type.\ }}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00093}00093\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00094}\mbox{\hyperlink{opcerror_8h_a355429a101fccf7ac8ba1b8263711b25}{00094}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_BADTYPE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040004L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00096}00096\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00097}00097\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_PUBLIC}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00098}00098\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00099}00099\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00100}00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00101}00101\ \textcolor{comment}{//\ \ The\ requested\ operation\ cannot\ be\ done\ on\ a\ public\ group.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00102}00102\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00103}\mbox{\hyperlink{opcerror_8h_adafdae7e6e45c22e70067752fd0a2e74}{00103}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_PUBLIC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040005L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00105}00105\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00106}00106\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_BADRIGHTS}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00107}00107\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00108}00108\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00109}00109\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00110}00110\ \textcolor{comment}{//\ \ The\ item's\ access\ rights\ do\ not\ allow\ the\ operation.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00111}00111\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00112}\mbox{\hyperlink{opcerror_8h_ad6413bbf083ca77c57467650d5686f79}{00112}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_BADRIGHTS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040006L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00114}00114\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00115}00115\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_UNKNOWNITEMID}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00116}00116\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00117}00117\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00118}00118\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00119}00119\ \textcolor{comment}{//\ \ The\ item\ ID\ is\ not\ defined\ in\ the\ server\ address\ space\ or\ no\ longer\ exists\ in\ the\ server\ address\ space.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00120}00120\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00121}\mbox{\hyperlink{opcerror_8h_a9a1f3c0f51cda29000ff176c694352f7}{00121}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_UNKNOWNITEMID\ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040007L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00123}00123\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00124}00124\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDITEMID}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00125}00125\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00126}00126\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00127}00127\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00128}00128\ \textcolor{comment}{//\ \ The\ item\ ID\ does\ not\ conform\ to\ the\ server's\ syntax.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00129}00129\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00130}\mbox{\hyperlink{opcerror_8h_a572988ffd3a53ce6d6391b7670867906}{00130}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDITEMID\ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040008L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00132}00132\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00133}00133\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDFILTER}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00134}00134\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00135}00135\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00136}00136\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00137}00137\ \textcolor{comment}{//\ \ The\ filter\ string\ was\ not\ valid.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00138}00138\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00139}\mbox{\hyperlink{opcerror_8h_a31cff4b6ff3712ded10e2465469ecdbb}{00139}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDFILTER\ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040009L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00141}00141\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00142}00142\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_UNKNOWNPATH}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00143}00143\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00144}00144\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00145}00145\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00146}00146\ \textcolor{comment}{//\ \ The\ item's\ access\ path\ is\ not\ known\ to\ the\ server.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00147}00147\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00148}\mbox{\hyperlink{opcerror_8h_a9aa9003e0632af28d74582c378499216}{00148}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_UNKNOWNPATH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC004000AL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00150}00150\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00151}00151\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_RANGE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00152}00152\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00153}00153\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00154}00154\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00155}00155\ \textcolor{comment}{//\ \ The\ value\ was\ out\ of\ range.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00156}00156\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00157}\mbox{\hyperlink{opcerror_8h_a47291d4d69635c11e6d3e1b81a98d35f}{00157}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_RANGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC004000BL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00159}00159\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00160}00160\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_DUPLICATENAME}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00161}00161\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00162}00162\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00163}00163\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00164}00164\ \textcolor{comment}{//\ \ Duplicate\ name\ not\ allowed.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00165}00165\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00166}\mbox{\hyperlink{opcerror_8h_a7a23947f09778a2359744f10f377646c}{00166}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_DUPLICATENAME\ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC004000CL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00168}00168\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00169}00169\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_UNSUPPORTEDRATE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00170}00170\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00171}00171\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00172}00172\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00173}00173\ \textcolor{comment}{//\ \ The\ server\ does\ not\ support\ the\ requested\ data\ rate\ but\ will\ use\ the\ closest\ available\ rate.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00174}00174\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00175}\mbox{\hyperlink{opcerror_8h_a14c2b999af2c36dfd3d2a1cf9886ca3f}{00175}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_UNSUPPORTEDRATE\ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0x0004000DL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00177}00177\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00178}00178\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_CLAMP}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00179}00179\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00180}00180\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00181}00181\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00182}00182\ \textcolor{comment}{//\ \ A\ value\ passed\ to\ write\ was\ accepted\ but\ the\ output\ was\ clamped.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00183}00183\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00184}\mbox{\hyperlink{opcerror_8h_ab6300102508e179699591a5966db167c}{00184}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_CLAMP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0x0004000EL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00186}00186\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00187}00187\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_INUSE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00188}00188\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00189}00189\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00190}00190\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00191}00191\ \textcolor{comment}{//\ \ The\ operation\ cannot\ be\ performed\ because\ the\ object\ is\ bering\ referenced.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00192}00192\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00193}\mbox{\hyperlink{opcerror_8h_a198a39f4936bb6a6c3a396f65f73a768}{00193}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_INUSE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0x0004000FL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00195}00195\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00196}00196\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDCONFIGFILE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00197}00197\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00198}00198\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00199}00199\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00200}00200\ \textcolor{comment}{//\ \ The\ server's\ configuration\ file\ is\ an\ invalid\ format.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00201}00201\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00202}\mbox{\hyperlink{opcerror_8h_a1bb57b451ab46abbc9df4bb96f8a2766}{00202}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDCONFIGFILE\ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040010L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00204}00204\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00205}00205\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_NOTFOUND}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00206}00206\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00207}00207\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00208}00208\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00209}00209\ \textcolor{comment}{//\ \ The\ requested\ object\ (e.g.\ a\ public\ group)\ was\ not\ found.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00210}00210\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00211}\mbox{\hyperlink{opcerror_8h_af5bc55f24504549a9c783f711d377eec}{00211}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_NOTFOUND\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040011L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00213}00213\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00214}00214\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALID\_PID}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00215}00215\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00216}00216\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00217}00217\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00218}00218\ \textcolor{comment}{//\ \ The\ specified\ property\ ID\ is\ not\ valid\ for\ the\ item.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00219}00219\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00220}\mbox{\hyperlink{opcerror_8h_ace106d98eeed1606f2af2300074cb0a6}{00220}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALID\_PID\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040203L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00222}00222\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00223}00223\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_DEADBANDNOTSET}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00224}00224\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00225}00225\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00226}00226\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00227}00227\ \textcolor{comment}{//\ \ The\ item\ deadband\ has\ not\ been\ set\ for\ this\ item.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00228}00228\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00229}\mbox{\hyperlink{opcerror_8h_ae561fd826198b7f79c781b8c50605396}{00229}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_DEADBANDNOTSET\ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040400L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00231}00231\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00232}00232\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_DEADBANDNOTSUPPORTED}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00233}00233\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00234}00234\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00235}00235\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00236}00236\ \textcolor{comment}{//\ \ The\ item\ does\ not\ support\ deadband.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00237}00237\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00238}\mbox{\hyperlink{opcerror_8h_a8d9929b3454ce71fbf2d2c6890548e76}{00238}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_DEADBANDNOTSUPPORTED\ \ \ \ \ \ \ ((HRESULT)0xC0040401L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00240}00240\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00241}00241\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_NOBUFFERING}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00242}00242\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00243}00243\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00244}00244\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00245}00245\ \textcolor{comment}{//\ \ The\ server\ does\ not\ support\ buffering\ of\ data\ items\ that\ are\ collected\ at\ a\ faster\ rate\ than\ the\ group\ update\ rate.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00246}00246\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00247}\mbox{\hyperlink{opcerror_8h_a015b77f3817a72c7492bd2c326df9aee}{00247}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_NOBUFFERING\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040402L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00249}00249\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00250}00250\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDCONTINUATIONPOINT}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00251}00251\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00252}00252\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00253}00253\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00254}00254\ \textcolor{comment}{//\ \ The\ continuation\ point\ is\ not\ valid.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00255}00255\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00256}\mbox{\hyperlink{opcerror_8h_ac2cbe1d5a9e684c5d429ffede0bf94b9}{00256}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDCONTINUATIONPOINT\ \ \ ((HRESULT)0xC0040403L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00258}00258\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00259}00259\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_DATAQUEUEOVERFLOW}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00260}00260\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00261}00261\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00262}00262\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00263}00263\ \textcolor{comment}{//\ \ Not\ every\ detected\ change\ has\ been\ returned\ since\ the\ server's\ buffer\ reached\ its\ limit\ and\ had\ to\ purge\ out\ the\ oldest\ data.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00264}00264\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00265}\mbox{\hyperlink{opcerror_8h_a76a40783ac41cf3882cfceddc4dd9220}{00265}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_DATAQUEUEOVERFLOW\ \ \ \ \ \ \ \ \ \ ((HRESULT)0x00040404L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00267}00267\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00268}00268\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_RATENOTSET}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00269}00269\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00270}00270\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00271}00271\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00272}00272\ \textcolor{comment}{//\ \ There\ is\ no\ sampling\ rate\ set\ for\ the\ specified\ item.\ \ }}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00273}00273\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00274}\mbox{\hyperlink{opcerror_8h_ae98eb4612156c8e689c5fc035b83125c}{00274}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_RATENOTSET\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040405L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00276}00276\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00277}00277\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_NOTSUPPORTED}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00278}00278\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00279}00279\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00280}00280\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00281}00281\ \textcolor{comment}{//\ \ The\ server\ does\ not\ support\ writing\ of\ quality\ and/or\ timestamp.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00282}00282\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00283}\mbox{\hyperlink{opcerror_8h_a2e44532a7cd1bf1fbead91655dd33bdb}{00283}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_NOTSUPPORTED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040406L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00285}00285\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00286}00286\ \textcolor{comment}{//\ MessageId:\ OPCCPX\_E\_TYPE\_CHANGED}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00287}00287\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00288}00288\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00289}00289\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00290}00290\ \textcolor{comment}{//\ \ The\ dictionary\ and/or\ type\ description\ for\ the\ item\ has\ changed.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00291}00291\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00292}\mbox{\hyperlink{opcerror_8h_a262c6e81267bae08a7d826e3e9034be4}{00292}}\ \textcolor{preprocessor}{\#define\ OPCCPX\_E\_TYPE\_CHANGED\ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040407L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00294}00294\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00295}00295\ \textcolor{comment}{//\ MessageId:\ OPCCPX\_E\_FILTER\_DUPLICATE}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00296}00296\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00297}00297\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00298}00298\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00299}00299\ \textcolor{comment}{//\ \ A\ data\ filter\ item\ with\ the\ specified\ name\ already\ exists.\ }}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00300}00300\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00301}\mbox{\hyperlink{opcerror_8h_ae364b661db197cee1be0bc79641342c4}{00301}}\ \textcolor{preprocessor}{\#define\ OPCCPX\_E\_FILTER\_DUPLICATE\ \ \ \ \ \ \ \ ((HRESULT)0xC0040408L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00303}00303\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00304}00304\ \textcolor{comment}{//\ MessageId:\ OPCCPX\_E\_FILTER\_INVALID}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00305}00305\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00306}00306\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00307}00307\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00308}00308\ \textcolor{comment}{//\ \ The\ data\ filter\ value\ does\ not\ conform\ to\ the\ server's\ syntax.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00309}00309\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00310}\mbox{\hyperlink{opcerror_8h_aedd3e11f29091b8c0ffb2db3a5a0d7e5}{00310}}\ \textcolor{preprocessor}{\#define\ OPCCPX\_E\_FILTER\_INVALID\ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040409L)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00312}00312\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00313}00313\ \textcolor{comment}{//\ MessageId:\ OPCCPX\_E\_FILTER\_ERROR}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00314}00314\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00315}00315\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00316}00316\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00317}00317\ \textcolor{comment}{//\ \ An\ error\ occurred\ when\ the\ filter\ value\ was\ applied\ to\ the\ source\ data.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00318}00318\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00319}\mbox{\hyperlink{opcerror_8h_a3c2587b1c55d3162936cad19344ce8b3}{00319}}\ \textcolor{preprocessor}{\#define\ OPCCPX\_E\_FILTER\_ERROR\ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC004040AL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00321}00321\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00322}00322\ \textcolor{comment}{//\ MessageId:\ OPCCPX\_S\_FILTER\_NO\_DATA}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00323}00323\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00324}00324\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00325}00325\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00326}00326\ \textcolor{comment}{//\ \ The\ item\ value\ is\ empty\ because\ the\ data\ filter\ has\ excluded\ all\ fields.}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00327}00327\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00328}\mbox{\hyperlink{opcerror_8h_a73e8d29ca9c94adff020c8eea6d4d697}{00328}}\ \textcolor{preprocessor}{\#define\ OPCCPX\_S\_FILTER\_NO\_DATA\ \ \ \ \ \ \ \ \ \ ((HRESULT)0x0004040BL)}}
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{opcerror_8h_source_l00330}00330\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ifndef\ \_\_OPCERROR\_H}}
+
+\end{DoxyCode}

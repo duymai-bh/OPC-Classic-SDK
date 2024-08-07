@@ -1,0 +1,492 @@
+\doxysection{Serial\+IO.\+Opc\+Server Class Reference}
+\hypertarget{class_serial_i_o_1_1_opc_server}{}\label{class_serial_i_o_1_1_opc_server}\index{SerialIO.OpcServer@{SerialIO.OpcServer}}
+
+
+Collaboration diagram for Serial\+IO.\+Opc\+Server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{class_serial_i_o_1_1_opc_server__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a67a2818e285286907beae47f4ab0cf41}{Opc\+Server}} ()
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_acc29be72cef7b7877132aa43e9c187c6}{Initialize}} ()
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a7cdd4a18307eb44fb99a98ee4fea8f65}{Start}} ()
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_aab0e96f346597dc75560da1b67d604ec}{Stop}} ()
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_ab5ff0952673e79a305fc2ab3fa16153c}{Ready}} ()
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_ab5dc791d842ef8b1cd28006cff69e2b9}{Terminate}} ()
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a32bcbee0be4bc04c4245f36d6bbc6917}{Prepare}} (\mbox{\hyperlink{class_serial_i_o_1_1_my_creator}{My\+Creator}} a\+My\+Creator)
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a6458faf1db44b7b56c9d8871f6992d73}{Process\+Command\+Line}} (string command\+Line)
+\item 
+int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a0d49559b674a20729ef13158b9302481}{Build\+Address\+Space}} ()
+\item 
+void \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a3a2617d912cb36c051e0010a1bce2097}{Change\+Simulation\+Values}} ()
+\item 
+void \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a4d85f435040479e59817ece6a8ba0cfb}{Add\+Requsts}} (Array\+List requests)
+\item 
+void \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_ad679f1d66df9833a3a9f8456f66b22d6}{Handle\+Requests}} ()
+\item 
+void \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a5e2b65bbf3a91eb6ed4e75dde0dd5baa}{Trace}} (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{Enum\+Trace\+Level}} trace\+Level, \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{Enum\+Trace\+Group}} trace\+Group, string object\+ID, string message)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_aae58dc04eca5b9ce2bbea20d4322505a}{Shutdown}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Shutdown\+Handler \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_ad23a6ba50eb53df091edb222d809c77b}{m\+\_\+shutdown\+Request}} = null
+\item 
+\mbox{\hyperlink{class_serial_i_o_1_1_my_da_address_space_element}{My\+Da\+Address\+Space\+Element}} \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a41031241a08746e9e3ed287af4f4116a}{m\+\_\+da\+Simulation\+Element1}} = null
+\item 
+\mbox{\hyperlink{class_serial_i_o_1_1_my_da_address_space_element}{My\+Da\+Address\+Space\+Element}} \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_ac9625fd8fcdd7b97742b498cff79904d}{m\+\_\+da\+Simulation\+Element2}} = null
+\item 
+Random \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a8f32de8abed00077861c004ec77b3dbc}{m\+\_\+random}} = new Random(1)
+\item 
+object \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_aa64114262bf39522ddfb4ddc2a4a5e95}{m\+\_\+requests\+Janitor}} = new object()
+\item 
+Array\+List \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a55046236495fb2cc178eadf28ef2a121}{m\+\_\+requests}} = new Array\+List()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_serial_i_o_1_1_opc_server_a8b1483c7b433aa4720bb4fe94d56f42b}{Service\+Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00008}{8}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a67a2818e285286907beae47f4ab0cf41}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!OpcServer@{OpcServer}}
+\index{OpcServer@{OpcServer}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{OpcServer()}{OpcServer()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a67a2818e285286907beae47f4ab0cf41} 
+Serial\+IO.\+Opc\+Server.\+Opc\+Server (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00013}{13}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a4d85f435040479e59817ece6a8ba0cfb}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!AddRequsts@{AddRequsts}}
+\index{AddRequsts@{AddRequsts}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{AddRequsts()}{AddRequsts()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a4d85f435040479e59817ece6a8ba0cfb} 
+void Serial\+IO.\+Opc\+Server.\+Add\+Requsts (\begin{DoxyParamCaption}\item[{Array\+List}]{requests}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00193}{193}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a4d85f435040479e59817ece6a8ba0cfb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a0d49559b674a20729ef13158b9302481}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!BuildAddressSpace@{BuildAddressSpace}}
+\index{BuildAddressSpace@{BuildAddressSpace}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{BuildAddressSpace()}{BuildAddressSpace()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a0d49559b674a20729ef13158b9302481} 
+int Serial\+IO.\+Opc\+Server.\+Build\+Address\+Space (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00143}{143}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a0d49559b674a20729ef13158b9302481_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a0d49559b674a20729ef13158b9302481_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a3a2617d912cb36c051e0010a1bce2097}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!ChangeSimulationValues@{ChangeSimulationValues}}
+\index{ChangeSimulationValues@{ChangeSimulationValues}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{ChangeSimulationValues()}{ChangeSimulationValues()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a3a2617d912cb36c051e0010a1bce2097} 
+void Serial\+IO.\+Opc\+Server.\+Change\+Simulation\+Values (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00179}{179}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a3a2617d912cb36c051e0010a1bce2097_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a3a2617d912cb36c051e0010a1bce2097_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_ad679f1d66df9833a3a9f8456f66b22d6}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!HandleRequests@{HandleRequests}}
+\index{HandleRequests@{HandleRequests}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{HandleRequests()}{HandleRequests()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_ad679f1d66df9833a3a9f8456f66b22d6} 
+void Serial\+IO.\+Opc\+Server.\+Handle\+Requests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00208}{208}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_ad679f1d66df9833a3a9f8456f66b22d6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_ad679f1d66df9833a3a9f8456f66b22d6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_acc29be72cef7b7877132aa43e9c187c6}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Initialize@{Initialize}}
+\index{Initialize@{Initialize}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Initialize()}{Initialize()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_acc29be72cef7b7877132aa43e9c187c6} 
+int Serial\+IO.\+Opc\+Server.\+Initialize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00060}{60}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_acc29be72cef7b7877132aa43e9c187c6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_acc29be72cef7b7877132aa43e9c187c6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a32bcbee0be4bc04c4245f36d6bbc6917}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Prepare@{Prepare}}
+\index{Prepare@{Prepare}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Prepare()}{Prepare()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a32bcbee0be4bc04c4245f36d6bbc6917} 
+int Serial\+IO.\+Opc\+Server.\+Prepare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_serial_i_o_1_1_my_creator}{My\+Creator}}}]{a\+My\+Creator}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00119}{119}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a32bcbee0be4bc04c4245f36d6bbc6917_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a32bcbee0be4bc04c4245f36d6bbc6917_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a6458faf1db44b7b56c9d8871f6992d73}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!ProcessCommandLine@{ProcessCommandLine}}
+\index{ProcessCommandLine@{ProcessCommandLine}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{ProcessCommandLine()}{ProcessCommandLine()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a6458faf1db44b7b56c9d8871f6992d73} 
+int Serial\+IO.\+Opc\+Server.\+Process\+Command\+Line (\begin{DoxyParamCaption}\item[{string}]{command\+Line}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00138}{138}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a6458faf1db44b7b56c9d8871f6992d73_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a6458faf1db44b7b56c9d8871f6992d73_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_ab5ff0952673e79a305fc2ab3fa16153c}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Ready@{Ready}}
+\index{Ready@{Ready}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Ready()}{Ready()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_ab5ff0952673e79a305fc2ab3fa16153c} 
+int Serial\+IO.\+Opc\+Server.\+Ready (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00109}{109}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_ab5ff0952673e79a305fc2ab3fa16153c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_ab5ff0952673e79a305fc2ab3fa16153c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_aae58dc04eca5b9ce2bbea20d4322505a}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_aae58dc04eca5b9ce2bbea20d4322505a} 
+static int Serial\+IO.\+Opc\+Server.\+Shutdown (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00055}{55}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_aae58dc04eca5b9ce2bbea20d4322505a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a7cdd4a18307eb44fb99a98ee4fea8f65}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Start@{Start}}
+\index{Start@{Start}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a7cdd4a18307eb44fb99a98ee4fea8f65} 
+int Serial\+IO.\+Opc\+Server.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00099}{99}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a7cdd4a18307eb44fb99a98ee4fea8f65_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a7cdd4a18307eb44fb99a98ee4fea8f65_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_aab0e96f346597dc75560da1b67d604ec}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Stop@{Stop}}
+\index{Stop@{Stop}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_aab0e96f346597dc75560da1b67d604ec} 
+int Serial\+IO.\+Opc\+Server.\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00104}{104}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_aab0e96f346597dc75560da1b67d604ec_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_aab0e96f346597dc75560da1b67d604ec_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_ab5dc791d842ef8b1cd28006cff69e2b9}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Terminate@{Terminate}}
+\index{Terminate@{Terminate}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Terminate()}{Terminate()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_ab5dc791d842ef8b1cd28006cff69e2b9} 
+int Serial\+IO.\+Opc\+Server.\+Terminate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00114}{114}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_ab5dc791d842ef8b1cd28006cff69e2b9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_ab5dc791d842ef8b1cd28006cff69e2b9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a5e2b65bbf3a91eb6ed4e75dde0dd5baa}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!Trace@{Trace}}
+\index{Trace@{Trace}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{Trace()}{Trace()}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a5e2b65bbf3a91eb6ed4e75dde0dd5baa} 
+void Serial\+IO.\+Opc\+Server.\+Trace (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{Enum\+Trace\+Level}}}]{trace\+Level}{, }\item[{\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{Enum\+Trace\+Group}}}]{trace\+Group}{, }\item[{string}]{object\+ID}{, }\item[{string}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00264}{264}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a5e2b65bbf3a91eb6ed4e75dde0dd5baa_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_serial_i_o_1_1_opc_server_a5e2b65bbf3a91eb6ed4e75dde0dd5baa_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a41031241a08746e9e3ed287af4f4116a}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!m\_daSimulationElement1@{m\_daSimulationElement1}}
+\index{m\_daSimulationElement1@{m\_daSimulationElement1}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{m\_daSimulationElement1}{m\_daSimulationElement1}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a41031241a08746e9e3ed287af4f4116a} 
+\mbox{\hyperlink{class_serial_i_o_1_1_my_da_address_space_element}{My\+Da\+Address\+Space\+Element}} Serial\+IO.\+Opc\+Server.\+m\+\_\+da\+Simulation\+Element1 = null\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00024}{24}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+\Hypertarget{class_serial_i_o_1_1_opc_server_ac9625fd8fcdd7b97742b498cff79904d}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!m\_daSimulationElement2@{m\_daSimulationElement2}}
+\index{m\_daSimulationElement2@{m\_daSimulationElement2}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{m\_daSimulationElement2}{m\_daSimulationElement2}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_ac9625fd8fcdd7b97742b498cff79904d} 
+\mbox{\hyperlink{class_serial_i_o_1_1_my_da_address_space_element}{My\+Da\+Address\+Space\+Element}} Serial\+IO.\+Opc\+Server.\+m\+\_\+da\+Simulation\+Element2 = null\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00025}{25}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+\Hypertarget{class_serial_i_o_1_1_opc_server_a8f32de8abed00077861c004ec77b3dbc}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!m\_random@{m\_random}}
+\index{m\_random@{m\_random}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{m\_random}{m\_random}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a8f32de8abed00077861c004ec77b3dbc} 
+Random Serial\+IO.\+Opc\+Server.\+m\+\_\+random = new Random(1)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00026}{26}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+\Hypertarget{class_serial_i_o_1_1_opc_server_a55046236495fb2cc178eadf28ef2a121}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!m\_requests@{m\_requests}}
+\index{m\_requests@{m\_requests}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{m\_requests}{m\_requests}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a55046236495fb2cc178eadf28ef2a121} 
+Array\+List Serial\+IO.\+Opc\+Server.\+m\+\_\+requests = new Array\+List()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00029}{29}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+\Hypertarget{class_serial_i_o_1_1_opc_server_aa64114262bf39522ddfb4ddc2a4a5e95}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!m\_requestsJanitor@{m\_requestsJanitor}}
+\index{m\_requestsJanitor@{m\_requestsJanitor}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{m\_requestsJanitor}{m\_requestsJanitor}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_aa64114262bf39522ddfb4ddc2a4a5e95} 
+object Serial\+IO.\+Opc\+Server.\+m\+\_\+requests\+Janitor = new object()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00028}{28}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+\Hypertarget{class_serial_i_o_1_1_opc_server_ad23a6ba50eb53df091edb222d809c77b}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!m\_shutdownRequest@{m\_shutdownRequest}}
+\index{m\_shutdownRequest@{m\_shutdownRequest}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{m\_shutdownRequest}{m\_shutdownRequest}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_ad23a6ba50eb53df091edb222d809c77b} 
+Shutdown\+Handler Serial\+IO.\+Opc\+Server.\+m\+\_\+shutdown\+Request = null\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00023}{23}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_serial_i_o_1_1_opc_server_a8b1483c7b433aa4720bb4fe94d56f42b}\index{SerialIO.OpcServer@{SerialIO.OpcServer}!ServiceName@{ServiceName}}
+\index{ServiceName@{ServiceName}!SerialIO.OpcServer@{SerialIO.OpcServer}}
+\doxysubsubsection{\texorpdfstring{ServiceName}{ServiceName}}
+{\footnotesize\ttfamily \label{class_serial_i_o_1_1_opc_server_a8b1483c7b433aa4720bb4fe94d56f42b} 
+string Serial\+IO.\+Opc\+Server.\+Service\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source_l00037}{37}} of file \mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs_source}{Opc\+Server.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+NET/samples/server/\+Serial\+\_\+\+IO/\+CS/\mbox{\hyperlink{samples_2server_2_serial___i_o_2_c_s_2_opc_server_8cs}{Opc\+Server.\+cs}}\end{DoxyCompactItemize}

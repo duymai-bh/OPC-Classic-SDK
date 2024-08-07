@@ -1,0 +1,171 @@
+\doxysection{My\+Da\+Subscription.\+cs}
+\hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source}{}\label{_d_a_console_2_c_s_2_my_da_subscription_8cs_source}\index{NET/samples/client/DAConsole/CS/MyDaSubscription.cs@{NET/samples/client/DAConsole/CS/MyDaSubscription.cs}}
+\mbox{\hyperlink{_d_a_console_2_c_s_2_my_da_subscription_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client}{Softing.OPCToolbox.Client}};}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_da_console}{DaConsole}}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00007}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription}{00007}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_da_console_1_1_my_da_subscription}{MyDaSubscription}}\ :\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{DaSubscription}}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00008}00008\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00010}00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Constructor}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00013}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_ae578ef226a65bbfad2cb254920545083}{00013}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_da_console_1_1_my_da_subscription_ae578ef226a65bbfad2cb254920545083}{MyDaSubscription}}(uint\ updateRate,\ \mbox{\hyperlink{class_da_console_1_1_my_da_session}{MyDaSession}}\ parentSession)\ :\ base(updateRate,\ parentSession)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a2a3e5661f70501250a2d4a2e91e04936}{DataChanged}}\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa9c4a5c975c48f0d672acf1bb0a307f7}{DataChangedEventHandler}}(\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a6ca891b2b23b5ec73627b2e5663a78ae}{HandleDataChanged}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8532ff5484896702dd06449560ec699c}{StateChangeCompleted}}\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a844ab0d390a4871112738573aa1e8147}{StateChangeEventHandler}}(\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a0036fe7f94c0a2458f218973789ca609}{HandleStateChanged}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae8085c432881d1e71d6d3ea40dc243df}{ReadCompleted}}\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ab3ff52b39fc11a441eb7af2a823ecdda}{SubscriptionReadEventHandler}}(\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a279c50bb0520534a4273b97e6b25f93a}{HandleSubscriptionReadCompleted}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ac237efeba52a218824037172a350e795}{WriteCompleted}}\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a5871e4b504b0b0a4598ed7af989fbc68}{SubscriptionWriteEventHandler}}(\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a5bd53ee690f2ddc86e9d3d37dbb6e8d2}{HandleSubscriptionWriteCompleted}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a499221f5ceca1d199d9a44c2f11de55c}{PerformStateTransitionCompleted}}\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a15e852da2a7e28fe02bfd70e972630f1}{PerformStateTransitionEventHandler}}(\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_ac83484db354f17f8171bd0c4e824e231}{HandlePerformStateTransition}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00023}00023\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00025}00025\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Members}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00028}00028\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00033}00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00037}00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00039}00039\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00044}00044\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00046}00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Properties}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00051}00051\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00053}00053\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Handles}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00055}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a0036fe7f94c0a2458f218973789ca609}{00055}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a0036fe7f94c0a2458f218973789ca609}{HandleStateChanged}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ sender,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}\ state)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(sender\ +\ \textcolor{stringliteral}{"{}\ State\ Changed\ -\/\ "{}}\ +\ state);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ HandleStateChanged}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00061}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a6ca891b2b23b5ec73627b2e5663a78ae}{00061}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a6ca891b2b23b5ec73627b2e5663a78ae}{HandleDataChanged}}(}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{DaSubscription}}\ daSubscription,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{DaItem}}[]\ items,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}[]\ values,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine();}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(daSubscription);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ items.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(results[i]))}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(String.Format(\textcolor{stringliteral}{"{}\{0,-\/19\}\ \{1\}\ \{2,-\/50\}\ "{}},\ items[i].\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item_aaf11c8cc94300b571ba4c1bf5c6d49c3}{Id}},\ \textcolor{stringliteral}{"{}-\/"{}},\ values[i].\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_a5767785ea0fea1c2391a4bf34eb4e6aa}{ToString}}()));}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}Receiving\ item\ value\ failed!\ "{}}\ +\ \textcolor{stringliteral}{"{}\ Item:\ "{}}\ +\ items[i].Id);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine();}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ HandleDataChanged}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00084}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a279c50bb0520534a4273b97e6b25f93a}{00084}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a279c50bb0520534a4273b97e6b25f93a}{HandleSubscriptionReadCompleted}}(}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{DaSubscription}}\ daSubscription,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{DaItem}}[]\ items,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}[]\ values,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(daSubscription\ +\ \textcolor{stringliteral}{"{}\ asynchronous\ read\ succeeded!\ "{}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ values.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(results[i]))}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(String.Format(\textcolor{stringliteral}{"{}\{0,-\/19\}\ \{1\}\ \{2,-\/50\}\ "{}},\ items[i].\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item_aaf11c8cc94300b571ba4c1bf5c6d49c3}{Id}},\ \textcolor{stringliteral}{"{}-\/"{}},\ values[i].\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_a5767785ea0fea1c2391a4bf34eb4e6aa}{ToString}}()));}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}\ Item\ read\ failed!"{}}\ +\ items[i].Id\ +\ \textcolor{stringliteral}{"{}\ [ResultID:\ "{}}\ +\ results[i]\ +\ \textcolor{stringliteral}{"{}\ ]"{}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}\ Subscription\ asynchronous\ read\ failed!\ Result:\ "{}}\ +\ result);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ HandleSubscriptionReadComplete}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00115}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a5bd53ee690f2ddc86e9d3d37dbb6e8d2}{00115}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_my_da_subscription_a5bd53ee690f2ddc86e9d3d37dbb6e8d2}{HandleSubscriptionWriteCompleted}}(}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{DaSubscription}}\ daSubscription,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{DaItem}}[]\ items,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}[]\ values,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(daSubscription\ +\ \textcolor{stringliteral}{"{}\ asynchronous\ write\ succeeded!\ "{}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ items.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(results[i]))}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}\ "{}}\ +\ items[i].Id);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}\ aSubscription\ asynchronous\ write\ failed!\ "{}}\ +\ items[i].Id\ +\ \textcolor{stringliteral}{"{}\ [ResultID:\ "{}}\ +\ results[i]\ +\ \textcolor{stringliteral}{"{}\ ]"{}});}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}\ Subscription\ asynchronous\ write\ failed!\ Result:\ "{}}\ +\ result);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ HandleSubscriptionWriteCompleted}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00145}\mbox{\hyperlink{class_da_console_1_1_my_da_subscription_ac83484db354f17f8171bd0c4e824e231}{00145}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_my_da_subscription_ac83484db354f17f8171bd0c4e824e231}{HandlePerformStateTransition}}(}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ sender,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result)}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(sender\ +\ \textcolor{stringliteral}{"{}\ Performed\ state\ transition\ -\/\ "{}}\ +\ executionContext);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(sender\ +\ \textcolor{stringliteral}{"{}\ \ Performed\ state\ transition\ failed!\ Result:\ "{}}\ +\ result);}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ HandlePerformStateTransition}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00161}00161\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00163}00163\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ MyDaItem}}
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_d_a_console_2_c_s_2_my_da_subscription_8cs_source_l00165}00165\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace}}
+
+\end{DoxyCode}

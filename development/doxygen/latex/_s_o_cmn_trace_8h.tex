@@ -1,0 +1,1169 @@
+\doxysection{core/src/include/\+SOCmn\+Trace.h File Reference}
+\hypertarget{_s_o_cmn_trace_8h}{}\label{_s_o_cmn_trace_8h}\index{core/src/include/SOCmnTrace.h@{core/src/include/SOCmnTrace.h}}
+{\ttfamily \#include "{}SOCmn.\+h"{}}\newline
+{\ttfamily \#include "{}SOCmn\+Object.\+h"{}}\newline
+Include dependency graph for SOCmn\+Trace.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_cmn_trace_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_cmn_trace_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_s_o_cmn_trace_receiver}{SOCmn\+Trace\+Receiver}}
+\item 
+class \mbox{\hyperlink{class_s_o_cmn_trace_handler}{SOCmn\+Trace\+Handler}}
+\item 
+class \mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_af575253c75ad8cb65d5a714ca3bdb1d4}{SOCMNTRACE\+\_\+\+G\+\_\+\+ALL}}~0x\+FFFF000F
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aa78c8ef5490fbf4df183b7f0c74f1c45}{SOCMNTRACE\+\_\+\+G\+\_\+\+NOTHING}}~0x00000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a697ab1a0901a614e525c48fc4e59c843}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER}}~0x\+FF000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a5d41bc55d359052d783b00e67df013e9}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC}}~0x0000000F
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ac5be909232ea357ba8fbf3eb49f5e99d}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+CLIENT}}~0x0000000C
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a01d5511e00b706a39da581618d1ec00b}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+SERVER}}~0x00000003
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a42dfb623bad3e5486cb476bf276cd1e5}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+CALL}}~0x00000001
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad846dd86d31ddc9342a49ec316d00c19}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+ADVISE}}~0x00000002
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad2a62de297c8134d0736e90e36848f51}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+CALL\+\_\+C}}~0x00000004
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a0c898067ed405fde207a0807d893c633}{SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+ADVISE\+\_\+C}}~0x00000008
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aed2f2fe4bf27956e25567db00e9b25bc}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER1}}~0x10000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a930273687f349b11fe7816cf1604c020}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER2}}~0x20000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad8984eaee0438be2ac5bf31d8344a9bb}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER3}}~0x40000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ae32bb72d7ec27762dce90f6ad0f8b660}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER4}}~0x80000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aad61db5363d4ee0982fea9a40140a1f1}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER5}}~0x01000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a80ca8079c78d9860565cd5209a253ea0}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER6}}~0x02000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a9b8c8a2eb96474892e234a6a016f4de3}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER7}}~0x04000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_afab1c3225450d902b4547a6907a1689a}{SOCMNTRACE\+\_\+\+G\+\_\+\+USER8}}~0x08000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a9f85be4abc43632c049569c3d93b0394}{SOCMNTRACE\+\_\+\+G\+\_\+\+OTB}}~0x00\+FF0000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad0d82629e3c93a791fc831b25c8d1a07}{SOCMNTRACE\+\_\+\+G\+\_\+\+OBJ\+\_\+\+REF}}~0x00000040
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a029bfa71df3a6ddf16c3f02f0fe1fd16}{SOCMNTRACE\+\_\+\+G\+\_\+\+COM\+\_\+\+OBJ\+\_\+\+REF}}~0x00000020
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a5ef5e569e4f31efb093ea796c54de2c3}{SOCMNTRACE\+\_\+\+G\+\_\+\+OBJ\+\_\+\+LOG}}~0x00000080
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_af318170e455f15c7ff366d02c8430ccd}{SOCMNTRACE\+\_\+\+G\+\_\+\+OBJECTLOG}}~0x00000010
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad8d69a6fb16fd1ba968707f9704beea4}{SOCMNTRACE\+\_\+\+G\+\_\+\+ENTRY}}~0x00000800
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}{SOCMNTRACE\+\_\+\+G\+\_\+\+CLT\+\_\+\+THREAD}}~0x00000100
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a26bba001071cc72ca94c7484932024ea}{SOCMNTRACE\+\_\+\+G\+\_\+\+SRV\+\_\+\+THREAD}}~0x00000200
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ac59d2dda05c881daf4220e5236219f2d}{SOCMNTRACE\+\_\+\+G\+\_\+\+SUS\+\_\+\+FILTER}}~0x00000400
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a814fef0aa9c22c52d143a2252260bf39}{SOCMNTRACE\+\_\+\+G\+\_\+\+SOCKET}}~0x00001000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a38ad2d4f9236b4f168545b00a148e05e}{SOCMNTRACE\+\_\+\+G\+\_\+\+SOCKET\+\_\+\+DATA}}~0x00002000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a7fbc39bb164acace165c8c8f7fb68f80}{SOCMNTRACE\+\_\+\+G\+\_\+\+SOAP\+\_\+\+DATA}}~0x00004000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_abc8db802a5cf41b1bcbe785c840e1ff5}{SOCMNTRACE\+\_\+\+G\+\_\+\+WEB\+\_\+\+SRV}}~0x00008000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a08b32442fc43ef0cad6d9c7b7f7e5696}{SOCMNTRACE\+\_\+\+G\+\_\+\+DISCOVERY\+\_\+\+SRV}}~0x00010000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a5414dc15015d2cb05639ea711ede6156}{SOCMNTRACE\+\_\+\+G\+\_\+\+DISCOVERY\+\_\+\+CLT}}~0x00020000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aa3cb391dc4245a28787a953b057024b8}{SOCMNTRACE\+\_\+\+G\+\_\+\+TEST}}~0x80000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a45773b5662d8a489490bc85c102a1058}{TG\+\_\+\+USER1}}~0x10000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a5e2a60286cb579ffb04882de2b5b71ca}{TG\+\_\+\+USER2}}~0x20000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a5aca5c5951b709020d10d084ed00a86b}{TG\+\_\+\+USER3}}~0x40000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a48141513c91c818899db4ac06fdca323}{TG\+\_\+\+USER4}}~0x80000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_acdb871a61bedc2708a988ac5ad8cbc40}{TG\+\_\+\+USER}}~0x\+F0000000
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a34f5449cca845ceefc8a2d0604ded2c7}{SOCMNTRACE\+\_\+\+L\+\_\+\+ERR}}~0
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a24872247ddd95df5e1d7ee7f3566965e}{SOCMNTRACE\+\_\+\+L\+\_\+\+WRN}}~1
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18}{SOCMNTRACE\+\_\+\+L\+\_\+\+INF}}~2
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad186d9e658a297451a6f0522cf03be8b}{SOCMNTRACE\+\_\+\+L\+\_\+\+DEB}}~3
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aeebb4c7092c39a25de77c7cc8be20462}{TL\+\_\+\+ERR}}~0
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ac42568f7c6f2758ea997cbcb69fa1f58}{TL\+\_\+\+WRN}}~1
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a756cc8d2249238d25ac51f4aeef7ba43}{TL\+\_\+\+INF}}~2
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aa5f6af594d691496dab419d8a3acec1c}{TL\+\_\+\+DEB}}~3
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_af1710b112671515cf9a5056f70fcba89}{Generic\+Trace\+Handler}}~\mbox{\hyperlink{class_s_o_cmn_trace_handler}{SOCmn\+Trace\+Handler}}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ae7cea7cc4cc3bdd66698e1c9b1643321}{OPCTrace}}~\mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a2bae75492f6b1b4295c9d576061f0a43}{BOOL2\+STR}}(a)~((a) ? \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}TRUE"{}) \+: \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}FALSE"{}))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a25870390b41d58b3050f32e0fde297e7}{VARIANT2\+STR}}(a)~(variant\+With\+Type2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+variant\+Buffer, a))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a066d124b3cf273f3472bd4e736613945}{CLIPFORMAT2\+STR}}(a)~(clipformat2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+clipformat\+Buffer, a))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a7e90401072ca4ca5b8d44fd0aa4ae42b}{QUALITY2\+STR}}(a)~(\mbox{\hyperlink{_s_o_cmn_trace_8h_a9af4c43195106b0ff16132b88eba89ac}{quality2string}}(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+quality\+Buffer, a))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aa686397718c2ce1f518f6bd89d59b909}{VARTYPE2\+STR}}(a)~(vartype2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+vartype\+Buffer, a))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a72c3f7ca4fb98ec5df689f6d4bc137aa}{FILETIME2\+STR}}(a)~(filetime2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+filetime\+Buffer, a))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a45fc3925d3dc56cdd329b26b98048acb}{BYTEARRAY2\+STR}}(a,  b)~(\mbox{\hyperlink{_s_o_cmn_trace_8h_a065d236dc1e4d6b88e211ad504fa66c6}{byte\+Array\+To\+String}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+clipformat\+Buffer, a, b))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a490afbfda6f41b1a8e3fcfe30b73dbd6}{\+\_\+\+TRACE\+\_\+\+CREATE\+\_\+\+GENOBJ}}()
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a053fb1d99e48a9462b6d3e70f0516fc8}{\+\_\+\+TRACE\+\_\+\+CREATE\+\_\+\+COMOBJ}}()
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a206ad7c47ece56292fe94b788d34010b}{\+\_\+\+TRACEC\+\_\+\+CREATE\+\_\+\+COMOBJ}}(id)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_afba59a89e1d9f45061a3b9884a528d21}{\+\_\+\+TRACE\+\_\+\+DELETE\+\_\+\+GENOBJ}}()
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a871df0ed471b8dee264daecbd5d75297}{\+\_\+\+TRACE\+\_\+\+DELETE\+\_\+\+COMOBJ}}()
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a90d0824999f135c9d08bdec12b7ed76b}{\+\_\+\+TRACE}}(level,  mask,  y)~\{\}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a60d1b6e4cf7aa9c2e09b43af2be67f51}{\+\_\+\+TRACEASCIISTRING}}(level,  mask,  len,  \mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}})~\{\}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a3a47f6dc2e3ba01e575f522d749c8259}{\+\_\+\+TRACEW}}(level,  mask,  y)~\{\}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a969989428e5eded3947b0aaf1003da0d}{\+\_\+\+TRACEI}}(level,  mask,  y)~\{\}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ab71ea30cdab68ab130973cbaeeadc559}{\+\_\+\+TRACEO}}(level,  mask,  obj,  y)~\{\}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}{\+\_\+\+TRACEC}}(level,  mask,  id,  y)~\{\}
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a56a9f1910afd291a4ef12f84e9c905b1}{\+\_\+\+TRACE\+\_\+\+START\+\_\+\+TIME}}(level,  mask)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_abdbd3f58fb8d4b81002dd0af9a67096e}{\+\_\+\+TRACE\+\_\+\+STOP\+\_\+\+TIME}}(level,  mask)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_ac6b8d7b3a895fd5471cc4de22ad91b08}{\+\_\+\+TRACE\+\_\+\+ELAPSED\+\_\+\+TIME}}~\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}?"{});
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aa8d597a84f73849f1c1d8ed46a4e3845}{\+\_\+\+TRACE\+\_\+\+FAILED}}(res,  level,  mask,  y)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a8b3e66cc289e5fb88298a888410766c8}{\+\_\+\+TRACE\+\_\+\+SUCCEEDED}}(res,  level,  mask,  y)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a0c33d8a7240e853c09d9b5d6cb677f34}{\+\_\+\+TRACEO\+\_\+\+SUCCEEDED}}(res,  level,  mask,  obj,  y)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a7c761678344a2839d550e541e5c54d08}{\+\_\+\+TRACE\+\_\+\+LEVEL\+\_\+\+FROM\+\_\+\+RES}}(res,  mask,  y)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a3d579eb0f1857693501e8a9ede388a6e}{\+\_\+\+TRACEO\+\_\+\+LEVEL\+\_\+\+FROM\+\_\+\+RES}}(res,  mask,  obj,  y)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aca429d40184cad90de634e53fc8db324}{\+\_\+\+TRACEO\+\_\+\+LEVEL\+\_\+\+FROM\+\_\+\+RESX}}(res,  mask,  obj,  y)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aefd6120673651265d866dd9b6ed11f7f}{\+\_\+\+TRACE\+\_\+\+IF}}(level,  mask)~\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8}{if}} (FALSE)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61}{\+\_\+\+ASSERTION}}(expr,  message)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a51ddd5c3e608dbabbee7b075fe212c09}{\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER}}(p)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a743692405b0140681c953996bcbdf1ed}{\+\_\+\+IS\+\_\+\+VALID\+\_\+\+WRITE\+\_\+\+POINTER}}(p)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a8405fd34ea62d6c162bcea60a3f17f61}{\+\_\+\+ASSERT\+\_\+\+PTR}}(p)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a9ad1149eb688938f39c143eda8dc9b74}{\+\_\+\+ASSERT\+\_\+\+WRITE\+\_\+\+PTR}}(p)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a16ac27456bae00a3a527c7d3ac7dab0e}{\+\_\+\+COUNTOF}}(array)~(sizeof(array)/sizeof(array\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_a898e05699c37791783cba0df363280c0}{\+\_\+\+TRACE\+\_\+\+DEF\+\_\+\+TIME}}(a)
+\item 
+\#define \mbox{\hyperlink{_s_o_cmn_trace_8h_aa234f3000fd1b4448d06b59020bca86e}{\+\_\+\+TRACE\+\_\+\+GET\+\_\+\+TIME}}(a)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} \mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_cmn_trace_8h_aeffece4b6c5bbd7dcb2398988cf72ff1}{get\+OPCTrace}} (void)
+\item 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} \mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{get\+SOCmn\+Trace}} (void)
+\item 
+void \mbox{\hyperlink{_s_o_cmn_trace_8h_a561aa404f0ea43c9214c98c185db6603}{create\+Trace\+Object}} (void)
+\item 
+void \mbox{\hyperlink{_s_o_cmn_trace_8h_a74c012efbf8eb675ca8812f4a643ba9c}{destroy\+Trace\+Object}} (void)
+\item 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} LPCTSTR \mbox{\hyperlink{_s_o_cmn_trace_8h_aee70b5f323e598958b1bf8da3b5f8608}{access\+Rights2string}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD access\+Right, OPTIONAL \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LCID loc\+ID=LOCALE\+\_\+\+SYSTEM\+\_\+\+DEFAULT)
+\item 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} LPCTSTR \mbox{\hyperlink{_s_o_cmn_trace_8h_a9af4c43195106b0ff16132b88eba89ac}{quality2string}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD quality, OPTIONAL \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LCID loc\+ID=LOCALE\+\_\+\+SYSTEM\+\_\+\+DEFAULT)
+\item 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} LPCTSTR \mbox{\hyperlink{_s_o_cmn_trace_8h_a065d236dc1e4d6b88e211ad504fa66c6}{byte\+Array\+To\+String}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \&\mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}, DWORD len, BYTE \texorpdfstring{$\ast$}{*}data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_s_o_cmn_trace_8h_a8405fd34ea62d6c162bcea60a3f17f61}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_ASSERT\_PTR@{\_ASSERT\_PTR}}
+\index{\_ASSERT\_PTR@{\_ASSERT\_PTR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_ASSERT\_PTR}{\_ASSERT\_PTR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a8405fd34ea62d6c162bcea60a3f17f61} 
+\#define \+\_\+\+ASSERT\+\_\+\+PTR(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00640}{640}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a9ad1149eb688938f39c143eda8dc9b74}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_ASSERT\_WRITE\_PTR@{\_ASSERT\_WRITE\_PTR}}
+\index{\_ASSERT\_WRITE\_PTR@{\_ASSERT\_WRITE\_PTR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_ASSERT\_WRITE\_PTR}{\_ASSERT\_WRITE\_PTR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a9ad1149eb688938f39c143eda8dc9b74} 
+\#define \+\_\+\+ASSERT\+\_\+\+WRITE\+\_\+\+PTR(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00641}{641}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_ASSERTION@{\_ASSERTION}}
+\index{\_ASSERTION@{\_ASSERTION}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_ASSERTION}{\_ASSERTION}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61} 
+\#define \+\_\+\+ASSERTION(\begin{DoxyParamCaption}\item[{}]{expr}{, }\item[{}]{message}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00611}{611}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a16ac27456bae00a3a527c7d3ac7dab0e}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_COUNTOF@{\_COUNTOF}}
+\index{\_COUNTOF@{\_COUNTOF}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_COUNTOF}{\_COUNTOF}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a16ac27456bae00a3a527c7d3ac7dab0e} 
+\#define \+\_\+\+COUNTOF(\begin{DoxyParamCaption}\item[{}]{array}{}\end{DoxyParamCaption})~(sizeof(array)/sizeof(array\mbox{[}0\mbox{]}))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00643}{643}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a51ddd5c3e608dbabbee7b075fe212c09}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_IS\_VALID\_POINTER@{\_IS\_VALID\_POINTER}}
+\index{\_IS\_VALID\_POINTER@{\_IS\_VALID\_POINTER}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_IS\_VALID\_POINTER}{\_IS\_VALID\_POINTER}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a51ddd5c3e608dbabbee7b075fe212c09} 
+\#define \+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00638}{638}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a743692405b0140681c953996bcbdf1ed}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_IS\_VALID\_WRITE\_POINTER@{\_IS\_VALID\_WRITE\_POINTER}}
+\index{\_IS\_VALID\_WRITE\_POINTER@{\_IS\_VALID\_WRITE\_POINTER}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_IS\_VALID\_WRITE\_POINTER}{\_IS\_VALID\_WRITE\_POINTER}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a743692405b0140681c953996bcbdf1ed} 
+\#define \+\_\+\+IS\+\_\+\+VALID\+\_\+\+WRITE\+\_\+\+POINTER(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00639}{639}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a90d0824999f135c9d08bdec12b7ed76b}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE@{\_TRACE}}
+\index{\_TRACE@{\_TRACE}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE}{\_TRACE}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a90d0824999f135c9d08bdec12b7ed76b} 
+\#define \+\_\+\+TRACE(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{y}{}\end{DoxyParamCaption})~\{\}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00581}{581}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a053fb1d99e48a9462b6d3e70f0516fc8}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_CREATE\_COMOBJ@{\_TRACE\_CREATE\_COMOBJ}}
+\index{\_TRACE\_CREATE\_COMOBJ@{\_TRACE\_CREATE\_COMOBJ}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_CREATE\_COMOBJ}{\_TRACE\_CREATE\_COMOBJ}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a053fb1d99e48a9462b6d3e70f0516fc8} 
+\#define \+\_\+\+TRACE\+\_\+\+CREATE\+\_\+\+COMOBJ(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00577}{577}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a490afbfda6f41b1a8e3fcfe30b73dbd6}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_CREATE\_GENOBJ@{\_TRACE\_CREATE\_GENOBJ}}
+\index{\_TRACE\_CREATE\_GENOBJ@{\_TRACE\_CREATE\_GENOBJ}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_CREATE\_GENOBJ}{\_TRACE\_CREATE\_GENOBJ}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a490afbfda6f41b1a8e3fcfe30b73dbd6} 
+\#define \+\_\+\+TRACE\+\_\+\+CREATE\+\_\+\+GENOBJ(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00576}{576}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a898e05699c37791783cba0df363280c0}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_DEF\_TIME@{\_TRACE\_DEF\_TIME}}
+\index{\_TRACE\_DEF\_TIME@{\_TRACE\_DEF\_TIME}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_DEF\_TIME}{\_TRACE\_DEF\_TIME}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a898e05699c37791783cba0df363280c0} 
+\#define \+\_\+\+TRACE\+\_\+\+DEF\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00650}{650}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a871df0ed471b8dee264daecbd5d75297}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_DELETE\_COMOBJ@{\_TRACE\_DELETE\_COMOBJ}}
+\index{\_TRACE\_DELETE\_COMOBJ@{\_TRACE\_DELETE\_COMOBJ}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_DELETE\_COMOBJ}{\_TRACE\_DELETE\_COMOBJ}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a871df0ed471b8dee264daecbd5d75297} 
+\#define \+\_\+\+TRACE\+\_\+\+DELETE\+\_\+\+COMOBJ(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00580}{580}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_afba59a89e1d9f45061a3b9884a528d21}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_DELETE\_GENOBJ@{\_TRACE\_DELETE\_GENOBJ}}
+\index{\_TRACE\_DELETE\_GENOBJ@{\_TRACE\_DELETE\_GENOBJ}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_DELETE\_GENOBJ}{\_TRACE\_DELETE\_GENOBJ}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_afba59a89e1d9f45061a3b9884a528d21} 
+\#define \+\_\+\+TRACE\+\_\+\+DELETE\+\_\+\+GENOBJ(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00579}{579}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ac6b8d7b3a895fd5471cc4de22ad91b08}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_ELAPSED\_TIME@{\_TRACE\_ELAPSED\_TIME}}
+\index{\_TRACE\_ELAPSED\_TIME@{\_TRACE\_ELAPSED\_TIME}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_ELAPSED\_TIME}{\_TRACE\_ELAPSED\_TIME}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ac6b8d7b3a895fd5471cc4de22ad91b08} 
+\#define \+\_\+\+TRACE\+\_\+\+ELAPSED\+\_\+\+TIME~\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}?"{});}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00589}{589}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aa8d597a84f73849f1c1d8ed46a4e3845}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_FAILED@{\_TRACE\_FAILED}}
+\index{\_TRACE\_FAILED@{\_TRACE\_FAILED}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_FAILED}{\_TRACE\_FAILED}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aa8d597a84f73849f1c1d8ed46a4e3845} 
+\#define \+\_\+\+TRACE\+\_\+\+FAILED(\begin{DoxyParamCaption}\item[{}]{res}{, }\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00590}{590}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aa234f3000fd1b4448d06b59020bca86e}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_GET\_TIME@{\_TRACE\_GET\_TIME}}
+\index{\_TRACE\_GET\_TIME@{\_TRACE\_GET\_TIME}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_GET\_TIME}{\_TRACE\_GET\_TIME}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aa234f3000fd1b4448d06b59020bca86e} 
+\#define \+\_\+\+TRACE\+\_\+\+GET\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00651}{651}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aefd6120673651265d866dd9b6ed11f7f}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_IF@{\_TRACE\_IF}}
+\index{\_TRACE\_IF@{\_TRACE\_IF}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_IF}{\_TRACE\_IF}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aefd6120673651265d866dd9b6ed11f7f} 
+\#define \+\_\+\+TRACE\+\_\+\+IF(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{}\end{DoxyParamCaption})~\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8}{if}} (FALSE)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00596}{596}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a7c761678344a2839d550e541e5c54d08}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_LEVEL\_FROM\_RES@{\_TRACE\_LEVEL\_FROM\_RES}}
+\index{\_TRACE\_LEVEL\_FROM\_RES@{\_TRACE\_LEVEL\_FROM\_RES}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_LEVEL\_FROM\_RES}{\_TRACE\_LEVEL\_FROM\_RES}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a7c761678344a2839d550e541e5c54d08} 
+\#define \+\_\+\+TRACE\+\_\+\+LEVEL\+\_\+\+FROM\+\_\+\+RES(\begin{DoxyParamCaption}\item[{}]{res}{, }\item[{}]{mask}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00593}{593}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a56a9f1910afd291a4ef12f84e9c905b1}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_START\_TIME@{\_TRACE\_START\_TIME}}
+\index{\_TRACE\_START\_TIME@{\_TRACE\_START\_TIME}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_START\_TIME}{\_TRACE\_START\_TIME}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a56a9f1910afd291a4ef12f84e9c905b1} 
+\#define \+\_\+\+TRACE\+\_\+\+START\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00587}{587}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_abdbd3f58fb8d4b81002dd0af9a67096e}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_STOP\_TIME@{\_TRACE\_STOP\_TIME}}
+\index{\_TRACE\_STOP\_TIME@{\_TRACE\_STOP\_TIME}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_STOP\_TIME}{\_TRACE\_STOP\_TIME}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_abdbd3f58fb8d4b81002dd0af9a67096e} 
+\#define \+\_\+\+TRACE\+\_\+\+STOP\+\_\+\+TIME(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00588}{588}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a8b3e66cc289e5fb88298a888410766c8}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACE\_SUCCEEDED@{\_TRACE\_SUCCEEDED}}
+\index{\_TRACE\_SUCCEEDED@{\_TRACE\_SUCCEEDED}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACE\_SUCCEEDED}{\_TRACE\_SUCCEEDED}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a8b3e66cc289e5fb88298a888410766c8} 
+\#define \+\_\+\+TRACE\+\_\+\+SUCCEEDED(\begin{DoxyParamCaption}\item[{}]{res}{, }\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00591}{591}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a60d1b6e4cf7aa9c2e09b43af2be67f51}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEASCIISTRING@{\_TRACEASCIISTRING}}
+\index{\_TRACEASCIISTRING@{\_TRACEASCIISTRING}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEASCIISTRING}{\_TRACEASCIISTRING}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a60d1b6e4cf7aa9c2e09b43af2be67f51} 
+\#define \+\_\+\+TRACEASCIISTRING(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{len}{, }\item[{}]{\mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}}{}\end{DoxyParamCaption})~\{\}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00582}{582}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEC@{\_TRACEC}}
+\index{\_TRACEC@{\_TRACEC}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEC}{\_TRACEC}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb} 
+\#define \+\_\+\+TRACEC(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{id}{, }\item[{}]{y}{}\end{DoxyParamCaption})~\{\}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00586}{586}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a206ad7c47ece56292fe94b788d34010b}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEC\_CREATE\_COMOBJ@{\_TRACEC\_CREATE\_COMOBJ}}
+\index{\_TRACEC\_CREATE\_COMOBJ@{\_TRACEC\_CREATE\_COMOBJ}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEC\_CREATE\_COMOBJ}{\_TRACEC\_CREATE\_COMOBJ}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a206ad7c47ece56292fe94b788d34010b} 
+\#define \+\_\+\+TRACEC\+\_\+\+CREATE\+\_\+\+COMOBJ(\begin{DoxyParamCaption}\item[{}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00578}{578}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a969989428e5eded3947b0aaf1003da0d}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEI@{\_TRACEI}}
+\index{\_TRACEI@{\_TRACEI}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEI}{\_TRACEI}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a969989428e5eded3947b0aaf1003da0d} 
+\#define \+\_\+\+TRACEI(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{y}{}\end{DoxyParamCaption})~\{\}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00584}{584}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ab71ea30cdab68ab130973cbaeeadc559}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEO@{\_TRACEO}}
+\index{\_TRACEO@{\_TRACEO}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEO}{\_TRACEO}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ab71ea30cdab68ab130973cbaeeadc559} 
+\#define \+\_\+\+TRACEO(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{obj}{, }\item[{}]{y}{}\end{DoxyParamCaption})~\{\}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00585}{585}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a3d579eb0f1857693501e8a9ede388a6e}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEO\_LEVEL\_FROM\_RES@{\_TRACEO\_LEVEL\_FROM\_RES}}
+\index{\_TRACEO\_LEVEL\_FROM\_RES@{\_TRACEO\_LEVEL\_FROM\_RES}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEO\_LEVEL\_FROM\_RES}{\_TRACEO\_LEVEL\_FROM\_RES}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a3d579eb0f1857693501e8a9ede388a6e} 
+\#define \+\_\+\+TRACEO\+\_\+\+LEVEL\+\_\+\+FROM\+\_\+\+RES(\begin{DoxyParamCaption}\item[{}]{res}{, }\item[{}]{mask}{, }\item[{}]{obj}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00594}{594}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aca429d40184cad90de634e53fc8db324}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEO\_LEVEL\_FROM\_RESX@{\_TRACEO\_LEVEL\_FROM\_RESX}}
+\index{\_TRACEO\_LEVEL\_FROM\_RESX@{\_TRACEO\_LEVEL\_FROM\_RESX}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEO\_LEVEL\_FROM\_RESX}{\_TRACEO\_LEVEL\_FROM\_RESX}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aca429d40184cad90de634e53fc8db324} 
+\#define \+\_\+\+TRACEO\+\_\+\+LEVEL\+\_\+\+FROM\+\_\+\+RESX(\begin{DoxyParamCaption}\item[{}]{res}{, }\item[{}]{mask}{, }\item[{}]{obj}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00595}{595}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a0c33d8a7240e853c09d9b5d6cb677f34}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEO\_SUCCEEDED@{\_TRACEO\_SUCCEEDED}}
+\index{\_TRACEO\_SUCCEEDED@{\_TRACEO\_SUCCEEDED}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEO\_SUCCEEDED}{\_TRACEO\_SUCCEEDED}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a0c33d8a7240e853c09d9b5d6cb677f34} 
+\#define \+\_\+\+TRACEO\+\_\+\+SUCCEEDED(\begin{DoxyParamCaption}\item[{}]{res}{, }\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{obj}{, }\item[{}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00592}{592}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a3a47f6dc2e3ba01e575f522d749c8259}\index{SOCmnTrace.h@{SOCmnTrace.h}!\_TRACEW@{\_TRACEW}}
+\index{\_TRACEW@{\_TRACEW}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{\_TRACEW}{\_TRACEW}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a3a47f6dc2e3ba01e575f522d749c8259} 
+\#define \+\_\+\+TRACEW(\begin{DoxyParamCaption}\item[{}]{level}{, }\item[{}]{mask}{, }\item[{}]{y}{}\end{DoxyParamCaption})~\{\}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00583}{583}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a2bae75492f6b1b4295c9d576061f0a43}\index{SOCmnTrace.h@{SOCmnTrace.h}!BOOL2STR@{BOOL2STR}}
+\index{BOOL2STR@{BOOL2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{BOOL2STR}{BOOL2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a2bae75492f6b1b4295c9d576061f0a43} 
+\#define BOOL2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})~((a) ? \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}TRUE"{}) \+: \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}FALSE"{}))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00367}{367}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a45fc3925d3dc56cdd329b26b98048acb}\index{SOCmnTrace.h@{SOCmnTrace.h}!BYTEARRAY2STR@{BYTEARRAY2STR}}
+\index{BYTEARRAY2STR@{BYTEARRAY2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{BYTEARRAY2STR}{BYTEARRAY2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a45fc3925d3dc56cdd329b26b98048acb} 
+\#define BYTEARRAY2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{, }\item[{}]{b}{}\end{DoxyParamCaption})~(\mbox{\hyperlink{_s_o_cmn_trace_8h_a065d236dc1e4d6b88e211ad504fa66c6}{byte\+Array\+To\+String}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+clipformat\+Buffer, a, b))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00373}{373}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a066d124b3cf273f3472bd4e736613945}\index{SOCmnTrace.h@{SOCmnTrace.h}!CLIPFORMAT2STR@{CLIPFORMAT2STR}}
+\index{CLIPFORMAT2STR@{CLIPFORMAT2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{CLIPFORMAT2STR}{CLIPFORMAT2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a066d124b3cf273f3472bd4e736613945} 
+\#define CLIPFORMAT2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})~(clipformat2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+clipformat\+Buffer, a))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00369}{369}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a72c3f7ca4fb98ec5df689f6d4bc137aa}\index{SOCmnTrace.h@{SOCmnTrace.h}!FILETIME2STR@{FILETIME2STR}}
+\index{FILETIME2STR@{FILETIME2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{FILETIME2STR}{FILETIME2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a72c3f7ca4fb98ec5df689f6d4bc137aa} 
+\#define FILETIME2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})~(filetime2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+filetime\+Buffer, a))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00372}{372}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_af1710b112671515cf9a5056f70fcba89}\index{SOCmnTrace.h@{SOCmnTrace.h}!GenericTraceHandler@{GenericTraceHandler}}
+\index{GenericTraceHandler@{GenericTraceHandler}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{GenericTraceHandler}{GenericTraceHandler}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_af1710b112671515cf9a5056f70fcba89} 
+\#define Generic\+Trace\+Handler~\mbox{\hyperlink{class_s_o_cmn_trace_handler}{SOCmn\+Trace\+Handler}}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00118}{118}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ae7cea7cc4cc3bdd66698e1c9b1643321}\index{SOCmnTrace.h@{SOCmnTrace.h}!OPCTrace@{OPCTrace}}
+\index{OPCTrace@{OPCTrace}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{OPCTrace}{OPCTrace}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ae7cea7cc4cc3bdd66698e1c9b1643321} 
+\#define OPCTrace~\mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00312}{312}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a7e90401072ca4ca5b8d44fd0aa4ae42b}\index{SOCmnTrace.h@{SOCmnTrace.h}!QUALITY2STR@{QUALITY2STR}}
+\index{QUALITY2STR@{QUALITY2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{QUALITY2STR}{QUALITY2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a7e90401072ca4ca5b8d44fd0aa4ae42b} 
+\#define QUALITY2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})~(\mbox{\hyperlink{_s_o_cmn_trace_8h_a9af4c43195106b0ff16132b88eba89ac}{quality2string}}(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+quality\+Buffer, a))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00370}{370}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_af575253c75ad8cb65d5a714ca3bdb1d4}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_ALL@{SOCMNTRACE\_G\_ALL}}
+\index{SOCMNTRACE\_G\_ALL@{SOCMNTRACE\_G\_ALL}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_ALL}{SOCMNTRACE\_G\_ALL}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_af575253c75ad8cb65d5a714ca3bdb1d4} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+ALL~0x\+FFFF000F}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00031}{31}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_CLT\_THREAD@{SOCMNTRACE\_G\_CLT\_THREAD}}
+\index{SOCMNTRACE\_G\_CLT\_THREAD@{SOCMNTRACE\_G\_CLT\_THREAD}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_CLT\_THREAD}{SOCMNTRACE\_G\_CLT\_THREAD}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+CLT\+\_\+\+THREAD~0x00000100}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00059}{59}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a029bfa71df3a6ddf16c3f02f0fe1fd16}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_COM\_OBJ\_REF@{SOCMNTRACE\_G\_COM\_OBJ\_REF}}
+\index{SOCMNTRACE\_G\_COM\_OBJ\_REF@{SOCMNTRACE\_G\_COM\_OBJ\_REF}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_COM\_OBJ\_REF}{SOCMNTRACE\_G\_COM\_OBJ\_REF}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a029bfa71df3a6ddf16c3f02f0fe1fd16} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+COM\+\_\+\+OBJ\+\_\+\+REF~0x00000020}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00055}{55}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a5414dc15015d2cb05639ea711ede6156}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_DISCOVERY\_CLT@{SOCMNTRACE\_G\_DISCOVERY\_CLT}}
+\index{SOCMNTRACE\_G\_DISCOVERY\_CLT@{SOCMNTRACE\_G\_DISCOVERY\_CLT}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_DISCOVERY\_CLT}{SOCMNTRACE\_G\_DISCOVERY\_CLT}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a5414dc15015d2cb05639ea711ede6156} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+DISCOVERY\+\_\+\+CLT~0x00020000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00067}{67}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a08b32442fc43ef0cad6d9c7b7f7e5696}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_DISCOVERY\_SRV@{SOCMNTRACE\_G\_DISCOVERY\_SRV}}
+\index{SOCMNTRACE\_G\_DISCOVERY\_SRV@{SOCMNTRACE\_G\_DISCOVERY\_SRV}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_DISCOVERY\_SRV}{SOCMNTRACE\_G\_DISCOVERY\_SRV}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a08b32442fc43ef0cad6d9c7b7f7e5696} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+DISCOVERY\+\_\+\+SRV~0x00010000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00066}{66}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad8d69a6fb16fd1ba968707f9704beea4}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_ENTRY@{SOCMNTRACE\_G\_ENTRY}}
+\index{SOCMNTRACE\_G\_ENTRY@{SOCMNTRACE\_G\_ENTRY}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_ENTRY}{SOCMNTRACE\_G\_ENTRY}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad8d69a6fb16fd1ba968707f9704beea4} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+ENTRY~0x00000800}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00058}{58}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aa78c8ef5490fbf4df183b7f0c74f1c45}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_NOTHING@{SOCMNTRACE\_G\_NOTHING}}
+\index{SOCMNTRACE\_G\_NOTHING@{SOCMNTRACE\_G\_NOTHING}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_NOTHING}{SOCMNTRACE\_G\_NOTHING}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aa78c8ef5490fbf4df183b7f0c74f1c45} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+NOTHING~0x00000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00032}{32}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a5ef5e569e4f31efb093ea796c54de2c3}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OBJ\_LOG@{SOCMNTRACE\_G\_OBJ\_LOG}}
+\index{SOCMNTRACE\_G\_OBJ\_LOG@{SOCMNTRACE\_G\_OBJ\_LOG}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OBJ\_LOG}{SOCMNTRACE\_G\_OBJ\_LOG}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a5ef5e569e4f31efb093ea796c54de2c3} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OBJ\+\_\+\+LOG~0x00000080}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00056}{56}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad0d82629e3c93a791fc831b25c8d1a07}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OBJ\_REF@{SOCMNTRACE\_G\_OBJ\_REF}}
+\index{SOCMNTRACE\_G\_OBJ\_REF@{SOCMNTRACE\_G\_OBJ\_REF}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OBJ\_REF}{SOCMNTRACE\_G\_OBJ\_REF}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad0d82629e3c93a791fc831b25c8d1a07} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OBJ\+\_\+\+REF~0x00000040}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00054}{54}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_af318170e455f15c7ff366d02c8430ccd}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OBJECTLOG@{SOCMNTRACE\_G\_OBJECTLOG}}
+\index{SOCMNTRACE\_G\_OBJECTLOG@{SOCMNTRACE\_G\_OBJECTLOG}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OBJECTLOG}{SOCMNTRACE\_G\_OBJECTLOG}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_af318170e455f15c7ff366d02c8430ccd} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OBJECTLOG~0x00000010}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00057}{57}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a5d41bc55d359052d783b00e67df013e9}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC@{SOCMNTRACE\_G\_OPC}}
+\index{SOCMNTRACE\_G\_OPC@{SOCMNTRACE\_G\_OPC}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC}{SOCMNTRACE\_G\_OPC}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a5d41bc55d359052d783b00e67df013e9} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC~0x0000000F}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00034}{34}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad846dd86d31ddc9342a49ec316d00c19}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC\_ADVISE@{SOCMNTRACE\_G\_OPC\_ADVISE}}
+\index{SOCMNTRACE\_G\_OPC\_ADVISE@{SOCMNTRACE\_G\_OPC\_ADVISE}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC\_ADVISE}{SOCMNTRACE\_G\_OPC\_ADVISE}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad846dd86d31ddc9342a49ec316d00c19} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+ADVISE~0x00000002}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00039}{39}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a0c898067ed405fde207a0807d893c633}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC\_ADVISE\_C@{SOCMNTRACE\_G\_OPC\_ADVISE\_C}}
+\index{SOCMNTRACE\_G\_OPC\_ADVISE\_C@{SOCMNTRACE\_G\_OPC\_ADVISE\_C}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC\_ADVISE\_C}{SOCMNTRACE\_G\_OPC\_ADVISE\_C}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a0c898067ed405fde207a0807d893c633} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+ADVISE\+\_\+C~0x00000008}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00041}{41}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a42dfb623bad3e5486cb476bf276cd1e5}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC\_CALL@{SOCMNTRACE\_G\_OPC\_CALL}}
+\index{SOCMNTRACE\_G\_OPC\_CALL@{SOCMNTRACE\_G\_OPC\_CALL}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC\_CALL}{SOCMNTRACE\_G\_OPC\_CALL}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a42dfb623bad3e5486cb476bf276cd1e5} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+CALL~0x00000001}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00038}{38}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad2a62de297c8134d0736e90e36848f51}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC\_CALL\_C@{SOCMNTRACE\_G\_OPC\_CALL\_C}}
+\index{SOCMNTRACE\_G\_OPC\_CALL\_C@{SOCMNTRACE\_G\_OPC\_CALL\_C}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC\_CALL\_C}{SOCMNTRACE\_G\_OPC\_CALL\_C}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad2a62de297c8134d0736e90e36848f51} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+CALL\+\_\+C~0x00000004}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00040}{40}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ac5be909232ea357ba8fbf3eb49f5e99d}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC\_CLIENT@{SOCMNTRACE\_G\_OPC\_CLIENT}}
+\index{SOCMNTRACE\_G\_OPC\_CLIENT@{SOCMNTRACE\_G\_OPC\_CLIENT}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC\_CLIENT}{SOCMNTRACE\_G\_OPC\_CLIENT}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ac5be909232ea357ba8fbf3eb49f5e99d} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+CLIENT~0x0000000C}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00035}{35}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a01d5511e00b706a39da581618d1ec00b}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OPC\_SERVER@{SOCMNTRACE\_G\_OPC\_SERVER}}
+\index{SOCMNTRACE\_G\_OPC\_SERVER@{SOCMNTRACE\_G\_OPC\_SERVER}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OPC\_SERVER}{SOCMNTRACE\_G\_OPC\_SERVER}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a01d5511e00b706a39da581618d1ec00b} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OPC\+\_\+\+SERVER~0x00000003}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00036}{36}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a9f85be4abc43632c049569c3d93b0394}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_OTB@{SOCMNTRACE\_G\_OTB}}
+\index{SOCMNTRACE\_G\_OTB@{SOCMNTRACE\_G\_OTB}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_OTB}{SOCMNTRACE\_G\_OTB}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a9f85be4abc43632c049569c3d93b0394} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+OTB~0x00\+FF0000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00053}{53}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a7fbc39bb164acace165c8c8f7fb68f80}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_SOAP\_DATA@{SOCMNTRACE\_G\_SOAP\_DATA}}
+\index{SOCMNTRACE\_G\_SOAP\_DATA@{SOCMNTRACE\_G\_SOAP\_DATA}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_SOAP\_DATA}{SOCMNTRACE\_G\_SOAP\_DATA}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a7fbc39bb164acace165c8c8f7fb68f80} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+SOAP\+\_\+\+DATA~0x00004000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00064}{64}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a814fef0aa9c22c52d143a2252260bf39}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_SOCKET@{SOCMNTRACE\_G\_SOCKET}}
+\index{SOCMNTRACE\_G\_SOCKET@{SOCMNTRACE\_G\_SOCKET}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_SOCKET}{SOCMNTRACE\_G\_SOCKET}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a814fef0aa9c22c52d143a2252260bf39} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+SOCKET~0x00001000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00062}{62}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a38ad2d4f9236b4f168545b00a148e05e}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_SOCKET\_DATA@{SOCMNTRACE\_G\_SOCKET\_DATA}}
+\index{SOCMNTRACE\_G\_SOCKET\_DATA@{SOCMNTRACE\_G\_SOCKET\_DATA}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_SOCKET\_DATA}{SOCMNTRACE\_G\_SOCKET\_DATA}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a38ad2d4f9236b4f168545b00a148e05e} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+SOCKET\+\_\+\+DATA~0x00002000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00063}{63}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a26bba001071cc72ca94c7484932024ea}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_SRV\_THREAD@{SOCMNTRACE\_G\_SRV\_THREAD}}
+\index{SOCMNTRACE\_G\_SRV\_THREAD@{SOCMNTRACE\_G\_SRV\_THREAD}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_SRV\_THREAD}{SOCMNTRACE\_G\_SRV\_THREAD}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a26bba001071cc72ca94c7484932024ea} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+SRV\+\_\+\+THREAD~0x00000200}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00060}{60}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ac59d2dda05c881daf4220e5236219f2d}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_SUS\_FILTER@{SOCMNTRACE\_G\_SUS\_FILTER}}
+\index{SOCMNTRACE\_G\_SUS\_FILTER@{SOCMNTRACE\_G\_SUS\_FILTER}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_SUS\_FILTER}{SOCMNTRACE\_G\_SUS\_FILTER}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ac59d2dda05c881daf4220e5236219f2d} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+SUS\+\_\+\+FILTER~0x00000400}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00061}{61}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aa3cb391dc4245a28787a953b057024b8}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_TEST@{SOCMNTRACE\_G\_TEST}}
+\index{SOCMNTRACE\_G\_TEST@{SOCMNTRACE\_G\_TEST}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_TEST}{SOCMNTRACE\_G\_TEST}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aa3cb391dc4245a28787a953b057024b8} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+TEST~0x80000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00068}{68}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a697ab1a0901a614e525c48fc4e59c843}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER@{SOCMNTRACE\_G\_USER}}
+\index{SOCMNTRACE\_G\_USER@{SOCMNTRACE\_G\_USER}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER}{SOCMNTRACE\_G\_USER}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a697ab1a0901a614e525c48fc4e59c843} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER~0x\+FF000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00033}{33}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aed2f2fe4bf27956e25567db00e9b25bc}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER1@{SOCMNTRACE\_G\_USER1}}
+\index{SOCMNTRACE\_G\_USER1@{SOCMNTRACE\_G\_USER1}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER1}{SOCMNTRACE\_G\_USER1}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aed2f2fe4bf27956e25567db00e9b25bc} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER1~0x10000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00043}{43}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a930273687f349b11fe7816cf1604c020}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER2@{SOCMNTRACE\_G\_USER2}}
+\index{SOCMNTRACE\_G\_USER2@{SOCMNTRACE\_G\_USER2}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER2}{SOCMNTRACE\_G\_USER2}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a930273687f349b11fe7816cf1604c020} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER2~0x20000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00044}{44}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad8984eaee0438be2ac5bf31d8344a9bb}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER3@{SOCMNTRACE\_G\_USER3}}
+\index{SOCMNTRACE\_G\_USER3@{SOCMNTRACE\_G\_USER3}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER3}{SOCMNTRACE\_G\_USER3}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad8984eaee0438be2ac5bf31d8344a9bb} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER3~0x40000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00045}{45}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ae32bb72d7ec27762dce90f6ad0f8b660}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER4@{SOCMNTRACE\_G\_USER4}}
+\index{SOCMNTRACE\_G\_USER4@{SOCMNTRACE\_G\_USER4}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER4}{SOCMNTRACE\_G\_USER4}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ae32bb72d7ec27762dce90f6ad0f8b660} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER4~0x80000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00046}{46}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aad61db5363d4ee0982fea9a40140a1f1}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER5@{SOCMNTRACE\_G\_USER5}}
+\index{SOCMNTRACE\_G\_USER5@{SOCMNTRACE\_G\_USER5}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER5}{SOCMNTRACE\_G\_USER5}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aad61db5363d4ee0982fea9a40140a1f1} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER5~0x01000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00047}{47}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a80ca8079c78d9860565cd5209a253ea0}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER6@{SOCMNTRACE\_G\_USER6}}
+\index{SOCMNTRACE\_G\_USER6@{SOCMNTRACE\_G\_USER6}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER6}{SOCMNTRACE\_G\_USER6}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a80ca8079c78d9860565cd5209a253ea0} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER6~0x02000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00048}{48}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a9b8c8a2eb96474892e234a6a016f4de3}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER7@{SOCMNTRACE\_G\_USER7}}
+\index{SOCMNTRACE\_G\_USER7@{SOCMNTRACE\_G\_USER7}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER7}{SOCMNTRACE\_G\_USER7}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a9b8c8a2eb96474892e234a6a016f4de3} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER7~0x04000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00049}{49}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_afab1c3225450d902b4547a6907a1689a}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_USER8@{SOCMNTRACE\_G\_USER8}}
+\index{SOCMNTRACE\_G\_USER8@{SOCMNTRACE\_G\_USER8}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_USER8}{SOCMNTRACE\_G\_USER8}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_afab1c3225450d902b4547a6907a1689a} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+USER8~0x08000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00050}{50}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_abc8db802a5cf41b1bcbe785c840e1ff5}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_G\_WEB\_SRV@{SOCMNTRACE\_G\_WEB\_SRV}}
+\index{SOCMNTRACE\_G\_WEB\_SRV@{SOCMNTRACE\_G\_WEB\_SRV}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_G\_WEB\_SRV}{SOCMNTRACE\_G\_WEB\_SRV}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_abc8db802a5cf41b1bcbe785c840e1ff5} 
+\#define SOCMNTRACE\+\_\+\+G\+\_\+\+WEB\+\_\+\+SRV~0x00008000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00065}{65}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ad186d9e658a297451a6f0522cf03be8b}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_L\_DEB@{SOCMNTRACE\_L\_DEB}}
+\index{SOCMNTRACE\_L\_DEB@{SOCMNTRACE\_L\_DEB}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_L\_DEB}{SOCMNTRACE\_L\_DEB}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ad186d9e658a297451a6f0522cf03be8b} 
+\#define SOCMNTRACE\+\_\+\+L\+\_\+\+DEB~3}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00084}{84}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a34f5449cca845ceefc8a2d0604ded2c7}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_L\_ERR@{SOCMNTRACE\_L\_ERR}}
+\index{SOCMNTRACE\_L\_ERR@{SOCMNTRACE\_L\_ERR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_L\_ERR}{SOCMNTRACE\_L\_ERR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a34f5449cca845ceefc8a2d0604ded2c7} 
+\#define SOCMNTRACE\+\_\+\+L\+\_\+\+ERR~0}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00081}{81}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_L\_INF@{SOCMNTRACE\_L\_INF}}
+\index{SOCMNTRACE\_L\_INF@{SOCMNTRACE\_L\_INF}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_L\_INF}{SOCMNTRACE\_L\_INF}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18} 
+\#define SOCMNTRACE\+\_\+\+L\+\_\+\+INF~2}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00083}{83}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a24872247ddd95df5e1d7ee7f3566965e}\index{SOCmnTrace.h@{SOCmnTrace.h}!SOCMNTRACE\_L\_WRN@{SOCMNTRACE\_L\_WRN}}
+\index{SOCMNTRACE\_L\_WRN@{SOCMNTRACE\_L\_WRN}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{SOCMNTRACE\_L\_WRN}{SOCMNTRACE\_L\_WRN}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a24872247ddd95df5e1d7ee7f3566965e} 
+\#define SOCMNTRACE\+\_\+\+L\+\_\+\+WRN~1}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00082}{82}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_acdb871a61bedc2708a988ac5ad8cbc40}\index{SOCmnTrace.h@{SOCmnTrace.h}!TG\_USER@{TG\_USER}}
+\index{TG\_USER@{TG\_USER}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TG\_USER}{TG\_USER}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_acdb871a61bedc2708a988ac5ad8cbc40} 
+\#define TG\+\_\+\+USER~0x\+F0000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00075}{75}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a45773b5662d8a489490bc85c102a1058}\index{SOCmnTrace.h@{SOCmnTrace.h}!TG\_USER1@{TG\_USER1}}
+\index{TG\_USER1@{TG\_USER1}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TG\_USER1}{TG\_USER1}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a45773b5662d8a489490bc85c102a1058} 
+\#define TG\+\_\+\+USER1~0x10000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00071}{71}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a5e2a60286cb579ffb04882de2b5b71ca}\index{SOCmnTrace.h@{SOCmnTrace.h}!TG\_USER2@{TG\_USER2}}
+\index{TG\_USER2@{TG\_USER2}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TG\_USER2}{TG\_USER2}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a5e2a60286cb579ffb04882de2b5b71ca} 
+\#define TG\+\_\+\+USER2~0x20000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00072}{72}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a5aca5c5951b709020d10d084ed00a86b}\index{SOCmnTrace.h@{SOCmnTrace.h}!TG\_USER3@{TG\_USER3}}
+\index{TG\_USER3@{TG\_USER3}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TG\_USER3}{TG\_USER3}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a5aca5c5951b709020d10d084ed00a86b} 
+\#define TG\+\_\+\+USER3~0x40000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00073}{73}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a48141513c91c818899db4ac06fdca323}\index{SOCmnTrace.h@{SOCmnTrace.h}!TG\_USER4@{TG\_USER4}}
+\index{TG\_USER4@{TG\_USER4}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TG\_USER4}{TG\_USER4}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a48141513c91c818899db4ac06fdca323} 
+\#define TG\+\_\+\+USER4~0x80000000}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00074}{74}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aa5f6af594d691496dab419d8a3acec1c}\index{SOCmnTrace.h@{SOCmnTrace.h}!TL\_DEB@{TL\_DEB}}
+\index{TL\_DEB@{TL\_DEB}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TL\_DEB}{TL\_DEB}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aa5f6af594d691496dab419d8a3acec1c} 
+\#define TL\+\_\+\+DEB~3}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00090}{90}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aeebb4c7092c39a25de77c7cc8be20462}\index{SOCmnTrace.h@{SOCmnTrace.h}!TL\_ERR@{TL\_ERR}}
+\index{TL\_ERR@{TL\_ERR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TL\_ERR}{TL\_ERR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aeebb4c7092c39a25de77c7cc8be20462} 
+\#define TL\+\_\+\+ERR~0}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00087}{87}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a756cc8d2249238d25ac51f4aeef7ba43}\index{SOCmnTrace.h@{SOCmnTrace.h}!TL\_INF@{TL\_INF}}
+\index{TL\_INF@{TL\_INF}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TL\_INF}{TL\_INF}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a756cc8d2249238d25ac51f4aeef7ba43} 
+\#define TL\+\_\+\+INF~2}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00089}{89}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_ac42568f7c6f2758ea997cbcb69fa1f58}\index{SOCmnTrace.h@{SOCmnTrace.h}!TL\_WRN@{TL\_WRN}}
+\index{TL\_WRN@{TL\_WRN}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{TL\_WRN}{TL\_WRN}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_ac42568f7c6f2758ea997cbcb69fa1f58} 
+\#define TL\+\_\+\+WRN~1}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00088}{88}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a25870390b41d58b3050f32e0fde297e7}\index{SOCmnTrace.h@{SOCmnTrace.h}!VARIANT2STR@{VARIANT2STR}}
+\index{VARIANT2STR@{VARIANT2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{VARIANT2STR}{VARIANT2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a25870390b41d58b3050f32e0fde297e7} 
+\#define VARIANT2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})~(variant\+With\+Type2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+variant\+Buffer, a))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00368}{368}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_aa686397718c2ce1f518f6bd89d59b909}\index{SOCmnTrace.h@{SOCmnTrace.h}!VARTYPE2STR@{VARTYPE2STR}}
+\index{VARTYPE2STR@{VARTYPE2STR}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{VARTYPE2STR}{VARTYPE2STR}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aa686397718c2ce1f518f6bd89d59b909} 
+\#define VARTYPE2\+STR(\begin{DoxyParamCaption}\item[{}]{a}{}\end{DoxyParamCaption})~(vartype2string(\&\mbox{\hyperlink{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}{\+::get\+SOCmn\+Trace}}()-\/$>$m\+\_\+vartype\+Buffer, a))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8h_source_l00371}{371}} of file \mbox{\hyperlink{_s_o_cmn_trace_8h_source}{SOCmn\+Trace.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_o_cmn_trace_8h_aee70b5f323e598958b1bf8da3b5f8608}\index{SOCmnTrace.h@{SOCmnTrace.h}!accessRights2string@{accessRights2string}}
+\index{accessRights2string@{accessRights2string}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{accessRights2string()}{accessRights2string()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aee70b5f323e598958b1bf8da3b5f8608} 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} LPCTSTR access\+Rights2string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{access\+Right}{, }\item[{OPTIONAL \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LCID}]{loc\+ID}{ = {\ttfamily LOCALE\+\_\+SYSTEM\+\_\+DEFAULT}}\end{DoxyParamCaption})}
+
+\Hypertarget{_s_o_cmn_trace_8h_a065d236dc1e4d6b88e211ad504fa66c6}\index{SOCmnTrace.h@{SOCmnTrace.h}!byteArrayToString@{byteArrayToString}}
+\index{byteArrayToString@{byteArrayToString}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{byteArrayToString()}{byteArrayToString()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a065d236dc1e4d6b88e211ad504fa66c6} 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} LPCTSTR byte\+Array\+To\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \&}]{buffer}{, }\item[{DWORD}]{len}{, }\item[{BYTE \texorpdfstring{$\ast$}{*}}]{data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source_l02640}{2640}} of file \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source}{SOCmn\+Trace.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_cmn_trace_8h_a065d236dc1e4d6b88e211ad504fa66c6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_cmn_trace_8h_a561aa404f0ea43c9214c98c185db6603}\index{SOCmnTrace.h@{SOCmnTrace.h}!createTraceObject@{createTraceObject}}
+\index{createTraceObject@{createTraceObject}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{createTraceObject()}{createTraceObject()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a561aa404f0ea43c9214c98c185db6603} 
+void create\+Trace\+Object (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source_l00166}{166}} of file \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source}{SOCmn\+Trace.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_cmn_trace_8h_a561aa404f0ea43c9214c98c185db6603_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_cmn_trace_8h_a74c012efbf8eb675ca8812f4a643ba9c}\index{SOCmnTrace.h@{SOCmnTrace.h}!destroyTraceObject@{destroyTraceObject}}
+\index{destroyTraceObject@{destroyTraceObject}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{destroyTraceObject()}{destroyTraceObject()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a74c012efbf8eb675ca8812f4a643ba9c} 
+void destroy\+Trace\+Object (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source}{SOCmn\+Trace.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_cmn_trace_8h_a74c012efbf8eb675ca8812f4a643ba9c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_cmn_trace_8h_aeffece4b6c5bbd7dcb2398988cf72ff1}\index{SOCmnTrace.h@{SOCmnTrace.h}!getOPCTrace@{getOPCTrace}}
+\index{getOPCTrace@{getOPCTrace}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{getOPCTrace()}{getOPCTrace()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_aeffece4b6c5bbd7dcb2398988cf72ff1} 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} \mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}} \texorpdfstring{$\ast$}{*} get\+OPCTrace (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source_l00160}{160}} of file \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source}{SOCmn\+Trace.\+cpp}}.
+
+\Hypertarget{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb}\index{SOCmnTrace.h@{SOCmnTrace.h}!getSOCmnTrace@{getSOCmnTrace}}
+\index{getSOCmnTrace@{getSOCmnTrace}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{getSOCmnTrace()}{getSOCmnTrace()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb} 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} \mbox{\hyperlink{class_s_o_cmn_trace}{SOCmn\+Trace}} \texorpdfstring{$\ast$}{*} get\+SOCmn\+Trace (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source_l00154}{154}} of file \mbox{\hyperlink{_s_o_cmn_trace_8cpp_source}{SOCmn\+Trace.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_cmn_trace_8h_a17cbb964865db88c496272accfec75fb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_cmn_trace_8h_a9af4c43195106b0ff16132b88eba89ac}\index{SOCmnTrace.h@{SOCmnTrace.h}!quality2string@{quality2string}}
+\index{quality2string@{quality2string}!SOCmnTrace.h@{SOCmnTrace.h}}
+\doxysubsubsection{\texorpdfstring{quality2string()}{quality2string()}}
+{\footnotesize\ttfamily \label{_s_o_cmn_trace_8h_a9af4c43195106b0ff16132b88eba89ac} 
+\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\+\_\+\+EXPORT}} LPCTSTR quality2string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{quality}{, }\item[{OPTIONAL \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LCID}]{loc\+ID}{ = {\ttfamily LOCALE\+\_\+SYSTEM\+\_\+DEFAULT}}\end{DoxyParamCaption})}
+

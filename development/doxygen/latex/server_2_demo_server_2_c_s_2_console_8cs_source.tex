@@ -1,0 +1,317 @@
+\doxysection{Console.\+cs}
+\hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source}{}\label{server_2_demo_server_2_c_s_2_console_8cs_source}\index{NET/samples/server/DemoServer/CS/Console.cs@{NET/samples/server/DemoServer/CS/Console.cs}}
+\mbox{\hyperlink{server_2_demo_server_2_c_s_2_console_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Threading;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_demo_server}{DemoServer}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00008}\mbox{\hyperlink{class_demo_server_1_1_console}{00008}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_console}{Console}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00010}00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Attributes}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ signals\ application\ should\ terminate}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00014}\mbox{\hyperlink{class_demo_server_1_1_console_a9455a1fdb2036f90669a506bf357115e}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ AutoResetEvent\ \mbox{\hyperlink{class_demo_server_1_1_console_a9455a1fdb2036f90669a506bf357115e}{EndEvent}};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00015}\mbox{\hyperlink{class_demo_server_1_1_console_aa9f24344ca2a180a99dfc620f6b870e5}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_demo_server_1_1_console_aa9f24344ca2a180a99dfc620f6b870e5}{End}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00017}00017\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00019}00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Constant\ Attributes}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00021}\mbox{\hyperlink{class_demo_server_1_1_console_a6e971bd3bbf54ea2a9c861bafb3b089a}{00021}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_demo_server_1_1_console_a6e971bd3bbf54ea2a9c861bafb3b089a}{CATEGORY\_ID\_SIMULATION}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00022}\mbox{\hyperlink{class_demo_server_1_1_console_a5fbede03d5cce6378320306c5f8f018e}{00022}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_demo_server_1_1_console_a5fbede03d5cce6378320306c5f8f018e}{CATEGORY\_ID\_TIME\_TICK}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00023}\mbox{\hyperlink{class_demo_server_1_1_console_a5c5222d71643d967ad668bd21cd9530d}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_demo_server_1_1_console_a5c5222d71643d967ad668bd21cd9530d}{CATEGORY\_ID\_KEY\_HIT}}\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00024}\mbox{\hyperlink{class_demo_server_1_1_console_aedd16391ff0162979fe23bef5fc22782}{00024}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_demo_server_1_1_console_aedd16391ff0162979fe23bef5fc22782}{CATEGORY\_ID\_DA\_WRITE\_SIMPLE}}\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00025}\mbox{\hyperlink{class_demo_server_1_1_console_ad0c804429561a2df8d78e63962f12e33}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_demo_server_1_1_console_ad0c804429561a2df8d78e63962f12e33}{CATEGORY\_ID\_DA\_WRITE\_TRACKING}}\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00026}\mbox{\hyperlink{class_demo_server_1_1_console_a59f0791c6db275ed089af5e0d173cfd4}{00026}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_demo_server_1_1_console_a59f0791c6db275ed089af5e0d173cfd4}{CATEGORY\_ID\_TIME\_SLOT}}\ =\ 6;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00027}\mbox{\hyperlink{class_demo_server_1_1_console_ae1860a426e9f409de5ed2480f487b1c1}{00027}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ String\ \mbox{\hyperlink{class_demo_server_1_1_console_ae1860a426e9f409de5ed2480f487b1c1}{COND\_NAME\_BETWEEN\_SINGLE}}\ =\ \textcolor{stringliteral}{"{}between\ [10,50]"{}};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00028}\mbox{\hyperlink{class_demo_server_1_1_console_a5cb6de96babe46fb42c4dfe7575270ac}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ String\ \mbox{\hyperlink{class_demo_server_1_1_console_a5cb6de96babe46fb42c4dfe7575270ac}{COND\_NAME\_BETWEEN\_MULTIPLE}}\ =\ \textcolor{stringliteral}{"{}between"{}};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00030}\mbox{\hyperlink{class_demo_server_1_1_console_a8743bb4287f6512bdedf37e48a462982}{00030}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ UInt32\ \mbox{\hyperlink{class_demo_server_1_1_console_a8743bb4287f6512bdedf37e48a462982}{DA\_SLEEP\_INTERVAL}}\ =\ 1000;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00031}\mbox{\hyperlink{class_demo_server_1_1_console_a5e3975c5598a26477b3f90ea90738a3b}{00031}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_demo_server_1_1_console_a5e3975c5598a26477b3f90ea90738a3b}{DO\_SIMULATION}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00033}00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00035}00035\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//DA}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_simulationDAEnd\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_mutex}{Mutex}}\ m\_mutexDA\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_mutex}{Mutex}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//DA}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_simulationAEEnd\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_mutex}{Mutex}}\ m\_mutexAE\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_mutex}{Mutex}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//OPCServer}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_demo_server_1_1_opc_server}{OpcServer}}\ m\_opcServer\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00046}00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00048}00048\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Properties}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00050}\mbox{\hyperlink{class_demo_server_1_1_console_ab9d1f11cf72e8cd67d7ebad62f93e6c1}{00050}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_demo_server_1_1_console_ab9d1f11cf72e8cd67d7ebad62f93e6c1}{SimulationDAEnd}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_simulationDAEnd;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_simulationDAEnd\ =\ value;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ set}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ SimulationDAEnd}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00061}\mbox{\hyperlink{class_demo_server_1_1_console_a291aa284c3861df43620a61d56dbb11a}{00061}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_mutex}{Mutex}}\ \mbox{\hyperlink{class_demo_server_1_1_console_a291aa284c3861df43620a61d56dbb11a}{MutexDA}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_mutexDA;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ MutexDA}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00068}\mbox{\hyperlink{class_demo_server_1_1_console_a6a2963e95a3e4d98e3bbaf899d756944}{00068}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_demo_server_1_1_console_a6a2963e95a3e4d98e3bbaf899d756944}{SimulationAEEnd}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_simulationAEEnd;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_simulationAEEnd\ =\ value;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ set}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ SimulationAEEnd}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00079}\mbox{\hyperlink{class_demo_server_1_1_console_ad0e209ea4d9f815fcb9e530ff1105632}{00079}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_mutex}{Mutex}}\ \mbox{\hyperlink{class_demo_server_1_1_console_ad0e209ea4d9f815fcb9e530ff1105632}{MutexAE}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_mutexAE;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ MutexAE}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00087}\mbox{\hyperlink{class_demo_server_1_1_console_a170c43bd38de48d0ad972570edef81c2}{00087}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_demo_server_1_1_opc_server}{OpcServer}}\ \mbox{\hyperlink{class_demo_server_1_1_opc_server}{OpcServer}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_opcServer;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ OpcServer}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00095}00095\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00097}00097\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00099}\mbox{\hyperlink{class_demo_server_1_1_console_aa87f22f4a39696ce7abf494e6cda17b0}{00099}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_console_aa87f22f4a39696ce7abf494e6cda17b0}{CreateOpcServer}}()}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_opcServer\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcServer\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_demo_server_1_1_console_a170c43bd38de48d0ad972570edef81c2}{OpcServer}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ CreateOpcClient}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00107}\mbox{\hyperlink{class_demo_server_1_1_console_af3a14da864deeebaf1792ec5682ee351}{00107}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_console_af3a14da864deeebaf1792ec5682ee351}{SimulationDAThread}}()}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ until\ it\ is\ safe\ to\ enter.}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutexDA.WaitOne();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!m\_simulationDAEnd)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_demo_server_1_1_console_a5e3975c5598a26477b3f90ea90738a3b}{DO\_SIMULATION}})}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ Simulate\ the\ DA\ Server\ data\ changes\ generation}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcServer.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a3bbe58e97277ebff9b0e2dfac7c10bb9}{ChangeSimulationValues}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.Sleep((\textcolor{keywordtype}{int})\mbox{\hyperlink{class_demo_server_1_1_console_a8743bb4287f6512bdedf37e48a462982}{DA\_SLEEP\_INTERVAL}});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ while}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Release\ the\ Mutex}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutexDA.ReleaseMutex();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ SimulationDAThread}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00126}\mbox{\hyperlink{class_demo_server_1_1_console_afbf125cf6d1a182dcde61a114833251b}{00126}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_console_afbf125cf6d1a182dcde61a114833251b}{StartDASimulationThread}}()}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ Thread\ simulationDAThread\ =\ \textcolor{keyword}{new}\ Thread(\textcolor{keyword}{new}\ ThreadStart(\mbox{\hyperlink{class_demo_server_1_1_console_af3a14da864deeebaf1792ec5682ee351}{SimulationDAThread}}));}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ simulationDAThread.Start();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ StartDASimulationThread}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00132}\mbox{\hyperlink{class_demo_server_1_1_console_a3348f6c3513a61e604fbc947a59f41c2}{00132}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_console_a3348f6c3513a61e604fbc947a59f41c2}{SimulationAEThread}}()}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutexAE.WaitOne();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!m\_simulationAEEnd)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Simulate\ the\ AE\ Server\ events\ generation}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcServer.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a50350dca6ad045dd97779ae45f8e981e}{FireSimulationEvents}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.Sleep(500);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ end\ while}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ m\_mutexAE.ReleaseMutex();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ SimulationAEThread}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00144}\mbox{\hyperlink{class_demo_server_1_1_console_ac95cf97b66a26615be992ae4a5460cf2}{00144}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_console_ac95cf97b66a26615be992ae4a5460cf2}{StartAESimulationThread}}()}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ Thread\ simulationAEThread\ =\ \textcolor{keyword}{new}\ Thread(\textcolor{keyword}{new}\ ThreadStart(\mbox{\hyperlink{class_demo_server_1_1_console_a3348f6c3513a61e604fbc947a59f41c2}{SimulationAEThread}}));}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ simulationAEThread.Start();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ StartAESimulationThread}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00151}00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00153}\mbox{\hyperlink{class_demo_server_1_1_console_a182f02491bc0770e2cb04fae749ec0e4}{00153}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_console_a182f02491bc0770e2cb04fae749ec0e4}{Main}}(String[]\ args)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (int)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_console_a9455a1fdb2036f90669a506bf357115e}{EndEvent}}\ =\ \textcolor{keyword}{new}\ AutoResetEvent(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}\ console\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_console}{Console}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MyWin32.HandlerRoutine\ handlerRoutine\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_ab4d91131aff23d4e71e3e26107c210b0}{HandlerRoutine}}(\mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_a1288883a9d78bc53da1b0eecfbbbf44f}{Handler}});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_a557944b4b230fbd8d65b9b6ed71306a4}{SetConsoleCtrlHandler}}(}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handlerRoutine,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ create\ and\ initialize\ the\ OpcServer\ instance}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_aa87f22f4a39696ce7abf494e6cda17b0}{CreateOpcServer}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_opc_server}{OpcServer}}\ server\ =\ console.\mbox{\hyperlink{class_demo_server_1_1_console_a170c43bd38de48d0ad972570edef81c2}{OpcServer}};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a2710cf4688519f044197a7077b32811f}{Initialize}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_demo_creator}{DemoCreator}}\ creator\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_demo_server_1_1_demo_creator}{DemoCreator}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_ae54033dae64d4becd45b11a6bfbf3783}{Prepare}}(creator)))}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_abe72d4b877365217c509b60ac3d4aa59}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_a1288883a9d78bc53da1b0eecfbbbf44f}{Handler}}(\mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_CLOSE\_EVENT);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ handle\ the\ command\ line\ arguments\ (register/unregister,\ etc)}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ commandline\ =\ Environment.CommandLine;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_ac2606c57c7c0b38deea017fc93046a6f}{ProcessCommandLine}}(commandline);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ (uint)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ (uint)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_FALSE)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//registration\ operation\ succesful}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a1d5a4eb1d34c892144933de1ac0ada5b}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.INF,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.USER1,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Console::Main"{}},}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Registration\ succeeded"{}});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a1d5a4eb1d34c892144933de1ac0ada5b}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.INF,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.USER1,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Console::Main"{}},}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Registration\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if...else}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ no\ matter\ what\ close\ the\ application\ if}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//processCommandLine\ returned\ something\ different\ of\ S\_OK}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_abe72d4b877365217c509b60ac3d4aa59}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ start\ the\ OPC\ server's\ I/O\ internal\ mechanism\ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_ae0cc904eec70fb994a20ee729f3524dd}{Start}}()))}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ build\ the\ namespace}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_ab433405e41c946e2256e136bb4d7e091}{BuildAddressSpace}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ declare\ the\ namespaces\ built\ and\ the\ server\ ready\ for\ clients\ to\ connect}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a5fc829df4c68ac22cd8353ea5fc3808e}{Ready}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a1d5a4eb1d34c892144933de1ac0ada5b}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.WRN,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.USER1,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Console::Main"{}},}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Serrver\ start\ failed"{}});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ start\ the\ simulation\ thread\ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_afbf125cf6d1a182dcde61a114833251b}{StartDASimulationThread}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_ac95cf97b66a26615be992ae4a5460cf2}{StartAESimulationThread}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}Press\ Ctrl-\/C\ to\ exit"{}});}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{namespace_console}{Console}}.End)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ TODO:\ place\ your\ cyclic\ code\ here\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thread.Sleep(1000);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ while}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ terminate\ the\ DA\ simulation}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.SimulationDAEnd\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_a291aa284c3861df43620a61d56dbb11a}{MutexDA}}.WaitOne();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_a291aa284c3861df43620a61d56dbb11a}{MutexDA}}.ReleaseMutex();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ terminate\ the\ AE\ simulation}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.SimulationAEEnd\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_ad0e209ea4d9f815fcb9e530ff1105632}{MutexAE}}.WaitOne();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_demo_server_1_1_console_ad0e209ea4d9f815fcb9e530ff1105632}{MutexAE}}.ReleaseMutex();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_a44c45fd42bd85c2255a5b64f5538328d}{Stop}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server.\mbox{\hyperlink{class_demo_server_1_1_opc_server_abe72d4b877365217c509b60ac3d4aa59}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_a1288883a9d78bc53da1b0eecfbbbf44f}{Handler}}(\mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_CLOSE\_EVENT);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(exc.ToString());}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ try...catch}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Main}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00262}00262\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ Console}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00264}\mbox{\hyperlink{class_demo_server_1_1_my_win32}{00264}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00265}00265\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Declare\ the\ SetConsoleCtrlHandler\ function\ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ external\ and\ receiving\ a\ delegate.\ \ \ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ [DllImport(\textcolor{stringliteral}{"{}Kernel32"{}})]}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00269}\mbox{\hyperlink{class_demo_server_1_1_my_win32_a557944b4b230fbd8d65b9b6ed71306a4}{00269}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{extern}\ Boolean\ \mbox{\hyperlink{class_demo_server_1_1_my_win32_a557944b4b230fbd8d65b9b6ed71306a4}{SetConsoleCtrlHandler}}(}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32_ab4d91131aff23d4e71e3e26107c210b0}{HandlerRoutine}}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32_a1288883a9d78bc53da1b0eecfbbbf44f}{Handler}},}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ Boolean\ Add);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ delegate\ type\ to\ be\ used\ as\ the\ handler\ routine\ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ SetConsoleCtrlHandler.}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00275}\mbox{\hyperlink{class_demo_server_1_1_my_win32_ab4d91131aff23d4e71e3e26107c210b0}{00275}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ delegate\ Boolean\ \mbox{\hyperlink{class_demo_server_1_1_my_win32_ab4d91131aff23d4e71e3e26107c210b0}{HandlerRoutine}}(\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}\ CtrlType);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ An\ enumerated\ type\ for\ the\ control\ messages\ }}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sent\ to\ the\ handler\ routine.}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00279}\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{00279}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88a9c6d7b9a3ae52a2eeba4d5b97b424b37}{CTRL\_C\_EVENT}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88a0bf53e626d3d52325891a523090278fc}{CTRL\_BREAK\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88a9b5bdcaf2715bc81f42fcb6315749407}{CTRL\_CLOSE\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88a18d91e2de9d5f3a043ae27857f46f130}{CTRL\_LOGOFF\_EVENT}}\ =\ 5,}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88abd633c0d9cebc1b835bea719de3ed93d}{CTRL\_SHUTDOWN\_EVENT}}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ enum\ CtrlTypes}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ private\ static\ handler\ function.}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00289}\mbox{\hyperlink{class_demo_server_1_1_my_win32_a1288883a9d78bc53da1b0eecfbbbf44f}{00289}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ Boolean\ \mbox{\hyperlink{class_demo_server_1_1_my_win32_a1288883a9d78bc53da1b0eecfbbbf44f}{Handler}}(\mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}\ CtrlType)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00290}00290\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ message\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ switch\ to\ handle\ the\ event\ type.}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (CtrlType)}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_BREAK\_EVENT:}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_LOGOFF\_EVENT:}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_demo_server_1_1_my_win32_aa2c5d6d8be974a9a5967be842166ab88}{CtrlTypes}}.CTRL\_SHUTDOWN\_EVENT:}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Stop\ execution,\ since\ CTRL\ command!"{}};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}.EndEvent.Set();}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.End\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ switch}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ interop\ to\ display\ a\ message\ for\ the\ type\ of\ event.}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ System.\mbox{\hyperlink{class_console_1_1_console}{Console}}.WriteLine(message);}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00309}00309\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Handler}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00310}00310\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ Console}}
+\DoxyCodeLine{\Hypertarget{server_2_demo_server_2_c_s_2_console_8cs_source_l00311}00311\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace}}
+
+\end{DoxyCode}

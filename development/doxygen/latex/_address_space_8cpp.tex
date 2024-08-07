@@ -1,0 +1,550 @@
+\doxysection{core/samples/\+OTS/\+Address\+Space/\+Address\+Space.cpp File Reference}
+\hypertarget{_address_space_8cpp}{}\label{_address_space_8cpp}\index{core/samples/OTS/AddressSpace/AddressSpace.cpp@{core/samples/OTS/AddressSpace/AddressSpace.cpp}}
+{\ttfamily \#include $<$Windows.\+h$>$}\newline
+{\ttfamily \#include $<$TCHAR.\+h$>$}\newline
+{\ttfamily \#include $<$malloc.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}OTServer.\+h"{}}\newline
+Include dependency graph for Address\+Space.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_address_space_8cpp_a3d87c4044f0f0ac5e1bfb20a7aae03b1}{CAT\+\_\+\+ID\+\_\+\+TIME\+\_\+\+TICK}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a0af8a33060c072d73660b1a94f7e5711}{Shutdown}} (void)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a43744587b41fc79e33b390cb27eb33da}{Handle\+Read\+Requests}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ac5dad9cb1677fba75a6e9977ed923369}{OTSRequest\+Data}} \texorpdfstring{$\ast$}{*}pa\+Requests)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a6b6631a4f990b222effa9c9f6836e271}{Handle\+Write\+Requests}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ac5dad9cb1677fba75a6e9977ed923369}{OTSRequest\+Data}} \texorpdfstring{$\ast$}{*}pa\+Requests, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a6b76e9dada601e8fa278e85f9b34b7fd}{OTSValue\+Data}} \texorpdfstring{$\ast$}{*}p\+Values)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_aaeca554722bfa01471587bcca0a5d6f8}{Query\+Address\+Space\+Element\+Data}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR item\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE element\+Type, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}p\+Data)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a6f6b16f53203534b553440c1c98eb1f0}{Query\+Address\+Space\+Element\+Children}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR item\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE element\+Type, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Element\+Data)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_af9fa360b818433bd80083afbd384c9e4}{Query\+Properties}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ab32f6d989c1643d05792b055e7670e3c}{OTSObject\+Data}} \texorpdfstring{$\ast$}{*}p\+Object, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR obj\+Item\+Id, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG prop\+ID, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Prop\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_af9fefa4f447bb0e5de2b880531e83d8c}{OTSProperty\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Prop\+Data)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a35eec70fcbd069a12e6ef3591c110276}{Create\+Address\+Space\+Element}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} h\+Parent, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} h\+Object, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}p\+Data\+In, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}p\+Data\+Out)
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a8e7f7be35315f4ef7afbedef46a2c3db}{Destroy\+Address\+Space\+Element}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ab32f6d989c1643d05792b055e7670e3c}{OTSObject\+Data}} object\+Data)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a2a770b95ed994d330c89b19dbd406d6a}{Build\+Namespace}} (void)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a275ef316748c6fb133c170fec3d64944}{Build\+Event\+Categories}} (void)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a16cd7785e64f6b58605ac238a826b113}{Fire\+Event}} (void)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a2492ced3b8c734d617ce4dc89dc0ae9e}{Clear\+Console}} (void)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a6694ec75d1c28a0d668f6ef7fa8b2f1a}{Print\+Children}} (\mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} h\+Obj, BYTE element\+Type, int indent)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a5c5780cfd811360c226294dd1359ec6a}{Reconfigure}} (void)
+\item 
+void \mbox{\hyperlink{_address_space_8cpp_a3f726c793feeb8d90d0f2d5c777481df}{Set\+String}} (LPTSTR \texorpdfstring{$\ast$}{*}p\+StrD, LPCTSTR strS)
+\item 
+BOOL WINAPI \mbox{\hyperlink{_address_space_8cpp_a23e6bb535324adcf6a54c501eb02c266}{control\+Handler}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD crtl\+Type)
+\item 
+int \mbox{\hyperlink{_address_space_8cpp_a353674c5af92be7fb389265cde4e5e03}{\+\_\+tmain}} (int argc, \+\_\+\+TCHAR \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\item 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} \mbox{\hyperlink{_address_space_8cpp_a864ba5d9908f1a6b39d64e9563d5ed5c}{Create\+Address\+Space\+Element}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} h\+Parent, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} h\+Object, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}p\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}p\+Data\+Out)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_o_t_server_8h_a8628209ef6d6b7ac3901b9503134fb72}{OTSInit\+Data}} \mbox{\hyperlink{_address_space_8cpp_ad4620ce72791a12a96a48737c3ad2e4e}{g\+\_\+init\+Data}}
+\item 
+\mbox{\hyperlink{_o_t_server_8h_a693a03462d8eb92a0b72fe221437b522}{OTSCallback\+Functions}} \mbox{\hyperlink{_address_space_8cpp_a51a623730a8228ff211ef5f574b2b1c8}{g\+\_\+callback\+Functions}}
+\item 
+HANDLE \mbox{\hyperlink{_address_space_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\+\_\+end\+Event}}
+\item 
+\mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} \mbox{\hyperlink{_address_space_8cpp_a19a09cf41425a94d1739e355f130de42}{g\+\_\+obj\+Based\+Handle}}
+\item 
+\mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} \mbox{\hyperlink{_address_space_8cpp_a0541fae31898a209f7c95cb34218cc0f}{g\+\_\+reconfig\+Handles}} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_address_space_8cpp_a3d87c4044f0f0ac5e1bfb20a7aae03b1}\index{AddressSpace.cpp@{AddressSpace.cpp}!CAT\_ID\_TIME\_TICK@{CAT\_ID\_TIME\_TICK}}
+\index{CAT\_ID\_TIME\_TICK@{CAT\_ID\_TIME\_TICK}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{CAT\_ID\_TIME\_TICK}{CAT\_ID\_TIME\_TICK}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a3d87c4044f0f0ac5e1bfb20a7aae03b1} 
+\#define CAT\+\_\+\+ID\+\_\+\+TIME\+\_\+\+TICK~1}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_address_space_8cpp_a353674c5af92be7fb389265cde4e5e03}\index{AddressSpace.cpp@{AddressSpace.cpp}!\_tmain@{\_tmain}}
+\index{\_tmain@{\_tmain}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{\_tmain()}{\_tmain()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a353674c5af92be7fb389265cde4e5e03} 
+int \+\_\+tmain (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{\+\_\+\+TCHAR \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00109}{109}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a353674c5af92be7fb389265cde4e5e03_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a275ef316748c6fb133c170fec3d64944}\index{AddressSpace.cpp@{AddressSpace.cpp}!BuildEventCategories@{BuildEventCategories}}
+\index{BuildEventCategories@{BuildEventCategories}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{BuildEventCategories()}{BuildEventCategories()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a275ef316748c6fb133c170fec3d64944} 
+void Build\+Event\+Categories (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00194}{194}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{_address_space_8cpp_a275ef316748c6fb133c170fec3d64944_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{_address_space_8cpp_a275ef316748c6fb133c170fec3d64944_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a2a770b95ed994d330c89b19dbd406d6a}\index{AddressSpace.cpp@{AddressSpace.cpp}!BuildNamespace@{BuildNamespace}}
+\index{BuildNamespace@{BuildNamespace}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{BuildNamespace()}{BuildNamespace()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a2a770b95ed994d330c89b19dbd406d6a} 
+void Build\+Namespace (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00201}{201}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a2a770b95ed994d330c89b19dbd406d6a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=251pt]{_address_space_8cpp_a2a770b95ed994d330c89b19dbd406d6a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a2492ced3b8c734d617ce4dc89dc0ae9e}\index{AddressSpace.cpp@{AddressSpace.cpp}!ClearConsole@{ClearConsole}}
+\index{ClearConsole@{ClearConsole}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{ClearConsole()}{ClearConsole()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a2492ced3b8c734d617ce4dc89dc0ae9e} 
+void Clear\+Console (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00731}{731}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{_address_space_8cpp_a2492ced3b8c734d617ce4dc89dc0ae9e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a23e6bb535324adcf6a54c501eb02c266}\index{AddressSpace.cpp@{AddressSpace.cpp}!controlHandler@{controlHandler}}
+\index{controlHandler@{controlHandler}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{controlHandler()}{controlHandler()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a23e6bb535324adcf6a54c501eb02c266} 
+BOOL WINAPI control\+Handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{crtl\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{_address_space_8cpp_a23e6bb535324adcf6a54c501eb02c266_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{_address_space_8cpp_a23e6bb535324adcf6a54c501eb02c266_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a35eec70fcbd069a12e6ef3591c110276}\index{AddressSpace.cpp@{AddressSpace.cpp}!CreateAddressSpaceElement@{CreateAddressSpaceElement}}
+\index{CreateAddressSpaceElement@{CreateAddressSpaceElement}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{CreateAddressSpaceElement()}{CreateAddressSpaceElement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a35eec70fcbd069a12e6ef3591c110276} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Create\+Address\+Space\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}}}]{h\+Parent}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}}}]{h\+Object}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Data\+In}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Data\+Out}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_address_space_8cpp_a864ba5d9908f1a6b39d64e9563d5ed5c}\index{AddressSpace.cpp@{AddressSpace.cpp}!CreateAddressSpaceElement@{CreateAddressSpaceElement}}
+\index{CreateAddressSpaceElement@{CreateAddressSpaceElement}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{CreateAddressSpaceElement()}{CreateAddressSpaceElement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a864ba5d9908f1a6b39d64e9563d5ed5c} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Create\+Address\+Space\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}}}]{h\+Parent}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}}}]{h\+Object}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Data\+Out}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00668}{668}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a864ba5d9908f1a6b39d64e9563d5ed5c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a8e7f7be35315f4ef7afbedef46a2c3db}\index{AddressSpace.cpp@{AddressSpace.cpp}!DestroyAddressSpaceElement@{DestroyAddressSpaceElement}}
+\index{DestroyAddressSpaceElement@{DestroyAddressSpaceElement}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{DestroyAddressSpaceElement()}{DestroyAddressSpaceElement()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a8e7f7be35315f4ef7afbedef46a2c3db} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Destroy\+Address\+Space\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ab32f6d989c1643d05792b055e7670e3c}{OTSObject\+Data}}}]{object\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00677}{677}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+\Hypertarget{_address_space_8cpp_a16cd7785e64f6b58605ac238a826b113}\index{AddressSpace.cpp@{AddressSpace.cpp}!FireEvent@{FireEvent}}
+\index{FireEvent@{FireEvent}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{FireEvent()}{FireEvent()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a16cd7785e64f6b58605ac238a826b113} 
+void Fire\+Event (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{_address_space_8cpp_a16cd7785e64f6b58605ac238a826b113_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{_address_space_8cpp_a16cd7785e64f6b58605ac238a826b113_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a43744587b41fc79e33b390cb27eb33da}\index{AddressSpace.cpp@{AddressSpace.cpp}!HandleReadRequests@{HandleReadRequests}}
+\index{HandleReadRequests@{HandleReadRequests}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{HandleReadRequests()}{HandleReadRequests()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a43744587b41fc79e33b390cb27eb33da} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Handle\+Read\+Requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG}]{count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ac5dad9cb1677fba75a6e9977ed923369}{OTSRequest\+Data}} \texorpdfstring{$\ast$}{*}}]{pa\+Requests}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00292}{292}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a43744587b41fc79e33b390cb27eb33da_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a6b6631a4f990b222effa9c9f6836e271}\index{AddressSpace.cpp@{AddressSpace.cpp}!HandleWriteRequests@{HandleWriteRequests}}
+\index{HandleWriteRequests@{HandleWriteRequests}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{HandleWriteRequests()}{HandleWriteRequests()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a6b6631a4f990b222effa9c9f6836e271} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Handle\+Write\+Requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG}]{count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ac5dad9cb1677fba75a6e9977ed923369}{OTSRequest\+Data}} \texorpdfstring{$\ast$}{*}}]{pa\+Requests}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_a6b76e9dada601e8fa278e85f9b34b7fd}{OTSValue\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Values}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00330}{330}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{_address_space_8cpp_a6b6631a4f990b222effa9c9f6836e271_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a6694ec75d1c28a0d668f6ef7fa8b2f1a}\index{AddressSpace.cpp@{AddressSpace.cpp}!PrintChildren@{PrintChildren}}
+\index{PrintChildren@{PrintChildren}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{PrintChildren()}{PrintChildren()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a6694ec75d1c28a0d668f6ef7fa8b2f1a} 
+void Print\+Children (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}}}]{h\+Obj}{, }\item[{BYTE}]{element\+Type}{, }\item[{int}]{indent}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00682}{682}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a6694ec75d1c28a0d668f6ef7fa8b2f1a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{_address_space_8cpp_a6694ec75d1c28a0d668f6ef7fa8b2f1a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a6f6b16f53203534b553440c1c98eb1f0}\index{AddressSpace.cpp@{AddressSpace.cpp}!QueryAddressSpaceElementChildren@{QueryAddressSpaceElementChildren}}
+\index{QueryAddressSpaceElementChildren@{QueryAddressSpaceElementChildren}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{QueryAddressSpaceElementChildren()}{QueryAddressSpaceElementChildren()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a6f6b16f53203534b553440c1c98eb1f0} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Query\+Address\+Space\+Element\+Children (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{item\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{element\+Type}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Element\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00514}{514}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a6f6b16f53203534b553440c1c98eb1f0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_aaeca554722bfa01471587bcca0a5d6f8}\index{AddressSpace.cpp@{AddressSpace.cpp}!QueryAddressSpaceElementData@{QueryAddressSpaceElementData}}
+\index{QueryAddressSpaceElementData@{QueryAddressSpaceElementData}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{QueryAddressSpaceElementData()}{QueryAddressSpaceElementData()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_aaeca554722bfa01471587bcca0a5d6f8} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Query\+Address\+Space\+Element\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{item\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{element\+Type}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_a13ed28ee16e5ae13a8f903a8c493074a}{OTSAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00345}{345}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_aaeca554722bfa01471587bcca0a5d6f8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_af9fa360b818433bd80083afbd384c9e4}\index{AddressSpace.cpp@{AddressSpace.cpp}!QueryProperties@{QueryProperties}}
+\index{QueryProperties@{QueryProperties}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{QueryProperties()}{QueryProperties()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_af9fa360b818433bd80083afbd384c9e4} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Query\+Properties (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_server_8h_ab32f6d989c1643d05792b055e7670e3c}{OTSObject\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Object}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{obj\+Item\+Id}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG}]{prop\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Prop\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_server_8h_af9fefa4f447bb0e5de2b880531e83d8c}{OTSProperty\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Prop\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00637}{637}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_af9fa360b818433bd80083afbd384c9e4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a5c5780cfd811360c226294dd1359ec6a}\index{AddressSpace.cpp@{AddressSpace.cpp}!Reconfigure@{Reconfigure}}
+\index{Reconfigure@{Reconfigure}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{Reconfigure()}{Reconfigure()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a5c5780cfd811360c226294dd1359ec6a} 
+void Reconfigure (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00745}{745}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_address_space_8cpp_a5c5780cfd811360c226294dd1359ec6a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{_address_space_8cpp_a5c5780cfd811360c226294dd1359ec6a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a3f726c793feeb8d90d0f2d5c777481df}\index{AddressSpace.cpp@{AddressSpace.cpp}!SetString@{SetString}}
+\index{SetString@{SetString}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{SetString()}{SetString()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a3f726c793feeb8d90d0f2d5c777481df} 
+void Set\+String (\begin{DoxyParamCaption}\item[{LPTSTR \texorpdfstring{$\ast$}{*}}]{p\+StrD}{, }\item[{LPCTSTR}]{strS}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00785}{785}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{_address_space_8cpp_a3f726c793feeb8d90d0f2d5c777481df_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{_address_space_8cpp_a3f726c793feeb8d90d0f2d5c777481df_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_address_space_8cpp_a0af8a33060c072d73660b1a94f7e5711}\index{AddressSpace.cpp@{AddressSpace.cpp}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a0af8a33060c072d73660b1a94f7e5711} 
+LONG \mbox{\hyperlink{_o_t_server_8h_ac575a3a735a58896507908a302de97e4}{OTSAPI\+\_\+\+CALL}} Shutdown (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00286}{286}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{_address_space_8cpp_a0af8a33060c072d73660b1a94f7e5711_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_address_space_8cpp_a51a623730a8228ff211ef5f574b2b1c8}\index{AddressSpace.cpp@{AddressSpace.cpp}!g\_callbackFunctions@{g\_callbackFunctions}}
+\index{g\_callbackFunctions@{g\_callbackFunctions}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_callbackFunctions}{g\_callbackFunctions}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a51a623730a8228ff211ef5f574b2b1c8} 
+\mbox{\hyperlink{_o_t_server_8h_a693a03462d8eb92a0b72fe221437b522}{OTSCallback\+Functions}} g\+\_\+callback\+Functions}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ \&\mbox{\hyperlink{_address_space_8cpp_a0af8a33060c072d73660b1a94f7e5711}{Shutdown}},}
+\DoxyCodeLine{\ \ \ \ \&\mbox{\hyperlink{_address_space_8cpp_a43744587b41fc79e33b390cb27eb33da}{HandleReadRequests}},}
+\DoxyCodeLine{\ \ \ \ \&\mbox{\hyperlink{_address_space_8cpp_a6b6631a4f990b222effa9c9f6836e271}{HandleWriteRequests}},}
+\DoxyCodeLine{\ \ \ \ \&\mbox{\hyperlink{_address_space_8cpp_af9fa360b818433bd80083afbd384c9e4}{QueryProperties}},}
+\DoxyCodeLine{\ \ \ \ \&\mbox{\hyperlink{_address_space_8cpp_aaeca554722bfa01471587bcca0a5d6f8}{QueryAddressSpaceElementData}},}
+\DoxyCodeLine{\ \ \ \ \&\mbox{\hyperlink{_address_space_8cpp_a6f6b16f53203534b553440c1c98eb1f0}{QueryAddressSpaceElementChildren}},}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_address_space_8cpp_a35eec70fcbd069a12e6ef3591c110276}{CreateAddressSpaceElement}},}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_address_space_8cpp_a8e7f7be35315f4ef7afbedef46a2c3db}{DestroyAddressSpaceElement}},}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ NULL,}
+\DoxyCodeLine{\ \ \ \ NULL}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+\Hypertarget{_address_space_8cpp_a4cdc39620811c89dc7085af354f4ae29}\index{AddressSpace.cpp@{AddressSpace.cpp}!g\_endEvent@{g\_endEvent}}
+\index{g\_endEvent@{g\_endEvent}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_endEvent}{g\_endEvent}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a4cdc39620811c89dc7085af354f4ae29} 
+HANDLE g\+\_\+end\+Event}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00072}{72}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+\Hypertarget{_address_space_8cpp_ad4620ce72791a12a96a48737c3ad2e4e}\index{AddressSpace.cpp@{AddressSpace.cpp}!g\_initData@{g\_initData}}
+\index{g\_initData@{g\_initData}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_initData}{g\_initData}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_ad4620ce72791a12a96a48737c3ad2e4e} 
+\mbox{\hyperlink{_o_t_server_8h_a8628209ef6d6b7ac3901b9503134fb72}{OTSInit\+Data}} g\+\_\+init\+Data}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ 419,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_t_server_8h_ad8a92d2bef0cf63ab9a4c2e6ce96e259}{OTS\_APPTYPE\_OUTPROC}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ NULL,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\{3E0289BA-\/34CA-\/445b-\/9EC1-\/B59F3F482683\}"{}}),\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Softing.OPCToolboxCSmpl.Namespace.DA"{}}),\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Softing.OPCToolboxCSmpl.Namespace.DA.1"{}}),\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\{58A7AB5F-\/0C20-\/4961-\/9962-\/389C8C85273B\}"{}}),\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Softing.OPCToolboxCSmpl.Namespace.AE"{}}),\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Softing.OPCToolboxCSmpl.Namespace.AE.1"{}}),\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Softing\ OPC\ Toolkit\ C\ Namespace\ Server\ Sample"{}}),\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ 8081,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}/OPC/DA"{}}),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ 1,\ 0,\ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Softing\ Industrial\ Automation\ GmbH"{}}),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'.'}),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ 30000,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'\string~'}),\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ 100,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ FALSE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+\Hypertarget{_address_space_8cpp_a19a09cf41425a94d1739e355f130de42}\index{AddressSpace.cpp@{AddressSpace.cpp}!g\_objBasedHandle@{g\_objBasedHandle}}
+\index{g\_objBasedHandle@{g\_objBasedHandle}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_objBasedHandle}{g\_objBasedHandle}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a19a09cf41425a94d1739e355f130de42} 
+\mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} g\+\_\+obj\+Based\+Handle}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+
+\Hypertarget{_address_space_8cpp_a0541fae31898a209f7c95cb34218cc0f}\index{AddressSpace.cpp@{AddressSpace.cpp}!g\_reconfigHandles@{g\_reconfigHandles}}
+\index{g\_reconfigHandles@{g\_reconfigHandles}!AddressSpace.cpp@{AddressSpace.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_reconfigHandles}{g\_reconfigHandles}}
+{\footnotesize\ttfamily \label{_address_space_8cpp_a0541fae31898a209f7c95cb34218cc0f} 
+\mbox{\hyperlink{_o_t_server_8h_a53a516b8933e6ac940e9d0aab20107b9}{OTSObject\+Handle}} g\+\_\+reconfig\+Handles\mbox{[}3\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{_address_space_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{_address_space_8cpp_source}{Address\+Space.\+cpp}}.
+

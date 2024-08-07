@@ -1,0 +1,544 @@
+\doxysection{Client\+Object\+Space\+Element.\+cs}
+\hypertarget{_client_object_space_element_8cs_source}{}\label{_client_object_space_element_8cs_source}\index{NET/src/client/ClientObjectSpaceElement.cs@{NET/src/client/ClientObjectSpaceElement.cs}}
+\mbox{\hyperlink{_client_object_space_element_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.ComponentModel.Design.Serialization;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_o_t_b}{Softing.OPCToolbox.OTB}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client}{Softing.OPCToolbox.Client}}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00009}00009\ \textcolor{preprocessor}{\ \ \ \ \#region\ }\textcolor{comment}{//\ Public\ Delegates}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00010}00010\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00024}\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a844ab0d390a4871112738573aa1e8147}{00024}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a844ab0d390a4871112738573aa1e8147}{StateChangeEventHandler}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ obj,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}\ state);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00040}\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_afd10f91297a595ea4e0b677740e688cf}{00040}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_afd10f91297a595ea4e0b677740e688cf}{GetAttributesFromServerEventHandler}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ obj,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{EnumObjectAttribute}}[]\ whatAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00061}\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a86c829714d592fb09f6dd873369b6635}{00061}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a86c829714d592fb09f6dd873369b6635}{SetAttributesToServerEventHandler}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ obj,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{EnumObjectAttribute}}[]\ whatAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00080}\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a15e852da2a7e28fe02bfd70e972630f1}{00080}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a15e852da2a7e28fe02bfd70e972630f1}{PerformStateTransitionEventHandler}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ obj,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00085}00085\ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00087}00087\ \textcolor{preprocessor}{\ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00096}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{00096}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00097}00097\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00098}00098\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Internal\ static\ attributes}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{object}\ m\_objectIndexJanitor\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ m\_objectIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00105}00105\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00107}00107\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Public\ Events}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00120}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8532ff5484896702dd06449560ec699c}{00120}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a844ab0d390a4871112738573aa1e8147}{StateChangeEventHandler}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8532ff5484896702dd06449560ec699c}{StateChangeCompleted}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00131}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a3ae90a6ca9a1b1449c1f617cd42517e8}{00131}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_afd10f91297a595ea4e0b677740e688cf}{GetAttributesFromServerEventHandler}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a3ae90a6ca9a1b1449c1f617cd42517e8}{GetAttributesFromServerCompleted}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00142}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a35ac86197a8b4d8cd5ab18a384ce0176}{00142}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a86c829714d592fb09f6dd873369b6635}{SetAttributesToServerEventHandler}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a35ac86197a8b4d8cd5ab18a384ce0176}{SetAttributesToServerCompleted}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00153}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a499221f5ceca1d199d9a44c2f11de55c}{00153}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a15e852da2a7e28fe02bfd70e972630f1}{PerformStateTransitionEventHandler}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a499221f5ceca1d199d9a44c2f11de55c}{PerformStateTransitionCompleted}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00156}00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00158}00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Public\ Contructor}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00168}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_ac3b786e6a2c007dc4af0348c68415d65}{00168}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_ac3b786e6a2c007dc4af0348c68415d65}{ObjectSpaceElement}}()}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//this\ is\ necessary\ for\ hashing}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (m\_objectIndexJanitor)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.m\_index\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}.m\_objectIndex++;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00178}00178\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00180}00180\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Public\ Constants}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00190}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a54ab16588503f4506426fdd360714a49}{00190}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a54ab16588503f4506426fdd360714a49}{MAX\_AGE\_DEVICE}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00199}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a5a23d0e7ad25cbf98e384c23c1f322a1}{00199}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{const}\ uint\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a5a23d0e7ad25cbf98e384c23c1f322a1}{MAX\_AGE\_CACHE}}\ =\ 0xFFFFFFFF;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00202}00202\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00204}00204\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ uint\ m\_objectHandle\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{object}\ m\_handleJanitor\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ readonly\ \textcolor{keywordtype}{int}\ m\_index;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00212}00212\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00214}00214\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Internal\ Properties}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ uint\ Handle}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint\ objectHandle\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (m\_handleJanitor)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ objectHandle\ =\ m\_objectHandle;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ lock}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ objectHandle;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (m\_handleJanitor)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_objectHandle\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ lock}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ set}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ Handle}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00240}00240\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00242}00242\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Public\ Properties}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00252}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a59c2fe2415c5d499318660181ce786c1}{00252}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a59c2fe2415c5d499318660181ce786c1}{Valid}}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.Handle\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00262}00262\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ Valid}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00275}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a989524c3637254dfb672d5b8b04d0179}{00275}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a989524c3637254dfb672d5b8b04d0179}{CurrentState}}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}\ currentState\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}\ targetState\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ OTBFunctions.OTCGetState(this.Handle,\ out\ currentState,\ out\ targetState);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_acafae95a1397498a9e44a33bc2e8dff7}{FAILED}}(res))}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.CurrentState.Get"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}result\ code\ is\ "{}}\ +\ res.ToString(\textcolor{stringliteral}{"{}X"{}}));}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.CurrentState.Get"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}})\ currentState;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00304}00304\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ CurrentState}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00317}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a98a8611bdd096a794a4d3421040d0679}{00317}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a98a8611bdd096a794a4d3421040d0679}{TargetState}}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00318}00318\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}\ currentState\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}\ targetState\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ OTBFunctions.OTCGetState(this.Handle,\ out\ currentState,\ out\ targetState);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_acafae95a1397498a9e44a33bc2e8dff7}{FAILED}}(res))}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.CurrentState.Get"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}result\ code\ is\ "{}}\ +\ res.ToString(\textcolor{stringliteral}{"{}X"{}}));}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.TargetState.Get"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}})\ targetState;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{byte}\ targetState\ =\ (byte)\ value;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTBFunctions.OTCChangeTargetState(this.Handle,\ targetState,\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.TargetState.Set"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00363}00363\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00365}00365\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00366}00366\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00368}00368\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00371}00371\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Overriden\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00372}00372\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00384}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_ab5b1e7ae386de97b7bc1314b3b9e866a}{00384}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_ab5b1e7ae386de97b7bc1314b3b9e866a}{GetHashCode}}()}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00385}00385\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.m\_index;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00387}00387\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00389}00389\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00390}00390\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00402}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{00402}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{PerformStateTransition}}(\textcolor{keywordtype}{bool}\ deep,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}\ executionOptions)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00403}00403\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ (int)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTCExecutionOptions\ options\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecutionOptions}}();}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (executionOptions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a47327f666d84cc4d8189ec23479b5bc9}{ExecutionType}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ (uint)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a7037c91079329b17d0f0f3881ceb0a1a}{ExecutionContext}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa2aec0ff6be3c68ae94f625e5dc94071}{EnumExecutionType}}.SYNCHRONOUS;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00419}00419\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deep\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ performs\ the\ state\ transition\ for\ the\ object\ itself}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ OTBFunctions.OTCPerformStateTransition(this.Handle,\ 0,\ ref\ options);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deep\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ performs\ the\ state\ transition\ for\ the\ whole\ subtree\ of\ the\ object}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ OTBFunctions.OTCPerformStateTransition(this.Handle,\ 1,\ ref\ options);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.PerformStateTransition"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00440}00440\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00453}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_adad48543ed7997c058bf01c5e3982338}{00453}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_adad48543ed7997c058bf01c5e3982338}{Connect}}(\textcolor{keywordtype}{bool}\ deep,\ \textcolor{keywordtype}{bool}\ active,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}\ executionOptions)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00454}00454\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ (int)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deep\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (active\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTBFunctions.OTCChangeTargetState(this.Handle,\ (\textcolor{keywordtype}{byte})\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}.ACTIVATED,\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{PerformStateTransition}}(deep,\ executionOptions);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (active\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTBFunctions.OTCChangeTargetState(this.Handle,\ (\textcolor{keywordtype}{byte})\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}.CONNECTED,\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{PerformStateTransition}}(deep,\ executionOptions);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deep\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (active\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTBFunctions.OTCChangeTargetState(this.Handle,\ (\textcolor{keywordtype}{byte})\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}.ACTIVATED,\ 0);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{PerformStateTransition}}(deep,\ executionOptions);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (active\ ==\ \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTBFunctions.OTCChangeTargetState(this.Handle,\ (\textcolor{keywordtype}{byte})\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}.CONNECTED,\ 0);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{PerformStateTransition}}(deep,\ executionOptions);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.Connect"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00494}00494\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00505}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8cca4f71157ad2626b526605f54c805f}{00505}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8cca4f71157ad2626b526605f54c805f}{Disconnect}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}\ executionOptions)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00506}00506\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ (int)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTCExecutionOptions\ options\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecutionOptions}}();}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (executionOptions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a47327f666d84cc4d8189ec23479b5bc9}{ExecutionType}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ (uint)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a7037c91079329b17d0f0f3881ceb0a1a}{ExecutionContext}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa2aec0ff6be3c68ae94f625e5dc94071}{EnumExecutionType}}.SYNCHRONOUS;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00522}00522\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}\ m\_targetState\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}.DISCONNECTED;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTBFunctions.OTCChangeTargetState(this.Handle,\ (\textcolor{keywordtype}{byte})\ m\_targetState,\ 1);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ OTBFunctions.OTCPerformStateTransition(this.Handle,\ 1,\ ref\ options);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.Disconnect"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00536}00536\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00537}00537\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00549}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a9bf6232914e3be9e891a62819ed28cbd}{00549}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a9bf6232914e3be9e891a62819ed28cbd}{GetAttributesFromServer}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{EnumObjectAttribute}}[]\ whatAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ out\ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}\ executionOptions)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00553}00553\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ (int)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTCExecutionOptions\ options\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecutionOptions}}();}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00559}00559\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (executionOptions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a47327f666d84cc4d8189ec23479b5bc9}{ExecutionType}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ (uint)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a7037c91079329b17d0f0f3881ceb0a1a}{ExecutionContext}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa2aec0ff6be3c68ae94f625e5dc94071}{EnumExecutionType}}.SYNCHRONOUS;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00570}00570\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ whatAttributes.Length;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint[]\ whatAttributesToChange\ =\ \textcolor{keyword}{new}\ uint[count];}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ whatAttributes.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ whatAttributesToChange[i]\ =\ (uint)\ whatAttributes[i];}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[count];}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ OTBFunctions.OTCUpdateAttributes(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.Handle,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint)\ count,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ whatAttributesToChange,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ref\ options);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00590}00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.GetAttributesFromServer"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00595}00595\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00608}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a733f2bfe3ff8c1d2e33110f1c3678d89}{00608}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a733f2bfe3ff8c1d2e33110f1c3678d89}{SetAttributesToServer}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{EnumObjectAttribute}}[]\ whatAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00610}00610\ \ \ \ \ \ \ \ \ \ \ \ \ out\ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00611}00611\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}\ executionOptions)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00612}00612\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00613}00613\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ (int)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00617}00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTCExecutionOptions\ options\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecutionOptions}}();}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00618}00618\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (executionOptions\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a47327f666d84cc4d8189ec23479b5bc9}{ExecutionType}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ (uint)\ executionOptions.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options_a7037c91079329b17d0f0f3881ceb0a1a}{ExecutionContext}};}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionType\ =\ (byte)\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa2aec0ff6be3c68ae94f625e5dc94071}{EnumExecutionType}}.SYNCHRONOUS;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00627}00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ options.m\_executionContext\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00629}00629\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ whatAttributes.Length;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint[]\ whatAttributesToChange\ =\ \textcolor{keyword}{new}\ uint[count];}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ whatAttributes.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ whatAttributesToChange[i]\ =\ (uint)\ whatAttributes[i];}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00636}00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{int}[count];}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00637}00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ OTBFunctions.OTCUpdateAttributes(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.Handle,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00639}00639\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00640}00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint)\ count,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ whatAttributesToChange,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00643}00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ref\ options);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00649}00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.SetAttributesToServer"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00651}00651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00652}00652\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00654}00654\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00655}00655\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00656}00656\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00657}00657\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00658}00658\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00659}00659\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Internal\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00672}00672\ \ \ \ \ \ \ \ \ internal\ void\ OnGetAttributesFromServer(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00674}00674\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{EnumObjectAttribute}}[]\ whatAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00677}00677\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00678}00678\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00679}00679\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a3ae90a6ca9a1b1449c1f617cd42517e8}{GetAttributesFromServerCompleted}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00681}00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00682}00682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a3ae90a6ca9a1b1449c1f617cd42517e8}{GetAttributesFromServerCompleted}}(\textcolor{keyword}{this},\ executionContext,\ whatAttributes,\ results,\ result);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00685}00685\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.Trace(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00688}00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a02dbd1090ea4d03998aaf568c7ded9fc}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00689}00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_ad2725a11430348ec412e72b436f03bff}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00690}00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.OnGetAttributesFromServer"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00693}00693\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00694}00694\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00707}00707\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnSetAttributesToServer(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00708}00708\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ executionContext,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00709}00709\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{EnumObjectAttribute}}[]\ whatAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00710}00710\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00711}00711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00712}00712\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00713}00713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00715}00715\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a35ac86197a8b4d8cd5ab18a384ce0176}{SetAttributesToServerCompleted}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00716}00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00717}00717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a35ac86197a8b4d8cd5ab18a384ce0176}{SetAttributesToServerCompleted}}(\textcolor{keyword}{this},\ executionContext,\ whatAttributes,\ results,\ result);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00718}00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00719}00719\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00720}00720\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00721}00721\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00722}00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.Trace(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00723}00723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a02dbd1090ea4d03998aaf568c7ded9fc}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00724}00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_ad2725a11430348ec412e72b436f03bff}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00725}00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.OnSetAttributesToServer"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00726}00726\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00727}00727\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00728}00728\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00729}00729\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00734}00734\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnStateChange(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{EnumObjectState}}\ newState)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00735}00735\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00736}00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00737}00737\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00738}00738\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8532ff5484896702dd06449560ec699c}{StateChangeCompleted}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00739}00739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8532ff5484896702dd06449560ec699c}{StateChangeCompleted}}(\textcolor{keyword}{this},\ newState);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00740}00740\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00741}00741\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00742}00742\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00743}00743\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.Trace(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00744}00744\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a02dbd1090ea4d03998aaf568c7ded9fc}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00745}00745\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_ad2725a11430348ec412e72b436f03bff}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00746}00746\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.OnStateChange"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00747}00747\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00748}00748\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00749}00749\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00750}00750\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00761}00761\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnPerformStateTransition(uint\ executionContext,\ \textcolor{keywordtype}{int}\ result)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00762}00762\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00763}00763\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00764}00764\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00765}00765\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a499221f5ceca1d199d9a44c2f11de55c}{PerformStateTransitionCompleted}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00766}00766\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00767}00767\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a499221f5ceca1d199d9a44c2f11de55c}{PerformStateTransitionCompleted}}(\textcolor{keyword}{this},\ executionContext,\ result);}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00769}00769\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00770}00770\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00771}00771\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00772}00772\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.Trace(}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00773}00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a02dbd1090ea4d03998aaf568c7ded9fc}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00774}00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_ad2725a11430348ec412e72b436f03bff}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00775}00775\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ObjectSpaceElement.OnPerformStateTransition"{}},}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00776}00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00777}00777\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00778}00778\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00779}00779\ }
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00780}00780\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00781}00781\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_object_space_element_8cs_source_l00782}00782\ \}}
+
+\end{DoxyCode}

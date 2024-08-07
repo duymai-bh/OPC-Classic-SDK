@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <xs:complexType name="PPPInterfaceType">
+	<xs:annotation>
+		<xs:documentation>Point to Point Protocol (PPP) interface type.</xs:documentation>
+	</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SerialPort" type="SerialPortType">
+				<xs:annotation>
+					<xs:documentation>Serial port configuration for the PPP interface.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Mode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Mode.</xs:documentation>
+				</xs:annotation>	
+			</xs:element>
+			<xs:element name="AutoConnect" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>Automatic connect.</xs:documentation>
+				</xs:annotation>	
+			</xs:element>		
+			<xs:element name="CommsLossEventEnable" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>Communications loss event enable.</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+			<xs:element name="PPPMasterAddress" type="IPv4">
+				<xs:annotation>
+					<xs:documentation>Point to Point Protocol (PPP) master address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>	
+			<xs:element name="PPPSlaveAddress" type="IPv4">
+				<xs:annotation>
+					<xs:documentation>Point to Point Protocol (PPP) slave address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RoutingTable" type="RoutingListType" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Routing Table List of TCP/IP devices packets to be routed to. (Range 1 to 5).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RoutingListType">
+		<xs:annotation>
+			<xs:documentation>Routing List type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StartAddr" type="IPv4">
+				<xs:annotation>
+					<xs:documentation>Point to Point Protocol (PPP) start address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndAddr" type="IPv4">
+				<xs:annotation>
+					<xs:documentation>Point to Point Protocol (PPP) end address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>	
+  
+</xs:schema>

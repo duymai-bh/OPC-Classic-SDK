@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) by Vetco Gray Controls Limited (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="BaseTypes.xsd"/>
+  <xs:include schemaLocation="SemStar5DataTypes.xsd"/>
+  <xs:include schemaLocation="Temp_Subsea_SemStar5.xsd"/>
+  <xs:include schemaLocation="Temp_Subsea_SemStar5CEM.xsd"/>
+  
+  
+  
+  <xs:include schemaLocation="Temp_SCM.xsd"/>
+  <xs:include schemaLocation="Temp_PCDM.xsd"/>
+  <xs:include schemaLocation="Temp_SCI_ArbitrationSCM.xsd"/>
+
+  <xs:complexType name="SubseaControllerType">
+    <xs:choice>
+      <xs:element name="SCM" type="SCMType">
+        <xs:annotation>
+          <xs:documentation>A Subsea Control Module.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PCDM" type="PCDMType">
+        <xs:annotation>
+          <xs:documentation>A Power and Communications Distribution Module.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCI_ArbitrationSCM" type="SCI_ArbitrationSCMType">
+        <xs:annotation>
+          <xs:documentation>An arbitrated view of an Subsea Control Module</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:element name="SubseaController" type="SubseaControllerType">
+    <xs:annotation>
+      <xs:documentation>A Subsea Controller which is any of the main units on the subsea. E.g an SCM or PCDM.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>

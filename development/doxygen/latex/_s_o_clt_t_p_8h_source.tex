@@ -1,0 +1,103 @@
+\doxysection{SOClt\+TP.\+h}
+\hypertarget{_s_o_clt_t_p_8h_source}{}\label{_s_o_clt_t_p_8h_source}\index{core/src/include/SOCltTP.h@{core/src/include/SOCltTP.h}}
+\mbox{\hyperlink{_s_o_clt_t_p_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOCLTTP\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOCLTTP\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00006}00006\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 4)}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00009}00009\ \textcolor{keyword}{class\ }SOCltTPConnection;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00010}00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{_s_o_cmn_8h_a8cf624e619c67a57c4331c965ca1f05e}{SOCLT\_EXPORT}}\ SOCltTP\ :\ \textcolor{keyword}{public}\ SOCmnSocketClient}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00012}00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00013}00013\ \ \ \ \ SOCltTP();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00015}00015\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00016}00016\ \ \ \ \ \string~SOCltTP();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00017}00017\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ rcvData(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}*\ pSocket,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LONG\ size,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE*\ pData);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00018}00018\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ addClient(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ SOCKET\ hSocket,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keyword}{struct}\ sockaddr\_in*\ pSockAddr,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}**\ pSocket);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ timeOut(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}*\ pSocket);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCmnTPReceiver>}}\ m\_receiverList;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00023}00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ removeClient(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}*\ pSocket,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LONG\ reason\ =\ SOCMNSOCKET\_REQ\_GRACEFUL\_CLOSE);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCmnTPReceiver>}}\ *getTPReceiverList(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_receiverList;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00029}00029\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00030}00030\ \ \ \ \ BOOL\ addTPReceiver(SOCmnTPReceiver*\ pRec)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00031}00031\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_receiverList.\mbox{\hyperlink{class_s_o_cmn_list_a4e4019a5e1070bdcf09ccf1a46641dc6}{add}}(pRec);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00033}00033\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00034}00034\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00036}00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{_s_o_cmn_8h_a8cf624e619c67a57c4331c965ca1f05e}{SOCLT\_EXPORT}}\ SOCltTPConnection\ :\ \textcolor{keyword}{public}\ SOCmnTPConnection}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00038}00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00039}00039\ \ \ \ \ SOCltTPConnection();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ init(SOCmnSocket*\ pSrv,\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}*\ pSocket);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{void}\ close(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{void}\ sendPing(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_event}{SOCmnEvent}}*\ getConnectEvent(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_connectEvent;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00050}00050\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ invoke(SOCmnTPCall*\ pCall,\ BOOL\ waitForReply\ =\ TRUE);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCmnTPReceiver>}}\ *getReceiverList(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00053}00053\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_server}{SOCltServer}}*\ getServer(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_single_lock}{SOCmnSingleLock<SOCmnSync>}}\ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}(\&m\_sync);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ m\_server.addRef();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_server;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{void}\ setServer(\mbox{\hyperlink{class_s_o_clt_server}{SOCltServer}}*\ s)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00060}00060\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00061}00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_single_lock}{SOCmnSingleLock<SOCmnSync>}}\ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}(\&m\_sync);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00062}00062\ \ \ \ \ \ \ \ \ m\_server\ =\ s;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ m\_server.addRef();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00066}00066\ \ \ \ \ DWORD\ getTimeOut(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_timeout;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00070}00070\ \ \ \ \ \textcolor{keywordtype}{void}\ setTimeOut(DWORD\ to)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ m\_timeout\ =\ to\ >\ 50000\ ?\ 50000\ :\ to;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00075}00075\ \ \ \ \ SOCmnTPCredentials*\ getCredentials();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{void}\ setCredentials(SOCmnTPCredentials*\ pCredentials);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00078}00078\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_event}{SOCmnEvent}}\ m\_connectEvent;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_pointer}{SOCmnPointer<SOCltServer>}}\ m\_server;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_waitForPing;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00082}00082\ \ \ \ \ DWORD\ m\_timeout;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00084}00084\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_pointer}{SOCmnPointer<SOCmnTPCredentials>}}\ m\_pCredentials;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~SOCltTPConnection();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00088}00088\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ sendInitMessage();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00089}00089\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ handleInitMessage();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00090}00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ handlePingMessage();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00091}00091\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00093}00093\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00095}00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_t_p_8h_source_l00097}00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_SOCLTTP\_H\_}}
+
+\end{DoxyCode}

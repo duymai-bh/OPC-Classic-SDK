@@ -1,0 +1,106 @@
+\doxysection{Trace\+Window.\+cs}
+\hypertarget{_trace_window_8cs_source}{}\label{_trace_window_8cs_source}\index{NET/samples/client/Demo Client/CS/DockWindows/TraceWindow.cs@{NET/samples/client/Demo Client/CS/DockWindows/TraceWindow.cs}}
+\mbox{\hyperlink{_trace_window_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00010}00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_demo_client_1_1_dock_windows}{DemoClient.DockWindows}}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{partial\ class\ }TraceWindow\ :\ ToolWindow}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00014}00014\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ and\ Protected\ Methods}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ StrTraceLevel(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}\ traceLevel)}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(traceLevel)}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.DEB:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}D"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}E"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.INF:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}I"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.WRN:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}W"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}E"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{string}\ StrTraceGroup(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}\ traceGroup)}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (traceGroup)}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.ALL:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}ALL"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.LICENSE:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.NOTHING:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.OPCCLIENT:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.OPCCLIENTADVISE:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.OPCCLIENTCALL:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.OPCSERVER:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.OPCSERVERADVISE:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.OPCSERVERCALL:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}ALL"{}};}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00064}00064\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00066}00066\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00068}00068\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Constructor}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00070}\mbox{\hyperlink{class_demo_client_1_1_dock_windows_1_1_trace_window_a5a5ba6923193575dce8c7f4fa5258fb7}{00070}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_demo_client_1_1_dock_windows_1_1_trace_window_a5a5ba6923193575dce8c7f4fa5258fb7}{TraceWindow}}()}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ InitializeComponent();}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00075}00075\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00077}00077\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Add\ Trace}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00079}\mbox{\hyperlink{class_demo_client_1_1_dock_windows_1_1_trace_window_a63ce7482ead812880763dea112105aeb}{00079}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_client_1_1_dock_windows_1_1_trace_window_a63ce7482ead812880763dea112105aeb}{AddTrace}}(\textcolor{keywordtype}{string}\ traceString,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}\ traceLevel,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}\ traceGroup,\ \textcolor{keywordtype}{string}\ objectId,\ \textcolor{keywordtype}{string}\ message)}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{string}.IsNullOrEmpty(traceString))}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ richTextBoxTraces.AppendText(traceString);}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00087}00087\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00089}00089\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ ClearData}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00091}\mbox{\hyperlink{class_demo_client_1_1_dock_windows_1_1_trace_window_ab33cacc277dcee62de9e143558bc9098}{00091}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_client_1_1_dock_windows_1_1_trace_window_ab33cacc277dcee62de9e143558bc9098}{ClearData}}()}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ richTextBoxTraces.Clear();}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00096}00096\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00098}00098\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_window_8cs_source_l00100}00100\ \}}
+
+\end{DoxyCode}

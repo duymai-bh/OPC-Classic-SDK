@@ -1,0 +1,272 @@
+\doxysection{core/src/\+SOXp\+S/\+SOXp\+SDAObjects.cpp File Reference}
+\hypertarget{_s_o_xp_s_d_a_objects_8cpp}{}\label{_s_o_xp_s_d_a_objects_8cpp}\index{core/src/SOXpS/SOXpSDAObjects.cpp@{core/src/SOXpS/SOXpSDAObjects.cpp}}
+{\ttfamily \#include "{}stdafx.\+h"{}}\newline
+{\ttfamily \#include "{}SOXp\+S.\+h"{}}\newline
+{\ttfamily \#include "{}SOXp\+SDAObjects.\+h"{}}\newline
+{\ttfamily \#include "{}Dll\+Main.\+h"{}}\newline
+Include dependency graph for SOXp\+SDAObjects.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_ad1446d5b35733bb6c076a6c8c69b3da3}{SOXPS\+\_\+\+REQUEST\+\_\+\+MAX\+\_\+\+REQUESTS}}~100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_aeb66298b06770ad874244eb1140b5c37}{fill\+Request\+Data}} (BYTE io\+Operation, \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*}req, \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*}item\+Tag, \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}request\+Data, \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}item\+Path)
+\item 
+void \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_abee96c6fd9f3dcecdc5f54d7d6e9c0ed}{fill\+Request\+Data}} (BYTE io\+Operation, DWORD \texorpdfstring{$\ast$}{*}num\+Requests, \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}request\+Data, \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}item\+Path, \mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \texorpdfstring{$\ast$}{*}request\+Queue, BYTE device\+IOMode\+Filter)
+\item 
+void \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a75b07bb64db9b6b5a7a6ca030c59f647}{remove\+Handled\+Requests}} (\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \texorpdfstring{$\ast$}{*}request\+Queue)
+\item 
+BOOL \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_ad0082532bfee8a5fd188e295c0e148db}{process\+Request\+Data}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Requests, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}request\+Data)
+\item 
+DWORD WINAPI \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a3ca2fa48a8d75f9cb1ca59d63b3f35b7}{request\+Thread\+Main}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPVOID context)
+\item 
+void \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_acdf29497eae55f39d65d7e18eed2882a}{handle\+Request}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*}p\+Item\+Tag, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*}p\+Req)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+HANDLE \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a5a5da941775e8e3748ba0b07f01001fd}{g\+\_\+request\+Thread\+End\+Event}} = INVALID\+\_\+\+HANDLE\+\_\+\+VALUE
+\item 
+\mbox{\hyperlink{class_s_o_cmn_event}{SOCmn\+Event}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a0fe4214b457478fc4e32319086edfa67}{g\+\_\+request\+Thread\+Work\+Event\+Obj}} = NULL
+\item 
+\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_ab9a0e41203b886c5faf415aa68ad9e48}{g\+\_\+request\+Thread\+Read\+Queue}}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a8eb55de23caf6ad99f942609a6b81daf}{g\+\_\+request\+Thread\+Write\+Queue}}
+\item 
+BOOL \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a7ac8cf63fcb628b3d92597a465b0c7e0}{g\+\_\+ts\+Change\+Sends\+Value}}
+\item 
+HANDLE \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_a6e71f7461fbe7c78e4d4f282b94a6ecb}{g\+\_\+startup\+Event}}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_sync}{SOCmn\+Sync}} \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_aeae507d07eb864d0dc7347475880c5c1}{s\+\_\+ts\+Sync}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_ad1446d5b35733bb6c076a6c8c69b3da3}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!SOXPS\_REQUEST\_MAX\_REQUESTS@{SOXPS\_REQUEST\_MAX\_REQUESTS}}
+\index{SOXPS\_REQUEST\_MAX\_REQUESTS@{SOXPS\_REQUEST\_MAX\_REQUESTS}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_REQUEST\_MAX\_REQUESTS}{SOXPS\_REQUEST\_MAX\_REQUESTS}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_ad1446d5b35733bb6c076a6c8c69b3da3} 
+\#define SOXPS\+\_\+\+REQUEST\+\_\+\+MAX\+\_\+\+REQUESTS~100}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_abee96c6fd9f3dcecdc5f54d7d6e9c0ed}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!fillRequestData@{fillRequestData}}
+\index{fillRequestData@{fillRequestData}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{fillRequestData()}{fillRequestData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_abee96c6fd9f3dcecdc5f54d7d6e9c0ed} 
+void fill\+Request\+Data (\begin{DoxyParamCaption}\item[{BYTE}]{io\+Operation}{, }\item[{DWORD \texorpdfstring{$\ast$}{*}}]{num\+Requests}{, }\item[{\mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}}]{request\+Data}{, }\item[{\mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}}]{item\+Path}{, }\item[{\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \texorpdfstring{$\ast$}{*}}]{request\+Queue}{, }\item[{BYTE}]{device\+IOMode\+Filter}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00101}{101}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_abee96c6fd9f3dcecdc5f54d7d6e9c0ed_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_aeb66298b06770ad874244eb1140b5c37}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!fillRequestData@{fillRequestData}}
+\index{fillRequestData@{fillRequestData}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{fillRequestData()}{fillRequestData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_aeb66298b06770ad874244eb1140b5c37} 
+void fill\+Request\+Data (\begin{DoxyParamCaption}\item[{BYTE}]{io\+Operation}{, }\item[{\mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*}}]{req}{, }\item[{\mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*}}]{item\+Tag}{, }\item[{\mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}}]{request\+Data}{, }\item[{\mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \texorpdfstring{$\ast$}{*}}]{item\+Path}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_aeb66298b06770ad874244eb1140b5c37_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{_s_o_xp_s_d_a_objects_8cpp_aeb66298b06770ad874244eb1140b5c37_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_acdf29497eae55f39d65d7e18eed2882a}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!handleRequest@{handleRequest}}
+\index{handleRequest@{handleRequest}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{handleRequest()}{handleRequest()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_acdf29497eae55f39d65d7e18eed2882a} 
+void handle\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*}}]{p\+Item\+Tag}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*}}]{p\+Req}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00453}{453}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_acdf29497eae55f39d65d7e18eed2882a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_ad0082532bfee8a5fd188e295c0e148db}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!processRequestData@{processRequestData}}
+\index{processRequestData@{processRequestData}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{processRequestData()}{processRequestData()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_ad0082532bfee8a5fd188e295c0e148db} 
+BOOL process\+Request\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{num\+Requests}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}}]{request\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00161}{161}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_ad0082532bfee8a5fd188e295c0e148db_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_ad0082532bfee8a5fd188e295c0e148db_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a75b07bb64db9b6b5a7a6ca030c59f647}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!removeHandledRequests@{removeHandledRequests}}
+\index{removeHandledRequests@{removeHandledRequests}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{removeHandledRequests()}{removeHandledRequests()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a75b07bb64db9b6b5a7a6ca030c59f647} 
+void remove\+Handled\+Requests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \texorpdfstring{$\ast$}{*}}]{request\+Queue}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00138}{138}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_a75b07bb64db9b6b5a7a6ca030c59f647_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_a75b07bb64db9b6b5a7a6ca030c59f647_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a3ca2fa48a8d75f9cb1ca59d63b3f35b7}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!requestThreadMain@{requestThreadMain}}
+\index{requestThreadMain@{requestThreadMain}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{requestThreadMain()}{requestThreadMain()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a3ca2fa48a8d75f9cb1ca59d63b3f35b7} 
+DWORD WINAPI request\+Thread\+Main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPVOID}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00347}{347}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_d_a_objects_8cpp_a3ca2fa48a8d75f9cb1ca59d63b3f35b7_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a5a5da941775e8e3748ba0b07f01001fd}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!g\_requestThreadEndEvent@{g\_requestThreadEndEvent}}
+\index{g\_requestThreadEndEvent@{g\_requestThreadEndEvent}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_requestThreadEndEvent}{g\_requestThreadEndEvent}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a5a5da941775e8e3748ba0b07f01001fd} 
+HANDLE g\+\_\+request\+Thread\+End\+Event = INVALID\+\_\+\+HANDLE\+\_\+\+VALUE}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_ab9a0e41203b886c5faf415aa68ad9e48}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!g\_requestThreadReadQueue@{g\_requestThreadReadQueue}}
+\index{g\_requestThreadReadQueue@{g\_requestThreadReadQueue}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_requestThreadReadQueue}{g\_requestThreadReadQueue}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_ab9a0e41203b886c5faf415aa68ad9e48} 
+\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$\mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}}$>$ g\+\_\+request\+Thread\+Read\+Queue}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a0fe4214b457478fc4e32319086edfa67}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!g\_requestThreadWorkEventObj@{g\_requestThreadWorkEventObj}}
+\index{g\_requestThreadWorkEventObj@{g\_requestThreadWorkEventObj}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_requestThreadWorkEventObj}{g\_requestThreadWorkEventObj}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a0fe4214b457478fc4e32319086edfa67} 
+\mbox{\hyperlink{class_s_o_cmn_event}{SOCmn\+Event}}\texorpdfstring{$\ast$}{*} g\+\_\+request\+Thread\+Work\+Event\+Obj = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a8eb55de23caf6ad99f942609a6b81daf}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!g\_requestThreadWriteQueue@{g\_requestThreadWriteQueue}}
+\index{g\_requestThreadWriteQueue@{g\_requestThreadWriteQueue}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_requestThreadWriteQueue}{g\_requestThreadWriteQueue}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a8eb55de23caf6ad99f942609a6b81daf} 
+\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$\mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}}$>$ g\+\_\+request\+Thread\+Write\+Queue}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a6e71f7461fbe7c78e4d4f282b94a6ecb}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!g\_startupEvent@{g\_startupEvent}}
+\index{g\_startupEvent@{g\_startupEvent}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_startupEvent}{g\_startupEvent}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a6e71f7461fbe7c78e4d4f282b94a6ecb} 
+HANDLE g\+\_\+startup\+Event\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_main_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_s_o_xp_s_main_8cpp_source}{SOXp\+SMain.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_a7ac8cf63fcb628b3d92597a465b0c7e0}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!g\_tsChangeSendsValue@{g\_tsChangeSendsValue}}
+\index{g\_tsChangeSendsValue@{g\_tsChangeSendsValue}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_tsChangeSendsValue}{g\_tsChangeSendsValue}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_a7ac8cf63fcb628b3d92597a465b0c7e0} 
+BOOL g\+\_\+ts\+Change\+Sends\+Value\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00905}{905}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_d_a_objects_8cpp_aeae507d07eb864d0dc7347475880c5c1}\index{SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}!s\_tsSync@{s\_tsSync}}
+\index{s\_tsSync@{s\_tsSync}!SOXpSDAObjects.cpp@{SOXpSDAObjects.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_tsSync}{s\_tsSync}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_d_a_objects_8cpp_aeae507d07eb864d0dc7347475880c5c1} 
+\mbox{\hyperlink{class_s_o_cmn_sync}{SOCmn\+Sync}} s\+\_\+ts\+Sync}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source_l00965}{965}} of file \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8cpp_source}{SOXp\+SDAObjects.\+cpp}}.
+

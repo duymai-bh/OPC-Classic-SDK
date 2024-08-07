@@ -1,0 +1,4 @@
+var interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_server_shutdown =
+[
+    [ "invoke", "interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_server_shutdown.html#a46ddf7bd2f8d3cf919af98d24f11de96", null ]
+];

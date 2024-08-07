@@ -1,0 +1,540 @@
+\doxysection{C++/samples/client/\+DAConsole\+\_\+\+Multi\+Thread/\+Console.cpp File Reference}
+\hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp}{}\label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp}\index{C++/samples/client/DAConsole\_MultiThread/Console.cpp@{C++/samples/client/DAConsole\_MultiThread/Console.cpp}}
+{\ttfamily \#include "{}stdafx.\+h"{}}\newline
+{\ttfamily \#include "{}Mutex.\+h"{}}\newline
+{\ttfamily \#include "{}OSCompat.\+h"{}}\newline
+{\ttfamily \#include "{}Opc\+Client.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for Console.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}} (void)
+\item 
+DWORD \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4597e6f06b25227b0012be0d3158d22d}{New\+Line\+Thread\+Entry\+Point}} (LPVOID param)
+\item 
+DWORD \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a907f49678a9ba43c8f7d47eb4a7ad97b}{Worker\+Thread\+Entry\+Point}} (LPVOID param)
+\item 
+int \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{\+\_\+tmain}} (int argc, \+\_\+\+TCHAR \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8}{if}} (\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4a2e27b5588c762f25d49828d4be70be}{g\+\_\+threads\+Started}}==true)
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a}{Set\+Event}} (g\+\_\+threads\+Stop\+Event)
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3ff7b6dd82bfd3f0ee3cf4569967fc35}{if}} (g\+\_\+threads\mbox{[}0\mbox{]} !=0)
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099}{Wait\+For\+Single\+Object}} (\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8a5727f6e01a48821b08f116d8220f12}{g\+\_\+thread\+New\+Line}}, \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}})
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{Close\+Handle}} (g\+\_\+threads\+Stop\+Event)
+\item 
+p\+Client \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_abe697c651384bf6e7e37e2000dedb8a1}{terminate}} ()
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a10253d6911a7ba81d2b0e86b812d6050}{destroy\+Opc\+Client}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ac1b8f3287d15a55e593812fe4048c518}{g\+\_\+initial\+Thread\+Count}} = 10
+\item 
+bool \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae075a473d1ea686d7bace75379e63e7a}{g\+\_\+traces\+On}} = true
+\item 
+bool \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4a2e27b5588c762f25d49828d4be70be}{g\+\_\+threads\+Started}} = false
+\item 
+const unsigned int \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_acb32a95ac127d2b00ecd4246d2810f79}{g\+\_\+subscription\+Count}} = 2
+\item 
+const unsigned int \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aef1d7ba621e47d923756eecf917fb54a}{g\+\_\+items\+Count\+Per\+Subscription}} = 5
+\item 
+const unsigned int \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a6a95bb911cdb9822fc2a1a1b35a80e94}{g\+\_\+items\+Total\+Count}} = \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_acb32a95ac127d2b00ecd4246d2810f79}{g\+\_\+subscription\+Count}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aef1d7ba621e47d923756eecf917fb54a}{g\+\_\+items\+Count\+Per\+Subscription}}
+\item 
+DWORD \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a65f18853ba7b1d14d9679c557ba0959a}{g\+\_\+update\+Rate}} = 1000
+\item 
+DWORD \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a2a652e6aadaef3439687f975456d806f}{g\+\_\+operation\+Interval}} = 1000
+\item 
+const TCHAR \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a96371337d592b02dc12b34b252fb0934}{g\+\_\+item\+Name}} \mbox{[}256\mbox{]} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}address\+Space\+Sample.\+items\+Load\+Test.\+named\+Item\+\_\+"{})
+\item 
+const TCHAR \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_abd5d9a3b6bb138fe0bd1360a15b44391}{g\+\_\+item\+Name\+Format}} \mbox{[}16\mbox{]} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}\%s\%05d"{})
+\item 
+const unsigned short \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a39d6eae1f3a5585b40725815639c857a}{g\+\_\+min\+String\+Length}} = 150
+\item 
+const unsigned short \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8753d7cf9ed568a2c5494d751dadc23e}{g\+\_\+max\+String\+Length}} = 250
+\item 
+int \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ab337fe2ed40918508f46342a365bb1bc}{g\+\_\+random}} = 12345
+\item 
+const unsigned int \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4f8888f0c3bde93cb988b4fe3fb163fa}{g\+\_\+silent\+Display\+Count}} = 100
+\item 
+const bool \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a02911e64a74202ee73d7d57a1b18670e}{g\+\_\+connect\+Items\+First}} = false
+\item 
+bool \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ab048ba47e178d5175cc5e804ea926921}{g\+\_\+allow\+Item\+Removal}} = false
+\item 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a2a5be287f1bfe45b2e0dd696fc4b6e85}{g\+\_\+data\+Change\+Sets\+Received}} = 0
+\item 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a43df5e9081160fb5e63e97e435ba6631}{g\+\_\+total\+Good\+Data\+Changes}} = 0
+\item 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a9217a9cc986eb1c1dcb6302d4f904a0b}{g\+\_\+total\+Bad\+Data\+Changes}} = 0
+\item 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a619a3b0003e33a4fbd29e6b0f2e181c9}{g\+\_\+legit\+Good\+Data\+Changes}} = 0
+\item 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3a4a4a3b7aae7deb799696a89bbe163d}{g\+\_\+legit\+Bad\+Data\+Changes}} = 0
+\item 
+bool \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ad06aca0d2b4fc45ff7cde4bcfbe2232f}{g\+\_\+subscriptions\+Active}} = false
+\item 
+HANDLE \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8a5727f6e01a48821b08f116d8220f12}{g\+\_\+thread\+New\+Line}}
+\item 
+\mbox{\hyperlink{class_mutex}{Mutex}} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a428a267bc5595122c010086fd83b2547}{g\+\_\+sync\+Display}}
+\item 
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a9717e7bbecb906637e86cef6da3d83c2}{return}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}\index{Console.cpp@{Console.cpp}!\_tmain@{\_tmain}}
+\index{\_tmain@{\_tmain}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{\_tmain()}{\_tmain()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03} 
+int \+\_\+tmain (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{\+\_\+\+TCHAR \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00326}{326}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}\index{Console.cpp@{Console.cpp}!CloseHandle@{CloseHandle}}
+\index{CloseHandle@{CloseHandle}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{CloseHandle()}{CloseHandle()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228} 
+Close\+Handle (\begin{DoxyParamCaption}\item[{g\+\_\+threads\+Stop\+Event}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a10253d6911a7ba81d2b0e86b812d6050}\index{Console.cpp@{Console.cpp}!destroyOpcClient@{destroyOpcClient}}
+\index{destroyOpcClient@{destroyOpcClient}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{destroyOpcClient()}{destroyOpcClient()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a10253d6911a7ba81d2b0e86b812d6050} 
+destroy\+Opc\+Client (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_source}{Opc\+Client.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a10253d6911a7ba81d2b0e86b812d6050_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3ff7b6dd82bfd3f0ee3cf4569967fc35}\index{Console.cpp@{Console.cpp}!if@{if}}
+\index{if@{if}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3ff7b6dd82bfd3f0ee3cf4569967fc35} 
+if (\begin{DoxyParamCaption}\item[{g\+\_\+threads !}]{}{\mbox{[}0\mbox{]} = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00799}{799}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3ff7b6dd82bfd3f0ee3cf4569967fc35_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8}\index{Console.cpp@{Console.cpp}!if@{if}}
+\index{if@{if}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{if()}{if()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8} 
+if (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4a2e27b5588c762f25d49828d4be70be}{g\+\_\+threads\+Started}}}]{}{ = {\ttfamily =~true}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00794}{794}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4597e6f06b25227b0012be0d3158d22d}\index{Console.cpp@{Console.cpp}!NewLineThreadEntryPoint@{NewLineThreadEntryPoint}}
+\index{NewLineThreadEntryPoint@{NewLineThreadEntryPoint}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{NewLineThreadEntryPoint()}{NewLineThreadEntryPoint()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4597e6f06b25227b0012be0d3158d22d} 
+DWORD New\+Line\+Thread\+Entry\+Point (\begin{DoxyParamCaption}\item[{LPVOID}]{param}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4597e6f06b25227b0012be0d3158d22d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4597e6f06b25227b0012be0d3158d22d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a}\index{Console.cpp@{Console.cpp}!SetEvent@{SetEvent}}
+\index{SetEvent@{SetEvent}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{SetEvent()}{SetEvent()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a} 
+Set\+Event (\begin{DoxyParamCaption}\item[{g\+\_\+threads\+Stop\+Event}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_abe697c651384bf6e7e37e2000dedb8a1}\index{Console.cpp@{Console.cpp}!terminate@{terminate}}
+\index{terminate@{terminate}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{terminate()}{terminate()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_abe697c651384bf6e7e37e2000dedb8a1} 
+p\+Client terminate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}\index{Console.cpp@{Console.cpp}!usage@{usage}}
+\index{usage@{usage}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{usage()}{usage()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a} 
+void usage (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099}\index{Console.cpp@{Console.cpp}!WaitForSingleObject@{WaitForSingleObject}}
+\index{WaitForSingleObject@{WaitForSingleObject}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{WaitForSingleObject()}{WaitForSingleObject()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099} 
+Wait\+For\+Single\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8a5727f6e01a48821b08f116d8220f12}{g\+\_\+thread\+New\+Line}}}]{}{, }\item[{\mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}}}]{}{}\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a907f49678a9ba43c8f7d47eb4a7ad97b}\index{Console.cpp@{Console.cpp}!WorkerThreadEntryPoint@{WorkerThreadEntryPoint}}
+\index{WorkerThreadEntryPoint@{WorkerThreadEntryPoint}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{WorkerThreadEntryPoint()}{WorkerThreadEntryPoint()}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a907f49678a9ba43c8f7d47eb4a7ad97b} 
+DWORD Worker\+Thread\+Entry\+Point (\begin{DoxyParamCaption}\item[{LPVOID}]{param}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00169}{169}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a907f49678a9ba43c8f7d47eb4a7ad97b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a907f49678a9ba43c8f7d47eb4a7ad97b_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ab048ba47e178d5175cc5e804ea926921}\index{Console.cpp@{Console.cpp}!g\_allowItemRemoval@{g\_allowItemRemoval}}
+\index{g\_allowItemRemoval@{g\_allowItemRemoval}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_allowItemRemoval}{g\_allowItemRemoval}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ab048ba47e178d5175cc5e804ea926921} 
+bool g\+\_\+allow\+Item\+Removal = false}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a02911e64a74202ee73d7d57a1b18670e}\index{Console.cpp@{Console.cpp}!g\_connectItemsFirst@{g\_connectItemsFirst}}
+\index{g\_connectItemsFirst@{g\_connectItemsFirst}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_connectItemsFirst}{g\_connectItemsFirst}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a02911e64a74202ee73d7d57a1b18670e} 
+const bool g\+\_\+connect\+Items\+First = false}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a2a5be287f1bfe45b2e0dd696fc4b6e85}\index{Console.cpp@{Console.cpp}!g\_dataChangeSetsReceived@{g\_dataChangeSetsReceived}}
+\index{g\_dataChangeSetsReceived@{g\_dataChangeSetsReceived}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_dataChangeSetsReceived}{g\_dataChangeSetsReceived}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a2a5be287f1bfe45b2e0dd696fc4b6e85} 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} g\+\_\+data\+Change\+Sets\+Received = 0}
+
+END TODO 
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ac1b8f3287d15a55e593812fe4048c518}\index{Console.cpp@{Console.cpp}!g\_initialThreadCount@{g\_initialThreadCount}}
+\index{g\_initialThreadCount@{g\_initialThreadCount}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_initialThreadCount}{g\_initialThreadCount}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ac1b8f3287d15a55e593812fe4048c518} 
+char g\+\_\+initial\+Thread\+Count = 10}
+
+TODO\+: update these settings as required 
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a96371337d592b02dc12b34b252fb0934}\index{Console.cpp@{Console.cpp}!g\_itemName@{g\_itemName}}
+\index{g\_itemName@{g\_itemName}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_itemName}{g\_itemName}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a96371337d592b02dc12b34b252fb0934} 
+const TCHAR g\+\_\+item\+Name\mbox{[}256\mbox{]} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}address\+Space\+Sample.\+items\+Load\+Test.\+named\+Item\+\_\+"{})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_abd5d9a3b6bb138fe0bd1360a15b44391}\index{Console.cpp@{Console.cpp}!g\_itemNameFormat@{g\_itemNameFormat}}
+\index{g\_itemNameFormat@{g\_itemNameFormat}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_itemNameFormat}{g\_itemNameFormat}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_abd5d9a3b6bb138fe0bd1360a15b44391} 
+const TCHAR g\+\_\+item\+Name\+Format\mbox{[}16\mbox{]} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}\%s\%05d"{})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aef1d7ba621e47d923756eecf917fb54a}\index{Console.cpp@{Console.cpp}!g\_itemsCountPerSubscription@{g\_itemsCountPerSubscription}}
+\index{g\_itemsCountPerSubscription@{g\_itemsCountPerSubscription}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_itemsCountPerSubscription}{g\_itemsCountPerSubscription}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aef1d7ba621e47d923756eecf917fb54a} 
+const unsigned int g\+\_\+items\+Count\+Per\+Subscription = 5}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a6a95bb911cdb9822fc2a1a1b35a80e94}\index{Console.cpp@{Console.cpp}!g\_itemsTotalCount@{g\_itemsTotalCount}}
+\index{g\_itemsTotalCount@{g\_itemsTotalCount}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_itemsTotalCount}{g\_itemsTotalCount}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a6a95bb911cdb9822fc2a1a1b35a80e94} 
+const unsigned int g\+\_\+items\+Total\+Count = \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_acb32a95ac127d2b00ecd4246d2810f79}{g\+\_\+subscription\+Count}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aef1d7ba621e47d923756eecf917fb54a}{g\+\_\+items\+Count\+Per\+Subscription}}}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3a4a4a3b7aae7deb799696a89bbe163d}\index{Console.cpp@{Console.cpp}!g\_legitBadDataChanges@{g\_legitBadDataChanges}}
+\index{g\_legitBadDataChanges@{g\_legitBadDataChanges}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_legitBadDataChanges}{g\_legitBadDataChanges}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a3a4a4a3b7aae7deb799696a89bbe163d} 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} g\+\_\+legit\+Bad\+Data\+Changes = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a619a3b0003e33a4fbd29e6b0f2e181c9}\index{Console.cpp@{Console.cpp}!g\_legitGoodDataChanges@{g\_legitGoodDataChanges}}
+\index{g\_legitGoodDataChanges@{g\_legitGoodDataChanges}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_legitGoodDataChanges}{g\_legitGoodDataChanges}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a619a3b0003e33a4fbd29e6b0f2e181c9} 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} g\+\_\+legit\+Good\+Data\+Changes = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8753d7cf9ed568a2c5494d751dadc23e}\index{Console.cpp@{Console.cpp}!g\_maxStringLength@{g\_maxStringLength}}
+\index{g\_maxStringLength@{g\_maxStringLength}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_maxStringLength}{g\_maxStringLength}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8753d7cf9ed568a2c5494d751dadc23e} 
+const unsigned short g\+\_\+max\+String\+Length = 250}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a39d6eae1f3a5585b40725815639c857a}\index{Console.cpp@{Console.cpp}!g\_minStringLength@{g\_minStringLength}}
+\index{g\_minStringLength@{g\_minStringLength}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_minStringLength}{g\_minStringLength}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a39d6eae1f3a5585b40725815639c857a} 
+const unsigned short g\+\_\+min\+String\+Length = 150}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a2a652e6aadaef3439687f975456d806f}\index{Console.cpp@{Console.cpp}!g\_operationInterval@{g\_operationInterval}}
+\index{g\_operationInterval@{g\_operationInterval}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_operationInterval}{g\_operationInterval}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a2a652e6aadaef3439687f975456d806f} 
+DWORD g\+\_\+operation\+Interval = 1000}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ab337fe2ed40918508f46342a365bb1bc}\index{Console.cpp@{Console.cpp}!g\_random@{g\_random}}
+\index{g\_random@{g\_random}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_random}{g\_random}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ab337fe2ed40918508f46342a365bb1bc} 
+int g\+\_\+random = 12345}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4f8888f0c3bde93cb988b4fe3fb163fa}\index{Console.cpp@{Console.cpp}!g\_silentDisplayCount@{g\_silentDisplayCount}}
+\index{g\_silentDisplayCount@{g\_silentDisplayCount}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_silentDisplayCount}{g\_silentDisplayCount}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4f8888f0c3bde93cb988b4fe3fb163fa} 
+const unsigned int g\+\_\+silent\+Display\+Count = 100}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_acb32a95ac127d2b00ecd4246d2810f79}\index{Console.cpp@{Console.cpp}!g\_subscriptionCount@{g\_subscriptionCount}}
+\index{g\_subscriptionCount@{g\_subscriptionCount}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_subscriptionCount}{g\_subscriptionCount}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_acb32a95ac127d2b00ecd4246d2810f79} 
+const unsigned int g\+\_\+subscription\+Count = 2}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ad06aca0d2b4fc45ff7cde4bcfbe2232f}\index{Console.cpp@{Console.cpp}!g\_subscriptionsActive@{g\_subscriptionsActive}}
+\index{g\_subscriptionsActive@{g\_subscriptionsActive}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_subscriptionsActive}{g\_subscriptionsActive}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ad06aca0d2b4fc45ff7cde4bcfbe2232f} 
+bool g\+\_\+subscriptions\+Active = false}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a428a267bc5595122c010086fd83b2547}\index{Console.cpp@{Console.cpp}!g\_syncDisplay@{g\_syncDisplay}}
+\index{g\_syncDisplay@{g\_syncDisplay}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_syncDisplay}{g\_syncDisplay}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a428a267bc5595122c010086fd83b2547} 
+\mbox{\hyperlink{class_mutex}{Mutex}} g\+\_\+sync\+Display}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8a5727f6e01a48821b08f116d8220f12}\index{Console.cpp@{Console.cpp}!g\_threadNewLine@{g\_threadNewLine}}
+\index{g\_threadNewLine@{g\_threadNewLine}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_threadNewLine}{g\_threadNewLine}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a8a5727f6e01a48821b08f116d8220f12} 
+HANDLE g\+\_\+thread\+New\+Line}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4a2e27b5588c762f25d49828d4be70be}\index{Console.cpp@{Console.cpp}!g\_threadsStarted@{g\_threadsStarted}}
+\index{g\_threadsStarted@{g\_threadsStarted}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_threadsStarted}{g\_threadsStarted}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a4a2e27b5588c762f25d49828d4be70be} 
+bool g\+\_\+threads\+Started = false}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a9217a9cc986eb1c1dcb6302d4f904a0b}\index{Console.cpp@{Console.cpp}!g\_totalBadDataChanges@{g\_totalBadDataChanges}}
+\index{g\_totalBadDataChanges@{g\_totalBadDataChanges}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_totalBadDataChanges}{g\_totalBadDataChanges}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a9217a9cc986eb1c1dcb6302d4f904a0b} 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} g\+\_\+total\+Bad\+Data\+Changes = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a43df5e9081160fb5e63e97e435ba6631}\index{Console.cpp@{Console.cpp}!g\_totalGoodDataChanges@{g\_totalGoodDataChanges}}
+\index{g\_totalGoodDataChanges@{g\_totalGoodDataChanges}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_totalGoodDataChanges}{g\_totalGoodDataChanges}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a43df5e9081160fb5e63e97e435ba6631} 
+unsigned \mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} g\+\_\+total\+Good\+Data\+Changes = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae075a473d1ea686d7bace75379e63e7a}\index{Console.cpp@{Console.cpp}!g\_tracesOn@{g\_tracesOn}}
+\index{g\_tracesOn@{g\_tracesOn}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_tracesOn}{g\_tracesOn}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae075a473d1ea686d7bace75379e63e7a} 
+bool g\+\_\+traces\+On = true}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a65f18853ba7b1d14d9679c557ba0959a}\index{Console.cpp@{Console.cpp}!g\_updateRate@{g\_updateRate}}
+\index{g\_updateRate@{g\_updateRate}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_updateRate}{g\_updateRate}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a65f18853ba7b1d14d9679c557ba0959a} 
+DWORD g\+\_\+update\+Rate = 1000}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+
+\Hypertarget{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a9717e7bbecb906637e86cef6da3d83c2}\index{Console.cpp@{Console.cpp}!return@{return}}
+\index{return@{return}!Console.cpp@{Console.cpp}}
+\doxysubsubsection{\texorpdfstring{return}{return}}
+{\footnotesize\ttfamily \label{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a9717e7bbecb906637e86cef6da3d83c2} 
+return}
+
+
+
+Definition at line \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source_l00814}{814}} of file \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_source}{Console.\+cpp}}.
+

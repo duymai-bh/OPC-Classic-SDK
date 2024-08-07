@@ -1,0 +1,41 @@
+\doxysection{Softing\+Server.\+cpp}
+\hypertarget{_softing_server_8cpp_source}{}\label{_softing_server_8cpp_source}\index{core/src/OTB/private/SoftingServer.cpp@{core/src/OTB/private/SoftingServer.cpp}}
+\mbox{\hyperlink{_softing_server_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_srv_com_enum_8h}{SOSrvComEnum.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_server_d_a_server_8h}{ServerDAServer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00005}00005\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00006}00006\ \textcolor{comment}{//\ queryInterface}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00008}00008\ \textcolor{comment}{//\ -\/\ query\ interface\ for\ own\ interfaces}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00009}00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00010}00010\ \textcolor{comment}{//\ returns:}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00011}00011\ \textcolor{comment}{//\ \ \ \ \ \ E\_NOTIMPL\ \ \ \ \ -\/\ no\ query\ interface\ implementation\ for\ this\ interface}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00012}00012\ \textcolor{comment}{//\ \ \ \ \ \ S\_OK\ \ \ \ \ \ \ \ \ \ -\/\ interface\ delivered}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00013}00013\ \textcolor{comment}{//\ \ \ \ \ \ E\_NOINTERFACE\ -\/\ interface\ not\ supported}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00014}00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00015}00015\ HRESULT\ \mbox{\hyperlink{class_s_o_da_s_server_a8569b4644ca56bb760ab38d20b657dfb}{ServerDAServer::queryInterface}}(}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ REFIID\ iid,\ \ \ \ \ \ \textcolor{comment}{//\ interface\ id}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00017}00017\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keywordtype}{void}**\ \textcolor{keywordtype}{object})\ \ \ \textcolor{comment}{//\ interface\ pointer}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#ifdef\ OTB\_BUILD\_LIB}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ Softing\ ActiveX\ Controls\ detection\ of\ a\ Softing\ Server}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Only\ include\ this\ on\ a\ Softing\ static\ library\ build}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (iid\ ==\ IID\_IEnumString)}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00024}00024\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ SOSrvComEnumStringObject*\ strList\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_8h_a6edc93740830246404bcad628bf0d581}{SOCMN\_ALLOCATE\_OBJECT}}(strList,\ SOSrvComEnumStringObject)}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00027}00027\ \ \ \ \ \ \ \ \ strList-\/>m\_list.add(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\{28BF4118-\/6056-\/481b-\/BB04-\/0330DE5BB7F3\}"{}}));}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00028}00028\ \ \ \ \ \ \ \ \ strList-\/>Reset();}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ strList-\/>QueryInterface(IID\_IEnumString,\ (\textcolor{keywordtype}{void}**)\textcolor{keywordtype}{object});}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00030}00030\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_BUILD\_LIB}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_o_tcommon_8h_a68162fe3bd685193e977e955439cac4b}{E\_NOTIMPL}};}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00034}00034\ \}\ \textcolor{comment}{//\ queryInterface}}
+\DoxyCodeLine{\Hypertarget{_softing_server_8cpp_source_l00035}00035\ }
+
+\end{DoxyCode}

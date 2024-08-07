@@ -1,0 +1,25 @@
+var class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base =
+[
+    [ "Pane", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_pane.html", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_pane" ],
+    [ "PaneCollection", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_pane_collection.html", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_pane_collection" ],
+    [ "Tab", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_tab.html", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_tab" ],
+    [ "TabCollection", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_tab_collection.html", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base_1_1_tab_collection" ],
+    [ "AutoHideStripBase", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a630f1f009f8d17e961fc56d5eb7198a9", null ],
+    [ "CreatePane", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a288239faa2151ab9f42c22b044e1d6b7", null ],
+    [ "CreateTab", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a0f717dedbad4719800a28b3a5bad2300", null ],
+    [ "GetPanes", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a352590c9db7ae391da926ff96d176f5e", null ],
+    [ "HitTest", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a3d026aa3ef5347d89becf4d62976c2fc", null ],
+    [ "OnLayout", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#ac25504eb7b1b51023a99471a8f26f9e1", null ],
+    [ "OnMouseDown", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a6aba17164dfb496c754195b4983e346f", null ],
+    [ "OnMouseHover", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a2fa0e2b5360f124326b1f9bbfd85ee8d", null ],
+    [ "OnRefreshChanges", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a52b3a08ebf7b22d6e5fc51fecff7d5a0", null ],
+    [ "DockPanel", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#aa70128fc2c2041540e1a2ee711cee02b", null ],
+    [ "PanesBottom", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#ac3eeb96d57d3c2e1a5fc8285dc31ae24", null ],
+    [ "PanesLeft", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a83f8f228403b3db8584c3c82175ce099", null ],
+    [ "PanesRight", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#aec8ab08fe1471639d23b4bb44dd29d60", null ],
+    [ "PanesTop", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a449203d73bf41e9143d0df0a968f97f8", null ],
+    [ "RectangleBottomLeft", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#af11c40050e5d42245d5de7ebbb803d6d", null ],
+    [ "RectangleBottomRight", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a05ddac7b5d53a6c9ff0f376249c349a8", null ],
+    [ "RectangleTopLeft", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#a787841baea8f0c551ec96337e2ee95ae", null ],
+    [ "RectangleTopRight", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base.html#ae91d2da8ac72a8bd2897c5214811e2c2", null ]
+];

@@ -1,0 +1,27 @@
+var class_da_console_1_1_opc_client =
+[
+    [ "OpcClient", "class_da_console_1_1_opc_client.html#a35c5a09cf614eb43fb9d44bdb778a39b", null ],
+    [ "ActivateConnectionMonitor", "class_da_console_1_1_opc_client.html#a3a53a674617bc92de3404e5e6d5e6c9d", null ],
+    [ "ActivateSession", "class_da_console_1_1_opc_client.html#a428a087bb73438b7a5707db50535ce44", null ],
+    [ "ChangeDataRetrievalMode", "class_da_console_1_1_opc_client.html#a027e2a61a36bca2d343827bd1ff1ee17", null ],
+    [ "ConnectSession", "class_da_console_1_1_opc_client.html#a6fa13ae0d434f47080abbebadb9ec792", null ],
+    [ "DeactivateConnectionMonitor", "class_da_console_1_1_opc_client.html#afd590f6d4ea154fc308252fa57fedaea", null ],
+    [ "DisconnectSession", "class_da_console_1_1_opc_client.html#a55a3dc71cccb268de6c8fff34de40f8c", null ],
+    [ "GetApplication", "class_da_console_1_1_opc_client.html#a8ed67898a20b3bb79141f3b42e101b9b", null ],
+    [ "GetServerStatus", "class_da_console_1_1_opc_client.html#a430709c8a62ef39baec884de63280c78", null ],
+    [ "Initialize", "class_da_console_1_1_opc_client.html#a3830150e79f6668d94735d82299f93fc", null ],
+    [ "InitializeDaObjects", "class_da_console_1_1_opc_client.html#a5bd938eef482cab8fedc370333e6a21f", null ],
+    [ "LogInSecure", "class_da_console_1_1_opc_client.html#a03ac592c1bb165a65ed4f9623c895c8f", null ],
+    [ "LogOffSecure", "class_da_console_1_1_opc_client.html#aac5c91737b91de5c7598763a08980d91", null ],
+    [ "ProcessCommandLine", "class_da_console_1_1_opc_client.html#a980d4fe7dd07c93b11f69e27735788fe", null ],
+    [ "ReadItem", "class_da_console_1_1_opc_client.html#a8bee212a3ef315f8599a2b4bbac7e275", null ],
+    [ "ReadItems", "class_da_console_1_1_opc_client.html#a790aa27e600cfa644a953ef1075c4915", null ],
+    [ "ReadUsingSession", "class_da_console_1_1_opc_client.html#a85db31ee1147f23f1705cbfd42286f9f", null ],
+    [ "setCredentials", "class_da_console_1_1_opc_client.html#ac8e3a2649845e33c0952e476c4f91e26", null ],
+    [ "setCredentials", "class_da_console_1_1_opc_client.html#afde5dc65950dbaf32584a2f189cd95a8", null ],
+    [ "Terminate", "class_da_console_1_1_opc_client.html#a4e2606c6f00d1bb7865590f56cb79b79", null ],
+    [ "Trace", "class_da_console_1_1_opc_client.html#aa5abf840e094b0ba3c048f9f7aac51d4", null ],
+    [ "WriteItems", "class_da_console_1_1_opc_client.html#a47c38fe1ef80a3ea8a3c3967bb4c58a4", null ],
+    [ "WriteUsingSession", "class_da_console_1_1_opc_client.html#af50984644da9e0c23fc004a895079886", null ],
+    [ "ServiceName", "class_da_console_1_1_opc_client.html#ad0be640f6943605ea5e8bc5e0a4208e1", null ]
+];

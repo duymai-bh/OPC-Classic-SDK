@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Alan Davis (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vg="http://vetcogray.com" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SCI_SurfaceTypes.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="SCI_DeviceMapping.xsd"/>
+	<xs:include schemaLocation="SemStar5DataTypes.xsd"/>
+	<xs:simpleType name="UDPChannelType">
+		<xs:annotation>
+			<xs:documentation>Unique channel number of UDP channel from a support module. (Range 1 to 200).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum channel number 1.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="232">
+				<xs:annotation>
+					<xs:documentation>Maximum channel number 232.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DiscreteBitType">
+		<xs:annotation>
+			<xs:documentation>Identification of bit within a data field. (Range 0 to 15)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>Minimum bit position 0.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="15">
+				<xs:annotation>
+					<xs:documentation>Maximum bit psotition 15.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConversionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Linear">
+				<xs:annotation>
+					<xs:documentation>Linear Y=mX+C Conversion using Gain  Offset</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="LM_Temp">
+				<xs:annotation>
+					<xs:documentation>LM Temperatures Sensor as used on Board Temperatures and SEM Temperatures.  Uses a negative slope and sqr root in equation.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NTC_Thermistor">
+				<xs:annotation>
+					<xs:documentation>NTC Temperatures Sensor.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PSM_ACVolt">
+				<xs:annotation>
+					<xs:documentation>PSM Card AC Voltage.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="APCM_Temp">
+				<xs:annotation>
+					<xs:documentation>APCM Card Baord Temperature.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MBus_Coil">
+				<xs:annotation>
+					<xs:documentation>Coil Modbus type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_DiscreteInput">
+				<xs:annotation>
+					<xs:documentation>Discrete Input Modbus type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_InputRegister">
+				<xs:annotation>
+					<xs:documentation>Input Register Modbus type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_HoldingRegister">
+				<xs:annotation>
+					<xs:documentation>Holding Register Modbus type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="UDPAnalogueDataItemType">
+		<xs:sequence>
+			<xs:element name="UDPHostCard" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UDP Host Card Name (Optional if not set same as "Host Card").</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPMessage" type="string32">
+				<xs:annotation>
+					<xs:documentation>UDP Message Containing Data (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPDataItem" type="UDPChannelType">
+				<xs:annotation>
+					<xs:documentation>Byte Data Location within UDP Message containing Data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataType" type="SemStar5DataTypeType">
+				<xs:annotation>
+					<xs:documentation>Data type of data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EngConversion" type="ConversionType" default="Linear">
+				<xs:annotation>
+					<xs:documentation>Type of conversion used for engineering data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Gain" type="float">
+				<xs:annotation>
+					<xs:documentation>Used for converting raw data to engineering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Offset" type="float">
+				<xs:annotation>
+					<xs:documentation>Used for converting raw data to engineering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InternalAnalogueDataItemType">
+		<xs:annotation>
+			<xs:documentation>
+        This type defines the confiuration for an analogue data item, calculated internally, but requires
+        flexibility to use diffeernt units, than the internal calculation provides
+      </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Gain" type="float">
+				<xs:annotation>
+					<xs:documentation>Used for converting raw data to engineering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Offset" type="float">
+				<xs:annotation>
+					<xs:documentation>Used for converting raw data to engineering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EngConversion" type="ConversionType" default="Linear">
+				<xs:annotation>
+					<xs:documentation>Type of conversion used for engineering data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModbusAnalogueDataItemType">
+		<xs:annotation>
+			<xs:documentation>This type defines the modbus confiuration for a single modbus analogue data item, which is implemented
+using an INPUT or HOLDING Message</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ModbusItemDeviceName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of associated modbus slave device</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemIsStatus" type="bool">
+				<xs:annotation>
+					<xs:documentation>Flag indicating if modbus data item is the Status of the Parameter (True) or Value of the Parameter (false)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemIsWrite" type="bool">
+				<xs:annotation>
+					<xs:documentation>Flag indicating if modbus data item is to be written to (true) or read from (false) the modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemOnChange" type="bool">
+				<xs:annotation>
+					<xs:documentation>Flag to indicate whether the data should be written on change (true), or periodically based on scan rate (false). This is only relevant for data items being written</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusAddressType" type="ModbusTypeType">
+				<xs:annotation>
+					<xs:documentation>Type of Modbus Address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemAddressOffset" type="uint32">
+				<xs:annotation>
+					<xs:documentation>modbus offset from base of relevant modbus type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemDataType" type="SCIAnalogueDataTypeType">
+				<xs:annotation>
+					<xs:documentation>Modbus Item Data type of data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemEngConversion" type="ConversionType" default="Linear">
+				<xs:annotation>
+					<xs:documentation>Type of conversion used for engineering data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemGain" type="float">
+				<xs:annotation>
+					<xs:documentation>Used for converting raw data to engineering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemOffset" type="float">
+				<xs:annotation>
+					<xs:documentation>Used for converting raw data to engineering.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UDPFlowmeterDataItemType">
+		<xs:sequence>
+			<xs:element name="UDPHostCard" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UDP Host Card Name (Optional if not set same as "Host Card").</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPMessage" type="string32">
+				<xs:annotation>
+					<xs:documentation>UDP Message Containing Data (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPDataItem" type="UDPChannelType">
+				<xs:annotation>
+					<xs:documentation>Byte Data Location within UDP Message containing Data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataType" type="SemStar5DataTypeType">
+				<xs:annotation>
+					<xs:documentation>Data type of data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PulsesPerLitre" type="float">
+				<xs:annotation>
+					<xs:documentation>Number Of Pulses Per Litre From Flowmeter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UDPDiscreteDataItemType">
+		<xs:sequence>
+			<xs:element name="UDPHostCard" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UDP Host Card Name (Optional if not set same as "Host Card").</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPMessage" type="string32">
+				<xs:annotation>
+					<xs:documentation>UDP Message Containing Data (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPDataItem" type="UDPChannelType">
+				<xs:annotation>
+					<xs:documentation>Byte Data Location within UDP Message containing Data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BitLocation" type="DiscreteBitType">
+				<xs:annotation>
+					<xs:documentation>Bit location within data item</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModbusDiscreteDataItemType">
+		<xs:annotation>
+			<xs:documentation>This type defines the modbus confiuration for a single modbus discrete data item, which is implemented
+using an COIL or DISCRETE Message</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ModbusItemDeviceName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of associated modbus slave device</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemIsWrite" type="bool">
+				<xs:annotation>
+					<xs:documentation>Flag indicating if modbus data item is to be written to (true) or read from (false) the modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemOnChange" type="bool">
+				<xs:annotation>
+					<xs:documentation>Flag to indicate whether the data should be written on change (true), or periodically based on scan rate (false). This is only relevant for data items being written</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusAddressType" type="ModbusTypeType">
+				<xs:annotation>
+					<xs:documentation>Type of Modbus Address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemAddressOffset" type="uint32">
+				<xs:annotation>
+					<xs:documentation>modbus offset from base of relevant modbus type </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusItemScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnalogueSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Analogue sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnumeratedDefinition" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If Value is an Enumerated Value Then this refferences the Definition define in the SCI group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Host Card Channel for Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPDataLocation" type="UDPAnalogueDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Definition for locating Raw data within UDP messages.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusAnalogueDataItem" type="ModbusAnalogueDataItemType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InternalDataItem" type="InternalAnalogueDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional Internal data item, used to enable conversion of item to alternative units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OutputDataType" type="SCIAnalogueDataTypeType">
+				<xs:annotation>
+					<xs:documentation>Output Data type of data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used in conversion from Raw to engineering (SCI / ETU)-->
+			<xs:element name="Deadband" type="float">
+				<xs:annotation>
+					<xs:documentation>Change In Engineering Value Before Processing</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EngineeringUnits" type="string32">
+				<xs:annotation>
+					<xs:documentation>Engineering Display Units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used for grouping purposes on ETU HMI-->
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the AutoChange data Function in SCI -->
+			<xs:element name="AutoChangeGroupName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Name for AutoChange Function in SCI. (Max 32 characters)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationAnalogueSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Analogue sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnumeratedDefinition" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If Value is an Enumerated Value Then this refferences the Definition define in the SCI group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorType" type="SensorTypeType">
+				<xs:annotation>
+					<xs:documentation>Sensor Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BusDevice" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of bus device that this sensor belongs to (if applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MinEngValue" type="float">
+				<xs:annotation>
+					<xs:documentation>Min engineering value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaxEngValue" type="float">
+				<xs:annotation>
+					<xs:documentation>Max engineering value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnableFaultValue" type="bool">
+				<xs:annotation>
+					<xs:documentation>Enable the fault value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FaultValue" type="float">
+				<xs:annotation>
+					<xs:documentation>Value set to if Enable Fault Value is set to True</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusAnalogueDataItem" type="ModbusAnalogueDataItemType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="ArbitrationAnalogueSensorEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the standard valve data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OutputDataType" type="SCIAnalogueDataTypeType">
+				<xs:annotation>
+					<xs:documentation>Output Data type of data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EngineeringUnits" type="string32">
+				<xs:annotation>
+					<xs:documentation>Engineering Display Units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationFlowmeterSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Flowmeter sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorType" type="SensorTypeType">
+				<xs:annotation>
+					<xs:documentation>Sensor Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BusDevice" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of bus device that this sensor belongs to (if applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusAnalogueDataItem" type="ModbusAnalogueDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="ArbitrationFlowmeterSensorEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the standard valve data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EngineeringUnits" type="string32">
+				<xs:annotation>
+					<xs:documentation>Engineering Display Units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationAnalogueSensorEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For an arbitrated sensor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ArbitrationMode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Arbitration Mode Definition.1-Average, 2-Lock SEMA, 3-Lock SEMB, 4-Minimum, 5-Maximum, 6-Manual, 7-Auto Switchingl</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaxEngDiscrepancy" type="float">
+				<xs:annotation>
+					<xs:documentation>Max discrepancy between channel sensor engineering values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManualValue" type="float">
+				<xs:annotation>
+					<xs:documentation>Manual Operator Entered Engineering Value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscrepancyTimeout" type="uint32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Time over which if discrepancy exceeded, to flag discrepancy error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationFlowmeterSensorEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For an arbitrated sensor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ArbitrationMode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Arbitration Mode Definition.2-Lock SEMA, 3-Lock SEMB, 6-Manual, 7-Auto Switching</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationDiscreteSensorEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For an arbitrated sensor</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ArbitrationMode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Arbitration Mode Definition.2-Lock SEMA, 3-Lock SEMB, 6-Manual, 7-Auto Switching</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MaxEngDiscrepancy" type="float">
+				<xs:annotation>
+					<xs:documentation>Max discrepancy between channel sensor engineering values - in the case of discretes a value between 0 and 1 will enable discrepancy checking</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManualValue" type="bool">
+				<xs:annotation>
+					<xs:documentation>Manual Operator Entered Engineering Value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscrepancyTimeout" type="uint32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Time over which if discrepancy exceeded, to flag discrepancy error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SurfaceAnalogueSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>SurfaceAnalogue sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnumeratedDefinition" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If Value is an Enumerated Value Then this refferences the Definition define in the SCI group</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataType" type="SCIAnalogueDataTypeType">
+				<xs:annotation>
+					<xs:documentation>Data type of Sensor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used in conversion from Raw to engineering (SCI / ETU)-->
+			<xs:element name="ModbusAnalogueDataItem" type="ModbusAnalogueDataItemType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InternalDataItem" type="InternalAnalogueDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional Internal data item, used to enable conversion of item to alternative units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Deadband" type="float">
+				<xs:annotation>
+					<xs:documentation>Change In Engineering Value Before Processing</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EngineeringUnits" type="string32">
+				<xs:annotation>
+					<xs:documentation>Engineering Display Units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used for grouping purposes on ETU HMI-->
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the AutoChange data Function in SCI -->
+			<xs:element name="AutoChangeGroupName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Name for AutoChange Function in SCI. (Max 32 characters)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BHDHPTGaugeType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>BH gauge name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PresCount" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Pressure Count Parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PresRefCount" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Pressure Reference Count Parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TempCount" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Temperature Count Parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TempRefCount" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Temperature Reference Count Parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pressure" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Engineering Pressure Parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Temperature" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Engineering Temperature Parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="BHDHPTGaugeEditDataType">
+				<xs:annotation>
+					<xs:documentation>Properties editable on ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BHDHPTGaugeEditDataType">
+		<xs:sequence>
+			<xs:element name="CoefficientFile" type="string32">
+				<xs:annotation>
+					<xs:documentation>Coefficent file to convert raw into engineering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FlowmeterSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Analogue sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Host Card Channel for Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BusDevice" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of bus device if a SIIS L2 device, if not present indicates value is a pulse flowmeter (if applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPDataLocation" type="UDPFlowmeterDataItemType">
+				<xs:annotation>
+					<xs:documentation>Definition for locating Raw data within UDP messages.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used in conversion from Raw to engineering (SCI / ETU)-->
+			<xs:element name="EngineeringUnits" type="string32">
+				<xs:annotation>
+					<xs:documentation>Engineering Display Units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used for grouping purposes on ETU HMI-->
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the AutoChange data Function in SCI -->
+			<xs:element name="AutoChangeGroupName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Name for AutoChange Function in SCI. (Max 32 characters)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DiscreteSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Discrete sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UDPDataLocation" type="UDPDiscreteDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Definition for locating Raw data within UDP messages.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following define what is dispayed for the input(SCI / ETU)-->
+			<xs:element name="ModbusDiscreteDataItem" type="ModbusDiscreteDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Display_0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Value to be displayed when input is 0 (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Display_1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Value to be displayed when input is 1 (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SurfaceDiscreteSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Discrete sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following define what is dispayed for the input(SCI / ETU)-->
+			<xs:element name="Display_0" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Value to be displayed when input is 0 (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Display_1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Value to be displayed when input is 1 (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusDiscreteDataItem" type="ModbusDiscreteDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationDiscreteSensorType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Analogue sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorType" type="SensorTypeType">
+				<xs:annotation>
+					<xs:documentation>Sensor Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BusDevice" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of bus device that this sensor belongs to (if applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusDiscreteDataItem" type="ModbusDiscreteDataItemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Optional Modbus data item, defining modbus slave properties if this sensor's value is either read from/written to a modbus slave</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="ArbitrationDiscreteSensorEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the standard valve data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FluidIngressLevelType">
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Analogue sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer tag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z1-LC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 1 Low Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z2-LC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 2 Low Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z3-LC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 3 Low Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z4-LC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 4 Low Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z1-HC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 1 High Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z2-HC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 2 High Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z3-HC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 3 High Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FIL-Z4-HC" type="string32">
+				<xs:annotation>
+					<xs:documentation>Fluid Ingress Zone 4 High Current Sensor Definition. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used in conversion from Raw to engineering (SCI / ETU)-->
+			<xs:element name="EngineeringUnits" type="string32">
+				<xs:annotation>
+					<xs:documentation>Engineering Display Units</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used for grouping purposes on ETU HMI-->
+			<xs:element name="SCIEditData" type="FluidIngressLevelEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the standard valve data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ETUDisplayGroup" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Display within ETU</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the AutoChange data Function in SCI -->
+			<xs:element name="AutoChangeGroupName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Group Name for AutoChange Function in SCI. (Max 32 characters)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!--      The following are used by the ETU to Display the Data on P&ID (if req.)-->
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SensorType">
+		<xs:annotation>
+			<xs:documentation>A sensor can either be Analogue or Descrete.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Analogue" type="AnalogueSensorType">
+				<xs:annotation>
+					<xs:documentation>Analogue Sensor AIP-20000-06-206</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Flowmeter" type="FlowmeterSensorType">
+				<xs:annotation>
+					<xs:documentation>Flowmeter AIP-20000-11-206</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Discrete" type="DiscreteSensorType">
+				<xs:annotation>
+					<xs:documentation>Descrete (boolean) type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ArbitrationSensorType">
+		<xs:annotation>
+			<xs:documentation>A sensor can either be Analogue or Descrete.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="Analogue" type="ArbitrationAnalogueSensorType">
+				<xs:annotation>
+					<xs:documentation>Analogue Sensor AIP-20000-06-206</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Flowmeter" type="ArbitrationFlowmeterSensorType">
+				<xs:annotation>
+					<xs:documentation>Flowmeter Sensor AIP-20000-11-206</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Discrete" type="ArbitrationDiscreteSensorType">
+				<xs:annotation>
+					<xs:documentation>Discrete (boolean) type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="SurfaceSensorType">
+		<xs:annotation>
+			<xs:documentation>A sensor can either be Analogue or Descrete.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="SurfaceAnalogue" type="SurfaceAnalogueSensorType">
+				<xs:annotation>
+					<xs:documentation>Surface Analogue Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurfaceDiscrete" type="SurfaceDiscreteSensorType">
+				<xs:annotation>
+					<xs:documentation>Surface Descrete (boolean) type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurfaceDiscreteControl" type="SurfaceDiscreteSensorType">
+				<xs:annotation>
+					<xs:documentation>Surface Descrete Control (boolean) type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BHDHPTGauge" type="BHDHPTGaugeType">
+				<xs:annotation>
+					<xs:documentation>Baker Hughes DHPT Gauge to perform the calculation from raw to engineering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="FluidIngressLevelEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For A Fluid Ingress Level Calculation AIP-20000-19-306</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SeaWaterCheckOnly" type="bool">
+				<xs:annotation>
+					<xs:documentation>Only Sea Water Checks Performed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DisableAutoPower" type="bool">
+				<xs:annotation>
+					<xs:documentation>Auto Switching Power On/Off Disabled</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PowerOnTimer" type="int32">
+				<xs:annotation>
+					<xs:documentation>Timer which Power On.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PowerOffTimer" type="int32">
+				<xs:annotation>
+					<xs:documentation>Timer which Power Off.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SeaWaterLowThreshold" type="float">
+				<xs:annotation>
+					<xs:documentation>Sea Water Low Current Threshold.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SeaWaterHighThreshold" type="float">
+				<xs:annotation>
+					<xs:documentation>Sea Water High Current Threshold.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HydFluidLowThreshold" type="float">
+				<xs:annotation>
+					<xs:documentation>Hydraulic Fluid Low Current Threshold.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HydFluidHighThreshold" type="float">
+				<xs:annotation>
+					<xs:documentation>Hydraulic Fluid High Current Threshold.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SCIAnalogueDataTypeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SS5_BOOLEAN"/>
+			<xs:enumeration value="SS5_INTEGER8"/>
+			<xs:enumeration value="SS5_INTEGER16"/>
+			<xs:enumeration value="SS5_INTEGER32"/>
+			<xs:enumeration value="SS5_UNSIGNED8"/>
+			<xs:enumeration value="SS5_UNSIGNED16"/>
+			<xs:enumeration value="SS5_UNSIGNED32"/>
+			<xs:enumeration value="SS5_REAL32"/>
+			<xs:enumeration value="SS5_TIMEDAY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SCI_SensorType">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="LinkedSensorTable" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Filename of linked sensor table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorLookupVersion" type="uint8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Version of lookup table used within configuration</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<!-- The following are used by the SCI for Modbus / OPC Mapping -->
+			<xs:element name="CompoundSensorProperty">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="SensorDescription" type="string32">
+							<xs:annotation>
+								<xs:documentation>Sensor Description</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SensorReference" type="string32">
+							<xs:annotation>
+								<xs:documentation>Sensor Reference</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SensorLookup" type="string32" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>CSV File Defining Sensor Lookup Information</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SensorItemIsWrite" type="bool" default="false" minOccurs="0"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

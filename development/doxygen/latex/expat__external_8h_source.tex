@@ -1,0 +1,122 @@
+\doxysection{expat\+\_\+external.\+h}
+\hypertarget{expat__external_8h_source}{}\label{expat__external_8h_source}\index{core/src/include/expat\_external.h@{core/src/include/expat\_external.h}}
+\mbox{\hyperlink{expat__external_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00001}00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 1998,\ 1999,\ 2000\ Thai\ Open\ Source\ Software\ Center\ Ltd}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00002}00002\ \textcolor{comment}{\ \ \ See\ the\ file\ COPYING\ for\ copying\ permission.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00003}00003\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00005}00005\ \textcolor{preprocessor}{\#ifndef\ Expat\_External\_INCLUDED}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00006}00006\ \textcolor{preprocessor}{\#define\ Expat\_External\_INCLUDED\ 1}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00008}00008\ \textcolor{comment}{/*\ External\ API\ definitions\ */}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00010}00010\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_EXTENSIONS)\ \&\&\ !defined(\_\_BEOS\_\_)\ \&\&\ !defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00011}00011\ \textcolor{preprocessor}{\#define\ XML\_USE\_MSC\_EXTENSIONS\ 1}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00012}00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00014}00014\ \textcolor{comment}{/*\ Expat\ tries\ very\ hard\ to\ make\ the\ API\ boundary\ very\ specifically}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00015}00015\ \textcolor{comment}{\ \ \ defined.\ \ There\ are\ two\ macros\ defined\ to\ control\ this\ boundary;}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00016}00016\ \textcolor{comment}{\ \ \ each\ of\ these\ can\ be\ defined\ before\ including\ this\ header\ to}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00017}00017\ \textcolor{comment}{\ \ \ achieve\ some\ different\ behavior,\ but\ doing\ so\ it\ not\ recommended\ or}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00018}00018\ \textcolor{comment}{\ \ \ tested\ frequently.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00020}00020\ \textcolor{comment}{\ \ \ XMLCALL\ \ \ \ -\/\ The\ calling\ convention\ to\ use\ for\ all\ calls\ across\ the}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00021}00021\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}library\ boundary."{}\ \ This\ will\ default\ to\ cdecl,\ and}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00022}00022\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ really\ hard\ to\ tell\ the\ compiler\ that's\ what\ we}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00023}00023\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ want.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00024}00024\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00025}00025\ \textcolor{comment}{\ \ \ XMLIMPORT\ \ -\/\ Whatever\ magic\ is\ needed\ to\ note\ that\ a\ function\ is}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00026}00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\ be\ imported\ from\ a\ dynamically\ loaded\ library}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00027}00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (.dll,\ .so,\ or\ .sl,\ depending\ on\ your\ platform).}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00028}00028\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00029}00029\ \textcolor{comment}{\ \ \ The\ XMLCALL\ macro\ was\ added\ in\ Expat\ 1.95.7.\ \ The\ only\ one\ which\ is}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00030}00030\ \textcolor{comment}{\ \ \ expected\ to\ be\ directly\ useful\ in\ client\ code\ is\ XMLCALL.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00031}00031\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00032}00032\ \textcolor{comment}{\ \ \ Note\ that\ on\ at\ least\ some\ Unix\ versions,\ the\ Expat\ library\ must\ be}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00033}00033\ \textcolor{comment}{\ \ \ compiled\ with\ the\ cdecl\ calling\ convention\ as\ the\ default\ since}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00034}00034\ \textcolor{comment}{\ \ \ system\ headers\ may\ assume\ the\ cdecl\ convention.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00035}00035\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00036}00036\ \textcolor{preprocessor}{\#ifndef\ XMLCALL}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00037}00037\ \textcolor{preprocessor}{\#if\ defined(XML\_USE\_MSC\_EXTENSIONS)}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00038}00038\ \textcolor{preprocessor}{\#define\ XMLCALL\ \_\_cdecl}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00039}00039\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_i386)}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00040}00040\ \textcolor{preprocessor}{\#define\ XMLCALL\ \_\_attribute\_\_((cdecl))}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00041}00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00042}00042\ \textcolor{comment}{/*\ For\ any\ platform\ which\ uses\ this\ definition\ and\ supports\ more\ than}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00043}00043\ \textcolor{comment}{\ \ \ one\ calling\ convention,\ we\ need\ to\ extend\ this\ definition\ to}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00044}00044\ \textcolor{comment}{\ \ \ declare\ the\ convention\ used\ on\ that\ platform,\ if\ it's\ possible\ to}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00045}00045\ \textcolor{comment}{\ \ \ do\ so.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00046}00046\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00047}00047\ \textcolor{comment}{\ \ \ If\ this\ is\ the\ case\ for\ your\ platform,\ please\ file\ a\ bug\ report}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00048}00048\ \textcolor{comment}{\ \ \ with\ information\ on\ how\ to\ identify\ your\ platform\ via\ the\ C}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00049}00049\ \textcolor{comment}{\ \ \ pre-\/processor\ and\ how\ to\ specify\ the\ same\ calling\ convention\ as\ the}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00050}00050\ \textcolor{comment}{\ \ \ platform's\ malloc()\ implementation.}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00051}00051\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00052}\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{00052}}\ \textcolor{preprocessor}{\#define\ XMLCALL}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00053}00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00054}00054\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ not\ defined\ XMLCALL\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00057}00057\ \textcolor{preprocessor}{\#if\ !defined(XML\_STATIC)\ \&\&\ !defined(XMLIMPORT)}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00058}00058\ \textcolor{preprocessor}{\#ifndef\ XML\_BUILDING\_EXPAT}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00059}00059\ \textcolor{comment}{/*\ using\ Expat\ from\ an\ application\ */}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00061}00061\ \textcolor{preprocessor}{\#ifdef\ XML\_USE\_MSC\_EXTENSIONS}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00062}00062\ \textcolor{preprocessor}{\#define\ XMLIMPORT\ \_\_declspec(dllimport)}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00063}00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00065}00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00066}00066\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ not\ defined\ XML\_STATIC\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00069}00069\ \textcolor{comment}{/*\ If\ we\ didn't\ define\ it\ above,\ define\ it\ away:\ */}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00070}00070\ \textcolor{preprocessor}{\#ifndef\ XMLIMPORT}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00071}\mbox{\hyperlink{expat__external_8h_a69f4a0589b6a111ea67e6b7474df4ee9}{00071}}\ \textcolor{preprocessor}{\#define\ XMLIMPORT}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00072}00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00075}\mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{00075}}\ \textcolor{preprocessor}{\#define\ XMLPARSEAPI(type)\ XMLIMPORT\ type\ XMLCALL}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00077}00077\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00078}00078\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00079}00079\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00081}00081\ \textcolor{preprocessor}{\#ifdef\ XML\_UNICODE\_WCHAR\_T}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00082}00082\ \textcolor{preprocessor}{\#define\ XML\_UNICODE}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00083}00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00085}00085\ \textcolor{preprocessor}{\#ifdef\ XML\_UNICODE\ \ \ \ \ }\textcolor{comment}{/*\ Information\ is\ UTF-\/16\ encoded.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00086}00086\ \textcolor{preprocessor}{\#ifdef\ XML\_UNICODE\_WCHAR\_T}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00087}00087\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{wchar\_t}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00088}00088\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{wchar\_t}\ \mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{XML\_LChar}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00089}00089\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00090}00090\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00091}00091\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{XML\_LChar}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00092}00092\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ XML\_UNICODE\_WCHAR\_T\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00093}00093\ \textcolor{preprocessor}{\#else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ Information\ is\ UTF-\/8\ encoded.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00094}\mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{00094}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00095}\mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{00095}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{XML\_LChar}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00096}00096\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ XML\_UNICODE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00098}00098\ \textcolor{preprocessor}{\#ifdef\ XML\_LARGE\_SIZE\ \ }\textcolor{comment}{/*\ Use\ large\ integers\ for\ file/stream\ positions.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00099}00099\ \textcolor{preprocessor}{\#if\ defined(XML\_USE\_MSC\_EXTENSIONS)\ \&\&\ \_MSC\_VER\ <\ 1400}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00100}00100\ \ \ \ \ \textcolor{keyword}{typedef}\ \_\_int64\ \mbox{\hyperlink{expat__external_8h_ae2a9a55c7071b0c6da19fea14ce8f504}{XML\_Index}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int64\ \mbox{\hyperlink{expat__external_8h_ad22a225e6e62127360b44b2f7559f789}{XML\_Size}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00102}00102\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00103}00103\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{expat__external_8h_ae2a9a55c7071b0c6da19fea14ce8f504}{XML\_Index}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00104}00104\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{expat__external_8h_ad22a225e6e62127360b44b2f7559f789}{XML\_Size}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00105}00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00106}00106\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00107}\mbox{\hyperlink{expat__external_8h_ae2a9a55c7071b0c6da19fea14ce8f504}{00107}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{expat__external_8h_ae2a9a55c7071b0c6da19fea14ce8f504}{XML\_Index}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00108}\mbox{\hyperlink{expat__external_8h_ad22a225e6e62127360b44b2f7559f789}{00108}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{expat__external_8h_ad22a225e6e62127360b44b2f7559f789}{XML\_Size}};}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00109}00109\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ XML\_LARGE\_SIZE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00111}00111\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00112}00112\ \}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00113}00113\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00115}00115\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ not\ Expat\_External\_INCLUDED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat__external_8h_source_l00116}00116\ }
+
+\end{DoxyCode}

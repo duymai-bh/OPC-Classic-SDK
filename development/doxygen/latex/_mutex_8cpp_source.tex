@@ -1,0 +1,119 @@
+\doxysection{Mutex.\+cpp}
+\hypertarget{_mutex_8cpp_source}{}\label{_mutex_8cpp_source}\index{C++/src/Mutex.cpp@{C++/src/Mutex.cpp}}
+\mbox{\hyperlink{_mutex_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_s_compat_8h}{OSCompat.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mutex_8h}{Mutex.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00004}00004\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00005}00005\ \textcolor{comment}{//\ Mutex\ -\/\ constructor}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00006}00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00007}\mbox{\hyperlink{class_mutex_a593423d868daf926c7b0d63a833ae29a}{00007}}\ \mbox{\hyperlink{class_mutex_a593423d868daf926c7b0d63a833ae29a}{Mutex::Mutex}}()}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00008}00008\ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00010}00010\ \ \ \ \ m\_mutex\ =\ CreateMutex(NULL,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00013}00013\ \ \ \ \ pthread\_mutexattr\_t\ attr;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#ifdef\ SODEVENV\_CYGWIN}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00015}00015\ \ \ \ \ memset(\&attr,\ 0,\ \textcolor{keyword}{sizeof}(attr));}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00016}00016\ \ \ \ \ memset(\&m\_mutex,\ 0,\ \textcolor{keyword}{sizeof}(m\_mutex));}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00018}00018\ \ \ \ \ pthread\_mutexattr\_init(\&attr);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00019}00019\ \ \ \ \ pthread\_mutexattr\_settype(\&attr,\ PTHREAD\_MUTEX\_RECURSIVE);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00020}00020\ \ \ \ \ pthread\_mutex\_init(\&m\_mutex,\ \&attr);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00021}00021\ \ \ \ \ pthread\_mutexattr\_destroy(\&attr);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00023}00023\ \}\ \ \ \textcolor{comment}{//\ \ end\ constructor}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00025}\mbox{\hyperlink{class_mutex_ac9e9182407f5f74892318607888e9be4}{00025}}\ \mbox{\hyperlink{class_mutex_ac9e9182407f5f74892318607888e9be4}{Mutex::\string~Mutex}}()}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_mutex\ !=\ INVALID\_HANDLE\_VALUE)}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00032}00032\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00034}00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00035}00035\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00036}00036\ \ \ \ \ pthread\_mutex\_destroy(\&m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00037}00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00038}00038\ \}\ \ \ \textcolor{comment}{//\ \ end\ destructor}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00041}00041\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00042}00042\ \textcolor{comment}{//\ lock}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00043}00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00044}00044\ \textcolor{comment}{//\ -\/\ gain\ access\ to\ the\ synchronisation\ object}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00045}00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00046}00046\ \textcolor{comment}{//\ returns:}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00047}00047\ \textcolor{comment}{//\ \ \ \ \ \ TRUE\ \ -\/\ got\ access\ to\ the\ object}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00048}00048\ \textcolor{comment}{//\ \ \ \ \ \ FALSE\ -\/\ no\ access\ to\ the\ object}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00049}00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00050}\mbox{\hyperlink{class_mutex_a22d21e5d8cf0ecc55d1a511674a00555}{00050}}\ BOOL\ \mbox{\hyperlink{class_mutex_a22d21e5d8cf0ecc55d1a511674a00555}{Mutex::lock}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout)}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00052}00052\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00053}00053\ \ \ \ \ BOOL\ res;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00054}00054\ \ \ \ \ res\ =\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099}{::WaitForSingleObject}}(m\_mutex,\ timeout);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{keywordflow}{return}\ (res\ ==\ WAIT\_OBJECT\_0);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00056}00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00057}00057\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00058}00058\ \ \ \ \ BOOL\ res;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (timeout\ ==\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}})}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00061}00061\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ pthread\_mutex\_lock(\&m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ res\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (timeout\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00066}00066\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ res\ =\ !pthread\_mutex\_trylock(\&m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00071}00071\ \textcolor{preprocessor}{\#ifndef\ SODEVENV\_CYGWIN}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timespec\ ts;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }timeval\ \ tv;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ gettimeofday(\&tv,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ ts.tv\_sec\ =\ tv.tv\_sec\ +\ timeout\ /\ 1000;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ ts.tv\_nsec\ =\ 1000\ *\ tv.tv\_usec;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ ts.tv\_nsec\ +=\ 1000000\ *\ (timeout\ \%\ 1000);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ts.tv\_nsec\ \ >\ \ 999999999)}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ ts.tv\_nsec\ -\/=\ 1000000000;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ ts.tv\_sec\ \ ++;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ res\ =\ !pthread\_mutex\_timedlock(\&m\_mutex,\ \&ts);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00086}00086\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ res\ =\ !pthread\_mutex\_lock(\&m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00088}00088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00089}00089\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00092}00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00093}00093\ \}\ \ \ \textcolor{comment}{//\ \ end\ lock}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00096}00096\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00097}00097\ \textcolor{comment}{//\ unlock}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00098}00098\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00099}00099\ \textcolor{comment}{//\ -\/\ release\ access\ to\ the\ synchronisation\ object}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00100}00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00101}00101\ \textcolor{comment}{//\ returns:}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00102}00102\ \textcolor{comment}{//\ \ \ \ \ \ TRUE\ \ -\/\ released\ access\ to\ the\ object}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00103}00103\ \textcolor{comment}{//\ \ \ \ \ \ FALSE\ -\/\ not\ owned\ the\ object}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00104}00104\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00105}\mbox{\hyperlink{class_mutex_a88de0f5e03393ddc539d658bddd5965e}{00105}}\ BOOL\ \mbox{\hyperlink{class_mutex_a88de0f5e03393ddc539d658bddd5965e}{Mutex::unlock}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00106}00106\ \{}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00107}00107\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{return}\ ReleaseMutex(m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00109}00109\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00110}00110\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{return}\ !pthread\_mutex\_unlock(\&m\_mutex);}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00112}00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_mutex_8cpp_source_l00113}00113\ \}\ \ \ \textcolor{comment}{//\ \ unlock}}
+
+\end{DoxyCode}

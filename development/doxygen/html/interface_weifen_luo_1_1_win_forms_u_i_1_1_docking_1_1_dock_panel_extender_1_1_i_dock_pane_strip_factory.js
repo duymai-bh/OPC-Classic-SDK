@@ -1,0 +1,4 @@
+var interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_strip_factory =
+[
+    [ "CreateDockPaneStrip", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_strip_factory.html#a1f51ec0756eecfed849f2db3091c7589", null ]
+];

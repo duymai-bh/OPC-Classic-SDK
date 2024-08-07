@@ -1,0 +1,705 @@
+\doxysection{Console\+Ctt.\+cs}
+\hypertarget{_console_ctt_8cs_source}{}\label{_console_ctt_8cs_source}\index{NET/samples/server/ctt/CS/ConsoleCtt.cs@{NET/samples/server/ctt/CS/ConsoleCtt.cs}}
+\mbox{\hyperlink{_console_ctt_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Threading;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Collections;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server}{Softing.OPCToolbox.Server}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00008}\mbox{\hyperlink{namespace_console_ctt}{00008}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_console_ctt}{ConsoleCtt}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00011}\mbox{\hyperlink{class_console_ctt_1_1_my_transaction}{00011}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_console_ctt_1_1_my_transaction}{MyTransaction}}\ :\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction}{DaTransaction}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00014}\mbox{\hyperlink{class_console_ctt_1_1_my_transaction_a8337b3d7e48476e0e62eca0e34e698da}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_console_ctt_1_1_my_transaction_a8337b3d7e48476e0e62eca0e34e698da}{MyTransaction}}(}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a0a9678ef2c882b39d90546554551ef1f}{EnumTransactionType}}\ aTransactionType,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}[]\ aRequestList,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ aSessionHandle)\ :}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ base(aTransactionType,\ aRequestList,\ aSessionHandle)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ enc\ ctr}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00023}\mbox{\hyperlink{class_console_ctt_1_1_my_transaction_a19cd32e6793a25aff52910994ad78c53}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_console_ctt_1_1_my_transaction_a19cd32e6793a25aff52910994ad78c53}{HandleReadRequests}}()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (m\_requestJanitor)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}.Count;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ currentRequest\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}[i]\ as\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((currentRequest\ !=\ \textcolor{keyword}{null})\ \&\&\ (currentRequest.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_ae44d1e68e87bc7a3a70f45d447f395cf}{ProgressRequestState}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.CREATED,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.INPROGRESS)\ ==\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}\ requestElement\ =\ currentRequest.AddressSpaceElement\ as\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (requestElement\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (currentRequest.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_a725ce7a0d181deb6cb738c42fc7a8292}{PropertyId}}\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}\ cacheValue\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestElement.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element_aac52b2cd2ef7daac3dec83623b556fbc}{GetCacheValue}}(ref\ cacheValue);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentRequest.Value\ =\ cacheValue;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentRequest.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ requestElement.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_ab8f2086e58c6a43deea48759e66de282}{GetPropertyValue}}(currentRequest);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if\ ...\ else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentRequest.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if\ ...\ else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ is\ not\ a\ request\ ???}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_ab8bef441b6cf7175e83c3b7913788635}{Trace}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.USER1,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}MyTransaction"{}},\ \textcolor{stringliteral}{"{}HandleReadRequests\ -\/\ received\ a\ non\ request\ element\ in\ the\ request's\ array\ List"{}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if\ ...\ else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_adb5f97c37b78ee207b6ec2e72e4cf562}{CompleteRequests}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ HandleReadRequests}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00075}\mbox{\hyperlink{class_console_ctt_1_1_my_transaction_a7863a3c0a5d9613db7de316f6d788e1d}{00075}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_console_ctt_1_1_my_transaction_a7863a3c0a5d9613db7de316f6d788e1d}{HandleWriteRequests}}()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (m\_requestJanitor)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}.Count;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ currentRequest\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}[i]\ as\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((currentRequest\ !=\ \textcolor{keyword}{null})\ \&\&\ (currentRequest.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_ae44d1e68e87bc7a3a70f45d447f395cf}{ProgressRequestState}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.CREATED,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.INPROGRESS)\ ==\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}\ requestElement\ =\ currentRequest.AddressSpaceElement\ as\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (requestElement\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentRequest.Result\ =\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}})requestElement.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element_ab63ff5b5fc3f4b960c28b658798d07e5}{ValueChanged}}(currentRequest.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_ac24b281448980b35fe5719f498c16c1a}{Value}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_adb5f97c37b78ee207b6ec2e72e4cf562}{CompleteRequests}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ lock}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ HandleWriteRequests}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{object}\ m\_requestJanitor\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00103}00103\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ MyTransaction}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00106}\mbox{\hyperlink{class_console_ctt_1_1_my_creator}{00106}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_console_ctt_1_1_my_creator}{MyCreator}}\ :\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_creator}{Creator}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00107}00107\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00109}\mbox{\hyperlink{class_console_ctt_1_1_my_creator_a83535c8b1c8236d17fdbfd233e1a6291}{00109}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction}{DaTransaction}}\ \mbox{\hyperlink{class_console_ctt_1_1_my_creator_a83535c8b1c8236d17fdbfd233e1a6291}{CreateTransaction}}(}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a0a9678ef2c882b39d90546554551ef1f}{EnumTransactionType}}\ aTransactionType,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}[]\ aRequests,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ aSessionHandle)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction}{DaTransaction}})\textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_transaction}{MyTransaction}}(aTransactionType,\ aRequests,\ aSessionHandle);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ CreateTransaction}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00118}\mbox{\hyperlink{class_console_ctt_1_1_my_creator_ac22511621499b6277ebe8fc8d65f6708}{00118}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element}{DaAddressSpaceElement}}\ \mbox{\hyperlink{class_console_ctt_1_1_my_creator_ac22511621499b6277ebe8fc8d65f6708}{CreateDaAddressSpaceElement}}()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element}{DaAddressSpaceElement}})\textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ CreateDaAddressSpaceElement}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00123}00123\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ MyCreator}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00126}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{00126}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}\ :\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element}{DaAddressSpaceElement}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00127}00127\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00129}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_aa9b4f7c3916ed1d79ccb90ba1be601d6}{00129}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ \textcolor{keywordtype}{byte}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_aa9b4f7c3916ed1d79ccb90ba1be601d6}{TYP\_UNKNOWN}}\ =\ 0x0;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00130}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_abe93142a8a3c7cf49771c466444f1ed8}{00130}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ \textcolor{keywordtype}{byte}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_abe93142a8a3c7cf49771c466444f1ed8}{TYP\_NODE}}\ =\ 0x80;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00131}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{00131}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ \textcolor{keywordtype}{byte}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}}\ =\ 0x08;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{byte}\ m\_Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_aa9b4f7c3916ed1d79ccb90ba1be601d6}{TYP\_UNKNOWN}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00135}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_ac608547846433564b2b2f4fe2718e16f}{00135}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{byte}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_ac608547846433564b2b2f4fe2718e16f}{Type}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_Type;\ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_Type\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Type}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00141}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a7332ca42431ab6b6f36a9451b38583f4}{00141}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a7332ca42431ab6b6f36a9451b38583f4}{MyDaAddressSpaceElement}}()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ ctr}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00146}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a807661b55b2c31905452ccbdc52c0da3}{00146}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a807661b55b2c31905452ccbdc52c0da3}{QueryProperties}}(out\ ArrayList\ aPropertyList)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_property}{DaProperty}}\ \textcolor{keyword}{property}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_property}{DaProperty}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ property.Id\ =\ 101;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ property.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ property.Datatype\ =\ typeof(\textcolor{keywordtype}{string});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ property.Name\ =\ \textcolor{stringliteral}{"{}Descripiton"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ property.ItemId\ =\ \textcolor{stringliteral}{"{}Descripiton"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ property.Description\ =\ \textcolor{stringliteral}{"{}Item\ Descripiton"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPropertyList\ =\ \textcolor{keyword}{new}\ ArrayList();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((ArrayList)aPropertyList).Add(property);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aPropertyList\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ catch}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ QueryProperties}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00176}\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_ab8f2086e58c6a43deea48759e66de282}{00176}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_ab8f2086e58c6a43deea48759e66de282}{GetPropertyValue}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ aRequest)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aRequest.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_a725ce7a0d181deb6cb738c42fc7a8292}{PropertyId}}\ ==\ 101)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRequest.Value\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(\textcolor{stringliteral}{"{}item\ description"{}},\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ aRequest.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ GetPropertyValue}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00187}00187\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ MyDaAddressSpaceElement}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00190}\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample}{00190}}\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample}{ConsoleCttCSSample}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00191}00191\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00193}\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_a8e089f7c14f10b424d08f054a3973dce}{00193}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ AutoResetEvent\ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_a8e089f7c14f10b424d08f054a3973dce}{m\_endEvent}};\ \ \ \ \textcolor{comment}{//\ signal\ application\ should\ terminate}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ initServer()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.VersionOtb\ =\ 447;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.AppType\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a3db87c95596c40197ec1ca95e21ae220}{EnumApplicationType}}.EXECUTABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.ClsidDa\ =\ \textcolor{stringliteral}{"{}\{D3B19EEC-\/7752-\/46b9-\/BB6D-\/63BD70D2CF60\}"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.ProgIdDa\ =\ \textcolor{stringliteral}{"{}Softing.OPCToolbox.NET.CS.Smpl.CTT.DA"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.VerIndProgIdDa\ =\ \textcolor{stringliteral}{"{}Softing.OPCToolbox.NET.CS.Smpl.CTT.DA.1"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.Description\ =\ \textcolor{stringliteral}{"{}Softing\ OPC\ Toolkit.NET\ C\#\ CTT\ Server\ Sample"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.ServiceName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.IpPortHTTP\ =\ 8079;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.UrlDa\ =\ \textcolor{stringliteral}{"{}/OPC/DA"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.MajorVersion\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.MinorVersion\ =\ 47;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.PatchVersion\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.BuildNumber\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.VendorInfo\ =\ \textcolor{stringliteral}{"{}Softing\ Industrial\ Automation\ GmbH"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.MinUpdateRateDa\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.ClientCheckPeriod\ =\ 30000;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.AddressSpaceDelimiter\ =\ \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.PropertyDelimiter\ =\ \textcolor{charliteral}{'\#'};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ Application.Instance.ShutdownRequest\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing}{Softing}}.\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{OPCToolbox}}.\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server}{Server}}.ShutdownHandler(\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_aee0a17aa3910536c45fe1eac2c55ecb1}{HandleShutdown}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ initServer}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Main(\textcolor{keywordtype}{string}[]\ args)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ (int)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_a8e089f7c14f10b424d08f054a3973dce}{m\_endEvent}}\ =\ \textcolor{keyword}{new}\ AutoResetEvent(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ MyWin32.HandlerRoutine\ hr\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_a40f45195478486f84e4e36eaaa04c9b7}{HandlerRoutine}}(\mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_a05795d78b9496c0176e091d33ca201cc}{Handler}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ae5a4b404310318d50a364391418acaf9}{SetConsoleCtrlHandler}}(hr,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ initServer();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ TODO\ -\/\ binary\ license\ activation}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ Fill\ in\ your\ binary\ license\ activation\ keys\ here}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ NOTE:\ you\ can\ activate\ one\ or\ all\ of\ the\ features\ at\ the\ same\ time}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ firstly\ activate\ the\ COM-\/DA\ Server\ feature}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ ret\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_aa7022cca07650c323a2228bed89411b4}{Activate}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a78425db01a1d56d0000023d17f969742}{EnumFeature}}.DA\_SERVER,\ \textcolor{stringliteral}{"{}0d20-\/004c-\/c458-\/991e-\/3d70"{}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(ret))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ activate\ the\ XML-\/DA\ Server\ Feature}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ ret\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_aa7022cca07650c323a2228bed89411b4}{Activate}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a78425db01a1d56d0000023d17f969742}{EnumFeature}}.XMLDA\_SERVER,\ \textcolor{stringliteral}{"{}0d40-\/004c-\/7638-\/9373-\/80b4"{}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(ret))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ activate\ the\ COM-\/AE\ Server\ Feature}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ ret\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_aa7022cca07650c323a2228bed89411b4}{Activate}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a78425db01a1d56d0000023d17f969742}{EnumFeature}}.AE\_SERVER,\ \textcolor{stringliteral}{"{}0d30-\/004c-\/9d48-\/035d-\/7717"{}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(ret))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ END\ TODO\ -\/\ binary\ license\ activation}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_a0beca21da10a6c7183eb167809b30c6c}{Initialize}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_my_creator}{MyCreator}}())))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_a499bde1790de0bf0fd653a341550e6f6}{EnableTracing}}(}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.ALL,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.ALL,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.SERVER,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.SERVER,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Trace.txt"{}},}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1000000,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((ret\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_aff8b5a747243a445369da7840d2eba7f}{ProcessCommandLine}}(Environment.CommandLine))\ ==\ (\textcolor{keywordtype}{int})\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_ab89573b1f363955c5f424bb4cca68dd1}{Start}}()))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_aefc035df04ecfcb54dbc565250dd0bcd}{BuildNamespace}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_a6f1916593d208cab92e9ddc99bbc9c5d}{Ready}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}.WriteLine(\textcolor{stringliteral}{"{}Press\ Ctrl-\/C\ to\ exit"{}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ bEnd\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ dt\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.UtcNow;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Random\ rand\ =\ \textcolor{keyword}{new}\ Random();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!bEnd)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wait\ for\ keyboard\ entry\ 'Ctrl\ +\ C'\ or\ 'Ctrl\ +\ Break'}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((bEnd\ =\ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_a8e089f7c14f10b424d08f054a3973dce}{m\_endEvent}}.WaitOne(1000,\ \textcolor{keyword}{false}))\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ while}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_a32a722d2a581f7ea8bc6269682d3260d}{Stop}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ (uint)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_FALSE)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}Registration\ operation\ \{0\}"{}},\ Environment.CommandLine);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_a93318ef89b8e5229b077a14624034504}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00311}00311\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00313}\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_aefc035df04ecfcb54dbc565250dd0bcd}{00313}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_aefc035df04ecfcb54dbc565250dd0bcd}{BuildNamespace}}()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00314}00314\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}\ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{null},\ node\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}\ val\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ node\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ node.Name\ =\ \textcolor{stringliteral}{"{}CTT"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ node.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_abe93142a8a3c7cf49771c466444f1ed8}{TYP\_NODE}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ node.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.NONE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ node.HasChildren\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application}{Application}}.Instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_application_a4e57dcd1431ad943b888ad1b859319bf}{DaAddressSpaceRoot}}.AddChild(node);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I1"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(SByte);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((sbyte)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI1"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Byte);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((\textcolor{keywordtype}{byte})1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I2"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Int16);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((Int16)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI2"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(UInt16);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((UInt16)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I4"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Int32);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((Int32)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI4"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(UInt32);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((UInt32)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I8"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Int64);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((Int64)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI8"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(UInt64);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((UInt64)1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}R4"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Single);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((Single)1.0,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}R8"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Double);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}((Double)1.0,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}BOOL"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Boolean);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(\textcolor{keyword}{true},\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}BSTR"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(String);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(\textcolor{stringliteral}{"{}CTT"{}},\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}DATE"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(\mbox{\hyperlink{class_date_time}{DateTime}});}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(\mbox{\hyperlink{class_date_time}{DateTime}}.Now,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I1\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(SByte[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SByte[]\ v\ =\ \textcolor{keyword}{new}\ SByte[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI1\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Byte[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Byte[]\ v1\ =\ \textcolor{keyword}{new}\ Byte[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v1,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I2\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Int16[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Int16[]\ v2\ =\ \textcolor{keyword}{new}\ Int16[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v2,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI2\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(UInt16[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UInt16[]\ v3\ =\ \textcolor{keyword}{new}\ UInt16[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v3,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00518}00518\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I4\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Int32[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Int32[]\ v4\ =\ \textcolor{keyword}{new}\ Int32[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v4,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00531}00531\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI4\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(UInt32[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UInt32[]\ v5\ =\ \textcolor{keyword}{new}\ UInt32[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v5,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00544}00544\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}I8\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Int64[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Int64[]\ v6\ =\ \textcolor{keyword}{new}\ Int64[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v6,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00557}00557\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}UI8\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(UInt64[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UInt64[]\ v7\ =\ \textcolor{keyword}{new}\ UInt64[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v7,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00570}00570\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}R4\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Single[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Single[]\ v8\ =\ \textcolor{keyword}{new}\ Single[5]\ \{\ 0,\ 1,\ 2,\ 3,\ 4\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v8,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}R8\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Double[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00590}00590\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Double[]\ v9\ =\ \textcolor{keyword}{new}\ Double[5]\ \{\ 0.0,\ 1.0,\ 2.0,\ 3.0,\ 4.0\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(v9,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00595}00595\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}BOOL\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(Boolean[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}[]\ va\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{bool}[5]\ \{\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ \textcolor{keyword}{true},\ \textcolor{keyword}{false},\ \textcolor{keyword}{true}\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(va,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00607}00607\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00608}00608\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00610}00610\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}BSTR\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00611}00611\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00613}00613\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(String[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00617}00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}[]\ vb\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{string}[5]\ \{\ \textcolor{stringliteral}{"{}A"{}},\ \textcolor{stringliteral}{"{}B"{}},\ \textcolor{stringliteral}{"{}C"{}},\ \textcolor{stringliteral}{"{}D"{}},\ \textcolor{stringliteral}{"{}E"{}}\ \};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(vb,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00621}00621\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Name\ =\ \textcolor{stringliteral}{"{}DATE\ array"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Type\ =\ \mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element}{MyDaAddressSpaceElement}}.\mbox{\hyperlink{class_console_ctt_1_1_my_da_address_space_element_a410111ed764ca916c9c0c5d3208e42f6}{TYP\_TAG}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ tag.AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ tag.Datatype\ =\ typeof(\mbox{\hyperlink{class_date_time}{DateTime}}[]);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00627}00627\ \ \ \ \ \ \ \ \ \ \ \ \ tag.IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (node.AddChild(\mbox{\hyperlink{structtag}{tag}}))}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}[]\ vc\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_date_time}{DateTime}}[5];}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vc[0]\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;\ vc[1]\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;\ vc[2]\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;\ vc[3]\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;\ vc[4]\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(vc,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag}{tag}}.ValueChanged(val);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00635}00635\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00636}00636\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ BuildNamespace}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00637}00637\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00638}\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_aee0a17aa3910536c45fe1eac2c55ecb1}{00638}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_aee0a17aa3910536c45fe1eac2c55ecb1}{HandleShutdown}}()}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00639}00639\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00640}00640\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_a8e089f7c14f10b424d08f054a3973dce}{m\_endEvent}}.Set();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00643}00643\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ HandleShutdown}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00644}00644\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00645}00645\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00646}00646\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00647}00647\ \textcolor{preprocessor}{\ \ \ \ \#region\ CONSOLE\_CONTROL\_HANDLING}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00648}00648\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00649}00649\ \ \ \ \ \textcolor{comment}{//\ A\ simple\ class\ that\ exposes\ two\ static\ Win32\ functions.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00650}00650\ \ \ \ \ \textcolor{comment}{//\ One\ is\ a\ delegate\ type\ and\ the\ other\ is\ an\ enumerated\ type.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00651}\mbox{\hyperlink{class_console_ctt_1_1_my_win32}{00651}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00652}00652\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00653}00653\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Declare\ the\ SetConsoleCtrlHandler\ function\ }}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00654}00654\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ external\ and\ receiving\ a\ delegate.\ \ \ }}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00655}00655\ \ \ \ \ \ \ \ \ [DllImport(\textcolor{stringliteral}{"{}Kernel32"{}})]}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00656}\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ae5a4b404310318d50a364391418acaf9}{00656}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{extern}\ Boolean\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ae5a4b404310318d50a364391418acaf9}{SetConsoleCtrlHandler}}(\mbox{\hyperlink{class_console_ctt_1_1_my_win32_a40f45195478486f84e4e36eaaa04c9b7}{HandlerRoutine}}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_a05795d78b9496c0176e091d33ca201cc}{Handler}},}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00657}00657\ \ \ \ \ \ \ \ \ \ \ \ \ Boolean\ Add);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00658}00658\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00659}00659\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ delegate\ type\ to\ be\ used\ as\ the\ handler\ routine\ }}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00660}00660\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ SetConsoleCtrlHandler.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00661}\mbox{\hyperlink{class_console_ctt_1_1_my_win32_a40f45195478486f84e4e36eaaa04c9b7}{00661}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ delegate\ Boolean\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_a40f45195478486f84e4e36eaaa04c9b7}{HandlerRoutine}}(\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}\ CtrlType);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00662}00662\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00663}00663\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ An\ enumerated\ type\ for\ the\ control\ messages\ }}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00664}00664\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sent\ to\ the\ handler\ routine.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00665}\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{00665}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00666}00666\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00667}00667\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1a9c6d7b9a3ae52a2eeba4d5b97b424b37}{CTRL\_C\_EVENT}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00668}00668\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1a0bf53e626d3d52325891a523090278fc}{CTRL\_BREAK\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00669}00669\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1a9b5bdcaf2715bc81f42fcb6315749407}{CTRL\_CLOSE\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00670}00670\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1a18d91e2de9d5f3a043ae27857f46f130}{CTRL\_LOGOFF\_EVENT}}\ =\ 5,}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1abd633c0d9cebc1b835bea719de3ed93d}{CTRL\_SHUTDOWN\_EVENT}}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00672}00672\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00673}00673\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00674}00674\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ private\ static\ handler\ function\ in\ the\ MyApp\ class.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00675}\mbox{\hyperlink{class_console_ctt_1_1_my_win32_a05795d78b9496c0176e091d33ca201cc}{00675}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ Boolean\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32_a05795d78b9496c0176e091d33ca201cc}{Handler}}(\mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}\ CtrlType)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00676}00676\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ String\ message\ =\ \textcolor{stringliteral}{"{}This\ message\ should\ never\ be\ seen!"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00678}00678\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00679}00679\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ switch\ to\ handle\ the\ event\ type.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (CtrlType)}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00681}00681\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00682}00682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}.CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}.CTRL\_BREAK\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}stop\ execution,\ since\ CTRL\ command!"{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00685}00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample}{ConsoleCttCSSample}}.\mbox{\hyperlink{class_console_ctt_1_1_console_ctt_c_s_sample_a8e089f7c14f10b424d08f054a3973dce}{m\_endEvent}}.Set();}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}.CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00688}00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}A\ CTRL\_CLOSE\_EVENT\ was\ raised\ by\ the\ user."{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00689}00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00690}00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}.CTRL\_LOGOFF\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}A\ CTRL\_LOGOFF\_EVENT\ was\ raised\ by\ the\ user."{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00693}00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_console_ctt_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_console_ctt_1_1_my_win32_ac499ac19a3bffc1d917fb32cd4b71ec1}{CtrlTypes}}.CTRL\_SHUTDOWN\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00694}00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}A\ CTRL\_SHUTDOWN\_EVENT\ was\ raised\ by\ the\ user."{}};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00695}00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00696}00696\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00697}00697\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00698}00698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ interop\ to\ display\ a\ message\ for\ the\ type\ of\ event.}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00699}00699\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}.WriteLine(message);}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00700}00700\ }
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00701}00701\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00702}00702\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00703}00703\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00704}00704\ \textcolor{preprocessor}{\ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_console_ctt_8cs_source_l00705}00705\ \}}
+
+\end{DoxyCode}

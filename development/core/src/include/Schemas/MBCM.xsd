@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author: ama $-->
+<!--$Date: 2015-07-13 12:05:47 +0100 (Mon, 13 Jul 2015) $-->
+<!--$Revision: 2049 $-->
+<!--$URL: https://openge.ge.com/svn/sem5xmlconfig/branches/dev_mbcm/Schemas/MBCM.xsd $-->
+<!--$Id: MBCM.xsd 2049 2015-07-13 11:05:47Z ama $-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:complexType name="MBCMType">
+        <xs:annotation>
+            <xs:documentation>Multi-band Coper Modem Module (MBCM).</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="BoardType" type="CardNameType" fixed="CARD_NAME_Mbcm">
+                <xs:annotation>
+                    <xs:documentation>This element defines the Type of board fitted.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SemDacConfig" type="SemDacConfigType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SEM Data Acquistion config as used by SemDacMan process.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="EgdGatewayConfig" type="EgdGatewayCfgType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SEM Ethernet Global Data Gateway config as used by EgdGateway process.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AutoShutdownConfig" type="AutoShutdownCfgType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SEM Autonomous Shutdown config as used by AutoShutdownMan process.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="HippsProfilerConfig" type="HippsProfilerCfgType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>SEM HIPPS Profiler config used with HippsProfiler process, EgdConfig required.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -266,7 +266,7 @@
 
 // OPC Toolkit includes
 #include <SOCmnCfg.h>
-#undef SOFEATURE_WATCH
+// #undef SOFEATURE_WATCH // DuyMai: This line should be commented to build the OTB lib
 #include <SOCmnOsCompat.h>
 #ifdef SODAC
 #include <SODaC.h>

@@ -1,0 +1,120 @@
+\doxysection{Console.\+cpp}
+\hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source}{}\label{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source}\index{C++/samples/server/tutorial/AE/Step1/Console.cpp@{C++/samples/server/tutorial/AE/Step1/Console.cpp}}
+\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tutorial_2_a_e_2_step1_2_opc_server_8h}{OpcServer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00006}\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{00006}}\ HANDLE\ \mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00009}\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{00009}}\ BOOL\ WINAPI\ \mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{ControlHandler}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ crtlType)\ \ \ \textcolor{comment}{//\ control\ type}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{switch}\ (crtlType)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_BREAK\_EVENT:\ \ \textcolor{comment}{//\ use\ Ctrl+C\ or\ Ctrl+Break\ to\ end\ server}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a}{SetEvent}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00022}00022\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00025}00025\ \}\ \ \ \textcolor{comment}{//\ \ end\ controlHandler}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00028}\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{00028}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{\_tmain}}(\textcolor{keywordtype}{int}\ argc,\ \_TCHAR*\ argv[])}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00030}00030\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\_OK}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}}\ =\ CreateEvent(NULL,\ FALSE,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00032}00032\ \ \ \ \ SetConsoleCtrlHandler(\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{ControlHandler}},\ TRUE);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ \ create\ and\ initialize\ the\ OpcServer\ instance}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{_address_space_2_opc_server_8cpp_a0e05ccf5cc0cd7f740ff64344c3ed3cb}{createOpcServer}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00035}00035\ \ \ \ \ \mbox{\hyperlink{class_opc_server}{OpcServer}}*\ pServer\ =\ \mbox{\hyperlink{_address_space_2_opc_server_8cpp_a345f92ed4d179fc11dc6711d0016c04c}{getOpcServer}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00036}00036\ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_ac4be59d86873133f063fa3092abcfd29}{initialize}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{comment}{//\ \ provide\ the\ server\ with\ the\ proper\ custom\ creator}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00038}00038\ \ \ \ \ \mbox{\hyperlink{class_my_creator}{MyCreator}}\ creator;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(pServer-\/>\mbox{\hyperlink{class_opc_server_a168a6358d61e988e1d65a25b449907a6}{prepare}}(\&creator)))}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00041}00041\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_a0594d3845dfea1226ab98d13a75ae644}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_address_space_2_opc_server_8cpp_ab9b5b8cffa3ce949c4ea9a9c130f76b2}{destroyOpcServer}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ CoUninitialize();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ \ handle\ the\ command\ line\ arguments\ (register/unregister,\ etc)}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ commandLine(GetCommandLine());}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00051}00051\ \ \ \ \ result\ =\ pServer-\/>\mbox{\hyperlink{class_opc_server_a3ee1c147512abd50a3c290489bf614eb}{processCommandLine}}(commandLine);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\_OK}})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ returnResult\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ \mbox{\hyperlink{_o_tcommon_8h_a0990a9e86fec4192280bdf000ed859c2}{S\_FALSE}})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ registration\ operation\ successful}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_afc39679c897c0d37a609d3aa84365225}{trace}}(\mbox{\hyperlink{_trace_8h_aba471dcec7321e71bb8beba164e6acfbacab3f74691849a140395b0fdf668c1b4}{EnumTraceLevel\_INF}},\ \mbox{\hyperlink{_trace_8h_a0a9b47e17f7a037741a09af10ed674b5a04afe83200e54b74d2d89a4253f010f0}{EnumTraceGroup\_USER1}},\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\_tWinMain"{}}),}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Registration\ succeeded"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ returnResult\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ registration\ operation\ has\ failed}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_afc39679c897c0d37a609d3aa84365225}{trace}}(\mbox{\hyperlink{_trace_8h_aba471dcec7321e71bb8beba164e6acfbacab3f74691849a140395b0fdf668c1b4}{EnumTraceLevel\_INF}},\ \mbox{\hyperlink{_trace_8h_a0a9b47e17f7a037741a09af10ed674b5a04afe83200e54b74d2d89a4253f010f0}{EnumTraceGroup\_USER1}},\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\_tWinMain"{}}),}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Registration\ failed"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ returnResult\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ no\ matter\ what\ close\ the\ application\ if\ processCommandLine\ returned}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ something\ different\ of\ S\_OK}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_a0594d3845dfea1226ab98d13a75ae644}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_address_space_2_opc_server_8cpp_ab9b5b8cffa3ce949c4ea9a9c130f76b2}{destroyOpcServer}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ CoUninitialize();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ returnResult;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00079}00079\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00081}00081\ \ \ \ \ \textcolor{comment}{//\ \ Start\ the\ OPC\ server's\ I/O\ internal\ mechanism}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(pServer-\/>\mbox{\hyperlink{class_opc_server_abfcccbc2c8ec06ff11f81218151d0750}{start}}()))}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00083}00083\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ declare\ the\ namespaces\ built\ and\ the\ server\ ready\ for\ clients\ to\ connect}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_acf701752108f115b511cfbfbbe1e0fe5}{ready}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00088}00088\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ Ctrl-\/C\ to\ exit\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ waitTime\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00090}00090\ \ \ \ \ BOOL\ end\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ waitRet\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{while}\ (!end)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00094}00094\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ waitRet\ =\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099}{WaitForSingleObject}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}},\ waitTime);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ waitTime\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (waitRet\ ==\ WAIT\_OBJECT\_0)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ TODO:\ place\ your\ cyclic\ code\ here}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if...else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00106}00106\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ ens\ while}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00108}00108\ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_ad8226cbba4c503abd4fae86496d45771}{stop}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00109}00109\ \ \ \ \ pServer-\/>\mbox{\hyperlink{class_opc_server_a0594d3845dfea1226ab98d13a75ae644}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00110}00110\ \ \ \ \ \mbox{\hyperlink{_address_space_2_opc_server_8cpp_ab9b5b8cffa3ce949c4ea9a9c130f76b2}{destroyOpcServer}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00111}00111\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00112}00112\ \ \ \ \ CoUninitialize();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2server_2tutorial_2_a_e_2_step1_2_console_8cpp_source_l00114}00114\ \}\ \ \ \textcolor{comment}{//\ \ end\ main}}
+
+\end{DoxyCode}

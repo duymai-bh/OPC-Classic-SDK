@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [Unpublished] Copyright 2022.  Baker Hughes Energy Technology UK Limited. -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="ModbusRTUDataTypeType">
+		<xs:annotation>
+			<xs:documentation>A ModbusRTU data type enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="ModbusType_Byte">
+				<xs:annotation>
+					<xs:documentation>Byte - unsigned 8 bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusType_Word">
+				<xs:annotation>
+					<xs:documentation>Word - unsigned 16 bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusType_Long">
+				<xs:annotation>
+					<xs:documentation>Long - unsiged 32 bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUFuncCodeType">
+		<xs:annotation>
+			<xs:documentation>A ModbusRTU function code type of data enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="MBus_UnUsed">
+				<xs:annotation>
+					<xs:documentation>Unused enum. This is added to match this enum list with macros defined.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_ReadCoil">
+				<xs:annotation>
+					<xs:documentation>Function Code (1):  Read coil</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_ReadDiscreteInput">
+				<xs:annotation>
+					<xs:documentation>Function Code (2): Read discrete input</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_HoldingRegister">
+				<xs:annotation>
+					<xs:documentation>Function Code (3):  Holding Register  - Read/write type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MBus_InputRegister">
+				<xs:annotation>
+					<xs:documentation>Function Code (4): Input register - Read only type</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUAddressType">
+		<xs:annotation>
+			<xs:documentation>ModbusRTU address type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>First ModbusRTU address is 0.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="65535">
+				<xs:annotation>
+					<xs:documentation>End ModbusRTU address is 65535 </xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUZeroAddressType">
+		<xs:annotation>
+			<xs:documentation>ModbusRTU Node uses  Zero based Addressing </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="bool"/>
+	</xs:simpleType>
+	<xs:complexType name="ModbusRTUTagType">
+		<xs:annotation>
+			<xs:documentation>ModbusRTU tag type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the signal being acquired (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Address" type="ModbusRTUAddressType">
+				<xs:annotation>
+					<xs:documentation>Modbus address of the required register [Range; 0..4294967295].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataType" type="ModbusRTUDataTypeType">
+				<xs:annotation>
+					<xs:documentation>Type of data which shall be acquired from the node.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModbusRTUScanRateType">
+		<xs:annotation>
+			<xs:documentation>ModbusRTU tag scan rate type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint32">
+			<xs:minInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>Minimum 100 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="4294967295">
+				<xs:annotation>
+					<xs:documentation>Maximum 49.71 days (since; 4294967295 milliseconds (2^32 bits = 4294967295) / (1000 milliseconds * 60 seconds* 60 minuites * 24 hours)).</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUNumItemsType">
+		<xs:annotation>
+			<xs:documentation>Number of Items to read. (Range 1 to 1600)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum number of items that can be read.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="1600">
+				<xs:annotation>
+					<xs:documentation>Maximum number of items that can be read.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ModbusRTUScanListType">
+		<xs:annotation>
+			<xs:documentation>ModbusRTU scan list type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ScanRate" type="ModbusRTUScanRateType">
+				<xs:annotation>
+					<xs:documentation>ModbusRTU tag scan rate is in milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FuncCode" type="ModbusRTUFuncCodeType">
+				<xs:annotation>
+					<xs:documentation>Function code of data which shall be acquired from the node.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlockStartAddr" type="ModbusRTUAddressType">
+				<xs:annotation>
+					<xs:documentation>Start address of the block to read.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumItems" type="ModbusRTUNumItemsType">
+				<xs:annotation>
+					<xs:documentation>Number of items to read from the start of the block.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusRTUScanTag" type="ModbusRTUTagType" maxOccurs="100">
+				<xs:annotation>
+					<xs:documentation>This is an array of ModbusRTU tags used to contain the tag definitions (Range 1 to 100).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModbusRTUDownlinkTagNumRegsType">
+		<xs:annotation>
+			<xs:documentation>Downlink tag type size type (Range 1 to 32).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ModbusRTUDownlinkTagType">
+		<xs:annotation>
+			<xs:documentation>Downlink tag definition (write)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string8">
+				<xs:annotation>
+					<xs:documentation>Defines the name of the signal being written (Max 8 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumRegs" type="ModbusRTUDownlinkTagNumRegsType">
+				<xs:annotation>
+					<xs:documentation>Number of registers for this tag, i.e. 16 bit (1 reg) or 32 bit (2 regs)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModbusRTURegisterCountType">
+		<xs:annotation>
+			<xs:documentation>Register count type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum register count 1.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>Max SEM5 UDP payload 255 bytes, 100 = 200 bytes, plus room for SEM5 UDP header </xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ModbusRTUDownlinkMsgType">
+		<xs:annotation>
+			<xs:documentation>Downlink message structure (Write Multiple registers)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SubCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>This is used to identify the downlink message. This is defined on a per node type basis (each node can have its own set of messages).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartAddress" type="ModbusRTUAddressType">
+				<xs:annotation>
+					<xs:documentation>Start Register Address for contiguous block write</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RegisterCount" type="ModbusRTURegisterCountType">
+				<xs:annotation>
+					<xs:documentation>Number of registers in contiguous block.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusRTUWriteTag" type="ModbusRTUDownlinkTagType" maxOccurs="20">
+				<xs:annotation>
+					<xs:documentation>Set of downlink tags (Range 1 to 20).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModbusRTUNodeAddressType">
+		<xs:annotation>
+			<xs:documentation>ModbusRTU node address type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum node address is 1.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="250">
+				<xs:annotation>
+					<xs:documentation>Maximum node address is 250.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUTimeoutPeriodType">
+		<xs:annotation>
+			<xs:documentation>Communications timeout period type,inclusive of ModbusRTUTransactionPeriodType</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>Minimum communications timout period 100 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="65535">
+				<xs:annotation>
+					<xs:documentation>Maximum communications timout period 65535 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUTurnaroundPeriodType">
+		<xs:annotation>
+			<xs:documentation>Communications turnaround period type, time before first RX character expected.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="10">
+				<xs:annotation>
+					<xs:documentation>Minimum communications transaction period 10 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="1000">
+				<xs:annotation>
+					<xs:documentation>Maximum communications transaction period of 1000 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUBackoffPeriodType">
+		<xs:annotation>
+			<xs:documentation>Scan backoff period in  type, used when node detected as having Bad comms. (msecs)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="1000">
+				<xs:annotation>
+					<xs:documentation>Minimum bad comms backoff period 1000 milliseconds. </xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="60000">
+				<xs:annotation>
+					<xs:documentation>Minimum bad comms backoff period 60 seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUByteOrderType">
+		<xs:annotation>
+			<xs:documentation>A ModbusRTU Byte Order type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="Mbus_RTU_ByteOrder_BigEndian">
+				<xs:annotation>
+					<xs:documentation>Modbus slave device expects bytes to be ordered Big Endian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mbus_RTU_ByteOrder_LittleEndian">
+				<xs:annotation>
+					<xs:documentation>Modbus slave device expects bytes to be ordered Little Endian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUWordOrderType">
+		<xs:annotation>
+			<xs:documentation>A ModbusRTU Word Order type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="Mbus_RTU_WordOrder_BigEndian">
+				<xs:annotation>
+					<xs:documentation>Modbus slave device expects words to be ordered Big Endian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mbus_RTU_WordOrder_LittleEndian">
+				<xs:annotation>
+					<xs:documentation>Modbus slave device expects words to be ordered Little Endian</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusDeviceInitDriverType">
+		<xs:annotation>
+			<xs:documentation>A ModbusRTU device initialisation driver type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="Mbus_DevInit_None">
+				<xs:annotation>
+					<xs:documentation>Modbus slave device does not require and additional initialisation, or using transparent 3rd party master</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Mbus_Devinit_IficDhpt">
+				<xs:annotation>
+					<xs:documentation>Schlumberger IFIC DHPT card</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ModbusDeviceInitParamsType">
+		<xs:sequence>
+			<xs:element name="MbusInitParamName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Defines the name of the Modbus Device Initialisation Parameter (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MbusInitParamValue" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Modbus device initialisation parameter value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModbusDeviceInitType">
+		<xs:sequence>
+			<xs:element name="MbusInitDriver" type="ModbusDeviceInitDriverType" default="Mbus_DevInit_None">
+				<xs:annotation>
+					<xs:documentation>Modbus Device Driver Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MbusInitDriverParams" type="ModbusDeviceInitParamsType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>List of initialisation parameters utilised by the selected Modbus device driver.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModbusRTUInterfaceNumberType">
+		<xs:annotation>
+			<xs:documentation>Modbus RTU Interface Number Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>First Interface number is 1.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="3">
+				<xs:annotation>
+					<xs:documentation>Last Interface number is 3.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ModbusRTUNodeType">
+		<xs:sequence>
+			<xs:element name="NodeType" type="uint8" default="0">
+				<xs:annotation>
+					<xs:documentation>ModbusRTU node type is a numeric value, unique, and used to identify the type of node [Range; 0..255].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the type of node (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeAddress" type="ModbusRTUNodeAddressType" default="1">
+				<xs:annotation>
+					<xs:documentation>Node address [Range; 1..250].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZeroBasedAddress" type="ModbusRTUZeroAddressType" default="true">
+				<xs:annotation>
+					<xs:documentation>Node zero addressing mode setting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TurnaroundDelay" type="ModbusRTUTurnaroundPeriodType" default="10">
+				<xs:annotation>
+					<xs:documentation>Communications turnaround delay period [Range; 10..1000ms].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Timeout" type="ModbusRTUTimeoutPeriodType" default="1000">
+				<xs:annotation>
+					<xs:documentation>Communications timeout period [Range; 100..65535ms].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BadCommsBackoff" type="ModbusRTUBackoffPeriodType" default="1000">
+				<xs:annotation>
+					<xs:documentation>Node Scan backoff period on detection on detection of bad comms, [Range; 1000..60000ms].</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HPScanData" type="ModbusRTUScanListType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>High priority data to scan from the ModbusRTU node.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LPScanData" type="ModbusRTUScanListType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Low priority data to scan from the ModbusRTU node.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DownlinkMessages" type="ModbusRTUDownlinkMsgType" minOccurs="0" maxOccurs="32">
+				<xs:annotation>
+					<xs:documentation>The downlink messages (Range 0 to 32).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeviceInitInfo" type="ModbusDeviceInitType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Modbus Slave Device Initialisation information</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ByteOrder" type="ModbusRTUByteOrderType" default="Mbus_RTU_ByteOrder_BigEndian">
+				<xs:annotation>
+					<xs:documentation>Modbus Slave Device Byte Order</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WordOrder" type="ModbusRTUWordOrderType" default="Mbus_RTU_WordOrder_BigEndian">
+				<xs:annotation>
+					<xs:documentation>Modbus Slave Device Word Order</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModbusRTUInterfaceType">
+		<xs:sequence>
+			<xs:element name="InterfaceNumber" type="ModbusRTUInterfaceNumberType">
+				<xs:annotation>
+					<xs:documentation>Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SerialPort" type="ModbusRTUSerialPortType">
+				<xs:annotation>
+					<xs:documentation>ModbusRTU serial port configuration.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Nodes" type="ModbusRTUNodeType" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Nodes (Range 1 to 10).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ModbusTCPInterfaceType">
+		<xs:sequence>
+			<xs:element name="InterfaceNumber" type="ModbusRTUInterfaceNumberType">
+				<xs:annotation>
+					<xs:documentation>Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TCPPort" type="uint16" default="502">
+				<xs:annotation>
+					<xs:documentation>ModbusTCP interface configuration.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Nodes" type="ModbusRTUNodeType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Nodes (Range 1).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

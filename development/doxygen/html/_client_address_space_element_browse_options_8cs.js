@@ -1,0 +1,5 @@
+var _client_address_space_element_browse_options_8cs =
+[
+    [ "Softing.OPCToolbox.Client.AddressSpaceElementBrowseOptions", "class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element_browse_options.html", "class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element_browse_options" ],
+    [ "Softing.OPCToolbox.Client.DaAddressSpaceElementBrowseOptions", "class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_address_space_element_browse_options.html", "class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_address_space_element_browse_options" ]
+];

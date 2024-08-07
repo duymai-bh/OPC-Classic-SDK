@@ -1,0 +1,25 @@
+var classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options =
+[
+    [ "DaAddressSpaceElementBrowseOptions", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a0f3cccd2834eb40586027f511fd96430", null ],
+    [ "getAccessRightsFilter", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a1aae1805c7a0d926d885a5be99c4621b", null ],
+    [ "getDataTypeFilter", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a44e88d4b45ae461b17d7c7f57fba9aeb", null ],
+    [ "getIsRetrievingItemID", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a9bd1f735c2a987298ddf8997ebb8c0e3", null ],
+    [ "getIsReturningProperties", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#af8639f1f54ca7b439a62bcda40c69939", null ],
+    [ "getIsReturningPropertyValues", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#ab7ea09d6ed79edee203701390cfe91ce", null ],
+    [ "getMaxElements", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#ad143c85b6968cae04101deb04b8af156", null ],
+    [ "getVendorFilter", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#ad479bb92b6aef1d3ed1da7e0e107df48", null ],
+    [ "setAccessRightsFilter", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#ab79b37a5a98c77339bb38ee24a40e79b", null ],
+    [ "setDataTypeFilter", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a3d2327449f2793e786eebecb5f17ac2a", null ],
+    [ "setIsRetrievingItemID", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a483b02d02162bbe4436f9befc8334fe8", null ],
+    [ "setIsReturningProperties", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#ac571a6c335b679443e4422f7592e0a6d", null ],
+    [ "setIsReturningPropertyValues", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a219761414e2fb05ec5484760caacf827", null ],
+    [ "setMaxElements", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a831dc3108a5c8319d6bb1415dad09a29", null ],
+    [ "setVendorFilter", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a579f7b1d7c484b50753fe8d7f662ee2e", null ],
+    [ "accessRightsFilter_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a017ee0f0578839807f2c8b0053187af9", null ],
+    [ "dataTypeFilter_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a89e5b6a868070506ccf68031dd563249", null ],
+    [ "isRetrievingItemID_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a929d667ed064ca4d7b65d4fa05a006d3", null ],
+    [ "isReturningProperties_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#ae5ada6ad798043a06e50453af5380a0c", null ],
+    [ "isReturningPropertyValues_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a85129cf4caa73aceac040cc5cb823f79", null ],
+    [ "maxElements_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#adf54c90f5a27c1f91c4f1571803c6109", null ],
+    [ "vendorFilter_", "classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_da_address_space_element_browse_options.html#a62fc8fa8ad7dfc4062a7e6e198ee05af", null ]
+];

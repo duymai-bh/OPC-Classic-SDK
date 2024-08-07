@@ -1,0 +1,70 @@
+\doxysection{Drag\+Form.\+cs}
+\hypertarget{_drag_form_8cs_source}{}\label{_drag_form_8cs_source}\index{NET/samples/client/Demo Client/WinFormsUI/Docking/DragForm.cs@{NET/samples/client/Demo Client/WinFormsUI/Docking/DragForm.cs}}
+\mbox{\hyperlink{_drag_form_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking}{WeifenLuo.WinFormsUI.Docking}}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00006}00006\ \ \ \ \ \textcolor{comment}{//\ Inspired\ by\ Chris\ Sano's\ article:}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00007}00007\ \ \ \ \ \textcolor{comment}{//\ http://msdn.microsoft.com/smartclient/default.aspx?pull=/library/en-\/us/dnwinforms/html/colorpicker.asp}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00008}00008\ \ \ \ \ \textcolor{comment}{//\ In\ Sano's\ article,\ the\ DragForm\ needs\ to\ meet\ the\ following\ criteria:}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00009}00009\ \ \ \ \ \textcolor{comment}{//\ (1)\ it\ was\ not\ to\ show\ up\ in\ the\ task\ bar;}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00010}00010\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ ShowInTaskBar\ =\ false}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//\ (2)\ it\ needed\ to\ be\ the\ top-\/most\ window;}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ TopMost\ =\ true\ (not\ necessary\ here)}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00013}00013\ \ \ \ \ \textcolor{comment}{//\ (3)\ its\ icon\ could\ not\ show\ up\ in\ the\ ALT+TAB\ window\ if\ the\ user\ pressed\ ALT+TAB\ during\ a\ drag-\/and-\/drop;}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00014}00014\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ FormBorderStyle\ =\ FormBorderStyle.None;}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00015}00015\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Create\ with\ WS\_EX\_TOOLWINDOW\ window\ style.}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Compares\ with\ the\ solution\ in\ the\ artile\ by\ setting\ FormBorderStyle\ as\ FixedToolWindow,}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00017}00017\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ and\ then\ clip\ the\ window\ caption\ and\ border,\ this\ way\ is\ much\ simplier.}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00018}00018\ \ \ \ \ \textcolor{comment}{//\ (4)\ it\ was\ not\ to\ steal\ focus\ from\ the\ application\ when\ displayed.}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ User\ Win32\ ShowWindow\ API\ with\ SW\_SHOWNOACTIVATE}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00020}00020\ \ \ \ \ \textcolor{comment}{//\ In\ addition,\ this\ form\ should\ only\ for\ display\ and\ therefore\ should\ act\ as\ transparent,\ otherwise}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ WindowFromPoint\ will\ return\ this\ form,\ instead\ of\ the\ control\ beneath.\ Need\ BOTH\ of\ the\ following\ to}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ achieve\ this\ (don't\ know\ why,\ spent\ hours\ to\ try\ it\ out\ :(\ ):}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ \ 1.\ Enabled\ =\ false;}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ \ 2.\ WM\_NCHITTEST\ returns\ HTTRANSPARENT}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{class\ }DragForm\ :\ Form}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00026}00026\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ DragForm()}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ FormBorderStyle\ =\ FormBorderStyle.None;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ ShowInTaskbar\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ SetStyle(ControlStyles.Selectable,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ Enabled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ CreateParams\ CreateParams}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateParams\ createParams\ =\ base.CreateParams;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ createParams.ExStyle\ |=\ (int)Win32.WindowExStyles.WS\_EX\_TOOLWINDOW;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ createParams;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ WndProc(ref\ Message\ m)}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m.Msg\ ==\ (\textcolor{keywordtype}{int})Win32.Msgs.WM\_NCHITTEST)}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m.Result\ =\ (IntPtr)Win32.HitTest.HTTRANSPARENT;}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ base.WndProc\ (ref\ m);}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Show(\textcolor{keywordtype}{bool}\ bActivate)}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bActivate)}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Show();}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NativeMethods.ShowWindow(Handle,\ (\textcolor{keywordtype}{int})Win32.ShowWindowStyles.SW\_SHOWNOACTIVATE);}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_drag_form_8cs_source_l00064}00064\ \}}
+
+\end{DoxyCode}

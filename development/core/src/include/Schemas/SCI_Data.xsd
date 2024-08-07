@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Alan Davis (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SCI_AutoChange.xsd"/>
+	<xs:include schemaLocation="SCI_Mapping_Rules_Opc.xsd"/>
+	<xs:include schemaLocation="SCI_Mapping_Rules.xsd"/>
+	<xs:include schemaLocation="SCI_MappingTemplate.xsd"/>
+	<xs:include schemaLocation="SCI_GenericSensor.xsd"/>
+	<xs:include schemaLocation="SCI_InterfaceWatchDog.xsd"/>
+	<xs:include schemaLocation="SCI_CommsLossWatchDog.xsd"/>
+	<xs:include schemaLocation="SCI_ModbusDevice.xsd"/>
+	<!-- This is surface info only ! -->
+	<xs:complexType name="SCIType">
+		<xs:sequence>
+			<xs:element name="AutoChangeGroups" type="SCIAutoChangeGroupType" minOccurs="0" maxOccurs="32">
+				<xs:annotation>
+					<xs:documentation>Auto change groups for the SCI AutoChange function (Range 0 to 32).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusMappingRule" type="SCI_ModbusConfigType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Data ranges describe the address ranges bound to standard modbus data types this range is typically fixed to the standard modbus ranges and could be omitted and hard-coded as the specific data types DO,DI,AI,AO and bound the described addresses.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OPCMappingRule" type="SCI_OPCConfigType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>OPC mapping rule defined data type which is used in template file.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurfaceSensors" type="SurfaceSensorType" minOccurs="0" maxOccurs="1000">
+				<xs:annotation>
+					<xs:documentation>Surface Sensor Readings Maximum 1000.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceBoolWatchDog" type="InterfaceWatchDogType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Interface WatchDog Boolean Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceIntWatchDog" type="InterfaceWatchDogType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Interface WatchDog Integer Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceWatchDogExt" type="InterfaceWatchDogExternalType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Interface WatchDog External</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommsLossWatchDog" type="CommsLossWatchDogType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Comms Loss WatchDog Type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusDevices" type="SurfaceModbusDeviceType" minOccurs="0" maxOccurs="50">
+				<xs:annotation>
+					<xs:documentation>Surface Modbus Slave Devices</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RedundantModbusDevice" type="RedundantModbusDeviceType" minOccurs="0" maxOccurs="50">
+				<xs:annotation>
+					<xs:documentation>Redundant Surface Modbus Devices</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnumeratedDefinitions" type="EnumeratedDefintionsType" minOccurs="0" maxOccurs="50">
+				<xs:annotation>
+					<xs:documentation>Enumerated Defintions for Analogue Sensors</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data associated with SCI</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnumeratedDefintionsType">
+		<xs:annotation>
+			<xs:documentation>This type contains Enumerated Defintions for Analogue Sensors</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Identifier for Enumerated Defintions (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ValueDefinitions" type="EnumeratedValueDefinitionType" minOccurs="0" maxOccurs="65535">
+				<xs:annotation>
+					<xs:documentation>Value Enumerated Defintions, Maximum 65535.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnumeratedValueDefinitionType">
+		<xs:annotation>
+			<xs:documentation>This type contains Enumerated Defintions for Analogue Sensors</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Value" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Analogue Value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Definition" type="string255">
+				<xs:annotation>
+					<xs:documentation>Analogue Definition.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

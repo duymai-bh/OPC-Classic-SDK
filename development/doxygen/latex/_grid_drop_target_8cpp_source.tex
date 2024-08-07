@@ -1,0 +1,184 @@
+\doxysection{Grid\+Drop\+Target.\+cpp}
+\hypertarget{_grid_drop_target_8cpp_source}{}\label{_grid_drop_target_8cpp_source}\index{core/src/demo/SOClient/GridCtrl\_SRC/GridDropTarget.cpp@{core/src/demo/SOClient/GridCtrl\_SRC/GridDropTarget.cpp}}
+\mbox{\hyperlink{_grid_drop_target_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00001}00001\ \textcolor{comment}{//\ GridDropTarget.cpp\ :\ implementation\ file}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00002}00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00003}00003\ \textcolor{comment}{//\ MFC\ Grid\ Control\ -\/\ Drag/Drop\ target\ implementation}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00004}00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00005}00005\ \textcolor{comment}{//\ CGridDropTarget\ is\ an\ OLE\ drop\ target\ for\ CGridCtrl.\ All\ it\ does}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00006}00006\ \textcolor{comment}{//\ is\ handle\ the\ drag\ and\ drop\ windows\ messages\ and\ pass\ them}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00007}00007\ \textcolor{comment}{//\ directly\ onto\ the\ grid\ control.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00008}00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00009}00009\ \textcolor{comment}{//\ Written\ by\ Chris\ Maunder\ <cmaunder@mail.com>}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00010}00010\ \textcolor{comment}{//\ Copyright\ (c)\ 1998-\/2002.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00011}00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00012}00012\ \textcolor{comment}{//\ This\ code\ may\ be\ used\ in\ compiled\ form\ in\ any\ way\ you\ desire.\ This}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00013}00013\ \textcolor{comment}{//\ file\ may\ be\ redistributed\ unmodified\ by\ any\ means\ PROVIDING\ it\ is}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00014}00014\ \textcolor{comment}{//\ not\ sold\ for\ profit\ without\ the\ authors\ written\ consent,\ and}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00015}00015\ \textcolor{comment}{//\ providing\ that\ this\ notice\ and\ the\ authors\ name\ and\ all\ copyright}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00016}00016\ \textcolor{comment}{//\ notices\ remains\ intact.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00017}00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00018}00018\ \textcolor{comment}{//\ An\ email\ letting\ me\ know\ how\ you\ are\ using\ it\ would\ be\ nice\ as\ well.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00019}00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00020}00020\ \textcolor{comment}{//\ This\ file\ is\ provided\ "{}as\ is"{}\ with\ no\ expressed\ or\ implied\ warranty.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00021}00021\ \textcolor{comment}{//\ The\ author\ accepts\ no\ liability\ for\ any\ damage/loss\ of\ business\ that}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00022}00022\ \textcolor{comment}{//\ this\ product\ may\ cause.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00023}00023\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00024}00024\ \textcolor{comment}{//\ For\ use\ with\ CGridCtrl\ v2.10+}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00025}00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_ctrl_8h}{GridCtrl.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00031}00031\ \textcolor{preprocessor}{\#ifndef\ GRIDCONTROL\_NO\_DRAGDROP}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_drop_target_8h}{GridDropTarget.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00034}00034\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00035}00035\ \textcolor{preprocessor}{\#define\ new\ DEBUG\_NEW}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00036}00036\ \textcolor{preprocessor}{\#undef\ THIS\_FILE}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00037}00037\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ THIS\_FILE[]\ =\ \_\_FILE\_\_;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00038}00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00041}00041\ \textcolor{comment}{//\ CGridDropTarget}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00043}\mbox{\hyperlink{class_c_grid_drop_target_a150cdd7368b3c2efe05ad657f87de530}{00043}}\ \mbox{\hyperlink{class_c_grid_drop_target_a150cdd7368b3c2efe05ad657f87de530}{CGridDropTarget::CGridDropTarget}}()}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{class_c_grid_drop_target_a1f813c01a4c240765f2314c993590c7c}{m\_bRegistered}}\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00049}\mbox{\hyperlink{class_c_grid_drop_target_a8d42ab8e19082cf4c29cf9215c965b1d}{00049}}\ \mbox{\hyperlink{class_c_grid_drop_target_a8d42ab8e19082cf4c29cf9215c965b1d}{CGridDropTarget::\string~CGridDropTarget}}()}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00050}00050\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00053}00053\ \textcolor{comment}{//\ Overloaded\ Register()\ function\ performs\ the\ normal\ COleDropTarget::Register}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00054}00054\ \textcolor{comment}{//\ but\ also\ serves\ to\ connect\ this\ COleDropTarget\ with\ the\ parent\ grid\ control,}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00055}00055\ \textcolor{comment}{//\ where\ all\ drop\ messages\ will\ ultimately\ be\ forwarded.}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00056}\mbox{\hyperlink{class_c_grid_drop_target_a460a6a728dee27edc35ba5ecb789e33f}{00056}}\ BOOL\ \mbox{\hyperlink{class_c_grid_drop_target_a460a6a728dee27edc35ba5ecb789e33f}{CGridDropTarget::Register}}(\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}}*\ pGridCtrl)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00057}00057\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_c_grid_drop_target_a1f813c01a4c240765f2314c993590c7c}{m\_bRegistered}})}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ Stop\ re-\/entry\ problems}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keyword}{static}\ BOOL\ bInProcedure\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (bInProcedure)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00071}00071\ \ \ \ \ bInProcedure\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00072}00072\ \ \ \ \ ASSERT(pGridCtrl-\/>IsKindOf(RUNTIME\_CLASS(\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}})));}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00073}00073\ \ \ \ \ ASSERT(pGridCtrl);}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pGridCtrl\ ||\ !pGridCtrl-\/>IsKindOf(RUNTIME\_CLASS(\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}})))}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ bInProcedure\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00079}00079\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}\ =\ pGridCtrl;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{class_c_grid_drop_target_a1f813c01a4c240765f2314c993590c7c}{m\_bRegistered}}\ =\ COleDropTarget::Register(pGridCtrl);}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00083}00083\ \ \ \ \ bInProcedure\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_drop_target_a1f813c01a4c240765f2314c993590c7c}{m\_bRegistered}};}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00085}00085\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00087}\mbox{\hyperlink{class_c_grid_drop_target_a81d10f0dc74de978faba6ecbbfb5664c}{00087}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_drop_target_a81d10f0dc74de978faba6ecbbfb5664c}{CGridDropTarget::Revoke}}()}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00088}00088\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{class_c_grid_drop_target_a1f813c01a4c240765f2314c993590c7c}{m\_bRegistered}}\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00090}00090\ \ \ \ \ COleDropTarget::Revoke();}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00091}00091\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00093}00093\ BEGIN\_MESSAGE\_MAP(\mbox{\hyperlink{class_c_grid_drop_target}{CGridDropTarget}},\ COleDropTarget)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\{\{AFX\_MSG\_MAP(CGridDropTarget)}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\}\}AFX\_MSG\_MAP}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00096}00096\ END\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00099}00099\ \textcolor{comment}{//\ CGridDropTarget\ message\ handlers}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00101}\mbox{\hyperlink{class_c_grid_drop_target_ac7672d30210c29e5a4a3364f9d635eef}{00101}}\ DROPEFFECT\ \mbox{\hyperlink{class_c_grid_drop_target}{CGridDropTarget}}::OnDragScroll(CWnd*\ pWnd,\ DWORD\ dwKeyState,\ CPoint\ \textcolor{comment}{/*point*/})}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00102}00102\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00103}00103\ \textcolor{comment}{//\ \ \ \ TRACE("{}In\ CGridDropTarget::OnDragScroll\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (pWnd-\/>GetSafeHwnd()\ ==\ m\_pGridCtrl-\/>GetSafeHwnd())}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00105}00105\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dwKeyState\ \&\ MK\_CONTROL)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DROPEFFECT\_COPY;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DROPEFFECT\_MOVE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00116}00116\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DROPEFFECT\_NONE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00119}00119\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00121}\mbox{\hyperlink{class_c_grid_drop_target_ad5c5810b1c07c83e8b768e85d29977af}{00121}}\ DROPEFFECT\ \mbox{\hyperlink{class_c_grid_drop_target_ad5c5810b1c07c83e8b768e85d29977af}{CGridDropTarget::OnDragEnter}}(CWnd*\ pWnd,\ COleDataObject*\ pDataObject,}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ dwKeyState,\ CPoint\ point)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00123}00123\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00124}00124\ \ \ \ \ TRACE(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}In\ CGridDropTarget::OnDragEnter\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00125}00125\ \ \ \ \ ASSERT(\mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}});}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{if}\ (pWnd-\/>GetSafeHwnd()\ ==\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>GetSafeHwnd())}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00128}00128\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>\mbox{\hyperlink{class_c_grid_ctrl_a8a21373b59f23c7b3626b69944d14797}{OnDragEnter}}(pDataObject,\ dwKeyState,\ point);}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00132}00132\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DROPEFFECT\_NONE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00135}00135\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00137}\mbox{\hyperlink{class_c_grid_drop_target_a8502155d8cee3b537a30bbb4c9131c12}{00137}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_drop_target_a8502155d8cee3b537a30bbb4c9131c12}{CGridDropTarget::OnDragLeave}}(CWnd*\ pWnd)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00138}00138\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00139}00139\ \ \ \ \ TRACE(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}In\ CGridDropTarget::OnDragLeave\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00140}00140\ \ \ \ \ ASSERT(\mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}});}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (pWnd-\/>GetSafeHwnd()\ ==\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>GetSafeHwnd())}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00143}00143\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>\mbox{\hyperlink{class_c_grid_ctrl_ae78d97a28d24434b40950de4c37d3f70}{OnDragLeave}}();}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00145}00145\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00146}00146\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00148}\mbox{\hyperlink{class_c_grid_drop_target_a9de042d9cea36988aa193e0f6ea58a08}{00148}}\ DROPEFFECT\ \mbox{\hyperlink{class_c_grid_drop_target_a9de042d9cea36988aa193e0f6ea58a08}{CGridDropTarget::OnDragOver}}(CWnd*\ pWnd,\ COleDataObject*\ pDataObject,}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ dwKeyState,\ CPoint\ point)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00150}00150\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00151}00151\ \textcolor{comment}{//\ \ \ \ TRACE("{}In\ CGridDropTarget::OnDragOver\(\backslash\)n"{});}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00152}00152\ \ \ \ \ ASSERT(\mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}});}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{if}\ (pWnd-\/>GetSafeHwnd()\ ==\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>GetSafeHwnd())}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00155}00155\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>\mbox{\hyperlink{class_c_grid_ctrl_a3d9c0bcf86cbd2287dc899794cd340a7}{OnDragOver}}(pDataObject,\ dwKeyState,\ point);}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00157}00157\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00159}00159\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ DROPEFFECT\_NONE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00161}00161\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00162}00162\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00164}\mbox{\hyperlink{class_c_grid_drop_target_a0fcd636ed785edd5baff21dd94833cd0}{00164}}\ BOOL\ \mbox{\hyperlink{class_c_grid_drop_target_a0fcd636ed785edd5baff21dd94833cd0}{CGridDropTarget::OnDrop}}(CWnd*\ pWnd,\ COleDataObject*\ pDataObject,}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DROPEFFECT\ dropEffect,\ CPoint\ point)}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00166}00166\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00167}00167\ \ \ \ \ TRACE(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}In\ CGridDropTarget::OnDrop\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00168}00168\ \ \ \ \ ASSERT(\mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}});}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (pWnd-\/>GetSafeHwnd()\ ==\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>GetSafeHwnd())}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00171}00171\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_drop_target_ab2eea9c2f0fd6bcd76422e6775caa312}{m\_pGridCtrl}}-\/>\mbox{\hyperlink{class_c_grid_ctrl_abdf57b1066c7184ad170e33dfa61a622}{OnDrop}}(pDataObject,\ dropEffect,\ point);}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00173}00173\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00175}00175\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00177}00177\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00178}00178\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_grid_drop_target_8cpp_source_l00180}00180\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GRIDCONTROL\_NO\_DRAGDROP}}
+
+\end{DoxyCode}

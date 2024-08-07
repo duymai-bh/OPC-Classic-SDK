@@ -1,0 +1,261 @@
+\doxysection{C++/samples/server/\+Softing\+Server/src/\+XXOPCsvc/\+Service.cpp File Reference}
+\hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp}{}\label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp}\index{C++/samples/server/SoftingServer/src/XXOPCsvc/Service.cpp@{C++/samples/server/SoftingServer/src/XXOPCsvc/Service.cpp}}
+{\ttfamily \#include "{}stdafx.\+h"{}}\newline
+{\ttfamily \#include "{}OTcommon.\+h"{}}\newline
+{\ttfamily \#include "{}Opc\+Server.\+h"{}}\newline
+Include dependency graph for Service.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DWORD WINAPI \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ad722f37d109d482596e5501ccda376cd}{simulation\+Thread}} (void \texorpdfstring{$\ast$}{*}context)
+\item 
+void \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a95f3d1b0e430e1adaee77dc075e07896}{start\+Simulation\+Thread}} (void)
+\item 
+\mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a375550c4c0bcc3676490ce9acdbadf4a}{report\+Status\+To\+SCMgr}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD current\+State, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD wait\+Hint)
+\item 
+void WINAPI \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ac03d66bc93ed7912419b8779e5ecbca5}{service\+Control\+Handler}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD ctrl\+Code)
+\item 
+void WINAPI \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a90fa9118585721e2621d94c0a370f526}{Service\+Main}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD argc, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}argv)
+\item 
+int APIENTRY \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0cf87e43605cf64a5205c79de66ad648}{\+\_\+t\+Win\+Main}} (HINSTANCE \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a3e73eefcfec9e50d521f165e2c2c14fe}{instance}}, HINSTANCE prev\+Instance, LPTSTR cmd\+Line, int cmd\+Show)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}} \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_af71b61550ea9a61e6c382490a188d310}{s\+\_\+service\+Name}} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}XXOPCsvc"{})
+\item 
+SERVICE\+\_\+\+STATUS \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0752d887892677e00313a0fd063722cc}{s\+\_\+service\+Status}}
+\item 
+SERVICE\+\_\+\+STATUS\+\_\+\+HANDLE \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_aa124df4bb911d3f5aff09535e48adcb9}{s\+\_\+service\+Status\+Handle}} = 0
+\item 
+HANDLE \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a204999d65960e75fd54e9e4474dbc7b4}{s\+\_\+service\+Stop\+Event}} = 0
+\item 
+HINSTANCE \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a8b525b1f9244e2fd5b977aa737fcc9da}{s\+\_\+instance}}
+\item 
+BOOL \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_aee738a8dca020d66493021f7f95b0cc4}{s\+\_\+simulation\+End}} = FALSE
+\item 
+\mbox{\hyperlink{class_mutex}{Mutex}} \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_afe95325996ddcbe93daf0dcd07c79ae1}{s\+\_\+simulation\+End\+Mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0cf87e43605cf64a5205c79de66ad648}\index{Service.cpp@{Service.cpp}!\_tWinMain@{\_tWinMain}}
+\index{\_tWinMain@{\_tWinMain}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{\_tWinMain()}{\_tWinMain()}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0cf87e43605cf64a5205c79de66ad648} 
+int APIENTRY \+\_\+t\+Win\+Main (\begin{DoxyParamCaption}\item[{HINSTANCE}]{instance}{, }\item[{HINSTANCE}]{prev\+Instance}{, }\item[{LPTSTR}]{cmd\+Line}{, }\item[{int}]{cmd\+Show}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00161}{161}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0cf87e43605cf64a5205c79de66ad648_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a375550c4c0bcc3676490ce9acdbadf4a}\index{Service.cpp@{Service.cpp}!reportStatusToSCMgr@{reportStatusToSCMgr}}
+\index{reportStatusToSCMgr@{reportStatusToSCMgr}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{reportStatusToSCMgr()}{reportStatusToSCMgr()}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a375550c4c0bcc3676490ce9acdbadf4a} 
+\mbox{\hyperlink{_softing_server_2src_2_x_x_o_p_c_2_opc_server_8cpp_aaf1f7b6acafbef3c53f7b8155ac6e734}{long}} report\+Status\+To\+SCMgr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{current\+State}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{wait\+Hint}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a375550c4c0bcc3676490ce9acdbadf4a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ac03d66bc93ed7912419b8779e5ecbca5}\index{Service.cpp@{Service.cpp}!serviceControlHandler@{serviceControlHandler}}
+\index{serviceControlHandler@{serviceControlHandler}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{serviceControlHandler()}{serviceControlHandler()}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ac03d66bc93ed7912419b8779e5ecbca5} 
+void WINAPI service\+Control\+Handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{ctrl\+Code}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ac03d66bc93ed7912419b8779e5ecbca5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ac03d66bc93ed7912419b8779e5ecbca5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a90fa9118585721e2621d94c0a370f526}\index{Service.cpp@{Service.cpp}!ServiceMain@{ServiceMain}}
+\index{ServiceMain@{ServiceMain}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{ServiceMain()}{ServiceMain()}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a90fa9118585721e2621d94c0a370f526} 
+void WINAPI Service\+Main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{argc}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}}]{argv}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00107}{107}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a90fa9118585721e2621d94c0a370f526_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a90fa9118585721e2621d94c0a370f526_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ad722f37d109d482596e5501ccda376cd}\index{Service.cpp@{Service.cpp}!simulationThread@{simulationThread}}
+\index{simulationThread@{simulationThread}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{simulationThread()}{simulationThread()}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ad722f37d109d482596e5501ccda376cd} 
+DWORD WINAPI simulation\+Thread (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ad722f37d109d482596e5501ccda376cd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_ad722f37d109d482596e5501ccda376cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a95f3d1b0e430e1adaee77dc075e07896}\index{Service.cpp@{Service.cpp}!startSimulationThread@{startSimulationThread}}
+\index{startSimulationThread@{startSimulationThread}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{startSimulationThread()}{startSimulationThread()}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a95f3d1b0e430e1adaee77dc075e07896} 
+void start\+Simulation\+Thread (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a95f3d1b0e430e1adaee77dc075e07896_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a95f3d1b0e430e1adaee77dc075e07896_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a8b525b1f9244e2fd5b977aa737fcc9da}\index{Service.cpp@{Service.cpp}!s\_instance@{s\_instance}}
+\index{s\_instance@{s\_instance}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_instance}{s\_instance}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a8b525b1f9244e2fd5b977aa737fcc9da} 
+HINSTANCE s\+\_\+instance}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_af71b61550ea9a61e6c382490a188d310}\index{Service.cpp@{Service.cpp}!s\_serviceName@{s\_serviceName}}
+\index{s\_serviceName@{s\_serviceName}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_serviceName}{s\_serviceName}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_af71b61550ea9a61e6c382490a188d310} 
+const \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}} s\+\_\+service\+Name = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}XXOPCsvc"{})}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0752d887892677e00313a0fd063722cc}\index{Service.cpp@{Service.cpp}!s\_serviceStatus@{s\_serviceStatus}}
+\index{s\_serviceStatus@{s\_serviceStatus}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_serviceStatus}{s\_serviceStatus}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a0752d887892677e00313a0fd063722cc} 
+SERVICE\+\_\+\+STATUS s\+\_\+service\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_aa124df4bb911d3f5aff09535e48adcb9}\index{Service.cpp@{Service.cpp}!s\_serviceStatusHandle@{s\_serviceStatusHandle}}
+\index{s\_serviceStatusHandle@{s\_serviceStatusHandle}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_serviceStatusHandle}{s\_serviceStatusHandle}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_aa124df4bb911d3f5aff09535e48adcb9} 
+SERVICE\+\_\+\+STATUS\+\_\+\+HANDLE s\+\_\+service\+Status\+Handle = 0}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a204999d65960e75fd54e9e4474dbc7b4}\index{Service.cpp@{Service.cpp}!s\_serviceStopEvent@{s\_serviceStopEvent}}
+\index{s\_serviceStopEvent@{s\_serviceStopEvent}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_serviceStopEvent}{s\_serviceStopEvent}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_a204999d65960e75fd54e9e4474dbc7b4} 
+HANDLE s\+\_\+service\+Stop\+Event = 0}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_aee738a8dca020d66493021f7f95b0cc4}\index{Service.cpp@{Service.cpp}!s\_simulationEnd@{s\_simulationEnd}}
+\index{s\_simulationEnd@{s\_simulationEnd}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_simulationEnd}{s\_simulationEnd}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_aee738a8dca020d66493021f7f95b0cc4} 
+BOOL s\+\_\+simulation\+End = FALSE}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+
+\Hypertarget{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_afe95325996ddcbe93daf0dcd07c79ae1}\index{Service.cpp@{Service.cpp}!s\_simulationEndMutex@{s\_simulationEndMutex}}
+\index{s\_simulationEndMutex@{s\_simulationEndMutex}!Service.cpp@{Service.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_simulationEndMutex}{s\_simulationEndMutex}}
+{\footnotesize\ttfamily \label{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_afe95325996ddcbe93daf0dcd07c79ae1} 
+\mbox{\hyperlink{class_mutex}{Mutex}} s\+\_\+simulation\+End\+Mutex}
+
+
+
+Definition at line \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{server_2_softing_server_2src_2_x_x_o_p_csvc_2_service_8cpp_source}{Service.\+cpp}}.
+

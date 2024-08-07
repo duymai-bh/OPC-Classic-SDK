@@ -1,0 +1,156 @@
+\doxysection{SOSrv.\+h}
+\hypertarget{_s_o_srv_8h_source}{}\label{_s_o_srv_8h_source}\index{core/src/include/SOSrv.h@{core/src/include/SOSrv.h}}
+\mbox{\hyperlink{_s_o_srv_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOSRV\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOSRV\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifndef\ SOFEATURE\_CMN\_OPCSERVER}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00005}\mbox{\hyperlink{_s_o_srv_8h_aea639982d13f296302095b20acbc3140}{00005}}\ \textcolor{preprocessor}{\#define\ SOFEATURE\_CMN\_OPCSERVER}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00006}00006\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFEATURE\_CMN\_OPCSERVER}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00008}00008\ \textcolor{preprocessor}{\#ifdef\ UNDER\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00009}00009\ \textcolor{preprocessor}{\#ifndef\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00010}00010\ \textcolor{preprocessor}{\#define\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00011}00011\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00012}00012\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ UNDER\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00014}00014\ \textcolor{preprocessor}{\#ifdef\ DEBUG}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00015}00015\ \textcolor{preprocessor}{\#ifndef\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00016}00016\ \textcolor{preprocessor}{\#define\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00017}00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00018}00018\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ DEBUG}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00020}00020\ \textcolor{preprocessor}{\#if\ defined(WIN32)\ ||\ defined(WIN64)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00021}00021\ \textcolor{comment}{//\ import\ libraries}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00023}00023\ \textcolor{preprocessor}{\#ifndef\ SOFLAG\_NO\_FORCE\_LIBS}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00024}00024\ \textcolor{comment}{//\#ifndef\ SOSRV}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00025}00025\ \textcolor{comment}{//\#ifndef\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00026}00026\ \textcolor{comment}{//\#if\ !defined(SOFLAG\_DEMO\_VERSION)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00027}00027\ \textcolor{comment}{//\#if\ defined(\_DEBUG)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00028}00028\ \textcolor{comment}{//\#if\ defined(\_DLL)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00029}00029\ \textcolor{comment}{//\#if\ defined(\_UNICODE)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00030}00030\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvUDD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00031}00031\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00032}00032\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvADD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00033}00033\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00034}00034\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00035}00035\ \textcolor{comment}{//\#if\ defined(\_UNICODE)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00036}00036\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvUSD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00037}00037\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00038}00038\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvASD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00039}00039\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00040}00040\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00041}00041\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00042}00042\ \textcolor{comment}{//\#if\ defined(\_DLL)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00043}00043\ \textcolor{comment}{//\#if\ defined(\_UNICODE)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00044}00044\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvUD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00045}00045\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00046}00046\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvAD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00047}00047\ \textcolor{comment}{//\#endif\ //\ end\ \_UNICODE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00048}00048\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00049}00049\ \textcolor{comment}{//\#if\ defined(\_UNICODE)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00050}00050\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvUS.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00051}00051\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00053}00053\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00054}00054\ \textcolor{comment}{//\#endif\ //\ end\ \_DLL}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00055}00055\ \textcolor{comment}{//\#endif\ //\ end\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00056}00056\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00057}00057\ \textcolor{comment}{//\#if\ !defined(\_UNICODE)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00058}00058\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvASO.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00059}00059\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00060}00060\ \textcolor{comment}{//\#endif\ //\ end\ SOFLAG\_DEMO\_VERSION}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00061}00061\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00062}00062\ \textcolor{comment}{//\#if\ !defined(SOFLAG\_DEMO\_VERSION)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00063}00063\ \textcolor{comment}{//\#if\ defined(\_DEBUG)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00064}00064\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvD.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00065}00065\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00066}00066\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrv.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00067}00067\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00068}00068\ \textcolor{comment}{//\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00069}00069\ \textcolor{comment}{//\#pragma\ comment(lib,\ "{}SOSrvO.lib"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00070}00070\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00071}00071\ \textcolor{comment}{//\#endif\ //\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00072}00072\ \textcolor{comment}{//\#endif\ //\ SOSRV}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00073}00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00075}00075\ \textcolor{comment}{//\#ifndef\ SOFEATURE\_CMN\_OPCCLIENT}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00076}00076\ \textcolor{comment}{//\#define\ SOFEATURE\_CMN\_OPCCLIENT}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00077}00077\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00078}00078\ \textcolor{comment}{//\#ifndef\ SOFEATURE\_CMN\_OPCSERVER}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00079}00079\ \textcolor{comment}{//\#define\ SOFEATURE\_CMN\_OPCSERVER}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00080}00080\ \textcolor{comment}{//\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00082}00082\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !SOFLAG\_NO\_FORCE\_LIBS}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00084}00084\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WIN32}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00086}00086\ \textcolor{comment}{//\ SOSrv\ defines}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00088}\mbox{\hyperlink{_s_o_srv_8h_a26ebcc6ea9c228cd31a9d569b184c846}{00088}}\ \textcolor{preprocessor}{\#define\ SOSRV\_EVENT\_SHUTDOWN\ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00090}\mbox{\hyperlink{_s_o_srv_8h_a49a95d213bc6d7dce5e95da6fc738ee5}{00090}}\ \textcolor{preprocessor}{\#define\ SOSRV\_IS\_RPC\_ERROR(res)\ ((FAILED(res))\&\&\ ((res\ ==\ 0x800706BA)\ ||\ (res\ ==\ 0x800706BE)\ ||\ (res\ ==\ 0x800706BF)\ ||\ (res\ ==\ 0x80010100)||\ (res\ ==\ 0x80010108)\ ||\ (res\ ==\ 0x80010114)))}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00092}00092\ \textcolor{preprocessor}{\#ifdef\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00094}00094\ \textcolor{preprocessor}{\#if\ \_MSC\_VER\ ==\ 1100}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00095}00095\ \textcolor{preprocessor}{\#ifndef\ \_\_RPCNDR\_H\_VERSION\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00096}00096\ \textcolor{preprocessor}{\#define\ \_\_RPCNDR\_H\_VERSION\_\_\ \ \ \ \ \ \ \ (\ 440\ )}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00097}00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_RPCNDR\_H\_VERSION\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00098}00098\ \textcolor{preprocessor}{\#define\ MIDL\_INTERFACE(x)\ \ \ struct\ \_\_declspec(uuid(x))\ \_\_declspec(novtable)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00099}00099\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00101}00101\ \textcolor{comment}{//\ all\ SOCmn\ and\ SOSrv\ headers}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00102}00102\ \textcolor{preprocessor}{\#define\ \_ATL\_STATIC\_REGISTRY}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00104}00104\ \textcolor{preprocessor}{\#ifdef\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00105}00105\ \textcolor{preprocessor}{\#include\ <comdef.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00106}00106\ \_COM\_SMARTPTR\_TYPEDEF(IUnknown,\ \_\_uuidof(IUnknown));}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00107}00107\ \_COM\_SMARTPTR\_TYPEDEF(IDispatch,\ \_\_uuidof(IDispatch));}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00108}00108\ \textcolor{preprocessor}{\#define\ \_com\_issue\_errorex(a,b,c)\ \{\ \}}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00109}00109\ \textcolor{preprocessor}{\#define\ \_com\_dispatch\_method(a,\ b,\ c,\ d,\ e,\ f)}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00110}00110\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \_\_stdcall\ \_com\_issue\_error(HRESULT)\ \{\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00111}00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00113}00113\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00115}00115\ \textcolor{preprocessor}{\#ifndef\ SOFLAG\_NO\_FORCE\_HEADERS}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00116}00116\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_cmn_cfg_8h}{SOCmnCfg.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00118}00118\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{opccomn_8h}{opccomn.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00119}00119\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{opcda_8h}{opcda.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00120}00120\ \textcolor{preprocessor}{\#undef\ \_\_Constants\_MODULE\_DEFINED\_\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00121}00121\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{opc__ae_8h}{opc\_ae.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00122}00122\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{opc_sec_8h}{opcSec.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00124}00124\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_cmn_8h}{SOCmn.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00125}00125\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_trace_8h}{SOSrvTrace.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00126}00126\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_entry_8h}{SOSrvEntry.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00127}00127\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_server_8h}{SOSrvServer.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00128}00128\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_browser_8h}{SOSrvBrowser.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00129}00129\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_watch_8h}{SOSrvWatch.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00131}00131\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00132}00132\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_http_8h}{SOSrvHttp.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00133}00133\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00135}00135\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00136}00136\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_srv_t_p_8h}{SOSrvTP.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00137}00137\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00138}00138\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFLAG\_NO\_FORCE\_HEADERS}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00140}00140\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00141}00141\ \textcolor{preprocessor}{\#ifndef\ SOFLAG\_SUPPORT\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00142}00142\ \textcolor{preprocessor}{\#define\ SOFLAG\_SUPPORT\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00143}00143\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFLAG\_SUPPORT\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00144}00144\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00146}00146\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00147}00147\ \textcolor{preprocessor}{\#ifndef\ SOFLAG\_SUPPORT\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00148}00148\ \textcolor{preprocessor}{\#define\ SOFLAG\_SUPPORT\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00149}00149\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ end\ SOFLAG\_SUPPORT\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00150}00150\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//end\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_s_o_srv_8h_source_l00152}00152\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

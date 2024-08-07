@@ -1,0 +1,195 @@
+\doxysection{Console.\+cpp}
+\hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source}{}\label{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source}\index{C++/samples/client/DAGetProperties/Console.cpp@{C++/samples/client/DAGetProperties/Console.cpp}}
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_d_a_get_properties_2_opc_client_8h}{OpcClient.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <conio.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <semaphore.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00018}00018\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00019}00019\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_softing_o_p_c_toolbox_client}{SoftingOPCToolboxClient}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00022}00022\ HANDLE\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00025}00025\ sem\_t\ g\_endSemaphor;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00026}00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00030}00030\ BOOL\ WINAPI\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{ControlHandler}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ crtlType)\ \ \ \textcolor{comment}{//\ control\ type}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{switch}\ (crtlType)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_BREAK\_EVENT:\ \ \textcolor{comment}{//\ use\ Ctrl+C\ or\ Ctrl+Break\ to\ end\ server}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a}{SetEvent}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00046}00046\ \}\ \textcolor{comment}{//\ end\ controlHandler}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00047}00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00050}\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{00050}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00052}00052\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\(\backslash\)nUsage:\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00053}00053\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'a\(\backslash\)'\ or\ \(\backslash\)'A\(\backslash\)'\ to\ asynchronously\ get\ address\ space\ element\ properties\ \(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00054}00054\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'s\(\backslash\)'\ or\ \(\backslash\)'S\(\backslash\)'\ to\ synchronously\ get\ the\ address\ space\ element\ properties\ \(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00055}00055\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'?\(\backslash\)'\ or\ \(\backslash\)'u\(\backslash\)'\ to\ display\ this\ usage\ information\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00056}00056\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'e\(\backslash\)'\ or\ \(\backslash\)'q\(\backslash\)'\ or\ Ctrl-\/C\ to\ exit\(\backslash\)n\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00059}\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{00059}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{\_tmain}}(\textcolor{keywordtype}{int}\ argc,\ \_TCHAR*\ argv[])}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\_OK}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00062}00062\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00063}00063\ \ \ \ \ SetConsoleCtrlHandler(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{ControlHandler}},\ TRUE);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00064}00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{comment}{//\ create\ the\ OpcClient\ instance}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00066}00066\ \ \ \ \ \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a7b27eba300a38649482d29129d7cb733}{createOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00067}00067\ \ \ \ \ \mbox{\hyperlink{class_opc_client}{OpcClient}}*\ pClient\ =\ \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a71fe9051bbbfad0906383d9e44c62af0}{getOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00068}00068\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ waitRet\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}}\ =\ CreateEvent(NULL,\ FALSE,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00071}00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ initialize\ the\ client\ instance}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(pClient-\/>\mbox{\hyperlink{class_opc_client_a6daf3510e218b9ea647d8b0b19dc95e2}{initialize}}()))}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00075}00075\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_adb7ea5a091ee9a2d3a912f64b7b0083f}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_a10253d6911a7ba81d2b0e86b812d6050}{destroyOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00078}00078\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00080}00080\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ initialize\ the\ DA\ client\ simulation}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00085}00085\ \ \ \ \ result\ |=\ pClient-\/>\mbox{\hyperlink{class_opc_client_ae4d56b970229c5a3343e58822899cea5}{initializeDaObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00086}00086\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ waitTime\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00088}00088\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ end\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{while}\ (!end)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00092}00092\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ waitRet\ =\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099}{WaitForSingleObject}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}},\ waitTime);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (waitRet\ ==\ WAIT\_OBJECT\_0)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00102}00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00103}00103\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ timeout\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{while}\ (timeout\ <\ waitTime)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00107}00107\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ timespec\ delay;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ delay.tv\_sec\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ delay.tv\_nsec\ =\ 100000000;\ \ \textcolor{comment}{//\ 100\ milli\ sec}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wait\ for\ the\ event\ be\ signaled}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ retCode\ =\ sem\_trywait(\&g\_endSemaphor);\ \textcolor{comment}{//\ event\ semaphore\ handle}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!retCode)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Event\ is\ signaled}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ whether\ somebody\ else\ has\ the\ mutex}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (retCode\ ==\ EPERM)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sleep\ for\ delay\ time}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nanosleep(\&delay,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeout++\ ;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00129}00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00130}00130\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_kbhit())}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ input\ =\ \_getch();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00135}00135\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00136}00136\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ input\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (1)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cin.get(input);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00142}00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(input)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'a'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'A'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_a2f63e4208e96018b6a46ee0f03edb938}{getAsyncAddressSpaceElementProps}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'s'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'S'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_ab95f1b43fc5e4559614419c0b950f5e7}{getSyncAddressSpaceElementProps}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'u'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'U'}):\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'?'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'E'}):\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'e'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'q'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'Q'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00165}00165\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00171}00171\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00172}00172\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sem\_post(\&g\_endSemaphor);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00176}00176\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ switch}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00181}00181\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ Sleep(100);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00183}00183\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00184}00184\ \ \ \ \ \}\ \textcolor{comment}{//\ end\ while}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00186}\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_abe697c651384bf6e7e37e2000dedb8a1}{00186}}\ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_adb7ea5a091ee9a2d3a912f64b7b0083f}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00187}00187\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_a10253d6911a7ba81d2b0e86b812d6050}{destroyOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00188}\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_a9717e7bbecb906637e86cef6da3d83c2}{00188}}\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_d_a_get_properties_2_console_8cpp_source_l00189}00189\ \}\ \textcolor{comment}{//\ end\ main}}
+
+\end{DoxyCode}

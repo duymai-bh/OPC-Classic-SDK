@@ -1,0 +1,28 @@
+var class_s_o_da_c_property =
+[
+    [ "SODaCProperty", "class_s_o_da_c_property.html#a030bbbf08aa6cdc71ef99576b5a61ca6", null ],
+    [ "SODaCProperty", "class_s_o_da_c_property.html#a211642176334e6165fc46d7ef65a8610", null ],
+    [ "SODaCProperty", "class_s_o_da_c_property.html#aef44c07ae1b9efa3d7aefecac1b5f403", null ],
+    [ "~SODaCProperty", "class_s_o_da_c_property.html#a698a2b14dae001f70743bee90fb19f7c", null ],
+    [ "expand", "class_s_o_da_c_property.html#ad06aeaa9152ea442b4b8cae5dc74d7a4", null ],
+    [ "getBrowser", "class_s_o_da_c_property.html#a778d4fbcd2f27b6210795ff3e35d9596", null ],
+    [ "getDatatype", "class_s_o_da_c_property.html#a23a0db01f47a27e4e9e465ecb1aa39c5", null ],
+    [ "getItemID", "class_s_o_da_c_property.html#ae3b89f3604c333ebc36c3a9ba3dd80c7", null ],
+    [ "getNameSpaceBrowser", "class_s_o_da_c_property.html#a1fd7b2d4eaadcd6da9b1ac825db34682", null ],
+    [ "getParentItemID", "class_s_o_da_c_property.html#a1fdd4f554d7cbda414be4ef01b617d5b", null ],
+    [ "getParentItemPath", "class_s_o_da_c_property.html#ad37e631f72df2a1dbe401e064faaa84e", null ],
+    [ "getPath", "class_s_o_da_c_property.html#a1c37836fac6333b42b9452f4bffaf382", null ],
+    [ "getPropertyID", "class_s_o_da_c_property.html#a7c40f824f5dee06dfd5e876793bf38e7", null ],
+    [ "getPropertyName", "class_s_o_da_c_property.html#abc53ab202c015d568c90d42458d9116d", null ],
+    [ "getServer", "class_s_o_da_c_property.html#ae7ac35725c07419481ea12e8f61d4706", null ],
+    [ "getValue", "class_s_o_da_c_property.html#af1056ed2231a47a474d344e0c04c4ed5", null ],
+    [ "setItemID", "class_s_o_da_c_property.html#a448eed256703629b86c8164eb613d516", null ],
+    [ "setPropertyName", "class_s_o_da_c_property.html#aaa37a3b56ce7914ccca5d80e424ff9a7", null ],
+    [ "setValue", "class_s_o_da_c_property.html#a09cdd17e1dbeb49776e425f3dc49a5e7", null ],
+    [ "m_browser", "class_s_o_da_c_property.html#a352d915b2cbb295f11f1daa79c1d7a6a", null ],
+    [ "m_dataType", "class_s_o_da_c_property.html#add79e12e23b663b788797b299e19fbc4", null ],
+    [ "m_itemID", "class_s_o_da_c_property.html#a14b38a367c547c84033c7ddb183681cd", null ],
+    [ "m_parentID", "class_s_o_da_c_property.html#a9de3abe4b1f5149a1506ad95477c31ab", null ],
+    [ "m_parentPath", "class_s_o_da_c_property.html#a893942b01d6d01c2782f3a58797a9a8c", null ],
+    [ "m_value", "class_s_o_da_c_property.html#a853380b1b6fdba48bb8d44ff25639568", null ]
+];

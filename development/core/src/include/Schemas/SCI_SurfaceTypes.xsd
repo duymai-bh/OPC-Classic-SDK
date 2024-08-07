@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Susan Clay (Vetco Gray Controls Limited) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="DCVChannelType">
+		<xs:annotation>
+			<xs:documentation>DCV Channel Type [Range; 1..16].</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum channel is 1</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="16">
+				<xs:annotation>
+					<xs:documentation>Maximum channel is 16.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DCVSolDurType">
+		<xs:annotation>
+			<xs:documentation>Solenoid duration period the solenoid is electrically energised [Range; 50..10000 milliseconds].</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="50">
+				<xs:annotation>
+					<xs:documentation>Minimum 50 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="10000">
+				<xs:annotation>
+					<xs:documentation>Maximum 10000 milliseconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DCVSolPreArmType">
+		<xs:annotation>
+			<xs:documentation>Delay after receiving the execute message and energising  the Solenoid.  This allows for communications jitter to be compensated.  [Range; 0-1000 milliseconds].</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>Minimum 0 ms.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="1000">
+				<xs:annotation>
+					<xs:documentation>Maximum 1000 ms.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValveFailureModeType">
+		<xs:annotation>
+			<xs:documentation>This defines the failure mode of the valve.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32"/>
+	</xs:simpleType>
+	<xs:simpleType name="DualActPostOpStateType">
+		<xs:annotation>
+			<xs:documentation>This defines the state that a dual actuator valve is left after an operation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="VentBoth_Always">
+				<xs:annotation>
+					<xs:documentation>After an operation (open or close) leave both lines de-presurised.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KeepPressurised_Open">
+				<xs:annotation>
+					<xs:documentation>After an Open operation, leave the open actuator pressurised.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KeepPressurised_Close">
+				<xs:annotation>
+					<xs:documentation>After an Close operation, leave the close actuator pressurised.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PressuriseBoth">
+				<xs:annotation>
+					<xs:documentation>After an operation (open or close), leave both actuators pressurised (This is not a normal state).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SensorTypeType">
+		<xs:annotation>
+			<xs:documentation>This defines the possible values for sensor type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="4-20mA">
+				<xs:annotation>
+					<xs:documentation>4-20mA Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Flowmeter">
+				<xs:annotation>
+					<xs:documentation>Flowmeter Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Canbus">
+				<xs:annotation>
+					<xs:documentation>Canbus Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTU">
+				<xs:annotation>
+					<xs:documentation>Modbus RTU (Serial) Sensor </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Modbus">
+				<xs:annotation>
+					<xs:documentation>Modbus Sensor Arbitration based upon Communications</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Profibus">
+				<xs:annotation>
+					<xs:documentation>Profibus Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusTCP">
+				<xs:annotation>
+					<xs:documentation>Modbus TCP (Ethernet) Sensor </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ValveDurType">
+		<xs:annotation>
+			<xs:documentation>Valve duration type, the time the valve takes on the tree to operate in seconds.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum valve duration time is 1 second.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="600">
+				<xs:annotation>
+					<xs:documentation>Maximum valve duration time is 600 seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProfileDurType">
+		<xs:annotation>
+			<xs:documentation>Profile duration type, the time in seconds the pressure is measured for, divided up into regular periods during the valve operation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>Minimum 0 seconds (Disabled).</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="600">
+				<xs:annotation>
+					<xs:documentation>Maximum 600 seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EGD_ProfileRunOnCountType">
+		<xs:annotation>
+			<xs:documentation>Profile Run On count</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>Minimum run on count</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="2000">
+				<xs:annotation>
+					<xs:documentation>Maximum run on count</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EGD_ProfileSampleIntervalType">
+		<xs:annotation>
+			<xs:documentation>Profile Sample Interval in milllisecs</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="40">
+				<xs:annotation>
+					<xs:documentation>Minimum interval</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="1000">
+				<xs:annotation>
+					<xs:documentation>Maximum interval</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EGD_ValveIndexType">
+		<xs:annotation>
+			<xs:documentation>Valve Index</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>1st index</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="2">
+				<xs:annotation>
+					<xs:documentation>last index</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PowersaveType">
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>0</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>100</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="HydPulseType">
+		<xs:annotation>
+			<xs:documentation>The duration of the hyrdraulic pulse for a choke.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint32">
+			<xs:minInclusive value="1000">
+				<xs:annotation>
+					<xs:documentation>Minimum hydraulic pulse width is 1000 ms.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="120000">
+				<xs:annotation>
+					<xs:documentation>Maximum hydraulic pulse width is 120 seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChokeStepType">
+		<xs:annotation>
+			<xs:documentation>The duration of a a choke step.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint32">
+			<xs:minInclusive value="1000">
+				<xs:annotation>
+					<xs:documentation>Minimum choke step duration time is 1000 ms.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="120000">
+				<xs:annotation>
+					<xs:documentation>Maximum choke step duration time is 120 seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PercentType">
+		<xs:annotation>
+			<xs:documentation>Value for Entering Requested Position in Percentage</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="float">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>Minimum Percentage 0%.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>Maximum Percentage 100%.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProfileAnalogueIndexType">
+		<xs:annotation>
+			<xs:documentation>Index into CmdHippsStartProfiler Analogue Block</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum Index.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="4">
+				<xs:annotation>
+					<xs:documentation>Maximum Index.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

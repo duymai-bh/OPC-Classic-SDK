@@ -1,0 +1,925 @@
+\doxysection{Name\+Decoder.\+java}
+\hypertarget{_name_decoder_8java_source}{}\label{_name_decoder_8java_source}\index{Java/src/com/softing/opc/client/impl/NameDecoder.java@{Java/src/com/softing/opc/client/impl/NameDecoder.java}}
+\mbox{\hyperlink{_name_decoder_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00001}00001\ \textcolor{comment}{/*\ NameDecoder.java\ -\/-\/\ Decodes\ names\ of\ OpenType\ and\ TrueType\ fonts.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00002}00002\ \textcolor{comment}{\ \ \ Copyright\ (C)\ 2006\ Free\ Software\ Foundation,\ Inc.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00003}00003\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00004}00004\ \textcolor{comment}{This\ file\ is\ part\ of\ GNU\ Classpath.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00005}00005\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00006}00006\ \textcolor{comment}{GNU\ Classpath\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00007}00007\ \textcolor{comment}{it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00008}00008\ \textcolor{comment}{the\ Free\ Software\ Foundation;\ either\ version\ 2,\ or\ (at\ your\ option)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00009}00009\ \textcolor{comment}{any\ later\ version.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00010}00010\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00011}00011\ \textcolor{comment}{GNU\ Classpath\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ but}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00012}00012\ \textcolor{comment}{WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00013}00013\ \textcolor{comment}{MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ GNU}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00014}00014\ \textcolor{comment}{General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00015}00015\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00016}00016\ \textcolor{comment}{You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00017}00017\ \textcolor{comment}{along\ with\ GNU\ Classpath;\ see\ the\ file\ COPYING.\ \ If\ not,\ write\ to\ the}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00018}00018\ \textcolor{comment}{Free\ Software\ Foundation,\ Inc.,\ 51\ Franklin\ Street,\ Fifth\ Floor,\ Boston,\ MA}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00019}00019\ \textcolor{comment}{02110-\/1301\ USA.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00020}00020\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00021}00021\ \textcolor{comment}{Linking\ this\ library\ statically\ or\ dynamically\ with\ other\ modules\ is}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00022}00022\ \textcolor{comment}{making\ a\ combined\ work\ based\ on\ this\ library.\ \ Thus,\ the\ terms\ and}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00023}00023\ \textcolor{comment}{conditions\ of\ the\ GNU\ General\ Public\ License\ cover\ the\ whole}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00024}00024\ \textcolor{comment}{combination.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00025}00025\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00026}00026\ \textcolor{comment}{As\ a\ special\ exception,\ the\ copyright\ holders\ of\ this\ library\ give\ you}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00027}00027\ \textcolor{comment}{permission\ to\ link\ this\ library\ with\ independent\ modules\ to\ produce\ an}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00028}00028\ \textcolor{comment}{executable,\ regardless\ of\ the\ license\ terms\ of\ these\ independent}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00029}00029\ \textcolor{comment}{modules,\ and\ to\ copy\ and\ distribute\ the\ resulting\ executable\ under}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00030}00030\ \textcolor{comment}{terms\ of\ your\ choice,\ provided\ that\ you\ also\ meet,\ for\ each\ linked}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00031}00031\ \textcolor{comment}{independent\ module,\ the\ terms\ and\ conditions\ of\ the\ license\ of\ that}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00032}00032\ \textcolor{comment}{module.\ \ An\ independent\ module\ is\ a\ module\ which\ is\ not\ derived\ from}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00033}00033\ \textcolor{comment}{or\ based\ on\ this\ library.\ \ If\ you\ modify\ this\ library,\ you\ may\ extend}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00034}00034\ \textcolor{comment}{this\ exception\ to\ your\ version\ of\ the\ library,\ but\ you\ are\ not}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00035}00035\ \textcolor{comment}{obligated\ to\ do\ so.\ \ If\ you\ do\ not\ wish\ to\ do\ so,\ delete\ this}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00036}00036\ \textcolor{comment}{exception\ statement\ from\ your\ version.\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00038}00038\ \textcolor{keyword}{package\ }com.softing.opc.client.impl;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00040}00040\ \textcolor{keyword}{import}\ java.io.UnsupportedEncodingException;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00041}00041\ \textcolor{keyword}{import}\ java.nio.ByteBuffer;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00042}00042\ \textcolor{keyword}{import}\ java.util.Locale;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00051}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder}{00051}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder}{NameDecoder}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00053}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a05c30dfdcfec34a082de34b1cf30a41c}{00053}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a05c30dfdcfec34a082de34b1cf30a41c}{NAME\_COPYRIGHT}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00060}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a4a3828ec6e6d02fca252948f573b41a7}{00060}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a4a3828ec6e6d02fca252948f573b41a7}{NAME\_FAMILY}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00067}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_aa7b3f4662a523934d4fd23663a5b6d8b}{00067}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_aa7b3f4662a523934d4fd23663a5b6d8b}{NAME\_SUBFAMILY}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00070}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_ab3edda23288155420fee7416a082b0ee}{00070}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_ab3edda23288155420fee7416a082b0ee}{NAME\_UNIQUE}}\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00077}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_ab83a232b9476085bf96647fe77ba00a6}{00077}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_ab83a232b9476085bf96647fe77ba00a6}{NAME\_FULL}}\ =\ 4;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00080}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a782b42bfd167a703342c5e1bd625fbce}{00080}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a782b42bfd167a703342c5e1bd625fbce}{NAME\_VERSION}}\ =\ 5;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00087}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a72925768c5b1dd848eb73992b56835ad}{00087}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a72925768c5b1dd848eb73992b56835ad}{NAME\_POSTSCRIPT}}\ =\ 6;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00090}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_acbbb12707fec38a28de9873ff3cd7258}{00090}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_acbbb12707fec38a28de9873ff3cd7258}{NAME\_TRADEMARK}}\ =\ 7;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00091}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a19505267b64ba9445aafcbcaf87a0971}{00091}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a19505267b64ba9445aafcbcaf87a0971}{NAME\_MANUFACTURER}}\ =\ 8;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00092}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_abf6fedbd1d4761bfa0cc2f590635aef7}{00092}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_abf6fedbd1d4761bfa0cc2f590635aef7}{NAME\_DESIGNER}}\ =\ 9;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00093}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a2ff64c17ee1c7d1c85244f34f61a6e88}{00093}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a2ff64c17ee1c7d1c85244f34f61a6e88}{NAME\_DESCRIPTION}}\ =\ 10;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00094}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a7e43149f34fffa7c2587ef2736a91957}{00094}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a7e43149f34fffa7c2587ef2736a91957}{NAME\_VENDOR\_URL}}\ =\ 11;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00095}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a30475b756a069e31d15952a4a1c36944}{00095}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a30475b756a069e31d15952a4a1c36944}{NAME\_DESIGNER\_URL}}\ =\ 12;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00096}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a3d3072a196326d3bf3ab8109508fb248}{00096}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a3d3072a196326d3bf3ab8109508fb248}{NAME\_LICENSE}}\ =\ 13;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00097}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a02da4ca718664ca8b62fa57bd915e816}{00097}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a02da4ca718664ca8b62fa57bd915e816}{NAME\_LICENSE\_URL}}\ =\ 14;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00098}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a2237f88b5ba68913be1d7bbe93b3740a}{00098}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a2237f88b5ba68913be1d7bbe93b3740a}{NAME\_PREFERRED\_FAMILY}}\ =\ 16;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00099}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a081ce39b3740abe5ed90b5c1cec9c22a}{00099}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a081ce39b3740abe5ed90b5c1cec9c22a}{NAME\_PREFERRED\_SUBFAMILY}}\ =\ 17;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00100}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a7cf81a833f6924cf3f59c2f4e2314758}{00100}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a7cf81a833f6924cf3f59c2f4e2314758}{NAME\_FULL\_MACCOMPATIBLE}}\ =\ 18;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00101}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a5f3167650fc786b6bb8ecb922c0af3e2}{00101}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a5f3167650fc786b6bb8ecb922c0af3e2}{NAME\_SAMPLE\_TEXT}}\ =\ 19;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00102}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a1faf44981c40221db72676ccd4547f8f}{00102}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a1faf44981c40221db72676ccd4547f8f}{NAME\_POSTSCRIPT\_CID}}\ =\ 20;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00105}00105\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ PLATFORM\_MACINTOSH\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00106}00106\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ \textcolor{keywordtype}{int}\ PLATFORM\_MICROSOFT\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00109}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_afe997cbf6d3e892602fcb074a955cdd3}{00109}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ String\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_afe997cbf6d3e892602fcb074a955cdd3}{getName}}(ByteBuffer\ nameTable,}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ name,\ Locale\ locale)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00111}00111\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00112}00112\ \ \ \ \ \textcolor{keywordtype}{int}\ numRecords;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00113}00113\ \ \ \ \ \textcolor{keywordtype}{int}\ macLanguage,\ msLanguage;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00114}00114\ \ \ \ \ \textcolor{keywordtype}{int}\ offset;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00115}00115\ \ \ \ \ \textcolor{keywordtype}{int}\ namePlatform,\ nameEncoding,\ nameLanguage,\ nameID,\ nameLen;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00116}00116\ \ \ \ \ \textcolor{keywordtype}{int}\ nameStart;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00117}00117\ \ \ \ \ String\ result;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{boolean}\ match;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (nameTable\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00121}00121\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00123}00123\ \ \ \ \ nameTable.position(0);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00124}00124\ \ \ \ \ \textcolor{comment}{/*\ We\ understand\ only\ format\ 0\ of\ the\ name\ table.\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (nameTable.getChar()\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00126}00126\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00128}00128\ \ \ \ \ macLanguage\ =\ getMacLanguageCode(locale);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00129}00129\ \ \ \ \ msLanguage\ =\ getMicrosoftLanguageCode(locale);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00130}00130\ \ \ \ \ numRecords\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00131}00131\ \ \ \ \ offset\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ numRecords;\ i++)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00134}00134\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00135}00135\ \ \ \ \ \ \ namePlatform\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00136}00136\ \ \ \ \ \ \ nameEncoding\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00137}00137\ \ \ \ \ \ \ nameLanguage\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00138}00138\ \ \ \ \ \ \ nameID\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00139}00139\ \ \ \ \ \ \ nameLen\ =\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00140}00140\ \ \ \ \ \ \ nameStart\ =\ offset\ +\ nameTable.getChar();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00142}00142\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00143}00143\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nameID\ !=\ name)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00146}00146\ \ \ \ \ \ \ match\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00147}00147\ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (namePlatform)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00148}00148\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00149}00149\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PLATFORM\_MACINTOSH:}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((nameLanguage\ ==\ macLanguage)\ ||\ (locale\ ==\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ match\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00153}00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (macLanguage)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 49:\ \textcolor{comment}{/*\ Azerbaijani/Cyrillic\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ match\ =\ (nameLanguage\ ==\ \textcolor{comment}{/*\ Azerbaijani/Arabic\ */}\ 50)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (nameLanguage\ ==\ \textcolor{comment}{/*\ Azerbaijani/Roman\ */}\ 150);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 57:\ \textcolor{comment}{/*\ Mongolian/Mongolian\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ match\ =\ (nameLanguage\ ==\ \textcolor{comment}{/*\ Mongolian/Cyrillic\ */}\ 58);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 83:\ \textcolor{comment}{/*\ Malay/Roman\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ match\ =\ (nameLanguage\ ==\ \textcolor{comment}{/*\ Malay/Arabic\ */}\ 84);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00169}00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00172}00172\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PLATFORM\_MICROSOFT:}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((nameLanguage\ \&\ 0xff)\ ==\ msLanguage)\ ||\ (locale\ ==\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ match\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00176}00176\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00178}00178\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00179}00179\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (match)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00180}00180\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00181}00181\ \ \ \ \ \ \ \ \ result\ =\ decodeName(namePlatform,\ nameEncoding,\ nameLanguage,}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nameTable,\ nameStart,\ nameLen);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00185}00185\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00186}00186\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00188}00188\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00189}00189\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00212}00212\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ String\ macLanguageCodes}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00213}00213\ \ \ \ \ \textcolor{comment}{//\ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00214}00214\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00215}00215\ \ \ \ \ =\ \textcolor{stringliteral}{"{}enfrdeitnlsvesdaptnoiwjaarfielismttrhrzhurhithkoltplhuetlv\ \ "{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00217}00217\ \ \ \ \ \textcolor{comment}{//\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00218}00218\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00219}00219\ \ \ \ \ +\ \textcolor{stringliteral}{"{}fofaruzhnlgdsqrocssksljisrmkbgukbeuzkkazazhykamokytgtkmnmnps"{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00221}00221\ \ \ \ \ \textcolor{comment}{//\ 6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00222}00222\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00223}00223\ \ \ \ \ +\ \textcolor{stringliteral}{"{}kukssdbonesamrbnasgupaormlkntatesimykmloviintlmsmsamti\ \ sosw"{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00225}00225\ \ \ \ \ \textcolor{comment}{//\ 9\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 11}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00226}00226\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00227}00227\ \ \ \ \ +\ \textcolor{stringliteral}{"{}rwrn\ \ mgeo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00229}00229\ \ \ \ \ \textcolor{comment}{//\ 12\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 13\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 14}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00230}00230\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00231}00231\ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cyeucalaqugnayttugtsjwsuglafbriugdgvgatoelkl"{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00233}00233\ \ \ \ \ \textcolor{comment}{//\ 15}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00234}00234\ \ \ \ \ \textcolor{comment}{//\ 0}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00235}00235\ \ \ \ \ +\ \textcolor{stringliteral}{"{}az"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00255}00255\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keyword}{final}\ String\ microsoftLanguageCodes}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00256}00256\ \ \ \ \ \textcolor{comment}{//\ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00257}00257\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00258}00258\ \ \ \ \ =\ \textcolor{stringliteral}{"{}\ \ arbgcazhcsdadeelenesfifriwhuisitjakonlnoplptrmrorushsksqsv"{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00260}00260\ \ \ \ \ \textcolor{comment}{//\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00261}00261\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00262}00262\ \ \ \ \ +\ \textcolor{stringliteral}{"{}thtrurinukbesletlvlttgfavihyazeu\ \ mk\ \ ts\ \ \ \ xhzuafkafohimt\ \ "{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00264}00264\ \ \ \ \ \textcolor{comment}{//\ 6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00265}00265\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00266}00266\ \ \ \ \ +\ \textcolor{stringliteral}{"{}gajimskkkyswtkuzttbnpaguortateknmlasmrsamnbocykmlomygl\ \ \ \ sd"{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00268}00268\ \ \ \ \ \textcolor{comment}{//\ 9\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 11}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00269}00269\ \ \ \ \ \textcolor{comment}{//\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9\ 0\ 1\ 2\ 3\ 4\ 5\ 6\ 7\ 8\ 9}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00270}00270\ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ \ si\ \ iuam\ \ ksnefypstl\ \ \ \ \ \ ha\ \ yo\ \ \ \ \ \ \ \ \ \ \ \ \ \ omtign\ \ laso"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00302}00302\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ getMacLanguageCode(Locale\ loc)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00303}00303\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00304}00304\ \ \ \ \ \textcolor{keywordtype}{int}\ code;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00306}00306\ \ \ \ \ \textcolor{keywordflow}{if}\ (loc\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00307}00307\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00308}00308\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00309}00309\ \ \ \ \ code\ =\ findLanguageCode(loc.getLanguage(),\ macLanguageCodes);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00310}00310\ \ \ \ \ \textcolor{keywordflow}{switch}\ (code)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00311}00311\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00312}00312\ \ \ \ \ \textcolor{keywordflow}{case}\ 19:}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00313}00313\ \ \ \ \ \ \ \textcolor{comment}{/*\ Traditional\ Chinese\ (MacOS\ language\ \#19)\ and\ and\ Simplified}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00314}00314\ \textcolor{comment}{\ \ \ \ \ \ \ *\ Chinese\ (MacOS\ language\ \#33)\ both\ have\ "{}zh"{}\ as\ their\ ISO\ 639}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00315}00315\ \textcolor{comment}{\ \ \ \ \ \ \ *\ code.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00316}00316\ \textcolor{comment}{\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00317}00317\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (loc.equals(Locale.SIMPLIFIED\_CHINESE))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00318}00318\ \ \ \ \ \ \ \ \ code\ =\ 33;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00319}00319\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00321}00321\ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ special\ cases\ would\ be\ 49,\ 57\ and\ 83,\ but\ we\ do\ not}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00322}00322\ \ \ \ \ \ \ \textcolor{comment}{//\ know\ what\ do\ do\ about\ them.\ See\ the\ method\ documentation\ for}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00323}00323\ \ \ \ \ \ \ \textcolor{comment}{//\ details.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00324}00324\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00325}00325\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00326}00326\ \ \ \ \ \textcolor{keywordflow}{return}\ code;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00327}00327\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00328}00328\ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00333}00333\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ getMicrosoftLanguageCode(Locale\ locale)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00334}00334\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00335}00335\ \ \ \ \ String\ isoCode;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00336}00336\ \ \ \ \ \textcolor{keywordtype}{int}\ code;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00338}00338\ \ \ \ \ \textcolor{keywordflow}{if}\ (locale\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00339}00339\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00340}00340\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00341}00341\ \ \ \ \ isoCode\ =\ locale.getLanguage();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00342}00342\ \ \ \ \ code\ =\ findLanguageCode(isoCode,\ microsoftLanguageCodes);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00343}00343\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00344}00344\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00345}00345\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (isoCode.equals(\textcolor{stringliteral}{"{}hr"{}})\ ||\ isoCode.equals(\textcolor{stringliteral}{"{}sr"{}}))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00346}00346\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Microsoft\ uses\ code\ 26\ for\ "{}sh"{}\ (Serbo-\/Croatian),}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00348}00348\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ "{}hr"{}\ (Croatian)\ and\ "{}sr"{}\ (Serbian).\ Our\ table\ contains}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00349}00349\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ "{}sh"{}.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00350}00350\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00351}00351\ \ \ \ \ \ \ \ \ code\ =\ 26;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00352}00352\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00353}00353\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (isoCode.equals(\textcolor{stringliteral}{"{}gd"{}}))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00354}00354\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00355}00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Microsoft\ uses\ code\ 60\ for\ "{}gd"{}\ (Scottish\ Gaelic)\ and}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00356}00356\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ "{}ga"{}\ (Irish\ Gaelic).\ Out\ table\ contains\ "{}ga"{}.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00357}00357\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00358}00358\ \ \ \ \ \ \ \ \ code\ =\ 60;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00359}00359\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00360}00360\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00361}00361\ \ \ \ \ \textcolor{keywordflow}{return}\ code;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00362}00362\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00365}00365\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ findLanguageCode(String\ lang,\ String\ langCodes)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00366}00366\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00367}00367\ \ \ \ \ \textcolor{keywordtype}{int}\ index;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00368}00368\ \ \ \ \ \textcolor{keywordflow}{if}\ (lang\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00369}00369\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00371}00371\ \ \ \ \ \textcolor{keywordflow}{if}\ (lang.length()\ !=\ 2)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00372}00372\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00374}00374\ \ \ \ \ index\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00375}00375\ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00376}00376\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00377}00377\ \ \ \ \ \ \ index\ =\ langCodes.indexOf(lang,\ index);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00379}00379\ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ index\ must\ be\ even\ to\ be\ considered\ a\ match.\ Otherwise,\ we}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00380}00380\ \textcolor{comment}{\ \ \ \ \ \ \ *\ could\ match\ with\ the\ second\ letter\ of\ one\ language\ and\ the}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00381}00381\ \textcolor{comment}{\ \ \ \ \ \ \ *\ first\ of\ antoher\ one.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00382}00382\ \textcolor{comment}{\ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00383}00383\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00384}00384\ \ \ \ \ \textcolor{keywordflow}{while}\ (!((index\ <\ 0)\ ||\ ((index\ \&\ 1)\ ==\ 0)));}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00385}00385\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00386}00386\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00388}00388\ \ \ \ \ index\ =\ index\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00389}00389\ \ \ \ \ \textcolor{keywordflow}{return}\ index;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00390}00390\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00392}00392\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00393}00393\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ String\ decodeName(\textcolor{keywordtype}{int}\ platform,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structencoding}{encoding}},\ \textcolor{keywordtype}{int}\ language,}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ByteBuffer\ \mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}},\ \textcolor{keywordtype}{int}\ offset,\ \textcolor{keywordtype}{int}\ len)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00395}00395\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00396}00396\ \ \ \ \ \textcolor{keywordtype}{byte}[]\ byteBuf;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00397}00397\ \ \ \ \ String\ charsetName;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00398}00398\ \ \ \ \ \textcolor{keywordtype}{int}\ oldPosition;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00399}00399\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00400}00400\ \ \ \ \ charsetName\ =\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a3c445300229c0914e2ac57df31e80791}{getCharsetName}}(platform,\ language,\ \mbox{\hyperlink{structencoding}{encoding}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00401}00401\ \ \ \ \ \textcolor{keywordflow}{if}\ (charsetName\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00402}00402\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00403}00403\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00404}00404\ \ \ \ \ byteBuf\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{byte}[len];}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00405}00405\ \ \ \ \ oldPosition\ =\ \mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}.position();}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00406}00406\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00407}00407\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00408}00408\ \ \ \ \ \ \ \mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}.position(offset);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00409}00409\ \ \ \ \ \ \ \mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}.get(byteBuf);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00410}00410\ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00411}00411\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00412}00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ String(byteBuf,\ charsetName);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00413}00413\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00414}00414\ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (UnsupportedEncodingException\ uex)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00415}00415\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00416}00416\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00417}00417\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00418}00418\ \ \ \ \ \textcolor{keywordflow}{finally}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00419}00419\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00420}00420\ \ \ \ \ \ \ \mbox{\hyperlink{xmlparse_8c_aaadc06b5dac8070de2c8677210967bdb}{buffer}}.position(oldPosition);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00421}00421\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00423}00423\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00424}00424\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00426}00426\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00436}00436\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ Locale\ getMacLocale(\textcolor{keywordtype}{int}\ macLanguageCode)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00437}00437\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00438}00438\ \ \ \ \ String\ isoCode;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00439}00439\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00440}00440\ \ \ \ \ \textcolor{keywordflow}{switch}\ (macLanguageCode)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00441}00441\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00442}00442\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ Locale.ENGLISH;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00443}00443\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ Locale.FRENCH;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00444}00444\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ Locale.GERMAN;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00445}00445\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ Locale.ITALIAN;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00446}00446\ \ \ \ \ \textcolor{keywordflow}{case}\ 11:\ \textcolor{keywordflow}{return}\ Locale.JAPANESE;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00447}00447\ \ \ \ \ \textcolor{keywordflow}{case}\ 23:\ \textcolor{keywordflow}{return}\ Locale.KOREAN;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00448}00448\ \ \ \ \ \textcolor{keywordflow}{case}\ 19:\ \textcolor{keywordflow}{return}\ Locale.TRADITIONAL\_CHINESE;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00449}00449\ \ \ \ \ \textcolor{keywordflow}{case}\ 33:\ \textcolor{keywordflow}{return}\ Locale.SIMPLIFIED\_CHINESE;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00450}00450\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00452}00452\ \ \ \ \ \textcolor{keywordflow}{if}\ ((macLanguageCode\ <\ 0)\ ||\ (macLanguageCode\ >\ 150))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00453}00453\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00455}00455\ \ \ \ \ isoCode\ =\ macLanguageCodes.substring(macLanguageCode\ <<\ 1,}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (macLanguageCode\ +\ 1)\ <<\ 1);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00457}00457\ \ \ \ \ \textcolor{keywordflow}{if}\ (isoCode.charAt(0)\ ==\ \textcolor{charliteral}{'\ '})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00458}00458\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00460}00460\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(isoCode);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00461}00461\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00475}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a148bbe070cb7af511bdd0f5b98eda8df}{00475}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a148bbe070cb7af511bdd0f5b98eda8df}{getLCID}}(Locale\ locale)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00476}00476\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00477}00477\ \ \ \ \ \ \ \textcolor{comment}{//TODO:\ to\ check\ completion}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00478}00478\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}el"{}},\ \textcolor{stringliteral}{"{}GR"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00479}00479\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0408;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00481}00481\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00482}00482\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(Locale.FRENCH))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00483}00483\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x040c;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00485}00485\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00486}00486\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}CH"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00487}00487\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0807;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00489}00489\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00490}00490\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}UK"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00491}00491\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0809;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00493}00493\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00494}00494\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}BE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00495}00495\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x080c;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00497}00497\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00498}00498\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}AT"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00499}00499\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0c07;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00501}00501\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00502}00502\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}AU"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00503}00503\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0c09;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00505}00505\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00506}00506\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}CA"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00507}00507\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0c0c;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00509}00509\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00510}00510\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}LU"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00511}00511\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x1007;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00513}00513\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00514}00514\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}CA"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00515}00515\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x1009;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00517}00517\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00518}00518\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}CH"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00519}00519\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x100c;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00521}00521\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00522}00522\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}LI"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00523}00523\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x1407;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00525}00525\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00526}00526\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}NZ"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00527}00527\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x1409;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00529}00529\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00530}00530\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}LU"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00531}00531\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x140c;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00533}00533\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00534}00534\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}IE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00535}00535\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x1809;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00537}00537\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00538}00538\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}US"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00539}00539\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0409;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00541}00541\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00542}00542\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sq"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00543}00543\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x041c;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00545}00545\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00546}00546\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}af"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00547}00547\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0436;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00549}00549\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00550}00550\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}bg"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00551}00551\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0402;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00553}00553\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00554}00554\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zh"{}},\ \textcolor{stringliteral}{"{}CN"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00555}00555\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0804;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00557}00557\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00558}00558\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zh"{}},\ \textcolor{stringliteral}{"{}TW"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00559}00559\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0404;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00561}00561\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00562}00562\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zh"{}},\textcolor{stringliteral}{"{}HK"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00563}00563\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0C04;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00565}00565\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00566}00566\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}cz"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00567}00567\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0405;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00569}00569\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00570}00570\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}hr"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00571}00571\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x041a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00573}00573\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00574}00574\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}da"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00575}00575\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0406;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00577}00577\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00578}00578\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}nl"{}},\ \textcolor{stringliteral}{"{}NL"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00579}00579\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0413;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00581}00581\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00582}00582\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}nl"{}},\ \textcolor{stringliteral}{"{}BE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00583}00583\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0813;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00585}00585\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00586}00586\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}et"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00587}00587\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0425;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00589}00589\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00590}00590\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fi"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00591}00591\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x040B;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00593}00593\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00594}00594\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}DE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00595}00595\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0407;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00597}00597\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00598}00598\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}he"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00599}00599\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x040d;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00601}00601\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00602}00602\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}hi"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00603}00603\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0439;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00605}00605\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00606}00606\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}hu"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00607}00607\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00608}00608\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x040E;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00609}00609\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00610}00610\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}is"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00611}00611\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x040F;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00613}00613\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00614}00614\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}id"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00615}00615\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0421;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00617}00617\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00618}00618\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}it"{}},\ \textcolor{stringliteral}{"{}IT"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00619}00619\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0410;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00621}00621\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00622}00622\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}it"{}},\ \textcolor{stringliteral}{"{}CH"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00623}00623\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0810;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00625}00625\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00626}00626\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ja"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00627}00627\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0411;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00629}00629\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00630}00630\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ko"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00631}00631\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0412;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00633}00633\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00634}00634\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}lv"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00635}00635\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00636}00636\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0426;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00637}00637\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00638}00638\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}lt"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00639}00639\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00640}00640\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0427;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00641}00641\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00642}00642\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}mk"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00643}00643\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x042F;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00645}00645\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00646}00646\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ms"{}},\ \textcolor{stringliteral}{"{}MY"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00647}00647\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x043E;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00649}00649\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00650}00650\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}mt"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00651}00651\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00652}00652\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x04EA;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00653}00653\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00654}00654\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}no"{}},\ \textcolor{stringliteral}{"{}NO"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00655}00655\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0414;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00657}00657\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00658}00658\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}pl"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00659}00659\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0815;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00661}00661\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00662}00662\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}pt"{}},\ \textcolor{stringliteral}{"{}PT"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00663}00663\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0816;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00665}00665\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00666}00666\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}pt"{}},\ \textcolor{stringliteral}{"{}BR"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00667}00667\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00668}00668\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0416;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00669}00669\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00670}00670\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ro"{}},\ \textcolor{stringliteral}{"{}R0"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00671}00671\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0418;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00673}00673\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00674}00674\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ru"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00675}00675\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0419;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00677}00677\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00678}00678\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sr"{}},\ \textcolor{stringliteral}{"{}SP"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00679}00679\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0c1a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00681}00681\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00682}00682\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sl"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00683}00683\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0424;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00685}00685\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00686}00686\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sk"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00687}00687\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00688}00688\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x041B;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00689}00689\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00690}00690\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}ES"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00691}00691\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x040a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00693}00693\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00694}00694\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}AR"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00695}00695\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00696}00696\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x2C0a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00697}00697\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00698}00698\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}BO"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00699}00699\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00700}00700\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x400a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00701}00701\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00702}00702\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}CL"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00703}00703\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x340a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00705}00705\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00706}00706\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}CO"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00707}00707\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00708}00708\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x240a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00709}00709\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00710}00710\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}CR"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00711}00711\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00712}00712\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x140a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00713}00713\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00714}00714\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}DO"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00715}00715\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00716}00716\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x1C0a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00717}00717\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00718}00718\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}EC"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00719}00719\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00720}00720\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x300a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00721}00721\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00722}00722\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}GT"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00723}00723\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00724}00724\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x100a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00725}00725\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00726}00726\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}HN"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00727}00727\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00728}00728\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x480a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00729}00729\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00730}00730\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}MX"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00731}00731\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00732}00732\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x080a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00733}00733\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00734}00734\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}NI"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00735}00735\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00736}00736\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x4c0a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00737}00737\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00738}00738\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PA"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00739}00739\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00740}00740\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x180a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00741}00741\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00742}00742\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00743}00743\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00744}00744\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x280a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00745}00745\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00746}00746\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PR"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00747}00747\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00748}00748\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x500a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00749}00749\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00750}00750\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PY"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00751}00751\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00752}00752\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x3c0a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00753}00753\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00754}00754\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}SV"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00755}00755\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00756}00756\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x440a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00757}00757\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00758}00758\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}UY"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00759}00759\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00760}00760\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x380a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00761}00761\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00762}00762\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}VE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00763}00763\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00764}00764\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x200a;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00765}00765\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00766}00766\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sv"{}},\ \textcolor{stringliteral}{"{}SE"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00767}00767\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x041d;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00769}00769\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00770}00770\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sv"{}},\ \textcolor{stringliteral}{"{}FI"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00771}00771\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00772}00772\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x081d;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00773}00773\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00774}00774\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}th"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00775}00775\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00776}00776\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x041E;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00777}00777\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00778}00778\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}tr"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00779}00779\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00780}00780\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x041F;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00781}00781\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00782}00782\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}uk"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00783}00783\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00784}00784\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0422;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00785}00785\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00786}00786\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}vi"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00787}00787\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00788}00788\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x042A;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00789}00789\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00790}00790\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}yi"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00791}00791\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00792}00792\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x043D;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00793}00793\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00794}00794\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(locale.equals(\textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zu"{}})))}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00795}00795\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00796}00796\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0x0435;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00797}00797\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00798}00798\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00799}00799\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00800}00800\ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00801}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_abf729a5fdf70549deefe14a40829ca96}{00801}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Locale\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_abf729a5fdf70549deefe14a40829ca96}{getWindowsLocale}}(\textcolor{keywordtype}{int}\ lcid)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00802}00802\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00803}00803\ \ \ \ \ \textcolor{keywordflow}{switch}\ (lcid)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00804}00804\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00805}00805\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0408:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}el"{}},\ \textcolor{stringliteral}{"{}GR"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00806}00806\ \ \ \ \ \textcolor{comment}{//case\ 0x0409:\ return\ Locale.ENGLISH;}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00807}00807\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x040c:\ \textcolor{keywordflow}{return}\ Locale.FRENCH;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00808}00808\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0807:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}CH"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00809}00809\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0809:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}UK"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00810}00810\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x080c:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}BE"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00811}00811\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0c07:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}AT"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00812}00812\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0c09:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}AU"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00813}00813\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0c0c:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}CA"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00814}00814\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x1007:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}LU"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00815}00815\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x1009:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}CA"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00816}00816\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x100c:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}CH"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00817}00817\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x1407:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}LI"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00818}00818\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x1409:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}NZ"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00819}00819\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x140c:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fr"{}},\ \textcolor{stringliteral}{"{}LU"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00820}00820\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x1809:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}IE"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00821}00821\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0409:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}en"{}},\ \textcolor{stringliteral}{"{}US"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00822}00822\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041c:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sq"{}});\textcolor{comment}{//Albania}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00823}00823\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0436:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}af"{}});\ \textcolor{comment}{//Afrikaans\ -\/\ South\ Africa}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00824}00824\ \ \ \ \ \textcolor{comment}{//case\ 0x0445:\ return\ new\ Locale\ //Bengali\ (India)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00825}00825\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0402:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}bg"{}});\ \textcolor{comment}{//Bulgarian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00826}00826\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0804:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zh"{}},\ \textcolor{stringliteral}{"{}CN"{}});\ \textcolor{comment}{//Chinese\ -\/\ People's\ Republic\ of\ China}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00827}00827\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0404:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zh"{}},\ \textcolor{stringliteral}{"{}TW"{}});\ \textcolor{comment}{//Chinese\ -\/\ Taiwan}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00828}00828\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0c04:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zh"{}},\textcolor{stringliteral}{"{}HK"{}});\ \textcolor{comment}{//Chinese\ -\/\ hONG\ kONG}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00829}00829\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0405:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}cz"{}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00830}00830\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}hr"{}});\ \textcolor{comment}{//Croatian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00831}00831\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0406:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}da"{}});\ \textcolor{comment}{//Danish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00832}00832\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0413:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}nl"{}},\ \textcolor{stringliteral}{"{}NL"{}});\ \textcolor{comment}{//Dutch\ Netherlands}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00833}00833\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0813:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}nl"{}},\ \textcolor{stringliteral}{"{}BE"{}});\ \textcolor{comment}{//Dutch\ Belgium}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00834}00834\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0425:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}et"{}});\ \textcolor{comment}{//Estonian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00835}00835\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x040B:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}fi"{}});\ \textcolor{comment}{//Finnish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00836}00836\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0407:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}de"{}},\ \textcolor{stringliteral}{"{}DE"{}});\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00837}00837\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x040D:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}he"{}});\ \textcolor{comment}{//\ Hebrew}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00838}00838\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0439:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}hi"{}});\ \textcolor{comment}{//\ Hindi}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00839}00839\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x040E:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}hu"{}});\ \textcolor{comment}{//\ Hungarian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00840}00840\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x040f:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}is"{}});\ \textcolor{comment}{//\ Icelandic}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00841}00841\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0421:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}id"{}});\ \textcolor{comment}{//\ Indonesian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00842}00842\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0410:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}it"{}},\ \textcolor{stringliteral}{"{}IT"{}});\ \textcolor{comment}{//\ Italian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00843}00843\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0810:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}it"{}},\ \textcolor{stringliteral}{"{}CH"{}});\ \textcolor{comment}{//\ Italian\ -\/\ switzerland}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00844}00844\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0411:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ja"{}});\ \textcolor{comment}{//\ JAPANESE}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00845}00845\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0412:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ko"{}});\ \textcolor{comment}{//\ KOREAN}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00846}00846\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0426:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}lv"{}});\ \textcolor{comment}{//\ Latvian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00847}00847\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0427:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}lt"{}});\ \textcolor{comment}{//\ Lithuanian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00848}00848\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x042F:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}mk"{}});\ \textcolor{comment}{//\ Macedonia}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00849}00849\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x043E:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ms"{}},\ \textcolor{stringliteral}{"{}MY"{}});\ \textcolor{comment}{//\ Malay-\/malaysia}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00850}00850\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x04EA:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}mt"{}});\ \textcolor{comment}{//\ Maltese}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00851}00851\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0414:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}no"{}},\ \textcolor{stringliteral}{"{}NO"{}});\ \textcolor{comment}{//\ Norwegian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00852}00852\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0814:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}no"{}},\ \textcolor{stringliteral}{"{}NO"{}});\ \textcolor{comment}{//\ Norwegian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00853}00853\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0815:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}pl"{}});\ \textcolor{comment}{//\ Polish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00854}00854\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0816:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}pt"{}},\ \textcolor{stringliteral}{"{}PT"{}});\ \textcolor{comment}{//\ Portuguese\ -\/\ Portugal}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00855}00855\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0416:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}pt"{}},\ \textcolor{stringliteral}{"{}BR"{}});\ \textcolor{comment}{//\ Portuguese\ -\/\ Brasil}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00856}00856\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0418:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ro"{}},\ \textcolor{stringliteral}{"{}R0"{}});\ \textcolor{comment}{//\ Romanian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00857}00857\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0419:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}ru"{}});\ \textcolor{comment}{//\ Russian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00858}00858\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0C1A:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sr"{}},\ \textcolor{stringliteral}{"{}SP"{}});\ \textcolor{comment}{//\ Serbian\ -\/\ Kirilic}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00859}00859\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x081A:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sr"{}},\ \textcolor{stringliteral}{"{}SP"{}});\ \textcolor{comment}{//\ Russian\ -\/\ latin}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00860}00860\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0424:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sl"{}});\ \textcolor{comment}{//\ Slovenian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00861}00861\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041B:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sk"{}});\ \textcolor{comment}{//\ Slovak}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00862}00862\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x040a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}ES"{}});\ \textcolor{comment}{//\ Spanish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00863}00863\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x2C0a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}AR"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Argentina}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00864}00864\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x400a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}BO"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Boliva}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00865}00865\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x340a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}CL"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Chile}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00866}00866\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x240a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}CO"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Colombia}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00867}00867\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x140a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}CR"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Costa\ Rica}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00868}00868\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x1c0a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}DO"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Dominican\ rep.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00869}00869\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x300a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}EC"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Ecuador}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00870}00870\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x100a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}GT"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Guatemala}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00871}00871\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x480a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}HN"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Honduras.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00872}00872\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x080a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}MX"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Mexic}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00873}00873\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x4c0a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}NI"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Nicaragua}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00874}00874\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x180a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PA"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ PANAMA}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00875}00875\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x280a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PE"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Peru}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00876}00876\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x500a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PR"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Puerto\ Rico}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00877}00877\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x3c0a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}PY"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Paraguay}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00878}00878\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x440a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}SV"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ El\ Salvador}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00879}00879\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x380a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}UY"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Uruguay}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00880}00880\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x200a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}es"{}},\ \textcolor{stringliteral}{"{}VE"{}});\ \textcolor{comment}{//\ Spanish\ -\/\ Venezuela}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00881}00881\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041d:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sv"{}},\ \textcolor{stringliteral}{"{}SE"{}});\ \textcolor{comment}{//\ Sweedish\ -\/\ Sweden}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00882}00882\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x081d:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}sv"{}},\ \textcolor{stringliteral}{"{}FI"{}});\ \textcolor{comment}{//\ Sweedish\ -\/\ Finland}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00883}00883\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041E:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}th"{}});\ \textcolor{comment}{//\ Thai}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00884}00884\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041F:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}tr"{}});\ \textcolor{comment}{//\ Turkish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00885}00885\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0422:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}uk"{}});\ \textcolor{comment}{//\ Ukrainian}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00886}00886\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x042a:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}vi"{}});\ \textcolor{comment}{//\ Vietnamese}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00887}00887\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x043d:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}yi"{}});\ \textcolor{comment}{//\ Yiddish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00888}00888\ \ \ \ \ \textcolor{keywordflow}{case}\ 0x0435:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Locale(\textcolor{stringliteral}{"{}zu"{}});\ \textcolor{comment}{//\ Zulu}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00889}00889\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00890}00890\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00891}00891\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00892}00892\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00893}00893\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00894}00894\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00895}00895\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00908}00908\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ String\ getMacCharsetName(\textcolor{keywordtype}{int}\ macScript)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00909}00909\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00910}00910\ \ \ \ \ \textcolor{keywordflow}{switch}\ (macScript)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00911}00911\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00912}00912\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacRoman"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00913}00913\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacJapanese"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00914}00914\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacKorean"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00915}00915\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacTradChinese"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00916}00916\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacArabic"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00917}00917\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacHebrew"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00918}00918\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacGreek"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00919}00919\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacCyrillic"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00920}00920\ \ \ \ \ \textcolor{keywordflow}{case}\ 8:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacRSymbol"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00921}00921\ \ \ \ \ \textcolor{keywordflow}{case}\ 9:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacDevanagari"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00922}00922\ \ \ \ \ \textcolor{keywordflow}{case}\ 10:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacGurmukhi"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00923}00923\ \ \ \ \ \textcolor{keywordflow}{case}\ 11:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacGujarati"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00924}00924\ \ \ \ \ \textcolor{keywordflow}{case}\ 12:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacOriya"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00925}00925\ \ \ \ \ \textcolor{keywordflow}{case}\ 13:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacBengali"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00926}00926\ \ \ \ \ \textcolor{keywordflow}{case}\ 14:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacTamil"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00927}00927\ \ \ \ \ \textcolor{keywordflow}{case}\ 15:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacTelugu"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00928}00928\ \ \ \ \ \textcolor{keywordflow}{case}\ 16:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacKannada"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00929}00929\ \ \ \ \ \textcolor{keywordflow}{case}\ 17:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacMalayalam"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00930}00930\ \ \ \ \ \textcolor{keywordflow}{case}\ 18:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacSinhalese"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00931}00931\ \ \ \ \ \textcolor{keywordflow}{case}\ 19:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacBurmese"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00932}00932\ \ \ \ \ \textcolor{keywordflow}{case}\ 20:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacKhmer"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00933}00933\ \ \ \ \ \textcolor{keywordflow}{case}\ 21:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacThai"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00934}00934\ \ \ \ \ \textcolor{keywordflow}{case}\ 22:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacLao"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00935}00935\ \ \ \ \ \textcolor{keywordflow}{case}\ 23:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacGeorgian"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00936}00936\ \ \ \ \ \textcolor{keywordflow}{case}\ 24:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacArmenian"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00937}00937\ \ \ \ \ \textcolor{keywordflow}{case}\ 25:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacSimpChinese"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00938}00938\ \ \ \ \ \textcolor{keywordflow}{case}\ 26:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacTibetan"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00939}00939\ \ \ \ \ \textcolor{keywordflow}{case}\ 27:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacMongolian"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00940}00940\ \ \ \ \ \textcolor{keywordflow}{case}\ 28:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacEthiopic"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00941}00941\ \ \ \ \ \textcolor{keywordflow}{case}\ 29:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacCentralEurope"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00942}00942\ \ \ \ \ \textcolor{keywordflow}{case}\ 30:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacVietnamese"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00943}00943\ \ \ \ \ \textcolor{keywordflow}{case}\ 31:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}MacExtArabic"{}};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00944}00944\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00945}00945\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00946}00946\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00947}00947\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00948}00948\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00949}00949\ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00960}00960\ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ String\ getMicrosoftCharsetName(\textcolor{keywordtype}{int}\ lcid)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00961}00961\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00962}00962\ \ \ \ \ \textcolor{keywordtype}{int}\ lang;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00963}00963\ \ \ \ \ \textcolor{keywordtype}{char}\ codePage\ =\ \textcolor{charliteral}{'?'};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00964}00964\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00965}00965\ \ \ \ \ \textcolor{comment}{/*\ Extract\ the\ language\ code\ from\ the\ LCID.\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00966}00966\ \ \ \ \ lang\ =\ lcid\ \&\ 0x3ff;}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00967}00967\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00968}00968\ \ \ \ \ \textcolor{comment}{/*\ In\ the\ majority\ of\ cases,\ the\ language\ alone\ determines\ the}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00969}00969\ \textcolor{comment}{\ \ \ \ \ *\ codepage.}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00970}00970\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00971}00971\ \ \ \ \ \textcolor{keywordflow}{if}\ (lang\ <\ 100)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00972}00972\ \ \ \ \ \ \ codePage\ =\ (\textcolor{stringliteral}{"{}\ 612D022322225022EC2202201?002A462110777\ 68\ ?2\ 1\ \ "{}}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00973}00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \textcolor{stringliteral}{"{}\ \ \ \ 2\ 2\ \ \ \ \ 2112\ ?1\ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ 2\ \ \ \ \ \ \ \ \ \ \ 2\ "{}})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00974}00974\ \ \ \ \ \ \ \ \ .charAt(lang);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00975}00975\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00976}00976\ \ \ \ \ \textcolor{comment}{/*\ There\ are\ a\ few\ exceptions,\ however,\ where\ multiple\ code\ pages}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00977}00977\ \textcolor{comment}{\ \ \ \ \ *\ are\ used\ for\ the\ same\ language.\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00978}00978\ \ \ \ \ \textcolor{keywordflow}{if}\ (codePage\ ==\ \textcolor{charliteral}{'?'})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00979}00979\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00980}00980\ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (lcid)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00981}00981\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00982}00982\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x041a:\ \textcolor{comment}{//\ Croatian\ -\/-\/>\ Windows-\/1250\ (Central\ Europe)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00983}00983\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x081a:\ \textcolor{comment}{//\ Serbian\ (Latin)\ -\/-\/>\ Windows-\/1250\ (Central\ Europe)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00984}00984\ \ \ \ \ \ \ \ \ codePage\ =\ \textcolor{charliteral}{'0'};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00985}00985\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00986}00986\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00987}00987\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x42c:\ \textcolor{comment}{//\ Azeri\ (Latin)\ -\/-\/>\ Windows-\/1254\ (Turkish)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00988}00988\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x443:\ \textcolor{comment}{//\ Uzbek\ (Latin)\ -\/-\/>\ Windows-\/1254\ (Turkish)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00989}00989\ \ \ \ \ \ \ \ \ codePage\ =\ \textcolor{charliteral}{'4'};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00990}00990\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00991}00991\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00992}00992\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x82c:\ \textcolor{comment}{//\ Azeri\ (Cyrillic)\ -\/-\/>\ Windows-\/1251\ (Cyrillic)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00993}00993\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x843:\ \textcolor{comment}{//\ Uzbek\ (Cyrillic)\ -\/-\/>\ Windows-\/1251\ (Cyrillic)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00994}00994\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0xc1a:\ \textcolor{comment}{//\ Serbian\ (Cyrillic)\ -\/-\/>\ Windows-\/1251\ (Cyrillic)}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00995}00995\ \ \ \ \ \ \ \ \ codePage\ =\ \textcolor{charliteral}{'1'};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00996}00996\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00997}00997\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00998}00998\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l00999}00999\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01000}01000\ \ \ \ \ \textcolor{keywordflow}{switch}\ (codePage)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01001}01001\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01002}01002\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'0'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1250"{}};\ \textcolor{comment}{//\ Central\ Europe}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01003}01003\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'1'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1251"{}};\ \textcolor{comment}{//\ Cyrillic}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01004}01004\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'2'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1252"{}};\ \textcolor{comment}{//\ Latin\ 1}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01005}01005\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'3'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1253"{}};\ \textcolor{comment}{//\ Greek}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01006}01006\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'4'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1254"{}};\ \textcolor{comment}{//\ Turkish}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01007}01007\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'5'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1255"{}};\ \textcolor{comment}{//\ Hebrew}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01008}01008\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'6'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1256"{}};\ \textcolor{comment}{//\ Arabic}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01009}01009\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'7'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1257"{}};\ \textcolor{comment}{//\ Baltic}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01010}01010\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'8'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/1258"{}};\ \textcolor{comment}{//\ Vietnam}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01011}01011\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'A'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/874"{}};\ \ \textcolor{comment}{//\ Thai}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01012}01012\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'B'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/936"{}};\ \ \textcolor{comment}{//\ Simplified\ Chinese,\ GBK}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01013}01013\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'C'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/949"{}};\ \ \textcolor{comment}{//\ Korean}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01014}01014\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'D'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/950"{}};\ \ \textcolor{comment}{//\ Traditional\ Chinese,\ Big5}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01015}01015\ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{charliteral}{'E'}:\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}windows-\/932"{}};\ \ \textcolor{comment}{//\ Japanese\ Shift-\/JIS}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01016}01016\ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01017}01017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01018}01018\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01019}01019\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01020}01020\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01032}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a5dc9b6cefce4bd24e251a2d25e8f21ec}{01032}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ Locale\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a5dc9b6cefce4bd24e251a2d25e8f21ec}{getLocale}}(\textcolor{keywordtype}{int}\ platform,\ \textcolor{keywordtype}{int}\ language,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structencoding}{encoding}})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01033}01033\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01034}01034\ \ \ \ \ \textcolor{keywordflow}{switch}\ (platform)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01035}01035\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01036}01036\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{/*\ Apple\ Macintosh\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01037}01037\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getMacLocale(language);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01038}01038\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01039}01039\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{/*\ Microsoft\ Windows\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01040}01040\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_abf729a5fdf70549deefe14a40829ca96}{getWindowsLocale}}(language);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01041}01041\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01042}01042\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01043}01043\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01044}01044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01045}01045\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01046}01046\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01047}01047\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01062}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a3c445300229c0914e2ac57df31e80791}{01062}}\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ String\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1_name_decoder_a3c445300229c0914e2ac57df31e80791}{getCharsetName}}(\textcolor{keywordtype}{int}\ platform,\ \textcolor{keywordtype}{int}\ language,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structencoding}{encoding}})}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01063}01063\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01064}01064\ \ \ \ \ \textcolor{keywordflow}{switch}\ (platform)}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01065}01065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01066}01066\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{/*\ Apple\ Macintosh\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01067}01067\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getMacCharsetName(\mbox{\hyperlink{structencoding}{encoding}});}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01068}01068\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01069}01069\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{/*\ Microsoft\ Windows\ */}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01070}01070\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getMicrosoftCharsetName(language);}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01071}01071\ }
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01072}01072\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01073}01073\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01074}01074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01075}01075\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_name_decoder_8java_source_l01076}01076\ \}}
+
+\end{DoxyCode}

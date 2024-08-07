@@ -1,0 +1,248 @@
+\doxysection{SOXp\+SDAObjects.\+h}
+\hypertarget{_s_o_xp_s_d_a_objects_8h_source}{}\label{_s_o_xp_s_d_a_objects_8h_source}\index{core/src/SOXpS/SOXpSDAObjects.h@{core/src/SOXpS/SOXpSDAObjects.h}}
+\mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOXPSDAOBJECTS\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOXPSDAOBJECTS\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_da_s_tag_8h}{SODaSTag.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_da_s_property_8h}{SODaSProperty.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_xp_s_callbacks_8h}{SOXpSCallbacks.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00008}00008\ \textcolor{preprocessor}{\#ifdef\ WIN64}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00009}00009\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00010}00010\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00011}00011\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00012}00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00015}00015\ DWORD\ WINAPI\ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h_a3ca2fa48a8d75f9cb1ca59d63b3f35b7}{requestThreadMain}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPVOID\ context);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00016}00016\ \textcolor{keyword}{extern}\ HANDLE\ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h_a5a5da941775e8e3748ba0b07f01001fd}{g\_requestThreadEndEvent}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00017}00017\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h_ab9a0e41203b886c5faf415aa68ad9e48}{g\_requestThreadReadQueue}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00018}00018\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h_a8eb55de23caf6ad99f942609a6b81daf}{g\_requestThreadWriteQueue}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00020}00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h_a75b07bb64db9b6b5a7a6ca030c59f647}{removeHandledRequests}}(\mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *requestQueue);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00021}00021\ BOOL\ \mbox{\hyperlink{_s_o_xp_s_d_a_objects_8h_ad0082532bfee8a5fd188e295c0e148db}{processRequestData}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ numRequests,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___s_o_xp_s_d_a_request_data}{SOXpSDARequestData}}\ *requestData);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00025}00025\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00026}00026\ \textcolor{comment}{//\ SOXpSDAServer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00027}00027\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00029}\mbox{\hyperlink{class_s_o_xp_s_d_a_server}{00029}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_d_a_server}{SOXpSDAServer}}\ :}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00032}00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_d_a_server_ad5417ddf78b76e84f7dc0ec20044280c}{SOXpSDAServer}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00035}00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ startup\ synchronisation}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ \mbox{\hyperlink{class_s_o_xp_s_d_a_server_aca2a268460c2dd3acb76cf6bdf216fd6}{waitForNameSpaceStartup}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00038}00038\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ \mbox{\hyperlink{class_s_o_xp_s_d_a_server_ab69175e70e69e287fae4f027706fff33}{waitForIOStartup}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00039}00039\ \};\ \textcolor{comment}{//\ SOXpSDAServer}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00041}00041\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00042}00042\ \textcolor{comment}{//\ SOXpSDARequest\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00043}00043\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00045}\mbox{\hyperlink{class_s_o_xp_s_d_a_request}{00045}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_d_a_request}{SOXpSDARequest}}\ :}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00046}00046\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00047}00047\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00048}00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00049}\mbox{\hyperlink{class_s_o_xp_s_d_a_request_aab5be98528a1248dd3b5ef1c1ff93af5}{00049}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_d_a_request_aab5be98528a1248dd3b5ef1c1ff93af5}{SOXpSDARequest}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ operation,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ WORD\ type)\ :\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}(operation,\ type)\ \{\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_xp_s_d_a_request_adfd5c40adc4164e408ef562f8024e73e}{hasChanged}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ connection,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ SOCmnVariant\ \&value,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ WORD\ quality);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00052}00052\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00054}00054\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00055}00055\ \textcolor{comment}{//\ SOXpSDARequest\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00056}00056\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00058}\mbox{\hyperlink{class_s_o_xp_s_item}{00058}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_item}{SOXpSItem}}\ :}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00059}00059\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_item_default}{SODaSItemDefault}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00061}00061\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00062}\mbox{\hyperlink{class_s_o_xp_s_item_ae4e2a55e5ee7922848eb1d76fca960fe}{00062}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_item_ae4e2a55e5ee7922848eb1d76fca960fe}{SOXpSItem}}(\textcolor{keywordtype}{void})\ :\ \mbox{\hyperlink{class_s_o_da_s_item_default}{SODaSItemDefault}}()\ \{\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00063}00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_xp_s_item_a9893c0e61d4798f66d4452220e7c25ee}{\string~SOXpSItem}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00065}00065\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00066}00066\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_item_ab70e637cb94e897c7c67ed1c4dfc4a86}{createCyclicData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00067}00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_item_ad1fbc1ff5b40b9bf4e00533e3f9bc38f}{destroyCyclicData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ last\ value\ send\ to\ the\ OPC\ client}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00070}00070\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_xp_s_item_af3a6fd9e3ba432d6cefc9906ee86c546}{setSendValue}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ connection,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ SOCmnVariant\ \&value,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ WORD\ quality);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00072}00072\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00073}00073\ \textcolor{comment}{//\ \ virtual\ BOOL\ getSendValue(IN\ DWORD\ connection,\ OUT\ SOCmnVariant\ \&value,\ OUT\ WORD\ *quality);}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00074}00074\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_xp_s_item_a9865417ff87e7b928091a518dee1f5df}{getSendTimeStamp}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ connection,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}*\ pTS);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00075}\mbox{\hyperlink{class_s_o_xp_s_item_a51d2dfb186483bddd6779fedac334f07}{00075}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_item_a51d2dfb186483bddd6779fedac334f07}{clearAllSendTimeStamps}}()\ \{\ \mbox{\hyperlink{class_s_o_xp_s_item_ad8b37cf3535b997115d6b3963acf4563}{m\_sendTimeStamps}}.\mbox{\hyperlink{class_s_o_cmn_string_list_adb61418b8e4a6819f88a9bf0fa0e9463}{removeAll}}();\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00077}00077\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00078}\mbox{\hyperlink{class_s_o_xp_s_item_ad8b37cf3535b997115d6b3963acf4563}{00078}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string_list}{SOCmnStringList}}\ \mbox{\hyperlink{class_s_o_xp_s_item_ad8b37cf3535b997115d6b3963acf4563}{m\_sendTimeStamps}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ previous\ qualities\ send\ to\ the\ OPC\ client}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00079}00079\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00082}00082\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00083}00083\ \textcolor{comment}{//\ SODaSItemTagConnectQueueOneItemsStore\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00084}00084\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00086}\mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store}{00086}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store}{SODaSItemTagConnectQueueOneItemsStore}}\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_i_connect}{SODaSItemTagIConnect}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00087}00087\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00088}00088\ \textcolor{keyword}{friend}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00089}00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_af94eda7eae236d7ea931056a64eb3572}{createItemList}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00092}00092\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00093}00093\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a95f247ea7db5d101127c7cfe55700527}{SODaSItemTagConnectQueueOneItemsStore}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00094}00094\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_aed114330cb3248edf81386737a4f67b8}{\string~SODaSItemTagConnectQueueOneItemsStore}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ read\ queue}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00097}00097\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *\mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_ae954e7da42191a668676c194287e8618}{getReadQueue}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00098}00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmnEventPointer}}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a34092a365abf2ca347619af3151a97f3}{getReadEvent}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ write\ queue}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *\mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_aab721bb9df67855abc65f3d1af28e519}{getWriteQueue}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00102}00102\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmnEventPointer}}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_aaf6fd825c4b06c9783554deb479fe011}{getWriteEvent}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ connected\ objects\ (e.g\ items\ connected\ to\ the\ item\ tag)}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00105}00105\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00106}00106\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a8f9d2f7a441a6a7efaa7f0f673970b37}{getAllConnectedObjects}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ objType,}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCmnObject>}}\ \&objList);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00108}00108\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00109}00109\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a7254b6a1319d9b8ebe6b273ffc3277d0}{addConnectedObject}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}\ *obj);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00110}00110\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a6be457d63bf0682fb58f9d8f74c7cee1}{removeConnectedObject}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}\ *obj);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00111}00111\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a85a71959c62dc75b3bd073bc63f96742}{activateConnectedObject}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}\ *obj);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00112}00112\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_aa35e751766c0d540035d1d9edfb47d87}{deactivateConnectedObject}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}\ *obj);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00114}00114\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00115}\mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a556c156db2898dcbfe8801ab7f8c1760}{00115}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSItem>}}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a556c156db2898dcbfe8801ab7f8c1760}{m\_itemList}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00116}\mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a2b3c5272005826a320a5c9bc524b4dbe}{00116}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store_a2b3c5272005826a320a5c9bc524b4dbe}{m\_activeItems}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00117}00117\ \};\ \textcolor{comment}{//\ SODaSItemTagConnectQueueOneItemsStore}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00122}00122\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00123}00123\ \textcolor{comment}{//\ SOXpSTag\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00124}00124\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00126}\mbox{\hyperlink{class_s_o_xp_s_tag}{00126}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_tag}{SOXpSTag}}\ :}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00127}00127\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_tag}{SODaSTag}},}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00128}00128\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ SOCmnElementListAdditional,}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00129}00129\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store}{SODaSItemTagConnectQueueOneItemsStore}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00130}00130\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00131}00131\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00132}00132\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_tag_a70b21b0765ca199504430ade8c6472fe}{SOXpSTag}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ application\ specific\ data}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00135}\mbox{\hyperlink{class_s_o_xp_s_tag_a199463c4f5f2218496705ae4ccd5f7dc}{00135}}\ \ \ \ \ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_xp_s_tag_a199463c4f5f2218496705ae4ccd5f7dc}{getXpSUserData}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_xp_s_tag_aecd4ba9326a4d34df60dee6376d71833}{m\_xpsUserData}};\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00136}\mbox{\hyperlink{class_s_o_xp_s_tag_a57638fbbdaa38f253322e3c9332ca2d4}{00136}}\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a57638fbbdaa38f253322e3c9332ca2d4}{setXpSUserData}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}})\ \{\ \mbox{\hyperlink{class_s_o_xp_s_tag_aecd4ba9326a4d34df60dee6376d71833}{m\_xpsUserData}}\ =\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}};\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00138}00138\ \ \ \ \ \textcolor{comment}{//\ device\ state\ and\ state\ info\ for\ watch}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00139}00139\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a35eea6c160d2608625693ce5fe8d6b0b}{getDeviceState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00140}00140\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a7a5fda419e76bd425defccc0ce8e7a46}{getDeviceStateInfo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00141}\mbox{\hyperlink{class_s_o_xp_s_tag_a9a7f57e736fcc16fd9fd9c373e2dcba7}{00141}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a9a7f57e736fcc16fd9fd9c373e2dcba7}{setDeviceState}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ deviceState,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ deviceStateInfo)\ \{\ \mbox{\hyperlink{class_s_o_xp_s_tag_a97c3b75d956a232b763b4cb0f802ec59}{m\_deviceState}}\ =\ deviceState;\ \mbox{\hyperlink{class_s_o_xp_s_tag_a0355e97ebad1f692b429d873c58abca2}{m\_deviceStateInfo}}\ =\ deviceStateInfo;\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00143}00143\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a01be0260f0e53ed0a5ea6697638b7871}{setUpdateMode}}(BYTE\ updateMode);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00145}00145\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00146}00146\ \ \ \ \ \textcolor{comment}{//\ request\ handling}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00147}00147\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a8983072162c7e7eed8cb54c1ded2510f}{handleRequest}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}\ *request);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00149}\mbox{\hyperlink{class_s_o_xp_s_tag_a97c3b75d956a232b763b4cb0f802ec59}{00149}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a97c3b75d956a232b763b4cb0f802ec59}{m\_deviceState}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00150}\mbox{\hyperlink{class_s_o_xp_s_tag_a0355e97ebad1f692b429d873c58abca2}{00150}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_tag_a0355e97ebad1f692b429d873c58abca2}{m\_deviceStateInfo}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00151}\mbox{\hyperlink{class_s_o_xp_s_tag_aecd4ba9326a4d34df60dee6376d71833}{00151}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_xp_s_tag_aecd4ba9326a4d34df60dee6376d71833}{m\_xpsUserData}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00152}00152\ \};\ \textcolor{comment}{//\ SOXpSTag}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00157}00157\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00158}00158\ \textcolor{comment}{//\ SOXpSProperty\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00159}00159\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00161}\mbox{\hyperlink{class_s_o_xp_s_property}{00161}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_property}{SOXpSProperty}}\ :}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00162}00162\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_property}{SODaSProperty}},}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00163}00163\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store}{SODaSItemTagConnectQueueOneItemsStore}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00164}00164\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00165}00165\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00166}00166\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_property_a50b2c0215424e7df7849aa107765032c}{SOXpSProperty}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00168}00168\ \ \ \ \ \textcolor{comment}{//\ application\ specific\ data}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00169}\mbox{\hyperlink{class_s_o_xp_s_property_ae1b8b26f548961cb955cb4879026e4c4}{00169}}\ \ \ \ \ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_xp_s_property_ae1b8b26f548961cb955cb4879026e4c4}{getXpSUserData}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_xp_s_property_a54cc749ccaed77dbcb5802ed2727723b}{m\_xpsUserData}};\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00170}\mbox{\hyperlink{class_s_o_xp_s_property_a96b6f9b5b2aee3f41e5cc14f0113848b}{00170}}\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_property_a96b6f9b5b2aee3f41e5cc14f0113848b}{setXpSUserData}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}})\ \{\ \mbox{\hyperlink{class_s_o_xp_s_property_a54cc749ccaed77dbcb5802ed2727723b}{m\_xpsUserData}}\ =\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}};\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00172}00172\ \ \ \ \ \textcolor{comment}{//\ device\ state\ and\ state\ info\ for\ watch}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00173}00173\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_property_a3423fae4249f80860af7d537e9336267}{getDeviceState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00174}00174\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_property_a7ac0076d7507d88cb5dacded7016ce73}{getDeviceStateInfo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00175}\mbox{\hyperlink{class_s_o_xp_s_property_a2fadc73be87b69e4012ee8dd03502196}{00175}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_property_a2fadc73be87b69e4012ee8dd03502196}{setDeviceState}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ deviceState,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ deviceStateInfo)\ \{\ \mbox{\hyperlink{class_s_o_xp_s_property_ad9c2498c6502b0674b1e39748bab051c}{m\_deviceState}}\ =\ deviceState;\ \mbox{\hyperlink{class_s_o_xp_s_property_afe0b60fb8179f38b907e83097f8f4798}{m\_deviceStateInfo}}\ =\ deviceStateInfo;\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00177}00177\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_property_a192e8b269aff194a8b8c6abf7205e0b3}{setUpdateMode}}(BYTE\ updateMode);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00179}00179\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00180}00180\ \ \ \ \ \textcolor{comment}{//\ request\ handling}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00181}00181\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_property_a0449e9ac80c5aef3fca7a592f52e45e4}{handleRequest}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}\ *request);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00183}\mbox{\hyperlink{class_s_o_xp_s_property_ad9c2498c6502b0674b1e39748bab051c}{00183}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_property_ad9c2498c6502b0674b1e39748bab051c}{m\_deviceState}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00184}\mbox{\hyperlink{class_s_o_xp_s_property_afe0b60fb8179f38b907e83097f8f4798}{00184}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_property_afe0b60fb8179f38b907e83097f8f4798}{m\_deviceStateInfo}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00185}\mbox{\hyperlink{class_s_o_xp_s_property_a54cc749ccaed77dbcb5802ed2727723b}{00185}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_xp_s_property_a54cc749ccaed77dbcb5802ed2727723b}{m\_xpsUserData}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00186}00186\ \};\ \textcolor{comment}{//\ SOXpSProperty}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00191}00191\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00192}00192\ \textcolor{comment}{//\ SOXpSNode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00193}00193\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00195}\mbox{\hyperlink{class_s_o_xp_s_node}{00195}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_node}{SOXpSNode}}\ :}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00196}00196\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_node}{SODaSNode}},}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00197}00197\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ SOCmnElementListLeafBranchAdditional,}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00198}00198\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_item_tag_connect_queue_one_items_store}{SODaSItemTagConnectQueueOneItemsStore}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00199}00199\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00200}00200\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00201}00201\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_node_a72662d1d097b5bac7a941cbd7b80e70e}{SOXpSNode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00203}00203\ \ \ \ \ \textcolor{comment}{//\ application\ specific\ data}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00204}\mbox{\hyperlink{class_s_o_xp_s_node_ae13574e08c1479d674b7338269c502e0}{00204}}\ \ \ \ \ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_xp_s_node_ae13574e08c1479d674b7338269c502e0}{getXpSUserData}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_xp_s_node_a97e61f1307b3e0a2c9dd5415a8bde186}{m\_xpsUserData}};\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00205}\mbox{\hyperlink{class_s_o_xp_s_node_ae8f45baa1eab5e69df1c4dafd7468506}{00205}}\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_node_ae8f45baa1eab5e69df1c4dafd7468506}{setXpSUserData}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}})\ \{\ \mbox{\hyperlink{class_s_o_xp_s_node_a97e61f1307b3e0a2c9dd5415a8bde186}{m\_xpsUserData}}\ =\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}};\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00207}00207\ \ \ \ \ \textcolor{comment}{//\ device\ state\ and\ state\ info\ for\ watch}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00208}00208\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_node_aff7daf89f314c103570928442d7392a0}{getDeviceState}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00209}00209\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_node_a1c144be291991dd98fc29dfbfe564bb0}{getDeviceStateInfo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00210}\mbox{\hyperlink{class_s_o_xp_s_node_aba0a5534583a02576cc0d4e05df58e2b}{00210}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_node_aba0a5534583a02576cc0d4e05df58e2b}{setDeviceState}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ deviceState,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ deviceStateInfo)\ \{\ \mbox{\hyperlink{class_s_o_xp_s_node_a2dd6852d116782ccd3df94c7c7c81d5b}{m\_deviceState}}\ =\ deviceState;\ \mbox{\hyperlink{class_s_o_xp_s_node_a6c9c601c5de8e8cac8cc85d7e5a5213b}{m\_deviceStateInfo}}\ =\ deviceStateInfo;\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00212}00212\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_node_ac264fdb7c276052c2b0d1f601a0757b1}{setUpdateMode}}(BYTE\ updateMode);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00214}00214\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00215}00215\ \ \ \ \ \textcolor{comment}{//\ request\ handling}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00216}00216\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_node_ad56900e9a72dd596be6dd0a4df2578ee}{handleRequest}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}\ *request);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00218}\mbox{\hyperlink{class_s_o_xp_s_node_a2dd6852d116782ccd3df94c7c7c81d5b}{00218}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_node_a2dd6852d116782ccd3df94c7c7c81d5b}{m\_deviceState}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00219}\mbox{\hyperlink{class_s_o_xp_s_node_a6c9c601c5de8e8cac8cc85d7e5a5213b}{00219}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_xp_s_node_a6c9c601c5de8e8cac8cc85d7e5a5213b}{m\_deviceStateInfo}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00220}\mbox{\hyperlink{class_s_o_xp_s_node_a97e61f1307b3e0a2c9dd5415a8bde186}{00220}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_xp_s_node_a97e61f1307b3e0a2c9dd5415a8bde186}{m\_xpsUserData}};}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00221}00221\ \};\ \textcolor{comment}{//\ SOXpSNode}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00225}00225\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00226}00226\ \textcolor{comment}{//\ SOXpSTransaction\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00227}00227\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00229}\mbox{\hyperlink{class_s_o_xp_s_transaction}{00229}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_xp_s_transaction}{SOXpSTransaction}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_da_s_transaction}{SODaSTransaction}}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00230}00230\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00231}00231\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00232}00232\ \ \ \ \ \mbox{\hyperlink{class_s_o_xp_s_transaction_ac4c8fae6a9c8fb35d36443cb90edeb1a}{SOXpSTransaction}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_group}{SODaSGroup}}\ *group,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ type,}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00233}00233\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658c}{connectionType}},\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ OPTIONAL\ DWORD\ connection\ =\ 0);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00235}00235\ \ \ \ \ \textcolor{comment}{//\ actions\ on\ request\ list}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00236}00236\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_xp_s_transaction_a4446147c75eb19f39ce1968177118dc9}{handleRequests}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *reqList);}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00238}00238\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00239}00239\ \};\ \textcolor{comment}{//\ SOXpSTransaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00241}00241\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_s_o_xp_s_d_a_objects_8h_source_l00242}00242\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

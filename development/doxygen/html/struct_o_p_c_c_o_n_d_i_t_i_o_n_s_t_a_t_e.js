@@ -1,0 +1,25 @@
+var struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e =
+[
+    [ "dwASCSeverity", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a1129cd9304176b4a80f884201df224f3", null ],
+    [ "dwNumEventAttrs", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a8d2aae81d2e2ab9efdc276b18d10f405", null ],
+    [ "dwNumSCs", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a918b9de4f1464ce794775d45d700667d", null ],
+    [ "ftCondLastActive", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#aa4aecd2429b50a2d6b46db3a4898b06d", null ],
+    [ "ftCondLastInactive", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a146f426e0d0dee780aa22f6c21bf2c12", null ],
+    [ "ftLastAckTime", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#aab5d76fd0843b8187d516829ed792847", null ],
+    [ "ftSubCondLastActive", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a479f332c008d009917870445531fe85a", null ],
+    [ "pdwSCSeverities", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#ac5b2501e464bda0ad89825f46d1a72e9", null ],
+    [ "pErrors", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#acc46166fb7657d109e3217f433d19c54", null ],
+    [ "pEventAttributes", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a96a2b0c0ebf1af226d9680e14cad1068", null ],
+    [ "pszSCDefinitions", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#ad73b47ec37f6f0ccc18196fff01731ab", null ],
+    [ "pszSCDescriptions", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a116c328228ac36e3a7aa7ceb05d203a3", null ],
+    [ "pszSCNames", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#aae233588030442c6c00d1bafbf30def8", null ],
+    [ "szAcknowledgerID", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a92afce662b03eb0f676167b784713efe", null ],
+    [ "szActiveSubCondition", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a2337b1b1822dfdd813422b8e713f17f2", null ],
+    [ "szASCDefinition", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#aa7e88073c51ef828f525cfc7b46de012", null ],
+    [ "szASCDescription", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#aa86e9a62bb8876e042ff4bc8be8cf7fc", null ],
+    [ "szComment", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a618a7ea2547bf50632724afaf67780f7", null ],
+    [ "wQuality", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#ab65a35ba036f156c0b261188c7dedece", null ],
+    [ "wReserved1", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a6ec2d9154a19d913afd2adf23094fe38", null ],
+    [ "wReserved2", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a423bc6175289ac51b63876e6fb18925f", null ],
+    [ "wState", "struct_o_p_c_c_o_n_d_i_t_i_o_n_s_t_a_t_e.html#a52669b5e9add4f3f473a810fe424d9fb", null ]
+];

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 2 (http://www.altova.com) by Vetco Gray Controls Limited (Vetco Gray Controls Limited) -->
+<!-- [Unpublished] Copyright 2023.  Baker Hughes Energy Technology UK Limited. -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+    <xs:include schemaLocation="FieldBusTypes.xsd"/>
+	<xs:include schemaLocation="SCI_GenericSensor.xsd"/>
+	<xs:include schemaLocation="SCI_DeviceMapping.xsd"/>
+	<xs:include schemaLocation="SCI_Housekeeping.xsd"/>
+	<xs:include schemaLocation="SCI_Unit.xsd"/>
+	<xs:include schemaLocation="SCI_BoardControl.xsd"/>
+    <xs:include schemaLocation="SubseaModbusDeviceType.xsd"/>
+	<xs:complexType name="SCI_PCDMSurfaceType">
+		<xs:sequence>
+			<xs:element name="ProcessSensors" type="SensorType" minOccurs="0" maxOccurs="100">
+				<xs:annotation>
+					<xs:documentation>Process Sensor Readings Maximum 50.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SurfaceSensors" type="SurfaceSensorType" minOccurs="0" maxOccurs="1000">
+				<xs:annotation>
+					<xs:documentation>Surface Sensor Readings Maximum 1000.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fieldbuses" type="FieldBusTypes" minOccurs="0" maxOccurs="50">
+				<xs:annotation>
+					<xs:documentation>CAN Sensors, Maximum 25.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CardControl" type="CardControlTypes" minOccurs="0" maxOccurs="16">
+				<xs:annotation>
+					<xs:documentation>Card Control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PLIMControl" type="PLIMControlTypes" minOccurs="0" maxOccurs="4">
+				<xs:annotation>
+					<xs:documentation>PLIM Control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ChannelControl" type="ChannelControlTypes" minOccurs="0" maxOccurs="16">
+				<xs:annotation>
+					<xs:documentation>Channel Control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorCANbusInterfaces" type="SensorCANbusInterfacesTypes" minOccurs="0" maxOccurs="15">
+				<xs:annotation>
+					<xs:documentation>3rd Party Sensors CANbus Interfaces, Maximum 15.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SensorModbusInterfaces" type="SensorModbusInterfacesTypes" minOccurs="0" maxOccurs="15">
+				<xs:annotation>
+					<xs:documentation>3rd Party Sensors Modbus Interfaces, Maximum 15.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusDevices" type="SubseaModbusDeviceType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Subsea Modbus Slave Devices</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModuleHousekeeping" type="ModuleHousekeepingType" minOccurs="0" maxOccurs="15">
+				<xs:annotation>
+					<xs:documentation>CEM Housekeeping Values</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnScan" type="bool">
+				<xs:annotation>
+					<xs:documentation>Communication To This Unit Should Be Carried Out. Both Scan And Commands.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data associated with PCDM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ChannelControlTypes">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Discrete sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Channel Number (1..8)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DriveOffThreshold" type="float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Drive Off Threshold</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputVoltageThreshold" type="float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Input Voltage Threshold</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DelayAfterDCSwitchOn" type="uint16" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Delay After DC Switch On</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DelayAfterACSwitchOff" type="uint16" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Delay After AC Switch On</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DC_Enable_48V" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - DC Enabled 48V</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DC_Status_48V" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - DC Status 48V</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AC_Enable" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - AC Enabled</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Onboard5vSupply" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Onboard 5V Supply</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Onboard15vSupply" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Onboard 15V Supply</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GateDriveVoltage" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Drive Gate Voltage</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InputVoltage" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Input Voltage</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OutputVoltage" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Output Voltage</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LoadCurrent" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Load Current</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCRHeatSinkTemp" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - SCR HeatSink Temperature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnboardTemp" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>PSCM Channel - Onboard Temperature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data associated with Channel Control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PLIMControlTypes">
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Discrete sensor name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Channel Number (1..8)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data associated with Channel Control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

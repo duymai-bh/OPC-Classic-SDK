@@ -1,0 +1,48 @@
+var namespaces_dup =
+[
+    [ "AddressSpace", "namespace_address_space.html", "namespace_address_space" ],
+    [ "AEBrowse", "namespace_a_e_browse.html", "namespace_a_e_browse" ],
+    [ "AECondition", "namespace_a_e_condition.html", "namespace_a_e_condition" ],
+    [ "AEConsole", "namespace_a_e_console.html", "namespace_a_e_console" ],
+    [ "AEEventTypes", "namespace_a_e_event_types.html", "namespace_a_e_event_types" ],
+    [ "AEObjectAttributes", "namespace_a_e_object_attributes.html", "namespace_a_e_object_attributes" ],
+    [ "AEQuerySourceConditions", "namespace_a_e_query_source_conditions.html", "namespace_a_e_query_source_conditions" ],
+    [ "BISDemo", "namespace_b_i_s_demo.html", "namespace_b_i_s_demo" ],
+    [ "Console", "namespace_console.html", "namespace_console" ],
+    [ "ConsoleCtt", "namespace_console_ctt.html", "namespace_console_ctt" ],
+    [ "DABrowse", "namespace_d_a_browse.html", "namespace_d_a_browse" ],
+    [ "daBrowse", "namespaceda_browse.html", "namespaceda_browse" ],
+    [ "DABrowse_DA20", "namespace_d_a_browse___d_a20.html", "namespace_d_a_browse___d_a20" ],
+    [ "DaConsole", "namespace_da_console.html", "namespace_da_console" ],
+    [ "daConsole", "namespaceda_console.html", "namespaceda_console" ],
+    [ "DaConsole_Service", "namespace_da_console___service.html", "namespace_da_console___service" ],
+    [ "DAGetProperties", "namespace_d_a_get_properties.html", "namespace_d_a_get_properties" ],
+    [ "DAObjectAttributes", "namespace_d_a_object_attributes.html", "namespace_d_a_object_attributes" ],
+    [ "DataControl", "namespace_data_control.html", "namespace_data_control" ],
+    [ "DemoClient", "namespace_demo_client.html", "namespace_demo_client" ],
+    [ "DemoServer", "namespace_demo_server.html", "namespace_demo_server" ],
+    [ "DllSample", "namespace_dll_sample.html", "namespace_dll_sample" ],
+    [ "OPC_AE", "namespace_o_p_c___a_e.html", "namespace_o_p_c___a_e" ],
+    [ "OPCCOMN", "namespace_o_p_c_c_o_m_n.html", [
+      [ "importlib", "namespace_o_p_c_c_o_m_n.html#a58e8ee9ef1a436af9a377275062079d8", null ],
+      [ "importlib", "namespace_o_p_c_c_o_m_n.html#acdb3d268f6578d837035e1f37164b8f9", null ]
+    ] ],
+    [ "OPCDA", "namespace_o_p_c_d_a.html", "namespace_o_p_c_d_a" ],
+    [ "OPCEnumerate", "namespace_o_p_c_enumerate.html", "namespace_o_p_c_enumerate" ],
+    [ "OpcEnumLib", "namespace_opc_enum_lib.html", "namespace_opc_enum_lib" ],
+    [ "OPCSEC", "namespace_o_p_c_s_e_c.html", [
+      [ "importlib", "namespace_o_p_c_s_e_c.html#afd2f61d1fba68fdfb9f02158e2576ef4", null ],
+      [ "importlib", "namespace_o_p_c_s_e_c.html#a4bcdfbfc5f5555c7b239833c4216419a", null ]
+    ] ],
+    [ "PerfClient", "namespace_perf_client.html", "namespace_perf_client" ],
+    [ "SerialIO", "namespace_serial_i_o.html", "namespace_serial_i_o" ],
+    [ "Session", "namespace_session.html", "namespace_session" ],
+    [ "Softing", "namespace_softing.html", "namespace_softing" ],
+    [ "SoftingOPCToolboxClient", "namespace_softing_o_p_c_toolbox_client.html", "namespace_softing_o_p_c_toolbox_client" ],
+    [ "SoftingOPCToolboxServer", "namespace_softing_o_p_c_toolbox_server.html", "namespace_softing_o_p_c_toolbox_server" ],
+    [ "TestClientGui", "namespace_test_client_gui.html", "namespace_test_client_gui" ],
+    [ "TestDll", "namespace_test_dll.html", "namespace_test_dll" ],
+    [ "TestServer", "namespace_test_server.html", "namespace_test_server" ],
+    [ "UpdateMode", "namespace_update_mode.html", "namespace_update_mode" ],
+    [ "WeifenLuo", "namespace_weifen_luo.html", "namespace_weifen_luo" ]
+];

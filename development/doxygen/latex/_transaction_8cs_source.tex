@@ -1,0 +1,76 @@
+\doxysection{Transaction.\+cs}
+\hypertarget{_transaction_8cs_source}{}\label{_transaction_8cs_source}\index{NET/samples/server/DemoServer/CS/Transaction.cs@{NET/samples/server/DemoServer/CS/Transaction.cs}}
+\mbox{\hyperlink{_transaction_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server}{Softing.OPCToolbox.Server}};}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00004}00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_demo_server}{DemoServer}}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00006}\mbox{\hyperlink{class_demo_server_1_1_transaction}{00006}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_demo_server_1_1_transaction}{Transaction}}\ :\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction}{DaTransaction}}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00007}00007\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00008}00008\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00009}00009\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00011}\mbox{\hyperlink{class_demo_server_1_1_transaction_a063fdaecfe68e8e9d7f44cd519fa2a48}{00011}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_demo_server_1_1_transaction_a063fdaecfe68e8e9d7f44cd519fa2a48}{Transaction}}(}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a0a9678ef2c882b39d90546554551ef1f}{EnumTransactionType}}\ aTransactionType,}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}[]\ requestList,}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ uint\ aSessionKey)}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ base(}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ aTransactionType,}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \ \ \ \ requestList,}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ aSessionKey)}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ constructor}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00023}\mbox{\hyperlink{class_demo_server_1_1_transaction_abb4f5f1f790e320fae1ed7cee45716f4}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_demo_server_1_1_transaction_abb4f5f1f790e320fae1ed7cee45716f4}{HandleReadRequests}}()}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}.Count;}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ request\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}[i]\ as\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}};}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((request\ !=\ \textcolor{keyword}{null})\ \&\&\ (request.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_ae44d1e68e87bc7a3a70f45d447f395cf}{ProgressRequestState}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.CREATED,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.INPROGRESS)\ ==\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}}\ element\ =\ (\mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}})request.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_a71fda94b7a1f0ab4d41c293fe39727b1}{AddressSpaceElement}};}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (element\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element.\mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element_af3554b81993f8ec8b1d1a84f9b8d0729}{HandleReadRequest}}(request);}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_adb5f97c37b78ee207b6ec2e72e4cf562}{CompleteRequests}}();}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ HandleReadRequests}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00045}\mbox{\hyperlink{class_demo_server_1_1_transaction_a8de36dd0469fbcadacfbbe16829a30e8}{00045}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_demo_server_1_1_transaction_a8de36dd0469fbcadacfbbe16829a30e8}{HandleWriteRequests}}()}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}.Count;}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ request\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_af37a58d5830fd3f230d8d9921b06b7ec}{Requests}}[i]\ as\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}};}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((request\ !=\ \textcolor{keyword}{null})\ \&\&\ (request.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_ae44d1e68e87bc7a3a70f45d447f395cf}{ProgressRequestState}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.CREATED,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a9b6590ae8affc26feb3b81f7645c3ea6}{EnumRequestState}}.INPROGRESS)\ ==\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}}\ element\ =\ (\mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}})request.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_a71fda94b7a1f0ab4d41c293fe39727b1}{AddressSpaceElement}};}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (element\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ element.\mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element_a45d76c5f473ef00ff521bccd29e00627}{HandleWriteRequest}}(request);}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.E\_FAIL;}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_transaction_adb5f97c37b78ee207b6ec2e72e4cf562}{CompleteRequests}}();}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ HandleWriteRequests}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00068}00068\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00069}00069\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ MyTransaction}}
+\DoxyCodeLine{\Hypertarget{_transaction_8cs_source_l00070}00070\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace}}
+
+\end{DoxyCode}

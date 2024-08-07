@@ -1,0 +1,4 @@
+var interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_query_a_e_categories =
+[
+    [ "invoke", "interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_query_a_e_categories.html#a0337ea016dfeb987b2aec8b2bdc854af", null ]
+];

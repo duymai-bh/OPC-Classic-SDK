@@ -1,0 +1,124 @@
+\doxysection{Server\+Status.\+java}
+\hypertarget{_server_status_8java_source}{}\label{_server_status_8java_source}\index{Java/src/com/softing/opc/client/api/ServerStatus.java@{Java/src/com/softing/opc/client/api/ServerStatus.java}}
+\mbox{\hyperlink{_server_status_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00001}00001\ \textcolor{keyword}{package\ }com.softing.opc.client.api;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00003}00003\ \textcolor{keyword}{import}\ java.util.Date;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00005}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status}{00005}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status}{ServerStatus}}\ \{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00007}00007\ \ \ \ \ \textcolor{keyword}{private}\ \ \textcolor{keywordtype}{int}\ state\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00008}00008\ \ \ \ \ \textcolor{keyword}{private}\ \ Date\ startTime\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00009}00009\ \ \ \ \ \textcolor{keyword}{private}\ \ Date\ currentTime\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00010}00010\ \ \ \ \ \textcolor{keyword}{private}\ \ String\ vendorInfo\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{private}\ \ String\ productVersion\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00012}00012\ \ \ \ \ \textcolor{keyword}{private}\ \ String[]\ supportedLcIds\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{private}\ \ Date\ lastUpdateTime\ =\ \textcolor{keyword}{new}\ Date();}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{private}\ \ \textcolor{keywordtype}{int}\ groupCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{private}\ \ \textcolor{keywordtype}{int}\ bandwidth\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00016}00016\ \ \ \ \ \textcolor{keyword}{private}\ \ String\ statusInfo\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00017}00017\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00018}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a8c904cb0900e673cce829883c2e27be3}{00018}}\ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a8c904cb0900e673cce829883c2e27be3}{ServerStatus}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00019}00019\ \ \ \ \ \}\ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00020}00020\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00021}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a79256d08d86a4cc790e35293a511f567}{00021}}\ \ \ \ \ \textcolor{keyword}{protected}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a79256d08d86a4cc790e35293a511f567}{ServerStatus}}(\ \textcolor{keywordtype}{int}\ stateValue,\ Date\ startTimeValue,}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ Date\ currentTimeValue,\ String\ vendorInfoValue,}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ productVersionValue,\ String[]\ supportedLcIdsValue,}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ Date\ lastUpdateTimeValue,\ \textcolor{keywordtype}{int}\ groupCountValue,}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ bandwidthValue,String\ statusInfoValue)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00026}00026\ \ \ \ \ \ \ \ \ state\ =\ stateValue;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00027}00027\ \ \ \ \ \ \ \ \ startTime\ =\ startTimeValue;\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00028}00028\ \ \ \ \ \ \ \ \ currentTime\ =\ currentTimeValue;\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00029}00029\ \ \ \ \ \ \ \ \ vendorInfo\ =\ vendorInfoValue;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00030}00030\ \ \ \ \ \ \ \ \ productVersion\ =\ productVersionValue;\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00031}00031\ \ \ \ \ \ \ \ \ supportedLcIds\ =\ supportedLcIdsValue;\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00032}00032\ \ \ \ \ \ \ \ \ lastUpdateTime\ =\ lastUpdateTimeValue;\ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00033}00033\ \ \ \ \ \ \ \ \ groupCount\ =\ groupCountValue;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00034}00034\ \ \ \ \ \ \ \ \ bandwidth\ =\ bandwidthValue\ ;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00035}00035\ \ \ \ \ \ \ \ \ statusInfo\ =\ statusInfoValue;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00036}00036\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00037}00037\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00038}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a77a9957a7d2dda18b5c083afa9f7c2cd}{00038}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a77a9957a7d2dda18b5c083afa9f7c2cd}{getVendorInfo}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ vendorInfo;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00041}00041\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00042}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a3cb7f21a74e0778a2ea69b74a2ae24de}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a3cb7f21a74e0778a2ea69b74a2ae24de}{setVendorInfo}}(String\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00043}00043\ \ \ \ \ \ \ \ \ vendorInfo\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00044}00044\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00045}00045\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00046}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a2240d31ec598e70aaf767e4dd15280ab}{00046}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a2240d31ec598e70aaf767e4dd15280ab}{getState}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ state;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00049}00049\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00050}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a91d827d8664150ad781e1b6b05b7c1b5}{00050}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a91d827d8664150ad781e1b6b05b7c1b5}{setState}}(\textcolor{keywordtype}{int}\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00051}00051\ \ \ \ \ \ \ \ \ state\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00053}00053\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00054}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a94781c1534067abeb183a2bff2f0ce6e}{00054}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a94781c1534067abeb183a2bff2f0ce6e}{getStartTime}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ startTime;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00057}00057\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00058}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a45ca2021b4029a8fd24d5b5fd4c689e2}{00058}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a45ca2021b4029a8fd24d5b5fd4c689e2}{setStartTime}}(Date\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00059}00059\ \ \ \ \ \ \ \ \ startTime\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00061}00061\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00062}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_aa53653a927b3602c9c58de64b7fa15a6}{00062}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_aa53653a927b3602c9c58de64b7fa15a6}{getCurrentTime}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ currentTime;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00065}00065\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00066}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a4e349f3c575ae6d05fdbae7bc081f226}{00066}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a4e349f3c575ae6d05fdbae7bc081f226}{setCurrentTime}}(Date\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00067}00067\ \ \ \ \ \ \ \ \ currentTime\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00069}00069\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00070}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a576f6170e5c4fb3e4c2aefa444692310}{00070}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a576f6170e5c4fb3e4c2aefa444692310}{getProductVersion}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ productVersion;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00073}00073\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00074}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_acba0c2aba885cc77bd47efbb02eb9829}{00074}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_acba0c2aba885cc77bd47efbb02eb9829}{setProductVersion}}(String\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00075}00075\ \ \ \ \ \ \ \ \ productVersion\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00077}00077\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00078}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_ae92344d418690465392112ad09c615c8}{00078}}\ \ \ \ \ \textcolor{keyword}{public}\ String[]\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_ae92344d418690465392112ad09c615c8}{getSupportedLcIds}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ supportedLcIds;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00081}00081\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00082}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a6361849ecdd511102620ae7f58020cfa}{00082}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a6361849ecdd511102620ae7f58020cfa}{setSupportedLcIds}}(String[]\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00083}00083\ \ \ \ \ \ \ \ \ supportedLcIds\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00085}00085\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00086}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a350d87ea4ec849cfe9821114843cba79}{00086}}\ \ \ \ \ \textcolor{keyword}{public}\ Date\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a350d87ea4ec849cfe9821114843cba79}{getLastUpdateTime}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lastUpdateTime;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00089}00089\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00090}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a863bef82f140f6bcb913b3ac745ad01b}{00090}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a863bef82f140f6bcb913b3ac745ad01b}{setLastUpdateTime}}(Date\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00091}00091\ \ \ \ \ \ \ \ \ lastUpdateTime\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00093}00093\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00094}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a087582bad30cfa99e2f019c79a97fe73}{00094}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a087582bad30cfa99e2f019c79a97fe73}{getGroupCount}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ groupCount;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00097}00097\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00098}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_aa722c7b54c107f5b8b5788ad5042614d}{00098}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_aa722c7b54c107f5b8b5788ad5042614d}{setGroupCount}}(\textcolor{keywordtype}{int}\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00099}00099\ \ \ \ \ \ \ \ \ groupCount\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00100}00100\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00101}00101\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00102}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a66758ca28351edd1925169a064b785e9}{00102}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a66758ca28351edd1925169a064b785e9}{getBandwidth}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bandwidth;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00105}00105\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00106}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a5ff08e5236d593d466eeaace2963461a}{00106}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a5ff08e5236d593d466eeaace2963461a}{setBandwidth}}(\textcolor{keywordtype}{int}\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00107}00107\ \ \ \ \ \ \ \ \ bandwidth\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00109}00109\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00110}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_addfb5c2049a1c0d7554207e546661ceb}{00110}}\ \ \ \ \ \textcolor{keyword}{public}\ String\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_addfb5c2049a1c0d7554207e546661ceb}{getStatusInfo}}()\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ statusInfo;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00113}00113\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00114}\mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a47c48bd944e40beaab5ad2ddad22eb06}{00114}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classcom_1_1softing_1_1opc_1_1client_1_1api_1_1_server_status_a47c48bd944e40beaab5ad2ddad22eb06}{setStatusInfo}}(String\ value)\{}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00115}00115\ \ \ \ \ \ \ \ \ statusInfo\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00117}00117\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_server_status_8java_source_l00118}00118\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,574 @@
+\doxysection{Dock\+Panel.\+Focus\+Manager.\+cs}
+\hypertarget{_dock_panel_8_focus_manager_8cs_source}{}\label{_dock_panel_8_focus_manager_8cs_source}\index{NET/samples/client/Demo Client/WinFormsUI/Docking/DockPanel.FocusManager.cs@{NET/samples/client/Demo Client/WinFormsUI/Docking/DockPanel.FocusManager.cs}}
+\mbox{\hyperlink{_dock_panel_8_focus_manager_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.Diagnostics.CodeAnalysis;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking}{WeifenLuo.WinFormsUI.Docking}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00011}00011\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{interface\ }IContentFocusManager}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ Activate(IDockContent\ content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ GiveUpFocus(IDockContent\ content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ AddToList(IDockContent\ content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ RemoveFromList(IDockContent\ content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00017}00017\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00019}00019\ \ \ \ \ \textcolor{keyword}{partial\ class\ }DockPanel}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00020}00020\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{interface\ }IFocusManager}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SuspendFocusTracking();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ResumeFocusTracking();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IsFocusTrackingSuspended\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ ActiveContent\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ ActivePane\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ ActiveDocument\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ ActiveDocumentPane\ \{\ \textcolor{keyword}{get};\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{class\ }FocusManagerImpl\ :\ Component,\ IContentFocusManager,\ IFocusManager}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{class\ }HookEventArgs\ :\ EventArgs}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [SuppressMessage(\textcolor{stringliteral}{"{}Microsoft.Performance"{}},\ \textcolor{stringliteral}{"{}CA1823:AvoidUnusedPrivateFields"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ HookCode;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [SuppressMessage(\textcolor{stringliteral}{"{}Microsoft.Performance"{}},\ \textcolor{stringliteral}{"{}CA1823:AvoidUnusedPrivateFields"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IntPtr\ wParam;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IntPtr\ lParam;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{class\ }LocalWindowsHook\ :\ IDisposable}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Internal\ properties}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IntPtr\ m\_hHook\ =\ IntPtr.Zero;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ NativeMethods.HookProc\ m\_filterFunc\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Win32.HookType\ m\_hookType;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Event\ delegate}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ HookEventHandler(\textcolor{keywordtype}{object}\ sender,\ HookEventArgs\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Event:\ HookInvoked\ }}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ HookEventHandler\ HookInvoked;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keywordtype}{void}\ OnHookInvoked(HookEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (HookInvoked\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HookInvoked(\textcolor{keyword}{this},\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ LocalWindowsHook(Win32.HookType\ hook)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_hookType\ =\ hook;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_filterFunc\ =\ \textcolor{keyword}{new}\ NativeMethods.HookProc(this.CoreHookProc);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Default\ filter\ function}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IntPtr\ CoreHookProc(\textcolor{keywordtype}{int}\ code,\ IntPtr\ wParam,\ IntPtr\ lParam)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NativeMethods.CallNextHookEx(m\_hHook,\ code,\ wParam,\ lParam);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Let\ clients\ determine\ what\ to\ do}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ HookEventArgs\ e\ =\ \textcolor{keyword}{new}\ HookEventArgs();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.HookCode\ =\ code;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.wParam\ =\ wParam;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ e.lParam\ =\ lParam;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OnHookInvoked(e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Yield\ to\ the\ next\ hook\ in\ the\ chain}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NativeMethods.CallNextHookEx(m\_hHook,\ code,\ wParam,\ lParam);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Install\ the\ hook}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Install()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_hHook\ !=\ IntPtr.Zero)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Uninstall();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ threadId\ =\ NativeMethods.GetCurrentThreadId();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_hHook\ =\ NativeMethods.SetWindowsHookEx(m\_hookType,\ m\_filterFunc,\ IntPtr.Zero,\ threadId);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Uninstall\ the\ hook}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Uninstall()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_hHook\ !=\ IntPtr.Zero)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NativeMethods.UnhookWindowsHookEx(m\_hHook);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_hHook\ =\ IntPtr.Zero;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string~LocalWindowsHook()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dispose(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Dispose()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Dispose(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GC.SuppressFinalize(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ Dispose(\textcolor{keywordtype}{bool}\ disposing)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Uninstall();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ LocalWindowsHook\ m\_localWindowsHook;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ LocalWindowsHook.HookEventHandler\ m\_hookEventHandler;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ FocusManagerImpl(DockPanel\ dockPanel)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockPanel\ =\ dockPanel;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_localWindowsHook\ =\ \textcolor{keyword}{new}\ LocalWindowsHook(Win32.HookType.WH\_CALLWNDPROCRET);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_hookEventHandler\ =\ \textcolor{keyword}{new}\ LocalWindowsHook.HookEventHandler(HookEventHandler);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_localWindowsHook.HookInvoked\ +=\ m\_hookEventHandler;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_localWindowsHook.Install();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ DockPanel\ m\_dockPanel;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ DockPanel\ DockPanel}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_dockPanel;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_disposed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ Dispose(\textcolor{keywordtype}{bool}\ disposing)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (\textcolor{keyword}{this})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_disposed\ \&\&\ disposing)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_localWindowsHook.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_disposed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ base.Dispose(disposing);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IDockContent\ m\_contentActivating\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IDockContent\ ContentActivating}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_contentActivating;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_contentActivating\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Activate(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsFocusTrackingSuspended)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ContentActivating\ =\ content;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockContentHandler\ handler\ =\ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handler.Form.IsDisposed)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Should\ not\ reach\ here,\ but\ better\ than\ throwing\ an\ exception}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ContentContains(content,\ handler.ActiveWindowHandle))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NativeMethods.SetFocus(handler.ActiveWindowHandle);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!handler.Form.ContainsFocus)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!handler.Form.SelectNextControl(handler.Form.ActiveControl,\ \textcolor{keyword}{true},\ \textcolor{keyword}{true},\ \textcolor{keyword}{true},\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Since\ DockContent\ Form\ is\ not\ selectalbe,\ use\ Win32\ SetFocus\ instead}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NativeMethods.SetFocus(handler.Form.Handle);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<IDockContent>\ m\_listContent\ =\ \textcolor{keyword}{new}\ List<IDockContent>();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ List<IDockContent>\ ListContent}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_listContent;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ AddToList(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ListContent.Contains(content)\ ||\ IsInActiveList(content))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ListContent.Add(content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ RemoveFromList(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsInActiveList(content))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveFromActiveList(content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ListContent.Contains(content))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ListContent.Remove(content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IDockContent\ m\_lastActiveContent\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IDockContent\ LastActiveContent}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_lastActiveContent;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_lastActiveContent\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ IsInActiveList(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ !(content.DockHandler.NextActive\ ==\ \textcolor{keyword}{null}\ \&\&\ LastActiveContent\ !=\ content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ AddLastToActiveList(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ last\ =\ LastActiveContent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (last\ ==\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockContentHandler\ handler\ =\ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsInActiveList(content))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RemoveFromActiveList(content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler.PreviousActive\ =\ last;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler.NextActive\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LastActiveContent\ =\ content;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (last\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ last.DockHandler.NextActive\ =\ LastActiveContent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ RemoveFromActiveList(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LastActiveContent\ ==\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LastActiveContent\ =\ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_handler_ace5e00def3ba509924ba4bab760ca0b6}{PreviousActive}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ prev\ =\ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_handler_ace5e00def3ba509924ba4bab760ca0b6}{PreviousActive}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ next\ =\ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_handler_a97f51c6d1a514766322a8dda2d4d1e3b}{NextActive}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (prev\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prev.DockHandler.NextActive\ =\ next;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (next\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ next.DockHandler.PreviousActive\ =\ prev;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content.DockHandler.PreviousActive\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content.DockHandler.NextActive\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ GiveUpFocus(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockContentHandler\ handler\ =\ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!handler.Form.ContainsFocus)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (IsFocusTrackingSuspended)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPanel.DummyControl.Focus();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (LastActiveContent\ ==\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ prev\ =\ handler.PreviousActive;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (prev\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Activate(prev);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ListContent.Count\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Activate(ListContent[ListContent.Count\ -\/\ 1]);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (LastActiveContent\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Activate(LastActiveContent);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ListContent.Count\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Activate(ListContent[ListContent.Count\ -\/\ 1]);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ ContentContains(IDockContent\ content,\ IntPtr\ hWnd)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Control\ control\ =\ Control.FromChildHandle(hWnd);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (Control\ parent\ =\ control;\ parent\ !=\ \textcolor{keyword}{null};\ parent\ =\ parent.Parent)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (parent\ ==\ content.DockHandler.Form)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ m\_countSuspendFocusTracking\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ SuspendFocusTracking()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_countSuspendFocusTracking++;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_localWindowsHook.HookInvoked\ -\/=\ m\_hookEventHandler;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ ResumeFocusTracking()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_countSuspendFocusTracking\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_countSuspendFocusTracking-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_countSuspendFocusTracking\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ContentActivating\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Activate(ContentActivating);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ContentActivating\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_localWindowsHook.HookInvoked\ +=\ m\_hookEventHandler;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!InRefreshActiveWindow)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RefreshActiveWindow();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ IsFocusTrackingSuspended}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_countSuspendFocusTracking\ !=\ 0;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Windows\ hook\ event\ handler}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ HookEventHandler(\textcolor{keywordtype}{object}\ sender,\ HookEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Win32.Msgs\ msg\ =\ (Win32.Msgs)Marshal.ReadInt32(e.lParam,\ IntPtr.Size\ *\ 3);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (msg\ ==\ Win32.Msgs.WM\_KILLFOCUS)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IntPtr\ wParam\ =\ Marshal.ReadIntPtr(e.lParam,\ IntPtr.Size\ *\ 2);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ pane\ =\ GetPaneFromHandle(wParam);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pane\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RefreshActiveWindow();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (msg\ ==\ Win32.Msgs.WM\_SETFOCUS)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RefreshActiveWindow();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ DockPane\ GetPaneFromHandle(IntPtr\ hWnd)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Control\ control\ =\ Control.FromChildHandle(hWnd);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ content\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ pane\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ control\ !=\ \textcolor{keyword}{null};\ control\ =\ control.Parent)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content\ =\ control\ as\ IDockContent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content.DockHandler.ActiveWindowHandle\ =\ hWnd;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content\ !=\ \textcolor{keyword}{null}\ \&\&\ content.DockHandler.DockPanel\ ==\ DockPanel)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ content.DockHandler.Pane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pane\ =\ control\ as\ DockPane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pane\ !=\ \textcolor{keyword}{null}\ \&\&\ pane.DockPanel\ ==\ DockPanel)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_inRefreshActiveWindow\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ InRefreshActiveWindow}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_inRefreshActiveWindow;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ RefreshActiveWindow()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SuspendFocusTracking();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_inRefreshActiveWindow\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ oldActivePane\ =\ ActivePane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ oldActiveContent\ =\ ActiveContent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ oldActiveDocument\ =\ ActiveDocument;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetActivePane();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetActiveContent();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetActiveDocumentPane();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetActiveDocument();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPanel.AutoHideWindow.RefreshActivePane();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00373}00373\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResumeFocusTracking();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_inRefreshActiveWindow\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldActiveContent\ !=\ ActiveContent)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPanel.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa870f3263c5125360a619de0b88f6b99}{OnActiveContentChanged}}(EventArgs.Empty);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldActiveDocument\ !=\ ActiveDocument)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPanel.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7b31bd5bb3e3a86d59954f4205d365a9}{OnActiveDocumentChanged}}(EventArgs.Empty);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldActivePane\ !=\ ActivePane)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPanel.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad38584346e0d594dbb506e6c44a93406}{OnActivePaneChanged}}(EventArgs.Empty);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ DockPane\ m\_activePane\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ DockPane\ ActivePane}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_activePane;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetActivePane()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ value\ =\ GetPaneFromHandle(NativeMethods.GetFocus());}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activePane\ ==\ value)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activePane\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activePane.SetIsActivated(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00399}00399\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activePane\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activePane\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activePane.SetIsActivated(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00405}00405\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IDockContent\ m\_activeContent\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IDockContent\ ActiveContent}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_activeContent;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ SetActiveContent()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ value\ =\ ActivePane\ ==\ \textcolor{keyword}{null}\ ?\ null\ :\ ActivePane.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_adf2db71cdec66371099f06482ea65eb2}{ActiveContent}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeContent\ ==\ value)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00418}00418\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeContent\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeContent.DockHandler.IsActivated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeContent\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00423}00423\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeContent\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeContent.DockHandler.IsActivated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!DockHelper.IsDockStateAutoHide((m\_activeContent.DockHandler.DockState)))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AddLastToActiveList(m\_activeContent);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ DockPane\ m\_activeDocumentPane\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ DockPane\ ActiveDocumentPane}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_activeDocumentPane;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00437}00437\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetActiveDocumentPane()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPane\ value\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ActivePane\ !=\ \textcolor{keyword}{null}\ \&\&\ ActivePane.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_a5ccbe833cfc70fb94a11fbe8d2807bd2}{DockState}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ ActivePane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{keyword}{null}\ \&\&\ DockPanel.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6bfd5c0a0c23cf70b5162fde9c646e0f}{DockWindows}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ActiveDocumentPane\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ DockPanel.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6bfd5c0a0c23cf70b5162fde9c646e0f}{DockWindows}}[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document].DefaultPane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ActiveDocumentPane.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_a3ac5584410080a09e044aefc53624d91}{DockPanel}}\ !=\ DockPanel\ ||\ ActiveDocumentPane.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_a5ccbe833cfc70fb94a11fbe8d2807bd2}{DockState}}\ !=\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ DockPanel.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6bfd5c0a0c23cf70b5162fde9c646e0f}{DockWindows}}[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document].DefaultPane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ ActiveDocumentPane;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeDocumentPane\ ==\ value)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00457}00457\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeDocumentPane\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeDocumentPane.SetIsActiveDocumentPane(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00460}00460\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeDocumentPane\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00462}00462\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeDocumentPane\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeDocumentPane.SetIsActiveDocumentPane(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00466}00466\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IDockContent\ m\_activeDocument\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IDockContent\ ActiveDocument}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_activeDocument;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetActiveDocument()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDockContent\ value\ =\ ActiveDocumentPane\ ==\ \textcolor{keyword}{null}\ ?\ null\ :\ ActiveDocumentPane.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_adf2db71cdec66371099f06482ea65eb2}{ActiveContent}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00476}00476\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_activeDocument\ ==\ value)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00479}00479\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_activeDocument\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00482}00482\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00483}00483\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00484}00484\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ IFocusManager\ FocusManager}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00485}00485\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_focusManager;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00487}00487\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ IContentFocusManager\ ContentFocusManager}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00490}00490\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_focusManager;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00492}00492\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00494}00494\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ SaveFocus()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00495}00495\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ DummyControl.Focus();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00497}00497\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00499}00499\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00500}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aed4f6e30b71bbc63414e81f0c815dd88}{00500}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aed4f6e30b71bbc63414e81f0c815dd88}{ActiveContent}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00501}00501\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ FocusManager.ActiveContent;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00503}00503\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00505}00505\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00506}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a0669f2345548e9059bf54ad9fa1ea327}{00506}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane}{DockPane}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a0669f2345548e9059bf54ad9fa1ea327}{ActivePane}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00507}00507\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ FocusManager.ActivePane;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00509}00509\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00510}00510\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00511}00511\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00512}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a688331894e019430bce97e3319231cc0}{00512}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a688331894e019430bce97e3319231cc0}{ActiveDocument}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00513}00513\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ FocusManager.ActiveDocument;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00515}00515\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00516}00516\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00517}00517\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00518}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad602cb983521e304529c38ee95e92f3b}{00518}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane}{DockPane}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad602cb983521e304529c38ee95e92f3b}{ActiveDocumentPane}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00519}00519\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ FocusManager.ActiveDocumentPane;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00521}00521\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00522}00522\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00523}00523\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ \textcolor{keywordtype}{object}\ ActiveDocumentChangedEvent\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00524}00524\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_PropertyChanged"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00525}00525\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_ActiveDocumentChanged\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00526}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab4a7cf2932671dda38492ae0a4b4aa29}{00526}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ EventHandler\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab4a7cf2932671dda38492ae0a4b4aa29}{ActiveDocumentChanged}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00527}00527\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \{\ Events.AddHandler(ActiveDocumentChangedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{remove}\ \{\ Events.RemoveHandler(ActiveDocumentChangedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00530}00530\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00531}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7b31bd5bb3e3a86d59954f4205d365a9}{00531}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7b31bd5bb3e3a86d59954f4205d365a9}{OnActiveDocumentChanged}}(EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00532}00532\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ EventHandler\ handler\ =\ (EventHandler)Events[ActiveDocumentChangedEvent];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handler\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler(\textcolor{keyword}{this},\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00536}00536\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00537}00537\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00538}00538\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ \textcolor{keywordtype}{object}\ ActiveContentChangedEvent\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00539}00539\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_PropertyChanged"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00540}00540\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_ActiveContentChanged\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00541}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a1fd9b95e89f549d0e854160ddc2bde26}{00541}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ EventHandler\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a1fd9b95e89f549d0e854160ddc2bde26}{ActiveContentChanged}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00542}00542\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \{\ Events.AddHandler(ActiveContentChangedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{remove}\ \{\ Events.RemoveHandler(ActiveContentChangedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00545}00545\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00546}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa870f3263c5125360a619de0b88f6b99}{00546}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa870f3263c5125360a619de0b88f6b99}{OnActiveContentChanged}}(EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00547}00547\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ EventHandler\ handler\ =\ (EventHandler)Events[ActiveContentChangedEvent];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handler\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler(\textcolor{keyword}{this},\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00551}00551\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00553}00553\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ \textcolor{keywordtype}{object}\ ActivePaneChangedEvent\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00554}00554\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_PropertyChanged"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00555}00555\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_ActivePaneChanged\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00556}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a1ba81a22a83edb09fd4ad71b93c5a902}{00556}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ EventHandler\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a1ba81a22a83edb09fd4ad71b93c5a902}{ActivePaneChanged}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00557}00557\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \{\ Events.AddHandler(ActivePaneChangedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{remove}\ \{\ Events.RemoveHandler(ActivePaneChangedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00560}00560\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00561}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad38584346e0d594dbb506e6c44a93406}{00561}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad38584346e0d594dbb506e6c44a93406}{OnActivePaneChanged}}(EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00562}00562\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ EventHandler\ handler\ =\ (EventHandler)Events[ActivePaneChangedEvent];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handler\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler(\textcolor{keyword}{this},\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00566}00566\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00567}00567\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8_focus_manager_8cs_source_l00568}00568\ \}}
+
+\end{DoxyCode}

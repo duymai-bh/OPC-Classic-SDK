@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v
+10 (http://www.altova.com) by Tim Dyer (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SemDacTags.xsd"/>
+	<xs:simpleType name="SemCardSlotType">
+		<xs:annotation>
+			<xs:documentation>This is the combined card bay and slot number, calculated by (Bay - 1 x 6 + Slot)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>The minimum cardslot in a SEM is 1.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="18">
+				<xs:annotation>
+					<xs:documentation>The maximum cardslot in a SEM is 18.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DacSensorPollType">
+		<xs:annotation>
+			<xs:documentation>Sensor Data Poll table entry data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SemCardSlot" type="SemCardSlotType" default="1">
+				<xs:annotation>
+					<xs:documentation>Card Slot within the SEM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UdpFamilyCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Family Code (from ICD).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UdpCommandCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Command Code (from ICD).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RqstPayloadSize" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Number of bytes in Request message payload</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RqstPayload" type="uint8" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>Request message parameter bytes (10 bytes maximum) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DacSensorPollTableType">
+		<xs:annotation>
+			<xs:documentation>Sensor Data Poll table definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DacSensorPollTableEntry" type="DacSensorPollType" minOccurs="0" maxOccurs="18">
+				<xs:annotation>
+					<xs:documentation>Sensor Poll Data entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="SemDataNbytesType">
+		<xs:annotation>
+			<xs:documentation>Define a valid SemDataObject size</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>The minimum size in bytes of a SemData Object.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="4">
+				<xs:annotation>
+					<xs:documentation>The maximum size in bytes of a SemData Object.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SemDataCfgObjType">
+		<xs:annotation>
+			<xs:documentation>SEM Data Config object definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Tag" type="SemDataTagType">
+				<xs:annotation>
+					<xs:documentation>unique identifier for this data item</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SemCardSlot" type="SemCardSlotType" default="1">
+				<xs:annotation>
+					<xs:documentation>Where card is located within vessel backplane</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UdpCmdFamily" type="uint8">
+				<xs:annotation>
+					<xs:documentation>as per SS5 UDP ICD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UdpCmdId" type="uint8">
+				<xs:annotation>
+					<xs:documentation>as per SS5 UDP ICD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UdpPayloadIndex" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Byte index within reply message this data item starts</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="nBytes" type="SemDataNbytesType">
+				<xs:annotation>
+					<xs:documentation>Size of this data item in bytes, within reply message.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReplyMarkerByte" type="uint8" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Used with MarkerByteIndex to distinguish between reply messages of the same command type. Value of 255 means not used and code will ignore this entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReplyMarkerByteIndex" type="uint8" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Used with MarkerByte to distinguish between reply messages of the same command type. Value of 255 means not used and code will ignore this entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SemDataCfgObjTableType">
+		<xs:annotation>
+			<xs:documentation>SEM Data object table definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SemDataCfgObjEntry" type="SemDataCfgObjType" minOccurs="0" maxOccurs="512">
+				<xs:annotation>
+					<xs:documentation>Sensor Poll Data entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HostCardAllocationType">
+		<xs:annotation>
+			<xs:documentation>HostCard (SPM) allocation within SEM definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HostCardAllocationEntry" type="CardNameType" default="CARD_NAME_Undefined" minOccurs="18" maxOccurs="18">
+				<xs:annotation>
+					<xs:documentation>Host Card Entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReadSemDataCfgListType">
+		<xs:annotation>
+			<xs:documentation>Read Sem Data list definition, used for CmdReadSemData</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SemDataListId" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Sem Data list identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TagId" type="SemDataTagType" minOccurs="0" maxOccurs="114">
+				<xs:annotation>
+					<xs:documentation>Where card is located within vessel backplane</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReadSemDataCfgTableType">
+		<xs:annotation>
+			<xs:documentation>SEM Data object table definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReadSemDataEntry" type="ReadSemDataCfgListType" minOccurs="0" maxOccurs="255">
+				<xs:annotation>
+					<xs:documentation>Read Sem Data List entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SemDacConfigType">
+		<xs:annotation>
+			<xs:documentation>Parent definition for SemDac Configuration</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HostCardAllocation" type="HostCardAllocationType">
+				<xs:annotation>
+					<xs:documentation>HostCardAllocation as used by DAC.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DacSensorPollingTable" type="DacSensorPollTableType">
+				<xs:annotation>
+					<xs:documentation>Sensor Data polling table as used by DAC.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SemDataCfgObjTable" type="SemDataCfgObjTableType">
+				<xs:annotation>
+					<xs:documentation>Table of SEM Data Objects as used by DAC.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReadSemDataCfgTable" type="ReadSemDataCfgTableType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Table of Read Sem Data Lists as used by DAC to reply to CmdReadSemData UDP Command.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

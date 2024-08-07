@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="FSMType">
+		<xs:annotation>
+			<xs:documentation>Fieldbus Support Module type [Range; 1..3 Fieldbusses].</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BoardType" type="CardNameType" fixed="CARD_NAME_Fsm">
+				<xs:annotation>
+					<xs:documentation>This element defines the Type of board fitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FieldbusChannels" type="FieldBusChannelFSMType" minOccurs="3" maxOccurs="3">
+				<xs:annotation>
+					<xs:documentation>Fieldbus Definitions for FSM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CANGateway" type="CANGatewayType">
+				<xs:annotation>
+					<xs:documentation>The CAN Gateway settings in case any of the fieldbus lines are CAN</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CanOpenFlowmeters" type="CanOpenFlowmeterCfgType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The settings for any CANopen flow meters to be profiled.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

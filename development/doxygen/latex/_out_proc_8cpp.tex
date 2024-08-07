@@ -1,0 +1,195 @@
+\doxysection{C++/samples/server/\+Softing\+Server/src/\+XXOPCsrv/\+Out\+Proc.cpp File Reference}
+\hypertarget{_out_proc_8cpp}{}\label{_out_proc_8cpp}\index{C++/samples/server/SoftingServer/src/XXOPCsrv/OutProc.cpp@{C++/samples/server/SoftingServer/src/XXOPCsrv/OutProc.cpp}}
+{\ttfamily \#include "{}stdafx.\+h"{}}\newline
+{\ttfamily \#include "{}Opc\+Server.\+h"{}}\newline
+{\ttfamily \#include "{}OTcommon.\+h"{}}\newline
+{\ttfamily \#include "{}Mutex.\+h"{}}\newline
+{\ttfamily \#include "{}resource.\+h"{}}\newline
+Include dependency graph for Out\+Proc.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_out_proc_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DWORD WINAPI \mbox{\hyperlink{_out_proc_8cpp_ad722f37d109d482596e5501ccda376cd}{simulation\+Thread}} (void \texorpdfstring{$\ast$}{*}context)
+\item 
+void \mbox{\hyperlink{_out_proc_8cpp_a95f3d1b0e430e1adaee77dc075e07896}{start\+Simulation\+Thread}} (void)
+\item 
+LRESULT CALLBACK \mbox{\hyperlink{_out_proc_8cpp_a841be80e115618af305d806fcb8e21ea}{wnd\+Proc}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} HWND wnd, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} UINT message, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WPARAM w\+Param, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPARAM l\+Param)
+\item 
+int APIENTRY \mbox{\hyperlink{_out_proc_8cpp_a0cf87e43605cf64a5205c79de66ad648}{\+\_\+t\+Win\+Main}} (HINSTANCE \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a3e73eefcfec9e50d521f165e2c2c14fe}{instance}}, HINSTANCE prev\+Instance, LPTSTR cmd\+Line, int cmd\+Show)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+HINSTANCE \mbox{\hyperlink{_out_proc_8cpp_a8b525b1f9244e2fd5b977aa737fcc9da}{s\+\_\+instance}}
+\item 
+const \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}} \mbox{\hyperlink{_out_proc_8cpp_a1917b0a1b7f3e0c6fa81a3dc49253e61}{s\+\_\+window\+Class\+Name}} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}XXOPCsrv"{})
+\item 
+const \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}} \mbox{\hyperlink{_out_proc_8cpp_a080760e18f004ea8a000bbf47e0100c8}{s\+\_\+application\+Name}} = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}Softing XX OPC Server"{})
+\item 
+HWND \mbox{\hyperlink{_out_proc_8cpp_a6244f29a96e8f7f03653931945e76520}{s\+\_\+window\+Handle}} = 0
+\item 
+BOOL \mbox{\hyperlink{_out_proc_8cpp_aee738a8dca020d66493021f7f95b0cc4}{s\+\_\+simulation\+End}} = FALSE
+\item 
+\mbox{\hyperlink{class_mutex}{Mutex}} \mbox{\hyperlink{_out_proc_8cpp_afe95325996ddcbe93daf0dcd07c79ae1}{s\+\_\+simulation\+End\+Mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_out_proc_8cpp_a0cf87e43605cf64a5205c79de66ad648}\index{OutProc.cpp@{OutProc.cpp}!\_tWinMain@{\_tWinMain}}
+\index{\_tWinMain@{\_tWinMain}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{\_tWinMain()}{\_tWinMain()}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a0cf87e43605cf64a5205c79de66ad648} 
+int APIENTRY \+\_\+t\+Win\+Main (\begin{DoxyParamCaption}\item[{HINSTANCE}]{instance}{, }\item[{HINSTANCE}]{prev\+Instance}{, }\item[{LPTSTR}]{cmd\+Line}{, }\item[{int}]{cmd\+Show}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_out_proc_8cpp_a0cf87e43605cf64a5205c79de66ad648_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_out_proc_8cpp_ad722f37d109d482596e5501ccda376cd}\index{OutProc.cpp@{OutProc.cpp}!simulationThread@{simulationThread}}
+\index{simulationThread@{simulationThread}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{simulationThread()}{simulationThread()}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_ad722f37d109d482596e5501ccda376cd} 
+DWORD WINAPI simulation\+Thread (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_out_proc_8cpp_ad722f37d109d482596e5501ccda376cd_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_out_proc_8cpp_ad722f37d109d482596e5501ccda376cd_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_out_proc_8cpp_a95f3d1b0e430e1adaee77dc075e07896}\index{OutProc.cpp@{OutProc.cpp}!startSimulationThread@{startSimulationThread}}
+\index{startSimulationThread@{startSimulationThread}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{startSimulationThread()}{startSimulationThread()}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a95f3d1b0e430e1adaee77dc075e07896} 
+void start\+Simulation\+Thread (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_out_proc_8cpp_a95f3d1b0e430e1adaee77dc075e07896_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{_out_proc_8cpp_a95f3d1b0e430e1adaee77dc075e07896_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_out_proc_8cpp_a841be80e115618af305d806fcb8e21ea}\index{OutProc.cpp@{OutProc.cpp}!wndProc@{wndProc}}
+\index{wndProc@{wndProc}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{wndProc()}{wndProc()}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a841be80e115618af305d806fcb8e21ea} 
+LRESULT CALLBACK wnd\+Proc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} HWND}]{wnd}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} UINT}]{message}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WPARAM}]{w\+Param}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPARAM}]{l\+Param}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=232pt]{_out_proc_8cpp_a841be80e115618af305d806fcb8e21ea_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_out_proc_8cpp_a080760e18f004ea8a000bbf47e0100c8}\index{OutProc.cpp@{OutProc.cpp}!s\_applicationName@{s\_applicationName}}
+\index{s\_applicationName@{s\_applicationName}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_applicationName}{s\_applicationName}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a080760e18f004ea8a000bbf47e0100c8} 
+const \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}} s\+\_\+application\+Name = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}Softing XX OPC Server"{})}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+\Hypertarget{_out_proc_8cpp_a8b525b1f9244e2fd5b977aa737fcc9da}\index{OutProc.cpp@{OutProc.cpp}!s\_instance@{s\_instance}}
+\index{s\_instance@{s\_instance}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_instance}{s\_instance}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a8b525b1f9244e2fd5b977aa737fcc9da} 
+HINSTANCE s\+\_\+instance}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+\Hypertarget{_out_proc_8cpp_aee738a8dca020d66493021f7f95b0cc4}\index{OutProc.cpp@{OutProc.cpp}!s\_simulationEnd@{s\_simulationEnd}}
+\index{s\_simulationEnd@{s\_simulationEnd}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_simulationEnd}{s\_simulationEnd}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_aee738a8dca020d66493021f7f95b0cc4} 
+BOOL s\+\_\+simulation\+End = FALSE}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+\Hypertarget{_out_proc_8cpp_afe95325996ddcbe93daf0dcd07c79ae1}\index{OutProc.cpp@{OutProc.cpp}!s\_simulationEndMutex@{s\_simulationEndMutex}}
+\index{s\_simulationEndMutex@{s\_simulationEndMutex}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_simulationEndMutex}{s\_simulationEndMutex}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_afe95325996ddcbe93daf0dcd07c79ae1} 
+\mbox{\hyperlink{class_mutex}{Mutex}} s\+\_\+simulation\+End\+Mutex}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+\Hypertarget{_out_proc_8cpp_a1917b0a1b7f3e0c6fa81a3dc49253e61}\index{OutProc.cpp@{OutProc.cpp}!s\_windowClassName@{s\_windowClassName}}
+\index{s\_windowClassName@{s\_windowClassName}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_windowClassName}{s\_windowClassName}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a1917b0a1b7f3e0c6fa81a3dc49253e61} 
+const \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}} s\+\_\+window\+Class\+Name = \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\+\_\+T}}("{}XXOPCsrv"{})}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+
+\Hypertarget{_out_proc_8cpp_a6244f29a96e8f7f03653931945e76520}\index{OutProc.cpp@{OutProc.cpp}!s\_windowHandle@{s\_windowHandle}}
+\index{s\_windowHandle@{s\_windowHandle}!OutProc.cpp@{OutProc.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_windowHandle}{s\_windowHandle}}
+{\footnotesize\ttfamily \label{_out_proc_8cpp_a6244f29a96e8f7f03653931945e76520} 
+HWND s\+\_\+window\+Handle = 0}
+
+
+
+Definition at line \mbox{\hyperlink{_out_proc_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{_out_proc_8cpp_source}{Out\+Proc.\+cpp}}.
+

@@ -1,0 +1,233 @@
+\doxysection{Grid\+Cell\+Base.\+h}
+\hypertarget{_grid_cell_base_8h_source}{}\label{_grid_cell_base_8h_source}\index{core/src/demo/SOClient/GridCtrl\_SRC/GridCellBase.h@{core/src/demo/SOClient/GridCtrl\_SRC/GridCellBase.h}}
+\mbox{\hyperlink{_grid_cell_base_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00002}00002\ \textcolor{comment}{//\ GridCellBase.h\ :\ header\ file}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00004}00004\ \textcolor{comment}{//\ MFC\ Grid\ Control\ -\/\ Grid\ cell\ base\ class\ header\ file}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00005}00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00006}00006\ \textcolor{comment}{//\ Written\ by\ Chris\ Maunder\ <cmaunder@mail.com>}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00007}00007\ \textcolor{comment}{//\ Copyright\ (c)\ 1998-\/2002.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00008}00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00009}00009\ \textcolor{comment}{//\ This\ code\ may\ be\ used\ in\ compiled\ form\ in\ any\ way\ you\ desire.\ This}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00010}00010\ \textcolor{comment}{//\ file\ may\ be\ redistributed\ unmodified\ by\ any\ means\ PROVIDING\ it\ is}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00011}00011\ \textcolor{comment}{//\ not\ sold\ for\ profit\ without\ the\ authors\ written\ consent,\ and}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00012}00012\ \textcolor{comment}{//\ providing\ that\ this\ notice\ and\ the\ authors\ name\ and\ all\ copyright}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00013}00013\ \textcolor{comment}{//\ notices\ remains\ intact.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00014}00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00015}00015\ \textcolor{comment}{//\ An\ email\ letting\ me\ know\ how\ you\ are\ using\ it\ would\ be\ nice\ as\ well.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00016}00016\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00017}00017\ \textcolor{comment}{//\ This\ file\ is\ provided\ "{}as\ is"{}\ with\ no\ expressed\ or\ implied\ warranty.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00018}00018\ \textcolor{comment}{//\ The\ author\ accepts\ no\ liability\ for\ any\ damage/loss\ of\ business\ that}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00019}00019\ \textcolor{comment}{//\ this\ product\ may\ cause.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00020}00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00021}00021\ \textcolor{comment}{//\ For\ use\ with\ CGridCtrl\ v2.22+}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00022}00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00025}00025\ \textcolor{preprocessor}{\#if\ !defined(AFX\_GRIDCELLBASE\_H\_\_519FA702\_722C\_11D1\_ABBA\_00A0243D1382\_\_INCLUDED\_)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00026}00026\ \textcolor{preprocessor}{\#define\ AFX\_GRIDCELLBASE\_H\_\_519FA702\_722C\_11D1\_ABBA\_00A0243D1382\_\_INCLUDED\_}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00028}00028\ \textcolor{preprocessor}{\#if\ \_MSC\_VER\ >=\ 1000}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00029}00029\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00030}00030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MSC\_VER\ >=\ 1000}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00032}00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00034}00034\ \textcolor{comment}{//\ Cell\ states}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00035}\mbox{\hyperlink{_grid_cell_base_8h_aaff2c2fcd70c5955afdc48ceb48d6513}{00035}}\ \textcolor{preprocessor}{\#define\ GVIS\_FOCUSED\ \ \ \ \ \ \ \ \ \ \ \ 0x0001}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00036}\mbox{\hyperlink{_grid_cell_base_8h_a82030b3e8544af728b43c5f83635bc3f}{00036}}\ \textcolor{preprocessor}{\#define\ GVIS\_SELECTED\ \ \ \ \ \ \ \ \ \ \ 0x0002}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00037}\mbox{\hyperlink{_grid_cell_base_8h_a5c53798f9255a3ba64774b1e60e420e1}{00037}}\ \textcolor{preprocessor}{\#define\ GVIS\_DROPHILITED\ \ \ \ \ \ \ \ 0x0004}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00038}\mbox{\hyperlink{_grid_cell_base_8h_a13088340dae5293700e25526a6a8ddd0}{00038}}\ \textcolor{preprocessor}{\#define\ GVIS\_READONLY\ \ \ \ \ \ \ \ \ \ \ 0x0008}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00039}\mbox{\hyperlink{_grid_cell_base_8h_ad0538a5120536d6481af09af389a6f1d}{00039}}\ \textcolor{preprocessor}{\#define\ GVIS\_FIXED\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0010}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00040}\mbox{\hyperlink{_grid_cell_base_8h_a17a5191cb2d013703ca10c2b89217d41}{00040}}\ \textcolor{preprocessor}{\#define\ GVIS\_FIXEDROW\ \ \ \ \ \ \ \ \ \ \ 0x0020}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00041}\mbox{\hyperlink{_grid_cell_base_8h_ada39a3e96f42ae83709aea1d21906cff}{00041}}\ \textcolor{preprocessor}{\#define\ GVIS\_FIXEDCOL\ \ \ \ \ \ \ \ \ \ \ 0x0040}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00042}\mbox{\hyperlink{_grid_cell_base_8h_a23cb7bb99ac3e19d9d76adf560a895fa}{00042}}\ \textcolor{preprocessor}{\#define\ GVIS\_MODIFIED\ \ \ \ \ \ \ \ \ \ \ 0x0080}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00044}00044\ \textcolor{comment}{//\ Cell\ data\ mask}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00045}\mbox{\hyperlink{_grid_cell_base_8h_aa886bac4e5176859c84992a76d34affd}{00045}}\ \textcolor{preprocessor}{\#define\ GVIF\_TEXT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LVIF\_TEXT}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00046}\mbox{\hyperlink{_grid_cell_base_8h_a7f4ebf18ecf538a99289a4bcf81d362b}{00046}}\ \textcolor{preprocessor}{\#define\ GVIF\_IMAGE\ \ \ \ \ \ \ \ \ \ \ \ \ \ LVIF\_IMAGE}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00047}\mbox{\hyperlink{_grid_cell_base_8h_a4daec4aedd86324a09151d49eb6bcf72}{00047}}\ \textcolor{preprocessor}{\#define\ GVIF\_PARAM\ \ \ \ \ \ \ \ \ \ \ \ \ \ LVIF\_PARAM}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00048}\mbox{\hyperlink{_grid_cell_base_8h_a3a2ee6e804f2396ffceaf7a9cde3d681}{00048}}\ \textcolor{preprocessor}{\#define\ GVIF\_STATE\ \ \ \ \ \ \ \ \ \ \ \ \ \ LVIF\_STATE}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00049}\mbox{\hyperlink{_grid_cell_base_8h_ae89bd6342c2ccc15f888dfeb0935f144}{00049}}\ \textcolor{preprocessor}{\#define\ GVIF\_BKCLR\ \ \ \ \ \ \ \ \ \ \ \ \ \ (GVIF\_STATE<<1)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00050}\mbox{\hyperlink{_grid_cell_base_8h_aeea32f555e23ae323b9115e7d3146bac}{00050}}\ \textcolor{preprocessor}{\#define\ GVIF\_FGCLR\ \ \ \ \ \ \ \ \ \ \ \ \ \ (GVIF\_STATE<<2)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00051}\mbox{\hyperlink{_grid_cell_base_8h_a4953920668c795305c9f40227e6bdc7b}{00051}}\ \textcolor{preprocessor}{\#define\ GVIF\_FORMAT\ \ \ \ \ \ \ \ \ \ \ \ \ (GVIF\_STATE<<3)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00052}\mbox{\hyperlink{_grid_cell_base_8h_adfa19ca7d5c327d8b84f308c5b3a83e7}{00052}}\ \textcolor{preprocessor}{\#define\ GVIF\_FONT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (GVIF\_STATE<<4)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00053}\mbox{\hyperlink{_grid_cell_base_8h_af750cf138160e4980ce2a861c961f936}{00053}}\ \textcolor{preprocessor}{\#define\ GVIF\_MARGIN\ \ \ \ \ \ \ \ \ \ \ \ \ (GVIF\_STATE<<5)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00054}\mbox{\hyperlink{_grid_cell_base_8h_a3425935e095e4d07f088b4d963117d90}{00054}}\ \textcolor{preprocessor}{\#define\ GVIF\_ALL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (GVIF\_TEXT|GVIF\_IMAGE|GVIF\_PARAM|GVIF\_STATE|GVIF\_BKCLR|GVIF\_FGCLR|\ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00055}00055\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GVIF\_FORMAT|GVIF\_FONT|GVIF\_MARGIN)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00057}00057\ \textcolor{comment}{//\ Used\ for\ Get/SetItem\ calls.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00058}\mbox{\hyperlink{struct___g_v___i_t_e_m}{00058}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___g_v___i_t_e_m}{\_GV\_ITEM}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00059}00059\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00060}\mbox{\hyperlink{struct___g_v___i_t_e_m_a86da2dd5007ed800d74001041f379ba5}{00060}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_abbf676c573590179712a96a04a977dbb}{row}},\ \mbox{\hyperlink{struct___g_v___i_t_e_m_a86da2dd5007ed800d74001041f379ba5}{col}};\ \ \ \ \textcolor{comment}{//\ Row\ and\ Column\ of\ item}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00061}\mbox{\hyperlink{struct___g_v___i_t_e_m_a655bcdb65b4462f3299c0b8e2ce31f4e}{00061}}\ \ \ \ \ UINT\ \ \ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_a655bcdb65b4462f3299c0b8e2ce31f4e}{mask}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mask\ for\ use\ in\ getting/setting\ cell\ data}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00062}\mbox{\hyperlink{struct___g_v___i_t_e_m_abca0cc0ed31036e06e39af87b56d5c26}{00062}}\ \ \ \ \ UINT\ \ \ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_abca0cc0ed31036e06e39af87b56d5c26}{nState}};\ \ \ \ \ \ \textcolor{comment}{//\ cell\ state\ (focus/hilighted\ etc)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00063}\mbox{\hyperlink{struct___g_v___i_t_e_m_a91962fea297545402088e99504c273b1}{00063}}\ \ \ \ \ DWORD\ \ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_a91962fea297545402088e99504c273b1}{nFormat}};\ \ \ \ \ \textcolor{comment}{//\ Format\ of\ cell}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00064}\mbox{\hyperlink{struct___g_v___i_t_e_m_acaad2795425865952ef3a4b840021ae7}{00064}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_acaad2795425865952ef3a4b840021ae7}{iImage}};\ \ \ \ \ \ \textcolor{comment}{//\ index\ of\ the\ list\ view\ item’s\ icon}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00065}\mbox{\hyperlink{struct___g_v___i_t_e_m_a3199e88123b740e4a13405c7a05251e1}{00065}}\ \ \ \ \ COLORREF\ \mbox{\hyperlink{struct___g_v___i_t_e_m_a3199e88123b740e4a13405c7a05251e1}{crBkClr}};\ \ \ \ \ \textcolor{comment}{//\ Background\ colour\ (or\ CLR\_DEFAULT)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00066}\mbox{\hyperlink{struct___g_v___i_t_e_m_a56038f57f5a591d7ac8f740e40fe8d02}{00066}}\ \ \ \ \ COLORREF\ \mbox{\hyperlink{struct___g_v___i_t_e_m_a56038f57f5a591d7ac8f740e40fe8d02}{crFgClr}};\ \ \ \ \ \textcolor{comment}{//\ Forground\ colour\ (or\ CLR\_DEFAULT)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00067}\mbox{\hyperlink{struct___g_v___i_t_e_m_ac4c7dfb98b8be24b661c242e112bf930}{00067}}\ \ \ \ \ LPARAM\ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_ac4c7dfb98b8be24b661c242e112bf930}{lParam}};\ \ \ \ \ \ \textcolor{comment}{//\ 32-\/bit\ value\ to\ associate\ with\ item}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00068}\mbox{\hyperlink{struct___g_v___i_t_e_m_a9ecb4e6f9f82c188da4e987a1bbc558b}{00068}}\ \ \ \ \ LOGFONT\ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_a9ecb4e6f9f82c188da4e987a1bbc558b}{lfFont}};\ \ \ \ \ \ \textcolor{comment}{//\ Cell\ font}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00069}\mbox{\hyperlink{struct___g_v___i_t_e_m_a7eb2c787d58dd68409093ca947055c9a}{00069}}\ \ \ \ \ UINT\ \ \ \ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_a7eb2c787d58dd68409093ca947055c9a}{nMargin}};\ \ \ \ \ \textcolor{comment}{//\ Internal\ cell\ margin}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00070}\mbox{\hyperlink{struct___g_v___i_t_e_m_a3f34b70b6fb646c1636cb5b2cc9ac55b}{00070}}\ \ \ \ \ CString\ \ \mbox{\hyperlink{struct___g_v___i_t_e_m_a3f34b70b6fb646c1636cb5b2cc9ac55b}{strText}};\ \ \ \ \ \textcolor{comment}{//\ Text\ in\ cell}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00071}\mbox{\hyperlink{_grid_cell_base_8h_afc00ed2ea8a29eca17e5e93015ecc5e2}{00071}}\ \}\ \mbox{\hyperlink{_grid_cell_base_8h_afc00ed2ea8a29eca17e5e93015ecc5e2}{GV\_ITEM}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00074}00074\ \textcolor{comment}{//\ Each\ cell\ contains\ one\ of\ these.\ Fields\ "{}row"{}\ and\ "{}column"{}\ are\ not\ stored\ since\ we}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00075}00075\ \textcolor{comment}{//\ will\ usually\ have\ acces\ to\ them\ in\ other\ ways,\ and\ they\ are\ an\ extra\ 8\ bytes\ per}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00076}00076\ \textcolor{comment}{//\ cell\ that\ is\ probably\ unnecessary.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00078}\mbox{\hyperlink{class_c_grid_cell_base}{00078}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_grid_cell_base}{CGridCellBase}}\ :\ \textcolor{keyword}{public}\ CObject}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00079}00079\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00080}\mbox{\hyperlink{class_c_grid_cell_base_a54879bb8392a5bae907b74b4255205f2}{00080}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00081}00081\ \ \ \ \ DECLARE\_DYNAMIC(\mbox{\hyperlink{class_c_grid_cell_base}{CGridCellBase}})}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00083}00083\ \textcolor{comment}{//\ Construction/Destruction}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00084}00084\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_a874a10ce0a76f24e81e6096c734fa4ae}{CGridCellBase}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00086}00086\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_grid_cell_base_acd4c47c9c7727f48ebe561a891fe2329}{\string~CGridCellBase}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00088}00088\ \textcolor{comment}{//\ Attributes}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00089}00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00090}\mbox{\hyperlink{class_c_grid_cell_base_a22e82fe812ccc503e1ce8153edceda6a}{00090}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a22e82fe812ccc503e1ce8153edceda6a}{SetText}}(LPCTSTR\ \textcolor{comment}{/*\ szText\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00091}\mbox{\hyperlink{class_c_grid_cell_base_a5fd5ef99df2a3479a808b6bca94ab200}{00091}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a5fd5ef99df2a3479a808b6bca94ab200}{SetImage}}(\textcolor{keywordtype}{int}\ \textcolor{comment}{/*\ nImage\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00092}\mbox{\hyperlink{class_c_grid_cell_base_a48cd264e742c39c88a4bc1c9c903f140}{00092}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a48cd264e742c39c88a4bc1c9c903f140}{SetData}}(LPARAM\ \textcolor{comment}{/*\ lParam\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00093}\mbox{\hyperlink{class_c_grid_cell_base_ab816126f20958632cb3fed02893db061}{00093}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_ab816126f20958632cb3fed02893db061}{SetState}}(DWORD\ nState)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00094}00094\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00095}00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ =\ nState;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00097}\mbox{\hyperlink{class_c_grid_cell_base_aabf6f35126b341d94ca24d2c4d743d5b}{00097}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_aabf6f35126b341d94ca24d2c4d743d5b}{SetFormat}}(DWORD\ \textcolor{comment}{/*\ nFormat\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00098}\mbox{\hyperlink{class_c_grid_cell_base_a31de97608aacb00c61edcb33a01e6156}{00098}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a31de97608aacb00c61edcb33a01e6156}{SetTextClr}}(COLORREF\ \textcolor{comment}{/*\ clr\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00099}\mbox{\hyperlink{class_c_grid_cell_base_a38ff95ba1961fa8ec1483e63f7dc1490}{00099}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a38ff95ba1961fa8ec1483e63f7dc1490}{SetBackClr}}(COLORREF\ \textcolor{comment}{/*\ clr\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00100}\mbox{\hyperlink{class_c_grid_cell_base_ac4022328f8f8c3953ec11ac82c527bc0}{00100}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_ac4022328f8f8c3953ec11ac82c527bc0}{SetFont}}(\textcolor{keyword}{const}\ LOGFONT*\ \textcolor{comment}{/*\ plf\ */})\ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00101}\mbox{\hyperlink{class_c_grid_cell_base_a1090a65cdaf98314331587ac17d0c099}{00101}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a1090a65cdaf98314331587ac17d0c099}{SetMargin}}(UINT\ \textcolor{comment}{/*\ nMargin\ */})\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00102}\mbox{\hyperlink{class_c_grid_cell_base_aaef16d1c4f9530639f2eeb2c5dae04d9}{00102}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_aaef16d1c4f9530639f2eeb2c5dae04d9}{SetGrid}}(\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}}*\ \textcolor{comment}{/*\ pGrid\ */})\ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00103}\mbox{\hyperlink{class_c_grid_cell_base_a58b8dcc5768f9593bcbff9d3959a419c}{00103}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a58b8dcc5768f9593bcbff9d3959a419c}{SetCoords}}(\textcolor{keywordtype}{int}\ \textcolor{comment}{/*\ nRow\ */},\ \textcolor{keywordtype}{int}\ \textcolor{comment}{/*\ nCol\ */})\ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00105}\mbox{\hyperlink{class_c_grid_cell_base_adb40ce2a495a92e945730aec38182ac3}{00105}}\ \ \ \ \ \textcolor{keyword}{virtual}\ LPCTSTR\ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_adb40ce2a495a92e945730aec38182ac3}{GetText}}()\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00106}\mbox{\hyperlink{class_c_grid_cell_base_a187a8e491d6f9b42c1652b40cc7b1826}{00106}}\ \ \ \ \ \textcolor{keyword}{virtual}\ LPCTSTR\ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_a187a8e491d6f9b42c1652b40cc7b1826}{GetTipText}}()\textcolor{keyword}{\ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00107}00107\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_cell_base_adb40ce2a495a92e945730aec38182ac3}{GetText}}();\ \ \ \ \textcolor{comment}{//\ may\ override\ TitleTip\ return}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00110}\mbox{\hyperlink{class_c_grid_cell_base_ae16c4e0aae6c89560999439feb7a6337}{00110}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_ae16c4e0aae6c89560999439feb7a6337}{GetImage}}()\ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00111}\mbox{\hyperlink{class_c_grid_cell_base_ace7b81ba036e2da416215546fc2591a2}{00111}}\ \ \ \ \ \textcolor{keyword}{virtual}\ LPARAM\ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_ace7b81ba036e2da416215546fc2591a2}{GetData}}()\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00112}\mbox{\hyperlink{class_c_grid_cell_base_ac38442988663fa5b31b7761ada2bfde4}{00112}}\ \ \ \ \ \textcolor{keyword}{virtual}\ DWORD\ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_ac38442988663fa5b31b7761ada2bfde4}{GetState}}()\textcolor{keyword}{\ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00113}00113\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00116}\mbox{\hyperlink{class_c_grid_cell_base_a9d5abb98a451cf43398ce2e7e2c69412}{00116}}\ \ \ \ \ \textcolor{keyword}{virtual}\ DWORD\ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_a9d5abb98a451cf43398ce2e7e2c69412}{GetFormat}}()\ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00117}\mbox{\hyperlink{class_c_grid_cell_base_a9eb2dde01bc1f1ee2af3a821359e576b}{00117}}\ \ \ \ \ \textcolor{keyword}{virtual}\ COLORREF\ \ \ \mbox{\hyperlink{class_c_grid_cell_base_a9eb2dde01bc1f1ee2af3a821359e576b}{GetTextClr}}()\ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00118}\mbox{\hyperlink{class_c_grid_cell_base_a87bf354130662da1382fb7a0cbe906cd}{00118}}\ \ \ \ \ \textcolor{keyword}{virtual}\ COLORREF\ \ \ \mbox{\hyperlink{class_c_grid_cell_base_a87bf354130662da1382fb7a0cbe906cd}{GetBackClr}}()\ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00119}\mbox{\hyperlink{class_c_grid_cell_base_ab6690ebeebcb587114f2ba044f2b377b}{00119}}\ \ \ \ \ \textcolor{keyword}{virtual}\ LOGFONT*\ \ \ \mbox{\hyperlink{class_c_grid_cell_base_ab6690ebeebcb587114f2ba044f2b377b}{GetFont}}()\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00120}\mbox{\hyperlink{class_c_grid_cell_base_abaebb4bd53041267801ee3c8c3f6f115}{00120}}\ \ \ \ \ \textcolor{keyword}{virtual}\ CFont*\ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_abaebb4bd53041267801ee3c8c3f6f115}{GetFontObject}}()\ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00121}\mbox{\hyperlink{class_c_grid_cell_base_a1167193dafd541937358908bafd0a403}{00121}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}}*\ \mbox{\hyperlink{class_c_grid_cell_base_a1167193dafd541937358908bafd0a403}{GetGrid}}()\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00122}\mbox{\hyperlink{class_c_grid_cell_base_aa24b668ce0017383e53c32d9f32ea93a}{00122}}\ \ \ \ \ \textcolor{keyword}{virtual}\ CWnd*\ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_aa24b668ce0017383e53c32d9f32ea93a}{GetEditWnd}}()\ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00123}\mbox{\hyperlink{class_c_grid_cell_base_ab4bfea880376533e4d9c7720ce3c57e8}{00123}}\ \ \ \ \ \textcolor{keyword}{virtual}\ UINT\ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_ab4bfea880376533e4d9c7720ce3c57e8}{GetMargin}}()\ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00125}00125\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_c_grid_cell_base}{CGridCellBase}}*\ \mbox{\hyperlink{class_c_grid_cell_base_a6889717d537adea457ce684d23f93c8e}{GetDefaultCell}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00127}00127\ \textcolor{preprocessor}{\#if\ 1}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00128}00128\ \ \ \ \ \textcolor{comment}{//SJ\ adjusted,\ because\ of\ compiler\ error}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00129}\mbox{\hyperlink{class_c_grid_cell_base_abee7ab3768d4692fd0374bf3f0e246de}{00129}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_abee7ab3768d4692fd0374bf3f0e246de}{IsDefaultFont}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00130}00130\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00131}00131\ \ \ \ \ \ \ \ \ ASSERT(FALSE);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00133}00133\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00134}\mbox{\hyperlink{class_c_grid_cell_base_a28cd6c3505128a604e75c72d2da2ec03}{00134}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a28cd6c3505128a604e75c72d2da2ec03}{IsEditing}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00135}00135\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00136}00136\ \ \ \ \ \ \ \ \ ASSERT(FALSE);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00139}00139\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00140}00140\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_abee7ab3768d4692fd0374bf3f0e246de}{IsDefaultFont}}()\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00141}00141\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a28cd6c3505128a604e75c72d2da2ec03}{IsEditing}}()\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0\ ;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00142}00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00144}\mbox{\hyperlink{class_c_grid_cell_base_a8bfad883de2951c978af89c73570d478}{00144}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a8bfad883de2951c978af89c73570d478}{IsFocused}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00145}00145\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_aaff2c2fcd70c5955afdc48ceb48d6513}{GVIS\_FOCUSED}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00148}\mbox{\hyperlink{class_c_grid_cell_base_acde5483f4c4a1f5f85870cca2faae979}{00148}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_acde5483f4c4a1f5f85870cca2faae979}{IsFixed}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00149}00149\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_ad0538a5120536d6481af09af389a6f1d}{GVIS\_FIXED}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00151}00151\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00152}\mbox{\hyperlink{class_c_grid_cell_base_a4e06dc1d10e9738fce4e8c2b6fe34f32}{00152}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a4e06dc1d10e9738fce4e8c2b6fe34f32}{IsFixedCol}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00153}00153\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_ada39a3e96f42ae83709aea1d21906cff}{GVIS\_FIXEDCOL}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00155}00155\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00156}\mbox{\hyperlink{class_c_grid_cell_base_affbe6167d623324f9deace048bac3b9e}{00156}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_affbe6167d623324f9deace048bac3b9e}{IsFixedRow}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00157}00157\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_a17a5191cb2d013703ca10c2b89217d41}{GVIS\_FIXEDROW}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00159}00159\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00160}\mbox{\hyperlink{class_c_grid_cell_base_a994846be504c7a2c53106bae623a33a7}{00160}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a994846be504c7a2c53106bae623a33a7}{IsSelected}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00161}00161\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_a82030b3e8544af728b43c5f83635bc3f}{GVIS\_SELECTED}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00164}\mbox{\hyperlink{class_c_grid_cell_base_a492d65fc56ef3312ddbb48f95d78de9f}{00164}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a492d65fc56ef3312ddbb48f95d78de9f}{IsReadOnly}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00165}00165\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_a13088340dae5293700e25526a6a8ddd0}{GVIS\_READONLY}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00168}\mbox{\hyperlink{class_c_grid_cell_base_a54bf42ac6ee9a79fa95bf58801cf27b4}{00168}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a54bf42ac6ee9a79fa95bf58801cf27b4}{IsModified}}()\textcolor{keyword}{\ \ \ \ \ \ \ \ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00169}00169\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_a23cb7bb99ac3e19d9d76adf560a895fa}{GVIS\_MODIFIED}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00171}00171\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00172}\mbox{\hyperlink{class_c_grid_cell_base_ad4e4e4940c9da52df0256a011acde524}{00172}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_ad4e4e4940c9da52df0256a011acde524}{IsDropHighlighted}}()\textcolor{keyword}{\ \ \ const}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00173}00173\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}}\ \&\ \mbox{\hyperlink{_grid_cell_base_8h_a5c53798f9255a3ba64774b1e60e420e1}{GVIS\_DROPHILITED}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00177}00177\ \textcolor{comment}{//\ Operators}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00178}00178\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00179}00179\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_aa194b71f299adb03c68035f94c702ec7}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_c_grid_cell_base}{CGridCellBase}}\&\ cell);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00181}00181\ \textcolor{comment}{//\ Operations}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00182}00182\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00183}00183\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a9f8e093f536ea44383eda7daeda2c032}{Reset}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00185}00185\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_ad7bedecad742c513c6d0ebd07c006c0d}{Draw}}(CDC*\ pDC,\ \textcolor{keywordtype}{int}\ nRow,\ \textcolor{keywordtype}{int}\ nCol,\ CRect\ rect,\ BOOL\ bEraseBkgnd\ =\ TRUE);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00186}00186\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_ac6009f0da755a45f602a19d8cfcd495f}{GetTextRect}}(LPRECT\ pRect);\ \ \ \ \ \textcolor{comment}{//\ i/o:\ \ i=dims\ of\ cell\ rect;\ o=dims\ of\ text\ rect}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00187}\mbox{\hyperlink{class_c_grid_cell_base_a496a42cc1d1e04526e2ad1fb738bb6b6}{00187}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a496a42cc1d1e04526e2ad1fb738bb6b6}{GetTipTextRect}}(LPRECT\ pRect)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00188}00188\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_cell_base_ac6009f0da755a45f602a19d8cfcd495f}{GetTextRect}}(pRect);\ \ \ \ \textcolor{comment}{//\ may\ override\ for\ btns,\ etc.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00190}00190\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00191}00191\ \ \ \ \ \textcolor{keyword}{virtual}\ CSize\ \mbox{\hyperlink{class_c_grid_cell_base_ab40460bb591283c1f14b4cb119be04ca}{GetTextExtent}}(LPCTSTR\ str,\ CDC*\ pDC\ =\ NULL);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00192}00192\ \ \ \ \ \textcolor{keyword}{virtual}\ CSize\ \mbox{\hyperlink{class_c_grid_cell_base_ae9e4094f50b947ed26fc55a8eb49c856}{GetCellExtent}}(CDC*\ pDC);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00194}00194\ \ \ \ \ \textcolor{comment}{//\ Editing}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00195}\mbox{\hyperlink{class_c_grid_cell_base_a917ee21e435fc5d75609f50e4cf0e951}{00195}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a917ee21e435fc5d75609f50e4cf0e951}{Edit}}(\textcolor{keywordtype}{int}\ \textcolor{comment}{/*\ nRow\ */},\ \textcolor{keywordtype}{int}\ \textcolor{comment}{/*\ nCol\ */},\ CRect\ \textcolor{comment}{/*\ rect\ */},\ CPoint\ \textcolor{comment}{/*\ point\ */},}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT\ \textcolor{comment}{/*\ nID\ */},\ UINT\ \textcolor{comment}{/*\ nChar\ */})}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00197}00197\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00198}00198\ \ \ \ \ \ \ \ \ ASSERT(FALSE);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00200}00200\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00201}00201\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a8f4de81a40d1fed2619edc0a15cb8ab2}{ValidateEdit}}(LPCTSTR\ str);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00202}\mbox{\hyperlink{class_c_grid_cell_base_aa24b1948e7e120499f1acfc22186a66c}{00202}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_aa24b1948e7e120499f1acfc22186a66c}{EndEdit}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00204}00204\ \ \ \ \ \textcolor{comment}{//\ EFW\ -\/\ Added\ to\ print\ cells\ properly}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00205}00205\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a4f05fccfd7c2af9c314805756182e6ab}{PrintCell}}(CDC*\ pDC,\ \textcolor{keywordtype}{int}\ nRow,\ \textcolor{keywordtype}{int}\ nCol,\ CRect\ rect);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00207}00207\ \ \ \ \ \textcolor{comment}{//\ add\ additional\ protected\ grid\ members\ required\ of\ cells}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00208}00208\ \ \ \ \ LRESULT\ \mbox{\hyperlink{class_c_grid_cell_base_a1f017b48e0e6ee22db6baa0a3132393a}{SendMessageToParent}}(\textcolor{keywordtype}{int}\ nRow,\ \textcolor{keywordtype}{int}\ nCol,\ \textcolor{keywordtype}{int}\ nMessage);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00210}00210\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00211}00211\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a7de2679c36744825596e82cd36186eb5}{OnEndEdit}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00212}00212\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a90400c5b5e23a1b9c58f951d4e95c4b6}{OnMouseEnter}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00213}00213\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_ac8b30514926c09555db31b94b8a53061}{OnMouseOver}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00214}00214\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a13322c4220255f2e45ad578cd52e7702}{OnMouseLeave}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00215}00215\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a8c9104a819eb9d3959b538313881b00f}{OnClick}}(CPoint\ PointCellRelative);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00216}00216\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a2b8d269ad0bda473467914323b549533}{OnClickDown}}(CPoint\ PointCellRelative);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00217}00217\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_a7c6030848007f3b16c8560cfa34a54df}{OnRClick}}(CPoint\ PointCellRelative);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00218}00218\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_base_ae7c985ccfe54196da5ca374dfdf06a2b}{OnDblClick}}(CPoint\ PointCellRelative);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00219}00219\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_base_a784c00237e26e5b3f48dfca1d9764600}{OnSetCursor}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00221}00221\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00222}\mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{00222}}\ \ \ \ \ DWORD\ \ \ \ \mbox{\hyperlink{class_c_grid_cell_base_af38d92b5046728816a829bb718b80f9a}{m\_nState}};\ \ \ \ \ \ \textcolor{comment}{//\ Cell\ state\ (selected/focus\ etc)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00223}00223\ \};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00225}00225\ \textcolor{comment}{//\{\{AFX\_INSERT\_LOCATION\}\}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00226}00226\ \textcolor{comment}{//\ Microsoft\ Developer\ Studio\ will\ insert\ additional\ declarations\ immediately\ before\ the\ previous\ line.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_base_8h_source_l00228}00228\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(AFX\_GRIDCELLBASE\_H\_\_519FA702\_722C\_11D1\_ABBA\_00A0243D1382\_\_INCLUDED\_)}}
+
+\end{DoxyCode}

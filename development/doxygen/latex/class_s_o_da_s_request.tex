@@ -1,0 +1,1248 @@
+\doxysection{SODa\+SRequest Class Reference}
+\hypertarget{class_s_o_da_s_request}{}\label{class_s_o_da_s_request}\index{SODaSRequest@{SODaSRequest}}
+
+
+{\ttfamily \#include $<$SODa\+SRequest.\+h$>$}
+
+
+
+Inheritance diagram for SODa\+SRequest\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{class_s_o_da_s_request__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for SODa\+SRequest\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}{request\+Operation}} \{ \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00a815a397f9d27b11c8c0dd34e6735462e}{read}}
+, \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00ab0a0ca48fb50d2aa743975ed0a978098}{write}}
+ \}
+\item 
+enum \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{request\+Type}} \{ \newline
+\mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da01d5e648947efb837aae22d022a0ea24}{sync\+Cache}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+SYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+CACHE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da9a533922c4606cdec6a2f5e7b57631c6}{sync\+Device}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+SYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+DEVICE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da589be78b8ca835f29f48ec7437247607}{sync\+Max\+Age}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+SYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+MAXAGE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da060d861254c52ef27667486f4d0d6c0a}{async\+Cache}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+CACHE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM
+, \newline
+\mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28daa4ee9159dfa26556ec0fe4c276229800}{async\+Device}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+DEVICE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dab9a87b0a76694f6581239ec1a2e12aba}{async\+Max\+Age}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+MAXAGE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da83fba679738564ec2ffa35550329d559}{server\+Device}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+SYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+DEVICE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+SERVER
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dacf0cee8be15cead17fb2a90846e53432}{server\+Max\+Age}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+SYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+MAXAGE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+SERVER
+, \newline
+\mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dae65b35dd3b3b23e1bf6641be472e9138}{polled\+Refresh}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+CACHE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+POLLED
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dae3d08871c4830bbdacc7d74bd5bc9812}{async\+Init\+Notify}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+CACHE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+INIT\+\_\+\+NOTIFY
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da491d1dd96c85e53de91f58060113e758}{delegated\+Device}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+DEVICE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+SERVER
+, \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dac884a2dea5a0deed254011f569f334bd}{cyclic}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+DEVICE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+CYCLIC
+, \newline
+\mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da1ea3b57b6cd782a06e2cc737e362bc1d}{report}} = SODASREQUEST\+\_\+\+TYPE\+\_\+\+ASYNC \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+DEVICE \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+ITEM \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+TYPE\+\_\+\+REPORT
+ \}
+\item 
+enum \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7}{request\+State}} \{ \newline
+\mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a2ac46aed82e8f42bc72320285df88e52}{state\+Initialized}} = 0
+, \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a6f492c15e9088ccf0991eb5e4268868a}{state\+Started}} = SODASREQUEST\+\_\+\+FLAG\+\_\+\+STARTED
+, \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a5ee05472d55794d228180b2889f09a5f}{state\+Pending}} = SODASREQUEST\+\_\+\+FLAG\+\_\+\+STARTED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+PENDING
+, \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7abf6e69a43c363f4bb5cbf2f38b4c2a5d}{state\+Completed}} = SODASREQUEST\+\_\+\+FLAG\+\_\+\+STARTED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+COMPLETED
+, \newline
+\mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7adda1e2f097add6989351d85ffcb83c5d}{state\+Canceled}} = SODASREQUEST\+\_\+\+FLAG\+\_\+\+STARTED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+COMPLETED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+CANCELED
+, \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a0e99b8b4ce9dd9906c80b6a46ac1d97c}{state\+Processed}} = SODASREQUEST\+\_\+\+FLAG\+\_\+\+STARTED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+COMPLETED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+PROCESSED
+, \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7ab472bddbe2075e0733517f9c8c7eeca9}{state\+Processed\+Cancel}} = SODASREQUEST\+\_\+\+FLAG\+\_\+\+STARTED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+COMPLETED \texorpdfstring{$\vert$}{|} SODASREQUEST\+\_\+\+FLAG\+\_\+\+PROCESSED
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_o_da_s_request_a748a92cb01ccca7e2971c109e2ac3fe1}{SODa\+SRequest}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE operation, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD type)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_ac4a8610145730fb00681fae2aad1eeec}{set\+Type}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} enum \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{request\+Type}} \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{request\+Type}})
+\item 
+enum \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{request\+Type}} \mbox{\hyperlink{class_s_o_da_s_request_a0876d551d09a13ff11cc8a54ce7aa055}{get\+Type}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a67ba1e36b3583ded81cf62eb7e5db5fc}{is\+Cache\+Request}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_adc463871da9200623d8f10f97e45ee42}{is\+Device\+Request}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_a905bfb6e3db4479994a00a8234647e48}{set\+Is\+Refresh}} (void)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_abf7fb33baa02de73878889609cafb8fa}{set\+Operation}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} enum \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}{request\+Operation}} Operation)
+\item 
+enum \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}{request\+Operation}} \mbox{\hyperlink{class_s_o_da_s_request_af76075b6ee2a28a2ff0ec3650b381d85}{get\+Operation}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_ae1a5f6cd103f986ad68e6a2f0c2d16eb}{set\+Item}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_item}{SODa\+SItem}} \texorpdfstring{$\ast$}{*}item)
+\item 
+virtual \mbox{\hyperlink{class_s_o_da_s_item}{SODa\+SItem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a8678c680b76e43f11d1406b789824192}{get\+Item}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a21daa67727d82aae9b387202387a9ade}{set\+Item\+Tag}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*}item\+Tag)
+\item 
+virtual \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a59b90524026a99378f4e62a35f7dcc16}{get\+Item\+Tag}} (void)
+\item 
+virtual \mbox{\hyperlink{class_s_o_da_s_cache}{SODa\+SCache}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_adcc0acd87ca4f275df2eedd543756b3e}{get\+Cache}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a8da51b88680a36ee095d0b00a54ede59}{set\+Server}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_server}{SODa\+SServer}} \texorpdfstring{$\ast$}{*}server)
+\item 
+virtual \mbox{\hyperlink{class_s_o_da_s_server}{SODa\+SServer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a5e67a783ff7b55c84707d0fbe8f7c0aa}{get\+Server}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a6d8f6671f04808d5585b48485363e73a}{start}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL signal\+Queue=TRUE)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_a2f561d29611367569a6c4be4cfee9fa7}{is\+Started}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a4f3448a5da5eed5eb39986fdd19c33d1}{complete}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL HRESULT result=\mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\+\_\+\+OK}}, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL valid\+Write\+Quality=FALSE, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL WORD write\+Quality=\mbox{\hyperlink{opcaedef_8h_a1fd4f9dade9ec3913f4d16c21a7643ce}{OPC\+\_\+\+QUALITY\+\_\+\+UNCERTAIN}}, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL error\+Before\+Start=FALSE, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL write\+Change\+Cache=TRUE)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_af47597ca73f1d9bfa7ddd14487e4ce87}{is\+Completed}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_ac885eedfd90f1538768e98094b3cc8bb}{pending}} (void)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_afe7e8c9d672c3fa110f5765a5d5035d8}{is\+Pending}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_afee5e63dd619a31e9d635cb7e0c2105f}{cancel}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL HRESULT comp\+Result=\mbox{\hyperlink{_o_tcommon_8h_a8f0547e641e1efc8110437fa85aa722e}{E\+\_\+\+FAIL}}, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL change\+Cache\+Quality=FALSE, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL WORD cache\+Quality=\mbox{\hyperlink{opcaedef_8h_a50a4844778d1d2a4732cfdbd95702782}{OPC\+\_\+\+QUALITY\+\_\+\+LAST\+\_\+\+KNOWN}})
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_a3564f3069e0bfb6c7718b1840adbbd05}{is\+Canceled}} (void) const
+\item 
+void \mbox{\hyperlink{class_s_o_da_s_request_ab9e4aac7b19b212abd3830158b3e281e}{reset}} (void)
+\item 
+BYTE \mbox{\hyperlink{class_s_o_da_s_request_a5ff9a5f119bea244a6b6f156bcb93508}{get\+Flag}} (void)
+\item 
+void \mbox{\hyperlink{class_s_o_da_s_request_ae900bba3705e7ce91b9819f709f24b18}{set\+Flag}} (BYTE flag)
+\item 
+void \mbox{\hyperlink{class_s_o_da_s_request_a406b128dcc38c33e591fee3247555986}{reset\+Flag}} (BYTE flag)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_a04a0aeeabd498f6762138068668a8cc2}{is\+SOAPRequest}} (void)
+\item 
+BOOL \mbox{\hyperlink{class_s_o_da_s_request_ab817228526e6830097c0b16072edccc5}{is\+DCOMRequest}} (void)
+\item 
+DWORD \mbox{\hyperlink{class_s_o_da_s_request_ab751944b6035d21f0ff2aaf4e5923f68}{get\+Start\+Time}} (void) const
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_a3a3acc03422eb48b6f1492fab05c1874}{set\+Result\+Address}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} HRESULT \texorpdfstring{$\ast$}{*}res\+Addr)
+\item 
+virtual HRESULT \mbox{\hyperlink{class_s_o_da_s_request_a3976c4ea71bf8996aa10bc634daf4fa6}{get\+Result}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_ab003f03c5737a475460ce257fbd903b0}{set\+Result}} (HRESULT res)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_a0510094fa0ad62269e682dd08a3f12c2}{set\+Read\+Quality\+Address}} (WORD \texorpdfstring{$\ast$}{*}read\+Quality\+Addr)
+\item 
+virtual WORD \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_aa66827a1591ac291efcbc36cd239c797}{get\+Read\+Quality\+Address}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_a059093adb5408e7a5ee8b769533f4d1a}{set\+Max\+Age}} (DWORD max\+Age)
+\item 
+virtual DWORD \mbox{\hyperlink{class_s_o_da_s_request_a4d4edaf9081b415f9913eef67ae68498}{get\+Max\+Age}} (void)
+\item 
+void \mbox{\hyperlink{class_s_o_da_s_request_a09df3ce958cbb6bd1a6f9ba801b8d437}{set\+Req\+Datatype}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE req\+Datatype)
+\item 
+VARTYPE \mbox{\hyperlink{class_s_o_da_s_request_a53398fc6bf1c8542143e9492afa0bd9b}{get\+Req\+Datatype}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_af992e3b331984457054c7382ae4b9844}{set\+Write\+Value}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_value_q_t_8h_a617335bd33376cf1b0af0e5c963ebf9c}{LPCVARIANT}} value)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a522446c01d812f21c5c7210fb36dfe0b}{get\+Write\+Value}} (\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPVARIANT value)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_a72bfdfa98ea7bbfdae91d2c11dc5d164}{set\+Write\+Quality}} (WORD write\+Quality)
+\item 
+virtual WORD \mbox{\hyperlink{class_s_o_da_s_request_a9303f21002ceca157982a8557084396a}{get\+Write\+Quality}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_ae8c1688c00d181e1ecea4386c2701096}{set\+Write\+Time\+Stamp}} (const SOCmn\+Date\+Time \&write\+Time\+Stamp)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_a4f988472f535fd6f7281461ce254f9c8}{get\+Write\+Time\+Stamp}} (SOCmn\+Date\+Time \&write\+Time\+Stamp)
+\item 
+virtual BYTE \mbox{\hyperlink{class_s_o_da_s_request_ac4268241c8bbd5c4aa1d8fc4e9afde34}{get\+Valid\+Write\+QT}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_ae643cd4c5d64be9e8a67964974d48798}{set\+Original\+Request}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*}req)
+\item 
+virtual \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a076d0c38642066d7481e58b905fed96e}{get\+Original\+Request}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a8363efbb278f5333e144cdb8d50c3581}{set\+Report\+Value}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} SOCmn\+Variant \&value)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_ae0af4f71ebf1b8bc261ad6a75e34b7e3}{get\+Report\+Value}} (\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} SOCmn\+Variant \&value)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_ac3633e518cbb7eb5debaac61cc6a26df}{set\+Report\+Quality}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD quality)
+\item 
+virtual WORD \mbox{\hyperlink{class_s_o_da_s_request_af35ec400d609ec029ef936591d96bb99}{get\+Report\+Quality}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_a3232ebf397990615447a58879776a038}{set\+Report\+Time\+Stamp}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} SOCmn\+Date\+Time \&time\+Stamp)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_af729b761fc619ab9bcdb90b443aec463}{get\+Report\+Time\+Stamp}} (\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} SOCmn\+Date\+Time \&time\+Stamp)
+\item 
+\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmn\+Event\+Pointer}} \mbox{\hyperlink{class_s_o_da_s_request_af032ba4bce1b3f2b7131e3f7df5d5b18}{get\+Completed\+Event}} (void)
+\item 
+void \mbox{\hyperlink{class_s_o_da_s_request_ac1ab873306ae3057dce2a28a7c602595}{set\+Completed\+Event}} (\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmn\+Event\+Pointer}} event)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_ade351274b5e138b62fdebc2bc21a9adc}{has\+Changed}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} size\+\_\+t connection, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} SOCmn\+Variant \&value, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD quality)
+\item 
+LCID \mbox{\hyperlink{class_s_o_da_s_request_a6b3c32bcd3fc4b7fe12f6be80639df44}{get\+LCID}} (void)
+\item 
+virtual LPCTSTR \mbox{\hyperlink{class_s_o_da_s_request_ae17de9abb2427f271b2ce040b864154f}{get\+Obj\+Trace\+Id}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_s_o_cmn_object}{SOCmn\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_object_a329290b53e29a009e6474dae05ac9d70}{SOCmn\+Object}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD obj\+Type=\mbox{\hyperlink{_s_o_cmn_object_8h_ab16e6296fb31e12d02da01128288120e}{SOCMNOBJECT\+\_\+\+TYPE\+\_\+\+OTHER}})
+\item 
+DWORD \mbox{\hyperlink{class_s_o_cmn_object_a38a214f64f6488e6c28795f48465a39e}{get\+Opc\+Handle}} (void) const
+\item 
+virtual LONG \mbox{\hyperlink{class_s_o_cmn_object_aad895d6250194eb902d50e792a4b4dd8}{add\+Ref}} (void)
+\item 
+virtual LONG \mbox{\hyperlink{class_s_o_cmn_object_a894e880fbae6ef26f83d266492d12bf2}{release}} (void)
+\item 
+LONG \mbox{\hyperlink{class_s_o_cmn_object_a6a6bd55f29f388c3691cda53ec9d2be1}{get\+Ref\+Count}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a5c61f76e5e2e751b8518db2c13b59034}{get\+Key}} (\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \&key)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a7add3908da23b4ea3e82835d5a514f6a}{get\+Key}} (\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \&key)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a8ee380aaed0c04f7a2a9c26e7550c0b5}{has\+Key}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR key)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a1c4e4a4880da233fd4378494febb468f}{has\+Key}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD key)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a67f02da5d279aa345c18f87f60b0b3f8}{has\+Key\+Type}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD key\+Type)
+\item 
+DWORD \mbox{\hyperlink{class_s_o_cmn_object_afb950442202dbfe89d22d0fbf15b7291}{get\+Object\+Type}} (void) const
+\item 
+BOOL \mbox{\hyperlink{class_s_o_cmn_object_afc8feee3afa6ad1473aebaffacadba15}{is}} (DWORD object\+Type) const
+\item 
+virtual \mbox{\hyperlink{class_s_o_cmn_string}{SOCmn\+String}} \mbox{\hyperlink{class_s_o_cmn_object_a099792bf73d267b9ab14e83cd40c6d58}{get\+Obj\+Type\+String}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a5206771d572544c660d6fd7997564548}{set\+Obj\+Trace\+Id}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR trace\+Id)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_aa57c3b67abf9efe57d97fc5b58af7283}{is\+Init\+Obj\+Trace\+Id}} (void)
+\item 
+virtual BYTE \mbox{\hyperlink{class_s_o_cmn_object_a3de92e8fdf902f638218296ae7a55642}{get\+Object\+State}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a6910abb8188e5e7a4fe08e68a0e26d41}{set\+Object\+State}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE state)
+\item 
+virtual BYTE \mbox{\hyperlink{class_s_o_cmn_object_a4db20e207e3a139415010969fcd9a6b5}{get\+Target\+Object\+State}} (void) const
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_cmn_object_a5717273cd3952a35eaad8893574fabe3}{set\+Target\+Object\+State}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE state)
+\item 
+virtual BYTE \mbox{\hyperlink{class_s_o_cmn_object_aee60a2aad9d75dc017330d0200bf508d}{get\+User\+Data}} (void) const
+\item 
+virtual void \mbox{\hyperlink{class_s_o_cmn_object_a27ae15046241135b09977e69f3dc533d}{set\+User\+Data}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{user\+Data}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_s_o_da_s_request_a69008d460a600dc5e1b5acb1f7a62ce8}{signal\+Queue\+Events}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \texorpdfstring{$\ast$}{*}req\+List)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_s_o_da_s_request_a6f9c0c9c21428b0307f6304029fbb444}{\texorpdfstring{$\sim$}{\string~}\+SODa\+SRequest}} ()
+\item 
+virtual void \mbox{\hyperlink{class_s_o_da_s_request_ae84a772d761db03aa05e660fdfffc73f}{start\+Delegate\+Request}} (void)
+\item 
+virtual BOOL \mbox{\hyperlink{class_s_o_da_s_request_aad2e2df279cc6cc23f1d107c0ab99dcc}{complete\+Delegate\+Request}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_s_o_cmn_object}{SOCmn\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_s_o_cmn_object_a1e12f0f3866534253439bbcc520b03c3}{\texorpdfstring{$\sim$}{\string~}\+SOCmn\+Object}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_cmn_object_af79b05becab16b376728ba23a7766993}{on\+Set\+Object\+State}} (void)
+\item 
+virtual void \mbox{\hyperlink{class_s_o_cmn_object_a1321cc620bf7c101f704ed8db8c53b1f}{on\+Set\+Target\+Object\+State}} (void)
+\item 
+virtual LPCTSTR \mbox{\hyperlink{class_s_o_cmn_object_a8f77a3ee48bcd219e4eedd6f1dbd18f6}{get\+Act\+Obj\+Trace\+Id\+String}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+WORD \mbox{\hyperlink{class_s_o_da_s_request_ae91b110e2d9a3fe8b49ec88f2bc38ccd}{m\+\_\+type}}
+\item 
+BYTE \mbox{\hyperlink{class_s_o_da_s_request_adae6f5441034cbd98460cb11c4db8aaa}{m\+\_\+operation}}
+\item 
+BYTE \mbox{\hyperlink{class_s_o_da_s_request_a0d4b505c438983935d29fc399ce487f9}{m\+\_\+flag}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{class_s_o_da_s_item}{SODaSItem}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a9ac4dc1bd5651d6e2a3548eb48b01a7f}{m\_item}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a7eff1a166736d8e4e0d71f88609f26b8}{m\_server}}\\
+\}; \\
+
+\end{tabbing}\item 
+DWORD \mbox{\hyperlink{class_s_o_da_s_request_a7f5b0c9d0b927ee783da2521da2bf607}{m\+\_\+start\+Time}}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmn\+Event\+Pointer}} \mbox{\hyperlink{class_s_o_da_s_request_a70142b04b8baf2fed1a372c00dd83555}{m\+\_\+completed\+Event}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>HRESULT \mbox{\hyperlink{class_s_o_da_s_request_a1a2b1ff5e27d2c7543a4cac17a45d5be}{m\_result}}\\
+\>void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_aa0cff37a4bbbf45299fe22a853a6d9a1}{m\_depData}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_request_sync_read_data}{SODaSRequestSyncReadData}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_af35ffcf312ee69725094a6761fbfec5c}{m\_depSyncReadData}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_request_sync_write_data}{SODaSRequestSyncWriteData}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a399d03754b2c9e83c9f527f2f46eab0d}{m\_depSyncWriteData}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_request_async_read_data}{SODaSRequestAsyncReadData}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_af9c03caf687413ca9590a1b06a169f54}{m\_depAsyncReadData}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_request_async_write_data}{SODaSRequestAsyncWriteData}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_acc5fb72ae8e2d3d1ae7678119cc70930}{m\_depAsyncWriteData}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_request_delegate_data}{SODaSRequestDelegateData}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_a78cb3302d2d132c3f07a5e68eacecbb7}{m\_depDelegateData}}\\
+\>\mbox{\hyperlink{class_s_o_da_s_request_report_data}{SODaSRequestReportData}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_s_o_da_s_request_aeaf2e6bb9aa3591f5e43682941c68107}{m\_depReportData}}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_s_o_cmn_object}{SOCmn\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+DWORD \mbox{\hyperlink{class_s_o_cmn_object_a0199659d7fbeac414561eafaae62e5ae}{m\+\_\+opc\+Handle}}
+\item 
+LONG \mbox{\hyperlink{class_s_o_cmn_object_a18173a10a7e65eab312b71a4791e6b1e}{m\+\_\+ref\+Count}}
+\item 
+DWORD \mbox{\hyperlink{class_s_o_cmn_object_ac16da4e07486b698a1327072b7378919}{m\+\_\+object\+Type}}
+\item 
+BYTE \mbox{\hyperlink{class_s_o_cmn_object_a23854808c6691cfaab7173519894ace1}{m\+\_\+object\+State}}
+\item 
+BYTE \mbox{\hyperlink{class_s_o_cmn_object_a11da4715c7506e7b89433701489e9547}{m\+\_\+object\+State\+Target}}
+\item 
+BYTE \mbox{\hyperlink{class_s_o_cmn_object_a3e2b4e0e96109fb1036297851decee13}{m\+\_\+user\+Data}}
+\item 
+BYTE \mbox{\hyperlink{class_s_o_cmn_object_a9f5b6a0f80f98441d4cdfa6b25ae2bf9}{m\+\_\+flags}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_s_o_da_s_request_a11cb950308804672c8a03f0f648242bc}{SODa\+STransaction}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00455}{455}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}\index{SODaSRequest@{SODaSRequest}!requestOperation@{requestOperation}}
+\index{requestOperation@{requestOperation}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{requestOperation}{requestOperation}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00} 
+enum \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}{SODa\+SRequest\+::request\+Operation}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{read@{read}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!read@{read}}}\Hypertarget{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00a815a397f9d27b11c8c0dd34e6735462e}\label{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00} 
+read&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{write@{write}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!write@{write}}}\Hypertarget{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00ab0a0ca48fb50d2aa743975ed0a978098}\label{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00} 
+write&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00462}{462}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7}\index{SODaSRequest@{SODaSRequest}!requestState@{requestState}}
+\index{requestState@{requestState}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{requestState}{requestState}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+enum \mbox{\hyperlink{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7}{SODa\+SRequest\+::request\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stateInitialized@{stateInitialized}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!stateInitialized@{stateInitialized}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a2ac46aed82e8f42bc72320285df88e52}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Initialized&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stateStarted@{stateStarted}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!stateStarted@{stateStarted}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a6f492c15e9088ccf0991eb5e4268868a}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Started&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{statePending@{statePending}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!statePending@{statePending}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a5ee05472d55794d228180b2889f09a5f}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Pending&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stateCompleted@{stateCompleted}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!stateCompleted@{stateCompleted}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7abf6e69a43c363f4bb5cbf2f38b4c2a5d}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Completed&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stateCanceled@{stateCanceled}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!stateCanceled@{stateCanceled}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7adda1e2f097add6989351d85ffcb83c5d}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Canceled&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stateProcessed@{stateProcessed}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!stateProcessed@{stateProcessed}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7a0e99b8b4ce9dd9906c80b6a46ac1d97c}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Processed&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{stateProcessedCancel@{stateProcessedCancel}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!stateProcessedCancel@{stateProcessedCancel}}}\Hypertarget{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7ab472bddbe2075e0733517f9c8c7eeca9}\label{class_s_o_da_s_request_a3a4e61b23bdcc0d3ef63b4d08324d8b7} 
+state\+Processed\+Cancel&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00500}{500}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}\index{SODaSRequest@{SODaSRequest}!requestType@{requestType}}
+\index{requestType@{requestType}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{requestType}{requestType}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+enum \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{SODa\+SRequest\+::request\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{syncCache@{syncCache}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!syncCache@{syncCache}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da01d5e648947efb837aae22d022a0ea24}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+sync\+Cache&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{syncDevice@{syncDevice}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!syncDevice@{syncDevice}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da9a533922c4606cdec6a2f5e7b57631c6}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+sync\+Device&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{syncMaxAge@{syncMaxAge}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!syncMaxAge@{syncMaxAge}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da589be78b8ca835f29f48ec7437247607}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+sync\+Max\+Age&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{asyncCache@{asyncCache}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!asyncCache@{asyncCache}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da060d861254c52ef27667486f4d0d6c0a}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+async\+Cache&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{asyncDevice@{asyncDevice}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!asyncDevice@{asyncDevice}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28daa4ee9159dfa26556ec0fe4c276229800}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+async\+Device&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{asyncMaxAge@{asyncMaxAge}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!asyncMaxAge@{asyncMaxAge}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dab9a87b0a76694f6581239ec1a2e12aba}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+async\+Max\+Age&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{serverDevice@{serverDevice}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!serverDevice@{serverDevice}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da83fba679738564ec2ffa35550329d559}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+server\+Device&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{serverMaxAge@{serverMaxAge}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!serverMaxAge@{serverMaxAge}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dacf0cee8be15cead17fb2a90846e53432}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+server\+Max\+Age&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{polledRefresh@{polledRefresh}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!polledRefresh@{polledRefresh}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dae65b35dd3b3b23e1bf6641be472e9138}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+polled\+Refresh&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{asyncInitNotify@{asyncInitNotify}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!asyncInitNotify@{asyncInitNotify}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dae3d08871c4830bbdacc7d74bd5bc9812}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+async\+Init\+Notify&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{delegatedDevice@{delegatedDevice}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!delegatedDevice@{delegatedDevice}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da491d1dd96c85e53de91f58060113e758}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+delegated\+Device&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{cyclic@{cyclic}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!cyclic@{cyclic}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28dac884a2dea5a0deed254011f569f334bd}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+cyclic&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{report@{report}!SODaSRequest@{SODaSRequest}}\index{SODaSRequest@{SODaSRequest}!report@{report}}}\Hypertarget{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28da1ea3b57b6cd782a06e2cc737e362bc1d}\label{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d} 
+report&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00469}{469}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_s_o_da_s_request_a748a92cb01ccca7e2971c109e2ac3fe1}\index{SODaSRequest@{SODaSRequest}!SODaSRequest@{SODaSRequest}}
+\index{SODaSRequest@{SODaSRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{SODaSRequest()}{SODaSRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a748a92cb01ccca7e2971c109e2ac3fe1} 
+SODa\+SRequest\+::\+SODa\+SRequest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{operation}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{type}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_s_o_da_s_request_a6f9c0c9c21428b0307f6304029fbb444}\index{SODaSRequest@{SODaSRequest}!````~SODaSRequest@{\texorpdfstring{$\sim$}{\string~}SODaSRequest}}
+\index{````~SODaSRequest@{\texorpdfstring{$\sim$}{\string~}SODaSRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SODaSRequest()}{\string~SODaSRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a6f9c0c9c21428b0307f6304029fbb444} 
+virtual SODa\+SRequest\+::\texorpdfstring{$\sim$}{\string~}\+SODa\+SRequest (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_s_o_da_s_request_afee5e63dd619a31e9d635cb7e0c2105f}\index{SODaSRequest@{SODaSRequest}!cancel@{cancel}}
+\index{cancel@{cancel}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_afee5e63dd619a31e9d635cb7e0c2105f} 
+virtual BOOL SODa\+SRequest\+::cancel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL HRESULT}]{comp\+Result}{ = {\ttfamily \mbox{\hyperlink{_o_tcommon_8h_a8f0547e641e1efc8110437fa85aa722e}{E\+\_\+\+FAIL}}}, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL}]{change\+Cache\+Quality}{ = {\ttfamily FALSE}, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL WORD}]{cache\+Quality}{ = {\ttfamily \mbox{\hyperlink{opcaedef_8h_a50a4844778d1d2a4732cfdbd95702782}{OPC\+\_\+\+QUALITY\+\_\+\+LAST\+\_\+\+KNOWN}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a4f3448a5da5eed5eb39986fdd19c33d1}\index{SODaSRequest@{SODaSRequest}!complete@{complete}}
+\index{complete@{complete}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{complete()}{complete()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a4f3448a5da5eed5eb39986fdd19c33d1} 
+virtual BOOL SODa\+SRequest\+::complete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL HRESULT}]{result}{ = {\ttfamily \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\+\_\+\+OK}}}, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL}]{valid\+Write\+Quality}{ = {\ttfamily FALSE}, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL WORD}]{write\+Quality}{ = {\ttfamily \mbox{\hyperlink{opcaedef_8h_a1fd4f9dade9ec3913f4d16c21a7643ce}{OPC\+\_\+\+QUALITY\+\_\+\+UNCERTAIN}}}, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL}]{error\+Before\+Start}{ = {\ttfamily FALSE}, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL}]{write\+Change\+Cache}{ = {\ttfamily TRUE}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a4f3448a5da5eed5eb39986fdd19c33d1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_aad2e2df279cc6cc23f1d107c0ab99dcc}\index{SODaSRequest@{SODaSRequest}!completeDelegateRequest@{completeDelegateRequest}}
+\index{completeDelegateRequest@{completeDelegateRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{completeDelegateRequest()}{completeDelegateRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_aad2e2df279cc6cc23f1d107c0ab99dcc} 
+virtual BOOL SODa\+SRequest\+::complete\+Delegate\+Request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_adcc0acd87ca4f275df2eedd543756b3e}\index{SODaSRequest@{SODaSRequest}!getCache@{getCache}}
+\index{getCache@{getCache}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getCache()}{getCache()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_adcc0acd87ca4f275df2eedd543756b3e} 
+virtual \mbox{\hyperlink{class_s_o_da_s_cache}{SODa\+SCache}} \texorpdfstring{$\ast$}{*} SODa\+SRequest\+::get\+Cache (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_adcc0acd87ca4f275df2eedd543756b3e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_af032ba4bce1b3f2b7131e3f7df5d5b18}\index{SODaSRequest@{SODaSRequest}!getCompletedEvent@{getCompletedEvent}}
+\index{getCompletedEvent@{getCompletedEvent}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getCompletedEvent()}{getCompletedEvent()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af032ba4bce1b3f2b7131e3f7df5d5b18} 
+\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmn\+Event\+Pointer}} SODa\+SRequest\+::get\+Completed\+Event (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00761}{761}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a5ff9a5f119bea244a6b6f156bcb93508}\index{SODaSRequest@{SODaSRequest}!getFlag@{getFlag}}
+\index{getFlag@{getFlag}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getFlag()}{getFlag()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a5ff9a5f119bea244a6b6f156bcb93508} 
+BYTE SODa\+SRequest\+::get\+Flag (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00566}{566}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a8678c680b76e43f11d1406b789824192}\index{SODaSRequest@{SODaSRequest}!getItem@{getItem}}
+\index{getItem@{getItem}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getItem()}{getItem()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a8678c680b76e43f11d1406b789824192} 
+virtual \mbox{\hyperlink{class_s_o_da_s_item}{SODa\+SItem}} \texorpdfstring{$\ast$}{*} SODa\+SRequest\+::get\+Item (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a8678c680b76e43f11d1406b789824192_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a59b90524026a99378f4e62a35f7dcc16}\index{SODaSRequest@{SODaSRequest}!getItemTag@{getItemTag}}
+\index{getItemTag@{getItemTag}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getItemTag()}{getItemTag()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a59b90524026a99378f4e62a35f7dcc16} 
+virtual \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*} SODa\+SRequest\+::get\+Item\+Tag (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a59b90524026a99378f4e62a35f7dcc16_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a6b3c32bcd3fc4b7fe12f6be80639df44}\index{SODaSRequest@{SODaSRequest}!getLCID@{getLCID}}
+\index{getLCID@{getLCID}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getLCID()}{getLCID()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a6b3c32bcd3fc4b7fe12f6be80639df44} 
+LCID SODa\+SRequest\+::get\+LCID (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_s_o_da_s_request_a4d4edaf9081b415f9913eef67ae68498}\index{SODaSRequest@{SODaSRequest}!getMaxAge@{getMaxAge}}
+\index{getMaxAge@{getMaxAge}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getMaxAge()}{getMaxAge()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a4d4edaf9081b415f9913eef67ae68498} 
+virtual DWORD SODa\+SRequest\+::get\+Max\+Age (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a4d4edaf9081b415f9913eef67ae68498_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_ae17de9abb2427f271b2ce040b864154f}\index{SODaSRequest@{SODaSRequest}!getObjTraceId@{getObjTraceId}}
+\index{getObjTraceId@{getObjTraceId}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getObjTraceId()}{getObjTraceId()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae17de9abb2427f271b2ce040b864154f} 
+virtual LPCTSTR SODa\+SRequest\+::get\+Obj\+Trace\+Id (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_s_o_cmn_object_adb5cac3c019ad84a71da1de5364f56d4}{SOCmn\+Object}}.
+
+\Hypertarget{class_s_o_da_s_request_af76075b6ee2a28a2ff0ec3650b381d85}\index{SODaSRequest@{SODaSRequest}!getOperation@{getOperation}}
+\index{getOperation@{getOperation}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getOperation()}{getOperation()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af76075b6ee2a28a2ff0ec3650b381d85} 
+enum \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}{SODa\+SRequest\+::request\+Operation}} SODa\+SRequest\+::get\+Operation (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00731}{731}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_af76075b6ee2a28a2ff0ec3650b381d85_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a076d0c38642066d7481e58b905fed96e}\index{SODaSRequest@{SODaSRequest}!getOriginalRequest@{getOriginalRequest}}
+\index{getOriginalRequest@{getOriginalRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getOriginalRequest()}{getOriginalRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a076d0c38642066d7481e58b905fed96e} 
+virtual \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*} SODa\+SRequest\+::get\+Original\+Request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_aa66827a1591ac291efcbc36cd239c797}\index{SODaSRequest@{SODaSRequest}!getReadQualityAddress@{getReadQualityAddress}}
+\index{getReadQualityAddress@{getReadQualityAddress}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getReadQualityAddress()}{getReadQualityAddress()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_aa66827a1591ac291efcbc36cd239c797} 
+virtual WORD \texorpdfstring{$\ast$}{*} SODa\+SRequest\+::get\+Read\+Quality\+Address (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_af35ec400d609ec029ef936591d96bb99}\index{SODaSRequest@{SODaSRequest}!getReportQuality@{getReportQuality}}
+\index{getReportQuality@{getReportQuality}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getReportQuality()}{getReportQuality()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af35ec400d609ec029ef936591d96bb99} 
+virtual WORD SODa\+SRequest\+::get\+Report\+Quality (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_af729b761fc619ab9bcdb90b443aec463}\index{SODaSRequest@{SODaSRequest}!getReportTimeStamp@{getReportTimeStamp}}
+\index{getReportTimeStamp@{getReportTimeStamp}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getReportTimeStamp()}{getReportTimeStamp()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af729b761fc619ab9bcdb90b443aec463} 
+virtual BOOL SODa\+SRequest\+::get\+Report\+Time\+Stamp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} SOCmn\+Date\+Time \&}]{time\+Stamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_ae0af4f71ebf1b8bc261ad6a75e34b7e3}\index{SODaSRequest@{SODaSRequest}!getReportValue@{getReportValue}}
+\index{getReportValue@{getReportValue}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getReportValue()}{getReportValue()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae0af4f71ebf1b8bc261ad6a75e34b7e3} 
+virtual BOOL SODa\+SRequest\+::get\+Report\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} SOCmn\+Variant \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a53398fc6bf1c8542143e9492afa0bd9b}\index{SODaSRequest@{SODaSRequest}!getReqDatatype@{getReqDatatype}}
+\index{getReqDatatype@{getReqDatatype}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getReqDatatype()}{getReqDatatype()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a53398fc6bf1c8542143e9492afa0bd9b} 
+VARTYPE SODa\+SRequest\+::get\+Req\+Datatype (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_s_o_da_s_request_a3976c4ea71bf8996aa10bc634daf4fa6}\index{SODaSRequest@{SODaSRequest}!getResult@{getResult}}
+\index{getResult@{getResult}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getResult()}{getResult()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a3976c4ea71bf8996aa10bc634daf4fa6} 
+virtual HRESULT SODa\+SRequest\+::get\+Result (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a5e67a783ff7b55c84707d0fbe8f7c0aa}\index{SODaSRequest@{SODaSRequest}!getServer@{getServer}}
+\index{getServer@{getServer}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getServer()}{getServer()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a5e67a783ff7b55c84707d0fbe8f7c0aa} 
+virtual \mbox{\hyperlink{class_s_o_da_s_server}{SODa\+SServer}} \texorpdfstring{$\ast$}{*} SODa\+SRequest\+::get\+Server (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a5e67a783ff7b55c84707d0fbe8f7c0aa_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_ab751944b6035d21f0ff2aaf4e5923f68}\index{SODaSRequest@{SODaSRequest}!getStartTime@{getStartTime}}
+\index{getStartTime@{getStartTime}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getStartTime()}{getStartTime()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ab751944b6035d21f0ff2aaf4e5923f68} 
+DWORD SODa\+SRequest\+::get\+Start\+Time (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00756}{756}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a0876d551d09a13ff11cc8a54ce7aa055}\index{SODaSRequest@{SODaSRequest}!getType@{getType}}
+\index{getType@{getType}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a0876d551d09a13ff11cc8a54ce7aa055} 
+enum \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{SODa\+SRequest\+::request\+Type}} SODa\+SRequest\+::get\+Type (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00710}{710}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ac4268241c8bbd5c4aa1d8fc4e9afde34}\index{SODaSRequest@{SODaSRequest}!getValidWriteQT@{getValidWriteQT}}
+\index{getValidWriteQT@{getValidWriteQT}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getValidWriteQT()}{getValidWriteQT()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ac4268241c8bbd5c4aa1d8fc4e9afde34} 
+virtual BYTE SODa\+SRequest\+::get\+Valid\+Write\+QT (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_ac4268241c8bbd5c4aa1d8fc4e9afde34_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a9303f21002ceca157982a8557084396a}\index{SODaSRequest@{SODaSRequest}!getWriteQuality@{getWriteQuality}}
+\index{getWriteQuality@{getWriteQuality}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getWriteQuality()}{getWriteQuality()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a9303f21002ceca157982a8557084396a} 
+virtual WORD SODa\+SRequest\+::get\+Write\+Quality (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a9303f21002ceca157982a8557084396a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a4f988472f535fd6f7281461ce254f9c8}\index{SODaSRequest@{SODaSRequest}!getWriteTimeStamp@{getWriteTimeStamp}}
+\index{getWriteTimeStamp@{getWriteTimeStamp}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getWriteTimeStamp()}{getWriteTimeStamp()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a4f988472f535fd6f7281461ce254f9c8} 
+virtual void SODa\+SRequest\+::get\+Write\+Time\+Stamp (\begin{DoxyParamCaption}\item[{SOCmn\+Date\+Time \&}]{write\+Time\+Stamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a4f988472f535fd6f7281461ce254f9c8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a522446c01d812f21c5c7210fb36dfe0b}\index{SODaSRequest@{SODaSRequest}!getWriteValue@{getWriteValue}}
+\index{getWriteValue@{getWriteValue}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{getWriteValue()}{getWriteValue()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a522446c01d812f21c5c7210fb36dfe0b} 
+virtual BOOL SODa\+SRequest\+::get\+Write\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPVARIANT}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a522446c01d812f21c5c7210fb36dfe0b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_ade351274b5e138b62fdebc2bc21a9adc}\index{SODaSRequest@{SODaSRequest}!hasChanged@{hasChanged}}
+\index{hasChanged@{hasChanged}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{hasChanged()}{hasChanged()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ade351274b5e138b62fdebc2bc21a9adc} 
+virtual BOOL SODa\+SRequest\+::has\+Changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} size\+\_\+t}]{connection}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} SOCmn\+Variant \&}]{value}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{quality}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_ade351274b5e138b62fdebc2bc21a9adc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a67ba1e36b3583ded81cf62eb7e5db5fc}\index{SODaSRequest@{SODaSRequest}!isCacheRequest@{isCacheRequest}}
+\index{isCacheRequest@{isCacheRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isCacheRequest()}{isCacheRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a67ba1e36b3583ded81cf62eb7e5db5fc} 
+BOOL SODa\+SRequest\+::is\+Cache\+Request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00715}{715}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a67ba1e36b3583ded81cf62eb7e5db5fc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a3564f3069e0bfb6c7718b1840adbbd05}\index{SODaSRequest@{SODaSRequest}!isCanceled@{isCanceled}}
+\index{isCanceled@{isCanceled}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isCanceled()}{isCanceled()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a3564f3069e0bfb6c7718b1840adbbd05} 
+BOOL SODa\+SRequest\+::is\+Canceled (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00751}{751}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a3564f3069e0bfb6c7718b1840adbbd05_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_af47597ca73f1d9bfa7ddd14487e4ce87}\index{SODaSRequest@{SODaSRequest}!isCompleted@{isCompleted}}
+\index{isCompleted@{isCompleted}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isCompleted()}{isCompleted()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af47597ca73f1d9bfa7ddd14487e4ce87} 
+BOOL SODa\+SRequest\+::is\+Completed (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00741}{741}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_af47597ca73f1d9bfa7ddd14487e4ce87_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_af47597ca73f1d9bfa7ddd14487e4ce87_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_ab817228526e6830097c0b16072edccc5}\index{SODaSRequest@{SODaSRequest}!isDCOMRequest@{isDCOMRequest}}
+\index{isDCOMRequest@{isDCOMRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isDCOMRequest()}{isDCOMRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ab817228526e6830097c0b16072edccc5} 
+BOOL SODa\+SRequest\+::is\+DCOMRequest (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00582}{582}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_adc463871da9200623d8f10f97e45ee42}\index{SODaSRequest@{SODaSRequest}!isDeviceRequest@{isDeviceRequest}}
+\index{isDeviceRequest@{isDeviceRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isDeviceRequest()}{isDeviceRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_adc463871da9200623d8f10f97e45ee42} 
+BOOL SODa\+SRequest\+::is\+Device\+Request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00720}{720}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_adc463871da9200623d8f10f97e45ee42_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_afe7e8c9d672c3fa110f5765a5d5035d8}\index{SODaSRequest@{SODaSRequest}!isPending@{isPending}}
+\index{isPending@{isPending}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isPending()}{isPending()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_afe7e8c9d672c3fa110f5765a5d5035d8} 
+BOOL SODa\+SRequest\+::is\+Pending (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00746}{746}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_afe7e8c9d672c3fa110f5765a5d5035d8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_a04a0aeeabd498f6762138068668a8cc2}\index{SODaSRequest@{SODaSRequest}!isSOAPRequest@{isSOAPRequest}}
+\index{isSOAPRequest@{isSOAPRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isSOAPRequest()}{isSOAPRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a04a0aeeabd498f6762138068668a8cc2} 
+BOOL SODa\+SRequest\+::is\+SOAPRequest (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00578}{578}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a2f561d29611367569a6c4be4cfee9fa7}\index{SODaSRequest@{SODaSRequest}!isStarted@{isStarted}}
+\index{isStarted@{isStarted}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{isStarted()}{isStarted()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a2f561d29611367569a6c4be4cfee9fa7} 
+BOOL SODa\+SRequest\+::is\+Started (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00736}{736}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_a2f561d29611367569a6c4be4cfee9fa7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_ac885eedfd90f1538768e98094b3cc8bb}\index{SODaSRequest@{SODaSRequest}!pending@{pending}}
+\index{pending@{pending}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{pending()}{pending()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ac885eedfd90f1538768e98094b3cc8bb} 
+virtual BOOL SODa\+SRequest\+::pending (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_s_o_da_s_request_ac885eedfd90f1538768e98094b3cc8bb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_s_o_da_s_request_ab9e4aac7b19b212abd3830158b3e281e}\index{SODaSRequest@{SODaSRequest}!reset@{reset}}
+\index{reset@{reset}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ab9e4aac7b19b212abd3830158b3e281e} 
+void SODa\+SRequest\+::reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_s_o_da_s_request_a406b128dcc38c33e591fee3247555986}\index{SODaSRequest@{SODaSRequest}!resetFlag@{resetFlag}}
+\index{resetFlag@{resetFlag}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{resetFlag()}{resetFlag()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a406b128dcc38c33e591fee3247555986} 
+void SODa\+SRequest\+::reset\+Flag (\begin{DoxyParamCaption}\item[{BYTE}]{flag}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00574}{574}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ac1ab873306ae3057dce2a28a7c602595}\index{SODaSRequest@{SODaSRequest}!setCompletedEvent@{setCompletedEvent}}
+\index{setCompletedEvent@{setCompletedEvent}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setCompletedEvent()}{setCompletedEvent()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ac1ab873306ae3057dce2a28a7c602595} 
+void SODa\+SRequest\+::set\+Completed\+Event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmn\+Event\+Pointer}}}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00767}{767}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ae900bba3705e7ce91b9819f709f24b18}\index{SODaSRequest@{SODaSRequest}!setFlag@{setFlag}}
+\index{setFlag@{setFlag}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setFlag()}{setFlag()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae900bba3705e7ce91b9819f709f24b18} 
+void SODa\+SRequest\+::set\+Flag (\begin{DoxyParamCaption}\item[{BYTE}]{flag}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00570}{570}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a905bfb6e3db4479994a00a8234647e48}\index{SODaSRequest@{SODaSRequest}!setIsRefresh@{setIsRefresh}}
+\index{setIsRefresh@{setIsRefresh}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setIsRefresh()}{setIsRefresh()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a905bfb6e3db4479994a00a8234647e48} 
+virtual void SODa\+SRequest\+::set\+Is\+Refresh (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00519}{519}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ae1a5f6cd103f986ad68e6a2f0c2d16eb}\index{SODaSRequest@{SODaSRequest}!setItem@{setItem}}
+\index{setItem@{setItem}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setItem()}{setItem()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae1a5f6cd103f986ad68e6a2f0c2d16eb} 
+virtual BOOL SODa\+SRequest\+::set\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_item}{SODa\+SItem}} \texorpdfstring{$\ast$}{*}}]{item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a21daa67727d82aae9b387202387a9ade}\index{SODaSRequest@{SODaSRequest}!setItemTag@{setItemTag}}
+\index{setItemTag@{setItemTag}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setItemTag()}{setItemTag()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a21daa67727d82aae9b387202387a9ade} 
+virtual BOOL SODa\+SRequest\+::set\+Item\+Tag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_item_tag}{SODa\+SItem\+Tag}} \texorpdfstring{$\ast$}{*}}]{item\+Tag}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a059093adb5408e7a5ee8b769533f4d1a}\index{SODaSRequest@{SODaSRequest}!setMaxAge@{setMaxAge}}
+\index{setMaxAge@{setMaxAge}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setMaxAge()}{setMaxAge()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a059093adb5408e7a5ee8b769533f4d1a} 
+virtual void SODa\+SRequest\+::set\+Max\+Age (\begin{DoxyParamCaption}\item[{DWORD}]{max\+Age}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_abf7fb33baa02de73878889609cafb8fa}\index{SODaSRequest@{SODaSRequest}!setOperation@{setOperation}}
+\index{setOperation@{setOperation}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setOperation()}{setOperation()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_abf7fb33baa02de73878889609cafb8fa} 
+BOOL SODa\+SRequest\+::set\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} enum \mbox{\hyperlink{class_s_o_da_s_request_a30dfd4d97ae74968e151a9a665278a00}{request\+Operation}}}]{Operation}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00725}{725}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ae643cd4c5d64be9e8a67964974d48798}\index{SODaSRequest@{SODaSRequest}!setOriginalRequest@{setOriginalRequest}}
+\index{setOriginalRequest@{setOriginalRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setOriginalRequest()}{setOriginalRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae643cd4c5d64be9e8a67964974d48798} 
+virtual BOOL SODa\+SRequest\+::set\+Original\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} \texorpdfstring{$\ast$}{*}}]{req}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a0510094fa0ad62269e682dd08a3f12c2}\index{SODaSRequest@{SODaSRequest}!setReadQualityAddress@{setReadQualityAddress}}
+\index{setReadQualityAddress@{setReadQualityAddress}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setReadQualityAddress()}{setReadQualityAddress()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a0510094fa0ad62269e682dd08a3f12c2} 
+virtual void SODa\+SRequest\+::set\+Read\+Quality\+Address (\begin{DoxyParamCaption}\item[{WORD \texorpdfstring{$\ast$}{*}}]{read\+Quality\+Addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_ac3633e518cbb7eb5debaac61cc6a26df}\index{SODaSRequest@{SODaSRequest}!setReportQuality@{setReportQuality}}
+\index{setReportQuality@{setReportQuality}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setReportQuality()}{setReportQuality()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ac3633e518cbb7eb5debaac61cc6a26df} 
+virtual BOOL SODa\+SRequest\+::set\+Report\+Quality (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{quality}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a3232ebf397990615447a58879776a038}\index{SODaSRequest@{SODaSRequest}!setReportTimeStamp@{setReportTimeStamp}}
+\index{setReportTimeStamp@{setReportTimeStamp}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setReportTimeStamp()}{setReportTimeStamp()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a3232ebf397990615447a58879776a038} 
+virtual BOOL SODa\+SRequest\+::set\+Report\+Time\+Stamp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} SOCmn\+Date\+Time \&}]{time\+Stamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a8363efbb278f5333e144cdb8d50c3581}\index{SODaSRequest@{SODaSRequest}!setReportValue@{setReportValue}}
+\index{setReportValue@{setReportValue}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setReportValue()}{setReportValue()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a8363efbb278f5333e144cdb8d50c3581} 
+virtual BOOL SODa\+SRequest\+::set\+Report\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} SOCmn\+Variant \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a09df3ce958cbb6bd1a6f9ba801b8d437}\index{SODaSRequest@{SODaSRequest}!setReqDatatype@{setReqDatatype}}
+\index{setReqDatatype@{setReqDatatype}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setReqDatatype()}{setReqDatatype()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a09df3ce958cbb6bd1a6f9ba801b8d437} 
+void SODa\+SRequest\+::set\+Req\+Datatype (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE}]{req\+Datatype}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_s_o_da_s_request_ab003f03c5737a475460ce257fbd903b0}\index{SODaSRequest@{SODaSRequest}!setResult@{setResult}}
+\index{setResult@{setResult}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setResult()}{setResult()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ab003f03c5737a475460ce257fbd903b0} 
+virtual void SODa\+SRequest\+::set\+Result (\begin{DoxyParamCaption}\item[{HRESULT}]{res}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a3a3acc03422eb48b6f1492fab05c1874}\index{SODaSRequest@{SODaSRequest}!setResultAddress@{setResultAddress}}
+\index{setResultAddress@{setResultAddress}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setResultAddress()}{setResultAddress()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a3a3acc03422eb48b6f1492fab05c1874} 
+virtual void SODa\+SRequest\+::set\+Result\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} HRESULT \texorpdfstring{$\ast$}{*}}]{res\+Addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a8da51b88680a36ee095d0b00a54ede59}\index{SODaSRequest@{SODaSRequest}!setServer@{setServer}}
+\index{setServer@{setServer}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setServer()}{setServer()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a8da51b88680a36ee095d0b00a54ede59} 
+virtual BOOL SODa\+SRequest\+::set\+Server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_da_s_server}{SODa\+SServer}} \texorpdfstring{$\ast$}{*}}]{server}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_ac4a8610145730fb00681fae2aad1eeec}\index{SODaSRequest@{SODaSRequest}!setType@{setType}}
+\index{setType@{setType}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setType()}{setType()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ac4a8610145730fb00681fae2aad1eeec} 
+BOOL SODa\+SRequest\+::set\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} enum \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{request\+Type}} \mbox{\hyperlink{class_s_o_da_s_request_ac8c9ab9dbc2d202ae151ac07c8ddf28d}{request\+Type}}}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00704}{704}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a72bfdfa98ea7bbfdae91d2c11dc5d164}\index{SODaSRequest@{SODaSRequest}!setWriteQuality@{setWriteQuality}}
+\index{setWriteQuality@{setWriteQuality}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setWriteQuality()}{setWriteQuality()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a72bfdfa98ea7bbfdae91d2c11dc5d164} 
+virtual void SODa\+SRequest\+::set\+Write\+Quality (\begin{DoxyParamCaption}\item[{WORD}]{write\+Quality}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_ae8c1688c00d181e1ecea4386c2701096}\index{SODaSRequest@{SODaSRequest}!setWriteTimeStamp@{setWriteTimeStamp}}
+\index{setWriteTimeStamp@{setWriteTimeStamp}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setWriteTimeStamp()}{setWriteTimeStamp()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae8c1688c00d181e1ecea4386c2701096} 
+virtual void SODa\+SRequest\+::set\+Write\+Time\+Stamp (\begin{DoxyParamCaption}\item[{const SOCmn\+Date\+Time \&}]{write\+Time\+Stamp}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_af992e3b331984457054c7382ae4b9844}\index{SODaSRequest@{SODaSRequest}!setWriteValue@{setWriteValue}}
+\index{setWriteValue@{setWriteValue}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{setWriteValue()}{setWriteValue()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af992e3b331984457054c7382ae4b9844} 
+virtual BOOL SODa\+SRequest\+::set\+Write\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_value_q_t_8h_a617335bd33376cf1b0af0e5c963ebf9c}{LPCVARIANT}}}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_a69008d460a600dc5e1b5acb1f7a62ce8}\index{SODaSRequest@{SODaSRequest}!signalQueueEvents@{signalQueueEvents}}
+\index{signalQueueEvents@{signalQueueEvents}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{signalQueueEvents()}{signalQueueEvents()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a69008d460a600dc5e1b5acb1f7a62ce8} 
+static void SODa\+SRequest\+::signal\+Queue\+Events (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}} $>$ \texorpdfstring{$\ast$}{*}}]{req\+List}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_s_o_da_s_request_a6d8f6671f04808d5585b48485363e73a}\index{SODaSRequest@{SODaSRequest}!start@{start}}
+\index{start@{start}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a6d8f6671f04808d5585b48485363e73a} 
+virtual BOOL SODa\+SRequest\+::start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} OPTIONAL BOOL}]{signal\+Queue}{ = {\ttfamily TRUE}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{class_s_o_da_s_request_ae84a772d761db03aa05e660fdfffc73f}\index{SODaSRequest@{SODaSRequest}!startDelegateRequest@{startDelegateRequest}}
+\index{startDelegateRequest@{startDelegateRequest}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{startDelegateRequest()}{startDelegateRequest()}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae84a772d761db03aa05e660fdfffc73f} 
+virtual void SODa\+SRequest\+::start\+Delegate\+Request (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{class_s_o_da_s_request_a11cb950308804672c8a03f0f648242bc}\index{SODaSRequest@{SODaSRequest}!SODaSTransaction@{SODaSTransaction}}
+\index{SODaSTransaction@{SODaSTransaction}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{SODaSTransaction}{SODaSTransaction}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a11cb950308804672c8a03f0f648242bc} 
+friend class \mbox{\hyperlink{class_s_o_da_s_transaction}{SODa\+STransaction}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00458}{458}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_s_o_da_s_request_a578cc1328c9b3119fb34bb1d3853e2a8}\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a578cc1328c9b3119fb34bb1d3853e2a8} 
+union  \{ ... \}  \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_s_o_da_s_request_a72ba6667c6cd92c6fd6a5181c0e9db94}\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a72ba6667c6cd92c6fd6a5181c0e9db94} 
+union  \{ ... \}  \mbox{\hyperlink{class_s_o_da_s_request}{SODa\+SRequest}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_s_o_da_s_request_a70142b04b8baf2fed1a372c00dd83555}\index{SODaSRequest@{SODaSRequest}!m\_completedEvent@{m\_completedEvent}}
+\index{m\_completedEvent@{m\_completedEvent}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_completedEvent}{m\_completedEvent}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a70142b04b8baf2fed1a372c00dd83555} 
+\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmn\+Event\+Pointer}} SODa\+SRequest\+::m\+\_\+completed\+Event\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00687}{687}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_af9c03caf687413ca9590a1b06a169f54}\index{SODaSRequest@{SODaSRequest}!m\_depAsyncReadData@{m\_depAsyncReadData}}
+\index{m\_depAsyncReadData@{m\_depAsyncReadData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depAsyncReadData}{m\_depAsyncReadData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af9c03caf687413ca9590a1b06a169f54} 
+\mbox{\hyperlink{class_s_o_da_s_request_async_read_data}{SODa\+SRequest\+Async\+Read\+Data}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Async\+Read\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00694}{694}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_acc5fb72ae8e2d3d1ae7678119cc70930}\index{SODaSRequest@{SODaSRequest}!m\_depAsyncWriteData@{m\_depAsyncWriteData}}
+\index{m\_depAsyncWriteData@{m\_depAsyncWriteData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depAsyncWriteData}{m\_depAsyncWriteData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_acc5fb72ae8e2d3d1ae7678119cc70930} 
+\mbox{\hyperlink{class_s_o_da_s_request_async_write_data}{SODa\+SRequest\+Async\+Write\+Data}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Async\+Write\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00695}{695}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_aa0cff37a4bbbf45299fe22a853a6d9a1}\index{SODaSRequest@{SODaSRequest}!m\_depData@{m\_depData}}
+\index{m\_depData@{m\_depData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depData}{m\_depData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_aa0cff37a4bbbf45299fe22a853a6d9a1} 
+void\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00691}{691}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a78cb3302d2d132c3f07a5e68eacecbb7}\index{SODaSRequest@{SODaSRequest}!m\_depDelegateData@{m\_depDelegateData}}
+\index{m\_depDelegateData@{m\_depDelegateData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depDelegateData}{m\_depDelegateData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a78cb3302d2d132c3f07a5e68eacecbb7} 
+\mbox{\hyperlink{class_s_o_da_s_request_delegate_data}{SODa\+SRequest\+Delegate\+Data}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Delegate\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00696}{696}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_aeaf2e6bb9aa3591f5e43682941c68107}\index{SODaSRequest@{SODaSRequest}!m\_depReportData@{m\_depReportData}}
+\index{m\_depReportData@{m\_depReportData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depReportData}{m\_depReportData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_aeaf2e6bb9aa3591f5e43682941c68107} 
+\mbox{\hyperlink{class_s_o_da_s_request_report_data}{SODa\+SRequest\+Report\+Data}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Report\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00697}{697}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_af35ffcf312ee69725094a6761fbfec5c}\index{SODaSRequest@{SODaSRequest}!m\_depSyncReadData@{m\_depSyncReadData}}
+\index{m\_depSyncReadData@{m\_depSyncReadData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depSyncReadData}{m\_depSyncReadData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_af35ffcf312ee69725094a6761fbfec5c} 
+\mbox{\hyperlink{class_s_o_da_s_request_sync_read_data}{SODa\+SRequest\+Sync\+Read\+Data}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Sync\+Read\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00692}{692}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a399d03754b2c9e83c9f527f2f46eab0d}\index{SODaSRequest@{SODaSRequest}!m\_depSyncWriteData@{m\_depSyncWriteData}}
+\index{m\_depSyncWriteData@{m\_depSyncWriteData}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_depSyncWriteData}{m\_depSyncWriteData}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a399d03754b2c9e83c9f527f2f46eab0d} 
+\mbox{\hyperlink{class_s_o_da_s_request_sync_write_data}{SODa\+SRequest\+Sync\+Write\+Data}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+dep\+Sync\+Write\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00693}{693}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a0d4b505c438983935d29fc399ce487f9}\index{SODaSRequest@{SODaSRequest}!m\_flag@{m\_flag}}
+\index{m\_flag@{m\_flag}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_flag}{m\_flag}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a0d4b505c438983935d29fc399ce487f9} 
+BYTE SODa\+SRequest\+::m\+\_\+flag\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00680}{680}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a9ac4dc1bd5651d6e2a3548eb48b01a7f}\index{SODaSRequest@{SODaSRequest}!m\_item@{m\_item}}
+\index{m\_item@{m\_item}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_item}{m\_item}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a9ac4dc1bd5651d6e2a3548eb48b01a7f} 
+\mbox{\hyperlink{class_s_o_da_s_item}{SODa\+SItem}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+item}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00683}{683}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_adae6f5441034cbd98460cb11c4db8aaa}\index{SODaSRequest@{SODaSRequest}!m\_operation@{m\_operation}}
+\index{m\_operation@{m\_operation}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_operation}{m\_operation}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_adae6f5441034cbd98460cb11c4db8aaa} 
+BYTE SODa\+SRequest\+::m\+\_\+operation\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00679}{679}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a1a2b1ff5e27d2c7543a4cac17a45d5be}\index{SODaSRequest@{SODaSRequest}!m\_result@{m\_result}}
+\index{m\_result@{m\_result}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_result}{m\_result}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a1a2b1ff5e27d2c7543a4cac17a45d5be} 
+HRESULT SODa\+SRequest\+::m\+\_\+result}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00690}{690}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a7eff1a166736d8e4e0d71f88609f26b8}\index{SODaSRequest@{SODaSRequest}!m\_server@{m\_server}}
+\index{m\_server@{m\_server}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_server}{m\_server}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a7eff1a166736d8e4e0d71f88609f26b8} 
+\mbox{\hyperlink{class_s_o_da_s_server}{SODa\+SServer}}\texorpdfstring{$\ast$}{*} SODa\+SRequest\+::m\+\_\+server}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00684}{684}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_a7f5b0c9d0b927ee783da2521da2bf607}\index{SODaSRequest@{SODaSRequest}!m\_startTime@{m\_startTime}}
+\index{m\_startTime@{m\_startTime}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_startTime}{m\_startTime}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_a7f5b0c9d0b927ee783da2521da2bf607} 
+DWORD SODa\+SRequest\+::m\+\_\+start\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00686}{686}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+\Hypertarget{class_s_o_da_s_request_ae91b110e2d9a3fe8b49ec88f2bc38ccd}\index{SODaSRequest@{SODaSRequest}!m\_type@{m\_type}}
+\index{m\_type@{m\_type}!SODaSRequest@{SODaSRequest}}
+\doxysubsubsection{\texorpdfstring{m\_type}{m\_type}}
+{\footnotesize\ttfamily \label{class_s_o_da_s_request_ae91b110e2d9a3fe8b49ec88f2bc38ccd} 
+WORD SODa\+SRequest\+::m\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_da_s_request_8h_source_l00678}{678}} of file \mbox{\hyperlink{_s_o_da_s_request_8h_source}{SODa\+SRequest.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/src/include/\mbox{\hyperlink{_s_o_da_s_request_8h}{SODa\+SRequest.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+var classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data =
+[
+    [ "OTCAEConditionStateData", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#abf7cba0845a939169ba1298aaf771cca", null ],
+    [ "byReference", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a11e6c53e1dc1057f09eaeab5ac24c759", null ],
+    [ "byValue", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a232bc4edc33629ca8257d5f7fad3e8f3", null ],
+    [ "clone", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a70210743e165c037351bf21eabe5e657", null ],
+    [ "m_ackComment", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a13ecf4eb67d85a73e366a2130a18876f", null ],
+    [ "m_ackID", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#adfb4c435751d206820b97d1d91c56f2e", null ],
+    [ "m_actSubConditionDefinition", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#ab7d60c95f50d429f0b7a45264f03397d", null ],
+    [ "m_actSubConditionDescription", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#ad875405c9355cc6e7fc504cdf3ea217c", null ],
+    [ "m_actSubConditionName", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a190b2ac7d67333191c8f69d61046721a", null ],
+    [ "m_actSubConditionSeverity", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#af254d95f3292f47b13fe42a5f52c2b12", null ],
+    [ "m_conditionAckTime", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a5d8038b4979443f55667cdddeac4354f", null ],
+    [ "m_conditionActiveTime", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#aa9e8b269f12895f1b1bbffb82c92dfaa", null ],
+    [ "m_conditionInactiveTime", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a99ec13b0c3c2e0a8ea00b1b3f7d6df44", null ],
+    [ "m_eventAttrCount", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a04196d52eaa0a5c3c8378a2f6547b0f6", null ],
+    [ "m_pAttrErrors", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a0d967079680f827a7d33e009492d8168", null ],
+    [ "m_pEventAttrs", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a16bdda3fcf73e30f10650bc24c774306", null ],
+    [ "m_pSubConditionDefinition", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a9b51cf1be0c4bb44d4a4e1393d195e0e", null ],
+    [ "m_pSubConditionDescription", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a83fb778222e10c18ada3ef134c62c2e4", null ],
+    [ "m_pSubConditionName", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#af492dc44f36d7e9238eeb9158085e37c", null ],
+    [ "m_pSubConditionSeverity", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a2fc393f75ed4731ebb66a0c4b55909f7", null ],
+    [ "m_quality", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a9f863555ab1cb0798237747a0def03bf", null ],
+    [ "m_state", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a3d8ee1f761435c1bfadb886b1f61604a", null ],
+    [ "m_subConditionActiveTime", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a352e326f5b3b1e87d3e3e3b12cbd852f", null ],
+    [ "m_subConditionCount", "classcom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_c_a_e_condition_state_data.html#a67a0365c112b1af2d24737121388ff60", null ]
+];

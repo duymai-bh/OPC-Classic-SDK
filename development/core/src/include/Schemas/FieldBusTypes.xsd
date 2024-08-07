@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+    <xs:include schemaLocation="DualBusControl.xsd"/>
+    <xs:include schemaLocation="SCI_Bus.xsd"/>
+	<xs:complexType name="FieldBusTypes">
+		<xs:choice>
+			<xs:element name="DualBusControl" type="DualBusControlType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Dual Bus Control S39500-001-00-300</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PPPControl" type="GenericFieldbusControlType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Point-To-Point (PPP) Control AIP-20000-04-306</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModbusControl" type="GenericFieldbusControlType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Modbus Control AIP-20000-05-306</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FieldbusControl" type="GenericFieldbusControlType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Fieldbus Control AIP-20000-15-306</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CANbusControl" type="CANBusControlType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Canbus Control AIP-20000-14-306</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WEPSControl" type="GenericFieldbusControlType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>WEPS Control AIP-20000-16-306</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CANbusSensorControl" type="CANBusSensorControlType" minOccurs="0" maxOccurs="30">
+				<xs:annotation>
+					<xs:documentation>Canbus Sensor Control AIP-20000-17-306</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CANbusSensorStatusControl" type="CANBusSensorStatusControlType" minOccurs="0" maxOccurs="5">
+				<xs:annotation>
+					<xs:documentation>Canbus Sensor Status Control TBD</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,1033 @@
+\doxysection{expat.\+h}
+\hypertarget{expat_8h_source}{}\label{expat_8h_source}\index{core/src/include/expat.h@{core/src/include/expat.h}}
+\mbox{\hyperlink{expat_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00001}00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 1998,\ 1999,\ 2000\ Thai\ Open\ Source\ Software\ Center\ Ltd}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00002}00002\ \textcolor{comment}{\ \ \ See\ the\ file\ COPYING\ for\ copying\ permission.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00003}00003\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00005}00005\ \textcolor{preprocessor}{\#ifndef\ Expat\_INCLUDED}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00006}00006\ \textcolor{preprocessor}{\#define\ Expat\_INCLUDED\ 1}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00008}00008\ \textcolor{preprocessor}{\#ifdef\ \_\_VMS}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00009}00009\ \textcolor{comment}{/*\ \ \ \ \ \ 0\ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ \ \ \ 3\ \ \ \ \ \ 0\ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00010}00010\ \textcolor{comment}{\ \ \ \ \ \ \ \ 1234567890123456789012345678901\ \ \ \ \ 1234567890123456789012345678901\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00011}00011\ \textcolor{preprocessor}{\#define\ XML\_SetProcessingInstructionHandler\ XML\_SetProcessingInstrHandler}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00012}00012\ \textcolor{preprocessor}{\#define\ XML\_SetUnparsedEntityDeclHandler\ \ \ \ XML\_SetUnparsedEntDeclHandler}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00013}00013\ \textcolor{preprocessor}{\#define\ XML\_SetStartNamespaceDeclHandler\ \ \ \ XML\_SetStartNamespcDeclHandler}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ XML\_SetExternalEntityRefHandlerArg\ \ XML\_SetExternalEntRefHandlerArg}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00015}00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{expat__external_8h}{expat\_external.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00020}00020\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00021}00021\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00022}00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00024}00024\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_ParserStruct}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00025}\mbox{\hyperlink{expat_8h_a9dc0003156857c67b3a60b3993846013}{00025}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_ParserStruct}}*\ \mbox{\hyperlink{expat_8h_a9dc0003156857c67b3a60b3993846013}{XML\_Parser}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00027}00027\ \ \ \ \ \textcolor{comment}{/*\ Should\ this\ be\ defined\ using\ stdbool.h\ when\ C99\ is\ available?\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00028}\mbox{\hyperlink{expat_8h_a5fe41bca8b7a23b2405f1b967e70f33a}{00028}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{expat_8h_a5fe41bca8b7a23b2405f1b967e70f33a}{XML\_Bool}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00029}\mbox{\hyperlink{expat_8h_aece5d476114d1bcc830391af0d1160fd}{00029}}\ \textcolor{preprocessor}{\#define\ XML\_TRUE\ \ \ ((XML\_Bool)\ 1)}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00030}\mbox{\hyperlink{expat_8h_a10f4e50c3f8ef8a50f00110b0319b12a}{00030}}\ \textcolor{preprocessor}{\#define\ XML\_FALSE\ \ ((XML\_Bool)\ 0)}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00032}00032\ \ \ \ \ \textcolor{comment}{/*\ The\ XML\_Status\ enum\ gives\ the\ possible\ return\ values\ for\ several}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00033}00033\ \textcolor{comment}{\ \ \ \ \ \ \ API\ functions.\ \ The\ preprocessor\ \#defines\ are\ included\ so\ this}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00034}00034\ \textcolor{comment}{\ \ \ \ \ \ \ stanza\ can\ be\ added\ to\ code\ that\ still\ needs\ to\ support\ older}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00035}00035\ \textcolor{comment}{\ \ \ \ \ \ \ versions\ of\ Expat\ 1.95.x:}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00036}00036\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00037}00037\ \textcolor{comment}{\ \ \ \ \ \ \ \#ifndef\ XML\_STATUS\_OK}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00038}00038\ \textcolor{comment}{\ \ \ \ \ \ \ \#define\ XML\_STATUS\_OK\ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00039}00039\ \textcolor{comment}{\ \ \ \ \ \ \ \#define\ XML\_STATUS\_ERROR\ 0}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00040}00040\ \textcolor{comment}{\ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00041}00041\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00042}00042\ \textcolor{comment}{\ \ \ \ \ \ \ Otherwise,\ the\ \#define\ hackery\ is\ quite\ ugly\ and\ would\ have\ been}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00043}00043\ \textcolor{comment}{\ \ \ \ \ \ \ dropped.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00044}00044\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00045}\mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{00045}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00047}\mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bbaa24b654694daef98d474312bf84b1a52}{00047}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a23470b6fbc11734113a97bb16784f425}{XML\_STATUS\_ERROR}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00048}\mbox{\hyperlink{expat_8h_a23470b6fbc11734113a97bb16784f425}{00048}}\ \textcolor{preprocessor}{\#define\ XML\_STATUS\_ERROR\ XML\_STATUS\_ERROR}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00049}\mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bba0b75c0375756392bab1cbb6c30b385f3}{00049}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_ab38219dfecd7be55a897cbc8a71512f8}{XML\_STATUS\_OK}}\ =\ 1,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00050}\mbox{\hyperlink{expat_8h_ab38219dfecd7be55a897cbc8a71512f8}{00050}}\ \textcolor{preprocessor}{\#define\ XML\_STATUS\_OK\ XML\_STATUS\_OK}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a762722e1945b30f728ccbfe2ffc863f2}{XML\_STATUS\_SUSPENDED}}\ =\ 2}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00052}00052\ \textcolor{preprocessor}{\#define\ XML\_STATUS\_SUSPENDED\ XML\_STATUS\_SUSPENDED}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00053}\mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bba75cf5e7dbc26a9437b9725d99a050d6b}{00053}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00055}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118}{00055}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118}{XML\_Error}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00056}00056\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00057}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a94d7f2071bd24ca8a0b718b21301dbae}{00057}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a94d7f2071bd24ca8a0b718b21301dbae}{XML\_ERROR\_NONE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00058}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a7f073b3492312b2b2744266fbd8d99cd}{00058}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a7f073b3492312b2b2744266fbd8d99cd}{XML\_ERROR\_NO\_MEMORY}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00059}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118afdff9df9f5a13e4956307fdfd8831133}{00059}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118afdff9df9f5a13e4956307fdfd8831133}{XML\_ERROR\_SYNTAX}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00060}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a30806cc55ad9a3d0a5d3b210a59ba9f3}{00060}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a30806cc55ad9a3d0a5d3b210a59ba9f3}{XML\_ERROR\_NO\_ELEMENTS}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00061}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae0955060e14faab05faa346c9be641de}{00061}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae0955060e14faab05faa346c9be641de}{XML\_ERROR\_INVALID\_TOKEN}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00062}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a014760abb9dc590d653a8dbc1c67dc1f}{00062}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a014760abb9dc590d653a8dbc1c67dc1f}{XML\_ERROR\_UNCLOSED\_TOKEN}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00063}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a524cee9bec6321c9ae86ff948ae6b58b}{00063}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a524cee9bec6321c9ae86ff948ae6b58b}{XML\_ERROR\_PARTIAL\_CHAR}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00064}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa899d9719d3a91d2611402eb65c6aacb}{00064}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa899d9719d3a91d2611402eb65c6aacb}{XML\_ERROR\_TAG\_MISMATCH}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00065}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a5d968af631073c5ea62b83119d418cb8}{00065}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a5d968af631073c5ea62b83119d418cb8}{XML\_ERROR\_DUPLICATE\_ATTRIBUTE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00066}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa97bf530524671001c50569ffae7d26a}{00066}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa97bf530524671001c50569ffae7d26a}{XML\_ERROR\_JUNK\_AFTER\_DOC\_ELEMENT}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00067}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a9700d1b17a181c3ebdc282bb285f8559}{00067}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a9700d1b17a181c3ebdc282bb285f8559}{XML\_ERROR\_PARAM\_ENTITY\_REF}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00068}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad48a9855f09eb3e586f737882653b49a}{00068}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad48a9855f09eb3e586f737882653b49a}{XML\_ERROR\_UNDEFINED\_ENTITY}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00069}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a4ee7d262582821311683fa9e2036462d}{00069}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a4ee7d262582821311683fa9e2036462d}{XML\_ERROR\_RECURSIVE\_ENTITY\_REF}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00070}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a0cc463ba999dce675efada76ab7a7ae1}{00070}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a0cc463ba999dce675efada76ab7a7ae1}{XML\_ERROR\_ASYNC\_ENTITY}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00071}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad02a255f05184fe6f59dd5ebbc9654c3}{00071}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad02a255f05184fe6f59dd5ebbc9654c3}{XML\_ERROR\_BAD\_CHAR\_REF}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00072}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae3e63f65884b55e5444fad83163d1777}{00072}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae3e63f65884b55e5444fad83163d1777}{XML\_ERROR\_BINARY\_ENTITY\_REF}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00073}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a14f9d5721c3a94bebdb1d12325e34961}{00073}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a14f9d5721c3a94bebdb1d12325e34961}{XML\_ERROR\_ATTRIBUTE\_EXTERNAL\_ENTITY\_REF}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00074}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a878586f07e83b5215b7e43fa6957aee4}{00074}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a878586f07e83b5215b7e43fa6957aee4}{XML\_ERROR\_MISPLACED\_XML\_PI}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00075}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae3fd18418e1ef36726486d175e43404f}{00075}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae3fd18418e1ef36726486d175e43404f}{XML\_ERROR\_UNKNOWN\_ENCODING}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00076}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a7dd87295923a83486c1ee32dcc72b276}{00076}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a7dd87295923a83486c1ee32dcc72b276}{XML\_ERROR\_INCORRECT\_ENCODING}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00077}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ab8b5142f4c88b80b0fd94b8fcb78f101}{00077}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ab8b5142f4c88b80b0fd94b8fcb78f101}{XML\_ERROR\_UNCLOSED\_CDATA\_SECTION}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00078}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a7485dfe2229b74b0ac5abbbe5e69e528}{00078}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a7485dfe2229b74b0ac5abbbe5e69e528}{XML\_ERROR\_EXTERNAL\_ENTITY\_HANDLING}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00079}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a35d00aec5104d0d95c4684e339609e31}{00079}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a35d00aec5104d0d95c4684e339609e31}{XML\_ERROR\_NOT\_STANDALONE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00080}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa7e8eabb57de34509adf8ed0c22a19de}{00080}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa7e8eabb57de34509adf8ed0c22a19de}{XML\_ERROR\_UNEXPECTED\_STATE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00081}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a5d0c800771b3bed49aba971818f467df}{00081}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a5d0c800771b3bed49aba971818f467df}{XML\_ERROR\_ENTITY\_DECLARED\_IN\_PE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00082}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a9c56b241750a66ad045af7f701e3a3a8}{00082}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a9c56b241750a66ad045af7f701e3a3a8}{XML\_ERROR\_FEATURE\_REQUIRES\_XML\_DTD}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00083}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a59a16308b56e00dca247ac63f87b165c}{00083}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a59a16308b56e00dca247ac63f87b165c}{XML\_ERROR\_CANT\_CHANGE\_FEATURE\_ONCE\_PARSING}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Added\ in\ 1.95.7.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00085}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad5c3e9e15d85440a3d8d8215cd4c4771}{00085}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad5c3e9e15d85440a3d8d8215cd4c4771}{XML\_ERROR\_UNBOUND\_PREFIX}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Added\ in\ 1.95.8.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00087}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118add61ca21b27c0251daf4ed882e2c1b1f}{00087}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118add61ca21b27c0251daf4ed882e2c1b1f}{XML\_ERROR\_UNDECLARING\_PREFIX}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00088}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a36ff78124834ad24d4105e8ec127f57b}{00088}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a36ff78124834ad24d4105e8ec127f57b}{XML\_ERROR\_INCOMPLETE\_PE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00089}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a2fb52fa51b56fb76b7bc717ec6116c28}{00089}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a2fb52fa51b56fb76b7bc717ec6116c28}{XML\_ERROR\_XML\_DECL}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00090}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a49839fc9c3d673e9ec62d88cb5c5d017}{00090}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a49839fc9c3d673e9ec62d88cb5c5d017}{XML\_ERROR\_TEXT\_DECL}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00091}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad7bbf806dd63715a925b422b703068dc}{00091}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ad7bbf806dd63715a925b422b703068dc}{XML\_ERROR\_PUBLICID}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00092}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a549c0b9238aa4781007f91af376cedb5}{00092}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a549c0b9238aa4781007f91af376cedb5}{XML\_ERROR\_SUSPENDED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00093}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aafc6bc70586542c3a9514fc9cabcd678}{00093}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aafc6bc70586542c3a9514fc9cabcd678}{XML\_ERROR\_NOT\_SUSPENDED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00094}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a285887f8112dc911f19e3791a49bd3ca}{00094}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118a285887f8112dc911f19e3791a49bd3ca}{XML\_ERROR\_ABORTED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00095}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa92e9288dc9de92d90de882bd28caf08}{00095}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa92e9288dc9de92d90de882bd28caf08}{XML\_ERROR\_FINISHED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00096}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae5a36b9bc5d50dd263b59de2b249c0d0}{00096}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118ae5a36b9bc5d50dd263b59de2b249c0d0}{XML\_ERROR\_SUSPEND\_PE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Added\ in\ 2.0.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00098}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa6e7c0867b74df3dfa81aa0885d8aad8}{00098}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aa6e7c0867b74df3dfa81aa0885d8aad8}{XML\_ERROR\_RESERVED\_PREFIX\_XML}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00099}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aff2303e00312b7f380507f7f7f12eb49}{00099}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118aff2303e00312b7f380507f7f7f12eb49}{XML\_ERROR\_RESERVED\_PREFIX\_XMLNS}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00100}00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118acab12aab558fd805a0b76ac4bee3dea5}{XML\_ERROR\_RESERVED\_NAMESPACE\_URI}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00101}\mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118acab12aab558fd805a0b76ac4bee3dea5}{00101}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00103}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473}{00103}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473}{XML\_Content\_Type}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00104}00104\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00105}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473aee728cebe0c9f9e10da86b1314f261c2}{00105}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473aee728cebe0c9f9e10da86b1314f261c2}{XML\_CTYPE\_EMPTY}}\ =\ 1,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00106}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473a3a4ee8c34fe7c515c0afbb37ccb273b7}{00106}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473a3a4ee8c34fe7c515c0afbb37ccb273b7}{XML\_CTYPE\_ANY}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00107}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473a666bf89162b31c5ee5b7d4317f320da5}{00107}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473a666bf89162b31c5ee5b7d4317f320da5}{XML\_CTYPE\_MIXED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00108}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473afe24cd69df548d996ebf15d2945648ce}{00108}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473afe24cd69df548d996ebf15d2945648ce}{XML\_CTYPE\_NAME}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00109}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473ab72a7b0dcd0ff685af8a9de498890452}{00109}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473ab72a7b0dcd0ff685af8a9de498890452}{XML\_CTYPE\_CHOICE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00110}00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473a4bb069ce88a7581e220e5ca37bcb691a}{XML\_CTYPE\_SEQ}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00111}\mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473a4bb069ce88a7581e220e5ca37bcb691a}{00111}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00113}\mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024}{00113}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024}{XML\_Content\_Quant}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00114}00114\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00115}\mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a3782b2d80b73f569e25e2bec9c9dd384}{00115}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a3782b2d80b73f569e25e2bec9c9dd384}{XML\_CQUANT\_NONE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00116}\mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a2cd7411de474b3bc2d6eea49c2283e99}{00116}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a2cd7411de474b3bc2d6eea49c2283e99}{XML\_CQUANT\_OPT}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00117}\mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a8df8b6346cafc2fa20f35ac4fdbdf615}{00117}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a8df8b6346cafc2fa20f35ac4fdbdf615}{XML\_CQUANT\_REP}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00118}00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a17956d9213f9385fe14f2ea779ea35ad}{XML\_CQUANT\_PLUS}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00119}\mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024a17956d9213f9385fe14f2ea779ea35ad}{00119}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00121}00121\ \ \ \ \ \textcolor{comment}{/*\ If\ type\ ==\ XML\_CTYPE\_EMPTY\ or\ XML\_CTYPE\_ANY,\ then\ quant\ will\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00122}00122\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_CQUANT\_NONE,\ and\ the\ other\ fields\ will\ be\ zero\ or\ NULL.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00123}00123\ \textcolor{comment}{\ \ \ \ \ \ \ If\ type\ ==\ XML\_CTYPE\_MIXED,\ then\ quant\ will\ be\ NONE\ or\ REP\ and}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00124}00124\ \textcolor{comment}{\ \ \ \ \ \ \ numchildren\ will\ contain\ number\ of\ elements\ that\ may\ be\ mixed\ in}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00125}00125\ \textcolor{comment}{\ \ \ \ \ \ \ and\ children\ point\ to\ an\ array\ of\ XML\_Content\ cells\ that\ will\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00126}00126\ \textcolor{comment}{\ \ \ \ \ \ \ all\ of\ XML\_CTYPE\_NAME\ type\ with\ no\ quantification.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00127}00127\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00128}00128\ \textcolor{comment}{\ \ \ \ \ \ \ If\ type\ ==\ XML\_CTYPE\_NAME,\ then\ the\ name\ points\ to\ the\ name,\ and}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00129}00129\ \textcolor{comment}{\ \ \ \ \ \ \ the\ numchildren\ field\ will\ be\ zero\ and\ children\ will\ be\ NULL.\ The}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00130}00130\ \textcolor{comment}{\ \ \ \ \ \ \ quant\ fields\ indicates\ any\ quantifiers\ placed\ on\ the\ name.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00131}00131\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00132}00132\ \textcolor{comment}{\ \ \ \ \ \ \ CHOICE\ and\ SEQ\ will\ have\ name\ NULL,\ the\ number\ of\ children\ in}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00133}00133\ \textcolor{comment}{\ \ \ \ \ \ \ numchildren\ and\ children\ will\ point,\ recursively,\ to\ an\ array}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00134}00134\ \textcolor{comment}{\ \ \ \ \ \ \ of\ XML\_Content\ cells.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00135}00135\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00136}00136\ \textcolor{comment}{\ \ \ \ \ \ \ The\ EMPTY,\ ANY,\ and\ MIXED\ types\ will\ only\ occur\ at\ top\ level.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00137}00137\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00139}\mbox{\hyperlink{expat_8h_a791d9e7de669ec5395df17978e1c507e}{00139}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_x_m_l__cp}{XML\_cp}}\ \mbox{\hyperlink{struct_x_m_l__cp}{XML\_Content}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00141}\mbox{\hyperlink{struct_x_m_l__cp}{00141}}\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_x_m_l__cp}{XML\_cp}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00142}00142\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00143}\mbox{\hyperlink{struct_x_m_l__cp_a98deeadbd7d0e20387a29f9030c2a397}{00143}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_abb42ccef87efb634487d28753d14b473}{XML\_Content\_Type}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp_a98deeadbd7d0e20387a29f9030c2a397}{type}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00144}\mbox{\hyperlink{struct_x_m_l__cp_a85e6c8f3118df403b0d15491c93ae9e7}{00144}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a63f73d88e3afb7c5fe7d33bbb193b024}{XML\_Content\_Quant}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp_a85e6c8f3118df403b0d15491c93ae9e7}{quant}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00145}\mbox{\hyperlink{struct_x_m_l__cp_a7f06eaeb1604d4c2f2fa19f4dd13167c}{00145}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp_a7f06eaeb1604d4c2f2fa19f4dd13167c}{name}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00146}\mbox{\hyperlink{struct_x_m_l__cp_a5395f658297ee88a3ab45dfdbe389ef1}{00146}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp_a5395f658297ee88a3ab45dfdbe389ef1}{numchildren}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00147}\mbox{\hyperlink{struct_x_m_l__cp_a09c80a4bc4a029f785e262e9ca166b79}{00147}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp}{XML\_Content}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp_a09c80a4bc4a029f785e262e9ca166b79}{children}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00148}00148\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00151}00151\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ an\ element\ declaration.\ See\ above\ for}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00152}00152\ \textcolor{comment}{\ \ \ \ \ \ \ description\ of\ the\ model\ argument.\ It's\ the\ caller's\ responsibility}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00153}00153\ \textcolor{comment}{\ \ \ \ \ \ \ to\ free\ model\ when\ finished\ with\ it.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00154}00154\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00155}\mbox{\hyperlink{expat_8h_affe4163d2280b13afb316b81f5650421}{00155}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_affe4163d2280b13afb316b81f5650421}{XML\_ElementDeclHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ name,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l__cp}{XML\_Content}}*\ model);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00159}00159\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00160}00160\ \ \ \ \ \mbox{\hyperlink{expat_8h_acea003c7329cc1605ad6075551670d69}{XML\_SetElementDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_affe4163d2280b13afb316b81f5650421}{XML\_ElementDeclHandler}}\ eldecl);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00163}00163\ \ \ \ \ \textcolor{comment}{/*\ The\ Attlist\ declaration\ handler\ is\ called\ for\ *each*\ attribute.\ So}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00164}00164\ \textcolor{comment}{\ \ \ \ \ \ \ a\ single\ Attlist\ declaration\ with\ multiple\ attributes\ declared\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \ \ \ generate\ multiple\ calls\ to\ this\ handler.\ The\ "{}default"{}\ parameter}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00166}00166\ \textcolor{comment}{\ \ \ \ \ \ \ may\ be\ NULL\ in\ the\ case\ of\ the\ "{}\#IMPLIED"{}\ or\ "{}\#REQUIRED"{}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00167}00167\ \textcolor{comment}{\ \ \ \ \ \ \ keyword.\ The\ "{}isrequired"{}\ parameter\ will\ be\ true\ and\ the\ default}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00168}00168\ \textcolor{comment}{\ \ \ \ \ \ \ value\ will\ be\ NULL\ in\ the\ case\ of\ "{}\#REQUIRED"{}.\ If\ "{}isrequired"{}\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00169}00169\ \textcolor{comment}{\ \ \ \ \ \ \ true\ and\ default\ is\ non-\/NULL,\ then\ this\ is\ a\ "{}\#FIXED"{}\ default.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00170}00170\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00171}\mbox{\hyperlink{expat_8h_a89899063dae04c58a3f2ef13e22bedbc}{00171}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a89899063dae04c58a3f2ef13e22bedbc}{XML\_AttlistDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \ elname,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \ attname,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \ att\_type,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \ dflt,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ isrequired);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00179}00179\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00180}00180\ \ \ \ \ \mbox{\hyperlink{expat_8h_ab9defc95aa4e928c4d33fa0aae16e614}{XML\_SetAttlistDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a89899063dae04c58a3f2ef13e22bedbc}{XML\_AttlistDeclHandler}}\ attdecl);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00183}00183\ \ \ \ \ \textcolor{comment}{/*\ The\ XML\ declaration\ handler\ is\ called\ for\ *both*\ XML\ declarations}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00184}00184\ \textcolor{comment}{\ \ \ \ \ \ \ and\ text\ declarations.\ The\ way\ to\ distinguish\ is\ that\ the\ version}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00185}00185\ \textcolor{comment}{\ \ \ \ \ \ \ parameter\ will\ be\ NULL\ for\ text\ declarations.\ The\ encoding}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00186}00186\ \textcolor{comment}{\ \ \ \ \ \ \ parameter\ may\ be\ NULL\ for\ XML\ declarations.\ The\ standalone}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00187}00187\ \textcolor{comment}{\ \ \ \ \ \ \ parameter\ will\ be\ -\/1,\ 0,\ or\ 1\ indicating\ respectively\ that\ there}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00188}00188\ \textcolor{comment}{\ \ \ \ \ \ \ was\ no\ standalone\ parameter\ in\ the\ declaration,\ that\ it\ was\ given}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00189}00189\ \textcolor{comment}{\ \ \ \ \ \ \ as\ no,\ or\ that\ it\ was\ given\ as\ yes.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00190}00190\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00191}\mbox{\hyperlink{expat_8h_a636e4276dad64e4f67c7ebb678fcdab4}{00191}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a636e4276dad64e4f67c7ebb678fcdab4}{XML\_XmlDeclHandler}})(\textcolor{keywordtype}{void}*\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ version,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{xmlparse_8c_a4d1151f66e93840b8a8c9169852a95dd}{encoding}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ standalone);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00196}00196\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00197}00197\ \ \ \ \ \mbox{\hyperlink{expat_8h_a561111336f3db075409fa6f9c0a55015}{XML\_SetXmlDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a636e4276dad64e4f67c7ebb678fcdab4}{XML\_XmlDeclHandler}}\ xmldecl);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00201}\mbox{\hyperlink{struct_x_m_l___memory___handling___suite}{00201}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00202}00202\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00203}\mbox{\hyperlink{struct_x_m_l___memory___handling___suite_aa9176d7f42fd3f6ef0f9bb00164f7ba6}{00203}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ (*malloc\_fcn)(\textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00204}\mbox{\hyperlink{struct_x_m_l___memory___handling___suite_a1960b051b9a1a6de6e4b3ced5dcc493c}{00204}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ (*realloc\_fcn)(\textcolor{keywordtype}{void}*\ ptr,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00205}\mbox{\hyperlink{struct_x_m_l___memory___handling___suite_aaf87eb0cabf4e57a92707d9f04d76486}{00205}}\ \ \ \ \ \ \ \ \ void\ (*free\_fcn)(\textcolor{keywordtype}{void}*\ ptr);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00206}00206\ \ \ \ \ \}\ \mbox{\hyperlink{struct_x_m_l___memory___handling___suite}{XML\_Memory\_Handling\_Suite}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00208}00208\ \ \ \ \ \textcolor{comment}{/*\ Constructs\ a\ new\ parser;\ encoding\ is\ the\ encoding\ specified\ by\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00209}00209\ \textcolor{comment}{\ \ \ \ \ \ \ external\ protocol\ or\ NULL\ if\ there\ is\ none\ specified.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00210}00210\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00211}00211\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00212}00212\ \ \ \ \ \mbox{\hyperlink{expat_8h_a170e5a6b1a8ae0534d3d69f93aa15b0c}{XML\_ParserCreate}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structencoding}{encoding}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00214}00214\ \ \ \ \ \textcolor{comment}{/*\ Constructs\ a\ new\ parser\ and\ namespace\ processor.\ \ Element\ type}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00215}00215\ \textcolor{comment}{\ \ \ \ \ \ \ names\ and\ attribute\ names\ that\ belong\ to\ a\ namespace\ will\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00216}00216\ \textcolor{comment}{\ \ \ \ \ \ \ expanded;\ unprefixed\ attribute\ names\ are\ never\ expanded;\ unprefixed}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00217}00217\ \textcolor{comment}{\ \ \ \ \ \ \ element\ type\ names\ are\ expanded\ only\ if\ there\ is\ a\ default}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00218}00218\ \textcolor{comment}{\ \ \ \ \ \ \ namespace.\ The\ expanded\ name\ is\ the\ concatenation\ of\ the\ namespace}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00219}00219\ \textcolor{comment}{\ \ \ \ \ \ \ URI,\ the\ namespace\ separator\ character,\ and\ the\ local\ part\ of\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00220}00220\ \textcolor{comment}{\ \ \ \ \ \ \ name.\ \ If\ the\ namespace\ separator\ is\ '\(\backslash\)0'\ then\ the\ namespace\ URI}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00221}00221\ \textcolor{comment}{\ \ \ \ \ \ \ and\ the\ local\ part\ will\ be\ concatenated\ without\ any\ separator.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00222}00222\ \textcolor{comment}{\ \ \ \ \ \ \ It\ is\ a\ programming\ error\ to\ use\ the\ separator\ '\(\backslash\)0'\ with\ namespace}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00223}00223\ \textcolor{comment}{\ \ \ \ \ \ \ triplets\ (see\ XML\_SetReturnNSTriplet).}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00224}00224\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00225}00225\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00226}00226\ \ \ \ \ \mbox{\hyperlink{expat_8h_a9a4e2bf0ff9a36aaff159f370eae6126}{XML\_ParserCreateNS}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structencoding}{encoding}},\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}\ \mbox{\hyperlink{xmlparse_8c_a736bbc99314e2a5bf4f783a70cb88b2f}{namespaceSeparator}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00229}00229\ \ \ \ \ \textcolor{comment}{/*\ Constructs\ a\ new\ parser\ using\ the\ memory\ management\ suite\ referred\ to}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00230}00230\ \textcolor{comment}{\ \ \ \ \ \ \ by\ memsuite.\ If\ memsuite\ is\ NULL,\ then\ use\ the\ standard\ library\ memory}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00231}00231\ \textcolor{comment}{\ \ \ \ \ \ \ suite.\ If\ namespaceSeparator\ is\ non-\/NULL\ it\ creates\ a\ parser\ with}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00232}00232\ \textcolor{comment}{\ \ \ \ \ \ \ namespace\ processing\ as\ described\ above.\ The\ character\ pointed\ at}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00233}00233\ \textcolor{comment}{\ \ \ \ \ \ \ will\ serve\ as\ the\ namespace\ separator.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00234}00234\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00235}00235\ \textcolor{comment}{\ \ \ \ \ \ \ All\ further\ memory\ operations\ used\ for\ the\ created\ parser\ will\ come\ from}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00236}00236\ \textcolor{comment}{\ \ \ \ \ \ \ the\ given\ suite.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00237}00237\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00238}00238\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00239}00239\ \ \ \ \ \mbox{\hyperlink{expat_8h_a23732fee31870eb85d9981daabf1cf5e}{XML\_ParserCreate\_MM}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structencoding}{encoding}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_x_m_l___memory___handling___suite}{XML\_Memory\_Handling\_Suite}}*\ memsuite,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{xmlparse_8c_a736bbc99314e2a5bf4f783a70cb88b2f}{namespaceSeparator}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00243}00243\ \ \ \ \ \textcolor{comment}{/*\ Prepare\ a\ parser\ object\ to\ be\ re-\/used.\ \ This\ is\ particularly}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00244}00244\ \textcolor{comment}{\ \ \ \ \ \ \ valuable\ when\ memory\ allocation\ overhead\ is\ disproportionatly\ high,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00245}00245\ \textcolor{comment}{\ \ \ \ \ \ \ such\ as\ when\ a\ large\ number\ of\ small\ documnents\ need\ to\ be\ parsed.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00246}00246\ \textcolor{comment}{\ \ \ \ \ \ \ All\ handlers\ are\ cleared\ from\ the\ parser,\ except\ for\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00247}00247\ \textcolor{comment}{\ \ \ \ \ \ \ unknownEncodingHandler.\ The\ parser's\ external\ state\ is\ re-\/initialized}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00248}00248\ \textcolor{comment}{\ \ \ \ \ \ \ except\ for\ the\ values\ of\ ns\ and\ ns\_triplets.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00249}00249\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00250}00250\ \textcolor{comment}{\ \ \ \ \ \ \ Added\ in\ Expat\ 1.95.3.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00251}00251\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00252}00252\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{expat_8h_a5fe41bca8b7a23b2405f1b967e70f33a}{XML\_Bool}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00253}00253\ \ \ \ \ \mbox{\hyperlink{expat_8h_ac6aba21e5cd7431eeca4be6312f9c523}{XML\_ParserReset}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structencoding}{encoding}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00255}00255\ \ \ \ \ \textcolor{comment}{/*\ atts\ is\ array\ of\ name/value\ pairs,\ terminated\ by\ 0;}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00256}00256\ \textcolor{comment}{\ \ \ \ \ \ \ names\ and\ values\ are\ 0\ terminated.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00257}00257\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00258}\mbox{\hyperlink{expat_8h_a504bca048496cfbacf106a5e28564fcd}{00258}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a504bca048496cfbacf106a5e28564fcd}{XML\_StartElementHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ name,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}**\ \mbox{\hyperlink{xmlparse_8c_a5bbadff5cdbbd3feb492c555b546a292}{atts}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00262}\mbox{\hyperlink{expat_8h_a12978ae068c1222afbb5a400b5c692b9}{00262}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a12978ae068c1222afbb5a400b5c692b9}{XML\_EndElementHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ name);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00266}00266\ \ \ \ \ \textcolor{comment}{/*\ s\ is\ not\ 0\ terminated.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00267}\mbox{\hyperlink{expat_8h_aef3b6006dc0f845ddb482c2b37a44ba1}{00267}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_aef3b6006dc0f845ddb482c2b37a44ba1}{XML\_CharacterDataHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ s,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00271}00271\ \ \ \ \ \textcolor{comment}{/*\ target\ and\ data\ are\ 0\ terminated\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00272}\mbox{\hyperlink{expat_8h_a550004b1beb44144bd78b9320e211f6c}{00272}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a550004b1beb44144bd78b9320e211f6c}{XML\_ProcessingInstructionHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ target,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00275}00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ data);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00277}00277\ \ \ \ \ \textcolor{comment}{/*\ data\ is\ 0\ terminated\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00278}\mbox{\hyperlink{expat_8h_a0aefc69cadea618f7fc17607c7c3c8ee}{00278}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a0aefc69cadea618f7fc17607c7c3c8ee}{XML\_CommentHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ data);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00281}\mbox{\hyperlink{expat_8h_a661776930dd0ace06a3e9acc9bba4b82}{00281}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a661776930dd0ace06a3e9acc9bba4b82}{XML\_StartCdataSectionHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00282}\mbox{\hyperlink{expat_8h_a3165868193185fbd43232e41dd211d4f}{00282}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a3165868193185fbd43232e41dd211d4f}{XML\_EndCdataSectionHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00284}00284\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ any\ characters\ in\ the\ XML\ document\ for\ which}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00285}00285\ \textcolor{comment}{\ \ \ \ \ \ \ there\ is\ no\ applicable\ handler.\ \ This\ includes\ both\ characters\ that}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00286}00286\ \textcolor{comment}{\ \ \ \ \ \ \ are\ part\ of\ markup\ which\ is\ of\ a\ kind\ that\ is\ not\ reported}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00287}00287\ \textcolor{comment}{\ \ \ \ \ \ \ (comments,\ markup\ declarations),\ or\ characters\ that\ are\ part\ of\ a}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00288}00288\ \textcolor{comment}{\ \ \ \ \ \ \ construct\ which\ could\ be\ reported\ but\ for\ which\ no\ handler\ has\ been}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00289}00289\ \textcolor{comment}{\ \ \ \ \ \ \ supplied.\ The\ characters\ are\ passed\ exactly\ as\ they\ were\ in\ the\ XML}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00290}00290\ \textcolor{comment}{\ \ \ \ \ \ \ document\ except\ that\ they\ will\ be\ encoded\ in\ UTF-\/8\ or\ UTF-\/16.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00291}00291\ \textcolor{comment}{\ \ \ \ \ \ \ Line\ boundaries\ are\ not\ normalized.\ Note\ that\ a\ byte\ order\ mark}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00292}00292\ \textcolor{comment}{\ \ \ \ \ \ \ character\ is\ not\ passed\ to\ the\ default\ handler.\ There\ are\ no}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00293}00293\ \textcolor{comment}{\ \ \ \ \ \ \ guarantees\ about\ how\ characters\ are\ divided\ between\ calls\ to\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00294}00294\ \textcolor{comment}{\ \ \ \ \ \ \ default\ handler:\ for\ example,\ a\ comment\ might\ be\ split\ between}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00295}00295\ \textcolor{comment}{\ \ \ \ \ \ \ multiple\ calls.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00296}00296\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00297}\mbox{\hyperlink{expat_8h_afa6c6c71f2c70cfe57c3506534cb70d7}{00297}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_afa6c6c71f2c70cfe57c3506534cb70d7}{XML\_DefaultHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ s,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00301}00301\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ the\ start\ of\ the\ DOCTYPE\ declaration,\ before}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00302}00302\ \textcolor{comment}{\ \ \ \ \ \ \ any\ DTD\ or\ internal\ subset\ is\ parsed.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00303}00303\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00304}\mbox{\hyperlink{expat_8h_ab748cf612072905843f3488414c19f3b}{00304}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_ab748cf612072905843f3488414c19f3b}{XML\_StartDoctypeDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00305}00305\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{xmlparse_8c_a2c9f84bb2d7b6ef6a6a06721629b5309}{doctypeName}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ sysid,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ pubid,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ has\_internal\_subset);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00311}00311\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ the\ start\ of\ the\ DOCTYPE\ declaration\ when\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00312}00312\ \textcolor{comment}{\ \ \ \ \ \ \ closing\ >\ is\ encountered,\ but\ after\ processing\ any\ external}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00313}00313\ \textcolor{comment}{\ \ \ \ \ \ \ subset.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00314}00314\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00315}\mbox{\hyperlink{expat_8h_a43568a006caf34bcf94e4346031b85a0}{00315}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a43568a006caf34bcf94e4346031b85a0}{XML\_EndDoctypeDeclHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00317}00317\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ entity\ declarations.\ The\ is\_parameter\_entity}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00318}00318\ \textcolor{comment}{\ \ \ \ \ \ \ argument\ will\ be\ non-\/zero\ if\ the\ entity\ is\ a\ parameter\ entity,\ zero}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00319}00319\ \textcolor{comment}{\ \ \ \ \ \ \ otherwise.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00320}00320\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00321}00321\ \textcolor{comment}{\ \ \ \ \ \ \ For\ internal\ entities\ (<!ENTITY\ foo\ "{}bar"{}>),\ value\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00322}00322\ \textcolor{comment}{\ \ \ \ \ \ \ be\ non-\/NULL\ and\ systemId,\ publicID,\ and\ notationName\ will\ be\ NULL.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00323}00323\ \textcolor{comment}{\ \ \ \ \ \ \ The\ value\ string\ is\ NOT\ nul-\/terminated;\ the\ length\ is\ provided\ in}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00324}00324\ \textcolor{comment}{\ \ \ \ \ \ \ the\ value\_length\ argument.\ Since\ it\ is\ legal\ to\ have\ zero-\/length}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00325}00325\ \textcolor{comment}{\ \ \ \ \ \ \ values,\ do\ not\ use\ this\ argument\ to\ test\ for\ internal\ entities.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00326}00326\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00327}00327\ \textcolor{comment}{\ \ \ \ \ \ \ For\ external\ entities,\ value\ will\ be\ NULL\ and\ systemId\ will\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00328}00328\ \textcolor{comment}{\ \ \ \ \ \ \ non-\/NULL.\ The\ publicId\ argument\ will\ be\ NULL\ unless\ a\ public}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00329}00329\ \textcolor{comment}{\ \ \ \ \ \ \ identifier\ was\ provided.\ The\ notationName\ argument\ will\ have\ a}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00330}00330\ \textcolor{comment}{\ \ \ \ \ \ \ non-\/NULL\ value\ only\ for\ unparsed\ entity\ declarations.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00331}00331\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00332}00332\ \textcolor{comment}{\ \ \ \ \ \ \ Note\ that\ is\_parameter\_entity\ can't\ be\ changed\ to\ XML\_Bool,\ since}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00333}00333\ \textcolor{comment}{\ \ \ \ \ \ \ that\ would\ break\ binary\ compatibility.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00334}00334\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00335}\mbox{\hyperlink{expat_8h_af2f060ea47a43f92b5d23313ceba982a}{00335}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_af2f060ea47a43f92b5d23313ceba982a}{XML\_EntityDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00336}00336\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ entityName,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ is\_parameter\_entity,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ value,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ value\_length,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ base,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ systemId,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ publicId,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00344}00344\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ notationName);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00346}00346\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00347}00347\ \ \ \ \ \mbox{\hyperlink{expat_8h_a8072d21c310e6a08187b403fd7dad7e9}{XML\_SetEntityDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_af2f060ea47a43f92b5d23313ceba982a}{XML\_EntityDeclHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00350}00350\ \ \ \ \ \textcolor{comment}{/*\ OBSOLETE\ -\/-\/\ OBSOLETE\ -\/-\/\ OBSOLETE}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00351}00351\ \textcolor{comment}{\ \ \ \ \ \ \ This\ handler\ has\ been\ superceded\ by\ the\ EntityDeclHandler\ above.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00352}00352\ \textcolor{comment}{\ \ \ \ \ \ \ It\ is\ provided\ here\ for\ backward\ compatibility.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00353}00353\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00354}00354\ \textcolor{comment}{\ \ \ \ \ \ \ This\ is\ called\ for\ a\ declaration\ of\ an\ unparsed\ (NDATA)\ entity.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00355}00355\ \textcolor{comment}{\ \ \ \ \ \ \ The\ base\ argument\ is\ whatever\ was\ set\ by\ XML\_SetBase.\ The}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00356}00356\ \textcolor{comment}{\ \ \ \ \ \ \ entityName,\ systemId\ and\ notationName\ arguments\ will\ never\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00357}00357\ \textcolor{comment}{\ \ \ \ \ \ \ NULL.\ The\ other\ arguments\ may\ be.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00358}00358\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00359}\mbox{\hyperlink{expat_8h_a67d7a2966d8416e1d8cef6a33ae86453}{00359}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a67d7a2966d8416e1d8cef6a33ae86453}{XML\_UnparsedEntityDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00361}00361\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ entityName,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ base,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00363}00363\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ systemId,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00364}00364\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ publicId,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00365}00365\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ notationName);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00367}00367\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ a\ declaration\ of\ notation.\ \ The\ base\ argument\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00368}00368\ \textcolor{comment}{\ \ \ \ \ \ \ whatever\ was\ set\ by\ XML\_SetBase.\ The\ notationName\ will\ never\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00369}00369\ \textcolor{comment}{\ \ \ \ \ \ \ NULL.\ \ The\ other\ arguments\ can\ be.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00370}00370\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00371}\mbox{\hyperlink{expat_8h_af51763d2819de05e8569320f9ab571c4}{00371}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_af51763d2819de05e8569320f9ab571c4}{XML\_NotationDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00372}00372\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00373}00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ notationName,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00374}00374\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ base,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00375}00375\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ systemId,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00376}00376\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ publicId);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00378}00378\ \ \ \ \ \textcolor{comment}{/*\ When\ namespace\ processing\ is\ enabled,\ these\ are\ called\ once\ for}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00379}00379\ \textcolor{comment}{\ \ \ \ \ \ \ each\ namespace\ declaration.\ The\ call\ to\ the\ start\ and\ end\ element}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00380}00380\ \textcolor{comment}{\ \ \ \ \ \ \ handlers\ occur\ between\ the\ calls\ to\ the\ start\ and\ end\ namespace}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00381}00381\ \textcolor{comment}{\ \ \ \ \ \ \ declaration\ handlers.\ For\ an\ xmlns\ attribute,\ prefix\ will\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00382}00382\ \textcolor{comment}{\ \ \ \ \ \ \ NULL.\ \ For\ an\ xmlns="{}"{}\ attribute,\ uri\ will\ be\ NULL.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00383}00383\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00384}\mbox{\hyperlink{expat_8h_a58ad7c192f040f8196708f042c8bdc14}{00384}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a58ad7c192f040f8196708f042c8bdc14}{XML\_StartNamespaceDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00385}00385\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00386}00386\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structprefix}{prefix}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00387}00387\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ uri);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00389}\mbox{\hyperlink{expat_8h_a1414891bd078b546986d463e746ad49c}{00389}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a1414891bd078b546986d463e746ad49c}{XML\_EndNamespaceDeclHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00390}00390\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00391}00391\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structprefix}{prefix}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00392}00392\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00393}00393\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ if\ the\ document\ is\ not\ standalone,\ that\ is,\ it\ has\ an}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00394}00394\ \textcolor{comment}{\ \ \ \ \ \ \ external\ subset\ or\ a\ reference\ to\ a\ parameter\ entity,\ but\ does\ not}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00395}00395\ \textcolor{comment}{\ \ \ \ \ \ \ have\ standalone="{}yes"{}.\ If\ this\ handler\ returns\ XML\_STATUS\_ERROR,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00396}00396\ \textcolor{comment}{\ \ \ \ \ \ \ then\ processing\ will\ not\ continue,\ and\ the\ parser\ will\ return\ a}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00397}00397\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ERROR\_NOT\_STANDALONE\ error.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00398}00398\ \textcolor{comment}{\ \ \ \ \ \ \ If\ parameter\ entity\ parsing\ is\ enabled,\ then\ in\ addition\ to\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00399}00399\ \textcolor{comment}{\ \ \ \ \ \ \ conditions\ above\ this\ handler\ will\ only\ be\ called\ if\ the\ referenced}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00400}00400\ \textcolor{comment}{\ \ \ \ \ \ \ entity\ was\ actually\ read.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00401}00401\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00402}\mbox{\hyperlink{expat_8h_a8fc3c5ba2270c72ff0a8f9daccd77dd5}{00402}}\ \ \ \ \ \textcolor{keyword}{typedef}\ int\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a8fc3c5ba2270c72ff0a8f9daccd77dd5}{XML\_NotStandaloneHandler}})(\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00403}00403\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00404}00404\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ a\ reference\ to\ an\ external\ parsed\ general}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00405}00405\ \textcolor{comment}{\ \ \ \ \ \ \ entity.\ \ The\ referenced\ entity\ is\ not\ automatically\ parsed.\ \ The}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00406}00406\ \textcolor{comment}{\ \ \ \ \ \ \ application\ can\ parse\ it\ immediately\ or\ later\ using}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00407}00407\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ExternalEntityParserCreate.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00408}00408\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00409}00409\ \textcolor{comment}{\ \ \ \ \ \ \ The\ parser\ argument\ is\ the\ parser\ parsing\ the\ entity\ containing\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00410}00410\ \textcolor{comment}{\ \ \ \ \ \ \ reference;\ it\ can\ be\ passed\ as\ the\ parser\ argument\ to}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00411}00411\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ExternalEntityParserCreate.\ \ The\ systemId\ argument\ is\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00412}00412\ \textcolor{comment}{\ \ \ \ \ \ \ system\ identifier\ as\ specified\ in\ the\ entity\ declaration;\ it\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00413}00413\ \textcolor{comment}{\ \ \ \ \ \ \ not\ be\ NULL.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00414}00414\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00415}00415\ \textcolor{comment}{\ \ \ \ \ \ \ The\ base\ argument\ is\ the\ system\ identifier\ that\ should\ be\ used\ as}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00416}00416\ \textcolor{comment}{\ \ \ \ \ \ \ the\ base\ for\ resolving\ systemId\ if\ systemId\ was\ relative;\ this\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00417}00417\ \textcolor{comment}{\ \ \ \ \ \ \ set\ by\ XML\_SetBase;\ it\ may\ be\ NULL.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00418}00418\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00419}00419\ \textcolor{comment}{\ \ \ \ \ \ \ The\ publicId\ argument\ is\ the\ public\ identifier\ as\ specified\ in\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00420}00420\ \textcolor{comment}{\ \ \ \ \ \ \ entity\ declaration,\ or\ NULL\ if\ none\ was\ specified;\ the\ whitespace}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00421}00421\ \textcolor{comment}{\ \ \ \ \ \ \ in\ the\ public\ identifier\ will\ have\ been\ normalized\ as\ required\ by}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00422}00422\ \textcolor{comment}{\ \ \ \ \ \ \ the\ XML\ spec.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00423}00423\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00424}00424\ \textcolor{comment}{\ \ \ \ \ \ \ The\ context\ argument\ specifies\ the\ parsing\ context\ in\ the\ format}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00425}00425\ \textcolor{comment}{\ \ \ \ \ \ \ expected\ by\ the\ context\ argument\ to\ XML\_ExternalEntityParserCreate;}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00426}00426\ \textcolor{comment}{\ \ \ \ \ \ \ context\ is\ valid\ only\ until\ the\ handler\ returns,\ so\ if\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00427}00427\ \textcolor{comment}{\ \ \ \ \ \ \ referenced\ entity\ is\ to\ be\ parsed\ later,\ it\ must\ be\ copied.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00428}00428\ \textcolor{comment}{\ \ \ \ \ \ \ context\ is\ NULL\ only\ when\ the\ entity\ is\ a\ parameter\ entity.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00429}00429\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00430}00430\ \textcolor{comment}{\ \ \ \ \ \ \ The\ handler\ should\ return\ XML\_STATUS\_ERROR\ if\ processing\ should\ not}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00431}00431\ \textcolor{comment}{\ \ \ \ \ \ \ continue\ because\ of\ a\ fatal\ error\ in\ the\ handling\ of\ the\ external}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00432}00432\ \textcolor{comment}{\ \ \ \ \ \ \ entity.\ \ In\ this\ case\ the\ calling\ parser\ will\ return\ an}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00433}00433\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ERROR\_EXTERNAL\_ENTITY\_HANDLING\ error.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00434}00434\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00435}00435\ \textcolor{comment}{\ \ \ \ \ \ \ Note\ that\ unlike\ other\ handlers\ the\ first\ argument\ is\ the\ parser,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00436}00436\ \textcolor{comment}{\ \ \ \ \ \ \ not\ userData.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00437}00437\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00438}\mbox{\hyperlink{expat_8h_a2d955f5ce3c5401dbe14ba19e8067c01}{00438}}\ \ \ \ \ \textcolor{keyword}{typedef}\ int\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a2d955f5ce3c5401dbe14ba19e8067c01}{XML\_ExternalEntityRefHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00439}00439\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00440}00440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ context,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00441}00441\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ base,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00442}00442\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ systemId,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00443}00443\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ publicId);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00445}00445\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ in\ two\ situations:}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00446}00446\ \textcolor{comment}{\ \ \ \ \ \ \ 1)\ An\ entity\ reference\ is\ encountered\ for\ which\ no\ declaration}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00447}00447\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ has\ been\ read\ *and*\ this\ is\ not\ an\ error.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00448}00448\ \textcolor{comment}{\ \ \ \ \ \ \ 2)\ An\ internal\ entity\ reference\ is\ read,\ but\ not\ expanded,\ because}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00449}00449\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ XML\_SetDefaultHandler\ has\ been\ called.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00450}00450\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ skipped\ parameter\ entities\ in\ declarations\ and\ skipped\ general}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00451}00451\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ entities\ in\ attribute\ values\ cannot\ be\ reported,\ because}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00452}00452\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ the\ event\ would\ be\ out\ of\ sync\ with\ the\ reporting\ of\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00453}00453\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ declarations\ or\ attribute\ values}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00454}00454\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00455}\mbox{\hyperlink{expat_8h_a29e3734cfec01df38715716d53093d5c}{00455}}\ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a29e3734cfec01df38715716d53093d5c}{XML\_SkippedEntityHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00456}00456\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00457}00457\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ entityName,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00458}00458\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ is\_parameter\_entity);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00460}00460\ \ \ \ \ \textcolor{comment}{/*\ This\ structure\ is\ filled\ in\ by\ the\ XML\_UnknownEncodingHandler\ to}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00461}00461\ \textcolor{comment}{\ \ \ \ \ \ \ provide\ information\ to\ the\ parser\ about\ encodings\ that\ are\ unknown}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00462}00462\ \textcolor{comment}{\ \ \ \ \ \ \ to\ the\ parser.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00463}00463\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00464}00464\ \textcolor{comment}{\ \ \ \ \ \ \ The\ map[b]\ member\ gives\ information\ about\ byte\ sequences\ whose}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00465}00465\ \textcolor{comment}{\ \ \ \ \ \ \ first\ byte\ is\ b.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00466}00466\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00467}00467\ \textcolor{comment}{\ \ \ \ \ \ \ If\ map[b]\ is\ c\ where\ c\ is\ >=\ 0,\ then\ b\ by\ itself\ encodes\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00468}00468\ \textcolor{comment}{\ \ \ \ \ \ \ Unicode\ scalar\ value\ c.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00469}00469\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00470}00470\ \textcolor{comment}{\ \ \ \ \ \ \ If\ map[b]\ is\ -\/1,\ then\ the\ byte\ sequence\ is\ malformed.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00471}00471\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00472}00472\ \textcolor{comment}{\ \ \ \ \ \ \ If\ map[b]\ is\ -\/n,\ where\ n\ >=\ 2,\ then\ b\ is\ the\ first\ byte\ of\ an}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00473}00473\ \textcolor{comment}{\ \ \ \ \ \ \ n-\/byte\ sequence\ that\ encodes\ a\ single\ Unicode\ scalar\ value.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00474}00474\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00475}00475\ \textcolor{comment}{\ \ \ \ \ \ \ The\ data\ member\ will\ be\ passed\ as\ the\ first\ argument\ to\ the\ convert}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00476}00476\ \textcolor{comment}{\ \ \ \ \ \ \ function.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00477}00477\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00478}00478\ \textcolor{comment}{\ \ \ \ \ \ \ The\ convert\ function\ is\ used\ to\ convert\ multibyte\ sequences;\ s\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00479}00479\ \textcolor{comment}{\ \ \ \ \ \ \ point\ to\ a\ n-\/byte\ sequence\ where\ map[(unsigned\ char)*s]\ ==\ -\/n.\ \ The}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00480}00480\ \textcolor{comment}{\ \ \ \ \ \ \ convert\ function\ must\ return\ the\ Unicode\ scalar\ value\ represented}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00481}00481\ \textcolor{comment}{\ \ \ \ \ \ \ by\ this\ byte\ sequence\ or\ -\/1\ if\ the\ byte\ sequence\ is\ malformed.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00482}00482\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00483}00483\ \textcolor{comment}{\ \ \ \ \ \ \ The\ convert\ function\ may\ be\ NULL\ if\ the\ encoding\ is\ a\ single-\/byte}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00484}00484\ \textcolor{comment}{\ \ \ \ \ \ \ encoding,\ that\ is\ if\ map[b]\ >=\ -\/1\ for\ all\ bytes\ b.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00485}00485\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00486}00486\ \textcolor{comment}{\ \ \ \ \ \ \ When\ the\ parser\ is\ finished\ with\ the\ encoding,\ then\ if\ release\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00487}00487\ \textcolor{comment}{\ \ \ \ \ \ \ not\ NULL,\ it\ will\ call\ release\ passing\ it\ the\ data\ member;\ once}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00488}00488\ \textcolor{comment}{\ \ \ \ \ \ \ release\ has\ been\ called,\ the\ convert\ function\ will\ not\ be\ called}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00489}00489\ \textcolor{comment}{\ \ \ \ \ \ \ again.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00490}00490\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00491}00491\ \textcolor{comment}{\ \ \ \ \ \ \ Expat\ places\ certain\ restrictions\ on\ the\ encodings\ that\ are\ supported}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00492}00492\ \textcolor{comment}{\ \ \ \ \ \ \ using\ this\ mechanism.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00493}00493\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00494}00494\ \textcolor{comment}{\ \ \ \ \ \ \ 1.\ Every\ ASCII\ character\ that\ can\ appear\ in\ a\ well-\/formed\ XML\ document,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00495}00495\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ other\ than\ the\ characters}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00496}00496\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00497}00497\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \$@\(\backslash\)\string^\`{}\{\}\string~}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00498}00498\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00499}00499\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ must\ be\ represented\ by\ a\ single\ byte,\ and\ that\ byte\ must\ be\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00500}00500\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ same\ byte\ that\ represents\ that\ character\ in\ ASCII.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00501}00501\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00502}00502\ \textcolor{comment}{\ \ \ \ \ \ \ 2.\ No\ character\ may\ require\ more\ than\ 4\ bytes\ to\ encode.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00503}00503\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00504}00504\ \textcolor{comment}{\ \ \ \ \ \ \ 3.\ All\ characters\ encoded\ must\ have\ Unicode\ scalar\ values\ <=}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00505}00505\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ 0xFFFF,\ (i.e.,\ characters\ that\ would\ be\ encoded\ by\ surrogates\ in}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00506}00506\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ UTF-\/16\ are\ \ not\ allowed).\ \ Note\ that\ this\ restriction\ doesn't}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00507}00507\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ apply\ to\ the\ built-\/in\ support\ for\ UTF-\/8\ and\ UTF-\/16.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00508}00508\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00509}00509\ \textcolor{comment}{\ \ \ \ \ \ \ 4.\ No\ Unicode\ character\ may\ be\ encoded\ by\ more\ than\ one\ distinct}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00510}00510\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ sequence\ of\ bytes.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00511}00511\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00512}\mbox{\hyperlink{struct_x_m_l___encoding}{00512}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00513}00513\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00514}\mbox{\hyperlink{struct_x_m_l___encoding_a969fc4ff9f38c5e5d9105efb1b64f8af}{00514}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ map[256];}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00515}\mbox{\hyperlink{struct_x_m_l___encoding_a308f320aa234f14b1effd3526a7ae840}{00515}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{struct_x_m_l___encoding_a308f320aa234f14b1effd3526a7ae840}{data}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00516}\mbox{\hyperlink{struct_x_m_l___encoding_a0e78058177f2573fd3e3597cfea390ef}{00516}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l___encoding_a0e78058177f2573fd3e3597cfea390ef}{int}}\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ convert)(\textcolor{keywordtype}{void}*\ data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ s);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00517}\mbox{\hyperlink{struct_x_m_l___encoding_a8af470efc752980eaed0893cd1a2353a}{00517}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l___encoding_a8af470efc752980eaed0893cd1a2353a}{void}}\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ release)(\textcolor{keywordtype}{void}*\ data);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00518}00518\ \ \ \ \ \}\ \mbox{\hyperlink{struct_x_m_l___encoding}{XML\_Encoding}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00519}00519\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00520}00520\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ called\ for\ an\ encoding\ that\ is\ unknown\ to\ the\ parser.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00521}00521\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00522}00522\ \textcolor{comment}{\ \ \ \ \ \ \ The\ encodingHandlerData\ argument\ is\ that\ which\ was\ passed\ as\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00523}00523\ \textcolor{comment}{\ \ \ \ \ \ \ second\ argument\ to\ XML\_SetUnknownEncodingHandler.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00524}00524\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00525}00525\ \textcolor{comment}{\ \ \ \ \ \ \ The\ name\ argument\ gives\ the\ name\ of\ the\ encoding\ as\ specified\ in}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00526}00526\ \textcolor{comment}{\ \ \ \ \ \ \ the\ encoding\ declaration.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00527}00527\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00528}00528\ \textcolor{comment}{\ \ \ \ \ \ \ If\ the\ callback\ can\ provide\ information\ about\ the\ encoding,\ it\ must}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00529}00529\ \textcolor{comment}{\ \ \ \ \ \ \ fill\ in\ the\ XML\_Encoding\ structure,\ and\ return\ XML\_STATUS\_OK.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00530}00530\ \textcolor{comment}{\ \ \ \ \ \ \ Otherwise\ it\ must\ return\ XML\_STATUS\_ERROR.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00531}00531\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00532}00532\ \textcolor{comment}{\ \ \ \ \ \ \ If\ info\ does\ not\ describe\ a\ suitable\ encoding,\ then\ the\ parser\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00533}00533\ \textcolor{comment}{\ \ \ \ \ \ \ return\ an\ XML\_UNKNOWN\_ENCODING\ error.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00534}00534\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00535}\mbox{\hyperlink{expat_8h_a348625fd90dcc5d880efec9e533fc502}{00535}}\ \ \ \ \ \textcolor{keyword}{typedef}\ int\ (\mbox{\hyperlink{expat__external_8h_aad85d290912c3ffed7a2ec0b6173dad3}{XMLCALL}}*\ \mbox{\hyperlink{expat_8h_a348625fd90dcc5d880efec9e533fc502}{XML\_UnknownEncodingHandler}})(}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00536}00536\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ encodingHandlerData,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00537}00537\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ name,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00538}00538\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l___encoding}{XML\_Encoding}}*\ info);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00539}00539\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00540}00540\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00541}00541\ \ \ \ \ \mbox{\hyperlink{expat_8h_a69921a6d7f1be3d717332cea5e7ceca8}{XML\_SetElementHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a504bca048496cfbacf106a5e28564fcd}{XML\_StartElementHandler}}\ start,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a12978ae068c1222afbb5a400b5c692b9}{XML\_EndElementHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00544}00544\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00545}00545\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00546}00546\ \ \ \ \ \mbox{\hyperlink{expat_8h_a2272a36ebb32322500ab05058754fa09}{XML\_SetStartElementHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a504bca048496cfbacf106a5e28564fcd}{XML\_StartElementHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00548}00548\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00549}00549\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00550}00550\ \ \ \ \ \mbox{\hyperlink{expat_8h_a2a208ddaf0435da3c83299c90ccbb1c7}{XML\_SetEndElementHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a12978ae068c1222afbb5a400b5c692b9}{XML\_EndElementHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00553}00553\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00554}00554\ \ \ \ \ \mbox{\hyperlink{expat_8h_affa8d2057a1e75fe4e1c7de26c70cd24}{XML\_SetCharacterDataHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_aef3b6006dc0f845ddb482c2b37a44ba1}{XML\_CharacterDataHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00556}00556\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00557}00557\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00558}00558\ \ \ \ \ \mbox{\hyperlink{expat_8h_a26dbed024734a41ac175fef4d91e37b7}{XML\_SetProcessingInstructionHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a550004b1beb44144bd78b9320e211f6c}{XML\_ProcessingInstructionHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00560}00560\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00561}00561\ \ \ \ \ \mbox{\hyperlink{expat_8h_a16310f1819cb65f8d989ade5e4665ce0}{XML\_SetCommentHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a0aefc69cadea618f7fc17607c7c3c8ee}{XML\_CommentHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00563}00563\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00564}00564\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00565}00565\ \ \ \ \ \mbox{\hyperlink{expat_8h_a600a35c5cea081c0dddabff148d692d7}{XML\_SetCdataSectionHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a661776930dd0ace06a3e9acc9bba4b82}{XML\_StartCdataSectionHandler}}\ start,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3165868193185fbd43232e41dd211d4f}{XML\_EndCdataSectionHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00568}00568\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00569}00569\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00570}00570\ \ \ \ \ \mbox{\hyperlink{expat_8h_ada1df723a09bf5090e11f6a665e32389}{XML\_SetStartCdataSectionHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a661776930dd0ace06a3e9acc9bba4b82}{XML\_StartCdataSectionHandler}}\ start);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00572}00572\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00573}00573\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00574}00574\ \ \ \ \ \mbox{\hyperlink{expat_8h_a0c5742fc6a00b5b4eb627c5188c36c3e}{XML\_SetEndCdataSectionHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3165868193185fbd43232e41dd211d4f}{XML\_EndCdataSectionHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00576}00576\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00577}00577\ \ \ \ \ \textcolor{comment}{/*\ This\ sets\ the\ default\ handler\ and\ also\ inhibits\ expansion\ of}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00578}00578\ \textcolor{comment}{\ \ \ \ \ \ \ internal\ entities.\ These\ entity\ references\ will\ be\ passed\ to\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00579}00579\ \textcolor{comment}{\ \ \ \ \ \ \ default\ handler,\ or\ to\ the\ skipped\ entity\ handler,\ if\ one\ is\ set.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00580}00580\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00581}00581\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00582}00582\ \ \ \ \ \mbox{\hyperlink{expat_8h_af05132d710426f9e5290de30abdca344}{XML\_SetDefaultHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_afa6c6c71f2c70cfe57c3506534cb70d7}{XML\_DefaultHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00585}00585\ \ \ \ \ \textcolor{comment}{/*\ This\ sets\ the\ default\ handler\ but\ does\ not\ inhibit\ expansion\ of}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00586}00586\ \textcolor{comment}{\ \ \ \ \ \ \ internal\ entities.\ \ The\ entity\ reference\ will\ not\ be\ passed\ to\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00587}00587\ \textcolor{comment}{\ \ \ \ \ \ \ default\ handler.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00588}00588\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00589}00589\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00590}00590\ \ \ \ \ \mbox{\hyperlink{expat_8h_a636e1cfc284897fa9bbfd06ebb102b7b}{XML\_SetDefaultHandlerExpand}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_afa6c6c71f2c70cfe57c3506534cb70d7}{XML\_DefaultHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00592}00592\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00593}00593\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00594}00594\ \ \ \ \ \mbox{\hyperlink{expat_8h_a1a44eac18dc373ae7d1d777224b628e6}{XML\_SetDoctypeDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_ab748cf612072905843f3488414c19f3b}{XML\_StartDoctypeDeclHandler}}\ start,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a43568a006caf34bcf94e4346031b85a0}{XML\_EndDoctypeDeclHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00597}00597\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00598}00598\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00599}00599\ \ \ \ \ \mbox{\hyperlink{expat_8h_a36ac7acf7cebd775a7e55e418c58cadd}{XML\_SetStartDoctypeDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_ab748cf612072905843f3488414c19f3b}{XML\_StartDoctypeDeclHandler}}\ start);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00601}00601\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00602}00602\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00603}00603\ \ \ \ \ \mbox{\hyperlink{expat_8h_a12657f3ae3075d9d91d394b8e52cbdb3}{XML\_SetEndDoctypeDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a43568a006caf34bcf94e4346031b85a0}{XML\_EndDoctypeDeclHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00605}00605\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00606}00606\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00607}00607\ \ \ \ \ \mbox{\hyperlink{expat_8h_a4a339c880076d284d206afd4c756ce19}{XML\_SetUnparsedEntityDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00608}00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a67d7a2966d8416e1d8cef6a33ae86453}{XML\_UnparsedEntityDeclHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00609}00609\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00610}00610\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00611}00611\ \ \ \ \ \mbox{\hyperlink{expat_8h_adcdc4c0fce8d0fa3e0e4d9f7beac5fec}{XML\_SetNotationDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_af51763d2819de05e8569320f9ab571c4}{XML\_NotationDeclHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00613}00613\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00614}00614\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00615}00615\ \ \ \ \ \mbox{\hyperlink{expat_8h_a320bb302d14d8d7cba2991cbdb7553a3}{XML\_SetNamespaceDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a58ad7c192f040f8196708f042c8bdc14}{XML\_StartNamespaceDeclHandler}}\ start,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00617}00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a1414891bd078b546986d463e746ad49c}{XML\_EndNamespaceDeclHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00618}00618\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00619}00619\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00620}00620\ \ \ \ \ \mbox{\hyperlink{expat_8h_a3a97654197f3451b5df3755daaef8c4b}{XML\_SetStartNamespaceDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a58ad7c192f040f8196708f042c8bdc14}{XML\_StartNamespaceDeclHandler}}\ start);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00622}00622\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00623}00623\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00624}00624\ \ \ \ \ \mbox{\hyperlink{expat_8h_a936c72c7eacc7e69620d7014e33d7862}{XML\_SetEndNamespaceDeclHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a1414891bd078b546986d463e746ad49c}{XML\_EndNamespaceDeclHandler}}\ end);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00626}00626\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00627}00627\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00628}00628\ \ \ \ \ \mbox{\hyperlink{expat_8h_a02cd29bfe12ad0a2d17b3a572a040f42}{XML\_SetNotStandaloneHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a8fc3c5ba2270c72ff0a8f9daccd77dd5}{XML\_NotStandaloneHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00630}00630\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00631}00631\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00632}00632\ \ \ \ \ \mbox{\hyperlink{expat_8h_a133bded8cfbd6bb1fbcfad40b986f814}{XML\_SetExternalEntityRefHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a2d955f5ce3c5401dbe14ba19e8067c01}{XML\_ExternalEntityRefHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00634}00634\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00635}00635\ \ \ \ \ \textcolor{comment}{/*\ If\ a\ non-\/NULL\ value\ for\ arg\ is\ specified\ here,\ then\ it\ will\ be}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00636}00636\ \textcolor{comment}{\ \ \ \ \ \ \ passed\ as\ the\ first\ argument\ to\ the\ external\ entity\ ref\ handler}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00637}00637\ \textcolor{comment}{\ \ \ \ \ \ \ instead\ of\ the\ parser\ object.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00638}00638\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00639}00639\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00640}00640\ \ \ \ \ \mbox{\hyperlink{expat_8h_a41e5324c09b2fd7e783b8766324ab7a0}{XML\_SetExternalEntityRefHandlerArg}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ arg);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00642}00642\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00643}00643\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00644}00644\ \ \ \ \ \mbox{\hyperlink{expat_8h_a299534d405738de35f283306f99f0f0a}{XML\_SetSkippedEntityHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a29e3734cfec01df38715716d53093d5c}{XML\_SkippedEntityHandler}}\ handler);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00646}00646\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00647}00647\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00648}00648\ \ \ \ \ \mbox{\hyperlink{expat_8h_a726ba0601211ec3a969651fb82b5d488}{XML\_SetUnknownEncodingHandler}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00649}00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a348625fd90dcc5d880efec9e533fc502}{XML\_UnknownEncodingHandler}}\ handler,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ encodingHandlerData);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00651}00651\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00652}00652\ \ \ \ \ \textcolor{comment}{/*\ This\ can\ be\ called\ within\ a\ handler\ for\ a\ start\ element,\ end}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00653}00653\ \textcolor{comment}{\ \ \ \ \ \ \ element,\ processing\ instruction\ or\ character\ data.\ \ It\ causes\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00654}00654\ \textcolor{comment}{\ \ \ \ \ \ \ corresponding\ markup\ to\ be\ passed\ to\ the\ default\ handler.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00655}00655\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00656}00656\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00657}00657\ \ \ \ \ \mbox{\hyperlink{expat_8h_a656640fa46f78f5fa297dea4ae1722ec}{XML\_DefaultCurrent}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00658}00658\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00659}00659\ \ \ \ \ \textcolor{comment}{/*\ If\ do\_nst\ is\ non-\/zero,\ and\ namespace\ processing\ is\ in\ effect,\ and}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00660}00660\ \textcolor{comment}{\ \ \ \ \ \ \ a\ name\ has\ a\ prefix\ (i.e.\ an\ explicit\ namespace\ qualifier)\ then}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00661}00661\ \textcolor{comment}{\ \ \ \ \ \ \ that\ name\ is\ returned\ as\ a\ triplet\ in\ a\ single\ string\ separated\ by}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00662}00662\ \textcolor{comment}{\ \ \ \ \ \ \ the\ separator\ character\ specified\ when\ the\ parser\ was\ created:\ URI}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00663}00663\ \textcolor{comment}{\ \ \ \ \ \ \ +\ sep\ +\ local\_name\ +\ sep\ +\ prefix.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00664}00664\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00665}00665\ \textcolor{comment}{\ \ \ \ \ \ \ If\ do\_nst\ is\ zero,\ then\ namespace\ information\ is\ returned\ in\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00666}00666\ \textcolor{comment}{\ \ \ \ \ \ \ default\ manner\ (URI\ +\ sep\ +\ local\_name)\ whether\ or\ not\ the\ name}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00667}00667\ \textcolor{comment}{\ \ \ \ \ \ \ has\ a\ prefix.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00668}00668\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00669}00669\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ Calling\ XML\_SetReturnNSTriplet\ after\ XML\_Parse\ or}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00670}00670\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ XML\_ParseBuffer\ has\ no\ effect.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00671}00671\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00672}00672\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00673}00673\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00674}00674\ \ \ \ \ \mbox{\hyperlink{expat_8h_a76fcdf6315a13945f02323c6885f0313}{XML\_SetReturnNSTriplet}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{int}\ do\_nst);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00675}00675\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00676}00676\ \ \ \ \ \textcolor{comment}{/*\ This\ value\ is\ passed\ as\ the\ userData\ argument\ to\ callbacks.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00677}00677\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00678}00678\ \ \ \ \ \mbox{\hyperlink{expat_8h_a468e51741c78867604101f505767de67}{XML\_SetUserData}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{userData}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00679}00679\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00680}00680\ \ \ \ \ \textcolor{comment}{/*\ Returns\ the\ last\ value\ set\ by\ XML\_SetUserData\ or\ NULL.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00681}\mbox{\hyperlink{expat_8h_a90154f812f977b217bbac5b4bb133065}{00681}}\ \textcolor{preprocessor}{\#define\ XML\_GetUserData(parser)\ (*(void\ **)(parser))}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00682}00682\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00683}00683\ \ \ \ \ \textcolor{comment}{/*\ This\ is\ equivalent\ to\ supplying\ an\ encoding\ argument\ to}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00684}00684\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ParserCreate.\ On\ success\ XML\_SetEncoding\ returns\ non-\/zero,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00685}00685\ \textcolor{comment}{\ \ \ \ \ \ \ zero\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00686}00686\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ Calling\ XML\_SetEncoding\ after\ XML\_Parse\ or\ XML\_ParseBuffer}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00687}00687\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ has\ no\ effect\ and\ returns\ XML\_STATUS\_ERROR.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00688}00688\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00689}00689\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00690}00690\ \ \ \ \ \mbox{\hyperlink{expat_8h_a52b6c9717933df0e16f03044b7c0ff0b}{XML\_SetEncoding}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structencoding}{encoding}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00691}00691\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00692}00692\ \ \ \ \ \textcolor{comment}{/*\ If\ this\ function\ is\ called,\ then\ the\ parser\ will\ be\ passed\ as\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00693}00693\ \textcolor{comment}{\ \ \ \ \ \ \ first\ argument\ to\ callbacks\ instead\ of\ userData.\ \ The\ userData\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00694}00694\ \textcolor{comment}{\ \ \ \ \ \ \ still\ be\ accessible\ using\ XML\_GetUserData.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00695}00695\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00696}00696\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00697}00697\ \ \ \ \ \mbox{\hyperlink{expat_8h_a940cf0f11f4372ee7cb7997fbc411265}{XML\_UseParserAsHandlerArg}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00698}00698\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00699}00699\ \ \ \ \ \textcolor{comment}{/*\ If\ useDTD\ ==\ XML\_TRUE\ is\ passed\ to\ this\ function,\ then\ the\ parser}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00700}00700\ \textcolor{comment}{\ \ \ \ \ \ \ will\ assume\ that\ there\ is\ an\ external\ subset,\ even\ if\ none\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00701}00701\ \textcolor{comment}{\ \ \ \ \ \ \ specified\ in\ the\ document.\ In\ such\ a\ case\ the\ parser\ will\ call\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00702}00702\ \textcolor{comment}{\ \ \ \ \ \ \ externalEntityRefHandler\ with\ a\ value\ of\ NULL\ for\ the\ systemId}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00703}00703\ \textcolor{comment}{\ \ \ \ \ \ \ argument\ (the\ publicId\ and\ context\ arguments\ will\ be\ NULL\ as\ well).}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00704}00704\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ For\ the\ purpose\ of\ checking\ WFC:\ Entity\ Declared,\ passing}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00705}00705\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ useDTD\ ==\ XML\_TRUE\ will\ make\ the\ parser\ behave\ as\ if\ the\ document}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00706}00706\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ had\ a\ DTD\ with\ an\ external\ subset.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00707}00707\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ If\ this\ function\ is\ called,\ then\ this\ must\ be\ done\ before}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00708}00708\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ the\ first\ call\ to\ XML\_Parse\ or\ XML\_ParseBuffer,\ since\ it\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00709}00709\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ have\ no\ effect\ after\ that.\ \ Returns}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00710}00710\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ XML\_ERROR\_CANT\_CHANGE\_FEATURE\_ONCE\_PARSING.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00711}00711\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ If\ the\ document\ does\ not\ have\ a\ DOCTYPE\ declaration\ at\ all,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00712}00712\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ then\ startDoctypeDeclHandler\ and\ endDoctypeDeclHandler\ will\ not}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00713}00713\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ be\ called,\ despite\ an\ external\ subset\ being\ parsed.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00714}00714\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ If\ XML\_DTD\ is\ not\ defined\ when\ Expat\ is\ compiled,\ returns}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00715}00715\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ XML\_ERROR\_FEATURE\_REQUIRES\_XML\_DTD.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00716}00716\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00717}00717\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118}{XML\_Error}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00718}00718\ \ \ \ \ \mbox{\hyperlink{expat_8h_aa22249af467c9d1911e8e4ce23fe7aae}{XML\_UseForeignDTD}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \mbox{\hyperlink{expat_8h_a5fe41bca8b7a23b2405f1b967e70f33a}{XML\_Bool}}\ useDTD);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00719}00719\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00720}00720\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00721}00721\ \ \ \ \ \textcolor{comment}{/*\ Sets\ the\ base\ to\ be\ used\ for\ resolving\ relative\ URIs\ in\ system}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00722}00722\ \textcolor{comment}{\ \ \ \ \ \ \ identifiers\ in\ declarations.\ \ Resolving\ relative\ identifiers\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00723}00723\ \textcolor{comment}{\ \ \ \ \ \ \ left\ to\ the\ application:\ this\ value\ will\ be\ passed\ through\ as\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00724}00724\ \textcolor{comment}{\ \ \ \ \ \ \ base\ argument\ to\ the\ XML\_ExternalEntityRefHandler,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00725}00725\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_NotationDeclHandler\ and\ XML\_UnparsedEntityDeclHandler.\ The\ base}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00726}00726\ \textcolor{comment}{\ \ \ \ \ \ \ argument\ will\ be\ copied.\ \ Returns\ XML\_STATUS\_ERROR\ if\ out\ of\ memory,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00727}00727\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_STATUS\_OK\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00728}00728\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00729}00729\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00730}00730\ \ \ \ \ \mbox{\hyperlink{expat_8h_a92301b7dc0e4653219bb70830e94fb10}{XML\_SetBase}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ base);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00731}00731\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00732}00732\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00733}00733\ \ \ \ \ \mbox{\hyperlink{expat_8h_a11f47e2c3c4eabe81359a90bbeab9796}{XML\_GetBase}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00734}00734\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00735}00735\ \ \ \ \ \textcolor{comment}{/*\ Returns\ the\ number\ of\ the\ attribute/value\ pairs\ passed\ in\ last\ call}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00736}00736\ \textcolor{comment}{\ \ \ \ \ \ \ to\ the\ XML\_StartElementHandler\ that\ were\ specified\ in\ the\ start-\/tag}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00737}00737\ \textcolor{comment}{\ \ \ \ \ \ \ rather\ than\ defaulted.\ Each\ attribute/value\ pair\ counts\ as\ 2;\ thus}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00738}00738\ \textcolor{comment}{\ \ \ \ \ \ \ this\ correspondds\ to\ an\ index\ into\ the\ atts\ array\ passed\ to\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00739}00739\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_StartElementHandler.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00740}00740\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00741}00741\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00742}00742\ \ \ \ \ \mbox{\hyperlink{expat_8h_a5871673801b34ac556398ebaf8c46753}{XML\_GetSpecifiedAttributeCount}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00743}00743\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00744}00744\ \ \ \ \ \textcolor{comment}{/*\ Returns\ the\ index\ of\ the\ ID\ attribute\ passed\ in\ the\ last\ call\ to}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00745}00745\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_StartElementHandler,\ or\ -\/1\ if\ there\ is\ no\ ID\ attribute.\ \ Each}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00746}00746\ \textcolor{comment}{\ \ \ \ \ \ \ attribute/value\ pair\ counts\ as\ 2;\ thus\ this\ correspondds\ to\ an}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00747}00747\ \textcolor{comment}{\ \ \ \ \ \ \ index\ into\ the\ atts\ array\ passed\ to\ the\ XML\_StartElementHandler.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00748}00748\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00749}00749\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00750}00750\ \ \ \ \ \mbox{\hyperlink{expat_8h_aa196256e8aeed81148d0066f2cdb0778}{XML\_GetIdAttributeIndex}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00751}00751\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00752}00752\ \ \ \ \ \textcolor{comment}{/*\ Parses\ some\ input.\ Returns\ XML\_STATUS\_ERROR\ if\ a\ fatal\ error\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00753}00753\ \textcolor{comment}{\ \ \ \ \ \ \ detected.\ \ The\ last\ call\ to\ XML\_Parse\ must\ have\ isFinal\ true;\ len}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00754}00754\ \textcolor{comment}{\ \ \ \ \ \ \ may\ be\ zero\ for\ this\ call\ (or\ any\ other).}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00755}00755\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00756}00756\ \textcolor{comment}{\ \ \ \ \ \ \ Though\ the\ return\ values\ for\ these\ functions\ has\ always\ been}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00757}00757\ \textcolor{comment}{\ \ \ \ \ \ \ described\ as\ a\ Boolean\ value,\ the\ implementation,\ at\ least\ for\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00758}00758\ \textcolor{comment}{\ \ \ \ \ \ \ 1.95.x\ series,\ has\ always\ returned\ exactly\ one\ of\ the\ XML\_Status}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00759}00759\ \textcolor{comment}{\ \ \ \ \ \ \ values.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00760}00760\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00761}00761\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00762}00762\ \ \ \ \ \mbox{\hyperlink{expat_8h_a74b71c0c1edba09393f8450a5cff20f7}{XML\_Parse}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ s,\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{int}\ isFinal);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00763}00763\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00764}00764\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00765}00765\ \ \ \ \ \mbox{\hyperlink{expat_8h_a2ba88067eec56ba4c937b99aa8f7e9fa}{XML\_GetBuffer}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00766}00766\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00767}00767\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00768}00768\ \ \ \ \ \mbox{\hyperlink{expat_8h_a266deaa2cc7dff28d352e548e9938b15}{XML\_ParseBuffer}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{int}\ isFinal);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00769}00769\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00770}00770\ \ \ \ \ \textcolor{comment}{/*\ Stops\ parsing,\ causing\ XML\_Parse()\ or\ XML\_ParseBuffer()\ to\ return.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00771}00771\ \textcolor{comment}{\ \ \ \ \ \ \ Must\ be\ called\ from\ within\ a\ call-\/back\ handler,\ except\ when\ aborting}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00772}00772\ \textcolor{comment}{\ \ \ \ \ \ \ (resumable\ =\ 0)\ an\ already\ suspended\ parser.\ Some\ call-\/backs\ may}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00773}00773\ \textcolor{comment}{\ \ \ \ \ \ \ still\ follow\ because\ they\ would\ otherwise\ get\ lost.\ Examples:}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00774}00774\ \textcolor{comment}{\ \ \ \ \ \ \ -\/\ endElementHandler()\ for\ empty\ elements\ when\ stopped\ in}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00775}00775\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ startElementHandler(),}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00776}00776\ \textcolor{comment}{\ \ \ \ \ \ \ -\/\ endNameSpaceDeclHandler()\ when\ stopped\ in\ endElementHandler(),}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00777}00777\ \textcolor{comment}{\ \ \ \ \ \ \ and\ possibly\ others.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00778}00778\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00779}00779\ \textcolor{comment}{\ \ \ \ \ \ \ Can\ be\ called\ from\ most\ handlers,\ including\ DTD\ related\ call-\/backs,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00780}00780\ \textcolor{comment}{\ \ \ \ \ \ \ except\ when\ parsing\ an\ external\ parameter\ entity\ and\ resumable\ !=\ 0.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00781}00781\ \textcolor{comment}{\ \ \ \ \ \ \ Returns\ XML\_STATUS\_OK\ when\ successful,\ XML\_STATUS\_ERROR\ otherwise.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00782}00782\ \textcolor{comment}{\ \ \ \ \ \ \ Possible\ error\ codes:}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00783}00783\ \textcolor{comment}{\ \ \ \ \ \ \ -\/\ XML\_ERROR\_SUSPENDED:\ when\ suspending\ an\ already\ suspended\ parser.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00784}00784\ \textcolor{comment}{\ \ \ \ \ \ \ -\/\ XML\_ERROR\_FINISHED:\ when\ the\ parser\ has\ already\ finished.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00785}00785\ \textcolor{comment}{\ \ \ \ \ \ \ -\/\ XML\_ERROR\_SUSPEND\_PE:\ when\ suspending\ while\ parsing\ an\ external\ PE.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00786}00786\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00787}00787\ \textcolor{comment}{\ \ \ \ \ \ \ When\ resumable\ !=\ 0\ (true)\ then\ parsing\ is\ suspended,\ that\ is,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00788}00788\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_Parse()\ and\ XML\_ParseBuffer()\ return\ XML\_STATUS\_SUSPENDED.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00789}00789\ \textcolor{comment}{\ \ \ \ \ \ \ Otherwise,\ parsing\ is\ aborted,\ that\ is,\ XML\_Parse()\ and\ XML\_ParseBuffer()}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00790}00790\ \textcolor{comment}{\ \ \ \ \ \ \ return\ XML\_STATUS\_ERROR\ with\ error\ code\ XML\_ERROR\_ABORTED.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00791}00791\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00792}00792\ \textcolor{comment}{\ \ \ \ \ \ \ *Note*:}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00793}00793\ \textcolor{comment}{\ \ \ \ \ \ \ This\ will\ be\ applied\ to\ the\ current\ parser\ instance\ only,\ that\ is,\ if}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00794}00794\ \textcolor{comment}{\ \ \ \ \ \ \ there\ is\ a\ parent\ parser\ then\ it\ will\ continue\ parsing\ when\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00795}00795\ \textcolor{comment}{\ \ \ \ \ \ \ externalEntityRefHandler()\ returns.\ It\ is\ up\ to\ the\ implementation\ of}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00796}00796\ \textcolor{comment}{\ \ \ \ \ \ \ the\ externalEntityRefHandler()\ to\ call\ XML\_StopParser()\ on\ the\ parent}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00797}00797\ \textcolor{comment}{\ \ \ \ \ \ \ parser\ (recursively),\ if\ one\ wants\ to\ stop\ parsing\ altogether.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00798}00798\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00799}00799\ \textcolor{comment}{\ \ \ \ \ \ \ When\ suspended,\ parsing\ can\ be\ resumed\ by\ calling\ XML\_ResumeParser().}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00800}00800\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00801}00801\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00802}00802\ \ \ \ \ \mbox{\hyperlink{expat_8h_a2ed188bab24ab1b97c8bc812d0e1de01}{XML\_StopParser}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \mbox{\hyperlink{expat_8h_a5fe41bca8b7a23b2405f1b967e70f33a}{XML\_Bool}}\ resumable);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00803}00803\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00804}00804\ \ \ \ \ \textcolor{comment}{/*\ Resumes\ parsing\ after\ it\ has\ been\ suspended\ with\ XML\_StopParser().}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00805}00805\ \textcolor{comment}{\ \ \ \ \ \ \ Must\ not\ be\ called\ from\ within\ a\ handler\ call-\/back.\ Returns\ same}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00806}00806\ \textcolor{comment}{\ \ \ \ \ \ \ status\ codes\ as\ XML\_Parse()\ or\ XML\_ParseBuffer().}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00807}00807\ \textcolor{comment}{\ \ \ \ \ \ \ Additional\ error\ code\ XML\_ERROR\_NOT\_SUSPENDED\ possible.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00808}00808\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00809}00809\ \textcolor{comment}{\ \ \ \ \ \ \ *Note*:}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00810}00810\ \textcolor{comment}{\ \ \ \ \ \ \ This\ must\ be\ called\ on\ the\ most\ deeply\ nested\ child\ parser\ instance}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00811}00811\ \textcolor{comment}{\ \ \ \ \ \ \ first,\ and\ on\ its\ parent\ parser\ only\ after\ the\ child\ parser\ has\ finished,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00812}00812\ \textcolor{comment}{\ \ \ \ \ \ \ to\ be\ applied\ recursively\ until\ the\ document\ entity's\ parser\ is\ restarted.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00813}00813\ \textcolor{comment}{\ \ \ \ \ \ \ That\ is,\ the\ parent\ parser\ will\ not\ resume\ by\ itself\ and\ it\ is\ up\ to\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00814}00814\ \textcolor{comment}{\ \ \ \ \ \ \ application\ to\ call\ XML\_ResumeParser()\ on\ it\ at\ the\ appropriate\ moment.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00815}00815\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00816}00816\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_aef71ca3ac8198499d56aaa7b474303bb}{XML\_Status}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00817}00817\ \ \ \ \ \mbox{\hyperlink{expat_8h_a36bc47ccd8bf45dd483d7a21746a01fc}{XML\_ResumeParser}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00818}00818\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00819}\mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6}{00819}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6}{XML\_Parsing}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00820}00820\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00821}\mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6afbbdcc361a41cc96cad54045449bc276}{00821}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6afbbdcc361a41cc96cad54045449bc276}{XML\_INITIALIZED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00822}\mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6a04ce97557ea4c03d32e92c62fb7c65e1}{00822}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6a04ce97557ea4c03d32e92c62fb7c65e1}{XML\_PARSING}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00823}\mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6ab398d4cb838da79432e317837b07ea42}{00823}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6ab398d4cb838da79432e317837b07ea42}{XML\_FINISHED}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00824}00824\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6a15979fdec1239f8443cfbbf20b6917a5}{XML\_SUSPENDED}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00825}\mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6a15979fdec1239f8443cfbbf20b6917a5}{00825}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00826}00826\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00827}\mbox{\hyperlink{struct_x_m_l___parsing_status}{00827}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00828}00828\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00829}\mbox{\hyperlink{struct_x_m_l___parsing_status_af7f58f4731cf34a10da39dd7b9cfb82b}{00829}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a1e8b2aa21ec26bcf0eb696197b53aab6}{XML\_Parsing}}\ \mbox{\hyperlink{struct_x_m_l___parsing_status_af7f58f4731cf34a10da39dd7b9cfb82b}{parsing}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00830}\mbox{\hyperlink{struct_x_m_l___parsing_status_ac9f1a8f3a0f2f0e886760756c0022880}{00830}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a5fe41bca8b7a23b2405f1b967e70f33a}{XML\_Bool}}\ \mbox{\hyperlink{struct_x_m_l___parsing_status_ac9f1a8f3a0f2f0e886760756c0022880}{finalBuffer}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00831}00831\ \ \ \ \ \}\ \mbox{\hyperlink{struct_x_m_l___parsing_status}{XML\_ParsingStatus}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00832}00832\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00833}00833\ \ \ \ \ \textcolor{comment}{/*\ Returns\ status\ of\ parser\ with\ respect\ to\ being\ initialized,\ parsing,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00834}00834\ \textcolor{comment}{\ \ \ \ \ \ \ finished,\ or\ suspended\ and\ processing\ the\ final\ buffer.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00835}00835\ \textcolor{comment}{\ \ \ \ \ \ \ XXX\ XML\_Parse()\ and\ XML\_ParseBuffer()\ should\ return\ XML\_ParsingStatus,}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00836}00836\ \textcolor{comment}{\ \ \ \ \ \ \ XXX\ with\ XML\_FINISHED\_OK\ or\ XML\_FINISHED\_ERROR\ replacing\ XML\_FINISHED}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00837}00837\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00838}00838\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00839}00839\ \ \ \ \ \mbox{\hyperlink{expat_8h_af4ed8f0f62c35fa4a34bdad0ffe7aab7}{XML\_GetParsingStatus}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \mbox{\hyperlink{struct_x_m_l___parsing_status}{XML\_ParsingStatus}}*\ status);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00840}00840\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00841}00841\ \ \ \ \ \textcolor{comment}{/*\ Creates\ an\ XML\_Parser\ object\ that\ can\ parse\ an\ external\ general}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00842}00842\ \textcolor{comment}{\ \ \ \ \ \ \ entity;\ context\ is\ a\ '\(\backslash\)0'-\/terminated\ string\ specifying\ the\ parse}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00843}00843\ \textcolor{comment}{\ \ \ \ \ \ \ context;\ encoding\ is\ a\ '\(\backslash\)0'-\/terminated\ string\ giving\ the\ name\ of}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00844}00844\ \textcolor{comment}{\ \ \ \ \ \ \ the\ externally\ specified\ encoding,\ or\ NULL\ if\ there\ is\ no}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00845}00845\ \textcolor{comment}{\ \ \ \ \ \ \ externally\ specified\ encoding.\ \ The\ context\ string\ consists\ of\ a}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00846}00846\ \textcolor{comment}{\ \ \ \ \ \ \ sequence\ of\ tokens\ separated\ by\ formfeeds\ (\(\backslash\)f);\ a\ token\ consisting}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00847}00847\ \textcolor{comment}{\ \ \ \ \ \ \ of\ a\ name\ specifies\ that\ the\ general\ entity\ of\ the\ name\ is\ open;\ a}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00848}00848\ \textcolor{comment}{\ \ \ \ \ \ \ token\ of\ the\ form\ prefix=uri\ specifies\ the\ namespace\ for\ a}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00849}00849\ \textcolor{comment}{\ \ \ \ \ \ \ particular\ prefix;\ a\ token\ of\ the\ form\ =uri\ specifies\ the\ default}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00850}00850\ \textcolor{comment}{\ \ \ \ \ \ \ namespace.\ \ This\ can\ be\ called\ at\ any\ point\ after\ the\ first\ call\ to}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00851}00851\ \textcolor{comment}{\ \ \ \ \ \ \ an\ ExternalEntityRefHandler\ so\ longer\ as\ the\ parser\ has\ not\ yet}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00852}00852\ \textcolor{comment}{\ \ \ \ \ \ \ been\ freed.\ \ The\ new\ parser\ is\ completely\ independent\ and\ may}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00853}00853\ \textcolor{comment}{\ \ \ \ \ \ \ safely\ be\ used\ in\ a\ separate\ thread.\ \ The\ handlers\ and\ userData\ are}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00854}00854\ \textcolor{comment}{\ \ \ \ \ \ \ initialized\ from\ the\ parser\ argument.\ \ Returns\ NULL\ if\ out\ of\ memory.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00855}00855\ \textcolor{comment}{\ \ \ \ \ \ \ Otherwise\ returns\ a\ new\ XML\_Parser\ object.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00856}00856\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00857}00857\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00858}00858\ \ \ \ \ \mbox{\hyperlink{expat_8h_a97ce0f371ec32a0ee199d0ee03e557be}{XML\_ExternalEntityParserCreate}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00859}00859\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ context,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00860}00860\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a63da96463e775e1ec3a7d1f076208127}{XML\_Char}}*\ \mbox{\hyperlink{structencoding}{encoding}});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00861}00861\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00862}\mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098f}{00862}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098f}{XML\_ParamEntityParsing}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00863}00863\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00864}\mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098fad8126c34122c4e63a9c2feee23f42566}{00864}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098fad8126c34122c4e63a9c2feee23f42566}{XML\_PARAM\_ENTITY\_PARSING\_NEVER}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00865}\mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098fa71233f0d7358f5620b5694c43bcb35e8}{00865}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098fa71233f0d7358f5620b5694c43bcb35e8}{XML\_PARAM\_ENTITY\_PARSING\_UNLESS\_STANDALONE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00866}00866\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098fa8cee6618dd630799836822449aa2fdf9}{XML\_PARAM\_ENTITY\_PARSING\_ALWAYS}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00867}\mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098fa8cee6618dd630799836822449aa2fdf9}{00867}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00868}00868\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00869}00869\ \ \ \ \ \textcolor{comment}{/*\ Controls\ parsing\ of\ parameter\ entities\ (including\ the\ external\ DTD}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00870}00870\ \textcolor{comment}{\ \ \ \ \ \ \ subset).\ If\ parsing\ of\ parameter\ entities\ is\ enabled,\ then}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00871}00871\ \textcolor{comment}{\ \ \ \ \ \ \ references\ to\ external\ parameter\ entities\ (including\ the\ external}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00872}00872\ \textcolor{comment}{\ \ \ \ \ \ \ DTD\ subset)\ will\ be\ passed\ to\ the\ handler\ set\ with}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00873}00873\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_SetExternalEntityRefHandler.\ \ The\ context\ passed\ will\ be\ 0.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00874}00874\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00875}00875\ \textcolor{comment}{\ \ \ \ \ \ \ Unlike\ external\ general\ entities,\ external\ parameter\ entities\ can}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00876}00876\ \textcolor{comment}{\ \ \ \ \ \ \ only\ be\ parsed\ synchronously.\ \ If\ the\ external\ parameter\ entity\ is}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00877}00877\ \textcolor{comment}{\ \ \ \ \ \ \ to\ be\ parsed,\ it\ must\ be\ parsed\ during\ the\ call\ to\ the\ external}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00878}00878\ \textcolor{comment}{\ \ \ \ \ \ \ entity\ ref\ handler:\ the\ complete\ sequence\ of}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00879}00879\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ExternalEntityParserCreate,\ XML\_Parse/XML\_ParseBuffer\ and}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00880}00880\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ParserFree\ calls\ must\ be\ made\ during\ this\ call.\ \ After}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00881}00881\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ExternalEntityParserCreate\ has\ been\ called\ to\ create\ the\ parser}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00882}00882\ \textcolor{comment}{\ \ \ \ \ \ \ for\ the\ external\ parameter\ entity\ (context\ must\ be\ 0\ for\ this}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00883}00883\ \textcolor{comment}{\ \ \ \ \ \ \ call),\ it\ is\ illegal\ to\ make\ any\ calls\ on\ the\ old\ parser\ until}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00884}00884\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_ParserFree\ has\ been\ called\ on\ the\ newly\ created\ parser.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00885}00885\ \textcolor{comment}{\ \ \ \ \ \ \ If\ the\ library\ has\ been\ compiled\ without\ support\ for\ parameter}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00886}00886\ \textcolor{comment}{\ \ \ \ \ \ \ entity\ parsing\ (ie\ without\ XML\_DTD\ being\ defined),\ then}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00887}00887\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_SetParamEntityParsing\ will\ return\ 0\ if\ parsing\ of\ parameter}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00888}00888\ \textcolor{comment}{\ \ \ \ \ \ \ entities\ is\ requested;\ otherwise\ it\ will\ return\ non-\/zero.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00889}00889\ \textcolor{comment}{\ \ \ \ \ \ \ Note:\ If\ XML\_SetParamEntityParsing\ is\ called\ after\ XML\_Parse\ or}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00890}00890\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ XML\_ParseBuffer,\ then\ it\ has\ no\ effect\ and\ will\ always\ return\ 0.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00891}00891\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00892}00892\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00893}00893\ \ \ \ \ \mbox{\hyperlink{expat_8h_ad09c926ea3d49d087a16e6224a5a9304}{XML\_SetParamEntityParsing}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00894}00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a83ffd61320d59d0c6c33dfcf1a0c098f}{XML\_ParamEntityParsing}}\ parsing);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00895}00895\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00896}00896\ \ \ \ \ \textcolor{comment}{/*\ If\ XML\_Parse\ or\ XML\_ParseBuffer\ have\ returned\ XML\_STATUS\_ERROR,\ then}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00897}00897\ \textcolor{comment}{\ \ \ \ \ \ \ XML\_GetErrorCode\ returns\ information\ about\ the\ error.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00898}00898\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00899}00899\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118}{XML\_Error}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00900}00900\ \ \ \ \ \mbox{\hyperlink{expat_8h_a2c9bf949546187a0b6090ecb008a3ea2}{XML\_GetErrorCode}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00901}00901\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00902}00902\ \ \ \ \ \textcolor{comment}{/*\ These\ functions\ return\ information\ about\ the\ current\ parse}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00903}00903\ \textcolor{comment}{\ \ \ \ \ \ \ location.\ \ They\ may\ be\ called\ from\ any\ callback\ called\ to\ report}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00904}00904\ \textcolor{comment}{\ \ \ \ \ \ \ some\ parse\ event;\ in\ this\ case\ the\ location\ is\ the\ location\ of\ the}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00905}00905\ \textcolor{comment}{\ \ \ \ \ \ \ first\ of\ the\ sequence\ of\ characters\ that\ generated\ the\ event.\ \ When}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00906}00906\ \textcolor{comment}{\ \ \ \ \ \ \ called\ from\ callbacks\ generated\ by\ declarations\ in\ the\ document}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00907}00907\ \textcolor{comment}{\ \ \ \ \ \ \ prologue,\ the\ location\ identified\ isn't\ as\ neatly\ defined,\ but\ will}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00908}00908\ \textcolor{comment}{\ \ \ \ \ \ \ be\ within\ the\ relevant\ markup.\ \ When\ called\ outside\ of\ the\ callback}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00909}00909\ \textcolor{comment}{\ \ \ \ \ \ \ functions,\ the\ position\ indicated\ will\ be\ just\ past\ the\ last\ parse}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00910}00910\ \textcolor{comment}{\ \ \ \ \ \ \ event\ (regardless\ of\ whether\ there\ was\ an\ associated\ callback).}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00911}00911\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00912}00912\ \textcolor{comment}{\ \ \ \ \ \ \ They\ may\ also\ be\ called\ after\ returning\ from\ a\ call\ to\ XML\_Parse}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00913}00913\ \textcolor{comment}{\ \ \ \ \ \ \ or\ XML\_ParseBuffer.\ \ If\ the\ return\ value\ is\ XML\_STATUS\_ERROR\ then}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00914}00914\ \textcolor{comment}{\ \ \ \ \ \ \ the\ location\ is\ the\ location\ of\ the\ character\ at\ which\ the\ error}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00915}00915\ \textcolor{comment}{\ \ \ \ \ \ \ was\ detected;\ otherwise\ the\ location\ is\ the\ location\ of\ the\ last}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00916}00916\ \textcolor{comment}{\ \ \ \ \ \ \ parse\ event,\ as\ described\ above.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00917}00917\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00918}\mbox{\hyperlink{expat_8h_addcfe55d8f0e2b155e881f66f9dbc80b}{00918}}\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{expat__external_8h_ad22a225e6e62127360b44b2f7559f789}{XML\_Size}})\ \mbox{\hyperlink{xmlparse_8c_a5f0c9f83229fdaa9dcb48a8447045243}{XML\_GetCurrentLineNumber}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00919}00919\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{expat__external_8h_ad22a225e6e62127360b44b2f7559f789}{XML\_Size}})\ \mbox{\hyperlink{xmlparse_8c_a45f92a94ac5382b44a9c3fed893f8921}{XML\_GetCurrentColumnNumber}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00920}\mbox{\hyperlink{expat_8h_ae1a2ba64a8972360e74a096014116326}{00920}}\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{expat__external_8h_ae2a9a55c7071b0c6da19fea14ce8f504}{XML\_Index}})\ \mbox{\hyperlink{xmlparse_8c_a643677b451f2ee9103f396de161aab52}{XML\_GetCurrentByteIndex}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00921}00921\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00922}00922\ \ \ \ \ \textcolor{comment}{/*\ Return\ the\ number\ of\ bytes\ in\ the\ current\ event.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00923}00923\ \textcolor{comment}{\ \ \ \ \ \ \ Returns\ 0\ if\ the\ event\ is\ in\ an\ internal\ entity.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00924}00924\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00925}00925\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00926}00926\ \ \ \ \ \mbox{\hyperlink{expat_8h_a9f79dd11b63d0cb0a7ef05c471500fd9}{XML\_GetCurrentByteCount}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00927}00927\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00928}00928\ \ \ \ \ \textcolor{comment}{/*\ If\ XML\_CONTEXT\_BYTES\ is\ defined,\ returns\ the\ input\ buffer,\ sets}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00929}00929\ \textcolor{comment}{\ \ \ \ \ \ \ the\ integer\ pointed\ to\ by\ offset\ to\ the\ offset\ within\ this\ buffer}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00930}00930\ \textcolor{comment}{\ \ \ \ \ \ \ of\ the\ current\ parse\ position,\ and\ sets\ the\ integer\ pointed\ to\ by\ size}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00931}00931\ \textcolor{comment}{\ \ \ \ \ \ \ to\ the\ size\ of\ this\ buffer\ (the\ number\ of\ input\ bytes).\ Otherwise}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00932}00932\ \textcolor{comment}{\ \ \ \ \ \ \ returns\ a\ NULL\ pointer.\ Also\ returns\ a\ NULL\ pointer\ if\ a\ parse\ isn't}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00933}00933\ \textcolor{comment}{\ \ \ \ \ \ \ active.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00934}00934\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00935}00935\ \textcolor{comment}{\ \ \ \ \ \ \ NOTE:\ The\ character\ pointer\ returned\ should\ not\ be\ used\ outside}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00936}00936\ \textcolor{comment}{\ \ \ \ \ \ \ the\ handler\ that\ makes\ the\ call.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00937}00937\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00938}00938\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00939}00939\ \ \ \ \ \mbox{\hyperlink{expat_8h_a13b1eb36d3245596ee0afabd9183b897}{XML\_GetInputContext}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00940}00940\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ offset,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00941}00941\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}*\ size);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00942}00942\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00943}00943\ \ \ \ \ \textcolor{comment}{/*\ For\ backwards\ compatibility\ with\ previous\ versions.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00944}\mbox{\hyperlink{expat_8h_af9a2f5af4c77c93f28476a8e35885e93}{00944}}\ \textcolor{preprocessor}{\#define\ XML\_GetErrorLineNumber\ \ \ XML\_GetCurrentLineNumber}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00945}\mbox{\hyperlink{expat_8h_adc61c007a99464ed452068125921c8e9}{00945}}\ \textcolor{preprocessor}{\#define\ XML\_GetErrorColumnNumber\ XML\_GetCurrentColumnNumber}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00946}\mbox{\hyperlink{expat_8h_a79598e9e91bba3a0407b3ea363b6a83b}{00946}}\ \textcolor{preprocessor}{\#define\ XML\_GetErrorByteIndex\ \ \ \ XML\_GetCurrentByteIndex}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00947}00947\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00948}00948\ \ \ \ \ \textcolor{comment}{/*\ Frees\ the\ content\ model\ passed\ to\ the\ element\ declaration\ handler\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00949}00949\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00950}00950\ \ \ \ \ \mbox{\hyperlink{expat_8h_a7af523f8175790f31b5dc844aaf489b3}{XML\_FreeContentModel}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \mbox{\hyperlink{struct_x_m_l__cp}{XML\_Content}}*\ model);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00951}00951\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00952}00952\ \ \ \ \ \textcolor{comment}{/*\ Exposing\ the\ memory\ handling\ functions\ used\ in\ Expat\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00953}00953\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00954}00954\ \ \ \ \ \mbox{\hyperlink{expat_8h_afbc60c7b2f025ed6a6471e566ba096ee}{XML\_MemMalloc}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00955}00955\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00956}00956\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00957}00957\ \ \ \ \ \mbox{\hyperlink{expat_8h_a160cbcbce19813e20caa562f4c6b4618}{XML\_MemRealloc}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{void}*\ ptr,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00958}00958\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00959}00959\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00960}00960\ \ \ \ \ \mbox{\hyperlink{expat_8h_a5bc14956f967dc816dc242a6a2559e1a}{XML\_MemFree}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser,\ \textcolor{keywordtype}{void}*\ ptr);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00961}00961\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00962}00962\ \ \ \ \ \textcolor{comment}{/*\ Frees\ memory\ used\ by\ the\ parser.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00963}00963\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00964}00964\ \ \ \ \ \mbox{\hyperlink{expat_8h_a6911b3212a330e3d23bdd8e1b433d59e}{XML\_ParserFree}}(\mbox{\hyperlink{struct_x_m_l___parser_struct}{XML\_Parser}}\ parser);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00965}00965\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00966}00966\ \ \ \ \ \textcolor{comment}{/*\ Returns\ a\ string\ describing\ the\ error.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00967}00967\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{XML\_LChar}}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00968}00968\ \ \ \ \ \mbox{\hyperlink{expat_8h_a8251288f9a95e1da7eb24bdb29ee586b}{XML\_ErrorString}}(\textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a6a06dad2fbbc37dd288c51e577494118}{XML\_Error}}\ code);}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00969}00969\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00970}00970\ \ \ \ \ \textcolor{comment}{/*\ Return\ a\ string\ containing\ the\ version\ number\ of\ this\ expat\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00971}00971\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{XML\_LChar}}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00972}00972\ \ \ \ \ \mbox{\hyperlink{expat_8h_abb55b97e846e0186244a72414f035e98}{XML\_ExpatVersion}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00973}00973\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00974}\mbox{\hyperlink{struct_x_m_l___expat___version}{00974}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00975}00975\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00976}\mbox{\hyperlink{struct_x_m_l___expat___version_a0c16da8d497c8eefd86a1bb4c6ea23b5}{00976}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_x_m_l___expat___version_a0c16da8d497c8eefd86a1bb4c6ea23b5}{major}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00977}\mbox{\hyperlink{struct_x_m_l___expat___version_ab9b1e025090b5f4e7c8f206c72aeb8b6}{00977}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_x_m_l___expat___version_ab9b1e025090b5f4e7c8f206c72aeb8b6}{minor}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00978}\mbox{\hyperlink{struct_x_m_l___expat___version_ac6b159560f37010366faaf9531f74929}{00978}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_x_m_l___expat___version_ac6b159560f37010366faaf9531f74929}{micro}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00979}00979\ \ \ \ \ \}\ \mbox{\hyperlink{struct_x_m_l___expat___version}{XML\_Expat\_Version}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00980}00980\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00981}00981\ \ \ \ \ \textcolor{comment}{/*\ Return\ an\ XML\_Expat\_Version\ structure\ containing\ numeric\ version}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00982}00982\ \textcolor{comment}{\ \ \ \ \ \ \ number\ information\ for\ this\ version\ of\ expat.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00983}00983\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00984}00984\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\mbox{\hyperlink{struct_x_m_l___expat___version}{XML\_Expat\_Version}})}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00985}00985\ \ \ \ \ \mbox{\hyperlink{expat_8h_a697dd3e01bb959d89e28622faff96479}{XML\_ExpatVersionInfo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00986}00986\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00987}00987\ \ \ \ \ \textcolor{comment}{/*\ Added\ in\ Expat\ 1.95.5.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00988}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8e}{00988}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8e}{XML\_FeatureEnum}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00989}00989\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00990}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea8745903bc09073b2abe0ebef13816cfe}{00990}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea8745903bc09073b2abe0ebef13816cfe}{XML\_FEATURE\_END}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00991}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea2ba23d9f0f47866bc35a968eaeeddb16}{00991}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea2ba23d9f0f47866bc35a968eaeeddb16}{XML\_FEATURE\_UNICODE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00992}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8eaab838e6ac060c50f2eda9d065133bb6a}{00992}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8eaab838e6ac060c50f2eda9d065133bb6a}{XML\_FEATURE\_UNICODE\_WCHAR\_T}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00993}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea09d653173612d6a423520078ff8b7019}{00993}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea09d653173612d6a423520078ff8b7019}{XML\_FEATURE\_DTD}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00994}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8eabb78df14b1efdff2d11d4d335a089d2e}{00994}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8eabb78df14b1efdff2d11d4d335a089d2e}{XML\_FEATURE\_CONTEXT\_BYTES}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00995}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea681374d691371442bc3d9f88bacafb3a}{00995}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea681374d691371442bc3d9f88bacafb3a}{XML\_FEATURE\_MIN\_SIZE}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00996}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea549e5efbee635add738a9cc9b531a501}{00996}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea549e5efbee635add738a9cc9b531a501}{XML\_FEATURE\_SIZEOF\_XML\_CHAR}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00997}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea0cb25cc352faa48daaecf78ee2cfb4d8}{00997}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea0cb25cc352faa48daaecf78ee2cfb4d8}{XML\_FEATURE\_SIZEOF\_XML\_LCHAR}},}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00998}00998\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea1c4fd57d24d089f3f7a57ea2208f9739}{XML\_FEATURE\_NS}}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l00999}00999\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Additional\ features\ must\ be\ added\ to\ the\ end\ of\ this\ enum.\ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01000}\mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8ea1c4fd57d24d089f3f7a57ea2208f9739}{01000}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01001}01001\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01002}\mbox{\hyperlink{struct_x_m_l___feature}{01002}}\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01003}01003\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01004}\mbox{\hyperlink{struct_x_m_l___feature_ae66421def7745a794da86612a9464b48}{01004}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{expat_8h_a3003d8415d1239ab78a8adfce6a34a8e}{XML\_FeatureEnum}}\ \ \mbox{\hyperlink{struct_x_m_l___feature_ae66421def7745a794da86612a9464b48}{feature}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01005}\mbox{\hyperlink{struct_x_m_l___feature_a0c69fbed3789a944a6c9168b1a6e5add}{01005}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{expat__external_8h_a728c9a3114531eaeb70753ba4601c418}{XML\_LChar}}*\ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l___feature_a0c69fbed3789a944a6c9168b1a6e5add}{name}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01006}\mbox{\hyperlink{struct_x_m_l___feature_a4d50cc5cb43a39f49435d0e81a4189dd}{01006}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_x_m_l___feature_a4d50cc5cb43a39f49435d0e81a4189dd}{value}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01007}01007\ \ \ \ \ \}\ \mbox{\hyperlink{struct_x_m_l___feature}{XML\_Feature}};}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01008}01008\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01009}01009\ \ \ \ \ \mbox{\hyperlink{expat__external_8h_ad5c8c58b4ddb7221f29218099ac3dd45}{XMLPARSEAPI}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_x_m_l___feature}{XML\_Feature}}*)}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01010}01010\ \ \ \ \ \mbox{\hyperlink{expat_8h_a5461b9ee2320302609ae9ece4a7f0363}{XML\_GetFeatureList}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01011}01011\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01012}01012\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01013}01013\ \ \ \ \ \textcolor{comment}{/*\ Expat\ follows\ the\ GNU/Linux\ convention\ of\ odd\ number\ minor\ version\ for}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01014}01014\ \textcolor{comment}{\ \ \ \ \ \ \ beta/development\ releases\ and\ even\ number\ minor\ version\ for\ stable}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01015}01015\ \textcolor{comment}{\ \ \ \ \ \ \ releases.\ Micro\ is\ bumped\ with\ each\ release,\ and\ set\ to\ 0\ with\ each}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01016}01016\ \textcolor{comment}{\ \ \ \ \ \ \ change\ to\ major\ or\ minor\ version.}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01017}01017\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01018}\mbox{\hyperlink{expat_8h_a4945478464354832f015ccd712c68040}{01018}}\ \textcolor{preprocessor}{\#define\ XML\_MAJOR\_VERSION\ 2}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01019}\mbox{\hyperlink{expat_8h_a56dc70319455d3f56903ed7034fc836f}{01019}}\ \textcolor{preprocessor}{\#define\ XML\_MINOR\_VERSION\ 0}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01020}\mbox{\hyperlink{expat_8h_a9608842863effc648f8d38857cd8ffab}{01020}}\ \textcolor{preprocessor}{\#define\ XML\_MICRO\_VERSION\ 0}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01021}01021\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01022}01022\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01023}01023\ \}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01024}01024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01025}01025\ }
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01026}01026\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ not\ Expat\_INCLUDED\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{expat_8h_source_l01027}01027\ }
+
+\end{DoxyCode}

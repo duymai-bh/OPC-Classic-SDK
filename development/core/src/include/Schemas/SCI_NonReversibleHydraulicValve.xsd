@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) by Vetco Gray Controls Limited (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SCI_SurfaceTypes.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="SCI_DeviceMapping.xsd"/>
+	<xs:complexType name="NonReversibleHydraulicValveType">
+		<xs:annotation>
+			<xs:documentation>Non Reversible Hydraulic Valve AIP-20000-02-306</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Tree valve name of the standard hydraulic valve (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer Tag Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DSM" type="string32">
+				<xs:annotation>
+					<xs:documentation>DSM (DCV (Directional Control Valve) Support Module) (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SSM" type="string32">
+				<xs:annotation>
+					<xs:documentation>SSM (Sensor Support Module) (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel1" type="DCVChannelType">
+				<xs:annotation>
+					<xs:documentation>DCV channel type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Channel2" type="DCVChannelType">
+				<xs:annotation>
+					<xs:documentation>DCV channel type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FailureMode" type="ValveFailureModeType">
+				<xs:annotation>
+					<xs:documentation>Valve Failure Mode Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActPresSen" type="string32">
+				<xs:annotation>
+					<xs:documentation>Actuator Pressure Sensor Definition. (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActPresSen2" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Actuator Pressure Sensor 2 Definition. (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupPresSen" type="string32">
+				<xs:annotation>
+					<xs:documentation>Hydraulic Supply Channel Sensor Definition. (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetPresSen" type="string32">
+				<xs:annotation>
+					<xs:documentation>Hydraulic Return Channel Sensor Definition.  (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HasFlowmeters" type="bool">
+				<xs:annotation>
+					<xs:documentation>True if flowmeters fitted to SCM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupMeter" type="string32">
+				<xs:annotation>
+					<xs:documentation>Supply Meter, flow meter which measures the quanity of hydraulic fluid used during the valve open operation.  (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetMeter" type="string32">
+				<xs:annotation>
+					<xs:documentation>Return Meter, flow meter which measures the quanity of hydraulic fluid vented from the valve during the valve close operation.  (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pos1Sen" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Position Indicator (LVDT) 1 Sensor Definition. (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pos2Sen" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Position Indicator (LVDT) 2 Sensor Definition. (This is a named reference to a Sensor defined in the Sensors Block)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="NonReversibleHydraulicValveEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the standard valve data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Process Identification (PID) tag name used on the ETU mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Process Identification (PID) tag Location on the ETU mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScanRate">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous V</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NonReversibleHydraulicValveEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For A Non Revirible Hydraulic Valve AIP-20000-02-306</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SolenoidDuration" type="DCVSolDurType">
+				<xs:annotation>
+					<xs:documentation>Soldenoid duration time in milliseconds, the time the solenoid is energised inside the DCV to initiatee valve operation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SolenoidDelay" type="DCVSolPreArmType">
+				<xs:annotation>
+					<xs:documentation>Delay after profiling begins before firing DCV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Powersave" type="PowersaveType">
+				<xs:annotation>
+					<xs:documentation>Power save</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OpenDuration" type="ValveDurType">
+				<xs:annotation>
+					<xs:documentation>the time taked for the valve open operaton to complete in seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CloseDuration" type="ValveDurType">
+				<xs:annotation>
+					<xs:documentation>the time taked for the valve close operaton to complete in seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetPresDisable" type="bool">
+				<xs:annotation>
+					<xs:documentation>If set the valve logic ignores the target pressures when determining the valves status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetOpenPres" type="float">
+				<xs:annotation>
+					<xs:documentation>Target Open Pressure, this is the actuator pressure acheived the the valve has successfully opened.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetClosePres" type="float">
+				<xs:annotation>
+					<xs:documentation>Target Close Pressure, the vent line pressure when the valve is closed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetFlowDisable" type="bool">
+				<xs:annotation>
+					<xs:documentation>If set the valve logic ignores the flow reading when determining the valve status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetOpenFlow" type="float">
+				<xs:annotation>
+					<xs:documentation>Target Pressurise Flow, the amount of hydraulic fluid used performing the open operation, if valve opened successfully.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetCloseFlow" type="float">
+				<xs:annotation>
+					<xs:documentation>Target Close Flow, the amount of hydraulic fluid used performing the close operation, if valve closed successfully. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowTolerance" type="float">
+				<xs:annotation>
+					<xs:documentation>When checking flow values for valves, the SCI should look for the flow being Target +/- Toolerance</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetPos1Disable" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If set the valve logic ignores the Position Indicator 1 when determining the valve status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetPos2Disable" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>If set the valve logic ignores the Position Indicator 2 when determining the valve status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetOpenPos" type="float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Target Open Position, this is the Threshold for the Position Indicator to be successfully opened.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TargetClosePos" type="float" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Target Close Position, this is the Threshold for the Position Indicator to be successfully Close.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupPresProfileDisable" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>Disable collection of supply pressure profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetPresProfileDisable" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>Disable collection of return pressure profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupFlowProfileDisable" type="bool" default="true">
+				<xs:annotation>
+					<xs:documentation>Disable collection of supply flow profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RetFlowProfileDisable" type="bool" default="true">
+				<xs:annotation>
+					<xs:documentation>Disable collection of return flow profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pos1ProfileDisable" type="bool" default="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Disable collection of Position Indicator 1 Profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pos2ProfileDisable" type="bool" default="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Disable collection of Position Indicator 2 Profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActProfileDuration" type="ProfileDurType">
+				<xs:annotation>
+					<xs:documentation>Duration over which the valve actuator profile is taken.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PresProfileDuration" type="ProfileDurType">
+				<xs:annotation>
+					<xs:documentation>Pressure Profile Duration, duration of the valve profile, in seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowProfileDuration" type="ProfileDurType">
+				<xs:annotation>
+					<xs:documentation>Flow Profile Duration, duration of the valve profile, in seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pos1ProfileDuration" type="ProfileDurType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Position Indicator 1 Profile Duration, duration of the valve profile, in seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pos2ProfileDuration" type="ProfileDurType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Position Indicator 2 Profile Duration, duration of the valve profile, in seconds.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProfileDestinationFile" type="string255">
+				<xs:annotation>
+					<xs:documentation>Destination file for retrieved profiles</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PressuriseAlmPres">
+				<xs:annotation>
+					<xs:documentation>Static pressure alarm setpoint for pressurised valve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VentAlmPres">
+				<xs:annotation>
+					<xs:documentation>Static pressure alarm setpoint for vented valve</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

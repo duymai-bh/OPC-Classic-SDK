@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <iostream>
 #include "SOCmn.h"
 #include "SOCmnObject.h"
 #include "SOCmnFunctions.h"
@@ -492,7 +493,7 @@ void SOCmnObject::setUserData(
 } // setUserData
 
 
-#ifdef SOFEATURE_WATCH
+//#ifdef SOFEATURE_WATCH
 
 //-----------------------------------------------------------------------------
 // getObjWatchData
@@ -538,5 +539,5 @@ BOOL SOCmnObject::setCollectChanges(
 	return TRUE;
 } // setCollectChanges
 
-#endif // SOFEATURE_WATCH
+//#endif // SOFEATURE_WATCH
 

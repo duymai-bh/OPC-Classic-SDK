@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Ian Kent (Vetco Gray Controls Ltd) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="LSCMM.xsd">
+		<xs:annotation>
+			<xs:documentation>Low Speed Copper Modem Module - Type Enumerated 04.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="VSCMM.xsd">
+		<xs:annotation>
+			<xs:documentation>Variable Speed Copper Modem Module- Type Enumerated 05.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="EFOMM.xsd">
+		<xs:annotation>
+			<xs:documentation>Ethernet Fiber Optic Modem Module- Type Enumerated 06.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="FROMM.xsd">
+		<xs:annotation>
+			<xs:documentation>Far Reach Optical Modem Module- Type Enumerated 07.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="DSM.xsd">
+		<xs:annotation>
+			<xs:documentation>DCV Support Module - Type Enumerated 08.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="SSM.xsd">
+		<xs:annotation>
+			<xs:documentation>Sensor Support Module - Type Enumerated 09.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="FSM.xsd">
+		<xs:annotation>
+			<xs:documentation>Fieldbus Support Module - Type Enumerated 10.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="DISM.xsd">
+		<xs:annotation>
+			<xs:documentation>Downhole Instrumentation Support Module - Type Enumerated 11.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="LISM.xsd">
+		<xs:annotation>
+			<xs:documentation>Legacy Interface Support Module - Type Enumerated 12.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="PSCM.xsd">
+		<xs:annotation>
+			<xs:documentation>Power Switching Control Module - Type Enumerated 17.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="DSLM.xsd">
+		<xs:annotation>
+			<xs:documentation>Digital Subscriber Line Modem Module - Type Enumerated 18.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="MMH.xsd">
+		<xs:annotation>
+			<xs:documentation>Modem Module - Type Enumerated 18/19/20 !.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="ERM.xsd">
+		<xs:annotation>
+			<xs:documentation>??? - Type Enumerated 30.</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="APCM.xsd">
+		<xs:annotation>
+			<xs:documentation>Adaptive Power Line Copper Modem - Type Enumerated ???</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="PBOFM.xsd">
+		<xs:annotation>
+			<xs:documentation>ProfiBus Optical Fibre Modem (SnorreB) - Type Enumerated 26</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:include schemaLocation="MBCM.xsd">
+		<xs:annotation>
+			<xs:documentation>Multi-band Copper Modem - Type Enumerated 19</xs:documentation>
+		</xs:annotation>
+	</xs:include>
+	<xs:simpleType name="BoardType">
+		<xs:annotation>
+			<xs:documentation>A this specifies the type of board fitted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>The minimum type number is 0 = No card.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="31">
+				<xs:annotation>
+					<xs:documentation>The maximum variant number is 31.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CardNameType">
+		<xs:annotation>
+			<xs:documentation>Enumeration of SemStar5 Card types, as identified within the SemStar5 Hardware Software Interface Specification and extensions of. (DHA-43150-00-137)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="CARD_NAME_Undefined">
+				<xs:annotation>
+					<xs:documentation>Card Type 0 - Not Used</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_AcDc">
+				<xs:annotation>
+					<xs:documentation>Ac/Dc Converter - No Intelligence</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_LscmDplxr">
+				<xs:annotation>
+					<xs:documentation>LSCM Diplexer - No Intelligence </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_VscmDplxr">
+				<xs:annotation>
+					<xs:documentation>VSCM Diplexer - No Intelligence </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Lscmm">
+				<xs:annotation>
+					<xs:documentation>Low Speed Copper Modem Module </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Vscmm">
+				<xs:annotation>
+					<xs:documentation>Variable Speed Copper Modem Module </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Efomm">
+				<xs:annotation>
+					<xs:documentation>Ethernet Fibre Optic Modem Module, A.K.A OFM</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Fromm">
+				<xs:annotation>
+					<xs:documentation>Far Reach Optical Modem Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Dsm">
+				<xs:annotation>
+					<xs:documentation>Direct Control Valve Support Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Ssm">
+				<xs:annotation>
+					<xs:documentation>Sensor Support Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Fsm">
+				<xs:annotation>
+					<xs:documentation>Fieldbus Support Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare11">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 11</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Dism">
+				<xs:annotation>
+					<xs:documentation>Downhole Instrumentation Support Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Limm">
+				<xs:annotation>
+					<xs:documentation>Line Installation Monitor Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Hippsm">
+				<xs:annotation>
+					<xs:documentation>High Integrity Pipeline Protection System Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Sem3Dhptg">
+				<xs:annotation>
+					<xs:documentation>SEM3 DHPTG Support</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Lism">
+				<xs:annotation>
+					<xs:documentation>Legacy Interface Support Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Sem3Asm">
+				<xs:annotation>
+					<xs:documentation>SEM3 Actuator support </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Dslm">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 18</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Mbcm">
+				<xs:annotation>
+					<xs:documentation>Multi-band Copper Modem</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Mmh">
+				<xs:annotation>
+					<xs:documentation>Modem Module Host Card</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Apcm">
+				<xs:annotation>
+					<xs:documentation>Adaptive Powerline Copper Modem Card</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare22">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 22</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Pscm">
+				<xs:annotation>
+					<xs:documentation>Power Switching Control Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare24">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 24</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare25">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 25</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_PbOfm">
+				<xs:annotation>
+					<xs:documentation>Profibus OFM for Snorre B</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare27">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 27</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare28">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 28</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Umd">
+				<xs:annotation>
+					<xs:documentation>Umbilical Monitoring Device</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Erm">
+				<xs:annotation>
+					<xs:documentation>Ethernet Router Module</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CARD_NAME_Spare31">
+				<xs:annotation>
+					<xs:documentation>Unallocated card type 31</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

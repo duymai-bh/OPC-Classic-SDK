@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) by Vetco Gray Controls Limited (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="SCI_UDPScanType">
+		<xs:sequence>
+			<xs:element name="MessageName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of UDP message to Scan (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FamilyCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Family Code (from ICD).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Command Code (from ICD).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataValues" type="uint32" minOccurs="0" maxOccurs="64">
+				<xs:annotation>
+					<xs:documentation>Downlink Payload Data (e.g. Scanlist numbers).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrimaryModemScanRate" type="uint32" default="1000">
+				<xs:annotation>
+					<xs:documentation>Scan definition for communications using primary modem.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BackupModemScanRate" type="uint32" default="5000">
+				<xs:annotation>
+					<xs:documentation>Scan definition for communications using backup modem.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SCI_UDPCommandType">
+		<xs:sequence>
+			<xs:element name="MessageName" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of UDP message to Scan (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FamilyCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Family Code (from ICD).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandCode" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Command Code (from ICD).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SCI_SurfaceScanListType">
+		<xs:sequence>
+			<xs:element name="Message" type="SCI_UDPScanType" minOccurs="0" maxOccurs="50">
+				<xs:annotation>
+					<xs:documentation>Scan definition for communications with Module - Required for Surface Use Only.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SCI_SurfaceCmdListType">
+		<xs:sequence>
+			<xs:element name="Commands" type="SCI_UDPCommandType" minOccurs="0" maxOccurs="50">
+				<xs:annotation>
+					<xs:documentation>Communications definition for commands to communications with Module - Required for Surface Use Only.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SCI_SurfaceUDPCommsType">
+		<xs:sequence>
+			<xs:element name="OnScan" type="bool">
+				<xs:annotation>
+					<xs:documentation>Communication To This Card Should Be Carried Out. Both Scan And Commands.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Module_IPAddress" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Part D of  Module IP Address</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType"/>
+			<xs:element name="SCI_UDPScanList" type="SCI_SurfaceScanListType">
+				<xs:annotation>
+					<xs:documentation>Scan definition for communications with Module - Required for Surface Use Only.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_UDPCMDList" type="SCI_SurfaceCmdListType">
+				<xs:annotation>
+					<xs:documentation>Communications definition for commands to communications with Module - Required for Surface Use Only.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

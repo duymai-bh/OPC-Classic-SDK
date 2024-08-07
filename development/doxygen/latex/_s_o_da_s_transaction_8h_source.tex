@@ -1,0 +1,330 @@
+\doxysection{SODa\+STransaction.\+h}
+\hypertarget{_s_o_da_s_transaction_8h_source}{}\label{_s_o_da_s_transaction_8h_source}\index{core/src/include/SODaSTransaction.h@{core/src/include/SODaSTransaction.h}}
+\mbox{\hyperlink{_s_o_da_s_transaction_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SODASTRANSACTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SODASTRANSACTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_cmn_object_8h}{SOCmnObject.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00006}00006\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 4)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00009}00009\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00010}00010\ \textcolor{comment}{//\ SODaSTransaction\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00011}00011\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00013}\mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{00013}}\ \textcolor{preprocessor}{\#define\ SODASTRANSACTION\_TYPE\_READ\ \ 0x10}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00014}\mbox{\hyperlink{_s_o_da_s_transaction_8h_a8a7a6e948e185f5e5be60d59397a7d52}{00014}}\ \textcolor{preprocessor}{\#define\ SODASTRANSACTION\_TYPE\_WRITE\ 0x20}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00016}\mbox{\hyperlink{_s_o_da_s_transaction_8h_abe6f4bc0c0f37fac0761b1cb38d9e92e}{00016}}\ \textcolor{preprocessor}{\#define\ SODASTRANSACTION\_STATE\_INACTIVE\ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00017}\mbox{\hyperlink{_s_o_da_s_transaction_8h_a08b7236251e40b2caaebf2a5921c8359}{00017}}\ \textcolor{preprocessor}{\#define\ SODASTRANSACTION\_STATE\_ACTIVE\ \ \ \ \ 0x02}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00019}\mbox{\hyperlink{_s_o_da_s_transaction_8h_aa1c62b77bc5b51c6516c83b5aaf23fd0}{00019}}\ \textcolor{preprocessor}{\#define\ SODASTRANSACTION\_FLAG\_NO\_CANCEL\_ON\_START\ 0x01}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00020}\mbox{\hyperlink{_s_o_da_s_transaction_8h_a98628585f08c1eff7816b5604936bb00}{00020}}\ \textcolor{preprocessor}{\#define\ SODASTRANSACTION\_FLAG\_NO\_CLIENT\_TRANSACTION\_ID\ 0x08}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00022}00022\ \textcolor{keyword}{class\ }SODaSComGroup;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00023}00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00024}00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_group}{SODaSGroup}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00025}00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00026}00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_data_callback}{SODaSDataCallback}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00027}00027\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00028}00028\ \textcolor{keyword}{class\ }SODaSXmlMethod;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00029}00029\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00031}\mbox{\hyperlink{class_s_o_da_s_transaction}{00031}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{_s_o_cmn_8h_a4ff6a3b83fff3c5baffaecf6093c2b71}{SODAS\_EXPORT}}\ \mbox{\hyperlink{class_s_o_da_s_transaction}{SODaSTransaction}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00033}\mbox{\hyperlink{class_s_o_da_s_transaction_a165a44cc96dff06969e4b64599ac1fad}{00033}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00034}\mbox{\hyperlink{class_s_o_da_s_transaction_a4817c02a0ddfffbe4d5e37240bd81979}{00034}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_o_da_s_group}{SODaSGroup}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00035}\mbox{\hyperlink{class_s_o_da_s_transaction_a343becfc4dd6c8b4695ef6882c0212b3}{00035}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }SODaSComGroup;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00037}00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00038}\mbox{\hyperlink{class_s_o_da_s_transaction_a8a65ad3644c35584c746c1cdf9d2acb8}{00038}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a8a65ad3644c35584c746c1cdf9d2acb8}{transactionState}}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00039}00039\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00040}\mbox{\hyperlink{class_s_o_da_s_transaction_a8a65ad3644c35584c746c1cdf9d2acb8a7c027916e8b728cf9ef47494a2928891}{00040}}\ \ \ \ \ \ \ \ \ inactive\ \ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_abe6f4bc0c0f37fac0761b1cb38d9e92e}{SODASTRANSACTION\_STATE\_INACTIVE}},}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00041}\mbox{\hyperlink{class_s_o_da_s_transaction_a8a65ad3644c35584c746c1cdf9d2acb8a54ce06fc4cc670671640d06a09796398}{00041}}\ \ \ \ \ \ \ \ \ active\ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a08b7236251e40b2caaebf2a5921c8359}{SODASTRANSACTION\_STATE\_ACTIVE}},}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00042}00042\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ type\ of\ OPC\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00045}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608f}{00045}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608f}{transactionType}}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00047}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fa4b30636779d7d26747b1ec2506fe909e}{00047}}\ \ \ \ \ \ \ \ \ refresh\ \ \ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}}\ \ +\ 0x40,\ \textcolor{comment}{//\ refresh\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00048}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fa549ba8005d2a76f30b62299c05c92261}{00048}}\ \ \ \ \ \ \ \ \ cyclic\ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}}\ \ +\ 0x80,\ \textcolor{comment}{//\ cyclic\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00049}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fae5d13beec113ceadb10e7d8d86c69c57}{00049}}\ \ \ \ \ \ \ \ \ asyncRead\ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}}\ \ +\ 0x01,\ \textcolor{comment}{//\ asyncronous\ item\ read\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00050}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fa5e59214f40ea7074fb3933d9cf95262e}{00050}}\ \ \ \ \ \ \ \ \ asyncWrite\ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a8a7a6e948e185f5e5be60d59397a7d52}{SODASTRANSACTION\_TYPE\_WRITE}}\ +\ 0x01,\ \textcolor{comment}{//\ asyncronous\ item\ write\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00051}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fa65985141ba65e579ed50c75d9df084d7}{00051}}\ \ \ \ \ \ \ \ \ syncRead\ \ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}}\ \ +\ 0x02,\ \textcolor{comment}{//\ syncronous\ item\ read\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00052}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fabccc49e70c458b24960d2b99aa1ee2bc}{00052}}\ \ \ \ \ \ \ \ \ syncWrite\ \ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a8a7a6e948e185f5e5be60d59397a7d52}{SODASTRANSACTION\_TYPE\_WRITE}}\ +\ 0x02,\ \textcolor{comment}{//\ syncronous\ item\ write\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00053}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fae4ab8b9753c6830f690cf5ee49d7ec05}{00053}}\ \ \ \ \ \ \ \ \ serverRead\ \ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}}\ \ +\ 0x04,\ \textcolor{comment}{//\ syncronous\ server\ read\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00054}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fa497365e22f7d440f8b39b75067b9e6ba}{00054}}\ \ \ \ \ \ \ \ \ serverWrite\ \ \ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a8a7a6e948e185f5e5be60d59397a7d52}{SODASTRANSACTION\_TYPE\_WRITE}}\ +\ 0x04,\ \textcolor{comment}{//\ syncronous\ server\ write\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00055}00055\ \ \ \ \ \ \ \ \ polledRefresh\ =\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}}\ \ +\ 0x20\ \ \textcolor{comment}{//\ polled\ refresh\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00056}\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608faf4405cebc3c1dc3114d89b76c7c59863}{00056}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ type\ of\ client\ connections}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00059}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658c}{00059}}\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658c}{connectionType}}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00060}00060\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00061}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658caa1d9db2ab28c389bea1d8d5e47aeba22}{00061}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658caa1d9db2ab28c389bea1d8d5e47aeba22}{dataObject}},\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ IDataObject\ (OPC\ DA\ V1.0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00062}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca933981e581eaf9482836c87c3aa3a6b9}{00062}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca933981e581eaf9482836c87c3aa3a6b9}{connectionPoint}},\ \ \ \ \textcolor{comment}{//\ IConnectionPoint\ (OPC\ DA\ V2.0\ and\ DA\ V3.0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00063}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca0c565cfa546b9b0424c9a97743e9d2fd}{00063}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca0c565cfa546b9b0424c9a97743e9d2fd}{synchronous}},\ \ \ \ \ \ \textcolor{comment}{//\ synchronous}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00064}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca5f151b66577be210cbc4ecb24fdfdb74}{00064}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca5f151b66577be210cbc4ecb24fdfdb74}{asyncSOAPMethod}},\ \ \textcolor{comment}{//\ asynchronous\ performed\ SOAP\ method\ (OPC\ XML\ DA\ 1.0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00065}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca08cd9053e86a30c62c36905d24a5bb08}{00065}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658ca08cd9053e86a30c62c36905d24a5bb08}{tunnel}},\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tunnel\ protocol\ (OPC\ Tunnel\ product)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ allConnections\ \ \ \ \ \ \textcolor{comment}{//\ all\ connections}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00067}\mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658cae5423507e81774a238c4b304317f8458}{00067}}\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00069}\mbox{\hyperlink{class_s_o_da_s_transaction_aa2d7b7c7dde3b4c186d5b734b4be8f8b}{00069}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_aa2d7b7c7dde3b4c186d5b734b4be8f8b}{SODaSTransaction}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_group}{SODaSGroup}}*\ group,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ type,}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_a16e099d97061a3fc15d62154f5ed658c}{connectionType}},\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ OPTIONAL\ DWORD\ connection\ =\ 0);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ server\ transaction\ id\ (==\ cancel\ id\ (OPC\ V2.0))}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00073}00073\ \ \ \ \ DWORD\ getTransactionId(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ client\ transaction\ id}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00076}00076\ \ \ \ \ DWORD\ getClientTransactionId(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{void}\ setClientTransactionId(DWORD\ transactionId);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00079}00079\ \ \ \ \ \textcolor{comment}{//\ transaction\ type}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608f}{transactionType}}\ getType(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00081}\mbox{\hyperlink{class_s_o_da_s_transaction_a01a6bc2d12d096f5b03e47d996363147}{00081}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a01a6bc2d12d096f5b03e47d996363147}{isCyclic}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00082}00082\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (m\_type\ ==\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608fa549ba8005d2a76f30b62299c05c92261}{SODaSTransaction::cyclic}});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00085}\mbox{\hyperlink{class_s_o_da_s_transaction_aa4676b5b77c80f5249d1f01a186befe5}{00085}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_aa4676b5b77c80f5249d1f01a186befe5}{isRead}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00086}00086\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ((m\_type\ \&\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}})\ ==\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a79d7f45f35c82e34dbf5baef8a0d8960}{SODASTRANSACTION\_TYPE\_READ}});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00089}\mbox{\hyperlink{class_s_o_da_s_transaction_abd692fa3cece7ae2c18946dc1d0a5a51}{00089}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_abd692fa3cece7ae2c18946dc1d0a5a51}{isWrite}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00090}00090\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ((m\_type\ \&\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a8a7a6e948e185f5e5be60d59397a7d52}{SODASTRANSACTION\_TYPE\_WRITE}})\ ==\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a8a7a6e948e185f5e5be60d59397a7d52}{SODASTRANSACTION\_TYPE\_WRITE}});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ generic\ group\ of\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00095}\mbox{\hyperlink{class_s_o_da_s_transaction_abecdb4d04a9430f3baf78ea77c3c97b0}{00095}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_group}{SODaSGroup}}*\ \mbox{\hyperlink{class_s_o_da_s_transaction_abecdb4d04a9430f3baf78ea77c3c97b0}{getGroup}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ connection\ of\ transaction\ (0\ for\ cyclic\ transactions)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00098}00098\ \ \ \ \ DWORD\ getConnection(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00100}00100\ \ \ \ \ \textcolor{comment}{//\ request\ list}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00101}00101\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *getRequestList(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00102}00102\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_sync}{SOCmnSync}}*\ getRequestListLock(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00104}00104\ \ \ \ \ \textcolor{comment}{//\ request\ list\ handling}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00105}\mbox{\hyperlink{class_s_o_da_s_transaction_abc7727e21af3b233337903d732bc690d}{00105}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_abc7727e21af3b233337903d732bc690d}{insertRequest}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}*\ req);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00106}\mbox{\hyperlink{class_s_o_da_s_transaction_a2105af48d8eb28be9121514dcdf3e7f2}{00106}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a2105af48d8eb28be9121514dcdf3e7f2}{removeRequest}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}*\ req);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00108}\mbox{\hyperlink{class_s_o_da_s_transaction_a44a649febaf3214b9a089eae159de360}{00108}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}*\ \mbox{\hyperlink{class_s_o_da_s_transaction_a44a649febaf3214b9a089eae159de360}{getRequestByItem}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_item}{SODaSItem}}*\ srcItem);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00109}00109\ \ \ \ \ DWORD\ getRequestCount(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00111}00111\ \ \ \ \ \textcolor{comment}{//\ actions\ on\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00112}\mbox{\hyperlink{class_s_o_da_s_transaction_a79f47085d1e06c51e0c1ff3b73c594c2}{00112}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a79f47085d1e06c51e0c1ff3b73c594c2}{start}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00113}\mbox{\hyperlink{class_s_o_da_s_transaction_ac2490223783641eb4e7880d2a3e0e764}{00113}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac2490223783641eb4e7880d2a3e0e764}{update}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ \mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}},\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ dueTime,\ \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}}\ DWORD*\ span);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00114}\mbox{\hyperlink{class_s_o_da_s_transaction_a0b92a947cf70859905f81f4b2a0ef231}{00114}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a0b92a947cf70859905f81f4b2a0ef231}{complete}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00115}\mbox{\hyperlink{class_s_o_da_s_transaction_a91f48d73f595879c901974c1b019dafa}{00115}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a91f48d73f595879c901974c1b019dafa}{cancel}}(\mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00116}\mbox{\hyperlink{class_s_o_da_s_transaction_a206032af3eefc61af6415748755b3c32}{00116}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a206032af3eefc61af6415748755b3c32}{execute}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer,\ \mbox{\hyperlink{class_s_o_cmn_events}{SOCmnEvents}}*\ pEvents,\ DWORD\ reqEventId,\ DWORD\ dueTime);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00118}\mbox{\hyperlink{class_s_o_da_s_transaction_a650d67e849046ea3f59d834b45a18881}{00118}}\ \ \ \ \ \textcolor{keyword}{virtual}\ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_a650d67e849046ea3f59d834b45a18881}{getTransactionTimeout}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00121}00121\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00123}\mbox{\hyperlink{class_s_o_da_s_transaction_a766c39a27c58e6167f2feade8ee54735}{00123}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a766c39a27c58e6167f2feade8ee54735}{timeoutTransaction}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ \mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}},\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ dueTime,\ \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}}\ DWORD*\ span);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00124}00124\ \ \ \ \ \textcolor{comment}{//\ implement\ this\ to\ return\ TRUE\ if\ you\ want\ the\ functionality\ enabled}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00125}\mbox{\hyperlink{class_s_o_da_s_transaction_a51d6f831421c097d09be4945dd096120}{00125}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a51d6f831421c097d09be4945dd096120}{getStopTraceOnTransactionTimeout}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00126}00126\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00128}00128\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ timeout\ for\ the\ synchronous\ calls\ default\ value\ 1000\ microseconds}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00131}\mbox{\hyperlink{class_s_o_da_s_transaction_a37ebb2ca7c2086ae3796ffcaa0f73654}{00131}}\ \ \ \ \ \textcolor{keyword}{virtual}\ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_a37ebb2ca7c2086ae3796ffcaa0f73654}{getSyncTimeout}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ actions\ on\ request\ list}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00134}\mbox{\hyperlink{class_s_o_da_s_transaction_a446827becbf4ba9a2ea8cbf637ba54cd}{00134}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a446827becbf4ba9a2ea8cbf637ba54cd}{handleRequests}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *reqList);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00135}\mbox{\hyperlink{class_s_o_da_s_transaction_ad2daf8d2be4c99e5b8949c4a62670b76}{00135}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ad2daf8d2be4c99e5b8949c4a62670b76}{cancelRequests}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00136}\mbox{\hyperlink{class_s_o_da_s_transaction_a2a596f57fcc496465aba7c6a88457dde}{00136}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a2a596f57fcc496465aba7c6a88457dde}{notiofyCompletedInternally}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_request}{SODaSRequest}}*\ pRequest);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00138}00138\ \ \ \ \ \textcolor{comment}{//\ object\ trace\ id}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00139}\mbox{\hyperlink{class_s_o_da_s_transaction_a679996f719ed890554a1109500653f98}{00139}}\ \ \ \ \ \textcolor{keyword}{virtual}\ LPCTSTR\ \mbox{\hyperlink{class_s_o_da_s_transaction_a679996f719ed890554a1109500653f98}{getObjTraceId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00141}\mbox{\hyperlink{class_s_o_da_s_transaction_a5bdf0b6bbfa781cb7a80e0129709d82e}{00141}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a5bdf0b6bbfa781cb7a80e0129709d82e}{isStarted}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00142}00142\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ((\mbox{\hyperlink{class_s_o_cmn_object_a3de92e8fdf902f638218296ae7a55642}{getObjectState}}()\ \&\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a08b7236251e40b2caaebf2a5921c8359}{SODASTRANSACTION\_STATE\_ACTIVE}})\ ==\ \mbox{\hyperlink{_s_o_da_s_transaction_8h_a08b7236251e40b2caaebf2a5921c8359}{SODASTRANSACTION\_STATE\_ACTIVE}});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00146}\mbox{\hyperlink{class_s_o_da_s_transaction_aacff614fcd76eaf73b61707bf7982f16}{00146}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmnEventPointer}}\ \mbox{\hyperlink{class_s_o_da_s_transaction_aacff614fcd76eaf73b61707bf7982f16}{getCompletedEvent}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00147}00147\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_completionEvent;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00149}00149\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00150}\mbox{\hyperlink{class_s_o_da_s_transaction_a4213e40b7d5eae0b049702d848e38cef}{00150}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a4213e40b7d5eae0b049702d848e38cef}{setCompletedEvent}}(\mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmnEventPointer}}\ completionEvent)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00151}00151\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00152}00152\ \ \ \ \ \ \ \ \ m\_completionEvent\ =\ completionEvent;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00155}\mbox{\hyperlink{class_s_o_da_s_transaction_a7ceb90c3cbe20d097294fbf8f905b69f}{00155}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a7ceb90c3cbe20d097294fbf8f905b69f}{getLastCompletionTime}}(SOCmnDateTime\&\ ct)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00156}00156\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00157}00157\ \ \ \ \ \ \ \ \ ct\ =\ m\_lastCompletionTime;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00158}00158\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00160}\mbox{\hyperlink{class_s_o_da_s_transaction_a66ab21a4b1201f07d8bf3e839ae808f4}{00160}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a66ab21a4b1201f07d8bf3e839ae808f4}{sendKeepAlive}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00161}\mbox{\hyperlink{class_s_o_da_s_transaction_acb107a8e9a8b34e2b22b3f232a902713}{00161}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_acb107a8e9a8b34e2b22b3f232a902713}{getLastSendDataChangeTime}}(SOCmnDateTime\&\ ct)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00162}00162\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00163}00163\ \ \ \ \ \ \ \ \ ct\ =\ m\_lastSendDataChangeTime;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00164}00164\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00165}\mbox{\hyperlink{class_s_o_da_s_transaction_a10decfda050c55bb74b306b5c38b2ae0}{00165}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a10decfda050c55bb74b306b5c38b2ae0}{updateLastSendDataChangeTime}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00166}00166\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00167}00167\ \ \ \ \ \ \ \ \ m\_lastSendDataChangeTime.now();}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00168}00168\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00169}00169\ \ \ \ \ \textcolor{comment}{//\ implement\ this\ to\ return\ error\ code\ for\ the\ desired\ types\ of\ requests}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00170}\mbox{\hyperlink{class_s_o_da_s_transaction_afb45c32304747ce996c2018c4691fb32}{00170}}\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ \mbox{\hyperlink{class_s_o_da_s_transaction_afb45c32304747ce996c2018c4691fb32}{rejectRequests}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_server}{SODaSServer}}*\ pServer);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00172}00172\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00173}00173\ \ \ \ \ \textcolor{keywordtype}{void}\ setXMLMethod(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ SODaSXmlMethod*\ pMth);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00174}00174\ \ \ \ \ SODaSXmlMethod*\ getXMLMethod(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00176}00176\ \ \ \ \ \textcolor{keywordtype}{void}\ setReCheckSpan(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ span)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00177}00177\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00178}00178\ \ \ \ \ \ \ \ \ m\_reCheckSpan\ =\ span;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00179}00179\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00180}00180\ \ \ \ \ DWORD\ getReCheckSpan(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00181}00181\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_reCheckSpan;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00183}00183\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00185}00185\ \ \ \ \ \textcolor{keywordtype}{void}\ setWaitTime(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ time)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00186}00186\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00187}00187\ \ \ \ \ \ \ \ \ m\_waitTime\ =\ time;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00189}00189\ \ \ \ \ DWORD\ getWaitTime(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00190}00190\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_waitTime;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00192}00192\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00194}00194\ \ \ \ \ \textcolor{keywordtype}{void}\ setHoldTime(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ time)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00195}00195\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00196}00196\ \ \ \ \ \ \ \ \ m\_holdTime\ =\ time;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00198}00198\ \ \ \ \ DWORD\ getHoldTime(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00199}00199\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_holdTime;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00201}00201\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00202}00202\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00204}\mbox{\hyperlink{class_s_o_da_s_transaction_a2bbba9082e1f5adba3558ecaf83f025c}{00204}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a2bbba9082e1f5adba3558ecaf83f025c}{setFlag}}(BYTE\ flag)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00205}00205\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00206}00206\ \ \ \ \ \ \ \ \ m\_flag\ =\ flag;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00207}00207\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00208}\mbox{\hyperlink{class_s_o_da_s_transaction_ad4337027e82139ed31dd4fa1ec9afdf4}{00208}}\ \ \ \ \ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_ad4337027e82139ed31dd4fa1ec9afdf4}{getFlag}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00209}00209\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_flag;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00211}00211\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00212}00212\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00213}\mbox{\hyperlink{class_s_o_da_s_transaction_aac71ac33ccb5a93aba2edd609f05a356}{00213}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_aac71ac33ccb5a93aba2edd609f05a356}{getRequestType}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00215}\mbox{\hyperlink{class_s_o_da_s_transaction_a25e988bebbd29d204bf7617eb6ee5317}{00215}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a25e988bebbd29d204bf7617eb6ee5317}{notifyAllChanges}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00217}00217\ \ \ \ \ \textcolor{comment}{//\ reimplement\ this\ in\ your\ child\ class\ if\ you\ wish\ to\ enable\ support\ for\ OPC\ buffering}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00218}\mbox{\hyperlink{class_s_o_da_s_transaction_a7a7dadbe23a1144b9a55d573dd930985}{00218}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a7a7dadbe23a1144b9a55d573dd930985}{checkItemTwice}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00219}00219\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00221}00221\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00223}\mbox{\hyperlink{class_s_o_da_s_transaction_ab1ae64705fffeac363030f14d8ab4126}{00223}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ab1ae64705fffeac363030f14d8ab4126}{emptyRequestsCompletedEvent}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00225}00225\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00226}\mbox{\hyperlink{class_s_o_da_s_transaction_a3c838467d0bb1a44f062744c701bd5d4}{00226}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a3c838467d0bb1a44f062744c701bd5d4}{\string~SODaSTransaction}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00228}\mbox{\hyperlink{class_s_o_da_s_transaction_af94de2ccd9ec71ce3b47f335d7afe1ef}{00228}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ \mbox{\hyperlink{class_s_o_da_s_transaction_af94de2ccd9ec71ce3b47f335d7afe1ef}{m\_reqList}};\ \ \textcolor{comment}{//\ request\ list}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00229}\mbox{\hyperlink{class_s_o_da_s_transaction_a425ffe756f88a0d00757076dea9f2fa3}{00229}}\ \ \ \ \ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_a425ffe756f88a0d00757076dea9f2fa3}{m\_type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ transaction\ type}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00230}\mbox{\hyperlink{class_s_o_da_s_transaction_a5e97c24cbb5b5c85a12beff1cb1531a3}{00230}}\ \ \ \ \ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_a5e97c24cbb5b5c85a12beff1cb1531a3}{m\_connectionType}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ type\ of\ client\ connections}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00231}\mbox{\hyperlink{class_s_o_da_s_transaction_abf6b4ffb33f963c05bf052d2c57ee66b}{00231}}\ \ \ \ \ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_abf6b4ffb33f963c05bf052d2c57ee66b}{m\_flag}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00232}\mbox{\hyperlink{class_s_o_da_s_transaction_ae0b92f5fbb2c3879626ee6eab58497ff}{00232}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_ae0b92f5fbb2c3879626ee6eab58497ff}{m\_connection}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ connection\ id}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00233}\mbox{\hyperlink{class_s_o_da_s_transaction_add2e3b02d6740b9021cc8588e95f191c}{00233}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_group}{SODaSGroup}}*\ \mbox{\hyperlink{class_s_o_da_s_transaction_add2e3b02d6740b9021cc8588e95f191c}{m\_group}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ generic\ group\ object}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00235}\mbox{\hyperlink{class_s_o_da_s_transaction_a22707fde1ae794923d1f05c1d2b2a274}{00235}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_a22707fde1ae794923d1f05c1d2b2a274}{m\_transactionId}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ transaction\ id}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00236}\mbox{\hyperlink{class_s_o_da_s_transaction_af7616365ecabebaa978f045ee5f293d2}{00236}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_af7616365ecabebaa978f045ee5f293d2}{m\_clientTransId}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clients\ transaction\ id\ (OPC\ V2.0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00237}\mbox{\hyperlink{class_s_o_da_s_transaction_ad3e5ba5c149876f6611b833876581118}{00237}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_event_pointer}{SOCmnEventPointer}}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ad3e5ba5c149876f6611b833876581118}{m\_completionEvent}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00238}\mbox{\hyperlink{class_s_o_da_s_transaction_a9bb6b933cb55ff2d5c0c5aaf56074df1}{00238}}\ \ \ \ \ SOCmnDateTime\ \mbox{\hyperlink{class_s_o_da_s_transaction_a9bb6b933cb55ff2d5c0c5aaf56074df1}{m\_lastCompletionTime}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00239}\mbox{\hyperlink{class_s_o_da_s_transaction_acff80663c4ddd5656a307bf79b303966}{00239}}\ \ \ \ \ SOCmnDateTime\ \mbox{\hyperlink{class_s_o_da_s_transaction_acff80663c4ddd5656a307bf79b303966}{m\_lastSendDataChangeTime}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00240}\mbox{\hyperlink{class_s_o_da_s_transaction_ac382e9f7e67870c425d45c8409495bfa}{00240}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac382e9f7e67870c425d45c8409495bfa}{m\_reqStartedCnt}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00242}00242\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_SOAP}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00243}00243\ \ \ \ \ SODaSXmlMethod*\ m\_xmlMethod;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00244}00244\ \ \ \ \ DWORD\ m\_waitTime;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00245}00245\ \ \ \ \ DWORD\ m\_holdTime;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00246}00246\ \ \ \ \ DWORD\ m\_reCheckSpan;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00247}00247\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00249}\mbox{\hyperlink{class_s_o_da_s_transaction_a90797db24cafd2a329ca8ca727ccd75a}{00249}}\ \ \ \ \ BYTE\ \mbox{\hyperlink{class_s_o_da_s_transaction_a90797db24cafd2a329ca8ca727ccd75a}{m\_traceAdditionOnUpdate}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00251}00251\ \ \ \ \ \textcolor{comment}{//\ server\ transaction\ id\ (==\ cancel\ id\ (OPC\ V2.0))}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00252}00252\ \ \ \ \ \textcolor{keywordtype}{void}\ setTransactionId(DWORD\ transactionId);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00253}00253\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00254}00254\ \ \ \ \ \textcolor{comment}{//\ send\ OPC\ data\ to\ the\ client}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00255}00255\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ sendReadData(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_data_callback}{SODaSDataCallback}}*\ advise);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00256}00256\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ sendWriteData(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_data_callback}{SODaSDataCallback}}*\ advise);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00257}00257\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00258}00258\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00259}00259\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ sendReadDataTP(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_data_callback}{SODaSDataCallback}}*\ advise);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00260}00260\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ sendWriteDataTP(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_data_callback}{SODaSDataCallback}}*\ advise);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00261}00261\ \ \ \ \ \textcolor{keyword}{virtual}\ HRESULT\ sendKeepAliveTP(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_da_s_data_callback}{SODaSDataCallback}}*\ advise);}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00262}00262\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00264}00264\ \ \ \ \ \textcolor{comment}{//\ disconnect\ client\ of\ transaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00265}\mbox{\hyperlink{class_s_o_da_s_transaction_ac3be5d7fddeaa8b69e47c3f307af5d83}{00265}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac3be5d7fddeaa8b69e47c3f307af5d83}{disconnectClient}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00266}\mbox{\hyperlink{class_s_o_da_s_transaction_a3f206f08ea43268c8fbbd9c7f282d49d}{00266}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_s_o_da_s_transaction_a3f206f08ea43268c8fbbd9c7f282d49d}{isSyncronisationNeeded}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00267}00267\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00269}00269\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00270}00270\ \};\ \textcolor{comment}{//\ SODaSTransaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00273}\mbox{\hyperlink{class_s_o_da_s_transaction_a57327d4a2cec34a110d6f89f23dd7b9f}{00273}}\ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_a57327d4a2cec34a110d6f89f23dd7b9f}{SODaSTransaction::getTransactionId}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00274}00274\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00275}00275\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a22707fde1ae794923d1f05c1d2b2a274}{m\_transactionId}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00276}00276\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00278}\mbox{\hyperlink{class_s_o_da_s_transaction_ac61f4505168c3a22eaf4557c6c4ecf24}{00278}}\ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac61f4505168c3a22eaf4557c6c4ecf24}{SODaSTransaction::getConnection}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00279}00279\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00280}00280\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ae0b92f5fbb2c3879626ee6eab58497ff}{m\_connection}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00281}00281\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00283}\mbox{\hyperlink{class_s_o_da_s_transaction_a2b6150d8b00bdaf6b592547ddb379640}{00283}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a2b6150d8b00bdaf6b592547ddb379640}{SODaSTransaction::setTransactionId}}(DWORD\ transactionId)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00284}00284\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00285}00285\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_a22707fde1ae794923d1f05c1d2b2a274}{m\_transactionId}}\ =\ transactionId;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00286}00286\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00288}\mbox{\hyperlink{class_s_o_da_s_transaction_a00e3b3370150fc25b484ce2d5c103b7b}{00288}}\ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_a00e3b3370150fc25b484ce2d5c103b7b}{SODaSTransaction::getClientTransactionId}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00289}00289\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00290}00290\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_da_s_transaction_af7616365ecabebaa978f045ee5f293d2}{m\_clientTransId}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00291}00291\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00293}\mbox{\hyperlink{class_s_o_da_s_transaction_a5292b5b667b678b6f43a9660d8241a40}{00293}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a5292b5b667b678b6f43a9660d8241a40}{SODaSTransaction::setClientTransactionId}}(DWORD\ transactionId)}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00294}00294\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00295}00295\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_abf6b4ffb33f963c05bf052d2c57ee66b}{m\_flag}}\ \&=\ \string~SODASTRANSACTION\_FLAG\_NO\_CLIENT\_TRANSACTION\_ID;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00296}00296\ \ \ \ \ \mbox{\hyperlink{class_s_o_da_s_transaction_af7616365ecabebaa978f045ee5f293d2}{m\_clientTransId}}\ =\ transactionId;}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00297}00297\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00299}\mbox{\hyperlink{class_s_o_da_s_transaction_a892fd84b2928118b3aa891f756e32741}{00299}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608f}{SODaSTransaction::transactionType}}\ \mbox{\hyperlink{class_s_o_da_s_transaction_a892fd84b2928118b3aa891f756e32741}{SODaSTransaction::getType}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00300}00300\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00301}00301\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_s_o_da_s_transaction_ac8f8bedd88aad8d20b2c64b1d7ac608f}{SODaSTransaction::transactionType}})\mbox{\hyperlink{class_s_o_da_s_transaction_a425ffe756f88a0d00757076dea9f2fa3}{m\_type}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00302}00302\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00304}\mbox{\hyperlink{class_s_o_da_s_transaction_a84be67bfd22318d6d7c3e0ade68817c0}{00304}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ *\mbox{\hyperlink{class_s_o_da_s_transaction_a84be67bfd22318d6d7c3e0ade68817c0}{SODaSTransaction::getRequestList}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00305}00305\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00306}00306\ \ \ \ \ \textcolor{keywordflow}{return}\ \&\mbox{\hyperlink{class_s_o_da_s_transaction_af94de2ccd9ec71ce3b47f335d7afe1ef}{m\_reqList}};}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00307}00307\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00309}\mbox{\hyperlink{class_s_o_da_s_transaction_a31aa7b3d882d6da654330fdcdccd4e50}{00309}}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{class_s_o_cmn_sync}{SOCmnSync}}*\ \mbox{\hyperlink{class_s_o_da_s_transaction_a31aa7b3d882d6da654330fdcdccd4e50}{SODaSTransaction::getRequestListLock}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00310}00310\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00311}00311\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_da_s_transaction_af94de2ccd9ec71ce3b47f335d7afe1ef}{m\_reqList}}.\mbox{\hyperlink{class_s_o_cmn_list_ade0134b74813e6fb54fb9d737491d9a9}{getSyncObject}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00312}00312\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00314}\mbox{\hyperlink{class_s_o_da_s_transaction_a29b382d056b7075663ad997567a5ddfa}{00314}}\ \textcolor{keyword}{inline}\ DWORD\ \mbox{\hyperlink{class_s_o_da_s_transaction_a29b382d056b7075663ad997567a5ddfa}{SODaSTransaction::getRequestCount}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00315}00315\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00316}00316\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaSRequest>}}\ reqList(\mbox{\hyperlink{class_s_o_da_s_transaction_a84be67bfd22318d6d7c3e0ade68817c0}{getRequestList}}());}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00317}00317\ \ \ \ \ \textcolor{keywordflow}{return}\ reqList.\mbox{\hyperlink{class_s_o_cmn_list_a16b9d387764ae81a6574732f821c5c72}{getCount}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00318}00318\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00320}\mbox{\hyperlink{_s_o_da_s_transaction_8h_a2565a0d5230870a3ab1a3c4d730e6517}{00320}}\ \textcolor{preprocessor}{\#define\ OPCTransaction\ SODaSTransaction}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00322}00322\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00323}00323\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_da_s_transaction_8h_source_l00324}00324\ }
+
+\end{DoxyCode}

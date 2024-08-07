@@ -1,0 +1,194 @@
+\doxysection{Server\+Address\+Space\+Element.\+h}
+\hypertarget{_server_address_space_element_8h_source}{}\label{_server_address_space_element_8h_source}\index{C++/src/server/ServerAddressSpaceElement.h@{C++/src/server/ServerAddressSpaceElement.h}}
+\mbox{\hyperlink{_server_address_space_element_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SERVERADDRESSSPACEELEMENT\_H\_}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SERVERADDRESSSPACEELEMENT\_H\_}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enums_8h}{../Enums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_server_enums_8h}{ServerEnums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mutex_8h}{Mutex.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00011}00011\ \textcolor{preprocessor}{\#ifdef\ WIN64}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00012}00012\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00013}00013\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00014}00014\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00015}00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00017}00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server}{SoftingOPCToolboxServer}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00020}00020\ \textcolor{keyword}{class\ }AddressSpaceElement;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00022}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element}{00022}}\ \textcolor{keyword}{class\ }TBC\_EXPORT\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element}{IAddressSpaceElement}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00023}00023\ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00025}00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00026}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_adf444048246c5f49d0bf6084c43a6857}{00026}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_adf444048246c5f49d0bf6084c43a6857}{\string~IAddressSpaceElement}}()\ \{\};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00027}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_a17f40f63b01499e7d0af8ef8e573cac1}{00027}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_a17f40f63b01499e7d0af8ef8e573cac1}{addChild}}(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aChild)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00028}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_a39831534b8ab32ec4579d4d33bc310c9}{00028}}\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_a39831534b8ab32ec4579d4d33bc310c9}{removeChild}}(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aChild)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00030}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_ab72b77545fc835dd3bf7cb3ff59a6a0a}{00030}}\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<AddressSpaceElement*>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_ab72b77545fc835dd3bf7cb3ff59a6a0a}{getChildren}}(\textcolor{keywordtype}{void})\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00031}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_afb765267470ca639b36e23daec4248f9}{00031}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_afb765267470ca639b36e23daec4248f9}{getParent}}(\textcolor{keywordtype}{void})\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00033}00033\ \};\ \ \textcolor{comment}{//\ \ class\ end\ IAddressSpaceElement}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00035}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{00035}}\ \textcolor{keyword}{class\ }TBC\_EXPORT\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element}{IAddressSpaceElement}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00038}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_aa8456e9ccddc3e823b19c56f26bd29b6}{00038}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_o_t_s_globals}{OTSGlobals}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00039}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_af02d87fc65f3027df02eecb0b74f2d54}{00039}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction}{DaTransaction}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00040}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_aca0c1f075d2fdd46ae5388035fe13cca}{00040}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_request}{DaRequest}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00041}00041\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}(}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ aName,}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ anUserData,}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ anObjectHandle,}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aParentHandle);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00051}00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{\string~AddressSpaceElement}}();}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ addChild(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aChild);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ removeChild(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aChild);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00057}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_abd05bb519bd65e00a3868b7a7adb29b1}{00057}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_abd05bb519bd65e00a3868b7a7adb29b1}{getName}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00061}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a411a3b6f141df7e5b82493124a83062d}{00061}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a411a3b6f141df7e5b82493124a83062d}{setName}}(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ aValue)}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ m\_name\ =\ aValue;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00066}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_af75299455cff98a8e474ff4e27e1c9a3}{00066}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_af75299455cff98a8e474ff4e27e1c9a3}{getHasChildren}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00067}00067\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_hasChildren;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00070}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a75c34c4bcbcd5cdcd36ecb66a1babc76}{00070}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a75c34c4bcbcd5cdcd36ecb66a1babc76}{setHasChildren}}(BOOL\ aValue)}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ m\_hasChildren\ =\ aValue;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00075}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a01f26c990b6c57a168e9d742199aedc2}{00075}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a01f26c990b6c57a168e9d742199aedc2}{getIsBrowsable}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_isBrowsable;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00079}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a697d4ff761b6fa540040bba8f9df78e4}{00079}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a697d4ff761b6fa540040bba8f9df78e4}{setIsBrowsable}}(BOOL\ aValue)}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00080}00080\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ m\_isBrowsable\ =\ aValue;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00084}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a251bf96996fdf1ba100b6afd6ca5d85a}{00084}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a251bf96996fdf1ba100b6afd6ca5d85a}{getUserData}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_userData;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00088}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_abd3105fdf663fb69421b91381038c62e}{00088}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_abd3105fdf663fb69421b91381038c62e}{setUserData}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aValue)}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00090}00090\ \ \ \ \ \ \ \ \ m\_userData\ =\ aValue;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00093}00093\ \ \ \ \ \textcolor{comment}{//\ \ Events}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00094}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a7dbe784422c2891fb46428955deebf4e}{00094}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a7dbe784422c2891fb46428955deebf4e}{addedToAddressSpace}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00095}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_aa9f24469fa211dc00147a867a3364a6c}{00095}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_aa9f24469fa211dc00147a867a3364a6c}{removedFromAddressSpace}}()\ \{\}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00097}00097\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00099}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a215154add714a252476784c16b2b754d}{00099}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a215154add714a252476784c16b2b754d}{m\_name}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00100}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a1c3af27f87a97eb246b2a8df656cecd2}{00100}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a1c3af27f87a97eb246b2a8df656cecd2}{m\_hasChildren}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00101}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a753e0847ac2cbc7d891a4602545e94c4}{00101}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a753e0847ac2cbc7d891a4602545e94c4}{m\_isBrowsable}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00102}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a41da4cb6222956c221967804899eabc2}{00102}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a41da4cb6222956c221967804899eabc2}{m\_userData}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00104}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a669d786da6f715d61633172e62d93174}{00104}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a669d786da6f715d61633172e62d93174}{m\_objectHandle}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00105}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a920cd7a466ca12c3fd04023ae6533340}{00105}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a920cd7a466ca12c3fd04023ae6533340}{m\_parentHandle}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00107}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_acaab3da62b2864a9d72d537f3c5d6beb}{00107}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_acaab3da62b2864a9d72d537f3c5d6beb}{setObjectHandle}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aValue)}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00108}00108\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00109}00109\ \ \ \ \ \ \ \ \ m\_objectHandle\ =\ aValue;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00111}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a7437541009c69897c73d1e7ed733fee1}{00111}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a7437541009c69897c73d1e7ed733fee1}{setParentHandle}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aValue)}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00112}00112\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00113}00113\ \ \ \ \ \ \ \ \ m\_parentHandle\ =\ aValue;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00116}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a07bf8def831f902d6d2ef95bd3abbcdd}{00116}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a07bf8def831f902d6d2ef95bd3abbcdd}{getObjectHandle}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00117}00117\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_objectHandle;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00120}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a849838aac438d9530b5663919412d4fd}{00120}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element_a849838aac438d9530b5663919412d4fd}{getParentHandle}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00121}00121\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_parentHandle;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00125}00125\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ triggerAddedToAddressSpace();}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00126}00126\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ triggerRemovedFromAddressSpace();}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00128}00128\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00130}00130\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ m\_currentHash;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00132}00132\ \};\ \ \textcolor{comment}{//\ \ end\ class\ AddressSpaceElement}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00135}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root}{00135}}\ \textcolor{keyword}{class\ }TBC\_EXPORT\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root}{AddressSpaceRoot}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element}{IAddressSpaceElement}}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00136}00136\ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00138}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_aa8456e9ccddc3e823b19c56f26bd29b6}{00138}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_o_t_s_globals}{OTSGlobals}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00140}00140\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00142}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a8b48955bfe6ae2e2f87829b000698046}{00142}}\ \ \ \ \ \mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server_a2f9daed7bb312257807e076da4731c37}{EnumAddressSpaceType}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a8b48955bfe6ae2e2f87829b000698046}{m\_namespaceType}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00143}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_adb27b08aa14d3e5de99caee98c297af5}{00143}}\ \ \ \ \ std::map<unsigned\ long,\ AddressSpaceElement*>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_adb27b08aa14d3e5de99caee98c297af5}{m\_elements}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00144}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a9a64e0649edec74cc33908b2fe0767b1}{00144}}\ \ \ \ \ \mbox{\hyperlink{class_mutex}{Mutex}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a9a64e0649edec74cc33908b2fe0767b1}{m\_elementsJanitor}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00145}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_aa33301bc3dd47c8504d8fd8ef65d8e85}{00145}}\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_aa33301bc3dd47c8504d8fd8ef65d8e85}{m\_root}};}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00147}00147\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root}{AddressSpaceRoot}}(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aRoot);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00148}00148\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root}{AddressSpaceRoot}}(}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00149}00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server_a2f9daed7bb312257807e076da4731c37}{EnumAddressSpaceType}}\ anAddressSpaceType,}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00150}00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aRoot);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00152}00152\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ addElementToArray(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ anElement);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00153}00153\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ getElementFromArray(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ anElementUserData);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00155}00155\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ removeElementFromArray(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ anElement);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00156}00156\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ removeElementFromArray(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ anElementUserData);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00158}00158\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ getParent(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aHandle);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00160}00160\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00162}00162\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root}{\string~AddressSpaceRoot}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00164}00164\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ addChild(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aChild);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00165}00165\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ removeChild(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ aChild);}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{class_mutex}{Mutex}}\ getElementSyncRoot();}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00169}00169\ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<AddressSpaceElement*>\ getChildren(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00170}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a528b3cf61055f8d60d1b7b17627ca5ee}{00170}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a528b3cf61055f8d60d1b7b17627ca5ee}{getParent}}()}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00171}00171\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_root-\/>\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_i_address_space_element_afb765267470ca639b36e23daec4248f9}{getParent}}();}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00173}00173\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00175}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_aa003ae7beb0cbf0cc72734b623707551}{00175}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_aa003ae7beb0cbf0cc72734b623707551}{queryAddressSpaceElementData}}(}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ anElementId,}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00177}00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_element}{AddressSpaceElement}}*\&\ anElementDetails)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00179}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a30a0173cef490455220f6820f4be0172}{00179}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_address_space_root_a30a0173cef490455220f6820f4be0172}{queryAddressSpaceElementChildren}}(}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ anElementId,}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00181}00181\ \ \ \ \ \ \ \ \ std::vector<AddressSpaceElement*>\&\ aChildrenList)\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00183}00183\ \};\ \ \textcolor{comment}{//\ \ end\ class\ AddressSpaceRoot}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00185}00185\ \};\ \ \textcolor{comment}{//\ \ end\ namespace}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00187}00187\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_server_address_space_element_8h_source_l00188}00188\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

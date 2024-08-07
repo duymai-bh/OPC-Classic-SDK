@@ -1,0 +1,191 @@
+\doxysection{Trace.\+cpp}
+\hypertarget{_trace_8cpp_source}{}\label{_trace_8cpp_source}\index{C++/src/Trace.cpp@{C++/src/Trace.cpp}}
+\mbox{\hyperlink{_trace_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_s_compat_8h}{OSCompat.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_trace_8h}{Trace.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_tcommon_8h}{OTcommon.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_version_8h}{SOVersion.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00006}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0a}{00006}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0a}{tagTraceData}}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00009}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa4dbb5b2963d5ff64a3aea32f16dc6517}{00009}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa4dbb5b2963d5ff64a3aea32f16dc6517}{TRACEDATA\_ALL}}\ \ \ \ \ \ \ \ \ \ \ =\ 0x000001FF,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00010}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa8b68d8e5b6602e7124767ba1e1f0a859}{00010}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa8b68d8e5b6602e7124767ba1e1f0a859}{TRACEDATA\_LEVEL}}\ \ \ \ \ \ \ \ \ =\ 0x0000000F,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00011}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa12873db6281c6f31343fe1e1e829158d}{00011}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa12873db6281c6f31343fe1e1e829158d}{TRACEDATA\_LEVEL\_ERR}}\ \ \ \ \ =\ 0x00000008,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00012}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aaefa593d9bbbcbb4579fc388bd7f495dc}{00012}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aaefa593d9bbbcbb4579fc388bd7f495dc}{TRACEDATA\_LEVEL\_WRN}}\ \ \ \ \ =\ 0x00000004,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00013}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa1bedb0d7368e470bc81dd543716211b1}{00013}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa1bedb0d7368e470bc81dd543716211b1}{TRACEDATA\_LEVEL\_INF}}\ \ \ \ \ =\ 0x00000002,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00014}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa873875bd3ae36ae8ea1411a8503d2e43}{00014}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa873875bd3ae36ae8ea1411a8503d2e43}{TRACEDATA\_LEVEL\_DEB}}\ \ \ \ \ =\ 0x00000001,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00015}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa0aaab464fdb60f949a974b0c947142fc}{00015}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa0aaab464fdb60f949a974b0c947142fc}{TRACEDATA\_FILE}}\ \ \ \ \ \ \ \ \ \ =\ 0x000000F0,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00016}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aabc4221370b48b8af6bb37d65aa52d588}{00016}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aabc4221370b48b8af6bb37d65aa52d588}{TRACEDATA\_FILE\_ENABLE}}\ \ \ =\ 0x00000010,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00017}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa86ecac6e60217158ad9e1b150b3fce32}{00017}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa86ecac6e60217158ad9e1b150b3fce32}{TRACEDATA\_FILE\_NAME}}\ \ \ \ \ =\ 0x00000020,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00018}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aac312ae0c941cd75a54e82c7eaa1e87ad}{00018}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aac312ae0c941cd75a54e82c7eaa1e87ad}{TRACEDATA\_MAX\_BACKUPS}}\ \ \ =\ 0x00000040,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00019}\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aac3494cbfc22ebcaf48a6e61a8272593e}{00019}}\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aac3494cbfc22ebcaf48a6e61a8272593e}{TRACEDATA\_FILE\_SIZE}}\ \ \ \ \ =\ 0x00000080,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aaf4d47db7e209f2543ba5ea3b89d9dc20}{TRACEDATA\_API\_VERSION}}\ \ \ =\ 0x00000100}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00022}\mbox{\hyperlink{_trace_8cpp_aba87a7b28fc1519e01c7d9acf9b163e3}{00022}}\ \}\ \ \ \mbox{\hyperlink{_trace_8cpp_aba87a7b28fc1519e01c7d9acf9b163e3}{EnumTraceData}};}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00024}00024\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Trace::m\_errorLevelMask\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00025}00025\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Trace::m\_warningLevelMask\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00026}00026\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Trace::m\_infoLevelMask\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00027}00027\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Trace::m\_debugLevelMask\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00028}00028\ \textcolor{keywordtype}{bool}\ Trace::m\_enableTraceToFile\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00029}00029\ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ Trace::m\_fileName;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00030}00030\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Trace::m\_maxFileSize\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00031}00031\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Trace::m\_maxBackups\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00033}\mbox{\hyperlink{class_trace_a89a525f42c042d8c48e3a14213764813}{00033}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_trace_a89a525f42c042d8c48e3a14213764813}{Trace::getDebugLevelMask}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00034}00034\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_debugLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00036}00036\ \}\textcolor{comment}{//\ end\ GetDebugLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00038}\mbox{\hyperlink{class_trace_a0e3a310becc4aac3fc8c8c8dfa683ebb}{00038}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a0e3a310becc4aac3fc8c8c8dfa683ebb}{Trace::setDebugLevelMask}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aMask)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00040}00040\ \ \ \ \ m\_debugLevelMask\ =\ aMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00041}00041\ \}\textcolor{comment}{//\ end\ SetDebugLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00043}\mbox{\hyperlink{class_trace_a652738499c25004556f226dafdb34d13}{00043}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_trace_a652738499c25004556f226dafdb34d13}{Trace::getInfoLevelMask}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_infoLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00046}00046\ \}\textcolor{comment}{//\ end\ GetInfoLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00048}\mbox{\hyperlink{class_trace_a96a71e721455c627a837ef3afc002b09}{00048}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a96a71e721455c627a837ef3afc002b09}{Trace::setInfoLevelMask}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aMask)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00049}00049\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00050}00050\ \ \ \ \ m\_infoLevelMask\ =\ aMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00051}00051\ \}\textcolor{comment}{//\ end\ SetInfoLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00053}00053\ \textcolor{comment}{//\ Level\ of\ warnings\ traced}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00054}\mbox{\hyperlink{class_trace_a9ffc46314e6379f0337169da93123eef}{00054}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_trace_a9ffc46314e6379f0337169da93123eef}{Trace::getWarningLevelMask}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00055}00055\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_warningLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00057}00057\ \}\textcolor{comment}{//\ end\ GetWarningLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00059}\mbox{\hyperlink{class_trace_a0bab1c000fc6dfbcc150f79da63bab67}{00059}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a0bab1c000fc6dfbcc150f79da63bab67}{Trace::setWarningLevelMask}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aMask)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00061}00061\ \ \ \ \ m\_warningLevelMask\ =\ aMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00062}00062\ \}\textcolor{comment}{//\ end\ SetWarningLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00064}\mbox{\hyperlink{class_trace_a244f1073a81103377f9db2a13b843557}{00064}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_trace_a244f1073a81103377f9db2a13b843557}{Trace::getErrorLevelMask}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_errorLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00067}00067\ \}\textcolor{comment}{//\ end\ GetErrorLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00069}\mbox{\hyperlink{class_trace_a9c5b7a36801a741b65aed9353465150b}{00069}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a9c5b7a36801a741b65aed9353465150b}{Trace::setErrorLevelMask}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aMask)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00070}00070\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00071}00071\ \ \ \ \ m\_errorLevelMask\ =\ aMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00072}00072\ \}\textcolor{comment}{//\ end\ SetErrorLevelMask}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00074}\mbox{\hyperlink{class_trace_a1da211dc4f5af4fede375b71e2b5897c}{00074}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_trace_a1da211dc4f5af4fede375b71e2b5897c}{Trace::getEnableTraceToFile}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00075}00075\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_enableTraceToFile;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00077}00077\ \}\textcolor{comment}{//\ end\ GetEnableTraceToFile}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00079}\mbox{\hyperlink{class_trace_a6e7c51c9bb62a2ea2f19dbcc144e4da8}{00079}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a6e7c51c9bb62a2ea2f19dbcc144e4da8}{Trace::setEnableTraceToFile}}(\textcolor{keywordtype}{bool}\ isEnabled)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00080}00080\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00081}00081\ \ \ \ \ m\_enableTraceToFile\ =\ isEnabled;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00082}00082\ \ \ \ \ setTraceOptions(\mbox{\hyperlink{_trace_8cpp_a74317b8b602562e42f49dc4e6427bb0aa4dbb5b2963d5ff64a3aea32f16dc6517}{TRACEDATA\_ALL}});}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00083}00083\ \}\textcolor{comment}{//\ end\ setEnableTraceToFile}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00085}\mbox{\hyperlink{class_trace_a0b86a7f90ea6ebdfad26329e4d2d3a02}{00085}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_trace_a0b86a7f90ea6ebdfad26329e4d2d3a02}{Trace::getFileMaxSize}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00086}00086\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxFileSize;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00088}00088\ \}\textcolor{comment}{//\ end\ getFileMaxSize}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00090}\mbox{\hyperlink{class_trace_a32890af161db9722fe74716d24e2622c}{00090}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a32890af161db9722fe74716d24e2622c}{Trace::setFileMaxSize}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aMaxSize)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00091}00091\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00092}00092\ \ \ \ \ m\_maxFileSize\ =\ aMaxSize;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00093}00093\ \}\textcolor{comment}{//\ end\ setFileMaxSize}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00095}\mbox{\hyperlink{class_trace_adaefaf757b04155556c2ec3ac763e28a}{00095}}\ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ \mbox{\hyperlink{class_trace_adaefaf757b04155556c2ec3ac763e28a}{Trace::getFileName}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00096}00096\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_fileName;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00098}00098\ \}\ \ \ \textcolor{comment}{//\ \ end\ getFileName}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00100}\mbox{\hyperlink{class_trace_a5181aad021bf432c092d3b1d20c774c4}{00100}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a5181aad021bf432c092d3b1d20c774c4}{Trace::setFileName}}(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ aFileName)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00101}00101\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00102}00102\ \ \ \ \ m\_fileName\ =\ aFileName;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00103}00103\ \}\ \ \ \textcolor{comment}{//\ \ end\ setFileName}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00105}\mbox{\hyperlink{class_trace_a6398d14040721c0be7cce4f4a459c83d}{00105}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_trace_a6398d14040721c0be7cce4f4a459c83d}{Trace::getMaxBackups}}()}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00106}00106\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_maxBackups;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00108}00108\ \}\ \ \ \textcolor{comment}{//\ \ end\ getMaxBackups}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00110}\mbox{\hyperlink{class_trace_a1f8468c7bee63aa9ed1a55567a4fd2b6}{00110}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_a1f8468c7bee63aa9ed1a55567a4fd2b6}{Trace::setMaxBackups}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ maxBackups)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00111}00111\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00112}00112\ \ \ \ \ m\_maxBackups\ =\ maxBackups;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00113}00113\ \}\ \ \ \textcolor{comment}{//\ \ end\ setMaxBackups}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00115}00115\ \textcolor{keywordtype}{void}\ Trace::setTraceOptions(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aWhatDataFlag)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00116}00116\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00117}00117\ \ \ \ \ \mbox{\hyperlink{struct___o_t_trace_data}{OTTraceData}}\ traceData;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00118}00118\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_a547b2759297beba3b560edbc0458bdc7}{m\_debugLevelMask}}\ =\ m\_debugLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00119}00119\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_a1270cbec5f00b30784d88c44c06b3163}{m\_infoLevelMask}}\ =\ m\_infoLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00120}00120\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_abf8f0353f147bbb7df18ef190ccdd1fc}{m\_warningLevelMask}}\ =\ m\_warningLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00121}00121\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_a47791c36a0110305ab01b128d0a746db}{m\_errorLevelMask}}\ =\ m\_errorLevelMask;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00122}00122\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_afe95bec4e2048bc7d0fe146a9611a996}{m\_enableTraceToFile}}\ =\ (\textcolor{keywordtype}{unsigned}\ char)m\_enableTraceToFile;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00123}00123\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_a3bb6f36f9fb451d5bf07e124744952db}{m\_maxFileSize}}\ =\ m\_maxFileSize;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00124}00124\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_a57795753ba5c9e541f6eccdb266fc679}{m\_maxBackups}}\ \ =\ \ \ m\_maxBackups;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_fileName.empty())}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00127}00127\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_ac075001387933fa2d5c33281bbead506}{m\_fileName}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00131}00131\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_ac075001387933fa2d5c33281bbead506}{m\_fileName}}\ =\ (OTChar*)\ m\_fileName.c\_str();}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00133}00133\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if\ ...\ else}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00135}00135\ \ \ \ \ DWORD\ winMajorVersion\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00136}00136\ \ \ \ \ DWORD\ winMinorVersion\ =\ 0;\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00137}00137\ \ \ \ \ DWORD\ winBuildNr\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00138}00138\ \ \ \ \ DWORD\ platformId\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00139}00139\ \ \ \ \ TCHAR\ csdVersion[128]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00141}00141\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ OSVERSIONINFO\ osvi;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ ZeroMemory(\&osvi,\ \textcolor{keyword}{sizeof}(OSVERSIONINFO));}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ osvi.dwOSVersionInfoSize\ =\ \textcolor{keyword}{sizeof}(OSVERSIONINFO);}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (::GetVersionEx(\&osvi))}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ winMajorVersion\ =\ osvi.dwMajorVersion;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ winMinorVersion\ =\ osvi.dwMinorVersion;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ winBuildNr\ =\ osvi.dwBuildNumber;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ platformId\ =\ osvi.dwPlatformId;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a5d2a60f146eb99d568ffa4644b676700}{\_stprintf}}(csdVersion,\ osvi.szCSDVersion,\ \mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(osvi.szCSDVersion)\ >\ 128\ ?\ 128\ :\ \mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(osvi.szCSDVersion));}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ winVersion\ =\ GetVersion();}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ winMajorVersion\ =\ (DWORD)(LOBYTE(LOWORD(winVersion)));}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ winMinorVersion\ =\ (DWORD)(HIBYTE(LOWORD(winVersion)));}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (winVersion\ <\ 0x80000000)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ winBuildNr\ =\ (DWORD)(HIWORD(winVersion));}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00167}00167\ \ \ \ \ TCHAR\ apiVersion[128];}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00168}00168\ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a5d2a60f146eb99d568ffa4644b676700}{\_stprintf}}(apiVersion,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}TBC\%s\ \%u.\%u.\%u.\%u,\ built\ with\ VC++\ \%u,\ running\ on\ Microsoft\ Windows\ NT\ \%u.\%u.\%u\ (\%u)\ \%s\ \%s"{}}),}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ (\textcolor{keyword}{sizeof}(TCHAR)\ ==\ 1\ ?\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}"{}})\ :\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}u"{}})),\ \mbox{\hyperlink{_o_p_c_ver_prod_8h_ad0e85fbd4934da3e68b2651cb3ce0eea}{MAJOR\_VERSION\_NUMBER}},\ \mbox{\hyperlink{_o_p_c_ver_prod_8h_a5a5dcc3c2a158eb0d3e07c549b0b2583}{MINOR\_VERSION\_NUMBER}},\ \mbox{\hyperlink{_o_p_c_ver_prod_8h_adf467305a84e6b487522d79ca097a15b}{PATCH\_VERSION\_NUMBER}},\ \mbox{\hyperlink{_o_p_c_ver_prod_8h_ae7f90861d8c4d5b1cbdcf71d325feea2}{BUILD\_NUMBER}},\ \_MSC\_VER,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ winMajorVersion,\ winMinorVersion,\ winBuildNr,\ platformId,\ csdVersion,\ sizeof(ptrdiff\_t)\ ==\ 4\ ?\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}x86"{}})\ :\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}x64"{}}));}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00172}00172\ \ \ \ \ traceData.\mbox{\hyperlink{struct___o_t_trace_data_ad80330053cfdc44c04af2eb2977f735c}{m\_apiVersion}}\ =\ apiVersion;}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00174}00174\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_a6f15941809923648b42cdb0ec95f90d1}{OTEnableTracing}}(aWhatDataFlag,\ \&traceData);}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00175}00175\ \}\ \ \ \textcolor{comment}{//\ \ end\ setTraceOptions}}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00178}\mbox{\hyperlink{class_trace_ab3ffd322b4b1d751bbc43a82f33821ad}{00178}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_trace_ab3ffd322b4b1d751bbc43a82f33821ad}{Trace::writeline}}(}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ aLevel,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00180}00180\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aMask,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00181}00181\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ anObjectID,}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00182}00182\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ aMessage)}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00183}00183\ \{}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00184}00184\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_a9fbeab9abcb6f7f7772182ee55cb7089}{OTTrace}}(aLevel,\ aMask,\ (OTChar*)anObjectID.c\_str(),\ (OTChar*)aMessage.c\_str());}
+\DoxyCodeLine{\Hypertarget{_trace_8cpp_source_l00185}00185\ \}\ \ \ \textcolor{comment}{//\ \ end\ writeline}}
+
+\end{DoxyCode}

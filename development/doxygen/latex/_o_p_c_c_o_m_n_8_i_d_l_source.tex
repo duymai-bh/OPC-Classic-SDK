@@ -1,0 +1,247 @@
+\doxysection{OPCCOMN.\+IDL}
+\hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source}{}\label{_o_p_c_c_o_m_n_8_i_d_l_source}\index{core/src/opc/OPCCOMN.IDL@{core/src/opc/OPCCOMN.IDL}}
+\mbox{\hyperlink{_o_p_c_c_o_m_n_8_i_d_l}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00001}00001\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00002}00002\ \textcolor{comment}{//\ TITLE:\ OpcComn.idl}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00004}00004\ \textcolor{comment}{//\ CONTENTS:}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00005}00005\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00006}00006\ \textcolor{comment}{//\ Interface\ declarations\ for\ the\ OPC\ Common\ specification.}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00008}00008\ \textcolor{comment}{//\ (c)\ Copyright\ 1998-\/2002\ The\ OPC\ Foundation}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00009}00009\ \textcolor{comment}{//\ ALL\ RIGHTS\ RESERVED.}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00010}00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00011}00011\ \textcolor{comment}{//\ DISCLAIMER:}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00012}00012\ \textcolor{comment}{//\ \ This\ code\ is\ provided\ by\ the\ OPC\ Foundation\ solely\ to\ assist\ in\ }}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00013}00013\ \textcolor{comment}{//\ \ understanding\ and\ use\ of\ the\ appropriate\ OPC\ Specification(s)\ and\ may\ be\ }}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00014}00014\ \textcolor{comment}{//\ \ used\ as\ set\ forth\ in\ the\ License\ Grant\ section\ of\ the\ OPC\ Specification.}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00015}00015\ \textcolor{comment}{//\ \ This\ code\ is\ provided\ as-\/is\ and\ without\ warranty\ or\ support\ of\ any\ sort}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00016}00016\ \textcolor{comment}{//\ \ and\ is\ subject\ to\ the\ Warranty\ and\ Liability\ Disclaimers\ which\ appear}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00017}00017\ \textcolor{comment}{//\ \ in\ the\ printed\ OPC\ Specification.}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00018}00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00019}00019\ \textcolor{comment}{//\ MODIFICATION\ LOG:}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00020}00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00021}00021\ \textcolor{comment}{//\ Date\ \ \ \ \ \ \ By\ \ \ \ Notes}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00022}00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ -\/-\/-\/\ \ \ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00023}00023\ \textcolor{comment}{//\ 1998/04/09\ acc\ \ \ import\ unknwn.idl\ rather\ than\ oaidl.idl}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00024}00024\ \textcolor{comment}{//\ 1998/06/15\ acc\ \ \ add\ 'library'\ object\ at\ end\ to\ allow\ typelib\ generation}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00025}00025\ \textcolor{comment}{//\ 1998/06/19\ acc\ \ \ change\ V2\ uuids\ prior\ to\ final\ release}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00026}00026\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\ avoid\ conflict\ with\ 'old'\ OPCDA\ Automation\ uuids}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00027}00027\ \textcolor{comment}{//\ 1998/09/18\ acc\ \ \ add\ OPCServerList\ IDL\ (with\ help\ from\ Gary\ Klassen)}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00028}00028\ \textcolor{comment}{//\ 2002/08/21\ rsa\ \ \ Added\ asynchrounous\ UUIDs.\ Fixed\ formatting.}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00029}00029\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00031}00031\ \textcolor{keyword}{import}\ \textcolor{stringliteral}{"{}comcat.idl"{}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00032}00032\ \textcolor{keyword}{import}\ \textcolor{stringliteral}{"{}oaidl.idl"{}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00033}00033\ \textcolor{keyword}{import}\ \textcolor{stringliteral}{"{}ocidl.idl"{}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00034}00034\ \textcolor{keyword}{import}\ \textcolor{stringliteral}{"{}objidl.idl"{}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00036}00036\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00037}00037\ \textcolor{comment}{//\ IOPCShutdown}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00039}00039\ [}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00040}00040\ \ \ \ \ object,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00041}00041\ \ \ \ \ uuid(F31DFDE1-\/07B6-\/11d2-\/B2D8-\/0060083BA1FB),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ async\_uuid(32E8D701-\/A335-\/4fc1-\/8F4B-\/663F505C7D62),}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00043}00043\ \ \ \ \ pointer\_default(unique)}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00044}00044\ ]}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00045}\mbox{\hyperlink{interface_i_o_p_c_shutdown}{00045}}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_shutdown}{IOPCShutdown}}\ :\ IUnknown}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00046}00046\ \{}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00047}\mbox{\hyperlink{interface_i_o_p_c_shutdown_acbee2ec85a32cebb955b927ad9b1d189}{00047}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_shutdown_acbee2ec85a32cebb955b927ad9b1d189}{ShutdownRequest}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00048}00048\ \ \ \ \ \ \ \ \ [in,\ \textcolor{keywordtype}{string}]\ LPCWSTR\ szReason}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00049}00049\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00050}00050\ \}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00052}00052\ \textcolor{comment}{//=============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00053}00053\ \textcolor{comment}{//\ IOPCCommon}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00055}00055\ [}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00056}00056\ \ \ \ \ object,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00057}00057\ \ \ \ \ uuid(F31DFDE2-\/07B6-\/11d2-\/B2D8-\/0060083BA1FB),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ async\_uuid(32E8D702-\/A335-\/4fc1-\/8F4B-\/663F505C7D62),}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00059}00059\ \ \ \ \ pointer\_default(unique)}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00060}00060\ ]}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00061}\mbox{\hyperlink{interface_i_o_p_c_common}{00061}}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_common}{IOPCCommon}}\ :\ IUnknown}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00062}00062\ \{}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00064}\mbox{\hyperlink{interface_i_o_p_c_common_ac029442af840f59c9f64fff7ae848549}{00064}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_common_ac029442af840f59c9f64fff7ae848549}{SetLocaleID}}(\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00065}00065\ \ \ \ \ \ \ \ \ [in]\ LCID\ dwLcid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00066}00066\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00068}\mbox{\hyperlink{interface_i_o_p_c_common_a3f5377a4261b3f603d036d05b94af46b}{00068}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_common_a3f5377a4261b3f603d036d05b94af46b}{GetLocaleID}}(\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00069}00069\ \ \ \ \ \ \ \ \ [out]\ LCID\ *pdwLcid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00070}00070\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00072}\mbox{\hyperlink{interface_i_o_p_c_common_ac926ede198878ef7def5a5dfebeadc7c}{00072}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_common_ac926ede198878ef7def5a5dfebeadc7c}{QueryAvailableLocaleIDs}}(\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00073}00073\ \ \ \ \ \ \ \ \ [out]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ \ *\ pdwCount,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00074}00074\ \ \ \ \ \ \ \ \ [out,\ size\_is(,*pdwCount)]\ LCID\ **\ pdwLcid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00075}00075\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00077}\mbox{\hyperlink{interface_i_o_p_c_common_a264236f594b6d8d3bd5032bee2250f8c}{00077}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_common_a264236f594b6d8d3bd5032bee2250f8c}{GetErrorString}}(\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00078}00078\ \ \ \ \ \ \ \ \ [in]\ \ \ \ \ \ \ \ \ \ HRESULT\ \ dwError,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00079}00079\ \ \ \ \ \ \ \ \ [out,\ \textcolor{keywordtype}{string}]\ LPWSTR\ *\ ppString}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00080}00080\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00082}\mbox{\hyperlink{interface_i_o_p_c_common_a8badb3a0d5b8f9bb37818e53d1ea5823}{00082}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_common_a8badb3a0d5b8f9bb37818e53d1ea5823}{SetClientName}}(\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00083}00083\ \ \ \ \ \ \ \ \ [in,\ \textcolor{keywordtype}{string}]\ LPCWSTR\ szName\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00084}00084\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00085}00085\ \}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00087}00087\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00088}00088\ \textcolor{comment}{//\ IOPCServerList}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00089}00089\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00090}00090\ \textcolor{comment}{//\ The\ OPCEnum.EXE\ object\ provided\ by\ the\ OPC\ Foundation\ supports\ the\ }}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00091}00091\ \textcolor{comment}{//\ IOPCServerList\ interface\ via\ DCOM\ to\ allow\ clients\ to\ determine\ available\ }}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00092}00092\ \textcolor{comment}{//\ OPC\ servers\ on\ remote\ machines}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00094}00094\ [}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00095}00095\ \ \ \ \ object,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00096}00096\ \ \ \ \ uuid(13486D50-\/4821-\/11D2-\/A494-\/3CB306C10000),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ async\_uuid(32E8D703-\/A335-\/4fc1-\/8F4B-\/663F505C7D62),}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00098}00098\ \ \ \ \ pointer\_default(unique)}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00099}00099\ ]}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00100}\mbox{\hyperlink{interface_i_o_p_c_server_list}{00100}}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_server_list}{IOPCServerList}}\ :\ IUnknown}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00101}00101\ \{}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00102}\mbox{\hyperlink{interface_i_o_p_c_server_list_afe239e92c8063b9b466de29a5a8ac13d}{00102}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_server_list_afe239e92c8063b9b466de29a5a8ac13d}{EnumClassesOfCategories}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00103}00103\ \ \ \ \ \ \ \ \ [in]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ \ \ \ \ \ \ \ cImplemented,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00104}00104\ \ \ \ \ \ \ \ \ [in,size\_is(cImplemented)]\ CATID\ \ \ \ \ \ \ \ rgcatidImpl[],}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00105}00105\ \ \ \ \ \ \ \ \ [in]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ \ \ \ \ \ \ \ cRequired,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00106}00106\ \ \ \ \ \ \ \ \ [in,size\_is(cRequired)]\ \ \ \ CATID\ \ \ \ \ \ \ \ rgcatidReq[],}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00107}00107\ \ \ \ \ \ \ \ \ [out]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IEnumGUID\ **\ ppenumClsid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00108}00108\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00110}\mbox{\hyperlink{interface_i_o_p_c_server_list_a3be3528e760d5886f6762588e32d90cc}{00110}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_server_list_a3be3528e760d5886f6762588e32d90cc}{GetClassDetails}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00111}00111\ \ \ \ \ \ \ \ \ [in]\ \ REFCLSID\ \ clsid,\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00112}00112\ \ \ \ \ \ \ \ \ [out]\ LPOLESTR*\ ppszProgID,\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00113}00113\ \ \ \ \ \ \ \ \ [out]\ LPOLESTR*\ ppszUserType}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00114}00114\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00116}\mbox{\hyperlink{interface_i_o_p_c_server_list_a531e44e59dfb5f71da93b5f0a35f009b}{00116}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_server_list_a531e44e59dfb5f71da93b5f0a35f009b}{CLSIDFromProgID}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00117}00117\ \ \ \ \ \ \ \ \ [in]\ \ LPCOLESTR\ szProgId,\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00118}00118\ \ \ \ \ \ \ \ \ [out]\ LPCLSID\ \ \ clsid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00119}00119\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00120}00120\ \};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00122}00122\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00123}00123\ \textcolor{comment}{//\ IOPCEnumGUID}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00124}00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00125}00125\ \textcolor{comment}{//\ The\ OPCEnum.EXE\ object\ now\ has\ an\ interface}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00126}00126\ \textcolor{comment}{//\ IOPCServerList2\ which\ uses\ IOPCEnumGUID\ rather\ than}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00127}00127\ \textcolor{comment}{//\ the\ standard\ MS\ IEnumGUID.\ This\ was\ done\ to\ work}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00128}00128\ \textcolor{comment}{//\ around\ problems\ with\ the\ MS\ version\ on\ certain}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00129}00129\ \textcolor{comment}{//\ system\ configurations.\ IOPCEnumGUID\ is\ impelmented}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00130}00130\ \textcolor{comment}{//\ in\ OPCEnum.EXE.}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00132}00132\ [}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00133}00133\ \ \ \ \ object,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00134}00134\ \ \ \ \ uuid(55C382C8-\/21C7-\/4e88-\/96C1-\/BECFB1E3F483),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00135}00135\ \ \ \ \ \textcolor{comment}{//\ async\_uuid(32E8D704-\/A335-\/4fc1-\/8F4B-\/663F505C7D62),}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00136}00136\ \ \ \ \ pointer\_default(unique)}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00137}00137\ ]}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00138}\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d}{00138}}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d}{IOPCEnumGUID}}\ :\ IUnknown}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00139}00139\ \{}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00140}\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a0358323ed6d6ea9f026cb76e81d5c954}{00140}}\ \ \ \ \ \textcolor{keyword}{typedef}\ [unique]\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d}{IOPCEnumGUID}}\ *\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a0358323ed6d6ea9f026cb76e81d5c954}{LPOPCENUMGUID}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00142}\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a32d39699292f56cd5938dcdac5682412}{00142}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a32d39699292f56cd5938dcdac5682412}{Next}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00143}00143\ \ \ \ \ \ \ \ \ [in]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ \ \ celt,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00144}00144\ \ \ \ \ \ \ \ \ [out,\ size\_is(celt),\ length\_is(*pceltFetched)]\ \mbox{\hyperlink{struct___g_u_i_d}{GUID}}\ \ *\ rgelt,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00145}00145\ \ \ \ \ \ \ \ \ [out]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ *\ pceltFetched}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00146}00146\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00148}\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a6cbc4dc0f86f7c2d39725411c340dc2c}{00148}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a6cbc4dc0f86f7c2d39725411c340dc2c}{Skip}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00149}00149\ \ \ \ \ \ \ \ \ [in]\ ULONG\ celt}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00150}00150\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00152}\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_af5eb17bfe6a3dd7256b0cc6d67a2f0d8}{00152}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_af5eb17bfe6a3dd7256b0cc6d67a2f0d8}{Reset}}();}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00154}\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a14b8f12fe246b67a8219304666b4e9fb}{00154}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d_a14b8f12fe246b67a8219304666b4e9fb}{Clone}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00155}00155\ \ \ \ \ \ \ \ \ [out]\ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d}{IOPCEnumGUID}}\ **ppenum}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00156}00156\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00157}00157\ \}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00159}00159\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00160}00160\ \textcolor{comment}{//\ IOPCServerList2}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00162}00162\ [}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00163}00163\ \ \ \ \ object,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00164}00164\ \ \ \ \ uuid(9DD0B56C-\/AD9E-\/43ee-\/8305-\/487F3188BF7A),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00165}00165\ \ \ \ \ \textcolor{comment}{//\ async\_uuid(32E8D705-\/A335-\/4fc1-\/8F4B-\/663F505C7D62),}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00166}00166\ \ \ \ \ pointer\_default(unique)}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00167}00167\ ]}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00168}\mbox{\hyperlink{interface_i_o_p_c_server_list2}{00168}}\ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_server_list2}{IOPCServerList2}}\ :\ IUnknown}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00169}00169\ \{}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00170}\mbox{\hyperlink{interface_i_o_p_c_server_list2_af2339e63c2d5d3243cc047e5897747d0}{00170}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_server_list2_af2339e63c2d5d3243cc047e5897747d0}{EnumClassesOfCategories}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00171}00171\ \ \ \ \ \ \ \ \ [in]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ \ \ \ \ \ \ \ \ \ \ cImplemented,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00172}00172\ \ \ \ \ \ \ \ \ [in,size\_is(cImplemented)]\ CATID\ \ \ \ \ \ \ \ \ \ \ rgcatidImpl[],}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00173}00173\ \ \ \ \ \ \ \ \ [in]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ \ \ \ \ \ \ \ \ \ \ cRequired,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00174}00174\ \ \ \ \ \ \ \ \ [in,size\_is(cRequired)]\ \ \ \ CATID\ \ \ \ \ \ \ \ \ \ \ rgcatidReq[],}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00175}00175\ \ \ \ \ \ \ \ \ [out]\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d}{IOPCEnumGUID}}\ **\ ppenumClsid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00176}00176\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00178}\mbox{\hyperlink{interface_i_o_p_c_server_list2_ac278152bec72be8dbd679e2bfbea470d}{00178}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_server_list2_ac278152bec72be8dbd679e2bfbea470d}{GetClassDetails}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00179}00179\ \ \ \ \ \ \ \ \ [in]\ \ REFCLSID\ \ clsid,\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00180}00180\ \ \ \ \ \ \ \ \ [out]\ LPOLESTR*\ ppszProgID,\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00181}00181\ \ \ \ \ \ \ \ \ [out]\ LPOLESTR*\ ppszUserType,}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00182}00182\ \ \ \ \ \ \ \ \ [out]\ LPOLESTR*\ ppszVerIndProgID}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00183}00183\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00185}\mbox{\hyperlink{interface_i_o_p_c_server_list2_a390436e5517ba9834e76b7f606d0eca9}{00185}}\ \ \ \ \ HRESULT\ \mbox{\hyperlink{interface_i_o_p_c_server_list2_a390436e5517ba9834e76b7f606d0eca9}{CLSIDFromProgID}}(}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00186}00186\ \ \ \ \ \ \ \ \ [in]\ \ LPCOLESTR\ szProgId,\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00187}00187\ \ \ \ \ \ \ \ \ [out]\ LPCLSID\ \ \ clsid}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00188}00188\ \ \ \ \ );}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00189}00189\ \};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00191}00191\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00192}00192\ \textcolor{comment}{//\ Type\ Library}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00194}00194\ [}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00195}00195\ \ \ \ \ uuid(B28EEDB1-\/AC6F-\/11d1-\/84D5-\/00608CB8A7E9),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00196}00196\ \ \ \ \ version(1.10),}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00197}00197\ \ \ \ \ helpstring(\textcolor{stringliteral}{"{}OPC\ Common\ 1.10\ Type\ Library"{}})}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00198}00198\ ]}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00199}\mbox{\hyperlink{namespace_o_p_c_c_o_m_n}{00199}}\ library\ \mbox{\hyperlink{namespace_o_p_c_c_o_m_n}{OPCCOMN}}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00200}00200\ \{}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00201}\mbox{\hyperlink{namespace_o_p_c_c_o_m_n_acdb3d268f6578d837035e1f37164b8f9}{00201}}\ \ \ \ \ importlib(\textcolor{stringliteral}{"{}stdole32.tlb"{}});}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00202}\mbox{\hyperlink{namespace_o_p_c_c_o_m_n_a58e8ee9ef1a436af9a377275062079d8}{00202}}\ \ \ \ \ importlib(\textcolor{stringliteral}{"{}stdole2.tlb"{}});}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00203}00203\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00204}00204\ \ \ \ \ \textcolor{comment}{//==========================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00205}00205\ \ \ \ \ \textcolor{comment}{//\ Standard\ Interfaces}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00207}00207\ \ \ \ \ \textcolor{keyword}{interface\ }IEnumString;}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00208}00208\ \ \ \ \ \textcolor{keyword}{interface\ }IEnumUnknown;}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00209}00209\ \ \ \ \ \textcolor{keyword}{interface\ }IEnumGUID;}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00210}00210\ \ \ \ \ \textcolor{keyword}{interface\ }IConnectionPointContainer;}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00211}00211\ \ \ \ \ \textcolor{keyword}{interface\ }IConnectionPoint;}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00212}00212\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00213}00213\ \ \ \ \ \textcolor{comment}{//==========================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00214}00214\ \ \ \ \ \textcolor{comment}{//\ OPC\ Synchronous\ Interfaces}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00216}00216\ \ \ \ \ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_common}{IOPCCommon}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00217}00217\ \ \ \ \ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_shutdown}{IOPCShutdown}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00218}00218\ \ \ \ \ \textcolor{keyword}{interface\ }IOpcServerList;}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00219}00219\ \ \ \ \ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_server_list2}{IOPCServerList2}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00220}00220\ \ \ \ \ \textcolor{keyword}{interface\ }\mbox{\hyperlink{interface_i_o_p_c_enum_g_u_i_d}{IOPCEnumGUID}};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00221}00221\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00222}00222\ \ \ \ \ \textcolor{comment}{//==========================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00223}00223\ \ \ \ \ \textcolor{comment}{//\ Standard\ Asynchronous\ Interfaces}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00224}00224\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00225}00225\ \ \ \ \ \textcolor{comment}{//\ interface\ ICallFactory;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00226}00226\ \ \ \ \ \textcolor{comment}{//\ interface\ ICancelMethodCalls;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00227}00227\ \ \ \ \ \textcolor{comment}{//\ interface\ IAsyncManager;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00228}00228\ \ \ \ \ \textcolor{comment}{//\ interface\ ISynchronize;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00229}00229\ \ \ \ \ \textcolor{comment}{//\ interface\ IWaitMultiple;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00230}00230\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00231}00231\ \ \ \ \ \textcolor{comment}{//==========================================================================}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00232}00232\ \ \ \ \ \textcolor{comment}{//\ OPC\ Asynchronous\ Interfaces}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00234}00234\ \ \ \ \ \textcolor{comment}{//\ interface\ AsyncIOPCCommon;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00235}00235\ \ \ \ \ \textcolor{comment}{//\ interface\ AsyncIOPCShutdown;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00236}00236\ \ \ \ \ \textcolor{comment}{//\ interface\ AsyncIOpcServerList;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00237}00237\ \ \ \ \ \textcolor{comment}{//\ interface\ AsyncIOPCServerList2;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00238}00238\ \ \ \ \ \textcolor{comment}{//\ interface\ AsyncIOPCEnumGUID;}}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00239}00239\ \};}
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{_o_p_c_c_o_m_n_8_i_d_l_source_l00241}00241\ }
+
+\end{DoxyCode}

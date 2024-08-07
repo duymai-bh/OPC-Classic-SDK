@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v
+10 (http://www.altova.com) by Tim Dyer (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="EgdDataProductionPayloadSizeType">
+		<xs:annotation>
+			<xs:documentation>Due to 255 payload limit of SemStar5 UDP frames allowed EGD payload size must be limited.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum EGD exchange payload</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="200">
+				<xs:annotation>
+					<xs:documentation>Maximum EGD exchange payload</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EgdPublishExchangePeriodMsecsType">
+		<xs:annotation>
+			<xs:documentation>EGD Data Production Exchange publish rate in milliseconds</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>Minimum EGD Exchange Publish rate (100 msecs)</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="10000">
+				<xs:annotation>
+					<xs:documentation>Minimum EGD Exchange Publish rate (10 seconds)</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EgdStaticExchangeIdType">
+		<xs:annotation>
+			<xs:documentation>EGD Data Production Static Exchange Identifier</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint32">
+			<xs:minInclusive value="1">
+				<xs:annotation>
+					<xs:documentation>Minimum EGD Exchange Identifier value</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="16383">
+				<xs:annotation>
+					<xs:documentation>Maximum EGD Exchange Identifier value</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EgdPublishExchangeEntryType">
+		<xs:annotation>
+			<xs:documentation>EGD Data Production Exchange Publish table entry</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EgdPublishPayloadSize" type="EgdDataProductionPayloadSizeType">
+				<xs:annotation>
+					<xs:documentation>EGD Publish Exchange Payload Size</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdPublishExchangePeriod_msecs" type="EgdPublishExchangePeriodMsecsType">
+				<xs:annotation>
+					<xs:documentation>EGD Exchnage Publish period in milliseconds</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EgdConsumeExchangeEntryType">
+		<xs:annotation>
+			<xs:documentation>EGD Data Production Exchange Consume table entry</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ExchangeId" type="EgdStaticExchangeIdType">
+				<xs:annotation>
+					<xs:documentation>EGD Consumed Exchange ID used to filter consumed frames</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdConsumePayloadSize" type="EgdDataProductionPayloadSizeType">
+				<xs:annotation>
+					<xs:documentation>EGD Consume Exchange Payload Size</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdConsumeExchangeTimeout_msecs" type="uint16" default="0">
+				<xs:annotation>
+					<xs:documentation>EGD Consumed Exchange refresh timeout period in milliseconds; 0 disables the check</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumeExchangeSignature" type="hex16" default="0x0000">
+				<xs:annotation>
+					<xs:documentation>Specify Signature for this exchange 0xMMmm Major and Minor configuration version/signature.0 use parent level EgdConfigurationSignature</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EgdExchangeConsumeTableType">
+		<xs:annotation>
+			<xs:documentation>EGD Consumed Exchanges table definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EdgConsumedProducerId" type="hex32" default="0x00000000">
+				<xs:annotation>
+					<xs:documentation>EGD Consumed Producer ID used to filter consumed frames; 0 means use application default</xs:documentation>
+				</xs:annotation>
+			</xs:element>		
+			<xs:element name="EgdConsumeTableEntry" type="EgdConsumeExchangeEntryType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>EGD Consume Exchange Table entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EgdExchangePublishTableType">
+		<xs:annotation>
+			<xs:documentation>EGD Published Exchanges table definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EgdPublishDestinationIPaddress" type="hex32" default="0x00000000">
+				<xs:annotation>
+					<xs:documentation>Destination IP address used to publish EGD (UDP) exchanges; 0 means use application default</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdPublishProducerIdOverride" type="hex32" default="0x00000000">
+				<xs:annotation>
+					<xs:documentation>Override EGD Publish Exchange Producer ID, 0 means use application default</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdPublishTableEntry" type="EgdPublishExchangeEntryType" minOccurs="0" maxOccurs="10">
+				<xs:annotation>
+					<xs:documentation>EGD Publish Exchange Table entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EgdGatewayCfgType">
+		<xs:annotation>
+			<xs:documentation>Parent definition for Ethernet Global Data Gateway Configuration</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EgdConfigurationSignature" type="hex16" default="0x0000">
+				<xs:annotation>
+					<xs:documentation>0xMMmm Major and Minor configuration version/signature.If 0, for exchange consume signature check omitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdExchangeConsumeTable" type="EgdExchangeConsumeTableType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EGD Data Production Consume Exchange Table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EgdExchangePublishTable" type="EgdExchangePublishTableType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EGD Data Production Publish Exchange Table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

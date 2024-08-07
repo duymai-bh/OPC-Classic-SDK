@@ -59,4 +59,4 @@
 #endif
 
 // TODO SourceCode License: remove the comment
-//#define OTB_USER_COMPILED
+#define OTB_USER_COMPILED

@@ -1,0 +1,87 @@
+\doxysection{Dll\+Main.\+cpp}
+\hypertarget{_dll_main_8cpp_source}{}\label{_dll_main_8cpp_source}\index{core/src/common/DllMain.cpp@{core/src/common/DllMain.cpp}}
+\mbox{\hyperlink{_dll_main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00001}00001\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00002}00002\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00003}00003\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Softing\ GmbH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Richard-\/Reitzner-\/Allee\ 6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00005}00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 85540\ Haar,\ Germany\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00007}00007\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ This\ is\ a\ part\ of\ the\ Softing\ OPC\ Toolbox\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Copyright\ (C)\ Softing\ GmbH\ 1998\ -\/\ 2000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00009}00009\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ All\ Rights\ Reserved\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00011}00011\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00012}00012\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00013}00013\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OPC\ TOOLBOX\ -\/\ common\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00015}00015\ \textcolor{comment}{//\ \ Filename\ \ \ \ :\ DllMain.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00016}00016\ \textcolor{comment}{//\ \ Version\ \ \ \ \ :\ 3.00.release\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00017}00017\ \textcolor{comment}{//\ \ Date\ \ \ \ \ \ \ \ :\ 15-\/June-\/2000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00018}00018\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00019}00019\ \textcolor{comment}{//\ \ Description\ :\ Global\ Functions\ of\ DLL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00020}00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00021}00021\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_cmn_8h}{SOCmn.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00026}00026\ \textcolor{keyword}{static}\ HINSTANCE\ \mbox{\hyperlink{client_2_d_a_console___service_2_service_8cpp_a84ad3b75e2657734624da74d70a8fd63}{g\_instance}};}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00028}00028\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00029}00029\ \textcolor{comment}{//\ getInstanceHandle}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00030}00030\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00031}00031\ \textcolor{comment}{//\ -\/\ get\ the\ instance\ handle\ of\ the\ toolkit}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00032}00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00033}00033\ \textcolor{comment}{//\ returns:}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00034}00034\ \textcolor{comment}{//\ \ \ \ \ \ instance\ handle}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00035}00035\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00036}\mbox{\hyperlink{_dll_main_8cpp_aa1d5f8c78ac785caaed021b5ed457730}{00036}}\ HINSTANCE\ \mbox{\hyperlink{_dll_main_8cpp_aa1d5f8c78ac785caaed021b5ed457730}{getInstanceHandle}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00037}00037\ \{}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{client_2_d_a_console___service_2_service_8cpp_a84ad3b75e2657734624da74d70a8fd63}{g\_instance}};}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00039}00039\ \}\ \textcolor{comment}{//\ getInstanceHandle}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00042}00042\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00043}00043\ \textcolor{comment}{//\ DllMain}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00044}00044\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00045}00045\ \textcolor{comment}{//\ -\/\ main\ routine\ of\ DLL}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00046}00046\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00047}00047\ \textcolor{comment}{//\ returns:}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00048}00048\ \textcolor{comment}{//\ \ \ \ \ \ exit\ code}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00049}00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00052}00052\ \textcolor{preprocessor}{\#ifndef\ \_WIN32\_WCE}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00053}\mbox{\hyperlink{_dll_main_8cpp_a322c85e998b3ee8b133cc4281d8c090d}{00053}}\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \textcolor{keywordtype}{int}\ APIENTRY\ \mbox{\hyperlink{_dll_main_8cpp_a322c85e998b3ee8b133cc4281d8c090d}{DllMain}}(}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00054}00054\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ HINSTANCE\ hInstance,\ \ \ \textcolor{comment}{//\ instance\ handle}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00055}00055\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ dwReason,\ \ \ \ \ \ \ \ \textcolor{comment}{//\ call\ reason}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPVOID\ lpReserved)}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00057}00057\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00058}00058\ BOOL\ APIENTRY\ \mbox{\hyperlink{_dll_main_8cpp_a322c85e998b3ee8b133cc4281d8c090d}{DllMain}}(}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00059}00059\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ HANDLE\ hInstance,\ }
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00060}00060\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ dwReason,\ \ \ \ \ \ \ \ \textcolor{comment}{//\ call\ reason}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00061}00061\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPVOID\ lpReserved)}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00062}00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00063}00063\ \{}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{client_2_d_a_console___service_2_service_8cpp_a84ad3b75e2657734624da74d70a8fd63}{g\_instance}}\ =\ (HINSTANCE)hInstance;}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (dwReason\ ==\ DLL\_PROCESS\_ATTACH)}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00066}00066\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00067}00067\ \textcolor{preprocessor}{\#ifdef\ SOCMN}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ createEventPool();}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a561aa404f0ea43c9214c98c185db6603}{createTraceObject}}();}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00070}00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dwReason\ ==\ DLL\_PROCESS\_DETACH)}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00073}00073\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00074}00074\ \textcolor{preprocessor}{\#ifdef\ SOCMN}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a74c012efbf8eb675ca8812f4a643ba9c}{destroyTraceObject}}();}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ destroyEventPool();}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00077}00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;\ \ \ \textcolor{comment}{//\ ok}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00080}00080\ \}\ \textcolor{comment}{//\ DllMain}}
+\DoxyCodeLine{\Hypertarget{_dll_main_8cpp_source_l00081}00081\ }
+
+\end{DoxyCode}

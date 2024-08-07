@@ -1,0 +1,992 @@
+\doxysection{Dock\+Panel.\+cs}
+\hypertarget{_dock_panel_8cs_source}{}\label{_dock_panel_8cs_source}\index{NET/samples/client/Demo Client/WinFormsUI/Docking/DockPanel.cs@{NET/samples/client/Demo Client/WinFormsUI/Docking/DockPanel.cs}}
+\mbox{\hyperlink{_dock_panel_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Drawing.Drawing2D;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.IO;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }System.Diagnostics.CodeAnalysis;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00010}00010\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00012}00012\ \textcolor{comment}{//\ To\ simplify\ the\ process\ of\ finding\ the\ toolkit\ bitmap\ resource:}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00013}00013\ \textcolor{comment}{//\ \#1\ Create\ an\ internal\ class\ called\ "{}resfinder"{}\ outside\ of\ the\ root\ namespace.}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00014}00014\ \textcolor{comment}{//\ \#2\ Use\ "{}resfinder"{}\ in\ the\ toolkit\ bitmap\ attribute\ instead\ of\ the\ control\ name.}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00015}00015\ \textcolor{comment}{//\ \#3\ use\ the\ "{}<default\ namespace>.<resourcename>"{}\ string\ to\ locate\ the\ resource.}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00016}00016\ \textcolor{comment}{//\ See:\ http://www.bobpowell.net/toolboxbitmap.htm}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00017}00017\ \textcolor{keyword}{internal}\ \textcolor{keyword}{class\ }resfinder}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00021}00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking}{WeifenLuo.WinFormsUI.Docking}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00023}00023\ \ \ \ \ [SuppressMessage(\textcolor{stringliteral}{"{}Microsoft.Naming"{}},\ \textcolor{stringliteral}{"{}CA1720:AvoidTypeNamesInParameters"{}},\ MessageId\ =\ \textcolor{stringliteral}{"{}0\#"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00024}\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_ae7a03a46673dec4ef2335e928a3623c0}{00024}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_ae7a03a46673dec4ef2335e928a3623c0}{DeserializeDockContent}}(\textcolor{keywordtype}{string}\ persistString);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00026}00026\ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00027}00027\ \ \ \ \ [Designer(typeof(System.Windows.Forms.Design.ControlDesigner))]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00028}00028\ \ \ \ \ [ToolboxBitmap(typeof(resfinder),\ \textcolor{stringliteral}{"{}WeifenLuo.WinFormsUI.Docking.DockPanel.bmp"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00029}00029\ \ \ \ \ [DefaultProperty(\textcolor{stringliteral}{"{}DocumentStyle"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00030}00030\ \ \ \ \ [DefaultEvent(\textcolor{stringliteral}{"{}ActiveContentChanged"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{partial\ class\ }\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel}{DockPanel}}\ :\ Panel}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ FocusManagerImpl\ m\_focusManager;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender}{DockPanelExtender}}\ m\_extender;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_collection}{DockPaneCollection}}\ m\_panes;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_float_window_collection}{FloatWindowCollection}}\ m\_floatWindows;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ AutoHideWindowControl\ m\_autoHideWindow;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_window_collection}{DockWindowCollection}}\ m\_dockWindows;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content}{DockContent}}\ m\_dummyContent;\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Control\ m\_dummyControl;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00042}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a11727622c1e50dd665e3ebb9dc281c33}{00042}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a11727622c1e50dd665e3ebb9dc281c33}{DockPanel}}()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ m\_focusManager\ =\ \textcolor{keyword}{new}\ FocusManagerImpl(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_extender\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender}{DockPanelExtender}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ m\_panes\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_collection}{DockPaneCollection}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ m\_floatWindows\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_float_window_collection}{FloatWindowCollection}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a76e69d6894f7d634041fb5b8becedec6}{SuspendLayout}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ m\_autoHideWindow\ =\ \textcolor{keyword}{new}\ AutoHideWindowControl(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ m\_autoHideWindow.Visible\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ SetAutoHideWindowParent();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ m\_dummyControl\ =\ \textcolor{keyword}{new}\ DummyControl();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ m\_dummyControl.Bounds\ =\ \textcolor{keyword}{new}\ Rectangle(0,\ 0,\ 1,\ 1);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ Controls.Add(m\_dummyControl);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockWindows\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_window_collection}{DockWindowCollection}}(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ Controls.AddRange(\textcolor{keyword}{new}\ Control[]\ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document],}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft],}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight],}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop],}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ m\_dummyContent\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content}{DockContent}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a57282253fbedc8d0c33b1937cc1db3b1}{ResumeLayout}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base}{AutoHideStripBase}}\ m\_autoHideStripControl\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_auto_hide_strip_base}{AutoHideStripBase}}\ AutoHideStripControl}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_autoHideStripControl\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_autoHideStripControl\ =\ AutoHideStripFactory.CreateAutoHideStrip(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Controls.Add(m\_autoHideStripControl);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_autoHideStripControl;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ ResetAutoHideStripControl()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_autoHideStripControl\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_autoHideStripControl.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ m\_autoHideStripControl\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ MdiClientHandleAssigned(\textcolor{keywordtype}{object}\ sender,\ EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ SetMdiClient();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ PerformLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ MdiClient\_Layout(\textcolor{keywordtype}{object}\ sender,\ LayoutEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ !=\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingMdi)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (DockPane\ pane\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pane.DockState\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pane.SetContentBounds();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateWindowRegion();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_disposed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00112}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a3b8626059f85472a21e265ebab198552}{00112}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a3b8626059f85472a21e265ebab198552}{Dispose}}(\textcolor{keywordtype}{bool}\ disposing)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_thread_8cpp_a3cd4fcd0b47ce022fa9471ea1aa05f6c}{lock}}\ (\textcolor{keyword}{this})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_disposed\ \&\&\ disposing)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_focusManager.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_mdiClientController\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mdiClientController.HandleAssigned\ -\/=\ \textcolor{keyword}{new}\ EventHandler(MdiClientHandleAssigned);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mdiClientController.MdiChildActivate\ -\/=\ \textcolor{keyword}{new}\ EventHandler(ParentFormMdiChildActivate);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mdiClientController.Layout\ -\/=\ \textcolor{keyword}{new}\ LayoutEventHandler(MdiClient\_Layout);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_mdiClientController.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}}.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DummyContent.Dispose();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_disposed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ base.Dispose(disposing);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00138}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa3237fe3d255a6891363f8f3408a856c}{00138}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa3237fe3d255a6891363f8f3408a856c}{ActiveAutoHideContent}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ AutoHideWindow.ActiveContent;\ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ \ \ AutoHideWindow.ActiveContent\ =\ value;\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_allowEndUserDocking\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_AllowEndUserDocking\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ [DefaultValue(\textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00148}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad1721bb64d0ef7885cb29298c40dabe6}{00148}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad1721bb64d0ef7885cb29298c40dabe6}{AllowEndUserDocking}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_allowEndUserDocking;\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ \ \ m\_allowEndUserDocking\ =\ value;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_allowEndUserNestedDocking\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_AllowEndUserNestedDocking\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ [DefaultValue(\textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00158}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad4486d4c85da33486302552fa5d57cde}{00158}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad4486d4c85da33486302552fa5d57cde}{AllowEndUserNestedDocking}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_allowEndUserNestedDocking;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_allowEndUserNestedDocking\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_collection}{DockContentCollection}}\ m\_contents\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_collection}{DockContentCollection}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00166}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{00166}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_collection}{DockContentCollection}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_contents;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content}{DockContent}}\ DummyContent}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dummyContent;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_rightToLeftLayout\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ [DefaultValue(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Appearance"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_RightToLeftLayout\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00180}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ae9fe11e3d1c56ddf7ac079a42ebe6c28}{00180}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ae9fe11e3d1c56ddf7ac079a42ebe6c28}{RightToLeftLayout}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_rightToLeftLayout;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_rightToLeftLayout\ ==\ value)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_rightToLeftLayout\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_float_window}{FloatWindow}}\ floatWindow\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ floatWindow.RightToLeftLayout\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00194}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a87b55123b8fafd572ae653177b86fa28}{00194}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a87b55123b8fafd572ae653177b86fa28}{OnRightToLeftChanged}}(EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnRightToLeftChanged(e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_float_window}{FloatWindow}}\ floatWindow\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (floatWindow.RightToLeft\ !=\ RightToLeft)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ floatWindow.RightToLeft\ =\ RightToLeft;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_showDocumentIcon\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ [DefaultValue(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_ShowDocumentIcon\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00208}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a00e5025cde2910598b8953070bfbd480}{00208}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a00e5025cde2910598b8953070bfbd480}{ShowDocumentIcon}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_showDocumentIcon;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_showDocumentIcon\ ==\ value)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_showDocumentIcon\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Refresh();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00222}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{00222}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender}{DockPanelExtender}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{Extender}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_extender;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00227}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_abbf8501df4b2c1eb210432dcefc812a2}{00227}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_factory}{DockPanelExtender.IDockPaneFactory}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_abbf8501df4b2c1eb210432dcefc812a2}{DockPaneFactory}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{Extender}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_a951f390905ed370e83a38bfd6e9c1b24}{DockPaneFactory}};\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00232}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad386775bc5bedbaf8f017b2a1de7ba5c}{00232}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_float_window_factory}{DockPanelExtender.IFloatWindowFactory}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad386775bc5bedbaf8f017b2a1de7ba5c}{FloatWindowFactory}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{Extender}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_a09e3a994d0e4a7c6b2c8e7a27a5fa923}{FloatWindowFactory}};\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_caption_factory}{DockPanelExtender.IDockPaneCaptionFactory}}\ DockPaneCaptionFactory}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{Extender}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_ac6e7dd21e2677016e33e4ab19cbf890c}{DockPaneCaptionFactory}};\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ DockPanelExtender.IDockPaneStripFactory\ DockPaneStripFactory}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{Extender}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_a754d2ea9973e76896e9e195f158ab801}{DockPaneStripFactory}};\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ DockPanelExtender.IAutoHideStripFactory\ AutoHideStripFactory}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa2828428d05dbde32989d9d7791dbba8}{Extender}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_a79b3cabb10ec0a8fbb1a3697c4219da2}{AutoHideStripFactory}};\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00253}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{00253}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane_collection}{DockPaneCollection}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_panes;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00256}00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ Rectangle\ DockArea}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00259}00259\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ Rectangle(DockPadding.Left,\ DockPadding.Top,}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ClientRectangle.Width\ -\/\ DockPadding.Left\ -\/\ DockPadding.Right,}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ClientRectangle.Height\ -\/\ DockPadding.Top\ -\/\ DockPadding.Bottom);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00266}00266\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{double}\ m\_dockBottomPortion\ =\ 0.25;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_DockBottomPortion\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ [DefaultValue(0.25)]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00272}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a5c37d3626e974ad52148caf2f111a0ac}{00272}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a5c37d3626e974ad52148caf2f111a0ac}{DockBottomPortion}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dockBottomPortion;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ m\_dockBottomPortion)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockBottomPortion\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockBottomPortion\ <\ 1\ \&\&\ m\_dockTopPortion\ <\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockTopPortion\ +\ m\_dockBottomPortion\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockTopPortion\ =\ 1\ -\/\ m\_dockBottomPortion;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PerformLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00293}00293\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{double}\ m\_dockLeftPortion\ =\ 0.25;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00296}00296\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00297}00297\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_DockLeftPortion\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ [DefaultValue(0.25)]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00299}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa522892579783bed3987b59cb774a491}{00299}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa522892579783bed3987b59cb774a491}{DockLeftPortion}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00300}00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dockLeftPortion;\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ m\_dockLeftPortion)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00309}00309\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockLeftPortion\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockLeftPortion\ <\ 1\ \&\&\ m\_dockRightPortion\ <\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockLeftPortion\ +\ m\_dockRightPortion\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockRightPortion\ =\ 1\ -\/\ m\_dockLeftPortion;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PerformLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00319}00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{double}\ m\_dockRightPortion\ =\ 0.25;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00322}00322\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00323}00323\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_DockRightPortion\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00324}00324\ \ \ \ \ \ \ \ \ [DefaultValue(0.25)]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00325}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab69ea59d3e3723ab748b9c4b894f452e}{00325}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab69ea59d3e3723ab748b9c4b894f452e}{DockRightPortion}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00326}00326\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dockRightPortion;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ m\_dockRightPortion)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00335}00335\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockRightPortion\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockLeftPortion\ <\ 1\ \&\&\ m\_dockRightPortion\ <\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockLeftPortion\ +\ m\_dockRightPortion\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockLeftPortion\ =\ 1\ -\/\ m\_dockRightPortion;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PerformLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00345}00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{double}\ m\_dockTopPortion\ =\ 0.25;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00348}00348\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00349}00349\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_DockTopPortion\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00350}00350\ \ \ \ \ \ \ \ \ [DefaultValue(0.25)]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00351}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7f3dbb7600207df1d531bf0f5d4207d7}{00351}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7f3dbb7600207df1d531bf0f5d4207d7}{DockTopPortion}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00352}00352\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dockTopPortion;\ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ m\_dockTopPortion)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockTopPortion\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockTopPortion\ <\ 1\ \&\&\ m\_dockBottomPortion\ <\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dockTopPortion\ +\ m\_dockBottomPortion\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dockBottomPortion\ =\ 1\ -\/\ m\_dockTopPortion;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PerformLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00371}00371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00373}00373\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00374}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6bfd5c0a0c23cf70b5162fde9c646e0f}{00374}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_window_collection}{DockWindowCollection}}\ DockWindows}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00375}00375\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dockWindows;\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00377}00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00379}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aadd0c8cc63c43cbc745aabc1ddb8ac1c}{00379}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aadd0c8cc63c43cbc745aabc1ddb8ac1c}{UpdateDockWindowZOrder}}(DockStyle\ dockStyle,\ \textcolor{keywordtype}{bool}\ fullPanelEdge)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00380}00380\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockStyle\ ==\ DockStyle.Left)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fullPanelEdge)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].SendToBack();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dockStyle\ ==\ DockStyle.Right)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fullPanelEdge)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight].SendToBack();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight].BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dockStyle\ ==\ DockStyle.Top)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fullPanelEdge)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].SendToBack();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dockStyle\ ==\ DockStyle.Bottom)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fullPanelEdge)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom].SendToBack();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom].BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00409}00409\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00410}00410\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00411}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a9249d24d82fab86c8255f4b52187b705}{00411}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a9249d24d82fab86c8255f4b52187b705}{DocumentsCount}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00412}00412\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ content\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a65c5950f52b24891407fa8e9cfb24ee9}{Documents}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00418}00418\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00421}00421\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00423}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ac2a8cc3ec6e0a4cf1382b34c29329bbf}{00423}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}[]\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ac2a8cc3ec6e0a4cf1382b34c29329bbf}{DocumentsToArray}}()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00424}00424\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a9249d24d82fab86c8255f4b52187b705}{DocumentsCount}};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}[]\ documents\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}[count];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ content\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a65c5950f52b24891407fa8e9cfb24ee9}{Documents}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ documents[i]\ =\ content;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00433}00433\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ documents;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00435}00435\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00436}00436\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00437}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a65c5950f52b24891407fa8e9cfb24ee9}{00437}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IEnumerable<IDockContent>\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a65c5950f52b24891407fa8e9cfb24ee9}{Documents}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00438}00438\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ content\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_handler_a8a5b00ee9bc5493e19e68e5b3f61b3c5}{DockState}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yield\ \textcolor{keywordflow}{return}\ content;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00447}00447\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00449}00449\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Rectangle\ DocumentRectangle}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00450}00450\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Rectangle\ rect\ =\ DockArea;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].VisibleNestedPanes.Count\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rect.X\ +=\ (int)(DockArea.Width\ *\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa522892579783bed3987b59cb774a491}{DockLeftPortion}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rect.Width\ -\/=\ (int)(DockArea.Width\ *\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa522892579783bed3987b59cb774a491}{DockLeftPortion}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight].VisibleNestedPanes.Count\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rect.Width\ -\/=\ (int)(DockArea.Width\ *\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab69ea59d3e3723ab748b9c4b894f452e}{DockRightPortion}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].VisibleNestedPanes.Count\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rect.Y\ +=\ (int)(DockArea.Height\ *\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7f3dbb7600207df1d531bf0f5d4207d7}{DockTopPortion}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rect.Height\ -\/=\ (int)(DockArea.Height\ *\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a7f3dbb7600207df1d531bf0f5d4207d7}{DockTopPortion}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom].VisibleNestedPanes.Count\ !=\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rect.Height\ -\/=\ (int)(DockArea.Height\ *\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a5c37d3626e974ad52148caf2f111a0ac}{DockBottomPortion}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00468}00468\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rect;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00471}00471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00473}00473\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Control\ DummyControl}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00474}00474\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_dummyControl;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00476}00476\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00478}00478\ \ \ \ \ \ \ \ \ [Browsable(\textcolor{keyword}{false})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00479}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{00479}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_float_window_collection}{FloatWindowCollection}}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00480}00480\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_floatWindows;\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00482}00482\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00483}00483\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00484}00484\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Size\ m\_defaultFloatWindowSize\ =\ \textcolor{keyword}{new}\ Size(300,\ 300);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00485}00485\ \ \ \ \ \ \ \ \ [Category(\textcolor{stringliteral}{"{}Layout"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00486}00486\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_DefaultFloatWindowSize\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00487}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a06ad0c15059a51406c8420802251fc92}{00487}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ Size\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a06ad0c15059a51406c8420802251fc92}{DefaultFloatWindowSize}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00488}00488\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_defaultFloatWindowSize;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_defaultFloatWindowSize\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00491}00491\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00492}00492\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ ShouldSerializeDefaultFloatWindowSize()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00493}00493\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a06ad0c15059a51406c8420802251fc92}{DefaultFloatWindowSize}}\ !=\ \textcolor{keyword}{new}\ Size(300,\ 300);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00495}00495\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00496}00496\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00497}00497\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ m\_documentStyle\ =\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingMdi;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00498}00498\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_Docking"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00499}00499\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_DocumentStyle\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00500}00500\ \ \ \ \ \ \ \ \ [DefaultValue(\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingMdi)]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00501}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{00501}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00502}00502\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \ \ \textcolor{keywordflow}{return}\ m\_documentStyle;\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ m\_documentStyle)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!Enum.IsDefined(typeof(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}),\ value))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidEnumArgumentException();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}.SystemMdi\ \&\&\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document].VisibleNestedPanes.Count\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidEnumArgumentException();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00514}00514\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_documentStyle\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00516}00516\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a76e69d6894f7d634041fb5b8becedec6}{SuspendLayout}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00518}00518\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetAutoHideWindowParent();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMdiClient();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateWindowRegion();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00522}00522\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ content\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_handler_a8a5b00ee9bc5493e19e68e5b3f61b3c5}{DockState}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.SetPaneAndVisible(content.\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content_a541da1f154f11d5faeaf0f5a97690853}{DockHandler}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_handler_af49e4a2a4b63d8347ac2e09d51700bc8}{Pane}});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00528}00528\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PerformMdiClientLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a57282253fbedc8d0c33b1937cc1db3b1}{ResumeLayout}}(\textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00533}00533\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00534}00534\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00535}00535\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ GetDockWindowSize(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}\ dockState)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00536}00536\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockState\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft\ ||\ dockState\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ width\ =\ ClientRectangle.Width\ -\/\ DockPadding.Left\ -\/\ DockPadding.Right;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dockLeftSize\ =\ m\_dockLeftPortion\ >=\ 1\ ?\ (int)m\_dockLeftPortion\ :\ (int)(width\ *\ m\_dockLeftPortion);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dockRightSize\ =\ m\_dockRightPortion\ >=\ 1\ ?\ (int)m\_dockRightPortion\ :\ (int)(width\ *\ m\_dockRightPortion);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00542}00542\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockLeftSize\ <\ MeasurePane.MinSize)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockLeftSize\ =\ MeasurePane.MinSize;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockRightSize\ <\ MeasurePane.MinSize)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockRightSize\ =\ MeasurePane.MinSize;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00547}00547\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockLeftSize\ +\ dockRightSize\ >\ width\ -\/\ MeasurePane.MinSize)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ adjust\ =\ (dockLeftSize\ +\ dockRightSize)\ -\/\ (width\ -\/\ MeasurePane.MinSize);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockLeftSize\ -\/=\ adjust\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockRightSize\ -\/=\ adjust\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00554}00554\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dockState\ ==\ DockState.DockLeft\ ?\ dockLeftSize\ :\ dockRightSize;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (dockState\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop\ ||\ dockState\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ height\ =\ ClientRectangle.Height\ -\/\ DockPadding.Top\ -\/\ DockPadding.Bottom;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dockTopSize\ =\ m\_dockTopPortion\ >=\ 1\ ?\ (int)m\_dockTopPortion\ :\ (int)(height\ *\ m\_dockTopPortion);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dockBottomSize\ =\ m\_dockBottomPortion\ >=\ 1\ ?\ (int)m\_dockBottomPortion\ :\ (int)(height\ *\ m\_dockBottomPortion);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00562}00562\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockTopSize\ <\ MeasurePane.MinSize)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockTopSize\ =\ MeasurePane.MinSize;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockBottomSize\ <\ MeasurePane.MinSize)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockBottomSize\ =\ MeasurePane.MinSize;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00567}00567\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dockTopSize\ +\ dockBottomSize\ >\ height\ -\/\ MeasurePane.MinSize)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ adjust\ =\ (dockTopSize\ +\ dockBottomSize)\ -\/\ (height\ -\/\ MeasurePane.MinSize);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockTopSize\ -\/=\ adjust\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dockBottomSize\ -\/=\ adjust\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00574}00574\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dockState\ ==\ DockState.DockTop\ ?\ dockTopSize\ :\ dockBottomSize;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00579}00579\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00580}00580\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00581}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a090a1a50e9a83734ebe107dd086e277b}{00581}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a090a1a50e9a83734ebe107dd086e277b}{OnLayout}}(LayoutEventArgs\ levent)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00582}00582\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a76e69d6894f7d634041fb5b8becedec6}{SuspendLayout}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ AutoHideStripControl.Bounds\ =\ ClientRectangle;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ CalculateDockPadding();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00588}00588\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].Width\ =\ GetDockWindowSize(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00590}00590\ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight].Width\ =\ GetDockWindowSize(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].Height\ =\ GetDockWindowSize(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom].Height\ =\ GetDockWindowSize(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00593}00593\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ AutoHideWindow.Bounds\ =\ GetAutoHideWindowBounds(AutoHideWindowRectangle);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00595}00595\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document].BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ AutoHideWindow.BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00598}00598\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnLayout(levent);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00600}00600\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}.SystemMdi\ \&\&\ MdiClientExists)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMdiClientBounds(SystemMdiClientBounds);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateWindowRegion();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}.DockingMdi)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00607}00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ InvalidateWindowRegion();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00608}00608\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a57282253fbedc8d0c33b1937cc1db3b1}{ResumeLayout}}(\textcolor{keyword}{true},\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00610}00610\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00611}00611\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00612}00612\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ Rectangle\ GetTabStripRectangle(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}\ dockState)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00613}00613\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AutoHideStripControl.GetTabStripRectangle(dockState);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00615}00615\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00616}00616\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00617}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa4c3040111972b8d23cd1560e969a5b9}{00617}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa4c3040111972b8d23cd1560e969a5b9}{OnPaint}}(PaintEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00618}00618\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnPaint(e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00620}00620\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ Graphics\ g\ =\ e.Graphics;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ g.FillRectangle(SystemBrushes.AppWorkspace,\ ClientRectangle);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00623}00623\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00624}00624\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00625}00625\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ AddContent(\mbox{\hyperlink{interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_i_dock_content}{IDockContent}}\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00626}00626\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00627}00627\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(\textcolor{keyword}{new}\ ArgumentNullException());}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00629}00629\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_collection_a71432f3cef4c00771bc06ab6c413d9e5}{Contains}}(content))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}}.Add(content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a31092cc9f0e12ec2bbe6dba3341b6bc3}{OnContentAdded}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_event_args}{DockContentEventArgs}}(content));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00635}00635\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00636}00636\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ AddPane(DockPane\ pane)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00638}00638\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00639}00639\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Contains(pane))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00640}00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00641}00641\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Add(pane);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00643}00643\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00644}00644\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00645}00645\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ AddFloatWindow(FloatWindow\ floatWindow)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00646}00646\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}}.Contains(floatWindow))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00649}00649\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}}.Add(floatWindow);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00651}00651\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00652}00652\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00653}00653\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ CalculateDockPadding()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00654}00654\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00655}00655\ \ \ \ \ \ \ \ \ \ \ \ \ DockPadding.All\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00656}00656\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00657}00657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ height\ =\ AutoHideStripControl.MeasureHeight();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00658}00658\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00659}00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (AutoHideStripControl.GetNumberOfPanes(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeftAutoHide)\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPadding.Left\ =\ height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00661}00661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (AutoHideStripControl.GetNumberOfPanes(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRightAutoHide)\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00662}00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPadding.Right\ =\ height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00663}00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (AutoHideStripControl.GetNumberOfPanes(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTopAutoHide)\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPadding.Top\ =\ height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00665}00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (AutoHideStripControl.GetNumberOfPanes(\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottomAutoHide)\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00666}00666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DockPadding.Bottom\ =\ height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00667}00667\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00668}00668\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00669}00669\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ RemoveContent(IDockContent\ content)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00670}00670\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (content\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(\textcolor{keyword}{new}\ ArgumentNullException());}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00674}00674\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}}.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_collection_a71432f3cef4c00771bc06ab6c413d9e5}{Contains}}(content))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_acf1274d499371554f735956ae250e2d0}{Contents}}.Remove(content);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab3356e34ebdc29c98e55f60687205538}{OnContentRemoved}}(\textcolor{keyword}{new}\ DockContentEventArgs(content));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00678}00678\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00679}00679\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00680}00680\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00681}00681\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ RemovePane(DockPane\ pane)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00682}00682\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Contains(pane))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00685}00685\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Remove(pane);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00687}00687\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00688}00688\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00689}00689\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ RemoveFloatWindow(FloatWindow\ floatWindow)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00690}00690\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00691}00691\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}}.Contains(floatWindow))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00693}00693\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00694}00694\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a27630169502b372525a5ef0baeeddf1d}{FloatWindows}}.Remove(floatWindow);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00695}00695\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00696}00696\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00697}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa99f965610f87bdefb2a8cf28e3b1f40}{00697}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_aa99f965610f87bdefb2a8cf28e3b1f40}{SetPaneIndex}}(\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_pane}{DockPane}}\ pane,\ \textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00698}00698\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00699}00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ oldIndex\ =\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.IndexOf(pane);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00700}00700\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldIndex\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00701}00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(\textcolor{keyword}{new}\ ArgumentException(Strings.DockPanel\_SetPaneIndex\_InvalidPane));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00702}00702\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00703}00703\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0\ ||\ index\ >\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Count\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ !=\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00705}00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(\textcolor{keyword}{new}\ ArgumentOutOfRangeException(Strings.DockPanel\_SetPaneIndex\_InvalidIndex));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00706}00706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00707}00707\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldIndex\ ==\ index)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00708}00708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00709}00709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (oldIndex\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Count\ -\/\ 1\ \&\&\ index\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00710}00710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00711}00711\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00712}00712\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Remove(pane);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00713}00713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ ==\ -\/1)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.Add(pane);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00715}00715\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (oldIndex\ <\ index)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00716}00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.AddAt(pane,\ index\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00717}00717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00718}00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}}.AddAt(pane,\ index);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00719}00719\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00720}00720\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00721}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a76e69d6894f7d634041fb5b8becedec6}{00721}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a76e69d6894f7d634041fb5b8becedec6}{SuspendLayout}}(\textcolor{keywordtype}{bool}\ allWindows)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00722}00722\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00723}00723\ \ \ \ \ \ \ \ \ \ \ \ \ FocusManager.SuspendFocusTracking();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00724}00724\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a76e69d6894f7d634041fb5b8becedec6}{SuspendLayout}}();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00725}00725\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allWindows)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00726}00726\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SuspendMdiClientLayout();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00727}00727\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00728}00728\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00729}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a57282253fbedc8d0c33b1937cc1db3b1}{00729}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a57282253fbedc8d0c33b1937cc1db3b1}{ResumeLayout}}(\textcolor{keywordtype}{bool}\ performLayout,\ \textcolor{keywordtype}{bool}\ allWindows)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00730}00730\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00731}00731\ \ \ \ \ \ \ \ \ \ \ \ \ FocusManager.ResumeFocusTracking();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00732}00732\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a57282253fbedc8d0c33b1937cc1db3b1}{ResumeLayout}}(performLayout);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00733}00733\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (allWindows)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00734}00734\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResumeMdiClientLayout(performLayout);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00735}00735\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00736}00736\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00737}00737\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ Form\ ParentForm}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00738}00738\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00739}00739\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00740}00740\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00741}00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsParentFormValid())}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00742}00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ InvalidOperationException(Strings.DockPanel\_ParentForm\_Invalid);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00743}00743\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00744}00744\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GetMdiClientController().ParentForm;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00745}00745\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00746}00746\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00747}00747\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00748}00748\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ IsParentFormValid()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00749}00749\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00750}00750\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingSdi\ ||\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingWindow)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00751}00751\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00752}00752\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00753}00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!MdiClientExists)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00754}00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetMdiClientController().RenewMdiClient();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00755}00755\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00756}00756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (MdiClientExists);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00757}00757\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00758}00758\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00759}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a898111d8efc194471897475a2c3e3e8f}{00759}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a898111d8efc194471897475a2c3e3e8f}{OnParentChanged}}(EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00760}00760\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00761}00761\ \ \ \ \ \ \ \ \ \ \ \ \ SetAutoHideWindowParent();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00762}00762\ \ \ \ \ \ \ \ \ \ \ \ \ GetMdiClientController().ParentForm\ =\ (this.Parent\ as\ Form);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00763}00763\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnParentChanged\ (e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00764}00764\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00765}00765\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00766}00766\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetAutoHideWindowParent()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00767}00767\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ Control\ parent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00769}00769\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}.DockingMdi\ ||}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00770}00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}\ ==\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_a42e2a834c57cb6c4da834c4044ad397f}{DocumentStyle}}.SystemMdi)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00771}00771\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parent\ =\ this.Parent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00772}00772\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00773}00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ parent\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00774}00774\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (AutoHideWindow.Parent\ !=\ parent)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00775}00775\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00776}00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AutoHideWindow.Parent\ =\ parent;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00777}00777\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AutoHideWindow.BringToFront();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00778}00778\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00779}00779\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00780}00780\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00781}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6edb3684282e0ff131747003bbcf0bdf}{00781}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6edb3684282e0ff131747003bbcf0bdf}{OnVisibleChanged}}(EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00782}00782\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00783}00783\ \ \ \ \ \ \ \ \ \ \ \ \ base.OnVisibleChanged\ (e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00784}00784\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00785}00785\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Visible)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00786}00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetMdiClient();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00787}00787\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00788}00788\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00789}00789\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Rectangle\ SystemMdiClientBounds}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00790}00790\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00791}00791\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00792}00792\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00793}00793\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsParentFormValid()\ ||\ !Visible)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00794}00794\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Rectangle.Empty;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00795}00795\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00796}00796\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Rectangle\ rect\ =\ ParentForm.RectangleToClient(RectangleToScreen(DocumentWindowBounds));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00797}00797\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rect;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00798}00798\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00799}00799\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00800}00800\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00801}00801\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ Rectangle\ DocumentWindowBounds}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00802}00802\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00803}00803\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00804}00804\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00805}00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Rectangle\ rectDocumentBounds\ =\ DisplayRectangle;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00806}00806\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].Visible)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00807}00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00808}00808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rectDocumentBounds.X\ +=\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].Width;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00809}00809\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rectDocumentBounds.Width\ -\/=\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockLeft].Width;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00810}00810\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00811}00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight].Visible)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00812}00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rectDocumentBounds.Width\ -\/=\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockRight].Width;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00813}00813\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].Visible)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00814}00814\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00815}00815\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rectDocumentBounds.Y\ +=\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].Height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00816}00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rectDocumentBounds.Height\ -\/=\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockTop].Height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00817}00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00818}00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom].Visible)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00819}00819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rectDocumentBounds.Height\ -\/=\ DockWindows[\mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.DockBottom].Height;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00820}00820\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00821}00821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rectDocumentBounds;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00822}00822\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00823}00823\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00824}00824\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00825}00825\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00826}00826\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ PaintEventHandler\ m\_dummyControlPaintEventHandler\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00827}00827\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ InvalidateWindowRegion()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00828}00828\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00829}00829\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (DesignMode)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00830}00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00831}00831\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00832}00832\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_dummyControlPaintEventHandler\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00833}00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_dummyControlPaintEventHandler\ =\ \textcolor{keyword}{new}\ PaintEventHandler(DummyControl\_Paint);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00834}00834\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00835}00835\ \ \ \ \ \ \ \ \ \ \ \ \ DummyControl.Paint\ +=\ m\_dummyControlPaintEventHandler;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00836}00836\ \ \ \ \ \ \ \ \ \ \ \ \ DummyControl.Invalidate();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00837}00837\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00838}00838\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00839}00839\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ DummyControl\_Paint(\textcolor{keywordtype}{object}\ sender,\ PaintEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00840}00840\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00841}00841\ \ \ \ \ \ \ \ \ \ \ \ \ DummyControl.Paint\ -\/=\ m\_dummyControlPaintEventHandler;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00842}00842\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateWindowRegion();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00843}00843\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00844}00844\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00845}00845\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UpdateWindowRegion()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00846}00846\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00847}00847\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingMdi)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00848}00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateWindowRegion\_ClipContent();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00849}00849\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingSdi\ ||}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00850}00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{this}.DocumentStyle\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.DockingWindow)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00851}00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateWindowRegion\_FullDocumentArea();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00852}00852\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}\ ==\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ad19e135d22e2df974b252842c8695bd2}{DocumentStyle}}.SystemMdi)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00853}00853\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UpdateWindowRegion\_EmptyDocumentArea();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00854}00854\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00855}00855\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00856}00856\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UpdateWindowRegion\_FullDocumentArea()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00857}00857\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00858}00858\ \ \ \ \ \ \ \ \ \ \ \ \ SetRegion(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00859}00859\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00860}00860\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00861}00861\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UpdateWindowRegion\_EmptyDocumentArea()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00862}00862\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00863}00863\ \ \ \ \ \ \ \ \ \ \ \ \ Rectangle\ rect\ =\ DocumentWindowBounds;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00864}00864\ \ \ \ \ \ \ \ \ \ \ \ \ SetRegion(\textcolor{keyword}{new}\ Rectangle[]\ \{\ rect\ \});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00865}00865\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00866}00866\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00867}00867\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ UpdateWindowRegion\_ClipContent()}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00868}00868\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00869}00869\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00870}00870\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (DockPane\ pane\ \textcolor{keywordflow}{in}\ this.\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_add9be107e28243d09513fc59f0e8b8b0}{Panes}})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00871}00871\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00872}00872\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pane.Visible\ ||\ pane.DockState\ !=\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00873}00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00874}00874\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00875}00875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\ ++;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00876}00876\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00877}00877\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00878}00878\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00879}00879\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00880}00880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetRegion(\textcolor{keyword}{null});}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00881}00881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00882}00882\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00883}00883\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00884}00884\ \ \ \ \ \ \ \ \ \ \ \ \ Rectangle[]\ rects\ =\ \textcolor{keyword}{new}\ Rectangle[count];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00885}00885\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00886}00886\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (DockPane\ pane\ \textcolor{keywordflow}{in}\ this.Panes)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00887}00887\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00888}00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pane.Visible\ ||\ pane.DockState\ !=\ \mbox{\hyperlink{namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking_abadc8e74d6339bcffab868fd5c457c3d}{DockState}}.Document)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00889}00889\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00890}00890\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00891}00891\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rects[i]\ =\ RectangleToClient(pane.RectangleToScreen(pane.ContentRectangle));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00892}00892\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00893}00893\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00894}00894\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00895}00895\ \ \ \ \ \ \ \ \ \ \ \ \ SetRegion(rects);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00896}00896\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00897}00897\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00898}00898\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Rectangle[]\ m\_clipRects\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00899}00899\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SetRegion(Rectangle[]\ clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00900}00900\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00901}00901\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!IsClipRectsChanged(clipRects))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00902}00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00903}00903\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00904}00904\ \ \ \ \ \ \ \ \ \ \ \ \ m\_clipRects\ =\ clipRects;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00905}00905\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00906}00906\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_clipRects\ ==\ \textcolor{keyword}{null}\ ||\ m\_clipRects.GetLength(0)\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00907}00907\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Region\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00908}00908\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00909}00909\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00910}00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Region\ region\ =\ \textcolor{keyword}{new}\ Region(\textcolor{keyword}{new}\ Rectangle(0,\ 0,\ this.Width,\ this.Height));}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00911}00911\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Rectangle\ rect\ \textcolor{keywordflow}{in}\ m\_clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00912}00912\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ region.Exclude(rect);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00913}00913\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Region\ =\ region;}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00914}00914\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00915}00915\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00916}00916\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00917}00917\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ IsClipRectsChanged(Rectangle[]\ clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00918}00918\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00919}00919\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (clipRects\ ==\ \textcolor{keyword}{null}\ \&\&\ m\_clipRects\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00920}00920\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00921}00921\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((clipRects\ ==\ \textcolor{keyword}{null})\ !=\ (m\_clipRects\ ==\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00922}00922\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00923}00923\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00924}00924\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Rectangle\ rect\ \textcolor{keywordflow}{in}\ clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00925}00925\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00926}00926\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ matched\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00927}00927\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Rectangle\ rect2\ \textcolor{keywordflow}{in}\ m\_clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00928}00928\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00929}00929\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rect\ ==\ rect2)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00930}00930\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00931}00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matched\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00932}00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00933}00933\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00934}00934\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00935}00935\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!matched)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00936}00936\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00937}00937\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00938}00938\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00939}00939\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Rectangle\ rect2\ \textcolor{keywordflow}{in}\ m\_clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00940}00940\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00941}00941\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ matched\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00942}00942\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Rectangle\ rect\ \textcolor{keywordflow}{in}\ clipRects)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00943}00943\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00944}00944\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rect\ ==\ rect2)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00945}00945\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00946}00946\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matched\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00947}00947\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00948}00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00949}00949\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00950}00950\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!matched)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00951}00951\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00952}00952\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00953}00953\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00954}00954\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00955}00955\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00956}00956\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ \textcolor{keywordtype}{object}\ ContentAddedEvent\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00957}00957\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_DockingNotification"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00958}00958\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_ContentAdded\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00959}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a8843f74260905b1ada39df986bb0bfc6}{00959}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ EventHandler<DockContentEventArgs>\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a8843f74260905b1ada39df986bb0bfc6}{ContentAdded}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00960}00960\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00961}00961\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \{\ \ \ Events.AddHandler(ContentAddedEvent,\ value);\ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00962}00962\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{remove}\ \ \{\ \ \ Events.RemoveHandler(ContentAddedEvent,\ value);\ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00963}00963\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00964}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a31092cc9f0e12ec2bbe6dba3341b6bc3}{00964}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a31092cc9f0e12ec2bbe6dba3341b6bc3}{OnContentAdded}}(\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_event_args}{DockContentEventArgs}}\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00965}00965\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00966}00966\ \ \ \ \ \ \ \ \ \ \ \ \ EventHandler<DockContentEventArgs>\ handler\ =\ (EventHandler<DockContentEventArgs>)Events[ContentAddedEvent];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00967}00967\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handler\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00968}00968\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler(\textcolor{keyword}{this},\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00969}00969\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00970}00970\ }
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00971}00971\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ readonly\ \textcolor{keywordtype}{object}\ ContentRemovedEvent\ =\ \textcolor{keyword}{new}\ object();}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00972}00972\ \ \ \ \ \ \ \ \ [LocalizedCategory(\textcolor{stringliteral}{"{}Category\_DockingNotification"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00973}00973\ \ \ \ \ \ \ \ \ [LocalizedDescription(\textcolor{stringliteral}{"{}DockPanel\_ContentRemoved\_Description"{}})]}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00974}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6e8e674bbd33a97251ecd56eb3b0d3ee}{00974}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ EventHandler<DockContentEventArgs>\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_a6e8e674bbd33a97251ecd56eb3b0d3ee}{ContentRemoved}}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00975}00975\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00976}00976\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \{\ \ \ Events.AddHandler(ContentRemovedEvent,\ value);\ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00977}00977\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{remove}\ \ \{\ \ \ Events.RemoveHandler(ContentRemovedEvent,\ value);\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00978}00978\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00979}\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab3356e34ebdc29c98e55f60687205538}{00979}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_ab3356e34ebdc29c98e55f60687205538}{OnContentRemoved}}(\mbox{\hyperlink{class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_content_event_args}{DockContentEventArgs}}\ e)}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00980}00980\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00981}00981\ \ \ \ \ \ \ \ \ \ \ \ \ EventHandler<DockContentEventArgs>\ handler\ =\ (EventHandler<DockContentEventArgs>)Events[ContentRemovedEvent];}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00982}00982\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handler\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00983}00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler(\textcolor{keyword}{this},\ e);}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00984}00984\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00985}00985\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_dock_panel_8cs_source_l00986}00986\ \}}
+
+\end{DoxyCode}

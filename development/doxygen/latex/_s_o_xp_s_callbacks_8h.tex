@@ -1,0 +1,894 @@
+\doxysection{core/src/\+SOXp\+S/\+SOXp\+SCallbacks.h File Reference}
+\hypertarget{_s_o_xp_s_callbacks_8h}{}\label{_s_o_xp_s_callbacks_8h}\index{core/src/SOXpS/SOXpSCallbacks.h@{core/src/SOXpS/SOXpSCallbacks.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a67b6455676f262af664331d5895ce518}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+TO\+\_\+\+OBJECT}}(p,  cls)~  ((p != NULL) \&\& (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(cls))))
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a840f50051eb48b62d0b384eee97b103b}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+TO\+\_\+\+OBJECT\+\_\+\+OR\+\_\+\+NULL}}(p,  cls)~  ((p == NULL) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(cls))))
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a038c5b19e0e70f230a5ffb758117022c}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+TO\+\_\+\+SIZE}}(p,  s)~  ((p != NULL) \&\& (!\+::\+Is\+Bad\+Read\+Ptr(p, s)))
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a579d2334ce1ee47c695d72c3244101bb}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER}}(p)~  ((p != NULL) \&\& (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))))
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a8c8af8ec1c7e27e199ddfd7550fdb494}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+OR\+\_\+\+NULL}}(p)~  ((p == NULL) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))))
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a6ead23c544b52f2fbf6e8ea9abc7e151}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+ARRAY}}(p,  num)~  ( ((p == NULL) \&\& (num == 0)) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p) \texorpdfstring{$\ast$}{*} num)) )
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ae6f7c5a4a1b23fcfb3cb7f60bc2901e7}{SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+WRITE\+\_\+\+POINTER\+\_\+\+OR\+\_\+\+NULL}}(p)~  ((p == NULL) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} ( (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))) \&\& (!\+::\+Is\+Bad\+Write\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))) ))
+\item 
+\#define \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ac67b7a6ec8221879adf142a3dd59906a}{SOXPS\+\_\+\+INIT\+\_\+\+WRITE\+\_\+\+POINTER}}(p)~  \{ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8}{if}} (p) \texorpdfstring{$\ast$}{*}p = NULL; \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \mbox{\hyperlink{_s_o_xp_s_8h_a98173af7681ccda11cbf2cdc6d40b869}{SOXp\+SInit\+Data}} \texorpdfstring{$\ast$}{*}(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7d7b9c519fafeff1fd9b566f4cee05ee}{\+\_\+\+SOXp\+SInitialize}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ab6760d5c7259588c2bc0fabb28f69e51}{SOXp\+SCompleted\+DARequests}} completed\+Req, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a0490765797bd99f953ed5273ab6f957b}{SOXp\+SFire\+AEEvents}} fire\+Events, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_abb964f714b0b8a90d982846bdc2d6d06}{SOXp\+SChange\+AEConditions}} change\+Cond, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a1dc793fa9d9315c4caf166f605e1d194}{SOXp\+SShutdown}} shutdown, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a59edb408a2b016813a5195ee1ff8d561}{SOXp\+SSet\+Device\+State}} set\+Device\+State)
+\item 
+typedef DWORD(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aecbd79afde50ae32e201f99e323aa278}{\+\_\+\+SOXp\+SStart}}) (void)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_acc293cafca7378490235809aa0a4a554}{\+\_\+\+SOXp\+SStop}}) (void)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aeb689780b94bb40bd3420417c00e429b}{\+\_\+\+SOXp\+SBuild\+DAName\+Space}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a37b073f2a7ce7517e4610e309cb9bdfe}{SOXp\+SCreate\+Node}} create\+Node, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_acc9c833e9b16ca9fb18b9f2c49025e7d}{SOXp\+SCreate\+Tag}} create\+Tag, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a0254830426ca3ce9e3497fd9536e8358}{SOXp\+SCreate\+Property}} create\+Property)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a84b84f38a46dd0a7256ca5e5a786cf39}{\+\_\+\+SOXp\+SBuild\+AEArea\+Space}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_abd19bf7a65ba24ae9bd9ea976cc2fd67}{SOXp\+SCreate\+Area}} create\+Area, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a73d0151306661129a50553aca85895d0}{SOXp\+SCreate\+Source}} create\+Source, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a73de415200334e732a7790a1b75399e7}{SOXp\+SCreate\+Condition}} create\+Condition)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a87fa92f67997268b4ece2a3f04b8c3fe}{\+\_\+\+SOXp\+SBuild\+AEEvent\+Space}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a717fe6398a618ae4a01354ec35034c9c}{SOXp\+SCreate\+Category}} create\+Category, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4f8718c4ae20a6850b0e099728dbd26c}{SOXp\+SCreate\+Attribute}} create\+Attribute, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a78001501191268f350ff47e4bf61ac05}{SOXp\+SCreate\+Condition\+Class}} create\+Condition\+Class, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ac3ab010c61b766f090cf078af2271f45}{SOXp\+SCreate\+Sub\+Condition\+Class}} create\+Sub\+Condition\+Class)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7a23d4d630128a839d0599272c0a5c4f}{\+\_\+\+SOXp\+SHandle\+DARequests}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD io\+Operation, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Requests, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}request\+Array)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a15a63af6adfb7feec36281652b8cbcb9}{\+\_\+\+SOXp\+SActivate\+DAItems}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE activate, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Items, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9ebd6b116fbc6a394b0fec64def97719}{SOXp\+SDAItem\+Data}} \texorpdfstring{$\ast$}{*}item\+Data\+Array)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a287a3bad07cbbbd5dda1d001d1336cca}{\+\_\+\+SOXp\+SActivate\+AESubscription}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE activate)
+\item 
+typedef DWORD(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ab748c3cccd4086b61d96acce886b2c64}{\+\_\+\+SOXp\+SReceived\+AEAcknowledge}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4324d34b973693e3d3b149851722bc12}{SOXp\+SCondition\+Handle}} cond\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR source\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR cond\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR ack\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR ack\+Comment, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} FILETIME \texorpdfstring{$\ast$}{*}active\+Time)
+\item 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a43d68d93333fe8d6b0f13843363a0d19}{\+\_\+\+SOXp\+STranslate\+To\+Item\+IDs}}) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4324d34b973693e3d3b149851722bc12}{SOXp\+SCondition\+Handle}} cond\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR source\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR cond\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR sub\+Cond\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Attributes, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}attributes\+Array, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_aa77b73e364f0f2073f5c0f389d1f7c6e}{SOXp\+STranslated\+Item\+ID}} translated\+Item\+ID)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a03f344a5013ede930d9521ca292f9d03}{\+\_\+\+SOXp\+SCreate\+Node}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} parent\+Node\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE datatype, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD access\+Rights, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD io\+Mode, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{user\+Data}}, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} \texorpdfstring{$\ast$}{*}node\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a0e5d0a1224b2443da0abf1196978b870}{\+\_\+\+SOXp\+SCreate\+Tag}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} parent\+Node\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE datatype, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD access\+Rights, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD io\+Mode, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{user\+Data}}, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} \texorpdfstring{$\ast$}{*}tag\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_afbe729a12b943c95a83c46a3e02bdacb}{\+\_\+\+SOXp\+SCreate\+Property}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} parent\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD property\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR description, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE datatype, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD access\+Rights, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD io\+Mode, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPVARIANT constant\+Value, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \mbox{\hyperlink{xmlparse_8c_a4b666535c828e23ccd16510a0a1a1943}{user\+Data}}, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} \texorpdfstring{$\ast$}{*}property\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a99a4ece77a0d6b4a4ee9688707c9c82e}{\+\_\+\+SOXp\+SCreate\+Area}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ad5ca0991542e44ecb54872739d1602e7}{SOXp\+SArea\+Handle}} parent\+Area\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR name, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_ad5ca0991542e44ecb54872739d1602e7}{SOXp\+SArea\+Handle}} \texorpdfstring{$\ast$}{*}area\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_acddaf66a0f4a48537be6e8e2e7a2d184}{\+\_\+\+SOXp\+SCreate\+Source}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ad5ca0991542e44ecb54872739d1602e7}{SOXp\+SArea\+Handle}} parent\+Area\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR name, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a4101c6c8c4a2210b23e761ee5d7702c6}{SOXp\+SSource\+Handle}} \texorpdfstring{$\ast$}{*}source\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a72f6544b2b3bf5c5d1f1c98b72a3d49a}{\+\_\+\+SOXp\+SCreate\+Condition}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4101c6c8c4a2210b23e761ee5d7702c6}{SOXp\+SSource\+Handle}} parent\+Source\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR condition\+Class\+Name, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a4324d34b973693e3d3b149851722bc12}{SOXp\+SCondition\+Handle}} \texorpdfstring{$\ast$}{*}cond\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a0e074272786ea2a7fc541a3fbbf3d3c9}{\+\_\+\+SOXp\+SCreate\+Category}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD event\+Type, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD category\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR description, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a3b83e3a0d84c6961b7edf5bde4f1bfa7}{SOXp\+SCategory\+Handle}} \texorpdfstring{$\ast$}{*}category\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a3ce1fcde62c87d7c5ac323addad73942}{\+\_\+\+SOXp\+SCreate\+Attribute}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a3b83e3a0d84c6961b7edf5bde4f1bfa7}{SOXp\+SCategory\+Handle}} category\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD attribute\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR description, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE datatype)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ab55dd8f70434cf33e8cfb6aef26f0592}{\+\_\+\+SOXp\+SCreate\+Condition\+Class}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a3b83e3a0d84c6961b7edf5bde4f1bfa7}{SOXp\+SCategory\+Handle}} category\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR condition\+Class\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR inactive\+Sub\+Cond\+Message, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD inactive\+Sub\+Cond\+Ack\+Required, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD single\+State\+Condition\+Class, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR definition, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD active\+Sub\+Cond\+Severity, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR active\+Sub\+Cond\+Message, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD active\+Sub\+Cond\+Ack\+Required, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a4e561d7c380c03d98e7ed1583a4ebe0b}{SOXp\+SCondition\+Class\+Handle}} \texorpdfstring{$\ast$}{*}condition\+Class\+Handle)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ae3314f97dcab401d31205e690dfdf877}{\+\_\+\+SOXp\+SCreate\+Sub\+Condition\+Class}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4e561d7c380c03d98e7ed1583a4ebe0b}{SOXp\+SCondition\+Class\+Handle}} condition\+Class\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD severity, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR description, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD ack\+Required, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR definition)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_af13f7453af9dff17d524ca56164efc29}{\+\_\+\+SOXp\+SFire\+AEEvents}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Events, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a0d8354940c05a39001da482d991f33c0}{SOXp\+SAEEvent\+Data}} \texorpdfstring{$\ast$}{*}event\+Array)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a8f882286aa1658d09459dc5ac80793e5}{\+\_\+\+SOXp\+SCompleted\+DARequests}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Requests, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}request\+Array)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7412ad1d61e1db5f537e426403b088f4}{\+\_\+\+SOXp\+SChange\+AEConditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Conditions, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a2435270a2cc1d814792ae89f877ed1f4}{SOXp\+SAECondition\+Data}} \texorpdfstring{$\ast$}{*}cond\+Array)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a2172a9173401f3036f917d38c848935b}{\+\_\+\+SOXp\+STranslated\+Item\+ID}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD attribute\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR item\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR node\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_proxy__i_8c_a2ab123f47f26d717283dbd5db694e130}{CLSID}} \texorpdfstring{$\ast$}{*}class\+ID)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aff3494f98b094cbb5a822075b8a608dc}{\+\_\+\+SOXp\+SShutdown}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR reason)
+\item 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a89392ef03f5552acff977ac17719b5c1}{\+\_\+\+SOXp\+SSet\+Device\+State}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a995cd6a320395bc6b894587dcdbad85d}{SOXp\+SDevice\+Handle}} device\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR dev\+State, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR dev\+State\+Info)
+\item 
+BOOL \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a6946aba15726d6a8c0521369eade6906}{load\+Cfg\+DLL}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7d7b9c519fafeff1fd9b566f4cee05ee}{\+\_\+\+SOXp\+SInitialize}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a931ebc6ed5eebfa4dd4e735f2d39a71e}{g\+\_\+fp\+SOXp\+SInitialize}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aecbd79afde50ae32e201f99e323aa278}{\+\_\+\+SOXp\+SStart}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a388541b902541ddb48af2df5df0e17f3}{g\+\_\+fp\+SOXp\+SStart}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_acc293cafca7378490235809aa0a4a554}{\+\_\+\+SOXp\+SStop}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_afceca5dc6379ec4c92efd9c10b3342ba}{g\+\_\+fp\+SOXp\+SStop}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aeb689780b94bb40bd3420417c00e429b}{\+\_\+\+SOXp\+SBuild\+DAName\+Space}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aa288656eb2db4334c8cb4c56e23b47fe}{g\+\_\+fp\+SOXp\+SBuild\+DAName\+Space}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a84b84f38a46dd0a7256ca5e5a786cf39}{\+\_\+\+SOXp\+SBuild\+AEArea\+Space}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a09d7f9dee67a3aba4f2c6fd97c3f03c7}{g\+\_\+fp\+SOXp\+SBuild\+AEArea\+Space}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a87fa92f67997268b4ece2a3f04b8c3fe}{\+\_\+\+SOXp\+SBuild\+AEEvent\+Space}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a87f3a3b2440e29dd013249a95220a787}{g\+\_\+fp\+SOXp\+SBuild\+AEEvent\+Space}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7a23d4d630128a839d0599272c0a5c4f}{\+\_\+\+SOXp\+SHandle\+DARequests}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a3c65409c487bca6845f6a0c55f219b41}{g\+\_\+fp\+SOXp\+SHandle\+DARequests}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a15a63af6adfb7feec36281652b8cbcb9}{\+\_\+\+SOXp\+SActivate\+DAItems}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_acf10bc80af74602c98ae96871beae9f5}{g\+\_\+fp\+SOXp\+SActivate\+DAItems}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ab748c3cccd4086b61d96acce886b2c64}{\+\_\+\+SOXp\+SReceived\+AEAcknowledge}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7e9c1194ebb98edc68e980b2c1012745}{g\+\_\+fp\+SOXp\+SReceived\+AEAcknowledge}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a43d68d93333fe8d6b0f13843363a0d19}{\+\_\+\+SOXp\+STranslate\+To\+Item\+IDs}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ab70d5adaaed867d494c561544d59d2bb}{g\+\_\+fp\+SOXp\+STranslate\+To\+Item\+IDs}}
+\item 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a287a3bad07cbbbd5dda1d001d1336cca}{\+\_\+\+SOXp\+SActivate\+AESubscription}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_af85f01baee0212ea078e6cad14a0cb58}{g\+\_\+fp\+SOXp\+SActivate\+AESubscription}}
+\item 
+HINSTANCE \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a1ee574768b5315b9b5bae267208fe9e4}{g\+\_\+dll\+Instance}}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_sync}{SOCmn\+Sync}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7422fa6927da5be436cb4e37c72e3723}{g\+\_\+lock\+Received\+AEAcknowledge}}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_sync}{SOCmn\+Sync}} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a291bd246e3151e9d1c3e5406f8f3b755}{g\+\_\+lock\+Translate\+To\+Item\+ID}}
+\item 
+\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$ \mbox{\hyperlink{class_s_o_ae_s_attribute_value_d_a_description}{SOAe\+SAttribute\+Value\+DADescription}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_afedaa174311d2f4bae0db5b1bd91ee49}{g\+\_\+translate\+To\+Item\+IDList}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_s_o_xp_s_callbacks_8h_ac67b7a6ec8221879adf142a3dd59906a}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_INIT\_WRITE\_POINTER@{SOXPS\_INIT\_WRITE\_POINTER}}
+\index{SOXPS\_INIT\_WRITE\_POINTER@{SOXPS\_INIT\_WRITE\_POINTER}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_INIT\_WRITE\_POINTER}{SOXPS\_INIT\_WRITE\_POINTER}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_ac67b7a6ec8221879adf142a3dd59906a} 
+\#define SOXPS\+\_\+\+INIT\+\_\+\+WRITE\+\_\+\+POINTER(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})~  \{ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a5a348af7c112200ded9345bba0fc8ed8}{if}} (p) \texorpdfstring{$\ast$}{*}p = NULL; \}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00153}{153}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a6ead23c544b52f2fbf6e8ea9abc7e151}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_ARRAY@{SOXPS\_IS\_VALID\_ARRAY}}
+\index{SOXPS\_IS\_VALID\_ARRAY@{SOXPS\_IS\_VALID\_ARRAY}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_ARRAY}{SOXPS\_IS\_VALID\_ARRAY}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a6ead23c544b52f2fbf6e8ea9abc7e151} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+ARRAY(\begin{DoxyParamCaption}\item[{}]{p}{, }\item[{}]{num}{}\end{DoxyParamCaption})~  ( ((p == NULL) \&\& (num == 0)) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p) \texorpdfstring{$\ast$}{*} num)) )}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00147}{147}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a579d2334ce1ee47c695d72c3244101bb}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_POINTER@{SOXPS\_IS\_VALID\_POINTER}}
+\index{SOXPS\_IS\_VALID\_POINTER@{SOXPS\_IS\_VALID\_POINTER}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_POINTER}{SOXPS\_IS\_VALID\_POINTER}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a579d2334ce1ee47c695d72c3244101bb} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})~  ((p != NULL) \&\& (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00142}{142}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a8c8af8ec1c7e27e199ddfd7550fdb494}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_POINTER\_OR\_NULL@{SOXPS\_IS\_VALID\_POINTER\_OR\_NULL}}
+\index{SOXPS\_IS\_VALID\_POINTER\_OR\_NULL@{SOXPS\_IS\_VALID\_POINTER\_OR\_NULL}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_POINTER\_OR\_NULL}{SOXPS\_IS\_VALID\_POINTER\_OR\_NULL}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a8c8af8ec1c7e27e199ddfd7550fdb494} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+OR\+\_\+\+NULL(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})~  ((p == NULL) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00144}{144}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a67b6455676f262af664331d5895ce518}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT@{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT}}
+\index{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT@{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT}{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a67b6455676f262af664331d5895ce518} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+TO\+\_\+\+OBJECT(\begin{DoxyParamCaption}\item[{}]{p}{, }\item[{}]{cls}{}\end{DoxyParamCaption})~  ((p != NULL) \&\& (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(cls))))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00136}{136}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a840f50051eb48b62d0b384eee97b103b}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT\_OR\_NULL@{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT\_OR\_NULL}}
+\index{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT\_OR\_NULL@{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT\_OR\_NULL}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT\_OR\_NULL}{SOXPS\_IS\_VALID\_POINTER\_TO\_OBJECT\_OR\_NULL}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a840f50051eb48b62d0b384eee97b103b} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+TO\+\_\+\+OBJECT\+\_\+\+OR\+\_\+\+NULL(\begin{DoxyParamCaption}\item[{}]{p}{, }\item[{}]{cls}{}\end{DoxyParamCaption})~  ((p == NULL) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(cls))))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00138}{138}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a038c5b19e0e70f230a5ffb758117022c}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_POINTER\_TO\_SIZE@{SOXPS\_IS\_VALID\_POINTER\_TO\_SIZE}}
+\index{SOXPS\_IS\_VALID\_POINTER\_TO\_SIZE@{SOXPS\_IS\_VALID\_POINTER\_TO\_SIZE}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_POINTER\_TO\_SIZE}{SOXPS\_IS\_VALID\_POINTER\_TO\_SIZE}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a038c5b19e0e70f230a5ffb758117022c} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+POINTER\+\_\+\+TO\+\_\+\+SIZE(\begin{DoxyParamCaption}\item[{}]{p}{, }\item[{}]{s}{}\end{DoxyParamCaption})~  ((p != NULL) \&\& (!\+::\+Is\+Bad\+Read\+Ptr(p, s)))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00140}{140}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_ae6f7c5a4a1b23fcfb3cb7f60bc2901e7}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!SOXPS\_IS\_VALID\_WRITE\_POINTER\_OR\_NULL@{SOXPS\_IS\_VALID\_WRITE\_POINTER\_OR\_NULL}}
+\index{SOXPS\_IS\_VALID\_WRITE\_POINTER\_OR\_NULL@{SOXPS\_IS\_VALID\_WRITE\_POINTER\_OR\_NULL}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{SOXPS\_IS\_VALID\_WRITE\_POINTER\_OR\_NULL}{SOXPS\_IS\_VALID\_WRITE\_POINTER\_OR\_NULL}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_ae6f7c5a4a1b23fcfb3cb7f60bc2901e7} 
+\#define SOXPS\+\_\+\+IS\+\_\+\+VALID\+\_\+\+WRITE\+\_\+\+POINTER\+\_\+\+OR\+\_\+\+NULL(\begin{DoxyParamCaption}\item[{}]{p}{}\end{DoxyParamCaption})~  ((p == NULL) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} ( (!\+::\+Is\+Bad\+Read\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))) \&\& (!\+::\+Is\+Bad\+Write\+Ptr(p, sizeof(\texorpdfstring{$\ast$}{*}p))) ))}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00150}{150}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a287a3bad07cbbbd5dda1d001d1336cca}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSActivateAESubscription@{\_SOXpSActivateAESubscription}}
+\index{\_SOXpSActivateAESubscription@{\_SOXpSActivateAESubscription}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSActivateAESubscription}{\_SOXpSActivateAESubscription}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a287a3bad07cbbbd5dda1d001d1336cca} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SActivate\+AESubscription) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE activate)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00102}{102}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a15a63af6adfb7feec36281652b8cbcb9}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSActivateDAItems@{\_SOXpSActivateDAItems}}
+\index{\_SOXpSActivateDAItems@{\_SOXpSActivateDAItems}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSActivateDAItems}{\_SOXpSActivateDAItems}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a15a63af6adfb7feec36281652b8cbcb9} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SActivate\+DAItems) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE activate, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Items, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9ebd6b116fbc6a394b0fec64def97719}{SOXp\+SDAItem\+Data}} \texorpdfstring{$\ast$}{*}item\+Data\+Array)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00099}{99}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a84b84f38a46dd0a7256ca5e5a786cf39}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSBuildAEAreaSpace@{\_SOXpSBuildAEAreaSpace}}
+\index{\_SOXpSBuildAEAreaSpace@{\_SOXpSBuildAEAreaSpace}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSBuildAEAreaSpace}{\_SOXpSBuildAEAreaSpace}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a84b84f38a46dd0a7256ca5e5a786cf39} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SBuild\+AEArea\+Space) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_abd19bf7a65ba24ae9bd9ea976cc2fd67}{SOXp\+SCreate\+Area}} create\+Area, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a73d0151306661129a50553aca85895d0}{SOXp\+SCreate\+Source}} create\+Source, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a73de415200334e732a7790a1b75399e7}{SOXp\+SCreate\+Condition}} create\+Condition)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00089}{89}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a87fa92f67997268b4ece2a3f04b8c3fe}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSBuildAEEventSpace@{\_SOXpSBuildAEEventSpace}}
+\index{\_SOXpSBuildAEEventSpace@{\_SOXpSBuildAEEventSpace}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSBuildAEEventSpace}{\_SOXpSBuildAEEventSpace}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a87fa92f67997268b4ece2a3f04b8c3fe} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SBuild\+AEEvent\+Space) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a717fe6398a618ae4a01354ec35034c9c}{SOXp\+SCreate\+Category}} create\+Category, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4f8718c4ae20a6850b0e099728dbd26c}{SOXp\+SCreate\+Attribute}} create\+Attribute, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a78001501191268f350ff47e4bf61ac05}{SOXp\+SCreate\+Condition\+Class}} create\+Condition\+Class, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ac3ab010c61b766f090cf078af2271f45}{SOXp\+SCreate\+Sub\+Condition\+Class}} create\+Sub\+Condition\+Class)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00092}{92}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_aeb689780b94bb40bd3420417c00e429b}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSBuildDANameSpace@{\_SOXpSBuildDANameSpace}}
+\index{\_SOXpSBuildDANameSpace@{\_SOXpSBuildDANameSpace}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSBuildDANameSpace}{\_SOXpSBuildDANameSpace}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_aeb689780b94bb40bd3420417c00e429b} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SBuild\+DAName\+Space) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a37b073f2a7ce7517e4610e309cb9bdfe}{SOXp\+SCreate\+Node}} create\+Node, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_acc9c833e9b16ca9fb18b9f2c49025e7d}{SOXp\+SCreate\+Tag}} create\+Tag, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a0254830426ca3ce9e3497fd9536e8358}{SOXp\+SCreate\+Property}} create\+Property)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00086}{86}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a7a23d4d630128a839d0599272c0a5c4f}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSHandleDARequests@{\_SOXpSHandleDARequests}}
+\index{\_SOXpSHandleDARequests@{\_SOXpSHandleDARequests}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSHandleDARequests}{\_SOXpSHandleDARequests}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a7a23d4d630128a839d0599272c0a5c4f} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SHandle\+DARequests) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD io\+Operation, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Requests, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}request\+Array)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00096}{96}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a7d7b9c519fafeff1fd9b566f4cee05ee}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSInitialize@{\_SOXpSInitialize}}
+\index{\_SOXpSInitialize@{\_SOXpSInitialize}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSInitialize}{\_SOXpSInitialize}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a7d7b9c519fafeff1fd9b566f4cee05ee} 
+typedef \mbox{\hyperlink{_s_o_xp_s_8h_a98173af7681ccda11cbf2cdc6d40b869}{SOXp\+SInit\+Data}} \texorpdfstring{$\ast$}{*}(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SInitialize) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ab6760d5c7259588c2bc0fabb28f69e51}{SOXp\+SCompleted\+DARequests}} completed\+Req, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a0490765797bd99f953ed5273ab6f957b}{SOXp\+SFire\+AEEvents}} fire\+Events, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_abb964f714b0b8a90d982846bdc2d6d06}{SOXp\+SChange\+AEConditions}} change\+Cond, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a1dc793fa9d9315c4caf166f605e1d194}{SOXp\+SShutdown}} shutdown, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a59edb408a2b016813a5195ee1ff8d561}{SOXp\+SSet\+Device\+State}} set\+Device\+State)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00078}{78}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_ab748c3cccd4086b61d96acce886b2c64}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSReceivedAEAcknowledge@{\_SOXpSReceivedAEAcknowledge}}
+\index{\_SOXpSReceivedAEAcknowledge@{\_SOXpSReceivedAEAcknowledge}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSReceivedAEAcknowledge}{\_SOXpSReceivedAEAcknowledge}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_ab748c3cccd4086b61d96acce886b2c64} 
+typedef DWORD(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SReceived\+AEAcknowledge) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4324d34b973693e3d3b149851722bc12}{SOXp\+SCondition\+Handle}} cond\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR source\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR cond\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR ack\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR ack\+Comment, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} FILETIME \texorpdfstring{$\ast$}{*}active\+Time)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00104}{104}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_aecbd79afde50ae32e201f99e323aa278}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSStart@{\_SOXpSStart}}
+\index{\_SOXpSStart@{\_SOXpSStart}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSStart}{\_SOXpSStart}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_aecbd79afde50ae32e201f99e323aa278} 
+typedef DWORD(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SStart) (void)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00082}{82}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_acc293cafca7378490235809aa0a4a554}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSStop@{\_SOXpSStop}}
+\index{\_SOXpSStop@{\_SOXpSStop}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSStop}{\_SOXpSStop}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_acc293cafca7378490235809aa0a4a554} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+SStop) (void)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00084}{84}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a43d68d93333fe8d6b0f13843363a0d19}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSTranslateToItemIDs@{\_SOXpSTranslateToItemIDs}}
+\index{\_SOXpSTranslateToItemIDs@{\_SOXpSTranslateToItemIDs}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSTranslateToItemIDs}{\_SOXpSTranslateToItemIDs}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a43d68d93333fe8d6b0f13843363a0d19} 
+typedef void(\mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \texorpdfstring{$\ast$}{*} \+\_\+\+SOXp\+STranslate\+To\+Item\+IDs) (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4324d34b973693e3d3b149851722bc12}{SOXp\+SCondition\+Handle}} cond\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR source\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR cond\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR sub\+Cond\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD num\+Attributes, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}attributes\+Array, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_aa77b73e364f0f2073f5c0f389d1f7c6e}{SOXp\+STranslated\+Item\+ID}} translated\+Item\+ID)}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source_l00107}{107}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8h_source}{SOXp\+SCallbacks.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a7412ad1d61e1db5f537e426403b088f4}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSChangeAEConditions@{\_SOXpSChangeAEConditions}}
+\index{\_SOXpSChangeAEConditions@{\_SOXpSChangeAEConditions}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSChangeAEConditions()}{\_SOXpSChangeAEConditions()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a7412ad1d61e1db5f537e426403b088f4} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SChange\+AEConditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{num\+Conditions}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a2435270a2cc1d814792ae89f877ed1f4}{SOXp\+SAECondition\+Data}} \texorpdfstring{$\ast$}{*}}]{cond\+Array}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00961}{961}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_a7412ad1d61e1db5f537e426403b088f4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{_s_o_xp_s_callbacks_8h_a7412ad1d61e1db5f537e426403b088f4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a8f882286aa1658d09459dc5ac80793e5}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCompletedDARequests@{\_SOXpSCompletedDARequests}}
+\index{\_SOXpSCompletedDARequests@{\_SOXpSCompletedDARequests}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCompletedDARequests()}{\_SOXpSCompletedDARequests()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a8f882286aa1658d09459dc5ac80793e5} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCompleted\+DARequests (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{num\+Requests}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a9b39b9484a08951d4ef8157227fd2b0c}{SOXp\+SDARequest\+Data}} \texorpdfstring{$\ast$}{*}}]{request\+Array}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00926}{926}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_a8f882286aa1658d09459dc5ac80793e5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{_s_o_xp_s_callbacks_8h_a8f882286aa1658d09459dc5ac80793e5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a99a4ece77a0d6b4a4ee9688707c9c82e}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateArea@{\_SOXpSCreateArea}}
+\index{\_SOXpSCreateArea@{\_SOXpSCreateArea}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateArea()}{\_SOXpSCreateArea()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a99a4ece77a0d6b4a4ee9688707c9c82e} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ad5ca0991542e44ecb54872739d1602e7}{SOXp\+SArea\+Handle}}}]{parent\+Area\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_ad5ca0991542e44ecb54872739d1602e7}{SOXp\+SArea\+Handle}} \texorpdfstring{$\ast$}{*}}]{area\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00394}{394}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=303pt]{_s_o_xp_s_callbacks_8h_a99a4ece77a0d6b4a4ee9688707c9c82e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{_s_o_xp_s_callbacks_8h_a99a4ece77a0d6b4a4ee9688707c9c82e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a3ce1fcde62c87d7c5ac323addad73942}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateAttribute@{\_SOXpSCreateAttribute}}
+\index{\_SOXpSCreateAttribute@{\_SOXpSCreateAttribute}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateAttribute()}{\_SOXpSCreateAttribute()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a3ce1fcde62c87d7c5ac323addad73942} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Attribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a3b83e3a0d84c6961b7edf5bde4f1bfa7}{SOXp\+SCategory\+Handle}}}]{category\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{attribute\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{description}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE}]{datatype}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00647}{647}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_a3ce1fcde62c87d7c5ac323addad73942_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{_s_o_xp_s_callbacks_8h_a3ce1fcde62c87d7c5ac323addad73942_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a0e074272786ea2a7fc541a3fbbf3d3c9}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateCategory@{\_SOXpSCreateCategory}}
+\index{\_SOXpSCreateCategory@{\_SOXpSCreateCategory}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateCategory()}{\_SOXpSCreateCategory()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a0e074272786ea2a7fc541a3fbbf3d3c9} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Category (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{event\+Type}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{category\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{description}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a3b83e3a0d84c6961b7edf5bde4f1bfa7}{SOXp\+SCategory\+Handle}} \texorpdfstring{$\ast$}{*}}]{category\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00593}{593}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{_s_o_xp_s_callbacks_8h_a0e074272786ea2a7fc541a3fbbf3d3c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=315pt]{_s_o_xp_s_callbacks_8h_a0e074272786ea2a7fc541a3fbbf3d3c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a72f6544b2b3bf5c5d1f1c98b72a3d49a}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateCondition@{\_SOXpSCreateCondition}}
+\index{\_SOXpSCreateCondition@{\_SOXpSCreateCondition}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateCondition()}{\_SOXpSCreateCondition()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a72f6544b2b3bf5c5d1f1c98b72a3d49a} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Condition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4101c6c8c4a2210b23e761ee5d7702c6}{SOXp\+SSource\+Handle}}}]{parent\+Source\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{condition\+Class\+Name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a4324d34b973693e3d3b149851722bc12}{SOXp\+SCondition\+Handle}} \texorpdfstring{$\ast$}{*}}]{cond\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00528}{528}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{_s_o_xp_s_callbacks_8h_a72f6544b2b3bf5c5d1f1c98b72a3d49a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{_s_o_xp_s_callbacks_8h_a72f6544b2b3bf5c5d1f1c98b72a3d49a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_ab55dd8f70434cf33e8cfb6aef26f0592}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateConditionClass@{\_SOXpSCreateConditionClass}}
+\index{\_SOXpSCreateConditionClass@{\_SOXpSCreateConditionClass}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateConditionClass()}{\_SOXpSCreateConditionClass()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_ab55dd8f70434cf33e8cfb6aef26f0592} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Condition\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a3b83e3a0d84c6961b7edf5bde4f1bfa7}{SOXp\+SCategory\+Handle}}}]{category\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{condition\+Class\+Name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{inactive\+Sub\+Cond\+Message}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{inactive\+Sub\+Cond\+Ack\+Required}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{single\+State\+Condition\+Class}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{definition}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{active\+Sub\+Cond\+Severity}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{active\+Sub\+Cond\+Message}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{active\+Sub\+Cond\+Ack\+Required}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a4e561d7c380c03d98e7ed1583a4ebe0b}{SOXp\+SCondition\+Class\+Handle}} \texorpdfstring{$\ast$}{*}}]{condition\+Class\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00694}{694}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_ab55dd8f70434cf33e8cfb6aef26f0592_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{_s_o_xp_s_callbacks_8h_ab55dd8f70434cf33e8cfb6aef26f0592_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a03f344a5013ede930d9521ca292f9d03}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateNode@{\_SOXpSCreateNode}}
+\index{\_SOXpSCreateNode@{\_SOXpSCreateNode}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateNode()}{\_SOXpSCreateNode()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a03f344a5013ede930d9521ca292f9d03} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}}}]{parent\+Node\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE}]{datatype}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{access\+Rights}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{io\+Mode}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{user\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} \texorpdfstring{$\ast$}{*}}]{node\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00134}{134}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{_s_o_xp_s_callbacks_8h_a03f344a5013ede930d9521ca292f9d03_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{_s_o_xp_s_callbacks_8h_a03f344a5013ede930d9521ca292f9d03_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_afbe729a12b943c95a83c46a3e02bdacb}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateProperty@{\_SOXpSCreateProperty}}
+\index{\_SOXpSCreateProperty@{\_SOXpSCreateProperty}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateProperty()}{\_SOXpSCreateProperty()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_afbe729a12b943c95a83c46a3e02bdacb} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Property (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}}}]{parent\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{property\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{description}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE}]{datatype}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{access\+Rights}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{io\+Mode}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPVARIANT}]{constant\+Value}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{user\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} \texorpdfstring{$\ast$}{*}}]{property\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00305}{305}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{_s_o_xp_s_callbacks_8h_afbe729a12b943c95a83c46a3e02bdacb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_acddaf66a0f4a48537be6e8e2e7a2d184}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateSource@{\_SOXpSCreateSource}}
+\index{\_SOXpSCreateSource@{\_SOXpSCreateSource}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateSource()}{\_SOXpSCreateSource()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_acddaf66a0f4a48537be6e8e2e7a2d184} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Source (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_ad5ca0991542e44ecb54872739d1602e7}{SOXp\+SArea\+Handle}}}]{parent\+Area\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a4101c6c8c4a2210b23e761ee5d7702c6}{SOXp\+SSource\+Handle}} \texorpdfstring{$\ast$}{*}}]{source\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00461}{461}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{_s_o_xp_s_callbacks_8h_acddaf66a0f4a48537be6e8e2e7a2d184_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{_s_o_xp_s_callbacks_8h_acddaf66a0f4a48537be6e8e2e7a2d184_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_ae3314f97dcab401d31205e690dfdf877}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateSubConditionClass@{\_SOXpSCreateSubConditionClass}}
+\index{\_SOXpSCreateSubConditionClass@{\_SOXpSCreateSubConditionClass}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateSubConditionClass()}{\_SOXpSCreateSubConditionClass()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_ae3314f97dcab401d31205e690dfdf877} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Sub\+Condition\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a4e561d7c380c03d98e7ed1583a4ebe0b}{SOXp\+SCondition\+Class\+Handle}}}]{condition\+Class\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{severity}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{description}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{ack\+Required}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{definition}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00785}{785}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_ae3314f97dcab401d31205e690dfdf877_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{_s_o_xp_s_callbacks_8h_ae3314f97dcab401d31205e690dfdf877_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a0e5d0a1224b2443da0abf1196978b870}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSCreateTag@{\_SOXpSCreateTag}}
+\index{\_SOXpSCreateTag@{\_SOXpSCreateTag}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSCreateTag()}{\_SOXpSCreateTag()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a0e5d0a1224b2443da0abf1196978b870} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SCreate\+Tag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}}}]{parent\+Node\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} VARTYPE}]{datatype}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{access\+Rights}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} WORD}]{io\+Mode}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{user\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_s_o_xp_s_8h_a22a880aad08727851fecc39976aa6897}{SOXp\+SItem\+Handle}} \texorpdfstring{$\ast$}{*}}]{tag\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00222}{222}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{_s_o_xp_s_callbacks_8h_a0e5d0a1224b2443da0abf1196978b870_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{_s_o_xp_s_callbacks_8h_a0e5d0a1224b2443da0abf1196978b870_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_af13f7453af9dff17d524ca56164efc29}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSFireAEEvents@{\_SOXpSFireAEEvents}}
+\index{\_SOXpSFireAEEvents@{\_SOXpSFireAEEvents}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSFireAEEvents()}{\_SOXpSFireAEEvents()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_af13f7453af9dff17d524ca56164efc29} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SFire\+AEEvents (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{num\+Events}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a0d8354940c05a39001da482d991f33c0}{SOXp\+SAEEvent\+Data}} \texorpdfstring{$\ast$}{*}}]{event\+Array}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00830}{830}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_af13f7453af9dff17d524ca56164efc29_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{_s_o_xp_s_callbacks_8h_af13f7453af9dff17d524ca56164efc29_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a89392ef03f5552acff977ac17719b5c1}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSSetDeviceState@{\_SOXpSSetDeviceState}}
+\index{\_SOXpSSetDeviceState@{\_SOXpSSetDeviceState}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSSetDeviceState()}{\_SOXpSSetDeviceState()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a89392ef03f5552acff977ac17719b5c1} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SSet\+Device\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_xp_s_8h_a995cd6a320395bc6b894587dcdbad85d}{SOXp\+SDevice\+Handle}}}]{device\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{dev\+State}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{dev\+State\+Info}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l01213}{1213}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{_s_o_xp_s_callbacks_8h_a89392ef03f5552acff977ac17719b5c1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_aff3494f98b094cbb5a822075b8a608dc}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSShutdown@{\_SOXpSShutdown}}
+\index{\_SOXpSShutdown@{\_SOXpSShutdown}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSShutdown()}{\_SOXpSShutdown()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_aff3494f98b094cbb5a822075b8a608dc} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+SShutdown (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{reason}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l01180}{1180}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_aff3494f98b094cbb5a822075b8a608dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{_s_o_xp_s_callbacks_8h_aff3494f98b094cbb5a822075b8a608dc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a2172a9173401f3036f917d38c848935b}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!\_SOXpSTranslatedItemID@{\_SOXpSTranslatedItemID}}
+\index{\_SOXpSTranslatedItemID@{\_SOXpSTranslatedItemID}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{\_SOXpSTranslatedItemID()}{\_SOXpSTranslatedItemID()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a2172a9173401f3036f917d38c848935b} 
+DWORD \mbox{\hyperlink{_s_o_xp_s_8h_a3b015050d7b1d580d3f6897eac7676fe}{SOXPSCFG\+\_\+\+CALL}} \+\_\+\+SOXp\+STranslated\+Item\+ID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{attribute\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{item\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPCTSTR}]{node\+Name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_s_o_proxy__i_8c_a2ab123f47f26d717283dbd5db694e130}{CLSID}} \texorpdfstring{$\ast$}{*}}]{class\+ID}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l01131}{1131}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_s_o_xp_s_callbacks_8h_a2172a9173401f3036f917d38c848935b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a6946aba15726d6a8c0521369eade6906}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!loadCfgDLL@{loadCfgDLL}}
+\index{loadCfgDLL@{loadCfgDLL}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{loadCfgDLL()}{loadCfgDLL()}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a6946aba15726d6a8c0521369eade6906} 
+BOOL load\+Cfg\+DLL (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{_s_o_xp_s_callbacks_8h_a6946aba15726d6a8c0521369eade6906_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{_s_o_xp_s_callbacks_8h_a6946aba15726d6a8c0521369eade6906_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_s_o_xp_s_callbacks_8h_a1ee574768b5315b9b5bae267208fe9e4}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_dllInstance@{g\_dllInstance}}
+\index{g\_dllInstance@{g\_dllInstance}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_dllInstance}{g\_dllInstance}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a1ee574768b5315b9b5bae267208fe9e4} 
+HINSTANCE g\+\_\+dll\+Instance\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_af85f01baee0212ea078e6cad14a0cb58}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSActivateAESubscription@{g\_fpSOXpSActivateAESubscription}}
+\index{g\_fpSOXpSActivateAESubscription@{g\_fpSOXpSActivateAESubscription}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSActivateAESubscription}{g\_fpSOXpSActivateAESubscription}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_af85f01baee0212ea078e6cad14a0cb58} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a287a3bad07cbbbd5dda1d001d1336cca}{\+\_\+\+SOXp\+SActivate\+AESubscription}} g\+\_\+fp\+SOXp\+SActivate\+AESubscription\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_acf10bc80af74602c98ae96871beae9f5}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSActivateDAItems@{g\_fpSOXpSActivateDAItems}}
+\index{g\_fpSOXpSActivateDAItems@{g\_fpSOXpSActivateDAItems}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSActivateDAItems}{g\_fpSOXpSActivateDAItems}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_acf10bc80af74602c98ae96871beae9f5} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a15a63af6adfb7feec36281652b8cbcb9}{\+\_\+\+SOXp\+SActivate\+DAItems}} g\+\_\+fp\+SOXp\+SActivate\+DAItems\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a09d7f9dee67a3aba4f2c6fd97c3f03c7}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSBuildAEAreaSpace@{g\_fpSOXpSBuildAEAreaSpace}}
+\index{g\_fpSOXpSBuildAEAreaSpace@{g\_fpSOXpSBuildAEAreaSpace}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSBuildAEAreaSpace}{g\_fpSOXpSBuildAEAreaSpace}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a09d7f9dee67a3aba4f2c6fd97c3f03c7} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a84b84f38a46dd0a7256ca5e5a786cf39}{\+\_\+\+SOXp\+SBuild\+AEArea\+Space}} g\+\_\+fp\+SOXp\+SBuild\+AEArea\+Space\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a87f3a3b2440e29dd013249a95220a787}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSBuildAEEventSpace@{g\_fpSOXpSBuildAEEventSpace}}
+\index{g\_fpSOXpSBuildAEEventSpace@{g\_fpSOXpSBuildAEEventSpace}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSBuildAEEventSpace}{g\_fpSOXpSBuildAEEventSpace}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a87f3a3b2440e29dd013249a95220a787} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a87fa92f67997268b4ece2a3f04b8c3fe}{\+\_\+\+SOXp\+SBuild\+AEEvent\+Space}} g\+\_\+fp\+SOXp\+SBuild\+AEEvent\+Space\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_aa288656eb2db4334c8cb4c56e23b47fe}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSBuildDANameSpace@{g\_fpSOXpSBuildDANameSpace}}
+\index{g\_fpSOXpSBuildDANameSpace@{g\_fpSOXpSBuildDANameSpace}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSBuildDANameSpace}{g\_fpSOXpSBuildDANameSpace}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_aa288656eb2db4334c8cb4c56e23b47fe} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aeb689780b94bb40bd3420417c00e429b}{\+\_\+\+SOXp\+SBuild\+DAName\+Space}} g\+\_\+fp\+SOXp\+SBuild\+DAName\+Space\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a3c65409c487bca6845f6a0c55f219b41}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSHandleDARequests@{g\_fpSOXpSHandleDARequests}}
+\index{g\_fpSOXpSHandleDARequests@{g\_fpSOXpSHandleDARequests}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSHandleDARequests}{g\_fpSOXpSHandleDARequests}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a3c65409c487bca6845f6a0c55f219b41} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7a23d4d630128a839d0599272c0a5c4f}{\+\_\+\+SOXp\+SHandle\+DARequests}} g\+\_\+fp\+SOXp\+SHandle\+DARequests\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a931ebc6ed5eebfa4dd4e735f2d39a71e}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSInitialize@{g\_fpSOXpSInitialize}}
+\index{g\_fpSOXpSInitialize@{g\_fpSOXpSInitialize}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSInitialize}{g\_fpSOXpSInitialize}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a931ebc6ed5eebfa4dd4e735f2d39a71e} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a7d7b9c519fafeff1fd9b566f4cee05ee}{\+\_\+\+SOXp\+SInitialize}} g\+\_\+fp\+SOXp\+SInitialize\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a7e9c1194ebb98edc68e980b2c1012745}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSReceivedAEAcknowledge@{g\_fpSOXpSReceivedAEAcknowledge}}
+\index{g\_fpSOXpSReceivedAEAcknowledge@{g\_fpSOXpSReceivedAEAcknowledge}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSReceivedAEAcknowledge}{g\_fpSOXpSReceivedAEAcknowledge}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a7e9c1194ebb98edc68e980b2c1012745} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_ab748c3cccd4086b61d96acce886b2c64}{\+\_\+\+SOXp\+SReceived\+AEAcknowledge}} g\+\_\+fp\+SOXp\+SReceived\+AEAcknowledge\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a388541b902541ddb48af2df5df0e17f3}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSStart@{g\_fpSOXpSStart}}
+\index{g\_fpSOXpSStart@{g\_fpSOXpSStart}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSStart}{g\_fpSOXpSStart}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a388541b902541ddb48af2df5df0e17f3} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_aecbd79afde50ae32e201f99e323aa278}{\+\_\+\+SOXp\+SStart}} g\+\_\+fp\+SOXp\+SStart\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_afceca5dc6379ec4c92efd9c10b3342ba}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSStop@{g\_fpSOXpSStop}}
+\index{g\_fpSOXpSStop@{g\_fpSOXpSStop}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSStop}{g\_fpSOXpSStop}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_afceca5dc6379ec4c92efd9c10b3342ba} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_acc293cafca7378490235809aa0a4a554}{\+\_\+\+SOXp\+SStop}} g\+\_\+fp\+SOXp\+SStop\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_ab70d5adaaed867d494c561544d59d2bb}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_fpSOXpSTranslateToItemIDs@{g\_fpSOXpSTranslateToItemIDs}}
+\index{g\_fpSOXpSTranslateToItemIDs@{g\_fpSOXpSTranslateToItemIDs}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_fpSOXpSTranslateToItemIDs}{g\_fpSOXpSTranslateToItemIDs}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_ab70d5adaaed867d494c561544d59d2bb} 
+\mbox{\hyperlink{_s_o_xp_s_callbacks_8h_a43d68d93333fe8d6b0f13843363a0d19}{\+\_\+\+SOXp\+STranslate\+To\+Item\+IDs}} g\+\_\+fp\+SOXp\+STranslate\+To\+Item\+IDs\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a7422fa6927da5be436cb4e37c72e3723}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_lockReceivedAEAcknowledge@{g\_lockReceivedAEAcknowledge}}
+\index{g\_lockReceivedAEAcknowledge@{g\_lockReceivedAEAcknowledge}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_lockReceivedAEAcknowledge}{g\_lockReceivedAEAcknowledge}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a7422fa6927da5be436cb4e37c72e3723} 
+\mbox{\hyperlink{class_s_o_cmn_sync}{SOCmn\+Sync}} g\+\_\+lock\+Received\+AEAcknowledge\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_a291bd246e3151e9d1c3e5406f8f3b755}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_lockTranslateToItemID@{g\_lockTranslateToItemID}}
+\index{g\_lockTranslateToItemID@{g\_lockTranslateToItemID}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_lockTranslateToItemID}{g\_lockTranslateToItemID}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_a291bd246e3151e9d1c3e5406f8f3b755} 
+\mbox{\hyperlink{class_s_o_cmn_sync}{SOCmn\+Sync}} g\+\_\+lock\+Translate\+To\+Item\+ID\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+
+\Hypertarget{_s_o_xp_s_callbacks_8h_afedaa174311d2f4bae0db5b1bd91ee49}\index{SOXpSCallbacks.h@{SOXpSCallbacks.h}!g\_translateToItemIDList@{g\_translateToItemIDList}}
+\index{g\_translateToItemIDList@{g\_translateToItemIDList}!SOXpSCallbacks.h@{SOXpSCallbacks.h}}
+\doxysubsubsection{\texorpdfstring{g\_translateToItemIDList}{g\_translateToItemIDList}}
+{\footnotesize\ttfamily \label{_s_o_xp_s_callbacks_8h_afedaa174311d2f4bae0db5b1bd91ee49} 
+\mbox{\hyperlink{class_s_o_cmn_list}{SOCmn\+List}}$<$\mbox{\hyperlink{class_s_o_ae_s_attribute_value_d_a_description}{SOAe\+SAttribute\+Value\+DADescription}}$>$\texorpdfstring{$\ast$}{*} g\+\_\+translate\+To\+Item\+IDList\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{_s_o_xp_s_callbacks_8cpp_source}{SOXp\+SCallbacks.\+cpp}}.
+

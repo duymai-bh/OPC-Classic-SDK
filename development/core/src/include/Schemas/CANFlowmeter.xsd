@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="CanOpenAnalogueChannelNumber">
+		<xs:annotation>
+			<xs:documentation>Defines the range of analogue channel numbers mapped to CANopen flowmeters for profiling.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="128">
+				<xs:annotation>
+					<xs:documentation>The minimum analogue channel number that indicates a CANopen flowmeter.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="135">
+				<xs:annotation>
+					<xs:documentation>The maximum analogue channel number that indicates a CANopen flowmeter.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CanOpenAnalogueChannelSdoRetries">
+		<xs:annotation>
+			<xs:documentation>Defines the range of values permitted when specifying the number of SDO retries for a CANopen flowmeter.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="0">
+				<xs:annotation>
+					<xs:documentation>The minimum number of retries.</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="5">
+				<xs:annotation>
+					<xs:documentation>The maximum number of retries.</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CanOpenAnalogueChannelSdoTimeout">
+		<xs:annotation>
+			<xs:documentation>Defines the range of values permitted when specifying SDO timeout in ms for a CANopen flowmeter.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="100">
+				<xs:annotation>
+					<xs:documentation>The minimum SDO timeout (ms).</xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="30000">
+				<xs:annotation>
+					<xs:documentation>The maximum SDO timeout (ms).</xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CanOpenFlowmeterChannel">
+		<xs:annotation>
+			<xs:documentation>The mapping of a single analogue channel to a single CANopen flowmeter.</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="AnalogueChannel" type="CanOpenAnalogueChannelNumber">
+                <xs:annotation>
+                    <xs:documentation>The analogue channel number mapped to this CANopen flowmeter</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="LineNum" type="CANLine_NumberType">
+                <xs:annotation>
+                    <xs:documentation>The CAN line number to which the flowmeter mapped to this analogue channel is connected.</xs:documentation>
+                </xs:annotation>
+            </xs:element>           
+            <xs:element name="NodeID" type="CAN_DeviceIDType">
+                <xs:annotation>
+                    <xs:documentation>The CANopen node id of the flowmeter mapped to this analogue channel.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TriggerThreshold" type="float" default="0.0">
+                <xs:annotation>
+                    <xs:documentation>The flow rate profile trigger threshold to be sent to the flowmeter mapped to this analogue channel.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="NumSdoRetries" type="CanOpenAnalogueChannelSdoRetries" default="3">
+                <xs:annotation>
+                    <xs:documentation>The number of SDO retries to be used for this analogue channel.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="SdoTimeout" type="CanOpenAnalogueChannelSdoTimeout" default="1000">
+                <xs:annotation>
+                    <xs:documentation>The timeout to be used for SDO transactions.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+	</xs:complexType>    
+    <xs:complexType name="CanOpenFlowmeterCfgType">
+		<xs:annotation>
+			<xs:documentation>Parent definition for CANopen flowmeter profiling configuration.</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <xs:element name="CanOpenFlowmeterChannel" type="CanOpenFlowmeterChannel" minOccurs="1" maxOccurs="8">
+                <xs:annotation>
+                    <xs:documentation>Defines the mapping of CANopen flowmeters to analogue channel numbers.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>    
+</xs:schema>

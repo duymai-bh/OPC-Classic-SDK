@@ -1,0 +1,137 @@
+\doxysection{SOCmn\+Event\+Pool.\+cpp}
+\hypertarget{_s_o_cmn_event_pool_8cpp_source}{}\label{_s_o_cmn_event_pool_8cpp_source}\index{core/src/SOCmn/SOCmnEventPool.cpp@{core/src/SOCmn/SOCmnEventPool.cpp}}
+\mbox{\hyperlink{_s_o_cmn_event_pool_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_s_o_cmn_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_cmn_8h}{SOCmn.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_s_o_cmn_event_pool_8h}{SOCmnEventPool.h}}>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#ifdef\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00006}00006\ SOCmnEventPool*\ g\_eventPool\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00008}00008\ SOCmnEventPool*\ getEventPool(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00010}00010\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61}{\_ASSERTION}}((g\_eventPool\ !=\ NULL),\ \textcolor{stringliteral}{"{}Before\ calling\ getEventPool\ the\ pool\ must\ be\ created\ by\ createEventPool!"{}});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00011}00011\ \ \ \ \ \textcolor{keywordflow}{return}\ g\_eventPool;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00012}00012\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00014}00014\ \textcolor{keywordtype}{void}\ createEventPool(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00015}00015\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{if}\ (!g\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_8h_a6edc93740830246404bcad628bf0d581}{SOCMN\_ALLOCATE\_OBJECT}}(g\_eventPool,\ SOCmnEventPool())}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00020}00020\ \textcolor{keywordtype}{void}\ destroyEventPool(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00021}00021\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (g\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00023}00023\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00024}00024\ \ \ \ \ \ \ \ \ SOCmnEventPool*\ eventPool\ =\ g\_eventPool;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00025}00025\ \ \ \ \ \ \ \ \ g\_eventPool\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00026}00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_8h_ab2908854f3becdc69adc7480ff37e6d4}{SOCMN\_FREE\_OBJECT}}(eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00027}00027\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00030}00030\ HANDLE\ popEvent(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (g\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00033}00033\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ g\_eventPool-\/>popEvent();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00035}00035\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00037}00037\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ return\ ::CreateEvent(NULL,\ FALSE,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00042}00042\ \textcolor{keywordtype}{void}\ pushEvent(HANDLE\ event)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (g\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00045}00045\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ g\_eventPool-\/>pushEvent(event);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00049}00049\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{::CloseHandle}}(event);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00051}00051\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00052}00052\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00055}00055\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00056}00056\ \textcolor{comment}{//\ SOCmnEventPool\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00057}00057\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00059}00059\ SOCmnEventPool::SOCmnEventPool()}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00061}00061\ \ \ \ \ m\_eventPool.create(\mbox{\hyperlink{_s_o_cmn_list_8h_ac593df5614d6c2888df633c94d50c32c}{SOCMNLIST\_TYPE\_ORG\_LIST}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_adce9ffe0945f5b360551a4b28679ba6f}{SOCMNLIST\_TYPE\_KEY\_NO}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a15d1ef8fdb5e9835884e65e29dc679ba}{SOCMNLIST\_TYPE\_OBJ\_DWORD}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a78737d2bf28cfd6ecf36c693526e92fa}{SOCMNLIST\_TYPE\_SYNCED}});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00064}00064\ SOCmnEventPool::\string~SOCmnEventPool()}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00066}00066\ \ \ \ \ freeAllEvents();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00067}00067\ \ \ \ \ m\_eventPool.destroy();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00068}00068\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00071}00071\ HANDLE\ SOCmnEventPool::popEvent(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00072}00072\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00073}00073\ \ \ \ \ HANDLE\ event;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ return\ ::CreateEvent(NULL,\ FALSE,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00080}00080\ \ \ \ \ m\_eventPool.lock();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_eventPool.isEmpty())}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00083}00083\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}\ =\ (HANDLE)m\_eventPool.getHead();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ m\_eventPool.removeHead();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00088}00088\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}\ =\ ::CreateEvent(NULL,\ FALSE,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00090}00090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00092}00092\ \ \ \ \ m\_eventPool.unlock();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{return}\ event;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00094}00094\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00096}00096\ \textcolor{keywordtype}{void}\ SOCmnEventPool::pushEvent(HANDLE\ event)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00097}00097\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00099}00099\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(event);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00104}00104\ \ \ \ \ ::ResetEvent(event);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00105}00105\ \ \ \ \ m\_eventPool.lock();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00106}00106\ \ \ \ \ m\_eventPool.add((\textcolor{keywordtype}{void}*)event);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00107}00107\ \ \ \ \ m\_eventPool.unlock();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00108}00108\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00110}00110\ \textcolor{keywordtype}{void}\ SOCmnEventPool::freeAllEvents(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00111}00111\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00112}00112\ \ \ \ \ HANDLE\ event;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (!m\_eventPool)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00115}00115\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00117}00117\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00119}00119\ \ \ \ \ m\_eventPool.lock();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{while}\ (!m\_eventPool.isEmpty())}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00122}00122\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}\ =\ (HANDLE)m\_eventPool.getHead();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ m\_eventPool.removeHead();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(event);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00128}00128\ \ \ \ \ m\_eventPool.unlock();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00129}00129\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_event_pool_8cpp_source_l00131}00131\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="DISMType">
+		<xs:annotation>
+			<xs:documentation>Downhole Instrumentation Sensor Module (DISM).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BoardType" type="CardNameType" fixed="CARD_NAME_Dism">
+				<xs:annotation>
+					<xs:documentation>This element defines the Type of board fitted.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FieldbusChannels" type="FieldBusChannelDISMType" minOccurs="2" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation>Fieldbus Definitions for DISM used for communications with Downhole Equipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

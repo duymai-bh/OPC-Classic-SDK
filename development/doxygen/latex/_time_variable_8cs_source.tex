@@ -1,0 +1,172 @@
+\doxysection{Time\+Variable.\+cs}
+\hypertarget{_time_variable_8cs_source}{}\label{_time_variable_8cs_source}\index{NET/samples/server/DemoServer/CS/TimeVariable.cs@{NET/samples/server/DemoServer/CS/TimeVariable.cs}}
+\mbox{\hyperlink{_time_variable_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server}{Softing.OPCToolbox.Server}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00005}00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_demo_server}{DemoServer}}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00007}\mbox{\hyperlink{class_demo_server_1_1_time_variable}{00007}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_demo_server_1_1_time_variable}{TimeVariable}}\ :\ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00008}00008\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00009}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{00009}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00010}00010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00011}00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545a3d9fac8bd390d7b6e53c1833655782a9}{type\_second}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00012}00012\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545a18752b770644e459861d85fc2da5a98d}{type\_minute}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545a7ee2938e111d0cb9523b725a37771878}{type\_hour}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00014}00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545ab6bfc8b867260dea89da08117e861f09}{type\_string}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00015}00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545a914e657c38c29d6e8a93ef32c06e9eeb}{type\_array}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545a998f384960526522872f2d97b52d3734}{type\_date}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545afd20648d859056c4a94e7ac4ff803f17}{type\_limitSecond}}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00020}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbd}{00020}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbd}{TimeZone}}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbda9c3c40ec0edf3748d21c833c2304aab8}{zone\_local}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbda3b18b9f3f37f66f043bfd7337f685052}{zone\_GMT}},}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbda39098fd764a10ad33135e978feb33858}{zone\_none}}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00027}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a91e7c4052f9bf94d133aee8081c808ad}{00027}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a91e7c4052f9bf94d133aee8081c808ad}{TimeVariable}}(String\ name)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ :\ base()}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_address_space_element_a56d170e7175f9ba43ad91fe9b2e29af8}{Name}}\ =\ name;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READABLE;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00035}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a25b5a552df890041d32d6b10f9d3ca2d}{00035}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a25b5a552df890041d32d6b10f9d3ca2d}{TimeVariable}}(String\ name,\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}\ type,\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbd}{TimeZone}}\ zone)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ :\ base()}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_address_space_element_a56d170e7175f9ba43ad91fe9b2e29af8}{Name}}\ =\ name;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ IoMode\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_server_a220d063f047799a2bffc02cea4c41a52}{EnumIoMode}}.POLL;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READABLE;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_ade71c1c101dfcee20df0ede1106b6859}{m\_timeType}}\ =\ type;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_time_variable_ad7d821772400a78e62fb02b57f81ca8f}{m\_timeZone}}\ =\ zone;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_hour:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_second:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_minute:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Datatype\ =\ typeof(System.Byte);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_string:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Datatype\ =\ typeof(System.String);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_array:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Datatype\ =\ typeof(System.Byte[]);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_date:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Datatype\ =\ typeof(System.DateTime);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_limitSecond:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ AccessRights\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a53ce84867dc44357465be3dde1bebd9f}{EnumAccessRights}}.READWRITEABLE;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Datatype\ =\ typeof(System.Byte);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00066}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a1e9e721991330380a22d81bc311ef938}{00066}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a1e9e721991330380a22d81bc311ef938}{HandleReadRequest}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}}\ daElement\ =\ request.AddressSpaceElement\ as\ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element_a07c2f88fc8425e224b8feeb2f3b19d01}{DemoDaAddressSpaceElement}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (daElement\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}\ value\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}();}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ \mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_demo_server_1_1_time_variable_ade71c1c101dfcee20df0ede1106b6859}{m\_timeType}}\ !=\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_date)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{class_demo_server_1_1_time_variable_ad7d821772400a78e62fb02b57f81ca8f}{m\_timeZone}})}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbd}{TimeZone}}.zone\_local:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbd}{TimeZone}}.zone\_GMT:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}\ =\ \mbox{\hyperlink{class_date_time}{DateTime}}.UtcNow;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{class_demo_server_1_1_time_variable_ade71c1c101dfcee20df0ede1106b6859}{m\_timeType}})}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_hour:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}((Byte)\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Hour,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_second:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}((Byte)\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Second,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_minute:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}((Byte)\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Minute,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_date:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Date,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_array:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Byte[]\ arrayByte\ =\ \textcolor{keyword}{new}\ Byte[3];}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ arrayByte[0]\ =\ (Byte)\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Hour;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ arrayByte[1]\ =\ (Byte)\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Minute;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ arrayByte[2]\ =\ (Byte)\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}.Second;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}(arrayByte,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_limitSecond:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}\ cacheValue\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_a71fda94b7a1f0ab4d41c293fe39727b1}{AddressSpaceElement}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element_aac52b2cd2ef7daac3dec83623b556fbc}{GetCacheValue}}(ref\ cacheValue);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}(cacheValue.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_data_a8a6ed0341cbc812857df97211b0ce94f}{Data}},\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_string:}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}(\textcolor{keywordtype}{string}.Format(\textcolor{stringliteral}{"{}\{0:HH:mm:ss\}"{}},\ \mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}}),\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t_aa7225400ac79303773908e763bcd1a5b}{SetData}}(\mbox{\hyperlink{_c_09_09_2samples_2server_2_update_mode_2_console_8cpp_ac023874b2154eac7297a7575008605fe}{now}},\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element_ab63ff5b5fc3f4b960c28b658798d07e5}{ValueChanged}}(value);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Value\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_FALSE;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00128}\mbox{\hyperlink{class_demo_server_1_1_time_variable_aa6a641d9d57b247065c2837c4ef9de76}{00128}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_aa6a641d9d57b247065c2837c4ef9de76}{HandleWriteRequest}}(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request}{DaRequest}}\ request)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element}{DemoDaAddressSpaceElement}}\ daElement\ =\ request.AddressSpaceElement\ as\ \mbox{\hyperlink{class_demo_server_1_1_demo_da_address_space_element_a07c2f88fc8425e224b8feeb2f3b19d01}{DemoDaAddressSpaceElement}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (daElement\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_demo_server_1_1_time_variable_ade71c1c101dfcee20df0ede1106b6859}{m\_timeType}}\ ==\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}.type\_limitSecond)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}\ writeValue\ =\ request.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_request_ac24b281448980b35fe5719f498c16c1a}{Value}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((Byte)writeValue.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_data_a8a6ed0341cbc812857df97211b0ce94f}{Data}}\ <=\ 59)}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ daElement.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element_ab63ff5b5fc3f4b960c28b658798d07e5}{ValueChanged}}(writeValue);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_FALSE;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ request.Result\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_FALSE;}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00153}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a229ab53b285915bb4880643cf7d77e58}{00153}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a229ab53b285915bb4880643cf7d77e58}{Init}}()}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}\ value\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}(0,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a0b882bc3489f20ff95925070037f1516}{EnumQuality}}.GOOD,\ \mbox{\hyperlink{class_date_time}{DateTime}}.Now);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_server_1_1_da_address_space_element_ab63ff5b5fc3f4b960c28b658798d07e5}{ValueChanged}}(value);}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ init}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00159}\mbox{\hyperlink{class_demo_server_1_1_time_variable_a064c64e547e040085991c52dbd08100b}{00159}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a064c64e547e040085991c52dbd08100b}{Simulation}}()}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00163}\mbox{\hyperlink{class_demo_server_1_1_time_variable_ade71c1c101dfcee20df0ede1106b6859}{00163}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a0bdf20c19530f505db72a79fa3113545}{TimeType}}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_ade71c1c101dfcee20df0ede1106b6859}{m\_timeType}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00164}\mbox{\hyperlink{class_demo_server_1_1_time_variable_ad7d821772400a78e62fb02b57f81ca8f}{00164}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_a9ed45f02eebab6226b2af970095f4dbd}{TimeZone}}\ \mbox{\hyperlink{class_demo_server_1_1_time_variable_ad7d821772400a78e62fb02b57f81ca8f}{m\_timeZone}};}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_time_variable_8cs_source_l00166}00166\ \}}
+
+\end{DoxyCode}

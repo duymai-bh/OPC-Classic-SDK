@@ -1,0 +1,209 @@
+\doxysection{Opc\+Form.\+cs}
+\hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source}{}\label{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source}\index{NET/samples/client/AEBrowse/CS/OpcForm.cs@{NET/samples/client/AEBrowse/CS/OpcForm.cs}}
+\mbox{\hyperlink{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client}{Softing.OPCToolbox.Client}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00006}00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_a_e_browse}{AEBrowse}}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00011}\mbox{\hyperlink{class_a_e_browse_1_1_opc_form}{00011}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_a_e_browse_1_1_opc_form}{OpcForm}}\ :\ Form}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00012}00012\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ Panel\ panel1;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ ImageList\ imageList1;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ TreeView\ addressSpaceTreeView;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ System.ComponentModel.Container\ components;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_e_browse_1_1_my_ae_session}{MyAeSession}}\ m\_session\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}\ m\_executionOptions;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00022}\mbox{\hyperlink{class_a_e_browse_1_1_opc_form_af090cd3a61f6b3ddda4cb7169f9263db}{00022}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_a_e_browse_1_1_opc_form_af090cd3a61f6b3ddda4cb7169f9263db}{index}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_a_e_browse_1_1_out_proc}{OutProc}}\ m\_outProc\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_a_e_browse_1_1_opc_client}{OpcClient}}\ m\_opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00026}\mbox{\hyperlink{class_a_e_browse_1_1_opc_form_a6a3ae0bf5fabdece03ab5ca93e400892}{00026}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_a_e_browse_1_1_opc_form_a6a3ae0bf5fabdece03ab5ca93e400892}{OpcForm}}(\mbox{\hyperlink{class_a_e_browse_1_1_out_proc}{OutProc}}\ anOutProc)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00027}00027\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \ \ \ \ InitializeComponent();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_executionOptions\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_outProc\ =\ anOutProc;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient\ =\ m\_outProc.\mbox{\hyperlink{class_a_e_browse_1_1_out_proc_ad127999ba85ab4a5498a53070a54c7e9}{OpcClient}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}\ =\ m\_opcClient.\mbox{\hyperlink{class_a_e_browse_1_1_opc_client_a8d529c67a201584cbe5f2f165402c7d7}{getSession}}();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TreeNode\ treeRoot\ =\ \textcolor{keyword}{new}\ TreeNode(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a74ea8cc1cfabc9e4e7a9b4b61ec59684}{Url}}\ +\ \textcolor{stringliteral}{"{}\ -\/\ Area\ space"{}},\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Nodes.Add(treeRoot);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ treeRoot.Nodes.Add(\textcolor{keyword}{new}\ TreeNode(\textcolor{stringliteral}{"{}"{}}));}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MessageBox.Show(exc.ToString());}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ try...catch}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ constructor}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00054}\mbox{\hyperlink{class_a_e_browse_1_1_opc_form_ae3898dd93986f5a0417776f7e9392e7b}{00054}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ \textcolor{keyword}{override}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_a_e_browse_1_1_opc_form_ae3898dd93986f5a0417776f7e9392e7b}{Dispose}}(\textcolor{keywordtype}{bool}\ disposing)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disposing)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (components\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ components.Dispose();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ base.Dispose(disposing);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00066}00066\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Windows\ Form\ Designer\ generated\ code}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ InitializeComponent()}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ components\ =\ \textcolor{keyword}{new}\ System.ComponentModel.Container();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ System.Resources.ResourceManager\ resources\ =\ \textcolor{keyword}{new}\ System.Resources.ResourceManager(typeof(\mbox{\hyperlink{class_a_e_browse_1_1_opc_form}{OpcForm}}));}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ panel1\ =\ \textcolor{keyword}{new}\ Panel();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView\ =\ \textcolor{keyword}{new}\ TreeView();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ imageList1\ =\ \textcolor{keyword}{new}\ ImageList(components);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.SuspendLayout();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ SuspendLayout();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ panel1}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.Controls.Add(addressSpaceTreeView);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.Dock\ =\ DockStyle.Fill;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.Location\ =\ \textcolor{keyword}{new}\ System.Drawing.Point(0,\ 0);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.Name\ =\ \textcolor{stringliteral}{"{}panel1"{}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.Size\ =\ \textcolor{keyword}{new}\ System.Drawing.Size(712,\ 518);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.TabIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ addressSpaceTreeView}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Dock\ =\ DockStyle.Fill;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.ImageList\ =\ imageList1;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Location\ =\ \textcolor{keyword}{new}\ System.Drawing.Point(0,\ 0);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Name\ =\ \textcolor{stringliteral}{"{}addressSpaceTreeView"{}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Size\ =\ \textcolor{keyword}{new}\ System.Drawing.Size(712,\ 518);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.TabIndex\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.BeforeExpand\ +=\ \textcolor{keyword}{new}\ TreeViewCancelEventHandler(AddressSpaceTreeViewBeforeExpand);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ imageList1}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ imageList1.ImageSize\ =\ \textcolor{keyword}{new}\ System.Drawing.Size(16,\ 16);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ imageList1.ImageStream\ =\ ((ImageListStreamer)(resources.GetObject(\textcolor{stringliteral}{"{}imageList1.ImageStream"{}})));}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ imageList1.TransparentColor\ =\ System.Drawing.Color.Transparent;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Form1}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ AutoScaleBaseSize\ =\ \textcolor{keyword}{new}\ System.Drawing.Size(5,\ 13);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ ClientSize\ =\ \textcolor{keyword}{new}\ System.Drawing.Size(712,\ 518);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ Controls.Add(panel1);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ Icon\ =\ ((System.Drawing.Icon)(resources.GetObject(\textcolor{stringliteral}{"{}\$this.Icon"{}})));}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ Name\ =\ \textcolor{stringliteral}{"{}OpcForm"{}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ Text\ =\ \textcolor{stringliteral}{"{}Browse\ Area\ Space"{}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ panel1.ResumeLayout(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ ResumeLayout(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00118}00118\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ Main()}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ OutProc\ outProc\ =\ \textcolor{keyword}{new}\ OutProc();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (int)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outProc.CreateOpcClient();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_opc_client}{OpcClient}}\ opcClient\ =\ outProc.\mbox{\hyperlink{class_opc_client_a56915f3200d3843f9e39a67222552da7}{OpcClient}};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ initialize\ the\ client\ instance}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(opcClient.Initialize()))}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ initialize\ the\ AE\ client\ simulation}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ |=\ opcClient.InitializeAeObjects();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_a_e_browse_1_1_opc_form_a6a3ae0bf5fabdece03ab5ca93e400892}{OpcForm}}\ opcForm\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_a_e_browse_1_1_opc_form_a6a3ae0bf5fabdece03ab5ca93e400892}{OpcForm}}(outProc);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Windows.Forms.Application.Run(opcForm);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opcClient.Terminate();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MessageBox.Show(exc.ToString());}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ try...catch}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Main}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ AddressSpaceTreeViewBeforeExpand(\textcolor{keywordtype}{object}\ sender,\ TreeViewCancelEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Cursor\ =\ Cursors.WaitCursor;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ TreeNode\ rootNode\ =\ e.Node;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element_browse_options}{AddressSpaceElementBrowseOptions}}\ browseOptions\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element_browse_options}{AddressSpaceElementBrowseOptions}}();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ browseOptions.ElementTypeFilter\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ae0657213f1f61046056572299be002bd}{EnumAddressSpaceElementType}}.BRANCH;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element}{AddressSpaceElement}}[]\ addressSpaceElements\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a05429e48d7ef5d8948a48b0de99079f7}{Browse}}((\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element}{AddressSpaceElement}})rootNode.Tag,\ browseOptions,\ out\ addressSpaceElements,\ m\_executionOptions)))}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rootNode.Nodes.Clear();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ addressSpaceElements.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TreeNode\ node\ =\ \textcolor{keyword}{new}\ TreeNode(addressSpaceElements[i].Name,\ 1,\ 1);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node.Tag\ =\ addressSpaceElements[i];}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rootNode.Nodes.Add(node);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node.Nodes.Add(\textcolor{keyword}{new}\ TreeNode(\textcolor{stringliteral}{"{}"{}}));}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}[]\ conditions\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sourcePath\ =\ addressSpaceElements[i].QualifiedName;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.QueryAeSourceConditions(sourcePath,\ out\ conditions,\ m\_executionOptions)))}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ conditions.Length;\ j++)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TreeNode\ condition\ =\ \textcolor{keyword}{new}\ TreeNode(conditions[j],\ 3,\ 3);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.Tag\ =\ String.Empty;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node.Nodes.Add(condition);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ if}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ if\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element_browse_options}{AddressSpaceElementBrowseOptions}}\ browseOptions1\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element_browse_options}{AddressSpaceElementBrowseOptions}}();}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ browseOptions1.ElementTypeFilter\ =\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ae0657213f1f61046056572299be002bd}{EnumAddressSpaceElementType}}.LEAF;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a05429e48d7ef5d8948a48b0de99079f7}{Browse}}((\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_address_space_element}{AddressSpaceElement}})rootNode.Tag,\ browseOptions1,\ out\ addressSpaceElements,\ m\_executionOptions)))}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ addressSpaceElements.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TreeNode\ node\ =\ \textcolor{keyword}{new}\ TreeNode(addressSpaceElements[i].Name,\ 2,\ 2);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node.Tag\ =\ addressSpaceElements[i];}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rootNode.Nodes.Add(node);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}[]\ conditions\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ sourcePath\ =\ addressSpaceElements[i].QualifiedName;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.QueryAeSourceConditions(sourcePath,\ out\ conditions,\ m\_executionOptions)))}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ conditions.Length;\ j++)}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TreeNode\ condition\ =\ \textcolor{keyword}{new}\ TreeNode(conditions[j],\ 3,\ 3);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ condition.Tag\ =\ String.Empty;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node.Nodes.Add(condition);}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ for\ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ end\ if\ }}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ addressSpaceTreeView.Cursor\ =\ Cursors.Default;}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ AddressSpaceTreeViewBeforeExpand}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00218}00218\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class}}
+\DoxyCodeLine{\Hypertarget{samples_2client_2_a_e_browse_2_c_s_2_opc_form_8cs_source_l00219}00219\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace}}
+
+\end{DoxyCode}

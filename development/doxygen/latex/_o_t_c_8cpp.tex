@@ -1,0 +1,980 @@
+\doxysection{core/src/\+OTB/\+OTC.cpp File Reference}
+\hypertarget{_o_t_c_8cpp}{}\label{_o_t_c_8cpp}\index{core/src/OTB/OTC.cpp@{core/src/OTB/OTC.cpp}}
+{\ttfamily \#include "{}stdafx.\+h"{}}\newline
+{\ttfamily \#include "{}OTClient.\+h"{}}\newline
+{\ttfamily \#include "{}Client\+Job.\+h"{}}\newline
+{\ttfamily \#include "{}Client\+DACreator.\+h"{}}\newline
+{\ttfamily \#include "{}Client\+DASession.\+h"{}}\newline
+{\ttfamily \#include "{}Client\+DASubscription.\+h"{}}\newline
+{\ttfamily \#include "{}Client\+DAItem.\+h"{}}\newline
+{\ttfamily \#include "{}OTB.\+h"{}}\newline
+{\ttfamily \#include "{}OTC.\+h"{}}\newline
+{\ttfamily \#include "{}SOVersion.\+h"{}}\newline
+{\ttfamily \#include "{}SOModule.\+h"{}}\newline
+{\ttfamily \#include "{}SOCmn\+Handle\+Manager.\+h"{}}\newline
+Include dependency graph for OTC.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_o_t_c_8cpp_a10c257bb89c937fb49f637f1f7e96b54}{COINIT\+\_\+\+MULTITHREADED}}~0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_o_t_c_8cpp_a6ea8b6cd06714feecb0ed4822b1a586d}{get\+OTCObject\+Data}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a24d210b0414c2d172bb087470607415a}{OTCObject\+Data}} \texorpdfstring{$\ast$}{*}p\+Object\+Data)
+\item 
+void \mbox{\hyperlink{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c}{get\+OTCObject\+Context}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_aea601d9f731993795643d7587bad2425}{OTCObject\+Context}} \texorpdfstring{$\ast$}{*}p\+Object\+Context)
+\item 
+void \mbox{\hyperlink{_o_t_c_8cpp_a90aebaf4fc6b40c0d57c17c12654a258}{get\+OTCObjects\+Data}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD object\+Count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Object\+Handles, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a24d210b0414c2d172bb087470607415a}{OTCObject\+Data}} \texorpdfstring{$\ast$}{*}p\+Object\+Data)
+\item 
+BYTE \mbox{\hyperlink{_o_t_c_8cpp_a6400c3a0067f1f122f4cf49ad808f513}{Da\+COPCVersion\+To\+OTC}} (WORD dac\+Spec)
+\item 
+WORD \mbox{\hyperlink{_o_t_c_8cpp_a5ea59be21a2467c657082e5aa5bd010e}{OTCOPCVersion\+To\+DaC}} (BYTE otc\+Spec)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_acacc40db63c96baed0b26c345e615552}{OTCInitialize}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a78d38ab3af535f8746a3911e63f611d0}{OTCInit\+Data}} \texorpdfstring{$\ast$}{*}p\+Init\+Data)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a59c9b82655718f6c4dc38472de58493b}{OTCTerminate}} (void)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a40600b4cee5003551c1523e5b3720e41}{OTCProcess\+Command\+Line}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR command\+Line)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_af6ceef15f14792458c05734a35367f2f}{OTCAdvise}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ad04ddba4f4d4652c6c7e8a25dd63ada4}{OTCCallback\+Functions}} \texorpdfstring{$\ast$}{*}p\+Callbacks)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_ae9395b090b0ddb6ef90cfa0cf0b6c6fc}{OTCAdd\+DASession}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR url, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD server\+User\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a1466876cb8cc50dc604b0b97a6a43133}{OTCRemove\+DASession}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a89982eb94bf03561df283f0efae6110f}{OTCAdd\+DASubscription}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD update\+Rate, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD group\+User\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Group\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a045eb3a2d6e1d25170abc256db3d0e84}{OTCRemove\+DASubscription}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a62ab1febe113215764bcf498c1ec4ba8}{OTCAdd\+DAItem}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} group\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR item\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD item\+User\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Item\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_ab69e8e0ff559e1067d07791b04e73973}{OTCRemove\+DAItem}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_ab483c880642065a943f532b060a9d07d}{OTCRead}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Item\+Handles, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}p\+Item\+IDs, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}p\+Item\+Paths, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD max\+Age, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValue\+Data}} \texorpdfstring{$\ast$}{*}p\+Values, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}p\+Results, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_af17ce80029bdf5705c5de065fac0ce1c}{OTCWrite}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Item\+Handles, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}p\+Item\+IDs, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}p\+Item\+Paths, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValue\+Data}} \texorpdfstring{$\ast$}{*}p\+Values, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}p\+Results, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a34090dd93ebd9c5c30db7ab21997e275}{OTCRefresh\+DAGroup}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} subscription\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD max\+Age, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a0ccf726de45e5e9119d3f1a401c8a080}{OTCValidate\+DAItems}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} subscription\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD item\+Count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Item\+Handles, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}p\+Results, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a137df834df933589c39b70b4c7738574}{OTCGet\+DAProperties}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} address\+Space\+Element\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR address\+Space\+Element\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR address\+Space\+Element\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a1d97e12e6bed93cd131312669cfb35cc}{OTCGet\+DAProperties\+Options}} \texorpdfstring{$\ast$}{*}p\+Get\+Properties\+Options, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Properties\+Data\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_adbe3e2a659464ef92c98a0d82a4bb2db}{OTCDAProperty\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Property, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a79c8dc26a2d6037157f779f14007d4c2}{OTCGet\+State}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} BYTE \texorpdfstring{$\ast$}{*}p\+Current\+State, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} BYTE \texorpdfstring{$\ast$}{*}p\+Target\+State)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a70b8513e37bf9a31e70d9feb7c4535d6}{OTCChange\+Target\+State}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE state, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE deep)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a2606081308babd2caaee947a9c32284d}{OTCPerform\+State\+Transition}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE deep, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a9652659461aeb7363fcc0ed4034311ff}{OTCGet\+Attributes}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD what\+Attributes, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a1f8b97c43e1a49facc9f044494aa5b1c}{OTCObject\+Attributes}} \texorpdfstring{$\ast$}{*}p\+Object\+Attributes)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a9d6d61f52198dc5597359aa63ca70997}{OTCSet\+Attributes}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD what\+Attributes, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a1f8b97c43e1a49facc9f044494aa5b1c}{OTCObject\+Attributes}} \texorpdfstring{$\ast$}{*}p\+Object\+Attributes)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_afa0c7b2e8d436b90da7a9427c447f9c4}{OTCUpdate\+Attributes}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE from\+Server, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD attribute\+Count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}p\+What\+Attributes, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}p\+Results, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_aa4a04bef889cd32cf7f0c6dc3b129183}{OTCUpdate\+DAItem\+Attributes}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} subscription\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD item\+Count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Item\+Handles, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE from\+Server, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD attribute\+Count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}p\+What\+Attributes, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}p\+Results, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_abd18ca38197250d4ea247b66e9f2035c}{OTCActivate\+Connection\+Monitor}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, BYTE activate, DWORD check\+Cycle, DWORD connect1\+Attempts, DWORD connect1\+Cycle, DWORD connect2\+Cycle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a3e102655f0f5c816861e3c4d0351ef34}{OTCGet\+Server\+Status}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_t_client_8h_a853a8c98ee1a1715d45ef27cda00407a}{OTCServer\+Status}} \texorpdfstring{$\ast$}{*}p\+Server\+Status, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a4b4166268e79db03cb7936fda5e463aa}{OTCBrowse\+Server}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR ip\+Address, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE what\+OPCSpec, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE what\+Server\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Server\+Data\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a5b49dfc862589e8d3c37c6b08287860e}{OTCServer\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Server\+Data, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_abb95483eac886bde965634c5c0b7ae98}{OTCBrowse\+Address\+Space}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} address\+Space\+Element\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR address\+Space\+Element\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR address\+Space\+Element\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a50339ace668d7d219f99a4df0a3c319a}{OTCAddress\+Space\+Browse\+Options}} \texorpdfstring{$\ast$}{*}p\+Browse\+Options, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Address\+Space\+Element\+Data\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ae8b74cdec6b708cc04a87fa93b83eae3}{OTCAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Address\+Space\+Element, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a647da7ac8e3db7f6b0617cbd9a85c8eb}{OTCRelease\+Address\+Space\+Element}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} address\+Space\+Element\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BOOL deep)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a441385582942feb6a83cd51d0700c9bd}{OTCAdd\+AESession}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR url, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD session\+User\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a6dca8984db2390c40770874b4eee0f0e}{OTCAdd\+AESubscription}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD subscription\+User\+Data, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}p\+Subscription\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_ae63a9eff80bcfbb02cb64352486839f1}{OTCRemove\+AESession}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a2cebc7ac99af263f93029b5689a38e88}{OTCRemove\+AESubscription}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} object\+Handle)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a2ff4b5a7a62db7ea49ab9b0d60373e6a}{OTCRefresh\+AEConditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} subscription\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE cancel\+Refresh, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_ad2df0baecd561c09493b553266687477}{OTCAcknowledge\+AEConditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR ack\+ID, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR ack\+Comment, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab7c404379ed4ff75da688ab473808cbe}{OTCEvent\+Data}} \texorpdfstring{$\ast$}{*}p\+Events, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}p\+Results, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a0a52a2b38e08d0d85cff81992c69c6cb}{OTCQuery\+Available\+AEFilters}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Available\+Filters, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_aabf86074440eb977d81b0fa1e5a0d42c}{OTCQuery\+AECategories}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Event\+Types, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Category\+Ids, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Category\+Descriptions, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a53ed9342594e30660987d0a4f6cf6bbb}{OTCQuery\+AEAttributes}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD category\+Id, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Attribute\+Ids, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Attribute\+Descriptions, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} WORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Attribute\+Datatypes, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a8a2637945982fd85eb4fe158d80f6726}{OTCQuery\+AEConditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD category\+Id, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Conditions\+Names, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a04755b3810f99010acf5b6d73951f55f}{OTCQuery\+AESub\+Conditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR condition\+Name, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Sub\+Conditions\+Names, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_aaebd0a5ec727d1d06ac3fd3f985b3760}{OTCQuery\+AESource\+Conditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR source\+Path, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}p\+Count, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}pp\+Conditions\+Names, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a32560fd8874a2dc70d1825afe5ec575c}{OTCGet\+AECondition\+State}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR source\+Path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR condition\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD attribute\+Count, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}p\+Attribute\+Ids, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_abb124404bc33b92a93afdf7ff15979c4}{OTCAECondition\+State\+Data}} \texorpdfstring{$\ast$}{*}p\+Condition\+State, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a443a0107817ac8f45c94c3f39c8e1618}{OTCEnable\+AEConditions}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE enable, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE area\+Or\+Source, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR path, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a6a793f6eca4869603550f5428f1b42a4}{OTCGet\+Error\+String}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG \mbox{\hyperlink{xmlparse_8c_adf47938902be0f6a9c144226d02fd634}{error\+Code}}, \mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}p\+Error\+String, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a05cd1327b06979f76c06bdc8da28ca81}{OTCLogon}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR user\+Name, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR password, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\item 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} \mbox{\hyperlink{_o_t_c_8cpp_a428eb5ae7159f17250d62c2b5b756233}{OTCLogoff}} (\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} session\+Handle, \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}p\+Execution\+Options)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_o_t_client_8h_ad04ddba4f4d4652c6c7e8a25dd63ada4}{OTCCallback\+Functions}} \mbox{\hyperlink{_o_t_c_8cpp_aad079eacbad9b8bff024427ff369321c}{g\+\_\+callback\+Functions}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_o_t_c_8cpp_a10c257bb89c937fb49f637f1f7e96b54}\index{OTC.cpp@{OTC.cpp}!COINIT\_MULTITHREADED@{COINIT\_MULTITHREADED}}
+\index{COINIT\_MULTITHREADED@{COINIT\_MULTITHREADED}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{COINIT\_MULTITHREADED}{COINIT\_MULTITHREADED}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a10c257bb89c937fb49f637f1f7e96b54} 
+\#define COINIT\+\_\+\+MULTITHREADED~0}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_o_t_c_8cpp_a6400c3a0067f1f122f4cf49ad808f513}\index{OTC.cpp@{OTC.cpp}!DaCOPCVersionToOTC@{DaCOPCVersionToOTC}}
+\index{DaCOPCVersionToOTC@{DaCOPCVersionToOTC}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{DaCOPCVersionToOTC()}{DaCOPCVersionToOTC()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a6400c3a0067f1f122f4cf49ad808f513} 
+BYTE Da\+COPCVersion\+To\+OTC (\begin{DoxyParamCaption}\item[{WORD}]{dac\+Spec}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00189}{189}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{_o_t_c_8cpp_a6400c3a0067f1f122f4cf49ad808f513_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c}\index{OTC.cpp@{OTC.cpp}!getOTCObjectContext@{getOTCObjectContext}}
+\index{getOTCObjectContext@{getOTCObjectContext}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{getOTCObjectContext()}{getOTCObjectContext()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c} 
+void get\+OTCObject\+Context (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_aea601d9f731993795643d7587bad2425}{OTCObject\+Context}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Context}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a6ea8b6cd06714feecb0ed4822b1a586d}\index{OTC.cpp@{OTC.cpp}!getOTCObjectData@{getOTCObjectData}}
+\index{getOTCObjectData@{getOTCObjectData}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{getOTCObjectData()}{getOTCObjectData()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a6ea8b6cd06714feecb0ed4822b1a586d} 
+void get\+OTCObject\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a24d210b0414c2d172bb087470607415a}{OTCObject\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{_o_t_c_8cpp_a6ea8b6cd06714feecb0ed4822b1a586d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a6ea8b6cd06714feecb0ed4822b1a586d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a90aebaf4fc6b40c0d57c17c12654a258}\index{OTC.cpp@{OTC.cpp}!getOTCObjectsData@{getOTCObjectsData}}
+\index{getOTCObjectsData@{getOTCObjectsData}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{getOTCObjectsData()}{getOTCObjectsData()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a90aebaf4fc6b40c0d57c17c12654a258} 
+void get\+OTCObjects\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{object\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Handles}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a24d210b0414c2d172bb087470607415a}{OTCObject\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00177}{177}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a90aebaf4fc6b40c0d57c17c12654a258_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a90aebaf4fc6b40c0d57c17c12654a258_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_ad2df0baecd561c09493b553266687477}\index{OTC.cpp@{OTC.cpp}!OTCAcknowledgeAEConditions@{OTCAcknowledgeAEConditions}}
+\index{OTCAcknowledgeAEConditions@{OTCAcknowledgeAEConditions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAcknowledgeAEConditions()}{OTCAcknowledgeAEConditions()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_ad2df0baecd561c09493b553266687477} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAcknowledge\+AEConditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{ack\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{ack\+Comment}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab7c404379ed4ff75da688ab473808cbe}{OTCEvent\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Events}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}}]{p\+Results}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05818}{5818}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_abd18ca38197250d4ea247b66e9f2035c}\index{OTC.cpp@{OTC.cpp}!OTCActivateConnectionMonitor@{OTCActivateConnectionMonitor}}
+\index{OTCActivateConnectionMonitor@{OTCActivateConnectionMonitor}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCActivateConnectionMonitor()}{OTCActivateConnectionMonitor()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_abd18ca38197250d4ea247b66e9f2035c} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCActivate\+Connection\+Monitor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{BYTE}]{activate}{, }\item[{DWORD}]{check\+Cycle}{, }\item[{DWORD}]{connect1\+Attempts}{, }\item[{DWORD}]{connect1\+Cycle}{, }\item[{DWORD}]{connect2\+Cycle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l03581}{3581}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_abd18ca38197250d4ea247b66e9f2035c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a441385582942feb6a83cd51d0700c9bd}\index{OTC.cpp@{OTC.cpp}!OTCAddAESession@{OTCAddAESession}}
+\index{OTCAddAESession@{OTCAddAESession}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAddAESession()}{OTCAddAESession()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a441385582942feb6a83cd51d0700c9bd} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAdd\+AESession (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{url}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{session\+User\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05798}{5798}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a6dca8984db2390c40770874b4eee0f0e}\index{OTC.cpp@{OTC.cpp}!OTCAddAESubscription@{OTCAddAESubscription}}
+\index{OTCAddAESubscription@{OTCAddAESubscription}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAddAESubscription()}{OTCAddAESubscription()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a6dca8984db2390c40770874b4eee0f0e} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAdd\+AESubscription (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{subscription\+User\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Subscription\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05802}{5802}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a62ab1febe113215764bcf498c1ec4ba8}\index{OTC.cpp@{OTC.cpp}!OTCAddDAItem@{OTCAddDAItem}}
+\index{OTCAddDAItem@{OTCAddDAItem}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAddDAItem()}{OTCAddDAItem()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a62ab1febe113215764bcf498c1ec4ba8} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAdd\+DAItem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{group\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{item\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{item\+User\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Item\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00823}{823}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{_o_t_c_8cpp_a62ab1febe113215764bcf498c1ec4ba8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_ae9395b090b0ddb6ef90cfa0cf0b6c6fc}\index{OTC.cpp@{OTC.cpp}!OTCAddDASession@{OTCAddDASession}}
+\index{OTCAddDASession@{OTCAddDASession}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAddDASession()}{OTCAddDASession()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_ae9395b090b0ddb6ef90cfa0cf0b6c6fc} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAdd\+DASession (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{url}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{server\+User\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00685}{685}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_ae9395b090b0ddb6ef90cfa0cf0b6c6fc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a89982eb94bf03561df283f0efae6110f}\index{OTC.cpp@{OTC.cpp}!OTCAddDASubscription@{OTCAddDASubscription}}
+\index{OTCAddDASubscription@{OTCAddDASubscription}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAddDASubscription()}{OTCAddDASubscription()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a89982eb94bf03561df283f0efae6110f} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAdd\+DASubscription (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{update\+Rate}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{group\+User\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Group\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00762}{762}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a89982eb94bf03561df283f0efae6110f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_af6ceef15f14792458c05734a35367f2f}\index{OTC.cpp@{OTC.cpp}!OTCAdvise@{OTCAdvise}}
+\index{OTCAdvise@{OTCAdvise}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCAdvise()}{OTCAdvise()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_af6ceef15f14792458c05734a35367f2f} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCAdvise (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ad04ddba4f4d4652c6c7e8a25dd63ada4}{OTCCallback\+Functions}} \texorpdfstring{$\ast$}{*}}]{p\+Callbacks}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00643}{643}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{_o_t_c_8cpp_af6ceef15f14792458c05734a35367f2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_abb95483eac886bde965634c5c0b7ae98}\index{OTC.cpp@{OTC.cpp}!OTCBrowseAddressSpace@{OTCBrowseAddressSpace}}
+\index{OTCBrowseAddressSpace@{OTCBrowseAddressSpace}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCBrowseAddressSpace()}{OTCBrowseAddressSpace()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_abb95483eac886bde965634c5c0b7ae98} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCBrowse\+Address\+Space (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{address\+Space\+Element\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{address\+Space\+Element\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{address\+Space\+Element\+Path}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a50339ace668d7d219f99a4df0a3c319a}{OTCAddress\+Space\+Browse\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Browse\+Options}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Address\+Space\+Element\+Data\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_ae8b74cdec6b708cc04a87fa93b83eae3}{OTCAddress\+Space\+Element\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Address\+Space\+Element}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l03977}{3977}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_abb95483eac886bde965634c5c0b7ae98_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a4b4166268e79db03cb7936fda5e463aa}\index{OTC.cpp@{OTC.cpp}!OTCBrowseServer@{OTCBrowseServer}}
+\index{OTCBrowseServer@{OTCBrowseServer}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCBrowseServer()}{OTCBrowseServer()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a4b4166268e79db03cb7936fda5e463aa} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCBrowse\+Server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{ip\+Address}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{what\+OPCSpec}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{what\+Server\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Server\+Data\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a5b49dfc862589e8d3c37c6b08287860e}{OTCServer\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Server\+Data}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l03970}{3970}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a70b8513e37bf9a31e70d9feb7c4535d6}\index{OTC.cpp@{OTC.cpp}!OTCChangeTargetState@{OTCChangeTargetState}}
+\index{OTCChangeTargetState@{OTCChangeTargetState}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCChangeTargetState()}{OTCChangeTargetState()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a70b8513e37bf9a31e70d9feb7c4535d6} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCChange\+Target\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{state}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{deep}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l02049}{2049}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a70b8513e37bf9a31e70d9feb7c4535d6_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a443a0107817ac8f45c94c3f39c8e1618}\index{OTC.cpp@{OTC.cpp}!OTCEnableAEConditions@{OTCEnableAEConditions}}
+\index{OTCEnableAEConditions@{OTCEnableAEConditions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCEnableAEConditions()}{OTCEnableAEConditions()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a443a0107817ac8f45c94c3f39c8e1618} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCEnable\+AEConditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{enable}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{area\+Or\+Source}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{path}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05850}{5850}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a32560fd8874a2dc70d1825afe5ec575c}\index{OTC.cpp@{OTC.cpp}!OTCGetAEConditionState@{OTCGetAEConditionState}}
+\index{OTCGetAEConditionState@{OTCGetAEConditionState}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCGetAEConditionState()}{OTCGetAEConditionState()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a32560fd8874a2dc70d1825afe5ec575c} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCGet\+AECondition\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{source\+Path}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{condition\+Name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{attribute\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Attribute\+Ids}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_abb124404bc33b92a93afdf7ff15979c4}{OTCAECondition\+State\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Condition\+State}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05846}{5846}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a9652659461aeb7363fcc0ed4034311ff}\index{OTC.cpp@{OTC.cpp}!OTCGetAttributes@{OTCGetAttributes}}
+\index{OTCGetAttributes@{OTCGetAttributes}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCGetAttributes()}{OTCGetAttributes()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a9652659461aeb7363fcc0ed4034311ff} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCGet\+Attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{what\+Attributes}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a1f8b97c43e1a49facc9f044494aa5b1c}{OTCObject\+Attributes}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Attributes}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l02189}{2189}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{_o_t_c_8cpp_a9652659461aeb7363fcc0ed4034311ff_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a137df834df933589c39b70b4c7738574}\index{OTC.cpp@{OTC.cpp}!OTCGetDAProperties@{OTCGetDAProperties}}
+\index{OTCGetDAProperties@{OTCGetDAProperties}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCGetDAProperties()}{OTCGetDAProperties()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a137df834df933589c39b70b4c7738574} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCGet\+DAProperties (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{address\+Space\+Element\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{address\+Space\+Element\+ID}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{address\+Space\+Element\+Path}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a1d97e12e6bed93cd131312669cfb35cc}{OTCGet\+DAProperties\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Get\+Properties\+Options}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Properties\+Data\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_adbe3e2a659464ef92c98a0d82a4bb2db}{OTCDAProperty\+Data}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Property}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l01644}{1644}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a137df834df933589c39b70b4c7738574_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a6a793f6eca4869603550f5428f1b42a4}\index{OTC.cpp@{OTC.cpp}!OTCGetErrorString@{OTCGetErrorString}}
+\index{OTCGetErrorString@{OTCGetErrorString}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCGetErrorString()}{OTCGetErrorString()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a6a793f6eca4869603550f5428f1b42a4} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCGet\+Error\+String (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LONG}]{error\+Code}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}}]{p\+Error\+String}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l06282}{6282}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a3e102655f0f5c816861e3c4d0351ef34}\index{OTC.cpp@{OTC.cpp}!OTCGetServerStatus@{OTCGetServerStatus}}
+\index{OTCGetServerStatus@{OTCGetServerStatus}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCGetServerStatus()}{OTCGetServerStatus()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a3e102655f0f5c816861e3c4d0351ef34} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCGet\+Server\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_t_client_8h_a853a8c98ee1a1715d45ef27cda00407a}{OTCServer\+Status}} \texorpdfstring{$\ast$}{*}}]{p\+Server\+Status}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l03614}{3614}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a3e102655f0f5c816861e3c4d0351ef34_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a79c8dc26a2d6037157f779f14007d4c2}\index{OTC.cpp@{OTC.cpp}!OTCGetState@{OTCGetState}}
+\index{OTCGetState@{OTCGetState}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCGetState()}{OTCGetState()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a79c8dc26a2d6037157f779f14007d4c2} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCGet\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} BYTE \texorpdfstring{$\ast$}{*}}]{p\+Current\+State}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} BYTE \texorpdfstring{$\ast$}{*}}]{p\+Target\+State}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l02024}{2024}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{_o_t_c_8cpp_a79c8dc26a2d6037157f779f14007d4c2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_acacc40db63c96baed0b26c345e615552}\index{OTC.cpp@{OTC.cpp}!OTCInitialize@{OTCInitialize}}
+\index{OTCInitialize@{OTCInitialize}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCInitialize()}{OTCInitialize()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_acacc40db63c96baed0b26c345e615552} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCInitialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a78d38ab3af535f8746a3911e63f611d0}{OTCInit\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Init\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00443}{443}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_acacc40db63c96baed0b26c345e615552_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_acacc40db63c96baed0b26c345e615552_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a428eb5ae7159f17250d62c2b5b756233}\index{OTC.cpp@{OTC.cpp}!OTCLogoff@{OTCLogoff}}
+\index{OTCLogoff@{OTCLogoff}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCLogoff()}{OTCLogoff()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a428eb5ae7159f17250d62c2b5b756233} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCLogoff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l06290}{6290}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a428eb5ae7159f17250d62c2b5b756233_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a05cd1327b06979f76c06bdc8da28ca81}\index{OTC.cpp@{OTC.cpp}!OTCLogon@{OTCLogon}}
+\index{OTCLogon@{OTCLogon}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCLogon()}{OTCLogon()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a05cd1327b06979f76c06bdc8da28ca81} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCLogon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{user\+Name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{password}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l06286}{6286}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a5ea59be21a2467c657082e5aa5bd010e}\index{OTC.cpp@{OTC.cpp}!OTCOPCVersionToDaC@{OTCOPCVersionToDaC}}
+\index{OTCOPCVersionToDaC@{OTCOPCVersionToDaC}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCOPCVersionToDaC()}{OTCOPCVersionToDaC()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a5ea59be21a2467c657082e5aa5bd010e} 
+WORD OTCOPCVersion\+To\+DaC (\begin{DoxyParamCaption}\item[{BYTE}]{otc\+Spec}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00219}{219}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{_o_t_c_8cpp_a5ea59be21a2467c657082e5aa5bd010e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a2606081308babd2caaee947a9c32284d}\index{OTC.cpp@{OTC.cpp}!OTCPerformStateTransition@{OTCPerformStateTransition}}
+\index{OTCPerformStateTransition@{OTCPerformStateTransition}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCPerformStateTransition()}{OTCPerformStateTransition()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a2606081308babd2caaee947a9c32284d} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCPerform\+State\+Transition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{deep}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l02117}{2117}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a2606081308babd2caaee947a9c32284d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a40600b4cee5003551c1523e5b3720e41}\index{OTC.cpp@{OTC.cpp}!OTCProcessCommandLine@{OTCProcessCommandLine}}
+\index{OTCProcessCommandLine@{OTCProcessCommandLine}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCProcessCommandLine()}{OTCProcessCommandLine()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a40600b4cee5003551c1523e5b3720e41} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCProcess\+Command\+Line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{command\+Line}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00570}{570}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a40600b4cee5003551c1523e5b3720e41_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a53ed9342594e30660987d0a4f6cf6bbb}\index{OTC.cpp@{OTC.cpp}!OTCQueryAEAttributes@{OTCQueryAEAttributes}}
+\index{OTCQueryAEAttributes@{OTCQueryAEAttributes}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCQueryAEAttributes()}{OTCQueryAEAttributes()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a53ed9342594e30660987d0a4f6cf6bbb} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCQuery\+AEAttributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{category\+Id}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Attribute\+Ids}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Attribute\+Descriptions}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} WORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Attribute\+Datatypes}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05830}{5830}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_aabf86074440eb977d81b0fa1e5a0d42c}\index{OTC.cpp@{OTC.cpp}!OTCQueryAECategories@{OTCQueryAECategories}}
+\index{OTCQueryAECategories@{OTCQueryAECategories}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCQueryAECategories()}{OTCQueryAECategories()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_aabf86074440eb977d81b0fa1e5a0d42c} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCQuery\+AECategories (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Event\+Types}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Category\+Ids}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Category\+Descriptions}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05826}{5826}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a8a2637945982fd85eb4fe158d80f6726}\index{OTC.cpp@{OTC.cpp}!OTCQueryAEConditions@{OTCQueryAEConditions}}
+\index{OTCQueryAEConditions@{OTCQueryAEConditions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCQueryAEConditions()}{OTCQueryAEConditions()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a8a2637945982fd85eb4fe158d80f6726} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCQuery\+AEConditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{category\+Id}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Conditions\+Names}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05834}{5834}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_aaebd0a5ec727d1d06ac3fd3f985b3760}\index{OTC.cpp@{OTC.cpp}!OTCQueryAESourceConditions@{OTCQueryAESourceConditions}}
+\index{OTCQueryAESourceConditions@{OTCQueryAESourceConditions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCQueryAESourceConditions()}{OTCQueryAESourceConditions()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_aaebd0a5ec727d1d06ac3fd3f985b3760} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCQuery\+AESource\+Conditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{source\+Path}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Conditions\+Names}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05842}{5842}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a04755b3810f99010acf5b6d73951f55f}\index{OTC.cpp@{OTC.cpp}!OTCQueryAESubConditions@{OTCQueryAESubConditions}}
+\index{OTCQueryAESubConditions@{OTCQueryAESubConditions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCQueryAESubConditions()}{OTCQueryAESubConditions()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a04755b3810f99010acf5b6d73951f55f} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCQuery\+AESub\+Conditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR}]{condition\+Name}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LPTSTR \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{pp\+Sub\+Conditions\+Names}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05838}{5838}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a0a52a2b38e08d0d85cff81992c69c6cb}\index{OTC.cpp@{OTC.cpp}!OTCQueryAvailableAEFilters@{OTCQueryAvailableAEFilters}}
+\index{OTCQueryAvailableAEFilters@{OTCQueryAvailableAEFilters}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCQueryAvailableAEFilters()}{OTCQueryAvailableAEFilters()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a0a52a2b38e08d0d85cff81992c69c6cb} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCQuery\+Available\+AEFilters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{session\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+Available\+Filters}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05822}{5822}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_ab483c880642065a943f532b060a9d07d}\index{OTC.cpp@{OTC.cpp}!OTCRead@{OTCRead}}
+\index{OTCRead@{OTCRead}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRead()}{OTCRead()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_ab483c880642065a943f532b060a9d07d} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRead (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Item\+Handles}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}}]{p\+Item\+IDs}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}}]{p\+Item\+Paths}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{max\+Age}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValue\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Values}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}}]{p\+Results}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00884}{884}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_ab483c880642065a943f532b060a9d07d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a2ff4b5a7a62db7ea49ab9b0d60373e6a}\index{OTC.cpp@{OTC.cpp}!OTCRefreshAEConditions@{OTCRefreshAEConditions}}
+\index{OTCRefreshAEConditions@{OTCRefreshAEConditions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRefreshAEConditions()}{OTCRefreshAEConditions()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a2ff4b5a7a62db7ea49ab9b0d60373e6a} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRefresh\+AEConditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{subscription\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{cancel\+Refresh}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05814}{5814}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_a34090dd93ebd9c5c30db7ab21997e275}\index{OTC.cpp@{OTC.cpp}!OTCRefreshDAGroup@{OTCRefreshDAGroup}}
+\index{OTCRefreshDAGroup@{OTCRefreshDAGroup}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRefreshDAGroup()}{OTCRefreshDAGroup()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a34090dd93ebd9c5c30db7ab21997e275} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRefresh\+DAGroup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{subscription\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{max\+Age}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l01462}{1462}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a34090dd93ebd9c5c30db7ab21997e275_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a647da7ac8e3db7f6b0617cbd9a85c8eb}\index{OTC.cpp@{OTC.cpp}!OTCReleaseAddressSpaceElement@{OTCReleaseAddressSpaceElement}}
+\index{OTCReleaseAddressSpaceElement@{OTCReleaseAddressSpaceElement}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCReleaseAddressSpaceElement()}{OTCReleaseAddressSpaceElement()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a647da7ac8e3db7f6b0617cbd9a85c8eb} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRelease\+Address\+Space\+Element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{address\+Space\+Element\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BOOL}]{deep}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l04391}{4391}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+\Hypertarget{_o_t_c_8cpp_ae63a9eff80bcfbb02cb64352486839f1}\index{OTC.cpp@{OTC.cpp}!OTCRemoveAESession@{OTCRemoveAESession}}
+\index{OTCRemoveAESession@{OTCRemoveAESession}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRemoveAESession()}{OTCRemoveAESession()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_ae63a9eff80bcfbb02cb64352486839f1} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRemove\+AESession (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05806}{5806}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_ae63a9eff80bcfbb02cb64352486839f1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a2cebc7ac99af263f93029b5689a38e88}\index{OTC.cpp@{OTC.cpp}!OTCRemoveAESubscription@{OTCRemoveAESubscription}}
+\index{OTCRemoveAESubscription@{OTCRemoveAESubscription}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRemoveAESubscription()}{OTCRemoveAESubscription()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a2cebc7ac99af263f93029b5689a38e88} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRemove\+AESubscription (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l05810}{5810}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a2cebc7ac99af263f93029b5689a38e88_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_ab69e8e0ff559e1067d07791b04e73973}\index{OTC.cpp@{OTC.cpp}!OTCRemoveDAItem@{OTCRemoveDAItem}}
+\index{OTCRemoveDAItem@{OTCRemoveDAItem}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRemoveDAItem()}{OTCRemoveDAItem()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_ab69e8e0ff559e1067d07791b04e73973} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRemove\+DAItem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00857}{857}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{_o_t_c_8cpp_ab69e8e0ff559e1067d07791b04e73973_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_ab69e8e0ff559e1067d07791b04e73973_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a1466876cb8cc50dc604b0b97a6a43133}\index{OTC.cpp@{OTC.cpp}!OTCRemoveDASession@{OTCRemoveDASession}}
+\index{OTCRemoveDASession@{OTCRemoveDASession}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRemoveDASession()}{OTCRemoveDASession()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a1466876cb8cc50dc604b0b97a6a43133} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRemove\+DASession (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00724}{724}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a1466876cb8cc50dc604b0b97a6a43133_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a1466876cb8cc50dc604b0b97a6a43133_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a045eb3a2d6e1d25170abc256db3d0e84}\index{OTC.cpp@{OTC.cpp}!OTCRemoveDASubscription@{OTCRemoveDASubscription}}
+\index{OTCRemoveDASubscription@{OTCRemoveDASubscription}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCRemoveDASubscription()}{OTCRemoveDASubscription()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a045eb3a2d6e1d25170abc256db3d0e84} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCRemove\+DASubscription (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00796}{796}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a045eb3a2d6e1d25170abc256db3d0e84_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a045eb3a2d6e1d25170abc256db3d0e84_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a9d6d61f52198dc5597359aa63ca70997}\index{OTC.cpp@{OTC.cpp}!OTCSetAttributes@{OTCSetAttributes}}
+\index{OTCSetAttributes@{OTCSetAttributes}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCSetAttributes()}{OTCSetAttributes()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a9d6d61f52198dc5597359aa63ca70997} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCSet\+Attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{what\+Attributes}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a1f8b97c43e1a49facc9f044494aa5b1c}{OTCObject\+Attributes}} \texorpdfstring{$\ast$}{*}}]{p\+Object\+Attributes}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l02486}{2486}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a9d6d61f52198dc5597359aa63ca70997_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a59c9b82655718f6c4dc38472de58493b}\index{OTC.cpp@{OTC.cpp}!OTCTerminate@{OTCTerminate}}
+\index{OTCTerminate@{OTCTerminate}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCTerminate()}{OTCTerminate()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a59c9b82655718f6c4dc38472de58493b} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCTerminate (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00526}{526}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{_o_t_c_8cpp_a59c9b82655718f6c4dc38472de58493b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a59c9b82655718f6c4dc38472de58493b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_afa0c7b2e8d436b90da7a9427c447f9c4}\index{OTC.cpp@{OTC.cpp}!OTCUpdateAttributes@{OTCUpdateAttributes}}
+\index{OTCUpdateAttributes@{OTCUpdateAttributes}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCUpdateAttributes()}{OTCUpdateAttributes()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_afa0c7b2e8d436b90da7a9427c447f9c4} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCUpdate\+Attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{from\+Server}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{attribute\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+What\+Attributes}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}}]{p\+Results}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l02854}{2854}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_afa0c7b2e8d436b90da7a9427c447f9c4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_aa4a04bef889cd32cf7f0c6dc3b129183}\index{OTC.cpp@{OTC.cpp}!OTCUpdateDAItemAttributes@{OTCUpdateDAItemAttributes}}
+\index{OTCUpdateDAItemAttributes@{OTCUpdateDAItemAttributes}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCUpdateDAItemAttributes()}{OTCUpdateDAItemAttributes()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_aa4a04bef889cd32cf7f0c6dc3b129183} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCUpdate\+DAItem\+Attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{subscription\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{item\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Item\+Handles}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} BYTE}]{from\+Server}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{attribute\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD \texorpdfstring{$\ast$}{*}}]{p\+What\+Attributes}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}}]{p\+Results}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l03367}{3367}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_aa4a04bef889cd32cf7f0c6dc3b129183_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_a0ccf726de45e5e9119d3f1a401c8a080}\index{OTC.cpp@{OTC.cpp}!OTCValidateDAItems@{OTCValidateDAItems}}
+\index{OTCValidateDAItems@{OTCValidateDAItems}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCValidateDAItems()}{OTCValidateDAItems()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_a0ccf726de45e5e9119d3f1a401c8a080} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCValidate\+DAItems (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{subscription\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{item\+Count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Item\+Handles}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}}]{p\+Results}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l01507}{1507}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_a0ccf726de45e5e9119d3f1a401c8a080_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{_o_t_c_8cpp_af17ce80029bdf5705c5de065fac0ce1c}\index{OTC.cpp@{OTC.cpp}!OTCWrite@{OTCWrite}}
+\index{OTCWrite@{OTCWrite}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{OTCWrite()}{OTCWrite()}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_af17ce80029bdf5705c5de065fac0ce1c} 
+LONG \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\+\_\+\+CALL}} OTCWrite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}}}]{object\+Handle}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} DWORD}]{count}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObject\+Handle}} \texorpdfstring{$\ast$}{*}}]{p\+Item\+Handles}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}}]{p\+Item\+IDs}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} LPTSTR \texorpdfstring{$\ast$}{*}}]{p\+Item\+Paths}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValue\+Data}} \texorpdfstring{$\ast$}{*}}]{p\+Values}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} LONG \texorpdfstring{$\ast$}{*}}]{p\+Results}{, }\item[{\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{_o_t_client_8h_a7f4a91fc9f2ed0e894f52b06bbb14b16}{OTCExecution\+Options}} \texorpdfstring{$\ast$}{*}}]{p\+Execution\+Options}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l01158}{1158}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_o_t_c_8cpp_af17ce80029bdf5705c5de065fac0ce1c_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{_o_t_c_8cpp_aad079eacbad9b8bff024427ff369321c}\index{OTC.cpp@{OTC.cpp}!g\_callbackFunctions@{g\_callbackFunctions}}
+\index{g\_callbackFunctions@{g\_callbackFunctions}!OTC.cpp@{OTC.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_callbackFunctions}{g\_callbackFunctions}}
+{\footnotesize\ttfamily \label{_o_t_c_8cpp_aad079eacbad9b8bff024427ff369321c} 
+\mbox{\hyperlink{_o_t_client_8h_ad04ddba4f4d4652c6c7e8a25dd63ada4}{OTCCallback\+Functions}} g\+\_\+callback\+Functions}
+
+
+
+Definition at line \mbox{\hyperlink{_o_t_c_8cpp_source_l00254}{254}} of file \mbox{\hyperlink{_o_t_c_8cpp_source}{OTC.\+cpp}}.
+

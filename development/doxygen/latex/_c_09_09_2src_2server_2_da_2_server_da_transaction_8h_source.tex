@@ -1,0 +1,106 @@
+\doxysection{Server\+Da\+Transaction.\+h}
+\hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source}{}\label{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source}\index{C++/src/server/Da/ServerDaTransaction.h@{C++/src/server/Da/ServerDaTransaction.h}}
+\mbox{\hyperlink{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SERVERDATRANSACTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SERVERDATRANSACTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enums_8h}{../../Enums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_server_enums_8h}{../ServerEnums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mutex_8h}{Mutex.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00010}00010\ \textcolor{preprocessor}{\#ifdef\ WIN64}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00011}00011\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00012}00012\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00013}00013\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00014}00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00016}00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server}{SoftingOPCToolboxServer}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00017}00017\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00019}00019\ \textcolor{keyword}{class\ }DaRequest;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00020}00020\ \textcolor{keyword}{class\ }DaSession;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00022}00022\ \textcolor{comment}{//\ Transaction\ class:\ Used\ for\ managing\ the\ transaction\ requests}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00023}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction}{00023}}\ \textcolor{keyword}{class\ }TBC\_EXPORT\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction}{DaTransaction}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00024}00024\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00026}00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server_a094bf9ebb38c895fb492f38e5358d826}{EnumTransactionType}}\ m\_type;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00028}00028\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ m\_sessionHandle;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ KeyBuilder;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00030}00030\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_mutex}{Mutex}}\ KeyBuilderJanitor;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00031}00031\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ m\_key;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00033}00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction}{DaTransaction}}(}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server_a094bf9ebb38c895fb492f38e5358d826}{EnumTransactionType}}\ aTransactionType,}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ std::vector<DaRequest*>\&\ aRequestList,}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aSessionHandle);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction}{\string~DaTransaction}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00041}00041\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00042}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a0af161376251b3cea1382e481b0f08d5}{00042}}\ \ \ \ \ std::vector<DaRequest*>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a0af161376251b3cea1382e481b0f08d5}{m\_requestList}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00043}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a51cfb25a478431d2ec09bdbe32d0283b}{00043}}\ \ \ \ \ \mbox{\hyperlink{class_mutex}{Mutex}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a51cfb25a478431d2ec09bdbe32d0283b}{m\_requestListJanitor}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00045}00045\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00047}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a38eff6a08786b4786ceb83ed8f237813}{00047}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a38eff6a08786b4786ceb83ed8f237813}{handleReadRequests}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00048}00048\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_o_tcommon_8h_a68162fe3bd685193e977e955439cac4b}{E\_NOTIMPL}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00050}00050\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ handleReadRequests}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00052}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a25567dbfcbe9810c279e3c50d0041d5d}{00052}}\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a25567dbfcbe9810c279e3c50d0041d5d}{handleWriteRequests}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00053}00053\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_o_tcommon_8h_a68162fe3bd685193e977e955439cac4b}{E\_NOTIMPL}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00055}00055\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ handleWriteRequests}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ \ Determines\ whether\ this\ is\ a\ read\ or\ a\ write\ transaction}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00058}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_adcf0518b4f859eeb2ce7e94caefce793}{00058}}\ \ \ \ \ \mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server_a094bf9ebb38c895fb492f38e5358d826}{EnumTransactionType}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_adcf0518b4f859eeb2ce7e94caefce793}{getType}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00059}00059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_type;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//\ \ retrieves\ the\ key}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00064}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a92488bcbd5c810bb00276520f8b659c5}{00064}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a92488bcbd5c810bb00276520f8b659c5}{getKey}}()}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_key;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ Requests\ contained\ in\ this\ transaction}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00070}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a1cadd52ce4dfe16578817676a694d26e}{00070}}\ \ \ \ \ std::vector<DaRequest*>\&\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a1cadd52ce4dfe16578817676a694d26e}{getRequests}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_requestList;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ \ no\ requests\ pending}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00076}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a8cc63d78c7a38e544b86c184c59e5a6c}{00076}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_transaction_a8cc63d78c7a38e544b86c184c59e5a6c}{isEmpty}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00077}00077\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ m\_requestListJanitor.\mbox{\hyperlink{class_mutex_a22d21e5d8cf0ecc55d1a511674a00555}{lock}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ BOOL\ ret\ =\ m\_requestList.empty();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ m\_requestListJanitor.\mbox{\hyperlink{class_mutex_a88de0f5e03393ddc539d658bddd5965e}{unlock}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00082}00082\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ get\ the\ session\ from\ which\ \ the\ Transaction\ came\ from}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_session}{DaSession}}*\ getSession(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{long}\ completeRequests(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{long}\ completeRequest(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_request}{DaRequest}}*\ aRequest);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{long}\ findRequestByHandle(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ requestHandle,\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_request}{DaRequest}}**\ aRequest);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{long}\ valuesChanged(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00092}00092\ \ \ \ \ \textcolor{keywordtype}{void}\ removeRequest(\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_da_request}{DaRequest}}*\ aRequest);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00094}00094\ \};\ \ \textcolor{comment}{//\ \ end\ class\ Transaction}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00096}00096\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace\ SoftingOPCToolboxServer}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00098}00098\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00099}00099\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ \_DATRANSACTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2src_2server_2_da_2_server_da_transaction_8h_source_l00100}00100\ }
+
+\end{DoxyCode}

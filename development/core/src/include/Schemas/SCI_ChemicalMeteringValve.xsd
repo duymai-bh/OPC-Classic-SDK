@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 rel. 2 sp1 (x64) (http://www.altova.com) by Sarah McGrath (GE Oil & Gas) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SCI_SurfaceTypes.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="SCI_DeviceMapping.xsd"/>
+	<xs:complexType name="StandardCMVType">
+		<xs:annotation>
+			<xs:documentation>Standard Chemical Metering Valve Controls. CiA443 Compliant</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Chemical Metering valve name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer Tag Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeID" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Canbus Node Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusWord" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Status Word (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeviceState" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Device Status (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActualPosition" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Position (%) (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActualFlowRate" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Flow Rate (l/h) (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusWordDefinition" type="string32">
+				<xs:annotation>
+					<xs:documentation>CSV File Defining CMV Status Word Definition</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeviceStateDefinition" type="string32">
+				<xs:annotation>
+					<xs:documentation>CSV File Defining CMV Device State Definition</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NoAddParams" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Number of Additional Parameters to be Read for CMV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams1Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 1 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams1Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 1 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams2Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 2 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams2Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 2 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams3Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 3 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams3Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 3 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams4Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 4 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams4Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 4 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams5Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 5 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams5Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 5 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandWriteScanList" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Canbus Write Scan List Number to Send Command to SEM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PosModeSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Position Mode Command SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowModeSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Flow Mode (Regulated or Non-Regulated) Command SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbortSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Abort Command SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SkoFloCMVType">
+		<xs:annotation>
+			<xs:documentation>SkoFlo Chemical Metering Valve Controls.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Chemical Metering valve name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tag" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Customer Tag Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeID" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Canbus Node Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusWord" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Status Word (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeviceState" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Device Status (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActualPosition" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Position (%) (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActualFlowRate" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Flow Rate (l/h) (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowControl" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Flow Control (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowBasedOnDP" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Flow Based on Differential Pressure (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowBasedOnStemPos" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Flow Based on Stem Position (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DifferentialPressure" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to CMV Differential Pressure (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusWordDefinition" type="string32">
+				<xs:annotation>
+					<xs:documentation>CSV File Defining CMV Status Word Definition</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeviceStateDefinition" type="string32">
+				<xs:annotation>
+					<xs:documentation>CSV File Defining CMV Device State Definition</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowRateTable" type="string32">
+				<xs:annotation>
+					<xs:documentation>CSV File Defining CMV Flow Rate Lookup Table (Stem, DP and Flow Rate)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NoAddParams" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Number of Additional Parameters to be Read for CMV</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams1Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 1 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams1Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 1 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams2Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 2 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams2Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 2 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams3Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 3 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams3Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 3 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams4Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 4 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams4Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 4 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams5Desc" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 5 Description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddParams5Ref" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CMV Additional Parameter 5 SCI Reference</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandWriteScanList" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Canbus Write Scan List Number to Send Command to SEM</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PosModeSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Position Mode Command SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FlowModeSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Flow Mode (Regulated or Non-Regulated) Command SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CommandSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Command Command SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZeroFlowSDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Zero Flow SDO List</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="SkoFloCMVEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the CMV data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDDisplay" type="bool" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Item Displayed (True) or not displayed (False) on the ETU Process Identification (PID) mimic display.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PIDLocation" type="int8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Location on the ETU Process Identification (PID) mimic display. (Only Applicable if PIDDisplay is True).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SkoFloCMVEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For A Sko Flo CMV</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FlowControlBasedOnDP" type="bool">
+				<xs:annotation>
+					<xs:documentation>If set the Flow Control Based on Differential Pressure, if not set Flow Control Based on Stem Position.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SelectedFlowTable">
+				<xs:annotation>
+					<xs:documentation>Lists the selected Flow Table number. Default Flow Table 1 - value 0.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="uint8">
+						<xs:maxInclusive value="4"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NoAdjustments">
+				<xs:annotation>
+					<xs:documentation>Maximum number of allowed adjustments when the difference pressure method is specified. Default 3.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="uint8">
+						<xs:maxInclusive value="15"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="MinsBetweenAdjustments">
+				<xs:annotation>
+					<xs:documentation>Time, in minutes, to wait between each adjustment when the difference pressure method is specified. Factory default 5.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="uint8">
+						<xs:maxInclusive value="240"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

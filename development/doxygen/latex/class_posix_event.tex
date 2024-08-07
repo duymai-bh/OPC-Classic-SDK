@@ -1,0 +1,268 @@
+\doxysection{Posix\+Event Class Reference}
+\hypertarget{class_posix_event}{}\label{class_posix_event}\index{PosixEvent@{PosixEvent}}
+
+
+Posix Event.  
+
+
+
+
+{\ttfamily \#include $<$Posix\+Events.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_posix_event_a20455d454ea9a818173c45bd73d94b46}{Posix\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_posix_event_a150f8dd5c716bbce18f71299301d6262}{\texorpdfstring{$\sim$}{\string~}\+Posix\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a06c546ad15f083e449008ff0412202ad}{create}} (bool manual\+Reset=false, bool initial\+State=false)
+\begin{DoxyCompactList}\small\item\em Initialization. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a97195a218b05da5d3a61c53c0237a746}{signal}} ()
+\begin{DoxyCompactList}\small\item\em Emit signal. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a652967318a79bd418ea8b000c96a1cf6}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Resets internal flag. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a62a273b490376a0f1cbd88de268f75b6}{wait\+For}} (DWORD timeout=\mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}})
+\begin{DoxyCompactList}\small\item\em Waits specific timeout interval. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_ac8f457f31f82ee493e8c1709881894fc}{is\+Init}} ()
+\begin{DoxyCompactList}\small\item\em True if initialized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{class_posix_event_a1e98beba611645956fdf0d37de37eb8d}{m\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Posix mutex. \end{DoxyCompactList}\item 
+pthread\+\_\+cond\+\_\+t \mbox{\hyperlink{class_posix_event_ae313b41faf4a72f635c13b3dd762d694}{m\+\_\+cond}}
+\begin{DoxyCompactList}\small\item\em Posix condition. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a3468c1a8c10f9d6d2259aca3ba830a26}{m\+\_\+manual\+Reset}}
+\begin{DoxyCompactList}\small\item\em Manual reset. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a8fb4f8ef5d0856c78e720156f0ed689c}{m\+\_\+signal}}
+\begin{DoxyCompactList}\small\item\em Internal flag, true if signalled. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_posix_event_a740612713a9453d7be6bdd2908babdd3}{m\+\_\+is\+Init}}
+\begin{DoxyCompactList}\small\item\em Flag for being initialized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Posix Event. 
+
+Definition at line \mbox{\hyperlink{_posix_events_8h_source_l00013}{13}} of file \mbox{\hyperlink{_posix_events_8h_source}{Posix\+Events.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_posix_event_a20455d454ea9a818173c45bd73d94b46}\index{PosixEvent@{PosixEvent}!PosixEvent@{PosixEvent}}
+\index{PosixEvent@{PosixEvent}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{PosixEvent()}{PosixEvent()}}
+{\footnotesize\ttfamily \label{class_posix_event_a20455d454ea9a818173c45bd73d94b46} 
+Posix\+Event\+::\+Posix\+Event (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+\Hypertarget{class_posix_event_a150f8dd5c716bbce18f71299301d6262}\index{PosixEvent@{PosixEvent}!````~PosixEvent@{\texorpdfstring{$\sim$}{\string~}PosixEvent}}
+\index{````~PosixEvent@{\texorpdfstring{$\sim$}{\string~}PosixEvent}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PosixEvent()}{\string~PosixEvent()}}
+{\footnotesize\ttfamily \label{class_posix_event_a150f8dd5c716bbce18f71299301d6262} 
+Posix\+Event\+::\texorpdfstring{$\sim$}{\string~}\+Posix\+Event (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_posix_event_a06c546ad15f083e449008ff0412202ad}\index{PosixEvent@{PosixEvent}!create@{create}}
+\index{create@{create}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{class_posix_event_a06c546ad15f083e449008ff0412202ad} 
+bool Posix\+Event\+::create (\begin{DoxyParamCaption}\item[{bool}]{manual\+Reset}{ = {\ttfamily false}, }\item[{bool}]{initial\+State}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Initialization. 
+
+Some initializations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manual\+Reset} & \\
+\hline
+{\em initial\+State} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns true 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+\Hypertarget{class_posix_event_ac8f457f31f82ee493e8c1709881894fc}\index{PosixEvent@{PosixEvent}!isInit@{isInit}}
+\index{isInit@{isInit}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{isInit()}{isInit()}}
+{\footnotesize\ttfamily \label{class_posix_event_ac8f457f31f82ee493e8c1709881894fc} 
+bool Posix\+Event\+::is\+Init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+True if initialized. 
+
+Waits timeout interval.
+
+\begin{DoxyReturn}{Returns}
+True is initialized 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00137}{137}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+\Hypertarget{class_posix_event_a652967318a79bd418ea8b000c96a1cf6}\index{PosixEvent@{PosixEvent}!reset@{reset}}
+\index{reset@{reset}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{class_posix_event_a652967318a79bd418ea8b000c96a1cf6} 
+bool Posix\+Event\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Resets internal flag. 
+
+Resets the internal signal flag.
+
+\begin{DoxyReturn}{Returns}
+Always returns true 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+\Hypertarget{class_posix_event_a97195a218b05da5d3a61c53c0237a746}\index{PosixEvent@{PosixEvent}!signal@{signal}}
+\index{signal@{signal}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{signal()}{signal()}}
+{\footnotesize\ttfamily \label{class_posix_event_a97195a218b05da5d3a61c53c0237a746} 
+bool Posix\+Event\+::signal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Emit signal. 
+
+Emits the signal.
+
+\begin{DoxyReturn}{Returns}
+Always returns true 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+\Hypertarget{class_posix_event_a62a273b490376a0f1cbd88de268f75b6}\index{PosixEvent@{PosixEvent}!waitFor@{waitFor}}
+\index{waitFor@{waitFor}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{waitFor()}{waitFor()}}
+{\footnotesize\ttfamily \label{class_posix_event_a62a273b490376a0f1cbd88de268f75b6} 
+bool Posix\+Event\+::wait\+For (\begin{DoxyParamCaption}\item[{DWORD}]{timeout}{ = {\ttfamily \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}}}}\end{DoxyParamCaption})}
+
+
+
+Waits specific timeout interval. 
+
+Waits timeout interval.
+
+
+\begin{DoxyParams}{Parameters}
+{\em timeout} & Interval to wait \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if signalled 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{_posix_events_8cpp_source}{Posix\+Events.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_posix_event_ae313b41faf4a72f635c13b3dd762d694}\index{PosixEvent@{PosixEvent}!m\_cond@{m\_cond}}
+\index{m\_cond@{m\_cond}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{m\_cond}{m\_cond}}
+{\footnotesize\ttfamily \label{class_posix_event_ae313b41faf4a72f635c13b3dd762d694} 
+pthread\+\_\+cond\+\_\+t Posix\+Event\+::m\+\_\+cond\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Posix condition. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8h_source_l00044}{44}} of file \mbox{\hyperlink{_posix_events_8h_source}{Posix\+Events.\+h}}.
+
+\Hypertarget{class_posix_event_a740612713a9453d7be6bdd2908babdd3}\index{PosixEvent@{PosixEvent}!m\_isInit@{m\_isInit}}
+\index{m\_isInit@{m\_isInit}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{m\_isInit}{m\_isInit}}
+{\footnotesize\ttfamily \label{class_posix_event_a740612713a9453d7be6bdd2908babdd3} 
+bool Posix\+Event\+::m\+\_\+is\+Init\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Flag for being initialized. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8h_source_l00053}{53}} of file \mbox{\hyperlink{_posix_events_8h_source}{Posix\+Events.\+h}}.
+
+\Hypertarget{class_posix_event_a3468c1a8c10f9d6d2259aca3ba830a26}\index{PosixEvent@{PosixEvent}!m\_manualReset@{m\_manualReset}}
+\index{m\_manualReset@{m\_manualReset}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{m\_manualReset}{m\_manualReset}}
+{\footnotesize\ttfamily \label{class_posix_event_a3468c1a8c10f9d6d2259aca3ba830a26} 
+bool Posix\+Event\+::m\+\_\+manual\+Reset\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Manual reset. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8h_source_l00047}{47}} of file \mbox{\hyperlink{_posix_events_8h_source}{Posix\+Events.\+h}}.
+
+\Hypertarget{class_posix_event_a1e98beba611645956fdf0d37de37eb8d}\index{PosixEvent@{PosixEvent}!m\_mutex@{m\_mutex}}
+\index{m\_mutex@{m\_mutex}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{m\_mutex}{m\_mutex}}
+{\footnotesize\ttfamily \label{class_posix_event_a1e98beba611645956fdf0d37de37eb8d} 
+pthread\+\_\+mutex\+\_\+t Posix\+Event\+::m\+\_\+mutex\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Posix mutex. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8h_source_l00041}{41}} of file \mbox{\hyperlink{_posix_events_8h_source}{Posix\+Events.\+h}}.
+
+\Hypertarget{class_posix_event_a8fb4f8ef5d0856c78e720156f0ed689c}\index{PosixEvent@{PosixEvent}!m\_signal@{m\_signal}}
+\index{m\_signal@{m\_signal}!PosixEvent@{PosixEvent}}
+\doxysubsubsection{\texorpdfstring{m\_signal}{m\_signal}}
+{\footnotesize\ttfamily \label{class_posix_event_a8fb4f8ef5d0856c78e720156f0ed689c} 
+bool Posix\+Event\+::m\+\_\+signal\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Internal flag, true if signalled. 
+
+
+
+Definition at line \mbox{\hyperlink{_posix_events_8h_source_l00050}{50}} of file \mbox{\hyperlink{_posix_events_8h_source}{Posix\+Events.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C++/src/\mbox{\hyperlink{_posix_events_8h}{Posix\+Events.\+h}}\item 
+C++/src/\mbox{\hyperlink{_posix_events_8cpp}{Posix\+Events.\+cpp}}\end{DoxyCompactItemize}

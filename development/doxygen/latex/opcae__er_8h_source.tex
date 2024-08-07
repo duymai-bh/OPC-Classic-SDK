@@ -1,0 +1,151 @@
+\doxysection{opcae\+\_\+er.\+h}
+\hypertarget{opcae__er_8h_source}{}\label{opcae__er_8h_source}\index{core/src/opc/opcae\_er.h@{core/src/opc/opcae\_er.h}}
+\mbox{\hyperlink{opcae__er_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00001}00001\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00002}00002\ \textcolor{comment}{//\ TITLE:\ opcae\_er.h}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00003}00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00004}00004\ \textcolor{comment}{//\ CONTENTS:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00005}00005\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00006}00006\ \textcolor{comment}{//\ Defines\ error\ codes\ for\ the\ OPC\ Alarms\ \&\ Events\ specification.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00008}00008\ \textcolor{comment}{//\ (c)\ Copyright\ 1997-\/2003\ The\ OPC\ Foundation}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00009}00009\ \textcolor{comment}{//\ ALL\ RIGHTS\ RESERVED.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00010}00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00011}00011\ \textcolor{comment}{//\ DISCLAIMER:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00012}00012\ \textcolor{comment}{//\ \ This\ code\ is\ provided\ by\ the\ OPC\ Foundation\ solely\ to\ assist\ in\ }}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00013}00013\ \textcolor{comment}{//\ \ understanding\ and\ use\ of\ the\ appropriate\ OPC\ Specification(s)\ and\ may\ be\ }}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00014}00014\ \textcolor{comment}{//\ \ used\ as\ set\ forth\ in\ the\ License\ Grant\ section\ of\ the\ OPC\ Specification.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00015}00015\ \textcolor{comment}{//\ \ This\ code\ is\ provided\ as-\/is\ and\ without\ warranty\ or\ support\ of\ any\ sort}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00016}00016\ \textcolor{comment}{//\ \ and\ is\ subject\ to\ the\ Warranty\ and\ Liability\ Disclaimers\ which\ appear}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00017}00017\ \textcolor{comment}{//\ \ in\ the\ printed\ OPC\ Specification.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00018}00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00019}00019\ \textcolor{comment}{//\ MODIFICATION\ LOG:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00020}00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00021}00021\ \textcolor{comment}{//\ Date\ \ \ \ \ \ \ By\ \ \ \ Notes}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00022}00022\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ -\/-\/-\/\ \ \ -\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00023}00023\ \textcolor{comment}{//\ 2002/10/02\ JL\ \ \ \ Updated\ for\ Version\ 1.1.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00024}00024\ \textcolor{comment}{//\ 2003/01/06\ RSA\ \ \ Fixed\ formatting\ to\ comply\ with\ coding\ guidelines.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00025}00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00027}00027\ \textcolor{preprocessor}{\#ifndef\ \_\_OPCAE\_ER\_H}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00028}00028\ \textcolor{preprocessor}{\#define\ \_\_OPCAE\_ER\_H}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00030}00030\ \textcolor{preprocessor}{\#if\ \_MSC\_VER\ >=\ 1000}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00031}00031\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00032}00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MSC\_VER\ >=\ 1000}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00034}00034\ \textcolor{comment}{//\ The\ 'Facility'\ is\ set\ to\ the\ standard\ for\ COM\ interfaces\ or\ FACILITY\_ITF\ (i.e.\ 0x004)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00035}00035\ \textcolor{comment}{//\ The\ 'Code'\ is\ set\ in\ the\ range\ defined\ OPC\ Commmon\ for\ AE\ (i.e.\ 0x0200\ to\ 0x02FF)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00037}00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00038}00038\ \textcolor{comment}{//\ \ Values\ are\ 32\ bit\ values\ layed\ out\ as\ follows:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00039}00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00040}00040\ \textcolor{comment}{//\ \ \ 3\ 3\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 2\ 1\ 1\ 1\ 1\ 1\ 1\ 1\ 1\ 1\ 1}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00041}00041\ \textcolor{comment}{//\ \ \ 1\ 0\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1\ 0\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1\ 0\ 9\ 8\ 7\ 6\ 5\ 4\ 3\ 2\ 1\ 0}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00042}00042\ \textcolor{comment}{//\ \ +-\/-\/-\/+-\/+-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00043}00043\ \textcolor{comment}{//\ \ |Sev|C|R|\ \ \ \ \ Facility\ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Code\ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00044}00044\ \textcolor{comment}{//\ \ +-\/-\/-\/+-\/+-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00045}00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00046}00046\ \textcolor{comment}{//\ \ where}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00047}00047\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00048}00048\ \textcolor{comment}{//\ \ \ \ \ \ Sev\ -\/\ is\ the\ severity\ code}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00049}00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00050}00050\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 00\ -\/\ Success}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00051}00051\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 01\ -\/\ Informational}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00052}00052\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 10\ -\/\ Warning}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00053}00053\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 11\ -\/\ Error}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00054}00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00055}00055\ \textcolor{comment}{//\ \ \ \ \ \ C\ -\/\ is\ the\ Customer\ code\ flag}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00056}00056\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00057}00057\ \textcolor{comment}{//\ \ \ \ \ \ R\ -\/\ is\ a\ reserved\ bit}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00058}00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00059}00059\ \textcolor{comment}{//\ \ \ \ \ \ Facility\ -\/\ is\ the\ facility\ code}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00060}00060\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00061}00061\ \textcolor{comment}{//\ \ \ \ \ \ Code\ -\/\ is\ the\ facility's\ status\ code}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00062}00062\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00063}00063\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00064}00064\ \textcolor{comment}{//\ Define\ the\ facility\ codes}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00065}00065\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00068}00068\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00069}00069\ \textcolor{comment}{//\ Define\ the\ severity\ codes}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00070}00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00073}00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00074}00074\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_ALREADYACKED}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00075}00075\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00076}00076\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00077}00077\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00078}00078\ \textcolor{comment}{//\ \ The\ condition\ has\ already\ been\ acknowleged.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00079}00079\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00080}\mbox{\hyperlink{opcae__er_8h_a88ad3654ae39f96f577b88f9b9b7f3f2}{00080}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_ALREADYACKED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0x00040200L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00082}00082\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00083}00083\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_INVALIDBUFFERTIME}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00084}00084\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00085}00085\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00086}00086\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00087}00087\ \textcolor{comment}{//\ \ The\ buffer\ time\ parameter\ was\ invalid.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00088}00088\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00089}\mbox{\hyperlink{opcae__er_8h_aa91e849901217decd8db33e05cd39f83}{00089}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_INVALIDBUFFERTIME\ \ \ \ \ \ \ \ \ \ ((HRESULT)0x00040201L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00091}00091\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00092}00092\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_INVALIDMAXSIZE}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00093}00093\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00094}00094\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00095}00095\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00096}00096\ \textcolor{comment}{//\ \ The\ max\ size\ parameter\ was\ invalid.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00097}00097\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00098}\mbox{\hyperlink{opcae__er_8h_a73d005def8e9b38e8b102d2424bae740}{00098}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_INVALIDMAXSIZE\ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0x00040202L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00100}00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00101}00101\ \textcolor{comment}{//\ MessageId:\ OPC\_S\_INVALIDKEEPALIVETIME}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00102}00102\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00103}00103\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00104}00104\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00105}00105\ \textcolor{comment}{//\ \ The\ KeepAliveTime\ parameter\ was\ invalid.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00106}00106\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00107}\mbox{\hyperlink{opcae__er_8h_abf2ad35d334794904b3b87816ae768aa}{00107}}\ \textcolor{preprocessor}{\#define\ OPC\_S\_INVALIDKEEPALIVETIME\ \ \ \ \ \ \ ((HRESULT)0x00040203L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00109}00109\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00110}00110\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDBRANCHNAME}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00111}00111\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00112}00112\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00113}00113\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00114}00114\ \textcolor{comment}{//\ \ The\ string\ was\ not\ recognized\ as\ an\ area\ name.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00115}00115\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00116}\mbox{\hyperlink{opcae__er_8h_ac1ebbc34362e22afa85de31b22a76c95}{00116}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDBRANCHNAME\ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040203L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00118}00118\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00119}00119\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_INVALIDTIME}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00120}00120\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00121}00121\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00122}00122\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00123}00123\ \textcolor{comment}{//\ \ The\ time\ does\ not\ match\ the\ latest\ active\ time.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00124}00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00125}\mbox{\hyperlink{opcae__er_8h_a4c24982b72853a8e2968d5c311a8de04}{00125}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_INVALIDTIME\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040204L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00127}00127\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00128}00128\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_BUSY}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00129}00129\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00130}00130\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00131}00131\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00132}00132\ \textcolor{comment}{//\ \ A\ refresh\ is\ currently\ in\ progress.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00133}00133\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00134}\mbox{\hyperlink{opcae__er_8h_abbaf830fdbaa8007c864518700356752}{00134}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_BUSY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040205L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00136}00136\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00137}00137\ \textcolor{comment}{//\ MessageId:\ OPC\_E\_NOINFO}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00138}00138\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00139}00139\ \textcolor{comment}{//\ MessageText:}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00140}00140\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00141}00141\ \textcolor{comment}{//\ \ Information\ is\ not\ available.}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00142}00142\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00143}\mbox{\hyperlink{opcae__er_8h_a25121ab92c77d196f476a0c02bf0ded0}{00143}}\ \textcolor{preprocessor}{\#define\ OPC\_E\_NOINFO\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((HRESULT)0xC0040206L)}}
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{opcae__er_8h_source_l00145}00145\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_OPCAE\_ER\_H}}
+
+\end{DoxyCode}

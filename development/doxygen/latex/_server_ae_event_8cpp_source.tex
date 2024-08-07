@@ -1,0 +1,51 @@
+\doxysection{Server\+Ae\+Event.\+cpp}
+\hypertarget{_server_ae_event_8cpp_source}{}\label{_server_ae_event_8cpp_source}\index{C++/src/server/Ae/ServerAeEvent.cpp@{C++/src/server/Ae/ServerAeEvent.cpp}}
+\mbox{\hyperlink{_server_ae_event_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_s_compat_8h}{OSCompat.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_server_ae_event_8h}{ServerAeEvent.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_server_application_8h}{../ServerApplication.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00005}00005\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_softing_o_p_c_toolbox_server}{SoftingOPCToolboxServer}};}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00007}00007\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00008}00008\ \textcolor{comment}{//\ \ AeEvent\ -\/\ constructor}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00009}00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00010}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_a36499b78cb2bd6fba66cc5e98c0c7b9f}{00010}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_a36499b78cb2bd6fba66cc5e98c0c7b9f}{AeEvent::AeEvent}}(}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00011}00011\ \ \ \ \ \mbox{\hyperlink{_enums_8h_aed37d7c0c2e14f8625aa2d325930f303}{EnumEventType}}\ anEventType,}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00012}00012\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ aSource,}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ aCategoryId):}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00014}00014\ \ \ \ \ m\_type(anEventType),}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00015}00015\ \ \ \ \ m\_source(aSource),}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00016}00016\ \ \ \ \ m\_categoryId(aCategoryId),}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00017}00017\ \ \ \ \ m\_severity(0)}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_a0e41b24c1117536b16b5ae8b0e88d33e}{m\_occurenceTime}}.\mbox{\hyperlink{class_date_time_aa70ef82da8b39a333d7c0256ef6c1bfc}{now}}();}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00020}00020\ \}\ \ \ \textcolor{comment}{//\ \ enc\ ctr}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00023}00023\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00024}00024\ \textcolor{comment}{//\ \ AeEvent\ -\/\ destructor}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00025}00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00026}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_aab2c58066c86876c8ad8153cfec99840}{00026}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_aab2c58066c86876c8ad8153cfec99840}{AeEvent::\string~AeEvent}}()}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ index\ =\ 0;\ index\ <\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_adfbab8d392101e6ded743cf6c64b4d69}{m\_attributeValueList}}.size();\ index++)}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00029}00029\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00030}00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_adfbab8d392101e6ded743cf6c64b4d69}{m\_attributeValueList}}[index].clear();}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00031}00031\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_adfbab8d392101e6ded743cf6c64b4d69}{m\_attributeValueList}}.clear();}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00034}00034\ \}\ \ \ \textcolor{comment}{//\ \ end\ destructor}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00037}00037\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00038}00038\ \textcolor{comment}{//\ \ AeEvent\ -\/\ constructor}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00039}00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00040}\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_a1a60bca288a48394606913beca1d820d}{00040}}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_ae_event_a1a60bca288a48394606913beca1d820d}{AeEvent::fire}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00041}00041\ \{}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00042}00042\ \ \ \ \ std::vector<AeEvent*>\ events(1);}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00043}00043\ \ \ \ \ events[0]\ =\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_application_a1618499a6412ce1c9a604045e50c4045}{Application::Instance}}()-\/>\mbox{\hyperlink{class_softing_o_p_c_toolbox_server_1_1_application_a983f306d67badfafe3d15c2b6cad716a}{fireEvents}}(events);}
+\DoxyCodeLine{\Hypertarget{_server_ae_event_8cpp_source_l00045}00045\ \}\ \ \ \textcolor{comment}{//\ \ end\ fire}}
+
+\end{DoxyCode}

@@ -1,0 +1,93 @@
+\doxysection{SOCmn\+Pipe.\+h}
+\hypertarget{_s_o_cmn_pipe_8h_source}{}\label{_s_o_cmn_pipe_8h_source}\index{core/src/include/SOCmnPipe.h@{core/src/include/SOCmnPipe.h}}
+\mbox{\hyperlink{_s_o_cmn_pipe_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOCMNPIPE\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOCMNPIPE\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ WIN64}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00005}00005\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00006}00006\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00007}00007\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00008}00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00011}00011\ \textcolor{preprocessor}{\#ifdef\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_TP\_DISCOVERY}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00015}00015\ \textcolor{preprocessor}{\#define\ DEFAULT\_PIPE\_BUFFER\_SIZE\ 4096}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00017}00017\ \textcolor{keyword}{class\ }SOCmnPipe\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00019}00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00020}00020\ \ \ \ \ SOCmnPipe(\mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}*\ parent\ =\ NULL);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00021}00021\ \ \ \ \ SOCmnPipe(LPCTSTR\ aName);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ create(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00025}00025\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ connect(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ disconnect(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00028}00028\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ setMessage(BYTE*\ aMessage,\ DWORD\ aMessageSize);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00029}00029\ \ \ \ \ \textcolor{keyword}{virtual}\ BOOL\ write(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_thread}{SOCmnThread}}*\ getWriteThread(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00032}00032\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_writerThread;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00034}00034\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00035}00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~SOCmnPipe(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00038}00038\ \ \ \ \ \textcolor{keywordtype}{void}\ setConnected(BOOL\ aFlag\ =\ TRUE)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00039}00039\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ m\_connected\ =\ aFlag;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00041}00041\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00042}00042\ \ \ \ \ BOOL\ isConnected(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00043}00043\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_connected;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00045}00045\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00047}00047\ \ \ \ \ HANDLE\ getPipeHandle(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00048}00048\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_pipe;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00050}00050\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{void}\ setName(LPCTSTR\ aName)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00053}00053\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00054}00054\ \ \ \ \ \ \ \ \ m\_name.format(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\%s"{}}),\ aName);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00055}00055\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00056}00056\ \ \ \ \ LPCTSTR\ getName(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00057}00057\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_name;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00059}00059\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00061}00061\ \ \ \ \ DWORD\ getLastError(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ m\_lastError\ =\ GetLastError();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_lastError;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00065}00065\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00067}00067\ \ \ \ \ BYTE*\ getBuffer(\textcolor{keywordtype}{void})\ \{\ \textcolor{keywordflow}{if}\ (m\_bufferSize\ !=\ 0)\ \textcolor{keywordflow}{return}\ m\_buffer;\ \textcolor{keywordflow}{return}\ NULL;\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00068}00068\ \ \ \ \ BOOL\ handleWriteRequest(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00069}00069\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ \_stdcall\ handleWriteThreadProc(\textcolor{keywordtype}{void}*\ context);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00070}00070\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00071}00071\ \ \ \ \ HANDLE\ m\_pipe;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00072}00072\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ m\_name;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00073}00073\ \ \ \ BYTE\ m\_buffer[DEFAULT\_PIPE\_BUFFER\_SIZE];}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00074}00074\ \ \ \ DWORD\ m\_bufferSize;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00076}00076\ \ \ \ \mbox{\hyperlink{class_s_o_cmn_sync}{SOCmnSync}}\ m\_bufferSync;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00077}00077\ \ \ \ \ DWORD\ m\_lastError;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00078}00078\ \ \ \ \ BOOL\ m\_connected;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_thread}{SOCmnThread}}*\ m\_writerThread;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00081}00081\ \ \ \ \ LPSECURITY\_ATTRIBUTES\ m\_pSecurityAttributes;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00082}00082\ \ \ \ \ PSECURITY\_DESCRIPTOR\ m\_pSecurityDescriptor;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00083}00083\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00085}00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_TP\_DISCOVERY}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00086}00086\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_pipe_8h_source_l00087}00087\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_SOCMNPIPE\_H\_}}
+
+\end{DoxyCode}

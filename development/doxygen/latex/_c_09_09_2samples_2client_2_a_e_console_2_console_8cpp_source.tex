@@ -1,0 +1,155 @@
+\doxysection{Console.\+cpp}
+\hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source}{}\label{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source}\index{C++/samples/client/AEConsole/Console.cpp@{C++/samples/client/AEConsole/Console.cpp}}
+\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <conio.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_a_e_console_2_opc_client_8h}{OpcClient.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00008}\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{00008}}\ HANDLE\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00010}\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{00010}}\ BOOL\ WINAPI\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{ControlHandler}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ crtlType)\ \ \ \textcolor{comment}{//\ control\ type}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{switch}\ (crtlType)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00013}00013\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00014}00014\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_BREAK\_EVENT:\ \ \textcolor{comment}{//\ use\ Ctrl+C\ or\ Ctrl+Break\ to\ end\ server}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00016}00016\ \ \ \ \ \textcolor{keywordflow}{case}\ CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00018}00018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00019}00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_ae64fb886774f10a82dc39b7d0e16b77a}{SetEvent}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00020}00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00023}00023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00026}00026\ \}\ \textcolor{comment}{//\ end\ controlHandler}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00028}\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{00028}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00029}00029\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00030}00030\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\(\backslash\)nUsage:\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00031}00031\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Use\ lower\ case\ letters\ for\ synchronous\ execution\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00032}00032\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Use\ upper\ case\ letters\ for\ asynchronous\ execution\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00033}00033\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'a\(\backslash\)'\ or\ \(\backslash\)'A\(\backslash\)'\ to\ activate\ the\ objects\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00034}00034\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'c\(\backslash\)'\ or\ \(\backslash\)'C\(\backslash\)'\ to\ connect\ the\ objects\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00035}00035\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'d\(\backslash\)'\ or\ \(\backslash\)'D\(\backslash\)'\ to\ disconnect\ the\ objects\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00036}00036\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'s\(\backslash\)'\ or\ \(\backslash\)'S\(\backslash\)'\ to\ get\ the\ server\ status\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00037}00037\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'m\(\backslash\)'\ to\ activate\ the\ connection\ monitor\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00038}00038\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'n\(\backslash\)'\ to\ deactivate\ the\ connection\ monitor\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00039}00039\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'?\(\backslash\)'\ or\ \(\backslash\)'u\(\backslash\)'\ to\ display\ this\ usage\ information\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00040}00040\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'e\(\backslash\)'\ or\ \(\backslash\)'q\(\backslash\)'\ or\ Ctrl-\/C\ to\ exit\(\backslash\)n\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00041}00041\ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00043}\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{00043}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a353674c5af92be7fb389265cde4e5e03}{\_tmain}}(\textcolor{keywordtype}{int}\ argc,\ \_TCHAR*\ argv[])}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00044}00044\ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\_OK}};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}}\ =\ CreateEvent(NULL,\ FALSE,\ FALSE,\ NULL);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00047}00047\ \ \ \ \ SetConsoleCtrlHandler(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a9602fa07dd0f0f9bc3af1c6055811294}{ControlHandler}},\ TRUE);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ create\ the\ OpcClient\ instance}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a7b27eba300a38649482d29129d7cb733}{createOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{class_opc_client}{OpcClient}}*\ pClient\ =\ \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a71fe9051bbbfad0906383d9e44c62af0}{getOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\ initialize\ the\ client\ instance}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(pClient-\/>\mbox{\hyperlink{class_opc_client_a6daf3510e218b9ea647d8b0b19dc95e2}{initialize}}()))}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_adb7ea5a091ee9a2d3a912f64b7b0083f}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a8a38c5b57c7a6bc97e9406ca50189f66}{destroyOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00059}00059\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//\ initialize\ the\ AE\ client\ simulation}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00062}00062\ \ \ \ \ result\ |=\ pClient-\/>\mbox{\hyperlink{class_opc_client_af10e4dd15d9a064bfa877f2a3012424a}{initializeAeObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00063}00063\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ waitTime\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00065}00065\ \ \ \ \ BOOL\ end\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ waitRet\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{while}\ (!end)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00069}00069\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ waitRet\ =\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_a195de34b29f3fcfb75f2bd84b847a099}{WaitForSingleObject}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}},\ waitTime);}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ waitTime\ =\ 100;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (waitRet\ ==\ WAIT\_OBJECT\_0)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_kbhit())}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ input;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ input\ =\ \_getch();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (input)}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'A'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_af8aab51b3b82ff39013d703eba61d754}{activateAsyncObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'a'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_ad459fd36a7677bd4bff3bd39c337095d}{activateSyncObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'C'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_a98f6f8d8503719435625abca4b09f3fb}{connectAsyncObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'c'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_ae520fe0dfaf55bca36ac29dadef73f3f}{connectSyncObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'D'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_a4faeef0d403f4d38da86ad6ac1ca0e42}{disconnectAsyncObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'d'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_adb22af558dcb9190a24d02b267dd0f5e}{disconnectSyncObjects}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'S'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_ada28af1f1daeb4e9cd14ce5fe3c5f883}{getAsyncServerStatus}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'s'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_ac18353dee2f46359d823f6e8a7d59c23}{getSyncServerStatus}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'M'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'m'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_a1f14aa3f8ec13abaa0b439fe3627cc0b}{activateConnectionMonitor}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'N'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'n'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_a1db4c3fad6b0fd64caf8558bea5eee5b}{deactivateConnectionMonitor}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'?'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'U'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'u'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_ae8605e2b78cd4a81b6c6b5c30cb7366a}{usage}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'E'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'e'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'Q'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{charliteral}{'q'}):}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console___multi_thread_2_console_8cpp_aad124efc201206832cfe0875ec224228}{CloseHandle}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_a4cdc39620811c89dc7085af354f4ae29}{g\_endEvent}});}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ switch}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ if}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ else}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00144}00144\ \ \ \ \ \}\ \textcolor{comment}{//\ end\ while}}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00146}00146\ \ \ \ \ pClient-\/>\mbox{\hyperlink{class_opc_client_adb7ea5a091ee9a2d3a912f64b7b0083f}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00147}00147\ \ \ \ \ \mbox{\hyperlink{_a_e_console_2_opc_client_8cpp_a8a38c5b57c7a6bc97e9406ca50189f66}{destroyOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_c_09_09_2samples_2client_2_a_e_console_2_console_8cpp_source_l00149}00149\ \}\ \textcolor{comment}{//\ end\ main}}
+
+\end{DoxyCode}

@@ -1,0 +1,167 @@
+\doxysection{Client\+AESubscription.\+cpp}
+\hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source}{}\label{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source}\index{core/src/OTB/ClientAESubscription.cpp@{core/src/OTB/ClientAESubscription.cpp}}
+\mbox{\hyperlink{core_2src_2_o_t_b_2_client_ae_subscription_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00001}00001\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00002}00002\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00003}00003\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Softing\ Industrial\ Automation\ GmbH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Richard-\/Reitzner-\/Allee\ 6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00005}00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 85540\ Haar,\ Germany\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00007}00007\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ This\ is\ a\ part\ of\ the\ Softing\ OPC\ Toolkit\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ \ \ \ Copyright\ (c)\ 2005-\/2020\ Softing\ Industrial\ Automation\ GmbH\ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00009}00009\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ All\ Rights\ Reserved\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00011}00011\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00012}00012\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00013}00013\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OPC\ Toolkit\ -\/\ OTC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00015}00015\ \textcolor{comment}{//\ \ Filename\ \ \ \ :\ ClientAESubscription.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00016}00016\ \textcolor{comment}{//\ \ Version\ \ \ \ \ :\ 4.47.1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00017}00017\ \textcolor{comment}{//\ \ Date\ \ \ \ \ \ \ \ :\ 27-\/July-\/2020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00018}00018\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00019}00019\ \textcolor{comment}{//\ \ Description\ :\ OPC\ AE\ Subscription\ class\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00020}00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00021}00021\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_o_t_b_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_AE}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_o_t_b_2_client_ae_subscription_8h}{ClientAESubscription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_t_c_8h}{OTC.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00031}00031\ \mbox{\hyperlink{class_client_a_e_subscription_a378f916aadc9b9100646deddf3a94259}{ClientAESubscription::ClientAESubscription}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{class_client_a_e_subscription_a17a760c0aeaf9329a1652bc333b63078}{m\_userData}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{class_client_a_e_subscription_a70e5e0ee291b801729bd3af7db22e7ce}{m\_storedTargedState}}\ =\ \mbox{\hyperlink{class_s_o_clt_element_afcf9a4d6a9d138f33abe79cef0aedb24a07c69d10d6aa0b2db995f2f57fd300d8}{disconnected}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00037}00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_a_e_subscription_af6c2c53cdfda745cfb64271043fe0977}{ClientAESubscription::storeTargetState}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ \textcolor{comment}{/*\ deep\ */})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00038}00038\ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00039}00039\ \ \ \ \ \mbox{\hyperlink{class_client_a_e_subscription_a70e5e0ee291b801729bd3af7db22e7ce}{m\_storedTargedState}}\ =\ getTargetObjectState();}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00042}00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_a_e_subscription_a4fa5a503f649f4efdb7aa733f131409b}{ClientAESubscription::restoreTargetState}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ \textcolor{comment}{/*\ deep\ */})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_element_ae24d596a970fcd767838b51ef86b1405}{setTargetObjectState}}(\mbox{\hyperlink{class_client_a_e_subscription_a70e5e0ee291b801729bd3af7db22e7ce}{m\_storedTargedState}});}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00045}00045\ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00048}00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_a_e_subscription_abfe760dd2fac4429eeaaa6167d4160bc}{ClientAESubscription::onSetObjectState}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00049}00049\ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{core_2samples_2_o_t_c_2_a_e_condition_2_a_e_condition_8cpp_aad079eacbad9b8bff024427ff369321c}{g\_callbackFunctions}}.\mbox{\hyperlink{struct___o_t_c_callback_functions_ae64754c5755ec930e24e7fbcfdaaeab7}{m\_OTCOnStateChange}})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00051}00051\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_object_context}{OTCObjectContext}}\ objectContext;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c}{getOTCObjectContext}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})this-\/>getOpcHandle(),\ \&objectContext);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_aa310e6cee2dce11319393a535cb7e7df}{SOCMN\_TRY}}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2samples_2_o_t_c_2_a_e_condition_2_a_e_condition_8cpp_aad079eacbad9b8bff024427ff369321c}{g\_callbackFunctions}}.\mbox{\hyperlink{struct___o_t_c_callback_functions_ae64754c5755ec930e24e7fbcfdaaeab7}{m\_OTCOnStateChange}}(objectContext,\ getObjectState());}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_a578798cd5be2d489756ab8bdc1510bcc}{SOCMN\_CATCH}}(...)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a90d0824999f135c9d08bdec12b7ed76b}{\_TRACE}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a34f5449cca845ceefc8a2d0604ded2c7}{SOCMNTRACE\_L\_ERR}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_ac5be909232ea357ba8fbf3eb49f5e99d}{SOCMNTRACE\_G\_OPC\_CLIENT}},\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}ClientAESubscription::onSetObjectState\ -\/\ Exception\ occurred\ in\ vendor\ application\ callback:\ OTCOnStateChange"{}})));}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00066}00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_a_e_subscription_a5443396c60343f22c18c408ba91a74eb}{ClientAESubscription::onReceivedEvents}}(DWORD\ count,\ \mbox{\hyperlink{class_s_o_ae_c_event}{SOAeCEvent}}**\ pEvents,\ BYTE\ refresh,\ BYTE\ lastRefresh)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00067}00067\ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{core_2samples_2_o_t_c_2_a_e_condition_2_a_e_condition_8cpp_aad079eacbad9b8bff024427ff369321c}{g\_callbackFunctions}}.\mbox{\hyperlink{struct___o_t_c_callback_functions_af96421062585ead38daad18a9933948d}{m\_OTCOnReceivedEvents}})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00069}00069\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_object_context}{OTCObjectContext}}\ objectContext;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_event_data}{OTCEventData}}*\ pEventsO;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ DWORD\ i,\ j;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCmnVariant>}}\ eventAttrs;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_o_cmn_list_position}{SOCmnListPosition}}\ pos;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ SOCmnVariant*\ pVariant;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_c_8cpp_a9d211dce9b2ba40c482ab31b3c606a1c}{getOTCObjectContext}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})this-\/>getOpcHandle(),\ \&objectContext);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ pEventsO\ =\ (\mbox{\hyperlink{struct___o_t_c_event_data}{OTCEventData}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct___o_t_c_event_data}{OTCEventData}})\ *\ count);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_ac3eed12e3fb7bae697a5314fac4e1a8a}{m\_eventType}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_aeb04ed10290c88d5f7bad0ab629dc17a}{m\_eventType}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a2ad611f4f10e48d22446f2de248ae659}{m\_eventCategory}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_aeacc5104c3d0674f2e39f52cd6a0d0f9}{m\_eventCategory}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_ab1797475961eec27781f3ab9049c383c}{m\_sourcePath}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_abcfd6f2cf291a787d08983f22918a2d9}{m\_source}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a81c1fd9220abef34eaec2b430a67defa}{m\_severity}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_a5fe8820925e4fef2e16f471d1c733eb2}{m\_severity}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a7d7496b6d8199441317a1e59de609246}{m\_message}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_acd3724a18650457d1ab7d006d4e599e9}{m\_message}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a2e1c9c0427ce74523a9823e657f48b0b}{m\_actorID}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_a98ae5716a753c7d148c677ab6d57c324}{m\_actorID}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_ac007ef7bf9fc2b71a989dc18df00754f}{m\_occurenceTime}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_a7e22ee531f706c1dbb9bd7212afc75f6}{m\_ftTime}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_aad750b6c574bccbe0499420303048332}{m\_changeMask}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_ae17dff74b24e360243227d7daa004e3b}{m\_changeMask}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a2e68700c55a486694a559a00e6524b72}{m\_newState}}\ =\ (BYTE)pEvents[i]-\/>m\_newState;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a3cf38992a60b39c35a08c16168c4b8aa}{m\_ackRequired}}\ =\ (BYTE)pEvents[i]-\/>m\_bAckRequired;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a78e6706984cdbfcf73de5f1347213f2a}{m\_quality}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_a3bae2a79b26d0c76f558560bbaf816a7}{m\_quality}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a57d2902ebb55b6cf67526c6f807a1302}{m\_conditionName}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_a2c6a2fdef4b5e61f118052071f425949}{m\_conditionName}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_ab1ace714c925746000d0b38ec114c2a3}{m\_subConditionName}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_acb073a4b229a59603ae672b3c010f99d}{m\_subconditionName}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a13bd6f75f1a17a8105b6ef8a2903c799}{m\_activeTime}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_acd843c4d357fdd4f44e2634e029bfaa0}{m\_ftActiveTime}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a6df750dc4d5c1d239092f1ac339e88bb}{m\_cookie}}\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_a06cce51e625b76b9d76d94603fad4ea6}{m\_dwCookie}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ eventAttrs\ =\ pEvents[i]-\/>\mbox{\hyperlink{class_s_o_ae_c_event_adcd3605658c88455b733cceb3576dc4f}{m\_listEventAttrs}};}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a58ee77930af48745de1740812149e24a}{m\_eventAttrCount}}\ =\ eventAttrs.\mbox{\hyperlink{class_s_o_cmn_list_a16b9d387764ae81a6574732f821c5c72}{getCount}}();}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pEventsO[i].m\_eventAttrCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_ac23a4cfba47bf65c562900bef6671042}{m\_pEventAttrs}}\ =\ (OTVariant*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\textcolor{keyword}{sizeof}(OTVariant)\ *\ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a58ee77930af48745de1740812149e24a}{m\_eventAttrCount}});}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ =\ eventAttrs.\mbox{\hyperlink{class_s_o_cmn_list_a0fe5ab2198227be3f3d04aa44f862795}{getStartPosition}}();}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ j\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (pos)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pVariant\ =\ eventAttrs.\mbox{\hyperlink{class_s_o_cmn_list_a940a71b4449f8b17c0f6d8aa881f90c2}{getNext}}(pos);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pVariant-\/>copyTo(\&pEventsO[i].m\_pEventAttrs[j]);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ j++;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_ac23a4cfba47bf65c562900bef6671042}{m\_pEventAttrs}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_aa310e6cee2dce11319393a535cb7e7df}{SOCMN\_TRY}}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{core_2samples_2_o_t_c_2_a_e_condition_2_a_e_condition_8cpp_aad079eacbad9b8bff024427ff369321c}{g\_callbackFunctions}}.\mbox{\hyperlink{struct___o_t_c_callback_functions_af96421062585ead38daad18a9933948d}{m\_OTCOnReceivedEvents}}(objectContext,\ count,\ pEventsO,\ \mbox{\hyperlink{class_s_o_ae_c_subscription_i_communication_afcb557ba5b5cd260ff72e1b347d8f0c5}{refresh}},\ lastRefresh);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_a578798cd5be2d489756ab8bdc1510bcc}{SOCMN\_CATCH}}(...)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a90d0824999f135c9d08bdec12b7ed76b}{\_TRACE}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a34f5449cca845ceefc8a2d0604ded2c7}{SOCMNTRACE\_L\_ERR}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_ac5be909232ea357ba8fbf3eb49f5e99d}{SOCMNTRACE\_G\_OPC\_CLIENT}},\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}ClientAESubscription::onReceivedEvents\ -\/\ Exception\ occurred\ in\ vendor\ application\ callback:\ OTCOnReceivedEvents"{}})));}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pEventsO[i].m\_pEventAttrs)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ 0;\ j\ <\ pEventsO[i].\mbox{\hyperlink{struct___o_t_c_event_data_a58ee77930af48745de1740812149e24a}{m\_eventAttrCount}};\ j++)}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCmnVariant::variantClear(\&pEventsO[i].m\_pEventAttrs[j]);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pEventsO[i].m\_pEventAttrs);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pEventsO);}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00141}00141\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00142}00142\ \}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00145}00145\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00147}00147\ ClientAESubscriptionCom::ClientAESubscriptionCom(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00148}00148\ \{\}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00150}00150\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00152}00152\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00154}00154\ ClientAESubscriptionTp::ClientAESubscriptionTp(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00155}00155\ \{\}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00157}00157\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_TUNNEL}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00159}00159\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_AE}}
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{core_2src_2_o_t_b_2_client_ae_subscription_8cpp_source_l00161}00161\ }
+
+\end{DoxyCode}

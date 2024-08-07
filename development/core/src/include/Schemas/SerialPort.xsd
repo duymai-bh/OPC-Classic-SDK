@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Tim Dyer (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="SerialPort_NumberType">
+		<xs:annotation>
+			<xs:documentation>Serial port number (1 - 255).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialPort_BaudRateType">
+		<xs:annotation>
+			<xs:documentation>Baud Rate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="SerialPort_BaudRate_1200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 1200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_4800">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 4800.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_9600">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 9600.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_19200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 19200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_38400">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 38400.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_57600">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 57600</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_115200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 115200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_BaudRate_961200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 961200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialPort_ParityType">
+		<xs:annotation>
+			<xs:documentation>Parity Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="SerialPort_Parity_None">
+				<xs:annotation>
+					<xs:documentation>No Parity.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_Parity_Even">
+				<xs:annotation>
+					<xs:documentation>Parity Even.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_Parity_Odd">
+				<xs:annotation>
+					<xs:documentation>Parity Odd.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_Parity_Mark">
+				<xs:annotation>
+					<xs:documentation>Parity Mark.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_Parity_Space">
+				<xs:annotation>
+					<xs:documentation>Parity Space.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialPort_DataBitsType">
+		<xs:annotation>
+			<xs:documentation>Number of Data Bits (Range 4 - 8)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="4"/>
+			<xs:maxInclusive value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialPort_StopBitsType">
+		<xs:annotation>
+			<xs:documentation>Number of Stop Bits</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="SerialPort_StopBits_One">
+				<xs:annotation>
+					<xs:documentation>One Stop Bit.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_StopBits_OneAndHalve">
+				<xs:annotation>
+					<xs:documentation>One and a Half Stop Bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_StopBits_Two">
+				<xs:annotation>
+					<xs:documentation>Two Stop bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialPort_HardwareLinkType">
+		<xs:annotation>
+			<xs:documentation>Hardware Link Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="SerialPort_HwLink_RS422">
+				<xs:annotation>
+					<xs:documentation>RS422.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_HwLink_RS485">
+				<xs:annotation>
+					<xs:documentation>RS485.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerialPort_HardwareHandShakingType">
+		<xs:annotation>
+			<xs:documentation>Hardware HandShaking RTS - Enabled/Disabled, RTS - HandShake/Toggle (CTS RTS pins connected)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="SerialPort_RTS_Control_Disable">
+				<xs:annotation>
+					<xs:documentation>RTS Control Disable.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="SerialPort_RTS_Control_Enable">
+				<xs:annotation>
+					<xs:documentation>RTS Control Enable.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="SerialPortType">
+		<xs:annotation>
+			<xs:documentation>Serial Port - default Settings (Port 1, Baud Rate 9600, Even Parity, 8 Data Bits, 1 Stop Bit, RTS Control Disable).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PortNumber" type="SerialPort_NumberType" default="1"/>
+			<xs:element name="BaudRate" type="SerialPort_BaudRateType" default="SerialPort_BaudRate_9600"/>
+			<xs:element name="Parity" type="SerialPort_ParityType" default="SerialPort_Parity_Even"/>
+			<xs:element name="DataBits" type="SerialPort_DataBitsType" default="8"/>
+			<xs:element name="StopBits" type="SerialPort_StopBitsType" default="SerialPort_StopBits_One"/>
+			<xs:element name="HardwareHandshaking" type="SerialPort_HardwareHandShakingType" default="SerialPort_RTS_Control_Disable"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ModbusRTUSerialPort_NumberType">
+		<xs:annotation>
+			<xs:documentation>Serial Port Number (1 - 3).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint8">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUSerialPort_BaudRateType">
+		<xs:annotation>
+			<xs:documentation>Baud Rate.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="ModbusRTUSerialPort_BR_1200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 1200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_BR_4800">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 4800.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_BR_9600">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 9600.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_BR_19200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 19200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_BR_38400">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 38400.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_BR_57600">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 57600</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_BR_115200">
+				<xs:annotation>
+					<xs:documentation>Baud Rate 115200.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUSerialPort_ParityType">
+		<xs:annotation>
+			<xs:documentation>Parity Type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="ModbusRTUSerialPort_Parity_None">
+				<xs:annotation>
+					<xs:documentation>No Parity.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_Parity_Even">
+				<xs:annotation>
+					<xs:documentation>Parity Even.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_Parity_Odd">
+				<xs:annotation>
+					<xs:documentation>Parity Odd.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUSerialPort_DataBitsType">
+		<xs:annotation>
+			<xs:documentation>Number of Data Bits (Range 7 - 8 for Modbus RTU serial ports).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="SerialPort_DataBitsType">
+			<xs:minInclusive value="7"/>
+			<xs:maxInclusive value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUSerialPort_StopBitsType">
+		<xs:annotation>
+			<xs:documentation>Number of Stop Bits</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="ModbusRTUSerialPort_StopBits_One">
+				<xs:annotation>
+					<xs:documentation>One Stop Bit.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_StopBits_Two">
+				<xs:annotation>
+					<xs:documentation>Two Stop bits.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModbusRTUSerialPort_HardwareLinkType">
+		<xs:annotation>
+			<xs:documentation>Hardware Link Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="string32">
+			<xs:enumeration value="ModbusRTUSerialPort_HwLink_RS422">
+				<xs:annotation>
+					<xs:documentation>RS422.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ModbusRTUSerialPort_HwLink_RS485">
+				<xs:annotation>
+					<xs:documentation>RS485.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ModbusRTUSerialPortType">
+		<xs:annotation>
+			<xs:documentation>Modbus Serial Port - default Settings (Port 1, Baud Rate 9600, Even Parity, 8 Data Bits, 1 Stop Bit, RTS Control Disable).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PortNumber" type="ModbusRTUSerialPort_NumberType" default="1">
+				<xs:annotation>
+					<xs:documentation>The modbus port number default is 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BaudRate" type="ModbusRTUSerialPort_BaudRateType" default="ModbusRTUSerialPort_BR_9600">
+				<xs:annotation>
+					<xs:documentation>The modbus baud rate default is 9600.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Parity" type="ModbusRTUSerialPort_ParityType" default="ModbusRTUSerialPort_Parity_Even">
+				<xs:annotation>
+					<xs:documentation>The modbus parity default is even.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataBits" type="ModbusRTUSerialPort_DataBitsType" default="8">
+				<xs:annotation>
+					<xs:documentation>The modbus data bits is 7 or 8 with default of 8.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StopBits" type="ModbusRTUSerialPort_StopBitsType" default="ModbusRTUSerialPort_StopBits_One">
+				<xs:annotation>
+					<xs:documentation>The modbus stop bits are either 1 or 2 with default of 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HardwareLink" type="ModbusRTUSerialPort_HardwareLinkType" default="ModbusRTUSerialPort_HwLink_RS485">
+				<xs:annotation>
+					<xs:documentation>The modbus serial link type, default is RS485</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HardwareHandshaking" type="SerialPort_HardwareHandShakingType" default="SerialPort_RTS_Control_Disable">
+				<xs:annotation>
+					<xs:documentation>The modbus hardware handshaking controls data flow and by default it is off.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LISMSerialPortType">
+		<xs:annotation>
+			<xs:documentation>Modbus Serial Port - default Settings (Port 1, Baud Rate 9600, Even Parity, 8 Data Bits, 1 Stop Bit, RTS Control Disable).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PortNumber" type="SerialPort_NumberType" default="1">
+				<xs:annotation>
+					<xs:documentation>The modbus port number default is 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BaudRate" type="SerialPort_BaudRateType" default="SerialPort_BaudRate_1200">
+				<xs:annotation>
+					<xs:documentation>The modbus baud rate default is 1200.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Parity" type="SerialPort_ParityType" default="SerialPort_Parity_None">
+				<xs:annotation>
+					<xs:documentation>The modbus parity default is even.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DataBits" type="SerialPort_DataBitsType" default="8">
+				<xs:annotation>
+					<xs:documentation>The modbus data bits is 7 or 8 with default of 8.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StopBits" type="SerialPort_StopBitsType" default="SerialPort_StopBits_One">
+				<xs:annotation>
+					<xs:documentation>The modbus stop bits are either 1 or 2 with default of 1.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HardwareHandshaking" type="SerialPort_HardwareHandShakingType" default="SerialPort_RTS_Control_Disable">
+				<xs:annotation>
+					<xs:documentation>The modbus hardware handshaking controls data flow and by default it is off.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

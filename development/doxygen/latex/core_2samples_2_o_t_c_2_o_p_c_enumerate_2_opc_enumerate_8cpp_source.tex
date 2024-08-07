@@ -1,0 +1,190 @@
+\doxysection{OPCEnumerate.\+cpp}
+\hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source}{}\label{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source}\index{core/samples/OTC/OPCEnumerate/OPCEnumerate.cpp@{core/samples/OTC/OPCEnumerate/OPCEnumerate.cpp}}
+\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <tchar.h>}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_t_client_8h}{OTClient.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00007}00007\ \textcolor{comment}{//\ global\ data}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00008}\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a41a006fa432f36454a7a40dfb9323f70}{00008}}\ \mbox{\hyperlink{struct___o_t_c_init_data}{OTCInitData}}\ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a41a006fa432f36454a7a40dfb9323f70}{g\_initData}}\ =}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00009}00009\ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00010}00010\ \ \ \ \ 410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ used\ OTC\ version}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00011}00011\ \};}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00013}\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a87c034de7e3ed5a522dca541e97b3b99}{00013}}\ BOOL\ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a87c034de7e3ed5a522dca541e97b3b99}{g\_gotCallback}}\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00015}00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\_CALL}}\ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_af28ab799e7cae11a12ad0e6f260ebb94}{OnBrowseServer}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ executionContext,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LONG\ result,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ ipAddress,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ whatOPCSpec,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ whatServerData,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ serverDataCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___o_t_c_server_data}{OTCServerData}}*\ pServerData);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00017}\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_aad079eacbad9b8bff024427ff369321c}{00017}}\ \mbox{\hyperlink{struct___o_t_c_callback_functions}{OTCCallbackFunctions}}\ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_aad079eacbad9b8bff024427ff369321c}{g\_callbackFunctions}}\ =}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00019}00019\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00020}00020\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00021}00021\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00022}00022\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00023}00023\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00024}00024\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00025}00025\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00026}00026\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00027}00027\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00028}00028\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00029}00029\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00030}00030\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00031}00031\ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00032}00032\ \ \ \ \ \&\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_af28ab799e7cae11a12ad0e6f260ebb94}{OnBrowseServer}}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00033}00033\ \};}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00035}\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a353674c5af92be7fb389265cde4e5e03}{00035}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a353674c5af92be7fb389265cde4e5e03}{\_tmain}}(\textcolor{keywordtype}{int}\ argc,\ \_TCHAR*\ argv[])}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00036}00036\ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00037}00037\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Usage:\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00038}00038\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}OPCEnumerate\ [/s][/a][<Hostname\ or\ IP\ address>]\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00039}00039\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\(\backslash\)t/s\ :\ synchonous\ execution\ of\ the\ OCT\ functions\ (default)\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00040}00040\ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\(\backslash\)t/a\ :\ asynchonous\ execution\ of\ the\ OCT\ functions\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_a75882e086d3400165e78b8d9fa8eb279}{OTActivate}}(\mbox{\hyperlink{_o_t_client_8h_a45de051b7c37886f307aac14b8cb491e}{OTC\_FEATURE\_DA\_CLIENT}},\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}SAMPLE"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{_o_t_client_8h_a82fc276e74f92c42a86f73994fbd9c1a}{OTCInitialize}}(\&\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a41a006fa432f36454a7a40dfb9323f70}{g\_initData}})))}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00044}00044\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_aaeec0c545038943df5d313425c737bbb}{OTCAdvise}}(\&\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_aad079eacbad9b8bff024427ff369321c}{g\_callbackFunctions}});}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ LONG\ res;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ LPTSTR\ ipAddress\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_execution_options}{OTCExecutionOptions}}\ executionOptions;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ executionOptions.\mbox{\hyperlink{struct___o_t_c_execution_options_adbc782c170b499bb8ca679e739c9a54c}{m\_executionType}}\ =\ \mbox{\hyperlink{_o_t_client_8h_af79e4cadc5c2c24a27862a177428774a}{OTC\_EXECUTIONTYPE\_SYCHRONOUS}};}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ executionOptions.\mbox{\hyperlink{struct___o_t_c_execution_options_a8f1f26d611069bc47de803bf33c5787f}{m\_executionContext}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ >\ 1)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_tcsicmp(argv[1],\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}/a"{}}))\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ executionOptions.\mbox{\hyperlink{struct___o_t_c_execution_options_adbc782c170b499bb8ca679e739c9a54c}{m\_executionType}}\ =\ \mbox{\hyperlink{_o_t_client_8h_adc757f1f45e0cc32f5ec10a321f93040}{OTC\_EXECUTIONTYPE\_ASYCHRONOUS}};}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_tcsicmp(argv[1],\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}/s"{}}))\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ executionOptions.\mbox{\hyperlink{struct___o_t_c_execution_options_adbc782c170b499bb8ca679e739c9a54c}{m\_executionType}}\ =\ \mbox{\hyperlink{_o_t_client_8h_af79e4cadc5c2c24a27862a177428774a}{OTC\_EXECUTIONTYPE\_SYCHRONOUS}};}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ipAddress\ =\ argv[1];}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((ipAddress\ ==\ NULL)\ \&\&\ (argc\ >\ 2))}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ipAddress\ =\ argv[1];}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00071}00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (executionOptions.\mbox{\hyperlink{struct___o_t_c_execution_options_adbc782c170b499bb8ca679e739c9a54c}{m\_executionType}}\ ==\ \mbox{\hyperlink{_o_t_client_8h_af79e4cadc5c2c24a27862a177428774a}{OTC\_EXECUTIONTYPE\_SYCHRONOUS}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_server_data}{OTCServerData}}*\ pServerData;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ serverDataCount;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ TCHAR\ opcSpecs[32];}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}SYNCHRONOUS\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \mbox{\hyperlink{_o_t_client_8h_a0c5845f9b1d27c2f11a08260ef659343}{OTCBrowseServer}}(ipAddress,\ \mbox{\hyperlink{_o_tcommon_8h_a691aceff4abc0b73541b25bdfcaf0427}{OT\_OPCSPECIFICATION\_ALL}},\ \mbox{\hyperlink{_o_t_client_8h_a4a6bc2ffa37fc64c047131ae62c72058}{OTC\_SERVERDATA\_ALL}},\ \&serverDataCount,\ \&pServerData,\ \&executionOptions);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(res))}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ serverDataCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opcSpecs[0]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_ada67e1dd0faf5d3e24d1c47dd83d6694}{OT\_OPCSPECIFICATION\_DA10}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}DA1\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_a165033ab7d438d1d63b4e358d7eb80a6}{OT\_OPCSPECIFICATION\_DA20}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}DA2\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_aa719b60a3c3238fa963ee849fe75063a}{OT\_OPCSPECIFICATION\_DA30}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}DA3\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_a3af8a48a270813f92e8aced0f2e37d70}{OT\_OPCSPECIFICATION\_AE10}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}AE\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\%s\(\backslash\)n\(\backslash\)tOPC\ Specifications:\ \%s\(\backslash\)n\(\backslash\)tURL:\ \%s\(\backslash\)n\(\backslash\)tCLSID:\ \%s\(\backslash\)n\(\backslash\)tProgID:\ \%s\(\backslash\)n\(\backslash\)tvProgID:\ \%s\(\backslash\)n\(\backslash\)n"{}}),\ pServerData[i].m\_description,\ opcSpecs,\ pServerData[i].m\_url,\ pServerData[i].m\_clsid,\ pServerData[i].m\_progId,\ pServerData[i].m\_vProgId);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_clsid);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_progId);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_vProgId);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_description);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_url);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Failed\ to\ browse\ server\ :\ result\ 0x\%X"{}}),\ res);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}ASYNCHRONOUS\(\backslash\)n"{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ res\ =\ \mbox{\hyperlink{_o_t_client_8h_a0c5845f9b1d27c2f11a08260ef659343}{OTCBrowseServer}}(ipAddress,\ \mbox{\hyperlink{_o_tcommon_8h_a691aceff4abc0b73541b25bdfcaf0427}{OT\_OPCSPECIFICATION\_ALL}},\ \mbox{\hyperlink{_o_t_client_8h_a4a6bc2ffa37fc64c047131ae62c72058}{OTC\_SERVERDATA\_ALL}},\ NULL,\ NULL,\ \&executionOptions);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a87c034de7e3ed5a522dca541e97b3b99}{g\_gotCallback}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sleep(10);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_ada4a4c66562db37ff3c1bcb83d10942d}{OTCTerminate}}();}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00140}00140\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00141}00141\ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00144}\mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_af28ab799e7cae11a12ad0e6f260ebb94}{00144}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_o_t_client_8h_a2daa3a6ab9806aa3a629ce91e5cb7fa5}{OTCAPI\_CALL}}\ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_af28ab799e7cae11a12ad0e6f260ebb94}{OnBrowseServer}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ executionContext,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LONG\ res,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ ipAddress,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ whatOPCSpec,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ whatServerData,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ serverDataCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___o_t_c_server_data}{OTCServerData}}*\ pServerData)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00145}00145\ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00146}00146\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00147}00147\ \ \ \ \ TCHAR\ opcSpecs[32];}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(res))}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00150}00150\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ serverDataCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ opcSpecs[0]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_ada67e1dd0faf5d3e24d1c47dd83d6694}{OT\_OPCSPECIFICATION\_DA10}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}DA1\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_a165033ab7d438d1d63b4e358d7eb80a6}{OT\_OPCSPECIFICATION\_DA20}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}DA2\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_aa719b60a3c3238fa963ee849fe75063a}{OT\_OPCSPECIFICATION\_DA30}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}DA3\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_opcSpecifications\ \&\ \mbox{\hyperlink{_o_tcommon_8h_a3af8a48a270813f92e8aced0f2e37d70}{OT\_OPCSPECIFICATION\_AE10}})}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_tcscat(opcSpecs,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}AE\ "{}}));}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\%s\(\backslash\)n\(\backslash\)tOPC\ Specifications:\ \%s\(\backslash\)n\(\backslash\)tURL:\ \%s\(\backslash\)n\(\backslash\)tCLSID:\ \%s\(\backslash\)n\(\backslash\)tProgID:\ \%s\(\backslash\)n\(\backslash\)tvProgID:\ \%s\(\backslash\)n\(\backslash\)n"{}}),\ pServerData[i].m\_description,\ opcSpecs,\ pServerData[i].m\_url,\ pServerData[i].m\_clsid,\ pServerData[i].m\_progId,\ pServerData[i].m\_vProgId);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00177}00177\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00178}00178\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00179}00179\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \_tprintf(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Failed\ to\ browse\ server\ :\ result\ 0x\%X"{}}),\ res);}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00181}00181\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00183}00183\ \ \ \ \ \mbox{\hyperlink{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_a87c034de7e3ed5a522dca541e97b3b99}{g\_gotCallback}}\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{core_2samples_2_o_t_c_2_o_p_c_enumerate_2_opc_enumerate_8cpp_source_l00184}00184\ \}}
+
+\end{DoxyCode}

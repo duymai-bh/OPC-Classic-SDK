@@ -1,0 +1,420 @@
+\doxysection{SOClt\+Thread.\+cpp}
+\hypertarget{_s_o_clt_thread_8cpp_source}{}\label{_s_o_clt_thread_8cpp_source}\index{core/src/SOClt/SOCltThread.cpp@{core/src/SOClt/SOCltThread.cpp}}
+\mbox{\hyperlink{_s_o_clt_thread_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#ifdef\ SOCLT}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_clt_thread_8h}{SOCltThread.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_cmn_handle_manager_8h}{SOCmnHandleManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#define\ END\_EVENT\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#define\ WAKEUP\_EVENT\ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#define\ CYCLIC\_EVENT\ \ \ \ 2}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00012}00012\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00013}00013\ \textcolor{comment}{//\ SOCltWorkerThread\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00014}00014\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00015}00015\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a320617bac8c18f624a5aae42e4bf2aa1}{SOCltWorkerThread::SOCltWorkerThread}}()}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00016}00016\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00017}00017\ \ \ \ \ \textcolor{comment}{//\ create\ events\ for\ communication\ with\ the\ worker\ thread}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00018}00018\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_a0556193edfeff00ffcec4f58f7061c12}{m\_evtWakeup}}\ =\ \mbox{\hyperlink{class_s_o_cmn_thread_aadfb4ad4035d514727635c352165a981}{createEvent}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00019}00019\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_a0e6eb5b6e61baa44612d64677e98c4ea}{m\_evtCyclic}}\ =\ \mbox{\hyperlink{class_s_o_cmn_thread_aadfb4ad4035d514727635c352165a981}{createEvent}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00020}00020\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_aebe87b5bed10530e9329fca892b909d1}{m\_error}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00021}00021\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_a7962316503de34b353c4c4b05f5f2d18}{create}}(\mbox{\hyperlink{_s_o_cmn_list_8h_ac593df5614d6c2888df633c94d50c32c}{SOCMNLIST\_TYPE\_ORG\_LIST}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a28857c21fcedec7a723aa8493a2881b9}{SOCMNLIST\_TYPE\_OBJ\_OBJECT}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a78737d2bf28cfd6ecf36c693526e92fa}{SOCMNLIST\_TYPE\_SYNCED}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00022}00022\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_a7962316503de34b353c4c4b05f5f2d18}{create}}(\mbox{\hyperlink{_s_o_cmn_list_8h_aef08dc2d2bedb432b1951bb90aceb58e}{SOCMNLIST\_TYPE\_ORG\_MAP}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_ae524d551f2c2c2032973cef5bfd3c79d}{SOCMNLIST\_TYPE\_KEY\_DWORD}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a28857c21fcedec7a723aa8493a2881b9}{SOCMNLIST\_TYPE\_OBJ\_OBJECT}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a78737d2bf28cfd6ecf36c693526e92fa}{SOCMNLIST\_TYPE\_SYNCED}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ create\ thread}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00024}00024\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_thread_a5dd3457d6c30d3b59625d5de631f1be7}{start}}(NULL,\ 0);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00025}00025\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00027}00027\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a384b04633a36ac2b272cda87709e998b}{SOCltWorkerThread::\string~SOCltWorkerThread}}()}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00029}00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_s_o_cmn_thread_a3358db9f35e60b37f60b7eebb839927a}{m\_started}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00030}00030\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00031}00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_ab09400dc26aedb43b95aa8a56948cf8a}{shutdown}}(\mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00033}00033\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00035}00035\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00036}00036\ \textcolor{comment}{//\ shutdown}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00037}00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00038}00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_clt_worker_thread_ab09400dc26aedb43b95aa8a56948cf8a}{SOCltWorkerThread::shutdown}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ timeout)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00040}00040\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_a8002988edf063d0074c1a76460a993a2}{removeAll}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_a8002988edf063d0074c1a76460a993a2}{removeAll}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_c_09_09_2samples_2server_2_console_2_console_8cpp_a1c26da7c8722e4bb2f0da99fe2b817ae}{stop}}(timeout))}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00044}00044\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ szTraceID;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ szTraceID.\mbox{\hyperlink{class_s_o_cmn_string_ac2a4d69af907e7ae0bf672c304142347}{format}}(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Worker\ Thread"{}}));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}{\_TRACEC}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a24872247ddd95df5e1d7ee7f3566965e}{SOCMNTRACE\_L\_WRN}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}{SOCMNTRACE\_G\_CLT\_THREAD}},\ szTraceID,\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}thread\ couldn't\ be\ stopped\ in\ time!!"{}})));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00051}00051\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00053}00053\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00054}00054\ \textcolor{comment}{//\ cleanUp}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00055}00055\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00056}00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a871cd3d96fbb1bfa8f4195112191716f}{SOCltWorkerThread::cleanUp}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00057}00057\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Task\ being\ currently\ in\ the\ queue\ will\ never\ get}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ executeted.\ Call\ reportCompletion\ so\ that\ objects}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{comment}{//\ waiting\ on\ a\ task\ get\ signaled.}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00061}00061\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltTask>}}\ queue(\mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{structtag_s_o_cmn_list_position}{SOCmnListPosition}}\ pos\ =\ queue.getStartPosition();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{while}\ (pos)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00065}00065\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00066}00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task}{SOCltTask}}*\ task\ =\ queue.getNext(pos);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_a42549c83f99ed82225609f370e90d0c4}{setResult}}(E\_ABORT);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00068}00068\ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_a7f16e87ed77a9d256933e72e4b9ec463}{reportCompletion}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00071}00071\ \ \ \ \ queue.removeAll();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00072}00072\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltCyclicTask>}}\ queue\_cyc(\mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00073}00073\ \ \ \ \ pos\ =\ queue\_cyc.getStartPosition();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{while}\ (pos)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_cyclic_task}{SOCltCyclicTask}}*\ task\ =\ queue\_cyc.getNext(pos);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_a42549c83f99ed82225609f370e90d0c4}{setResult}}(E\_ABORT);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_cyclic_task_a1609d3952acaccc8a1a41bfea393ad20}{reportCompletion}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00082}00082\ \ \ \ \ queue\_cyc.removeAll();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00085}00085\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00086}00086\ \textcolor{comment}{//\ setThreadPriority}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00087}00087\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00088}00088\ BOOL\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a11fb1273e252e8086d8dcd7cc3a1f8ff}{SOCltWorkerThread::setThreadPriority}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \textcolor{keywordtype}{int}\ priority)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00089}00089\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00090}00090\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61}{\_ASSERTION}}(\mbox{\hyperlink{class_s_o_cmn_thread_a8f7a98349047559b17001d37f610ead9}{isRunning}}()\ ==\ TRUE,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}thread\ isn't\ running!"{}}));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_s_o_cmn_thread_abfb43cb36ef18dcc013e1adab9a7045e}{setPriority}}(priority);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00092}00092\ \}\ \textcolor{comment}{//\ setThreadPriority}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00094}00094\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00095}00095\ \textcolor{comment}{//\ addTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00096}00096\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00098}00098\ BOOL\ \mbox{\hyperlink{class_s_o_clt_worker_thread_ae07f3dc7c9d4c8c0191ac1c349f66a74}{SOCltWorkerThread::addTask}}(\mbox{\hyperlink{class_s_o_clt_task}{SOCltTask}}*\ task,\ BOOL\ wakeup\ \textcolor{comment}{/*=\ TRUE*/})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00099}00099\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00100}00100\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a8405fd34ea62d6c162bcea60a3f17f61}{\_ASSERT\_PTR}}(task);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00101}00101\ \ \ \ \ BOOL\ ok\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00102}00102\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltTask>}}\ queue(\mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00103}00103\ \ \ \ \ ok\ =\ queue.add(task);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (ok\ \&\&\ wakeup)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00106}00106\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_a4aa485dc9b773057a210807b1a444799}{wakeUp}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00108}00108\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{return}\ ok;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00111}00111\ \}\ \textcolor{comment}{//\ addTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00114}00114\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00115}00115\ \textcolor{comment}{//\ addCyclicTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00116}00116\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00117}00117\ BOOL\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a6ddd6a554be824f078aec25431025cbf}{SOCltWorkerThread::addCyclicTask}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_clt_cyclic_task}{SOCltCyclicTask}}*\ task,\ DWORD*\ cookie\ \textcolor{comment}{/*=\ NULL*/})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00118}00118\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00119}00119\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a8405fd34ea62d6c162bcea60a3f17f61}{\_ASSERT\_PTR}}(task);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00120}00120\ \ \ \ \ BOOL\ ok\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00121}00121\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltCyclicTask>}}\ queue(\mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00122}00122\ \ \ \ \ \textcolor{comment}{//\ queue\ in\ new\ task}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00123}00123\ \ \ \ \ ok\ =\ queue.add(task,\ (DWORD)task-\/>getOpcHandle());}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (cookie)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00126}00126\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ *cookie\ =\ (DWORD)task-\/>getOpcHandle();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{comment}{//\ wake\ up}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00131}00131\ \ \ \ \ ok\ =\ \mbox{\hyperlink{class_s_o_cmn_thread_a7d38a6a22d4d545acf4df9e5d20dfe3b}{getEvents}}()-\/>\mbox{\hyperlink{class_s_o_cmn_events_a41f3eb9718db00567638083b90ce06b5}{signal}}(\mbox{\hyperlink{class_s_o_clt_worker_thread_a0e6eb5b6e61baa44612d64677e98c4ea}{m\_evtCyclic}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keywordflow}{return}\ ok;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00133}00133\ \}\ \textcolor{comment}{//\ addCyclicTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00136}00136\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00137}00137\ \textcolor{comment}{//\ removeCyclicTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00138}00138\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00139}00139\ BOOL\ \mbox{\hyperlink{class_s_o_clt_worker_thread_aac46c2e943164e9f1d5664f2813d15d1}{SOCltWorkerThread::removeCyclicTask}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ cookie)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00140}00140\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00141}00141\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltCyclicTask>}}\ list(\mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keywordflow}{return}\ list.removeKey(cookie);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00143}00143\ \}\ \textcolor{comment}{//\ removeCyclicTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00146}00146\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00147}00147\ \textcolor{comment}{//\ getCyclicTask}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00148}00148\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00149}00149\ \mbox{\hyperlink{class_s_o_clt_cyclic_task}{SOCltCyclicTask}}*\ \mbox{\hyperlink{class_s_o_clt_worker_thread_ab03af9fb8ca215e34bf2128886293781}{SOCltWorkerThread::getCyclicTask}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ cookie)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00150}00150\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00151}00151\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltCyclicTask>}}\ list(\mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{return}\ list.findKey(cookie);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00153}00153\ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00156}00156\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00157}00157\ \textcolor{comment}{//\ wakeUp}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00158}00158\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00159}00159\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a4aa485dc9b773057a210807b1a444799}{SOCltWorkerThread::wakeUp}}()}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00160}00160\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00161}00161\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61}{\_ASSERTION}}(\mbox{\hyperlink{class_s_o_cmn_thread_a8f7a98349047559b17001d37f610ead9}{isRunning}}()\ ==\ TRUE,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}thread\ isn't\ running!"{}}));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00162}00162\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_thread_a7d38a6a22d4d545acf4df9e5d20dfe3b}{getEvents}}()-\/>\mbox{\hyperlink{class_s_o_cmn_events_a41f3eb9718db00567638083b90ce06b5}{signal}}(\mbox{\hyperlink{class_s_o_clt_worker_thread_a0556193edfeff00ffcec4f58f7061c12}{m\_evtWakeup}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00163}00163\ \}\ \textcolor{comment}{//\ wakeUp}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00165}00165\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a1ca6812bbe077198eb9f0ca7bc64c47d}{SOCltWorkerThread::wakeUpCyclic}}()}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00166}00166\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_a2c302620baa051e3e1a7421e47532e61}{\_ASSERTION}}(\mbox{\hyperlink{class_s_o_cmn_thread_a8f7a98349047559b17001d37f610ead9}{isRunning}}()\ ==\ TRUE,\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}thread\ isn't\ running!"{}}));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00168}00168\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_thread_a7d38a6a22d4d545acf4df9e5d20dfe3b}{getEvents}}()-\/>\mbox{\hyperlink{class_s_o_cmn_events_a41f3eb9718db00567638083b90ce06b5}{signal}}(\mbox{\hyperlink{class_s_o_clt_worker_thread_a0e6eb5b6e61baa44612d64677e98c4ea}{m\_evtCyclic}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00169}00169\ \}\ \textcolor{comment}{//\ wakeUp}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00173}00173\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00174}00174\ \textcolor{comment}{//\ work}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00175}00175\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00176}00176\ \textcolor{comment}{//\ -\/\ thread\ routine\ of\ work\ thread}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00177}00177\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00178}00178\ \textcolor{comment}{//\ returns:}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00179}00179\ \textcolor{comment}{//\ \ \ \ \ \ thread\ end\ state}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00180}00180\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00181}00181\ DWORD\ \mbox{\hyperlink{class_s_o_clt_worker_thread_aea256f44a547ef80b22ed0441a319fd6}{SOCltWorkerThread::work}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00182}00182\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00183}00183\ \ \ \ \ BOOL\ end\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{keyword}{static}\ TCHAR*\ szTraceID\ =\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Worker\ Thread"{}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00185}00185\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{comment}{//\ init\ COM}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00187}00187\ \ \ \ \ HRESULT\ res;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_aca3919e6cf22894d07999a67e24bfded}{FAILED}}(res\ =\ ::CoInitializeEx(NULL,\ \mbox{\hyperlink{_o_t_c_8cpp_a10c257bb89c937fb49f637f1f7e96b54}{COINIT\_MULTITHREADED}})))}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00190}00190\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_s_o_clt_worker_thread_aebe87b5bed10530e9329fca892b909d1}{m\_error}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_aebe87b5bed10530e9329fca892b909d1}{m\_error}}-\/>\mbox{\hyperlink{class_s_o_clt_element_i_error_a1b49c8c07c498468c5a173be06ed9b8a}{setLastError}}(res,\ \mbox{\hyperlink{_s_o_clt_error_8h_ab7ef59db9e39537155cc88cc892826cc}{SOCLT\_ERR\_COM\_INIT}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00199}00199\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00200}00200\ \ \ \ \ DWORD\ nextTimeToRunThread\ =\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00201}00201\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}{\_TRACEC}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18}{SOCMNTRACE\_L\_INF}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}{SOCMNTRACE\_G\_CLT\_THREAD}},\ szTraceID,\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}started"{}})));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{while}\ (!end)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00204}00204\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ HRESULT\ hrTask\ =\ \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\_OK}};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_aa310e6cee2dce11319393a535cb7e7df}{SOCMN\_TRY}}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ waitTime\ =\ nextTimeToRunThread\ ==\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}}\ ?\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}}\ :\ \mbox{\hyperlink{_s_o_cmn_functions_8h_a34ae7ac3b3204e6464a245382692d95d}{getTimeSpan}}(::GetTickCount(),\ nextTimeToRunThread);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (waitTime\ >\ \mbox{\hyperlink{_s_o_cmn_8h_a5d7db2a592e47e77385fa91615f684c3}{SOCMN\_TIME\_40DAYS}}\ \&\&\ waitTime\ !=\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ waitTime\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ ret\ =\ \mbox{\hyperlink{class_s_o_cmn_thread_a7d38a6a22d4d545acf4df9e5d20dfe3b}{getEvents}}()-\/>\mbox{\hyperlink{class_s_o_cmn_events_ac26917856488ef476a6d86b3a388bba7}{waitForAll}}(FALSE,\ waitTime);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}{\_TRACEC}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18}{SOCMNTRACE\_L\_INF}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}{SOCMNTRACE\_G\_CLT\_THREAD}},\ szTraceID,\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}running"{}})));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ \mbox{\hyperlink{class_s_o_cmn_thread_ace5784129cfa19e82b93853e8313728f}{getStopEventId}}())}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ terminate\ worker\ thread}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((ret\ ==\ \mbox{\hyperlink{_posix_events_8h_a39cab300a9e3bc8fac14540a0ee2b372}{SOCMNEVENT\_INVALID\_ID}})\ ||\ (ret\ ==\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a0e6eb5b6e61baa44612d64677e98c4ea}{m\_evtCyclic}}))}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltCyclicTask>}}\ list(\mbox{\hyperlink{class_s_o_clt_worker_thread_acc52415a26fd9a0fee3a550e2b856e6b}{m\_cyclicQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_o_cmn_list_position}{SOCmnListPosition}}\ pos;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.dontAutoLock();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.lock();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.setDirty(FALSE);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ =\ list.getStartPosition();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.unlock();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextTimeToRunThread\ =\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (pos)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_pointer}{SOCmnPointer<SOCltCyclicTask>}}\ task;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.lock();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (list.isDirty())}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ current\ position!}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structtag_s_o_cmn_list_position}{SOCmnListPosition}}\ checkPos;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BOOL\ found\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ checkPos\ =\ list.getStartPosition();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00245}00245\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (checkPos)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checkPos\ ==\ pos)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.getNext(checkPos);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!found)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos\ =\ list.getStartPosition();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.setDirty(FALSE);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pos\ ==\ NULL)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.unlock();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task\ =\ list.getNext(pos);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task.\mbox{\hyperlink{class_s_o_cmn_pointer_a65b8cf43ff871262c2cc0c6fe5689acc}{addRef}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.unlock();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ timeToRun\ =\ task-\/>getNextTimeToRun();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ timeSpan\ =\ \mbox{\hyperlink{_s_o_cmn_functions_8h_a34ae7ac3b3204e6464a245382692d95d}{getTimeSpan}}(::GetTickCount(),\ timeToRun);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((0\ ==\ timeSpan)\ ||\ (\mbox{\hyperlink{_s_o_cmn_8h_a5d7db2a592e47e77385fa91615f684c3}{SOCMN\_TIME\_40DAYS}}\ <\ timeSpan))}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>execute();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hrTask\ =\ task-\/>getResult();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>reportCompletion();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeToRun\ =\ task-\/>getNextTimeToRun();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (nextTimeToRunThread\ ==\ \mbox{\hyperlink{_posix_events_8h_aa84a29002ab81c719c0d07bb446296e0}{INFINITE}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextTimeToRunThread\ =\ timeToRun;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ULONG\ span;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeToRun\ >=\ nextTimeToRunThread)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ span\ =\ timeToRun\ -\/\ nextTimeToRunThread;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ span\ =\ nextTimeToRunThread\ -\/\ timeToRun;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (span\ <\ \mbox{\hyperlink{_s_o_cmn_8h_a5d7db2a592e47e77385fa91615f684c3}{SOCMN\_TIME\_40DAYS}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextTimeToRunThread\ =\ \_\_min(nextTimeToRunThread,\ timeToRun);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextTimeToRunThread\ =\ \_\_max(nextTimeToRunThread,\ timeToRun);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ret\ ==\ \mbox{\hyperlink{class_s_o_clt_worker_thread_a0556193edfeff00ffcec4f58f7061c12}{m\_evtWakeup}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_accc5bf4409a60449b6298f38f832ae11}{lock}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task}{SOCltTask}}*\ task\ =\ \mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_acaa909ef4fde5a1ca01fbd92f136c07e}{getHead}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (task)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_cmn_object_aad895d6250194eb902d50e792a4b4dd8}{addRef}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_ac6f85d5ce90a3a3db4c03e08388db4c5}{removeHead}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}}.\mbox{\hyperlink{class_s_o_cmn_list_a991e537316a4cefcc1d9c0771b30a634}{unlock}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (NULL\ ==\ task)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_aa04ab042437d4dd8e3f0d0cb09c9d0e8}{execute}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_a7f16e87ed77a9d256933e72e4b9ec463}{reportCompletion}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_cmn_object_a894e880fbae6ef26f83d266492d12bf2}{release}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00339}00339\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Analyze\ HRESULT\ returned\ by\ the\ task\ to\ see}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ an\ RPC\ error\ has\ occured}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ BOOL\ bRPCError\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00343}00343\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (hrTask)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ HRESULT\_FROM\_WIN32(RPC\_S\_CALL\_FAILED):}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x800706be:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ HRESULT\_FROM\_WIN32(RPC\_S\_SERVER\_UNAVAILABLE):}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x800706ba:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ HRESULT\_FROM\_WIN32(RPC\_S\_CALL\_FAILED\_DNE):}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0x800706bf:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00357}00357\ \textcolor{preprocessor}{\#if\ \_MSC\_VER\ >\ 1100}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ RPC\_E\_TIMEOUT:}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00359}00359\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bRPCError\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (bRPCError)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ empty\ the\ task\ queue}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SOCltTask>}}\ queue(\mbox{\hyperlink{class_s_o_clt_worker_thread_acd6cc139a5c88cf6046b67cfda941c3b}{m\_taskQueue}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task}{SOCltTask}}*\ task\ =\ queue.getHead();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (task)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_cmn_object_aad895d6250194eb902d50e792a4b4dd8}{addRef}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ queue.removeHead();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (NULL\ ==\ task)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_a42549c83f99ed82225609f370e90d0c4}{setResult}}(E\_ABORT);}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_clt_task_a7f16e87ed77a9d256933e72e4b9ec463}{reportCompletion}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task-\/>\mbox{\hyperlink{class_s_o_cmn_object_a894e880fbae6ef26f83d266492d12bf2}{release}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00391}00391\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_a578798cd5be2d489756ab8bdc1510bcc}{SOCMN\_CATCH}}(...)}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_s_o_clt_worker_thread_aebe87b5bed10530e9329fca892b909d1}{m\_error}})}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_aebe87b5bed10530e9329fca892b909d1}{m\_error}}-\/>\mbox{\hyperlink{class_s_o_clt_element_i_error_a1b49c8c07c498468c5a173be06ed9b8a}{setLastError}}(\mbox{\hyperlink{_o_tcommon_8h_a8f0547e641e1efc8110437fa85aa722e}{E\_FAIL}},\ \mbox{\hyperlink{_s_o_clt_error_8h_acb8253e6e3d8dda06387fa3ee8efc5b0}{SOCLT\_ERR\_EXCEPTION}});}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00400}00400\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00402}00402\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}{\_TRACEC}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18}{SOCMNTRACE\_L\_INF}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}{SOCMNTRACE\_G\_CLT\_THREAD}},\ szTraceID,\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}cleaning\ up..."{}})));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00403}00403\ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_worker_thread_a871cd3d96fbb1bfa8f4195112191716f}{cleanUp}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00404}00404\ \ \ \ \ \textcolor{comment}{//\ Terminate}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00405}00405\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_DCOM}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00406}00406\ \ \ \ \ ::CoUninitialize();}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00407}00407\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00408}00408\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_trace_8h_ad1787451f56bf749b8bd219dfdae3fbb}{\_TRACEC}}(\mbox{\hyperlink{_s_o_cmn_trace_8h_a9b49a2445d0057812ac42a58902f2e18}{SOCMNTRACE\_L\_INF}},\ \mbox{\hyperlink{_s_o_cmn_trace_8h_a64d912d79fe0c45cc46aa41960ac613b}{SOCMNTRACE\_G\_CLT\_THREAD}},\ szTraceID,\ (\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}terminated"{}})));}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00409}00409\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00410}00410\ \}\ \textcolor{comment}{//\ workThread}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00412}00412\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOCLT}}
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00413}00413\ }
+\DoxyCodeLine{\Hypertarget{_s_o_clt_thread_8cpp_source_l00414}00414\ }
+
+\end{DoxyCode}

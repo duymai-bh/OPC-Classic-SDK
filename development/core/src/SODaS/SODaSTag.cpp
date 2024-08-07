@@ -33,6 +33,7 @@
 #include "SODaSEntry.h"
 #include "SODaSItem.h"
 #include "SODaSServer.h"
+#include "SOSrvWatch.h"
 #include <opcerror.h>
 
 

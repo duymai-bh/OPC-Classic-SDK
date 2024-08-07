@@ -72,7 +72,7 @@ HANDLE SOCmnEventPool::popEvent(void)
 {
 	HANDLE event;
 
-	if (!m_eventPool)
+	if (m_eventPool == NULL)
 	{
 		return ::CreateEvent(NULL, FALSE, FALSE, NULL);
 	}

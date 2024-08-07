@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by Hellema Ibrahim (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="SCI_SurfaceTypes.xsd"/>
+	<xs:include schemaLocation="BaseTypes.xsd"/>
+	<xs:include schemaLocation="SCI_DeviceMapping.xsd"/>
+	<xs:complexType name="CANBusControlType">
+		<xs:annotation>
+			<xs:documentation>CAN Bus Control</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the CAN Bus Ccontrol (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr1" type="uint8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A Second fieldbus/limb used for power only for example 2x25W supplies are needed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr2" type="uint8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A third fieldbus/limb used for power only if more power is needed for the attached device.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr1Status" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A Second fieldbus/limb used for power only for example 2x25W supplies are needed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr2Status" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A third fieldbus/limb used for power only if more power is needed for the attached device.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="CanbusEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the Canbus data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CANBusSensorControlType">
+		<xs:annotation>
+			<xs:documentation>CAN Bus Sensor Control</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the CAN Bus Ccontrol (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeID" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Canbus Node Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CANBusSensorStatusControlType">
+		<xs:annotation>
+			<xs:documentation>CAN Bus Sensor Status Control</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the CAN Bus Ccontrol (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CanbusStatus" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of associated Canbus Status</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NodeID" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Canbus Node Identifier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeviceType" type="string32">
+				<xs:annotation>
+					<xs:documentation>Reference to Canbus Sensor Device Type (Read From Device)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AppMode_SDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>SDO List Number to Request Sensor Into Application Mode</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GetDevType_SDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>SDO List Number to Request Device Type From Sensor</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BootMode_SDOList" type="uint8">
+				<xs:annotation>
+					<xs:documentation>SDO List Number to Request Sensor Into Boot Mode</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="CanbusSensorStatusEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the Canbus Sensor Status Control data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenericFieldbusControlType">
+		<xs:annotation>
+			<xs:documentation>Generic Fieldbus Control</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="string32">
+				<xs:annotation>
+					<xs:documentation>Name of the Modbus Ccontrol (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostCard" type="string32">
+				<xs:annotation>
+					<xs:documentation>Host Card Name (Max 32 characters).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InterfaceNumber" type="uint8">
+				<xs:annotation>
+					<xs:documentation>Serial Interface Number</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr1" type="uint8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A Second fieldbus/limb used for power only for example 2x25W supplies are needed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr2" type="uint8" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A third fieldbus/limb used for power only if more power is needed for the attached device.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr1Status" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A Second fieldbus/limb used for power only for example 2x25W supplies are needed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalPwr2Status" type="string32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>A third fieldbus/limb used for power only if more power is needed for the attached device.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCIEditData" type="GenericFieldbusEditDataType">
+				<xs:annotation>
+					<xs:documentation>This group contains all the Generic Fieldbus data that can be edited on the ETU HMI.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCI_Mapping" type="SCI_DeviceMappingType">
+				<xs:annotation>
+					<xs:documentation>Structure holding Modbus and OPC mapping data</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ScanRate" type="uint32">
+				<xs:annotation>
+					<xs:documentation>The Rate At Which Continuous Scanning Is Performed In ms</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GenericFieldbusEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For Generic Fieldbus</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AutoConnect" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>The Bus Should Auto Connect</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusTimeout" type="uint32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Max time to request Status of Fieldbus control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CanbusEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For Canbus</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AutoConnect" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>The Bus Should Auto Connect</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OnlineDelayTimer" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Delay between Power Line and Bringing Canbus Line On-Line.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusTimeout" type="uint32" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Max time to request Status of Fieldbus control</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CanbusSensorStatusEditDataType">
+		<xs:annotation>
+			<xs:documentation>SCI Editable Data For Canbus Sensor Status</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AutoOnline" type="bool" default="false">
+				<xs:annotation>
+					<xs:documentation>The Canbus Sensor Should Auto go Online</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BootModeDelayTimer" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Delay between Requesting Sensor to go into Boot Mode and retrieving the Status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AppModeDelayTimer" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Delay between Requesting Sensor to go into Application Mode and retrieving the Status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OpModeDelayTimer" type="uint16">
+				<xs:annotation>
+					<xs:documentation>Delay between Requesting Sensor to go into Operational Mode and retrieving the Status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

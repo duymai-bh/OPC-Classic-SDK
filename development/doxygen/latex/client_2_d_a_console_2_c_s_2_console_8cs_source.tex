@@ -1,0 +1,284 @@
+\doxysection{Console.\+cs}
+\hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source}{}\label{client_2_d_a_console_2_c_s_2_console_8cs_source}\index{NET/samples/client/DAConsole/CS/Console.cs@{NET/samples/client/DAConsole/CS/Console.cs}}
+\mbox{\hyperlink{client_2_d_a_console_2_c_s_2_console_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Threading;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00006}\mbox{\hyperlink{namespace_da_console}{00006}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_da_console}{DaConsole}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00008}\mbox{\hyperlink{class_da_console_1_1_console}{00008}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_console}{Console}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00010}00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Attributes}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ signals\ application\ should\ terminate}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00014}\mbox{\hyperlink{class_da_console_1_1_console_a9cb27853c60b1c1dbcec79ea4519b3f8}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ AutoResetEvent\ \mbox{\hyperlink{class_da_console_1_1_console_a9cb27853c60b1c1dbcec79ea4519b3f8}{EndEvent}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00015}\mbox{\hyperlink{class_da_console_1_1_console_acbc0a0045462241c06296acc09010098}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_da_console_1_1_console_acbc0a0045462241c06296acc09010098}{End}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00017}00017\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00019}00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_da_console_1_1_opc_client}{OpcClient}}\ m\_opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00023}00023\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00025}00025\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Properties}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00028}\mbox{\hyperlink{class_da_console_1_1_console_a90502621cd128d5e9fef6584f7e81af8}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_da_console_1_1_opc_client}{OpcClient}}\ \mbox{\hyperlink{class_da_console_1_1_opc_client}{OpcClient}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_opcClient;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ OpcClient}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00038}00038\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00040}00040\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00042}\mbox{\hyperlink{class_da_console_1_1_console_a53c54b0010b8c6acdf323d49d5813001}{00042}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_console_a53c54b0010b8c6acdf323d49d5813001}{CreateOpcClient}}()}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_opcClient\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_da_console_1_1_console_a90502621cd128d5e9fef6584f7e81af8}{OpcClient}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ CreateOpcClient}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00051}00051\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00053}\mbox{\hyperlink{class_da_console_1_1_console_a9206d7e87cb7948eb58f8b2b8fe2ac6c}{00053}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_console_a9206d7e87cb7948eb58f8b2b8fe2ac6c}{Usage}}()}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}\(\backslash\)nUsage:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Use\ lower\ case\ letters\ for\ synchronous\ execution\ \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Use\ upper\ case\ letters\ for\ asynchronous\ execution\ \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'a\(\backslash\)'\ or\ \(\backslash\)'A\(\backslash\)'\ to\ activate\ the\ objects\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'c\(\backslash\)'\ or\ \(\backslash\)'C\(\backslash\)'\ to\ connect\ the\ objects\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'d\(\backslash\)'\ or\ \(\backslash\)'D\(\backslash\)'\ to\ disconnect\ the\ objects\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'l\(\backslash\)'\ or\ \(\backslash\)'L'\(\backslash\)'\ to\ login\ \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'o\(\backslash\)'\ or\ \(\backslash\)'O'\(\backslash\)'\ to\ logoff\ \(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'r\(\backslash\)'\ or\ \(\backslash\)'R\(\backslash\)'\ to\ read\ the\ items\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'w\(\backslash\)'\ or\ \(\backslash\)'W\(\backslash\)'\ to\ write\ the\ items\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'z\(\backslash\)'\ or\ \(\backslash\)'Z\(\backslash\)'\ to\ read\ using\ server\ object\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'t\(\backslash\)'\ or\ \(\backslash\)'T\(\backslash\)'to\ write\ using\ the\ server\ object\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'s\(\backslash\)'\ or\ \(\backslash\)'S\(\backslash\)'\ to\ get\ the\ server\ status\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'h\(\backslash\)'\ or\ \(\backslash\)'H\(\backslash\)'to\ change\ the\ subscription`s\ data\ retrieval\ mode"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'m\(\backslash\)'\ to\ activate\ the\ connection\ monitor\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'n\(\backslash\)'\ to\ deactivate\ the\ connection\ monitor\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'?\(\backslash\)'\ or\ \(\backslash\)"{}u\(\backslash\)"{}\ to\ display\ this\ usage\ information\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'e\(\backslash\)'\ or\ \(\backslash\)'q\(\backslash\)'\ or\ Ctrl-\/C\ to\ exit\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00078}\mbox{\hyperlink{class_da_console_1_1_console_a2d7bb690227cbd9b37eb76f4e57f7ae2}{00078}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_da_console_1_1_console_a2d7bb690227cbd9b37eb76f4e57f7ae2}{Main}}(String[]\ args)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (int)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_console_a9cb27853c60b1c1dbcec79ea4519b3f8}{EndEvent}}\ =\ \textcolor{keyword}{new}\ AutoResetEvent(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}\ console\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_console}{Console}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MyWin32.HandlerRoutine\ handlerRoutine\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aeb0c48d806653ec89cf31326527fd425}{HandlerRoutine}}(\mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aa46ceff80bfd79cde3d69d4d462526d1}{Handler}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_a785f4c1d348a5886444e218a1ed380ef}{SetConsoleCtrlHandler}}(}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handlerRoutine,}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_da_console_1_1_console_a53c54b0010b8c6acdf323d49d5813001}{CreateOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gets\ the\ OpcClient\ instance}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_opc_client}{OpcClient}}\ m\_opcClient\ =\ console.\mbox{\hyperlink{class_da_console_1_1_console_a90502621cd128d5e9fef6584f7e81af8}{OpcClient}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ initialize\ the\ client\ instance}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a3830150e79f6668d94735d82299f93fc}{Initialize}}()))}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ initialize\ the\ DA\ client\ simulation}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ |=\ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a5bd938eef482cab8fedc370333e6a21f}{InitializeDaObjects}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_console_a9206d7e87cb7948eb58f8b2b8fe2ac6c}{Usage}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ end\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!end\ \&\&\ !\mbox{\hyperlink{namespace_console}{Console}}.End)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ read\ =\ System.Console.ReadLine();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (read)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}A"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a428a087bb73438b7a5707db50535ce44}{ActivateSession}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}a"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a428a087bb73438b7a5707db50535ce44}{ActivateSession}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}C"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a6fa13ae0d434f47080abbebadb9ec792}{ConnectSession}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}c"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a6fa13ae0d434f47080abbebadb9ec792}{ConnectSession}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}D"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a55a3dc71cccb268de6c8fff34de40f8c}{DisconnectSession}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}d"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a55a3dc71cccb268de6c8fff34de40f8c}{DisconnectSession}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}R"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a790aa27e600cfa644a953ef1075c4915}{ReadItems}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}r"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a790aa27e600cfa644a953ef1075c4915}{ReadItems}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}W"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a47c38fe1ef80a3ea8a3c3967bb4c58a4}{WriteItems}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}w"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a47c38fe1ef80a3ea8a3c3967bb4c58a4}{WriteItems}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}h"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a027e2a61a36bca2d343827bd1ff1ee17}{ChangeDataRetrievalMode}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}H"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a027e2a61a36bca2d343827bd1ff1ee17}{ChangeDataRetrievalMode}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}Z"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a85db31ee1147f23f1705cbfd42286f9f}{ReadUsingSession}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}z"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a85db31ee1147f23f1705cbfd42286f9f}{ReadUsingSession}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}T"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_af50984644da9e0c23fc004a895079886}{WriteUsingSession}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}t"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_af50984644da9e0c23fc004a895079886}{WriteUsingSession}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}S"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a430709c8a62ef39baec884de63280c78}{GetServerStatus}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}s"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a430709c8a62ef39baec884de63280c78}{GetServerStatus}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}M"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}m"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a3a53a674617bc92de3404e5e6d5e6c9d}{ActivateConnectionMonitor}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}N"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}n"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_afd590f6d4ea154fc308252fa57fedaea}{DeactivateConnectionMonitor}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}L"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_ac8e3a2649845e33c0952e476c4f91e26}{setCredentials}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a03ac592c1bb165a65ed4f9623c895c8f}{LogInSecure}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}l"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_ac8e3a2649845e33c0952e476c4f91e26}{setCredentials}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a03ac592c1bb165a65ed4f9623c895c8f}{LogInSecure}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}o"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_aac5c91737b91de5c7598763a08980d91}{LogOffSecure}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_ac8e3a2649845e33c0952e476c4f91e26}{setCredentials}}(\textcolor{stringliteral}{"{}Guest"{}},\ \textcolor{stringliteral}{"{}nopass"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}O"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_aac5c91737b91de5c7598763a08980d91}{LogOffSecure}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_ac8e3a2649845e33c0952e476c4f91e26}{setCredentials}}(\textcolor{stringliteral}{"{}Guest"{}},\ \textcolor{stringliteral}{"{}nopass"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}U"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}u"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}?"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_console_a9206d7e87cb7948eb58f8b2b8fe2ac6c}{Usage}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}E"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}e"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}Q"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}q"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_console_a9206d7e87cb7948eb58f8b2b8fe2ac6c}{Usage}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//\ while}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient.\mbox{\hyperlink{class_da_console_1_1_opc_client_a4e2606c6f00d1bb7865590f56cb79b79}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aa46ceff80bfd79cde3d69d4d462526d1}{Handler}}(\mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}.CTRL\_CLOSE\_EVENT);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(exc.ToString());}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ try...catch}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Main}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00229}00229\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ Console}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00231}\mbox{\hyperlink{class_da_console_1_1_my_win32}{00231}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00232}00232\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Declare\ the\ SetConsoleCtrlHandler\ function\ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ external\ and\ receiving\ a\ delegate.\ \ \ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ [DllImport(\textcolor{stringliteral}{"{}Kernel32"{}})]}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00236}\mbox{\hyperlink{class_da_console_1_1_my_win32_a785f4c1d348a5886444e218a1ed380ef}{00236}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{extern}\ Boolean\ \mbox{\hyperlink{class_da_console_1_1_my_win32_a785f4c1d348a5886444e218a1ed380ef}{SetConsoleCtrlHandler}}(}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32_aeb0c48d806653ec89cf31326527fd425}{HandlerRoutine}}\ \mbox{\hyperlink{class_da_console_1_1_my_win32_aa46ceff80bfd79cde3d69d4d462526d1}{Handler}},}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ Boolean\ Add);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ delegate\ type\ to\ be\ used\ as\ the\ handler\ routine\ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ SetConsoleCtrlHandler.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00242}\mbox{\hyperlink{class_da_console_1_1_my_win32_aeb0c48d806653ec89cf31326527fd425}{00242}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ delegate\ Boolean\ \mbox{\hyperlink{class_da_console_1_1_my_win32_aeb0c48d806653ec89cf31326527fd425}{HandlerRoutine}}(\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}\ CtrlType);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00244}00244\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ An\ enumerated\ type\ for\ the\ control\ messages\ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sent\ to\ the\ handler\ routine.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00246}\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{00246}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00247}00247\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650a9c6d7b9a3ae52a2eeba4d5b97b424b37}{CTRL\_C\_EVENT}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650a0bf53e626d3d52325891a523090278fc}{CTRL\_BREAK\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650a9b5bdcaf2715bc81f42fcb6315749407}{CTRL\_CLOSE\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650a18d91e2de9d5f3a043ae27857f46f130}{CTRL\_LOGOFF\_EVENT}}\ =\ 5,}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650abd633c0d9cebc1b835bea719de3ed93d}{CTRL\_SHUTDOWN\_EVENT}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ enum\ CtrlTypes}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ private\ static\ handler\ function.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00256}\mbox{\hyperlink{class_da_console_1_1_my_win32_aa46ceff80bfd79cde3d69d4d462526d1}{00256}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ Boolean\ \mbox{\hyperlink{class_da_console_1_1_my_win32_aa46ceff80bfd79cde3d69d4d462526d1}{Handler}}(\mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}\ CtrlType)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00257}00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ message\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ switch\ to\ handle\ the\ event\ type.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (CtrlType)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}.CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}.CTRL\_BREAK\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}.CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}.CTRL\_LOGOFF\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_da_console_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_da_console_1_1_my_win32_aef95c456dc7c507187698fcf5af76650}{CtrlTypes}}.CTRL\_SHUTDOWN\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Stop\ execution,\ since\ CTRL\ command!"{}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}.EndEvent.Set();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.End\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ switch}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ interop\ to\ display\ a\ message\ for\ the\ type\ of\ event.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ System.\mbox{\hyperlink{class_console_1_1_console}{Console}}.WriteLine(message);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Handler}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00277}00277\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ Console}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_console_2_c_s_2_console_8cs_source_l00278}00278\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace}}
+
+\end{DoxyCode}

@@ -1,0 +1,216 @@
+\doxysection{Client\+Ae\+Condition.\+h}
+\hypertarget{_client_ae_condition_8h_source}{}\label{_client_ae_condition_8h_source}\index{C++/src/client/Ae/ClientAeCondition.h@{C++/src/client/Ae/ClientAeCondition.h}}
+\mbox{\hyperlink{_client_ae_condition_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_CLIENTAECONDITION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_CLIENTAECONDITION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_client_enums_8h}{../ClientEnums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_value_q_t_8h}{../../ValueQT.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_enums_8h}{../../Enums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_client_ae_event_8h}{ClientAeEvent.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00011}00011\ \textcolor{preprocessor}{\#ifdef\ WIN64}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00012}00012\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00013}00013\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00014}00014\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00015}00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00017}00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_softing_o_p_c_toolbox_client}{SoftingOPCToolboxClient}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00018}00018\ \{}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00020}00020\ \textcolor{keyword}{class\ }AeAttribute;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00021}00021\ \textcolor{keyword}{class\ }AeSession;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00022}00022\ \textcolor{keyword}{class\ }AeSubscription;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00024}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition}{00024}}\ \textcolor{keyword}{class\ }TBC\_EXPORT\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition}{AeCondition}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_event}{AeEvent}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00027}00027\ \ \ \ \ \textcolor{comment}{//friend\ class\ Application;}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00028}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a7ed80a458c53d1d7ca10bc30df229caa}{00028}}\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_o_t_c_globals}{OTCGlobals}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00030}00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00032}00032\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition}{AeCondition}}(}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00033}00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_enums_8h_aed37d7c0c2e14f8625aa2d325930f303}{EnumEventType}}\ anEventType,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ eventCategory,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ severity,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00036}00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ sourcePath,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00037}00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ message,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00038}00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ occurenceTime,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00039}00039\ \ \ \ \ \ \ \ \ std::vector<Variant*>\ someEventAttributes,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ actorId,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_enums_8h_aceabe8581a1311ce773c7919aad91b72}{EnumConditionChange}}\ changeMask,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ newState,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ BOOL\ ackRequired,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ quality,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ conditionName,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00046}00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ subConditionName,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ activeTime,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ cookie);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00050}00050\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00052}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_aa33f81c23b982fa75c2646fc19542aeb}{00052}}\ \ \ \ \ \mbox{\hyperlink{_enums_8h_aceabe8581a1311ce773c7919aad91b72}{EnumConditionChange}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_aa33f81c23b982fa75c2646fc19542aeb}{m\_changeMask}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00053}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a6193596179d17c663f14457f2ed613cd}{00053}}\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a6193596179d17c663f14457f2ed613cd}{m\_newState}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00054}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a2cb9ec32613d830c11621b9a3ace8774}{00054}}\ \ \ \ \ BOOL\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a2cb9ec32613d830c11621b9a3ace8774}{m\_ackRequired}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00055}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_ad4c21d5e4a763a03480a58f45d576312}{00055}}\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_ad4c21d5e4a763a03480a58f45d576312}{m\_quality}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00056}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a62b85ec3b5bdc4cb716568c17976d6ce}{00056}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a62b85ec3b5bdc4cb716568c17976d6ce}{m\_conditionName}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00057}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a6236e37b5b7fa36808fa4ef7f2e11555}{00057}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a6236e37b5b7fa36808fa4ef7f2e11555}{m\_subConditionName}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00058}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a86c75b26ebc868426402fa2eaff52b0d}{00058}}\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a86c75b26ebc868426402fa2eaff52b0d}{m\_activeTime}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00059}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a79a793357870c061751ada089825628e}{00059}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a79a793357870c061751ada089825628e}{m\_cookie}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00060}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a02a04256ce3f5d3a6007fb672d8ce7ca}{00060}}\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_session}{AeSession}}*\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_a02a04256ce3f5d3a6007fb672d8ce7ca}{m\_aeSession}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00061}00061\ \ \ \ \ \textcolor{comment}{//the\ subscription\ to\ whose\ condition\ list\ the\ subscription\ belongs}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00062}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_ab7d9effcb09a08229e32cc74ee5e4606}{00062}}\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_subscription}{AeSubscription}}*\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_ab7d9effcb09a08229e32cc74ee5e4606}{m\_aeSubscription}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00063}00063\ \ \ \ \ \textcolor{comment}{//this\ is\ necessary\ for\ keeping\ the\ reference\ to\ the\ subscription\ in\ whose\ condition\ list\ the\ condition\ exists}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//when\ deleting\ the\ condition,\ it\ will\ be\ automatically\ deleted\ from\ the\ list}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00065}00065\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_subscription}{AeSubscription}}*\ getAeSubscription();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{void}\ setAeSubscription(\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_subscription}{AeSubscription}}*\ aSubscription);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00068}00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition}{AeCondition}}();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00072}00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition}{\string~AeCondition}}();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00074}00074\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_session}{AeSession}}*\ getAeSession();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00075}00075\ \ \ \ \ \textcolor{keywordtype}{void}\ setAeSession(\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_session}{AeSession}}*\ anAeSession);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00077}00077\ \ \ \ \ \mbox{\hyperlink{_enums_8h_aceabe8581a1311ce773c7919aad91b72}{EnumConditionChange}}\ getChangeMask();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{void}\ setChangeMask(\mbox{\hyperlink{_enums_8h_aceabe8581a1311ce773c7919aad91b72}{EnumConditionChange}}\ mask);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ getState();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{void}\ setState(\mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ state);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00083}00083\ \ \ \ \ BOOL\ getAckRequired();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00084}00084\ \ \ \ \ \textcolor{keywordtype}{void}\ setAckRequired(BOOL\ ackRequired);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00086}00086\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ getQuality();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00087}00087\ \ \ \ \ \textcolor{keywordtype}{void}\ setQuality(\mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ quality);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getConditionName();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{void}\ setConditionName(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ conditionName);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00092}00092\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getSubConditionName();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00093}00093\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubConditionName(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ subConditionName);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00095}00095\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ getActiveTime();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00096}00096\ \ \ \ \ \textcolor{keywordtype}{void}\ setActiveTime(\mbox{\hyperlink{class_date_time}{DateTime}}\ activeTime);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00098}00098\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ getCookie();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00099}00099\ \ \ \ \ \textcolor{keywordtype}{void}\ setCookie(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ cookie);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{long}\ acknowledge(}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00102}00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ ackId,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00103}00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ ackComment,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00104}00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_execution_options}{ExecutionOptions}}*\ someExecutionOptions);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00106}00106\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{long}\ updateConditionState(}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00107}00107\ \ \ \ \ \ \ \ \ std::vector<AeAttribute*>\ attributes,}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00108}00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_execution_options}{ExecutionOptions}}*\ someExecutionOptions);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00110}00110\ \};\ \textcolor{comment}{//\ end\ class\ AeCondition}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00112}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state}{00112}}\ \textcolor{keyword}{class\ }TBC\_EXPORT\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state}{AeConditionState}}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00113}00113\ \{}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00115}00115\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00117}00117\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ m\_subConditionCount;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00118}00118\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ m\_eventAttrCount;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00120}00120\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00122}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a28cc13338b2e4b874a3599fcfe974c4d}{00122}}\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a28cc13338b2e4b874a3599fcfe974c4d}{m\_state}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00123}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_ac1fdc2eca8743d683079135332557770}{00123}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_ac1fdc2eca8743d683079135332557770}{m\_actSubConditionName}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00124}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a60283b5c6761388a0bc48cf80e81127a}{00124}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a60283b5c6761388a0bc48cf80e81127a}{m\_actSubConditionDefinition}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00125}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a244bb0d6b87be9246f163f5d453a6db8}{00125}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a244bb0d6b87be9246f163f5d453a6db8}{m\_actSubConditionSeverity}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00126}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a35bfcde7bc52a9aa0a33b7b44be7f4a5}{00126}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a35bfcde7bc52a9aa0a33b7b44be7f4a5}{m\_actSubConditionDescription}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00127}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_ad1d43bd2877ad485c5756592c1e383ef}{00127}}\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_ad1d43bd2877ad485c5756592c1e383ef}{m\_conditionActiveTime}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00128}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_af8b2048385f613252d1697d907f83cd6}{00128}}\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_af8b2048385f613252d1697d907f83cd6}{m\_conditionAckTime}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00129}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_affdda8fe7f10629947d81dddffa2ddc6}{00129}}\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_affdda8fe7f10629947d81dddffa2ddc6}{m\_subConditionActiveTime}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00130}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a964ba1ba30e272350e24b373e2503d23}{00130}}\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a964ba1ba30e272350e24b373e2503d23}{m\_conditionInactiveTime}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00131}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a5e8e45f6cdca9212cd0f41c8d6d857f2}{00131}}\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a5e8e45f6cdca9212cd0f41c8d6d857f2}{m\_quality}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00132}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_aa9d1f517fcdab6e5e965bab07a21cb3b}{00132}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_aa9d1f517fcdab6e5e965bab07a21cb3b}{m\_ackId}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00133}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a2997f2ac39296ed49f7f205f92d66ce3}{00133}}\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a2997f2ac39296ed49f7f205f92d66ce3}{m\_ackComment}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00134}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_aa67726d563ed40b2ef7ac1ce4f385dc7}{00134}}\ \ \ \ \ std::vector<tstring>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_aa67726d563ed40b2ef7ac1ce4f385dc7}{m\_pSubConditionDefinition}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00135}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a30afc73f7f957875a8453439780abaed}{00135}}\ \ \ \ \ std::vector<unsigned\ long>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a30afc73f7f957875a8453439780abaed}{m\_pSubConditionSeverity}};}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00136}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a59ba46d30f9bb1c942920ad16dbe7554}{00136}}\ \ \ \ \ std::vector<tstring>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a59ba46d30f9bb1c942920ad16dbe7554}{m\_pSubConditionDescription}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00137}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_adc80c0ff8aa6c4ca31f25b13f4995aa2}{00137}}\ \ \ \ \ std::vector<tstring>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_adc80c0ff8aa6c4ca31f25b13f4995aa2}{m\_pSubConditionName}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00138}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_aaa17ee64e4819e036ad64e769def9cd3}{00138}}\ \ \ \ \ std::vector<Variant*>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_aaa17ee64e4819e036ad64e769def9cd3}{m\_pEventAttrs}}\ ;\ \ \textcolor{comment}{//\ array\ with\ all\ event\ attributes}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00139}\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a3c342892df6c059ce6eeabfc336ad0a9}{00139}}\ \ \ \ \ std::vector<long>\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state_a3c342892df6c059ce6eeabfc336ad0a9}{m\_pAttrErrors}}\ ;}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00141}00141\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00143}00143\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state}{AeConditionState}}();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00145}00145\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_ae_condition_state}{\string~AeConditionState}}();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00147}00147\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ getState();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00148}00148\ \ \ \ \ \textcolor{keywordtype}{void}\ setState(\mbox{\hyperlink{_enums_8h_a07dcfae5c088762d49de453f9957573e}{EnumConditionState}}\ aState);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00150}00150\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getActiveSubConditionName();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00151}00151\ \ \ \ \ \textcolor{keywordtype}{void}\ setActiveSubConditionName(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ subConditionName);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00153}00153\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getActiveSubConditionDefinition();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00154}00154\ \ \ \ \ \textcolor{keywordtype}{void}\ setActiveSubConditionDefinition(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ subConditionDefinition);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00156}00156\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ getActiveSubConditionSeverity();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00157}00157\ \ \ \ \ \textcolor{keywordtype}{void}\ setActiveSubConditionSeverity(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ subConditionSeverity);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00159}00159\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getActiveSubConditionDescription();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00160}00160\ \ \ \ \ \textcolor{keywordtype}{void}\ setActiveSubConditionDescription(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ subConditionDescription);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00162}00162\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ getConditionActiveTime();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00163}00163\ \ \ \ \ \textcolor{keywordtype}{void}\ setConditionActiveTime(\mbox{\hyperlink{class_date_time}{DateTime}}\ conditionActiveTime);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00165}00165\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ getConditionAckTime();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00166}00166\ \ \ \ \ \textcolor{keywordtype}{void}\ setConditionAckTime(\mbox{\hyperlink{class_date_time}{DateTime}}\ ackTime);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00168}00168\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ getSubConditionActiveTime();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00169}00169\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubConditionActiveTime(\mbox{\hyperlink{class_date_time}{DateTime}}\ activeTime);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00171}00171\ \ \ \ \ \mbox{\hyperlink{class_date_time}{DateTime}}\ getConditionInactiveTime();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00172}00172\ \ \ \ \ \textcolor{keywordtype}{void}\ setConditionInactiveTime(\mbox{\hyperlink{class_date_time}{DateTime}}\ inactiveTime);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00174}00174\ \ \ \ \ \mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ getQuality();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00175}00175\ \ \ \ \ \textcolor{keywordtype}{void}\ setQuality(\mbox{\hyperlink{_enums_8h_a6085222b825e282c3323aff3280da026}{EnumQuality}}\ quality);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00177}00177\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getAcknowledgerId();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00178}00178\ \ \ \ \ \textcolor{keywordtype}{void}\ setAcknowledgerId(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ acknowledgerId);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00180}00180\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\&\ getAcknowledgerComment();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00181}00181\ \ \ \ \ \textcolor{keywordtype}{void}\ setAcknowledgerComment(\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ acknowledgerComment);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00183}00183\ \ \ \ \ std::vector<tstring>\&\ getSubConditionsDefinitions();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00184}00184\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubConditionsDefinitions(std::vector<tstring>\ subConditionsDefinition);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00187}00187\ \ \ \ \ std::vector<unsigned\ long>\&\ getSubConditionsSeverities();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00188}00188\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubConditionsSeverities(std::vector<unsigned\ long>\ subConditionsSeverities);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00191}00191\ \ \ \ \ std::vector<tstring>\&\ getSubConditionsDescriptions();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00192}00192\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubConditionsDescriptions(std::vector<tstring>\ subConditionsDescription);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00195}00195\ \ \ \ \ std::vector<tstring>\&\ getSubConditionsNames();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00196}00196\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubConditionsNames(std::vector<tstring>\ subConditionsName);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00198}00198\ \ \ \ \ std::vector<Variant*>\&\ getEventAttributes();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00199}00199\ \ \ \ \ \textcolor{keywordtype}{void}\ setEventAttributes(std::vector<Variant*>\ eventAttributes);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00201}00201\ \ \ \ \ std::vector<long>\&\ getAttributesErrors();}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00202}00202\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttributesErrors(std::vector<long>\ eventErrors);}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00204}00204\ \};\ \textcolor{comment}{//end\ class\ AeConditionState}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00206}00206\ \};\ \textcolor{comment}{//end\ namespace\ OPC\_Client}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00209}00209\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_client_ae_condition_8h_source_l00210}00210\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['rand1_0',['Rand1',['../_console_2_opc_server_8h.html#a09fdc83946cc5024d68c59a910eea73ea1322ff1c91be80e3b4f06d7e3c7ce98d',1,'OpcServer.h']]],
+  ['rand100_1',['Rand100',['../_console_2_opc_server_8h.html#a09fdc83946cc5024d68c59a910eea73ea1d9c5725fc2112fab9e242c1cb383ecf',1,'OpcServer.h']]],
+  ['rate_5fof_5fchange_5flimit_2',['RATE_OF_CHANGE_LIMIT',['../namespace_softing_1_1_o_p_c_toolbox.html#a69c495c5d70e8c6c6f8a51616dad06eba5cccf8b99aa50aa7c5d36bd87c3fb235',1,'Softing::OPCToolbox']]],
+  ['read_3',['READ',['../namespace_softing_1_1_o_p_c_toolbox_1_1_server.html#a0a9678ef2c882b39d90546554551ef1fa3466fab4975481651940ed328aa990e4',1,'Softing::OPCToolbox::Server']]],
+  ['read_4',['read',['../class_s_o_da_s_request.html#a30dfd4d97ae74968e151a9a665278a00a815a397f9d27b11c8c0dd34e6735462e',1,'SODaSRequest']]],
+  ['readable_5',['READABLE',['../namespace_softing_1_1_o_p_c_toolbox.html#a53ce84867dc44357465be3dde1bebd9fa54a2cbad9fc0becbe17a677e47df8fbd',1,'Softing.OPCToolbox.READABLE'],['../namespace_test_client_gui_1_1_elements.html#a89d0e82259f41edb05c74d5bc25fb117a54a2cbad9fc0becbe17a677e47df8fbd',1,'TestClientGui.Elements.READABLE']]],
+  ['readwriteable_6',['READWRITEABLE',['../namespace_softing_1_1_o_p_c_toolbox.html#a53ce84867dc44357465be3dde1bebd9fa94cec5f12976b38ba7cedb14e4789a39',1,'Softing.OPCToolbox.READWRITEABLE'],['../namespace_test_client_gui_1_1_elements.html#a89d0e82259f41edb05c74d5bc25fb117a94cec5f12976b38ba7cedb14e4789a39',1,'TestClientGui.Elements.READWRITEABLE']]],
+  ['reconnect1_7',['reconnect1',['../class_s_o_clt_task_connection_monitor.html#a7b53981eb198bf07819e1bf45eafba41ac1c125610cb3b836910f18b69e2d3da2',1,'SOCltTaskConnectionMonitor']]],
+  ['reconnect2_8',['reconnect2',['../class_s_o_clt_task_connection_monitor.html#a7b53981eb198bf07819e1bf45eafba41a16eb24b05569965706fe5436c57c228b',1,'SOCltTaskConnectionMonitor']]],
+  ['refresh_9',['refresh',['../class_s_o_da_s_transaction.html#ac8f8bedd88aad8d20b2c64b1d7ac608fa4b30636779d7d26747b1ec2506fe909e',1,'SODaSTransaction']]],
+  ['remote_5fserver_10',['REMOTE_SERVER',['../namespace_softing_1_1_o_p_c_toolbox_1_1_client.html#a278db041ef842808eed6cba5d01de860aa0a30dbaa42cb02d94982e80d2c39e70',1,'Softing::OPCToolbox::Client']]],
+  ['report_11',['REPORT',['../namespace_softing_1_1_o_p_c_toolbox_1_1_server.html#a220d063f047799a2bffc02cea4c41a52ad02a38d7ff75e9aed743437fd9539a44',1,'Softing::OPCToolbox::Server']]],
+  ['report_12',['report',['../class_s_o_da_s_item_tag.html#afbbfac52467b815d5dcdf16ff39379e5a060199ab22ccaa763e19f5d9943a0f86',1,'SODaSItemTag::report'],['../class_s_o_da_s_request.html#ac8c9ab9dbc2d202ae151ac07c8ddf28da1ea3b57b6cd782a06e2cc737e362bc1d',1,'SODaSRequest::report']]],
+  ['report_5fcyclic_13',['REPORT_CYCLIC',['../namespace_softing_1_1_o_p_c_toolbox_1_1_server.html#a220d063f047799a2bffc02cea4c41a52a0d5b0e226022b60d4033365bb7ddae25',1,'Softing::OPCToolbox::Server']]],
+  ['reserved_5frange_5f1_14',['RESERVED_RANGE_1',['../namespace_softing_1_1_o_p_c_toolbox.html#a69c495c5d70e8c6c6f8a51616dad06eba5aa21456cf5334c3dce705abdcc17afe',1,'Softing::OPCToolbox']]],
+  ['reserved_5frange_5f2_15',['RESERVED_RANGE_2',['../namespace_softing_1_1_o_p_c_toolbox.html#a69c495c5d70e8c6c6f8a51616dad06ebaf610b187fdcf50c9f18d881a3273291f',1,'Softing::OPCToolbox']]],
+  ['reserved_5frange_5f3_16',['RESERVED_RANGE_3',['../namespace_softing_1_1_o_p_c_toolbox.html#a69c495c5d70e8c6c6f8a51616dad06eba76ed5f3ba506ea497bc19895bb4085b5',1,'Softing::OPCToolbox']]],
+  ['reserved_5frange_5f4_17',['RESERVED_RANGE_4',['../namespace_softing_1_1_o_p_c_toolbox.html#a69c495c5d70e8c6c6f8a51616dad06eba0b9b10f56312cb7070096ad9d582ca91',1,'Softing::OPCToolbox']]],
+  ['right_18',['Right',['../namespace_weifen_luo_1_1_win_forms_u_i_1_1_docking.html#a661d659da1d07c34ad68a4f7909e5dc6a92b09c7c48c520c3c55e497875da437c',1,'WeifenLuo::WinFormsUI::Docking']]],
+  ['running_19',['RUNNING',['../namespace_softing_1_1_o_p_c_toolbox.html#a33b520289ebee42583f8acdbbe2cf466a43491564ebcfd38568918efbd6e840fd',1,'Softing::OPCToolbox']]]
+];

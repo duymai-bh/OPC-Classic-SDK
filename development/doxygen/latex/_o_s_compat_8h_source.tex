@@ -1,0 +1,113 @@
+\doxysection{OSCompat.\+h}
+\hypertarget{_o_s_compat_8h_source}{}\label{_o_s_compat_8h_source}\index{C++/src/OSCompat.h@{C++/src/OSCompat.h}}
+\mbox{\hyperlink{_o_s_compat_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_OSCOMPAT\_H\_}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_OSCOMPAT\_H\_}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00005}00005\ \textcolor{preprocessor}{\#define\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00007}00007\ \textcolor{preprocessor}{\#undef\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <oaidl.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <tchar.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00012}00012\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00013}00013\ \textcolor{preprocessor}{\#pragma\ warning(\ disable\ :\ 4251\ )}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00014}00014\ \textcolor{preprocessor}{\#pragma\ warning(\ disable\ :\ 4786\ )}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00015}00015\ \textcolor{preprocessor}{\#pragma\ warning\ (disable\ :\ 4100\ )}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00016}00016\ \textcolor{preprocessor}{\#pragma\ warning\ (disable\ :\ 4702\ )}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00017}00017\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \ \_MSC\_VER}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00019}00019\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00021}00021\ \textcolor{preprocessor}{\#if\ defined(WIN32)\ ||\ defined(WIN64)}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00022}00022\ \textcolor{preprocessor}{\#ifndef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00024}00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00026}00026\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00028}00028\ \textcolor{preprocessor}{\#ifdef\ \_\_linux\_\_}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00029}00029\ \textcolor{preprocessor}{\#ifndef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00030}00030\ \textcolor{preprocessor}{\#define\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00031}00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00032}00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_linux\_\_}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00034}00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WIN32}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00037}00037\ \textcolor{preprocessor}{\#if\ !defined(TBC\_OS\_WINDOWS)\ \&\&\ !defined(TBC\_OS\_LINUX)}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00038}00038\ \textcolor{preprocessor}{\#error\ fatal:\ unsupported\ platform!}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00039}00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00042}00042\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00043}00043\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00045}00045\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00046}00046\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_o_tcommon_8h}{OTcommon.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00047}00047\ \textcolor{preprocessor}{\#include\ <sys/time.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00048}00048\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00049}00049\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00050}00050\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00051}00051\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00052}00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00054}00054\ \textcolor{preprocessor}{\#ifdef\ WIN64}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00055}00055\ \textcolor{preprocessor}{\#pragma\ pack(push,8)}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00056}00056\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00057}00057\ \textcolor{preprocessor}{\#pragma\ pack(push,4)}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00058}00058\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00060}00060\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00061}00061\ \textcolor{preprocessor}{\#ifndef\ TBC\_USING\_LIB}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00062}00062\ \textcolor{preprocessor}{\#define\ TBC\_EXPORT\ \_\_declspec(dllexport)}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00063}00063\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00064}00064\ \textcolor{preprocessor}{\#define\ TBC\_EXPORT}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00065}00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00066}00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00068}00068\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00069}00069\ \textcolor{preprocessor}{\#define\ TBC\_EXPORT}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00070}00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00072}00072\ \textcolor{preprocessor}{\#ifdef\ TBC\_OS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00073}00073\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ TCHAR;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00074}00074\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ CHAR;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00075}00075\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ BYTE;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00076}00076\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{short}\ SHORT;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00077}00077\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ USHORT;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00078}00078\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ LONGLONG;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00079}00079\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ ULONG;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00080}00080\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ DWORD;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00081}00081\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ LONG;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00082}00082\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{float}\ FLOAT;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00083}00083\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ ULONGLONG;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00084}00084\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ BOOL;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00085}00085\ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ TRUE\ =\ 1L;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00086}00086\ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{long}\ FALSE\ =\ 0L;}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00087}00087\ \textcolor{preprocessor}{\#define\ \_TCHAR\ char}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00088}00088\ \textcolor{preprocessor}{\#define\ \_tprintf\ printf}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00089}00089\ \textcolor{preprocessor}{\#define\ \_tcsncmp\ strncmp}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00090}00090\ \textcolor{preprocessor}{\#define\ \_tcscmp\ strcmp}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00091}00091\ \textcolor{preprocessor}{\#define\ \_tmain\ main}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00092}00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00094}00094\ \textcolor{preprocessor}{\#ifndef\ \_T}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00095}00095\ \textcolor{preprocessor}{\#if\ defined\ \_UNICODE\ ||\ defined\ UNICODE}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00096}00096\ \textcolor{preprocessor}{\#define\ \_T(x)\ \ L\ \#\#\ x}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00097}00097\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00098}\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{00098}}\ \textcolor{preprocessor}{\#define\ \_T(x)\ \ x}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00099}00099\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00100}00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00102}\mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{00102}}\ \textcolor{keyword}{typedef}\ std::basic\_string<TCHAR,\ std::char\_traits<TCHAR>,\ std::allocator<TCHAR>\ >\ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}};}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00103}\mbox{\hyperlink{_o_s_compat_8h_ad9c84d79ee3d11b5cd05d6e37c9499d4}{00103}}\ \textcolor{keyword}{typedef}\ std::basic\_stringstream<TCHAR,\ std::char\_traits<TCHAR>,\ std::allocator<TCHAR>\ >\ \mbox{\hyperlink{_o_s_compat_8h_ad9c84d79ee3d11b5cd05d6e37c9499d4}{tstringstream}};}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00105}00105\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_o_s_compat_8h_source_l00107}00107\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_OSCOMPAT\_H\_}}
+
+\end{DoxyCode}

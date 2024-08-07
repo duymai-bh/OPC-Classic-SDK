@@ -1,0 +1,4 @@
+var interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_caption_factory =
+[
+    [ "CreateDockPaneCaption", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_caption_factory.html#a0335099123b5462b40d6a438e00e3389", null ]
+];

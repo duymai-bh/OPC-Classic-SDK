@@ -1,0 +1,182 @@
+\doxysection{Grid\+Cell\+Check.\+cpp}
+\hypertarget{_grid_cell_check_8cpp_source}{}\label{_grid_cell_check_8cpp_source}\index{core/src/demo/SOClient/GridCtrl\_SRC/GridCellCheck.cpp@{core/src/demo/SOClient/GridCtrl\_SRC/GridCellCheck.cpp}}
+\mbox{\hyperlink{_grid_cell_check_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00001}00001\ \textcolor{comment}{//\ GridCellCheck.cpp\ :\ implementation\ file}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00002}00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00003}00003\ \textcolor{comment}{//\ MFC\ Grid\ Control\ -\/\ Main\ grid\ cell\ class}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00004}00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00005}00005\ \textcolor{comment}{//\ Provides\ the\ implementation\ for\ a\ combobox\ cell\ type\ of\ the}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00006}00006\ \textcolor{comment}{//\ grid\ control.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00007}00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00008}00008\ \textcolor{comment}{//\ Written\ by\ Chris\ Maunder\ <cmaunder@mail.com>}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00009}00009\ \textcolor{comment}{//\ Copyright\ (c)\ 1998-\/2002.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00010}00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00011}00011\ \textcolor{comment}{//\ Parts\ of\ the\ code\ contained\ in\ this\ file\ are\ based\ on\ the\ original}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00012}00012\ \textcolor{comment}{//\ CInPlaceList\ from\ http://www.codeguru.com/listview}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00013}00013\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00014}00014\ \textcolor{comment}{//\ This\ code\ may\ be\ used\ in\ compiled\ form\ in\ any\ way\ you\ desire.\ This}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00015}00015\ \textcolor{comment}{//\ file\ may\ be\ redistributed\ unmodified\ by\ any\ means\ PROVIDING\ it\ is}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00016}00016\ \textcolor{comment}{//\ not\ sold\ for\ profit\ without\ the\ authors\ written\ consent,\ and}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00017}00017\ \textcolor{comment}{//\ providing\ that\ this\ notice\ and\ the\ authors\ name\ and\ all\ copyright}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00018}00018\ \textcolor{comment}{//\ notices\ remains\ intact.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00019}00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00020}00020\ \textcolor{comment}{//\ An\ email\ letting\ me\ know\ how\ you\ are\ using\ it\ would\ be\ nice\ as\ well.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00021}00021\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00022}00022\ \textcolor{comment}{//\ This\ file\ is\ provided\ "{}as\ is"{}\ with\ no\ expressed\ or\ implied\ warranty.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00023}00023\ \textcolor{comment}{//\ The\ author\ accepts\ no\ liability\ for\ any\ damage/loss\ of\ business\ that}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00024}00024\ \textcolor{comment}{//\ this\ product\ may\ cause.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00025}00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00026}00026\ \textcolor{comment}{//\ For\ use\ with\ CGridCtrl\ v2.22+}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00027}00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00028}00028\ \textcolor{comment}{//\ History:}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00029}00029\ \textcolor{comment}{//\ 23\ Jul\ 2001\ -\/\ Complete\ rewrite}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00030}00030\ \textcolor{comment}{//\ 13\ Mar\ 2004\ -\/\ GetCellExtent\ and\ GetCheckPlacement\ fixed\ by\ Yogurt}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00031}00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Read-\/only\ now\ honoured\ -\/\ Yogurt}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00032}00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_cell_8h}{../GridCtrl\_src/GridCell.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_ctrl_8h}{../GridCtrl\_src/GridCtrl.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00039}00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_cell_check_8h}{GridCellCheck.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00042}00042\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00043}00043\ \textcolor{preprocessor}{\#define\ new\ DEBUG\_NEW}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00044}00044\ \textcolor{preprocessor}{\#undef\ THIS\_FILE}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00045}00045\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ THIS\_FILE[]\ =\ \_\_FILE\_\_;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00046}00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00048}00048\ IMPLEMENT\_DYNCREATE(\mbox{\hyperlink{class_c_grid_cell_check}{CGridCellCheck}},\ \mbox{\hyperlink{class_c_grid_cell}{CGridCell}})}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00050}\mbox{\hyperlink{class_c_grid_cell_check_a7e938d88cf35beb8b9c7f83f23dc1a5c}{00050}}\ \mbox{\hyperlink{class_c_grid_cell_check}{CGridCellCheck}}::\mbox{\hyperlink{class_c_grid_cell_check}{CGridCellCheck}}()\ :\ \mbox{\hyperlink{class_c_grid_cell}{CGridCell}}()}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00051}00051\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00052}00052\ \ \ \ \ m\_bChecked\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{comment}{//m\_Rect.IsRectNull();}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00054}00054\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00056}\mbox{\hyperlink{class_c_grid_cell_check_a275789192e2c331f6b94e8260f5f1476}{00056}}\ CSize\ \mbox{\hyperlink{class_c_grid_cell_check_a275789192e2c331f6b94e8260f5f1476}{CGridCellCheck::GetCellExtent}}(CDC*\ pDC)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00057}00057\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ Using\ SM\_CXHSCROLL\ as\ a\ guide\ to\ the\ size\ of\ the\ checkbox}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{int}\ nWidth\ =\ GetSystemMetrics(SM\_CXHSCROLL)\ +\ 2\ *\ \mbox{\hyperlink{class_c_grid_cell_a42645c98ab60ce7f0e850ab96223e244}{GetMargin}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00060}00060\ \ \ \ \ CSize\ \ \ cellSize\ =\ \mbox{\hyperlink{class_c_grid_cell_base_ae9e4094f50b947ed26fc55a8eb49c856}{CGridCell::GetCellExtent}}(pDC);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00061}00061\ \ \ \ \ cellSize.cx\ +=\ nWidth;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00062}00062\ \ \ \ \ cellSize.cy\ =\ max(cellSize.cy,\ nWidth);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{return}\ \ cellSize;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00066}00066\ \textcolor{comment}{//\ i/o:\ \ i=dims\ of\ cell\ rect;\ o=dims\ of\ text\ rect}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00067}\mbox{\hyperlink{class_c_grid_cell_check_a27dea9eca098028b92dc8af866f55af3}{00067}}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_check_a27dea9eca098028b92dc8af866f55af3}{CGridCellCheck::GetTextRect}}(LPRECT\ pRect)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00069}00069\ \ \ \ \ BOOL\ bResult\ =\ \mbox{\hyperlink{class_c_grid_cell_base_ac6009f0da755a45f602a19d8cfcd495f}{CGridCell::GetTextRect}}(pRect);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (bResult)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00072}00072\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nWidth\ =\ GetSystemMetrics(SM\_CXHSCROLL)\ +\ 2\ *\ \mbox{\hyperlink{class_c_grid_cell_a42645c98ab60ce7f0e850ab96223e244}{GetMargin}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ pRect-\/>left\ +=\ nWidth;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pRect-\/>left\ >\ pRect-\/>right)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ pRect-\/>left\ =\ pRect-\/>right;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{return}\ bResult;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00083}00083\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00085}00085\ \textcolor{comment}{//\ Override\ draw\ so\ that\ when\ the\ cell\ is\ selected,\ a\ drop\ arrow\ is\ shown\ in\ the\ RHS.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00086}\mbox{\hyperlink{class_c_grid_cell_check_a64280215f2abcee4f8d51a72a0085ed5}{00086}}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_check_a64280215f2abcee4f8d51a72a0085ed5}{CGridCellCheck::Draw}}(CDC*\ pDC,\ \textcolor{keywordtype}{int}\ nRow,\ \textcolor{keywordtype}{int}\ nCol,\ CRect\ rect,\ \ BOOL\ bEraseBkgnd\ \textcolor{comment}{/*=TRUE*/})}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00087}00087\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00088}00088\ \ \ \ \ BOOL\ bResult\ =\ \mbox{\hyperlink{class_c_grid_cell_base_ad7bedecad742c513c6d0ebd07c006c0d}{CGridCell::Draw}}(pDC,\ nRow,\ nCol,\ rect,\ \ bEraseBkgnd);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00089}00089\ \textcolor{preprocessor}{\#ifndef\ \_WIN32\_WCE}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ Store\ the\ cell's\ dimensions\ for\ later}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00091}00091\ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}\ =\ rect;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00092}00092\ \ \ \ \ CRect\ CheckRect\ =\ \mbox{\hyperlink{class_c_grid_cell_check_a68c7b5e1d9347e5b417a42f5c8b68bd9}{GetCheckPlacement}}();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00093}00093\ \ \ \ \ rect.left\ =\ CheckRect.right;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{comment}{//\ enough\ room\ to\ draw?}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\ if\ (CheckRect.Width()\ <\ rect.Width()\ \&\&\ CheckRect.Height()\ <\ rect.Height())\ \{}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ Do\ the\ draw}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00097}00097\ \ \ \ \ pDC-\/>DrawFrameControl(\mbox{\hyperlink{class_c_grid_cell_check_a68c7b5e1d9347e5b417a42f5c8b68bd9}{GetCheckPlacement}}(),\ DFC\_BUTTON,}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_c_grid_cell_check_a83ab92df5f0404b37cad6dbf73eeeb9e}{m\_bChecked}})\ ?\ DFCS\_BUTTONCHECK\ |\ DFCS\_CHECKED\ :\ DFCS\_BUTTONCHECK);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{comment}{//\ \}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00100}00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{return}\ bResult;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00102}00102\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00104}\mbox{\hyperlink{class_c_grid_cell_check_aece0e7908cf45e5e6d1cc8c2d3b038d4}{00104}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_grid_cell_check_aece0e7908cf45e5e6d1cc8c2d3b038d4}{CGridCellCheck::OnClick}}(CPoint\ PointCellRelative)}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00105}00105\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ PointCellRelative\ is\ relative\ to\ the\ topleft\ of\ the\ cell.\ Convert\ to\ client\ coords}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00107}00107\ \ \ \ \ PointCellRelative\ +=\ \mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}.TopLeft();}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{comment}{//\ Bail\ if\ cell\ is\ read-\/only}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00109}00109\ \ \ \ \ \mbox{\hyperlink{class_c_cell_i_d}{CCellID}}\ cell\ =\ \mbox{\hyperlink{class_c_grid_cell_a8c80181815c77816d538f0450c73b08b}{GetGrid}}()-\/>\mbox{\hyperlink{class_c_grid_ctrl_a9278c3ae158ede531f0a177b2427719f}{GetCellFromPt}}(PointCellRelative);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_c_grid_cell_a8c80181815c77816d538f0450c73b08b}{GetGrid}}()-\/>IsCellEditable(cell))}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00112}00112\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{comment}{//\ GetCheckPlacement\ returns\ the\ checkbox\ dimensions\ in\ client\ coords.\ Only\ check/}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00117}00117\ \ \ \ \ \textcolor{comment}{//\ uncheck\ if\ the\ user\ clicked\ in\ the\ box}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_c_grid_cell_check_a68c7b5e1d9347e5b417a42f5c8b68bd9}{GetCheckPlacement}}().PtInRect(PointCellRelative))}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_check_a83ab92df5f0404b37cad6dbf73eeeb9e}{m\_bChecked}}\ =\ !\mbox{\hyperlink{class_c_grid_cell_check_a83ab92df5f0404b37cad6dbf73eeeb9e}{m\_bChecked}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_a8c80181815c77816d538f0450c73b08b}{GetGrid}}()-\/>InvalidateRect(\mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00123}00123\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00126}00126\ \textcolor{comment}{//\ Operations}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00129}\mbox{\hyperlink{class_c_grid_cell_check_ad81fa140e892f0deaf3018cfba00e56f}{00129}}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_check_ad81fa140e892f0deaf3018cfba00e56f}{CGridCellCheck::SetCheck}}(BOOL\ bChecked\ \textcolor{comment}{/*=TRUE*/})}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00130}00130\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00131}00131\ \ \ \ \ BOOL\ bTemp\ =\ \mbox{\hyperlink{class_c_grid_cell_check_a83ab92df5f0404b37cad6dbf73eeeb9e}{m\_bChecked}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00132}00132\ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_check_a83ab92df5f0404b37cad6dbf73eeeb9e}{m\_bChecked}}\ =\ bChecked;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00134}00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}.IsRectEmpty())}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00135}00135\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_grid_cell_a8c80181815c77816d538f0450c73b08b}{GetGrid}}()-\/>InvalidateRect(\mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}});}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00137}00137\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00139}00139\ \ \ \ \ \textcolor{keywordflow}{return}\ bTemp;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00140}00140\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00142}\mbox{\hyperlink{class_c_grid_cell_check_a04d530a54f08abf8c82a539f1f379a74}{00142}}\ BOOL\ \mbox{\hyperlink{class_c_grid_cell_check_a04d530a54f08abf8c82a539f1f379a74}{CGridCellCheck::GetCheck}}()}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00143}00143\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_c_grid_cell_check_a83ab92df5f0404b37cad6dbf73eeeb9e}{m\_bChecked}};}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00145}00145\ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00148}00148\ \textcolor{comment}{//\ Protected\ implementation}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00151}00151\ \textcolor{comment}{//\ Returns\ the\ dimensions\ and\ placement\ of\ the\ checkbox\ in\ client\ coords.}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00152}\mbox{\hyperlink{class_c_grid_cell_check_a68c7b5e1d9347e5b417a42f5c8b68bd9}{00152}}\ CRect\ \mbox{\hyperlink{class_c_grid_cell_check_a68c7b5e1d9347e5b417a42f5c8b68bd9}{CGridCellCheck::GetCheckPlacement}}()}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00153}00153\ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00154}00154\ \ \ \ \ \textcolor{keywordtype}{int}\ nWidth\ =\ GetSystemMetrics(SM\_CXHSCROLL);}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00155}00155\ \ \ \ \ CRect\ place\ =\ \mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}\ +\ CSize(\mbox{\hyperlink{class_c_grid_cell_a42645c98ab60ce7f0e850ab96223e244}{GetMargin}}(),\ \mbox{\hyperlink{class_c_grid_cell_a42645c98ab60ce7f0e850ab96223e244}{GetMargin}}());}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00156}00156\ \ \ \ \ place.right\ =\ place.left\ +\ nWidth;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00157}00157\ \ \ \ \ place.bottom\ =\ place.top\ +\ nWidth;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{comment}{/*\ for\ centering}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00160}00160\ \textcolor{comment}{\ \ \ \ int\ nDiff\ =\ (place.Width()\ -\/\ nWidth)/2;}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00161}00161\ \textcolor{comment}{\ \ \ \ if\ (nDiff\ >\ 0)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00162}00162\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00163}00163\ \textcolor{comment}{\ \ \ \ \ \ \ \ place.left\ +=\ nDiff;}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00164}00164\ \textcolor{comment}{\ \ \ \ \ \ \ \ place.right\ =\ place.left\ +\ nWidth;}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00166}00166\ \textcolor{comment}{\ \ \ \ nDiff\ =\ (place.Height()\ -\/\ nWidth)/2;}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00167}00167\ \textcolor{comment}{\ \ \ \ if\ (nDiff\ >\ 0)}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00168}00168\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00169}00169\ \textcolor{comment}{\ \ \ \ \ \ \ \ place.top\ +=\ nDiff;}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00170}00170\ \textcolor{comment}{\ \ \ \ \ \ \ \ place.bottom\ =\ place.top\ +\ nWidth;}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00171}00171\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00172}00172\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}.Height()\ <\ nWidth\ +\ 2\ *\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{class_c_grid_cell_a42645c98ab60ce7f0e850ab96223e244}{GetMargin}}()))}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00175}00175\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ place.top\ =\ \mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}.top\ +\ (\mbox{\hyperlink{class_c_grid_cell_check_abcdd11d4d003133a3ae69cade0462ff7}{m\_Rect}}.Height()\ -\/\ nWidth)\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ place.bottom\ =\ place.top\ +\ nWidth;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00178}00178\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00180}00180\ \ \ \ \ \textcolor{keywordflow}{return}\ place;}
+\DoxyCodeLine{\Hypertarget{_grid_cell_check_8cpp_source_l00181}00181\ \}}
+
+\end{DoxyCode}

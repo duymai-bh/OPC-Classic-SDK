@@ -1,0 +1,103 @@
+\doxysection{SOCmn\+Http.\+h}
+\hypertarget{_s_o_cmn_http_8h_source}{}\label{_s_o_cmn_http_8h_source}\index{core/src/include/SOCmnHttp.h@{core/src/include/SOCmnHttp.h}}
+\mbox{\hyperlink{_s_o_cmn_http_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOCMNHTTP\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOCMNHTTP\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_CMN\_HTTP}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00006}00006\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 4)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00009}00009\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_FAIL\ 4}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00010}00010\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_WS\ \ \ 3}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00011}00011\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_EOR\ \ 2}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00012}00012\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_EOL\ \ 1}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00013}00013\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_OK\ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00015}00015\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_GET\ \ \ \ \ 0x0001}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00016}00016\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_HEAD\ \ \ \ 0x0002}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00017}00017\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_POST\ \ \ \ 0x0004}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00018}00018\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_PUT\ \ \ \ \ 0x0008}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00019}00019\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_TRACE\ \ \ 0x0010}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00020}00020\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_OPTIONS\ 0x0020}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00021}00021\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_METHOD\_DELETE\ \ 0x0030}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_CONTINUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ 100}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00024}00024\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_OK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 200}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00025}00025\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_BAD\_REQUEST\ \ \ \ \ \ \ \ \ \ \ 400}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00026}00026\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_UNAUTHORIZED\ \ \ \ \ \ \ \ \ \ 401}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00027}00027\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_FORBIDDEN\ \ \ \ \ \ \ \ \ \ \ \ \ 403}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00028}00028\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_NOT\_FOUND\ \ \ \ \ \ \ \ \ \ \ \ \ 404}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00029}00029\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_METHOD\_NOT\_ALLOWED\ \ \ \ 405}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00030}00030\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODE\_INTERNAL\_SERVER\_ERROR\ 500}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00032}00032\ \textcolor{preprocessor}{\#define\ SOCMNHTTP\_CODEI\_NOT\_HANDLED\ \ \ \ \ \ \ \ 0xffff}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00034}00034\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00035}00035\ \textcolor{comment}{//\ SOCmnHTTPHandler\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00036}00036\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00038}00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\_EXPORT}}\ SOCmnHTTPHandler\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_cmn_object}{SOCmnObject}}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00039}00039\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00040}00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00041}00041\ \ \ \ \ SOCmnHTTPHandler(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00043}00043\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ skipSpaces(CHAR**\ pCur);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ getToken(DWORD*\ pLen,\ CHAR**\ pToken,\ CHAR**\ pCur);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ getLine(DWORD*\ pLen,\ CHAR**\ pToken,\ CHAR**\ pCur);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00046}00046\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ nextLine(CHAR**\ pCur);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00047}00047\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ endOfRequest(BYTE**\ pData);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00049}00049\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ isHTTPMethod(DWORD\ lenToken,\ CHAR*\ pToken,\ WORD*\ pHTTPMethod);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00050}00050\ \ \ \ \ \textcolor{keyword}{static}\ DWORD\ isHTTPVersion(DWORD\ lenToken,\ CHAR*\ pToken,\ WORD*\ pHTTPVersion);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00052}00052\ \ \ \ \ \textcolor{keyword}{static}\ LPCTSTR\ getHTTPMethodString(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ WORD\ method);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{virtual}\ DWORD\ decodeHTTPRequestHeader(DWORD\ dataSize,\ BYTE*\ pData,\ BYTE**\ pBodyS);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{virtual}\ DWORD\ decodeHTTPResponseHeader(DWORD\ dataSize,\ BYTE*\ pData,\ BYTE**\ pBodyS);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00057}00057\ \ \ \ \ WORD\ getHTTPMethod(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_httpMethod;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00060}00060\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00061}00061\ \ \ \ \ WORD\ getHTTPVersion(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00062}00062\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_httpVersion;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00065}00065\ \ \ \ \ WORD\ getHTTPStatusCode(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00066}00066\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_httpStatusCode;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00069}00069\ \ \ \ \ \textcolor{keywordtype}{void}\ setHTTPStatusCode(WORD\ s)}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00071}00071\ \ \ \ \ \ \ \ \ m\_httpStatusCode\ =\ s;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00073}00073\ \ \ \ \ LPCTSTR\ getURL(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00074}00074\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_httpURL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00077}00077\ \ \ \ \ DWORD\ getContentsLength(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00078}00078\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string_list}{SOCmnStringList}}*\ getAttributeList(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00079}00079\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&m\_attributeList;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00083}00083\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00084}00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~SOCmnHTTPHandler(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00086}00086\ \ \ \ \ WORD\ m\_httpMethod;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00087}00087\ \ \ \ \ WORD\ m\_httpVersion;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00088}00088\ \ \ \ \ WORD\ m\_httpStatusCode;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ m\_httpURL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00090}00090\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string_list}{SOCmnStringList}}\ m\_attributeList;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00091}00091\ \};\ \textcolor{comment}{//\ SOCmnHTTPHandler}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00093}00093\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00095}00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_CMN\_HTTP}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_http_8h_source_l00097}00097\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

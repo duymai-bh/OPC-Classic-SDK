@@ -1,0 +1,25 @@
+var _c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp =
+[
+    [ "MyDaSession", "class_my_da_session.html", "class_my_da_session" ],
+    [ "MyDaSubscription", "class_my_da_subscription.html", "class_my_da_subscription" ],
+    [ "MyDaItem", "class_my_da_item.html", "class_my_da_item" ],
+    [ "_tmain", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a353674c5af92be7fb389265cde4e5e03", null ],
+    [ "if", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a237938e02da81bf18b8849e2ed552044", null ],
+    [ "if", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#aa739dd88870219b56911591d12f50be1", null ],
+    [ "releaseApplication", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#aa42637532672d54390c1218183803bc3", null ],
+    [ "removeDaItem", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a64acb66166ae244a906cc0f55940b410", null ],
+    [ "removeDaItem", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a84b8bff5dd2154d37f89421a1ee6693f", null ],
+    [ "removeDaItem", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#aef1d2e8b07f929d6394611d4b34950fd", null ],
+    [ "removeDaItem", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a5c4980a4be77ccd3e2aa68e68e1f2bdb", null ],
+    [ "removeDaSession", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#addd1fa5aa1de7925fb00a8314a327364", null ],
+    [ "removeDaSubscription", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#ac3c30fc48694e12e17b670f64fa04d55", null ],
+    [ "terminate", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#aadc8cd6234b1bb6b9839d15f9e12c8a3", null ],
+    [ "usage", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#ae8605e2b78cd4a81b6c6b5c30cb7366a", null ],
+    [ "item1", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a2b13d332ec3d6338d840b08524568dc3", null ],
+    [ "item2", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a8342064ec555bcdeb6fd0eb23e66117d", null ],
+    [ "item3", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a185c3e07f02c997d9c2fa797355dce75", null ],
+    [ "item4", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#afb178e4b595811084948b1f53cad2472", null ],
+    [ "return", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a9717e7bbecb906637e86cef6da3d83c2", null ],
+    [ "session", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a6afb8f2ab5c8d0472d60d863b8cb22f5", null ],
+    [ "subscription", "_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp.html#a410b0286462959c4fc2878bc34413c89", null ]
+];

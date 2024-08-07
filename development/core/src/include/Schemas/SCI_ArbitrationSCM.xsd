@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:complexType name="SCI_ArbitrationSCMType">
+    <xs:annotation>
+      <xs:documentation>This type defines the config data required for SCM arbitration type. This includes all devices require an arbitration view as well as devices that are non-channel specific e.g. surface sensors</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SCM_Name" type="string32">
+        <xs:annotation>
+          <xs:documentation>Identifier for SCM (Max 32 characters).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCM_NameA" type="string32">
+        <xs:annotation>
+          <xs:documentation>Identifier for SCM A (Max 32 characters).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SCM_NameB" type="string32">
+        <xs:annotation>
+          <xs:documentation>Identifier for SCM B (Max 32 characters).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="XML_Config_Version" type="XML_VersionType">
+        <xs:annotation>
+          <xs:documentation>Manually Entered Version Number for XML</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Surface" type="SCI_ArbitrationSCMSurfaceType">
+        <xs:annotation>
+          <xs:documentation>Config data for the SCM required by the surface only such as ATE.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

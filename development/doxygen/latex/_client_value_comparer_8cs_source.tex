@@ -1,0 +1,100 @@
+\doxysection{Client\+Value\+Comparer.\+cs}
+\hypertarget{_client_value_comparer_8cs_source}{}\label{_client_value_comparer_8cs_source}\index{NET/src/client/Control/ClientValueComparer.cs@{NET/src/client/Control/ClientValueComparer.cs}}
+\mbox{\hyperlink{_client_value_comparer_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Collections;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Specialized;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Diagnostics;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client}{Softing.OPCToolbox.Client}};}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00009}00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control}{Softing.OPCToolbox.Client.Control}}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00010}00010\ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00014}00014\ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keyword}{class\ }ValueComparer\ :\ IComparer}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00015}00015\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00016}00016\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ PropertyDescriptor\ m\_SortProperty;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ ListSortDirection\ m\_SortDirection;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00023}00023\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00025}00025\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ ValueComparer(PropertyDescriptor\ SortProperty,\ ListSortDirection\ direction)}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SortProperty\ =\ SortProperty;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SortDirection\ =\ direction;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ Compare(\textcolor{keywordtype}{object}\ x,\ \textcolor{keywordtype}{object}\ y)}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((!(x\ is\ ControlDaItem)))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Unexpected\ Argument.\ \ Arguments\ must\ be\ of\ Type\ ControlDaItem"{}},\ \textcolor{stringliteral}{"{}x"{}});}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((!(y\ is\ ControlDaItem)))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Unexpected\ Argument.\ \ Arguments\ must\ be\ of\ Type\ ControlDaItem"{}},\ \textcolor{stringliteral}{"{}y"{}});}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ CompareProperties(((ControlDaItem)\ (x)),\ ((ControlDaItem)\ (y)));}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00049}00049\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00051}00051\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ }\textcolor{comment}{//PrivateMethods}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00052}00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{int}\ CompareProperties(ControlDaItem\ x,\ ControlDaItem\ y)}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ directionModifier\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((m\_SortDirection\ ==\ ListSortDirection.Ascending))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ directionModifier\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ directionModifier\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ ==\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ -\/1*directionModifier;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((y\ ==\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ 1*directionModifier;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((System.Convert.ToDouble(m\_SortProperty.GetValue(x))\ <\ System.Convert.ToDouble(m\_SortProperty.GetValue(y))))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ -\/1*directionModifier;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((System.Convert.ToDouble(m\_SortProperty.GetValue(x))\ >\ System.Convert.ToDouble(m\_SortProperty.GetValue(y))))}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ 1*directionModifier;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ System.Collections.IComparer.Compare(\textcolor{keywordtype}{object}\ x,\ \textcolor{keywordtype}{object}\ y)}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Compare(x,\ y);}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00095}00095\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_value_comparer_8cs_source_l00097}00097\ \}}
+
+\end{DoxyCode}

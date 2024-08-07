@@ -1,0 +1,212 @@
+\doxysection{Options\+Dialog.\+cs}
+\hypertarget{_options_dialog_8cs_source}{}\label{_options_dialog_8cs_source}\index{NET/samples/client/Demo Client/CS/DialogWindows/OptionsDialog.cs@{NET/samples/client/Demo Client/CS/DialogWindows/OptionsDialog.cs}}
+\mbox{\hyperlink{_options_dialog_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Collections.Generic;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Drawing;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Text;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00009}00009\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_demo_client_1_1_helper}{DemoClient.Helper}};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00011}\mbox{\hyperlink{namespace_demo_client_1_1_dialog_windows}{00011}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_demo_client_1_1_dialog_windows}{DemoClient.DialogWindows}}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00012}00012\ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00013}\mbox{\hyperlink{namespace_demo_client_1_1_dialog_windows_a70070676357e5582d98ff599b4985b6e}{00013}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_demo_client_1_1_dialog_windows_a70070676357e5582d98ff599b4985b6e}{UpdateTraceWindowHandler}}(\textcolor{keywordtype}{bool}\ changeTraceHandler,\ \textcolor{keywordtype}{bool}\ sortDa,\ \textcolor{keywordtype}{bool}\ sortAe);}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00015}00015\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{partial\ class\ }\mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog}{OptionsDialog}}\ :\ Form}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00016}00016\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00017}00017\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Members}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ canClose\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ saveChanges\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00022}00022\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00024}00024\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Properties}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ showTrace\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00027}\mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_a02f2d6f2f33c92bef5ab602e3ac3e6ec}{00027}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_a02f2d6f2f33c92bef5ab602e3ac3e6ec}{ShowTrace}}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00028}00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ showTrace;\ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ showTrace\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ changeTraceOptions\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00034}\mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_ab51eb5d3fc82138b88506e7193fcd1c6}{00034}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_ab51eb5d3fc82138b88506e7193fcd1c6}{ChangeTraceOptions}}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00035}00035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ changeTraceOptions;\ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ changeTraceOptions\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00038}00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00040}00040\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00042}00042\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Delegates}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00044}\mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_ab5b9273c75af165a3e4adaf91acdb072}{00044}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ \mbox{\hyperlink{namespace_demo_client_1_1_dialog_windows_a70070676357e5582d98ff599b4985b6e}{UpdateTraceWindowHandler}}\ \mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_ab5b9273c75af165a3e4adaf91acdb072}{UpdateTraceWindow}};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00046}00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00048}00048\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ and\ Protected\ Methods}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ LoadOptions()}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00054}00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnTimeOnly.Checked\ =\ Helper.Options.PureTime;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnWithDate.Checked\ =\ Helper.Options.WithDateTime;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnPure.Checked\ =\ Helper.Options.PureItemValue;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnWithVT.Checked\ =\ Helper.Options.VTItemValue;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnDecimal.Checked\ =\ Helper.Options.DecItemValue;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnHex.Checked\ =\ Helper.Options.HexItemValue;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnDaOn.Checked\ =\ Helper.Options.SortDa;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnDaOff.Checked\ =\ !Helper.Options.SortDa;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnAeOn.Checked\ =\ Helper.Options.SortAe;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnAeOff.Checked\ =\ !Helper.Options.SortAe;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnConOn.Checked\ =\ Helper.Options.ConnMonitor;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnConOff.Checked\ =\ !Helper.Options.ConnMonitor;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnTraceOn.Checked\ =\ Helper.Options.TraceCalls;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnTraceOff.Checked\ =\ !Helper.Options.TraceCalls;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fill\ Comboboxes}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ cbErrors.DataSource\ =\ System.Enum.GetNames(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}));}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ cbErrors.SelectedItem\ =\ Helper.Options.Error.ToString();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ cbWarnings.DataSource\ =\ System.Enum.GetNames(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}));}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ cbWarnings.SelectedItem\ =\ Helper.Options.Warning.ToString();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ cbInfos.DataSource\ =\ System.Enum.GetNames(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}));}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ cbInfos.SelectedItem\ =\ Helper.Options.Info.ToString();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ cbDebug.DataSource\ =\ System.Enum.GetNames(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}));}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ cbDebug.SelectedItem\ =\ Helper.Options.Debug.ToString();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ txtTraceFile.Text\ =\ Helper.Options.TraceFile;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SaveChanges()}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.PureTime\ =\ rdBtnTimeOnly.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.WithDateTime\ =\ rdBtnWithDate.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.PureItemValue\ =\ rdBtnPure.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.VTItemValue\ =\ rdBtnWithVT.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.DecItemValue\ =\ rdBtnDecimal.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.HexItemValue\ =\ rdBtnHex.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ sortDaChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ sortAeChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Helper.Options.SortDa\ !=\ rdBtnDaOn.Checked)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortDaChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.SortDa\ =\ rdBtnDaOn.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Helper.Options.SortAe\ !=\ rdBtnAeOn.Checked)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sortAeChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.SortAe\ =\ rdBtnAeOn.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnConOn.Checked\ =\ Helper.Options.ConnMonitor;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ rdBtnConOff.Checked\ =\ !Helper.Options.ConnMonitor;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.TraceCalls\ =\ rdBtnTraceOn.Checked;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Helper.Options.TraceCalls)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showTrace\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ showTrace\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fill\ Comboboxes}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbErrors.SelectedItem.ToString())\ !=\ Helper.Options.Error\ ||}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbWarnings.SelectedItem.ToString())\ !=\ Helper.Options.Warning\ ||}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbInfos.SelectedItem.ToString())\ !=\ Helper.Options.Info\ ||}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbDebug.SelectedItem.ToString())\ !=\ Helper.Options.Debug)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ changeTraceOptions\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.Error\ =\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbErrors.SelectedItem.ToString());}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.Warning\ =\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbWarnings.SelectedItem.ToString());}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.Info\ =\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbInfos.SelectedItem.ToString());}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.Debug\ =\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}})System.Enum.Parse(typeof(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}),\ cbDebug.SelectedItem.ToString());\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ changeTraceOptions\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Helper.Options.TraceFile\ !=\ txtTraceFile.Text)\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ changeTraceOptions\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Helper.Options.TraceFile\ =\ txtTraceFile.Text;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_ab5b9273c75af165a3e4adaf91acdb072}{UpdateTraceWindow}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_ab5b9273c75af165a3e4adaf91acdb072}{UpdateTraceWindow}}(changeTraceOptions,\ sortDaChanged,\ sortAeChanged);}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00155}00155\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00157}00157\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00159}00159\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Constructor}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00161}\mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_a0d89b379103092f68b3a547d81f2c5c5}{00161}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_demo_client_1_1_dialog_windows_1_1_options_dialog_a0d89b379103092f68b3a547d81f2c5c5}{OptionsDialog}}()}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ InitializeComponent();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00166}00166\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00168}00168\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00170}00170\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Event\ Handlers}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OptionsDialog\_Load(\textcolor{keywordtype}{object}\ sender,\ EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ LoadOptions();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ChangesMade(\textcolor{keywordtype}{object}\ sender,\ EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ saveChanges\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ buttonOk\_Click(\textcolor{keywordtype}{object}\ sender,\ EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (saveChanges)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveChanges();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ saveChanges\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ canClose\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ btnApply\_Click(\textcolor{keywordtype}{object}\ sender,\ EventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00211}00211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (saveChanges)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveChanges();}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ saveChanges\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ canClose\_\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ this.DialogResult\ =\ DialogResult.OK;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00220}00220\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ OptionsDialog\_FormClosing(\textcolor{keywordtype}{object}\ sender,\ FormClosingEventArgs\ e)}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ e.Cancel\ =\ !canClose\_;}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ canClose\_\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00232}00232\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00234}00234\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_options_dialog_8cs_source_l00235}00235\ \}}
+
+\end{DoxyCode}

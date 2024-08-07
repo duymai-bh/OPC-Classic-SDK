@@ -1,0 +1,65 @@
+\doxysection{md5.\+h}
+\hypertarget{md5_8h_source}{}\label{md5_8h_source}\index{core/src/OTB/private/md5.h@{core/src/OTB/private/md5.h}}
+\mbox{\hyperlink{md5_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00001}00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00002}00002\ \textcolor{comment}{**********************************************************************}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00003}00003\ \textcolor{comment}{**\ md5.h\ -\/-\/\ Header\ file\ for\ implementation\ of\ MD5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00004}00004\ \textcolor{comment}{**\ RSA\ Data\ Security,\ Inc.\ MD5\ Message\ Digest\ Algorithm\ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00005}00005\ \textcolor{comment}{**\ Created:\ 2/17/90\ RLR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00006}00006\ \textcolor{comment}{**\ Revised:\ 12/27/90\ SRD,AJ,BSK,JT\ Reference\ C\ version\ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00007}00007\ \textcolor{comment}{**\ Revised\ (for\ MD5):\ RLR\ 4/27/91\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00008}00008\ \textcolor{comment}{**\ \ \ -\/-\/\ G\ modified\ to\ have\ y\&\string~z\ instead\ of\ y\&z\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00009}00009\ \textcolor{comment}{**\ \ \ -\/-\/\ FF,\ GG,\ HH\ modified\ to\ add\ in\ last\ register\ done\ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00010}00010\ \textcolor{comment}{**\ \ \ -\/-\/\ Access\ pattern:\ round\ 2\ works\ mod\ 5,\ round\ 3\ works\ mod\ 3\ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00011}00011\ \textcolor{comment}{**\ \ \ -\/-\/\ distinct\ additive\ constant\ for\ each\ step\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00012}00012\ \textcolor{comment}{**\ \ \ -\/-\/\ round\ 4\ added,\ working\ mod\ 7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00013}00013\ \textcolor{comment}{**********************************************************************}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00014}00014\ \textcolor{comment}{*/}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00016}00016\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00017}00017\ \textcolor{comment}{\ **********************************************************************}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00018}00018\ \textcolor{comment}{\ **\ Copyright\ (C)\ 1990,\ RSA\ Data\ Security,\ Inc.\ All\ rights\ reserved.\ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00019}00019\ \textcolor{comment}{\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00020}00020\ \textcolor{comment}{\ **\ License\ to\ copy\ and\ use\ this\ software\ is\ granted\ provided\ that\ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00021}00021\ \textcolor{comment}{\ **\ it\ is\ identified\ as\ the\ "{}RSA\ Data\ Security,\ Inc.\ MD5\ Message\ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00022}00022\ \textcolor{comment}{\ **\ Digest\ Algorithm"{}\ in\ all\ material\ mentioning\ or\ referencing\ this\ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00023}00023\ \textcolor{comment}{\ **\ software\ or\ this\ function.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00024}00024\ \textcolor{comment}{\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00025}00025\ \textcolor{comment}{\ **\ License\ is\ also\ granted\ to\ make\ and\ use\ derivative\ works\ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00026}00026\ \textcolor{comment}{\ **\ provided\ that\ such\ works\ are\ identified\ as\ "{}derived\ from\ the\ RSA\ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00027}00027\ \textcolor{comment}{\ **\ Data\ Security,\ Inc.\ MD5\ Message\ Digest\ Algorithm"{}\ in\ all\ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00028}00028\ \textcolor{comment}{\ **\ material\ mentioning\ or\ referencing\ the\ derived\ work.\ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00029}00029\ \textcolor{comment}{\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00030}00030\ \textcolor{comment}{\ **\ RSA\ Data\ Security,\ Inc.\ makes\ no\ representations\ concerning\ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00031}00031\ \textcolor{comment}{\ **\ either\ the\ merchantability\ of\ this\ software\ or\ the\ suitability\ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00032}00032\ \textcolor{comment}{\ **\ of\ this\ software\ for\ any\ particular\ purpose.\ \ It\ is\ provided\ "{}as\ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00033}00033\ \textcolor{comment}{\ **\ is"{}\ without\ express\ or\ implied\ warranty\ of\ any\ kind.\ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00034}00034\ \textcolor{comment}{\ **\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00035}00035\ \textcolor{comment}{\ **\ These\ notices\ must\ be\ retained\ in\ any\ copies\ of\ any\ part\ of\ this\ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00036}00036\ \textcolor{comment}{\ **\ documentation\ and/or\ software.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ **}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00037}00037\ \textcolor{comment}{\ **********************************************************************}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00038}00038\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00040}00040\ \textcolor{preprocessor}{\#ifndef\ \_MD5\_H\_}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00041}00041\ \textcolor{preprocessor}{\#define\ \_MD5\_H\_}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00043}00043\ \textcolor{comment}{/*\ typedef\ a\ 32\ bit\ type\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00044}\mbox{\hyperlink{md5_8h_acbcd3749ac28f52e756e22d22022cae5}{00044}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{md5_8h_acbcd3749ac28f52e756e22d22022cae5}{UINT4}};}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00046}00046\ \textcolor{comment}{/*\ Data\ structure\ for\ MD5\ (Message\ Digest)\ computation\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00047}\mbox{\hyperlink{struct_m_d5___c_t_x}{00047}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00048}00048\ \{}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00049}\mbox{\hyperlink{struct_m_d5___c_t_x_a39a2cdb3b8d9d8ef30ab23957f8abd1a}{00049}}\ \ \ \ \ \mbox{\hyperlink{md5_8h_acbcd3749ac28f52e756e22d22022cae5}{UINT4}}\ i[2];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ number\ of\ \_bits\_\ handled\ mod\ 2\string^64\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00050}\mbox{\hyperlink{struct_m_d5___c_t_x_ab4197e1536a9feac37e6ed928e6cbb3c}{00050}}\ \ \ \ \ \mbox{\hyperlink{md5_8h_acbcd3749ac28f52e756e22d22022cae5}{UINT4}}\ buf[4];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ scratch\ buffer\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00051}\mbox{\hyperlink{struct_m_d5___c_t_x_ad7c0e27c818a56e6601d9cf0d0a785a0}{00051}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ in[64];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ input\ buffer\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00052}\mbox{\hyperlink{struct_m_d5___c_t_x_aad4ff5a61733cde2709a43b2485a0063}{00052}}\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ digest[16];\ \ \ \ \ \textcolor{comment}{/*\ actual\ digest\ after\ MD5Final\ call\ */}}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00053}00053\ \}\ \mbox{\hyperlink{struct_m_d5___c_t_x}{MD5\_CTX}};}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00055}\mbox{\hyperlink{md5_8h_aca43d61ebfbaa3592402fb594c9fe988}{00055}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{md5_8h_aca43d61ebfbaa3592402fb594c9fe988}{MD5Init}}();}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00056}\mbox{\hyperlink{md5_8h_aad3619732d6114491c89b9792a0fd470}{00056}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{md5_8h_aad3619732d6114491c89b9792a0fd470}{MD5Update}}();}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00057}\mbox{\hyperlink{md5_8h_a0df759436dfc77299d67a4fc33591b62}{00057}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{md5_8h_a0df759436dfc77299d67a4fc33591b62}{MD5Final}}();}
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{md5_8h_source_l00059}00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MD5\_H\_}}
+
+\end{DoxyCode}

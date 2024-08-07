@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v
+10 (http://www.altova.com) by Tim Dyer (Vetco Gray Controls Limited) -->
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="HippsProfileSampleCountType">
+		<xs:annotation>
+			<xs:documentation>Maximum number of samples to be stored within HIPPS Profile</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="uint16">
+			<xs:minInclusive value="320">
+				<xs:annotation>
+					<xs:documentation>The minimum number of samples, 320. (Historical product value, default) </xs:documentation>
+				</xs:annotation>
+			</xs:minInclusive>
+			<xs:maxInclusive value="5000">
+				<xs:annotation>
+					<xs:documentation>The maximum number of samples, 5000. </xs:documentation>
+				</xs:annotation>
+			</xs:maxInclusive>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:complexType name="HippsProfilerCfgType">
+		<xs:annotation>
+			<xs:documentation>Parent definition for HIPPS Profiler Configuration</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+            <!-- Default is 172.16.100.2 -->
+            <xs:element name="ProducerId" type="hex32" default="0xAC106402">
+                <xs:annotation>
+                    <xs:documentation>Producer Id to be used when requesting data from the EGD Gateway, typically IPv4 address in HEX32 format, can be an integer only.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ExchangeId" type="EgdStaticExchangeIdType" default="3"> 
+                <xs:annotation>
+                    <xs:documentation>EGD Exchange ID used when requesting data from the EgdGateway</xs:documentation>
+                </xs:annotation>
+            </xs:element>        
+            <xs:element name="MaxProfileSamples" type="HippsProfileSampleCountType" default="320"> 
+                <xs:annotation>
+                    <xs:documentation>Maximum number of data sampels to be stored within the HIPPS profile.</xs:documentation>
+                </xs:annotation>
+            </xs:element>        
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

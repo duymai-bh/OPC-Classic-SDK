@@ -1,0 +1,186 @@
+\doxysection{Console.\+cs}
+\hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source}{}\label{client_2_d_a_get_properties_2_c_s_2_console_8cs_source}\index{NET/samples/client/DAGetProperties/CS/Console.cs@{NET/samples/client/DAGetProperties/CS/Console.cs}}
+\mbox{\hyperlink{client_2_d_a_get_properties_2_c_s_2_console_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.Threading;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox}{Softing.OPCToolbox}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00006}\mbox{\hyperlink{namespace_d_a_get_properties}{00006}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_d_a_get_properties}{DAGetProperties}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00008}\mbox{\hyperlink{class_d_a_get_properties_1_1_console}{00008}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_console}{Console}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00009}00009\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00010}00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Attributes}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00013}00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ signals\ application\ should\ terminate}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00014}\mbox{\hyperlink{class_d_a_get_properties_1_1_console_ad8194a64ad75b25d0ca723fde154cefc}{00014}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ AutoResetEvent\ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_ad8194a64ad75b25d0ca723fde154cefc}{EndEvent}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00015}\mbox{\hyperlink{class_d_a_get_properties_1_1_console_a9a238ea8fc05d981198cb2e56a442c2a}{00015}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_a9a238ea8fc05d981198cb2e56a442c2a}{End}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00017}00017\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00019}00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00020}00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client}{OpcClient}}\ m\_opcClient\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00023}00023\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00025}00025\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Properties}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00028}\mbox{\hyperlink{class_d_a_get_properties_1_1_console_a4b2255a6bc6a6db6026cfd6b2132cff0}{00028}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client}{OpcClient}}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client}{OpcClient}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_opcClient;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00034}00034\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ OpcClient}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00037}00037\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00039}00039\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00041}\mbox{\hyperlink{class_d_a_get_properties_1_1_console_a08ad2df166a868d7d257d3ed4b39644f}{00041}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_a08ad2df166a868d7d257d3ed4b39644f}{CreateOpcClient}}()}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00042}00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_opcClient\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_opcClient\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_a4b2255a6bc6a6db6026cfd6b2132cff0}{OpcClient}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00047}00047\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ CreateOpcClient}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00050}00050\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00052}\mbox{\hyperlink{class_d_a_get_properties_1_1_console_a2111d2e22133a0f6294643386e51e883}{00052}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_a2111d2e22133a0f6294643386e51e883}{Usage}}()}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00053}00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(\textcolor{stringliteral}{"{}Usage:\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'a\(\backslash\)'\ or\ \(\backslash\)'A\(\backslash\)'\ and\ ENTER\ to\ asynchronously\ get\ properties\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'s\(\backslash\)'\ or\ \(\backslash\)'S\(\backslash\)'\ and\ ENTER\ to\ synchronously\ get\ properties\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'u\(\backslash\)'\ or\ \(\backslash\)'U\(\backslash\)'\ and\ ENTER\ to\ display\ this\ usage\ information\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}Press\ \(\backslash\)'e\(\backslash\)'\ or\ \(\backslash\)'q\(\backslash\)'\ and\ ENTER\ to\ exit\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.Write(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00063}\mbox{\hyperlink{class_d_a_get_properties_1_1_console_aa557b060c8b661e2e4eef2c207458992}{00063}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_aa557b060c8b661e2e4eef2c207458992}{Main}}(String[]\ args)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ (int)\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_ad8507e08d02bc53fb3ce2de2700cc442}{EnumResultCode}}.S\_OK;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_ad8194a64ad75b25d0ca723fde154cefc}{EndEvent}}\ =\ \textcolor{keyword}{new}\ AutoResetEvent(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}\ console\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_console}{Console}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MyWin32.HandlerRoutine\ handlerRoutine\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a28081cc8586f7cb07a3b39eea6bb7f5e}{HandlerRoutine}}(\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a37ddb9727c80dd57763aec43d8979d02}{Handler}});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_abbf1d818c77846894750a868adc62d66}{SetConsoleCtrlHandler}}(}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handlerRoutine,}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ console.\mbox{\hyperlink{class_d_a_get_properties_1_1_console_a08ad2df166a868d7d257d3ed4b39644f}{CreateOpcClient}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gets\ the\ OpcClient\ instance}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client}{OpcClient}}\ client\ =\ console.\mbox{\hyperlink{class_d_a_get_properties_1_1_console_a4b2255a6bc6a6db6026cfd6b2132cff0}{OpcClient}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ initialize\ the\ client\ instance}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code}{ResultCode}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_result_code_a8cfb05fe093d9555372d06a6b4bf18ab}{SUCCEEDED}}(client.\mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client_a327273200e825a387d3918e781fd9c80}{Initialize}}()))}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ client\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ initialize\ the\ DA\ client\ simulation}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ |=\ m\_opcClient.\mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client_aff75e273faa02af9b6b94f3bc1e5488d}{InitializeDaObjects}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_a2111d2e22133a0f6294643386e51e883}{Usage}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ end\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{namespace_console}{Console}}.End\ \&\&\ !end)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ read\ =\ System.Console.ReadLine();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (read)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}A"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}a"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ client.\mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client_a54858e42ba867d720c03e1d37da0590f}{GetPropertiesAsync}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}S"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}s"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ client.\mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client_aff857204b2aed906213f46bc94ed96b4}{GetPropertiesSync}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}E"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}e"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}Q"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}q"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}U"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}u"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}?"{}}:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_console_a2111d2e22133a0f6294643386e51e883}{Usage}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ while}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ client.\mbox{\hyperlink{class_d_a_get_properties_1_1_opc_client_a6bc5661d7a8ac1ab571859c7fee923a5}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ client\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a37ddb9727c80dd57763aec43d8979d02}{Handler}}(\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{MyWin32}}.\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}.CTRL\_CLOSE\_EVENT);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.Console.WriteLine(exc.ToString());}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ try...catch}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Main}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00131}00131\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ Console}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00133}\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{00133}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32}{MyWin32}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00134}00134\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Declare\ the\ SetConsoleCtrlHandler\ function\ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ external\ and\ receiving\ a\ delegate.\ \ \ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ [DllImport(\textcolor{stringliteral}{"{}Kernel32"{}})]}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00138}\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_abbf1d818c77846894750a868adc62d66}{00138}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{static}\ \textcolor{keyword}{extern}\ Boolean\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_abbf1d818c77846894750a868adc62d66}{SetConsoleCtrlHandler}}(}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a28081cc8586f7cb07a3b39eea6bb7f5e}{HandlerRoutine}}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a37ddb9727c80dd57763aec43d8979d02}{Handler}},}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ Boolean\ Add);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ delegate\ type\ to\ be\ used\ as\ the\ handler\ routine\ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ SetConsoleCtrlHandler.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00144}\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a28081cc8586f7cb07a3b39eea6bb7f5e}{00144}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ delegate\ Boolean\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a28081cc8586f7cb07a3b39eea6bb7f5e}{HandlerRoutine}}(\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}\ CtrlType);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ An\ enumerated\ type\ for\ the\ control\ messages\ }}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sent\ to\ the\ handler\ routine.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00148}\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{00148}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0a9c6d7b9a3ae52a2eeba4d5b97b424b37}{CTRL\_C\_EVENT}}\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0a0bf53e626d3d52325891a523090278fc}{CTRL\_BREAK\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0a9b5bdcaf2715bc81f42fcb6315749407}{CTRL\_CLOSE\_EVENT}},}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0a18d91e2de9d5f3a043ae27857f46f130}{CTRL\_LOGOFF\_EVENT}}\ =\ 5,}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0abd633c0d9cebc1b835bea719de3ed93d}{CTRL\_SHUTDOWN\_EVENT}}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00155}00155\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ enum\ CtrlTypes}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ private\ static\ handler\ function.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00158}\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a37ddb9727c80dd57763aec43d8979d02}{00158}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{public}\ Boolean\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_a37ddb9727c80dd57763aec43d8979d02}{Handler}}(\mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}\ CtrlType)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ message\ =\ \textcolor{keywordtype}{string}.Empty;}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ switch\ to\ handle\ the\ event\ type.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (CtrlType)}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}.CTRL\_C\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}.CTRL\_BREAK\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}.CTRL\_CLOSE\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}.CTRL\_LOGOFF\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{class_d_a_get_properties_1_1_my_win32_ad047fbd9b1b6a6be6e3aa7aa4493d6a0}{CtrlTypes}}.CTRL\_SHUTDOWN\_EVENT:}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ \textcolor{stringliteral}{"{}Stop\ execution,\ since\ CTRL\ command!"{}};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_console}{Console}}.EndEvent.Set();}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Console.End\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ switch}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ interop\ to\ display\ a\ message\ for\ the\ type\ of\ event.}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ System.\mbox{\hyperlink{class_console_1_1_console}{Console}}.WriteLine(message);}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ Handler}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00179}00179\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ class\ Console}}
+\DoxyCodeLine{\Hypertarget{client_2_d_a_get_properties_2_c_s_2_console_8cs_source_l00180}00180\ \}\ \ \ \textcolor{comment}{//\ \ end\ namespace}}
+
+\end{DoxyCode}

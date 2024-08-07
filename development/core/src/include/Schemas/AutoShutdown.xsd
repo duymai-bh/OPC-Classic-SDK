@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--$Author$-->
+<!--$Date$-->
+<!--$Revision$-->
+<!--$URL$-->
+<!--$Id$-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:simpleType name="SemDacListIDType">
+        <xs:annotation>
+            <xs:documentation>Define a valid SemDacListID number</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="1">
+                <xs:annotation>
+                    <xs:documentation>The minimum ID number of SemDacListID.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="255">
+                <xs:annotation>
+                    <xs:documentation>The maximum ID number of SemDacListID.</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ShutdownStepCountType">
+        <xs:annotation>
+            <xs:documentation>Define a valid Shutdown Steps Count value</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="1">
+                <xs:annotation>
+                    <xs:documentation>The minimum number of shutdown steps.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="32">
+                <xs:annotation>
+                    <xs:documentation>The maximum number of shutdown steps.</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DacTagIndexType">
+        <xs:annotation>
+            <xs:documentation>Define a valid range for Dac Tag index value</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="1">
+                <xs:annotation>
+                    <xs:documentation>The minimum value of the Dac tag index in SemDacList.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="255">
+                <xs:annotation>
+                    <xs:documentation>The maximum value of the Dac tag index in SemDacList.</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+  
+    <xs:simpleType name="BitOffsetType">
+        <xs:annotation>
+            <xs:documentation>Define a valid range for Bit offset</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="0">
+                <xs:annotation>
+                    <xs:documentation>The minimum value of the Bit offset value.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="9">
+                <xs:annotation>
+                    <xs:documentation>The maximum value of the Bit offset value.</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="DSMCardSlotType">
+        <xs:annotation>
+            <xs:documentation>Define a valid DSM Card Slot value</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="1">
+                <xs:annotation>
+                    <xs:documentation>The minimum value of DSM card slot.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="18">
+                <xs:annotation>
+                    <xs:documentation>The maximum value of DSM card slot.</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ValveDirectionType">
+        <xs:annotation>
+            <xs:documentation>Define a valid valve direction value</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="VALVE_DIRECTION_Undefined">
+                <xs:annotation>
+                    <xs:documentation>0-Undefined. Must not use</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VALVE_DIRECTION_AwrtB_PRESSURE">
+                <xs:annotation>
+                    <xs:documentation>1-AwrtB (Pressure).</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="VALVE_DIRECTION_BwrtA_VENT">
+                <xs:annotation>
+                    <xs:documentation>2-BwrtA (Vent)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ShutdownBootStateType">
+        <xs:annotation>
+            <xs:documentation>Define a valid shutdown state for bootup</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="SHUTDOWN_STATE_UNARM">
+                <xs:annotation>
+                    <xs:documentation>0- Default state UNARM </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SHUTDOWN_STATE_ARM">
+                <xs:annotation>
+                    <xs:documentation>1-Default state ARM.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AbortOnErrorType">
+        <xs:annotation>
+            <xs:documentation>Define a valid range for Abort on error config</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="ABORT_ON_ERROR_DISABLE">
+                <xs:annotation>
+                    <xs:documentation>0- Abort on error disabled </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ABORT_ON_ERROR_ENABLE">
+                <xs:annotation>
+                    <xs:documentation>1- Abort on error enabled.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DsmInterlockType">
+        <xs:annotation>
+            <xs:documentation>Defines DSM interlock configuration</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="DSM_INTERLOCK_OPTION_DISABLE">
+                <xs:annotation>
+                    <xs:documentation>0- Dcv Channels are NOT interlocked for interface while ASD running. </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DSM_INTERLOCK_OPTION_ENABLE">
+                <xs:annotation>
+                    <xs:documentation>1- Dcv Channels are interlocked for interface while ASD running.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TripOnCommsLossType">
+        <xs:annotation>
+            <xs:documentation>Define a valid range for Trip on Communication loss only config</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="TRIP_ON_COMMS_LOSS_DISABLE">
+                <xs:annotation>
+                    <xs:documentation>0- Trip on comms loss disabled </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="TRIP_ON_COMMS_LOSS_ENABLE">
+                <xs:annotation>
+                    <xs:documentation>1- Trip on comms loss enable.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ResumeOnCommsLossActionType">
+        <xs:annotation>
+            <xs:documentation>Define a valid range for Step to resume on comms loss action when paused</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="RESUME_FROM_LAST_STEP">
+                <xs:annotation>
+                    <xs:documentation>0- Resume from Last Step Where Shutdown Sequence Was Paused </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RESUME_FROM_BEGINNING">
+                <xs:annotation>
+                    <xs:documentation>1- Resume from Beginning of the Shutdown Sequence.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TriggerDataTypeType">
+        <xs:annotation>
+            <xs:documentation>Define data type of the trigger input</xs:documentation>
+            <xs:documentation>Application to use this information to read number of bytes from SemDacList</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="string32">
+            <xs:enumeration value="DATA_TYPE_UINT8">
+                <xs:annotation>
+                    <xs:documentation>0 - Data type UINT8 (1 Byte)</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATA_TYPE_UINT16">
+                <xs:annotation>
+                    <xs:documentation>1 - Data type UINT16 (2 Bytes).</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATA_TYPE_UINT32">
+                <xs:annotation>
+                    <xs:documentation>2 - Data type UINT32 (4 Bytes).</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATA_TYPE_REAL32">
+                <xs:annotation>
+                    <xs:documentation>3 - Data type REAL32/Float Single point precision (4 Bytes).</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="DATA_TYPE_REAL64">
+                <xs:annotation>
+                    <xs:documentation>4 - Data type REAL64/Float double point precision i.e., Double (8 Bytes).</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DCVChannelNumberType">
+        <xs:annotation>
+            <xs:documentation>Define a valid DCV Channel number value</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="1">
+                <xs:annotation>
+                    <xs:documentation>The minimum value of DCV channel number.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="16">
+                <xs:annotation>
+                    <xs:documentation>The maximum value of DCV channel number</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DCVSolDurationType">
+        <xs:annotation>
+            <xs:documentation>Define a valid DCV solenoid duration value (resolution 10msec)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint16">
+            <xs:minInclusive value="5">
+                <xs:annotation>
+                    <xs:documentation>The minimum value of DCV solenoid duration value.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="12000">
+                <xs:annotation>
+                    <xs:documentation>The maximum value of DCV solenoid duration value</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="TripDelayType">
+        <xs:annotation>
+            <xs:documentation>Define a valid range for trip delay period</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="uint8">
+            <xs:minInclusive value="0">
+                <xs:annotation>
+                    <xs:documentation>The minimum allowable trip delay preiod in Secs.</xs:documentation>
+                </xs:annotation>
+            </xs:minInclusive>
+            <xs:maxInclusive value="5">
+                <xs:annotation>
+                    <xs:documentation>The maximum allowable trip delay preiod in Secs</xs:documentation>
+                </xs:annotation>
+            </xs:maxInclusive>
+        </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ChokeAbortActionDataType">
+    <xs:annotation>
+        <xs:documentation>Structure for data to abort the choke operation</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+        <xs:element name="EventIndex" type="uint8" default="1">
+                <xs:annotation>
+                    <xs:documentation>Index number in SemDacList for Choke latest event number.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DsmCardSlot" type="DSMCardSlotType" default="1">
+                <xs:annotation>
+                    <xs:documentation>Slot number of the DSM card to which this choke is connected.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ShutdownStepCommandType">
+    <xs:annotation>
+        <xs:documentation>Structure for one shutdown step command</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+        <xs:element name="StepWaitTime" type="uint16" default="30">
+                <xs:annotation>
+                    <xs:documentation>Shutdown Step wait time (Sec) to execute the command.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ValveDirection" type="ValveDirectionType" default="VALVE_DIRECTION_BwrtA_VENT">
+                <xs:annotation>
+                    <xs:documentation>Valve Direction: 1-AwrtB (Pressure); 2-BwrtA (Vent).</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DSMCardSlot" type="DSMCardSlotType" default="1">
+                <xs:annotation>
+                    <xs:documentation>DSM Card Slot number</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DCVChNumber" type="DCVChannelNumberType" default="1">
+                <xs:annotation>
+                    <xs:documentation>DCV Channel Number</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DCVSolDuration" type="DCVSolDurationType" default="50">
+                <xs:annotation>
+                    <xs:documentation>DCV Solenoid Duration (Resolution 10msec)</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AutoShutdownCfgType">
+    <xs:annotation>
+        <xs:documentation>Autonomous Shutdown module configuration parameters.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+        <xs:element name="SemDacListID" type="SemDacListIDType" default="1">
+                <xs:annotation>
+                    <xs:documentation>SemDacList ID in which trip input is configured.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputIndex" type="DacTagIndexType"  default="1">
+                <xs:annotation>
+                    <xs:documentation>Trip input index in Dac List.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputDataType" type="TriggerDataTypeType"  default="DATA_TYPE_UINT32">
+                <xs:annotation>
+                    <xs:documentation>Data Type of the trigger input.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputMinRange" type="float" default="0.0">
+                <xs:annotation>
+                    <xs:documentation>Trigger input valid range – Minimum.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputMaxRange" type="float" default="0.0">
+                <xs:annotation>
+                    <xs:documentation>Trigger input valid range – Maximum.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputMFactor" type="float" default="1.0">
+                <xs:annotation>
+                    <xs:documentation>Trip input conversion factor – M.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputCFactor" type="float" default="0.0">
+                <xs:annotation>
+                    <xs:documentation>Trip input conversion factor – C.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputNodeHealthIndex" type="uint8" default="0">
+                <xs:annotation>
+                    <xs:documentation>Trip input node health index in Dac List. Ignored if configured ZERO. Index starts from 1.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripInputValueHealthIndex" type="uint8" default="0">
+                <xs:annotation>
+                    <xs:documentation>Trip input value health index in Dac List. Ignored if configured ZERO. Index starts from 1.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ValueHealthHealthyValue" type="uint8" default="0">
+                <xs:annotation>
+                    <xs:documentation>Healthy value of 'Value health' parameter. If 'Value health' value read is other than configured considered as Unhealthy</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+		<xs:element name="SemCardStatusIndex" type="DacTagIndexType" default="1">
+                <xs:annotation>
+                    <xs:documentation>SEM_CARD_STATUS tag index in Dac list.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+		<xs:element name="SemCardStatusBitOffset" type="BitOffsetType" default="1">
+                <xs:annotation>
+                    <xs:documentation>Bit offset location in SEM_CARD_STATUS word for the comms health of the card which has trigger input sensor connected.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripLimitSetPoint" type="float" default="0.0">
+                <xs:annotation>
+                    <xs:documentation>Threshold value of trigger input parameter – Engineering.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripDelay" type="TripDelayType" default="0">
+                <xs:annotation>
+                    <xs:documentation>Delay (sec) period to wait before triggering shutdown sequence. Ignored if TripOnCommsLossOnly is true.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripOnCommsLossOnly" type="TripOnCommsLossType" default="TRIP_ON_COMMS_LOSS_ENABLE">
+                <xs:annotation>
+                    <xs:documentation>Trip shutdown on topside communication loss only.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="TripDelayOnCommsLoss" type="uint16" default="0">
+                <xs:annotation>
+                    <xs:documentation>Trip delay(Sec) on topside comms loss (Applicable only if TripOnCommsLossOnly true).</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ResumeOnCommsLossAction" type="ResumeOnCommsLossActionType" default="RESUME_FROM_LAST_STEP">
+                <xs:annotation>
+                    <xs:documentation>Step to Resume on commns loss action - Beginning or Last Step</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DefaultShutdownState" type="ShutdownBootStateType" default="SHUTDOWN_STATE_ARM">
+                <xs:annotation>
+                    <xs:documentation>Default Shutdown State on Bootup.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="AbortOnError" type="AbortOnErrorType" default="ABORT_ON_ERROR_DISABLE">
+                <xs:annotation>
+                    <xs:documentation>Abort shutdown sequence on error.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="DsmInterlock" type="DsmInterlockType" default="DSM_INTERLOCK_OPTION_ENABLE">
+                <xs:annotation>
+                    <xs:documentation>Configuration to control Dcv channels from interface when ASD running 0-DSM acceptes Dcv Ctrl commands from interface (Interlock Disable). 1-DSM rejects Dcv Ctrl commands from interface (Interlock Enable)</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="InhibitActionTimeout" type="uint16" default="30">
+                <xs:annotation>
+                    <xs:documentation>Timeout period(Sec) of Autonomous Shutdown Inhibit action. 0=Inhibit action never timeouts. Requires “ARM” command to un-inhibit.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="PauseTimeoutOnCommsLoss" type="uint16" default="30">
+                <xs:annotation>
+                    <xs:documentation>Pause timeout (Sec) period to resume shutdown sequence on topside comms loss.</xs:documentation>
+                    <xs:documentation>TimeoutPeriod = 0 means Pause CMD never timeouts </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="NoOfShutdownSteps" type="ShutdownStepCountType" default="1">
+                <xs:annotation>
+                    <xs:documentation>Number of steps required for shutdown.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ChokeAbortActionData" type="ChokeAbortActionDataType" minOccurs="0" maxOccurs="4">
+                <xs:annotation>
+                    <xs:documentation>Issue choke abort action command with current event number to the configured DSM card. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ShutdownStep" type="ShutdownStepCommandType" minOccurs="1" maxOccurs="32">
+                <xs:annotation>
+                    <xs:documentation>Shutdown Step sequence.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

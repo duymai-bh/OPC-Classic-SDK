@@ -1,0 +1,336 @@
+\doxysection{Opc\+Enumerate\+Dlg.\+cpp}
+\hypertarget{_opc_enumerate_dlg_8cpp_source}{}\label{_opc_enumerate_dlg_8cpp_source}\index{C++/samples/client/OPCEnumerate/OpcEnumerateDlg.cpp@{C++/samples/client/OPCEnumerate/OpcEnumerateDlg.cpp}}
+\mbox{\hyperlink{_opc_enumerate_dlg_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_c_09_09_2samples_2client_2_o_p_c_enumerate_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_opc_enumerate_8h}{OpcEnumerate.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_opc_enumerate_dlg_8h}{OpcEnumerateDlg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_client_enums_8h}{ClientEnums.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_client_application_8h}{ClientApplication.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_client_common_8h}{ClientCommon.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_opc_enumerate_dlg_8h}{.\(\backslash\)opcenumeratedlg.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#define\ new\ DEBUG\_NEW}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#undef\ THIS\_FILE}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00015}00015\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ THIS\_FILE[]\ =\ \_\_FILE\_\_;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00018}00018\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespace_softing_o_p_c_toolbox_client}{SoftingOPCToolboxClient}};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00021}00021\ \textcolor{comment}{//\ COpcEnumerateDlg\ dialog}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00023}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a89bca577e792829384255d351c57b2f5}{00023}}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a89bca577e792829384255d351c57b2f5}{COpcEnumerateDlg::COpcEnumerateDlg}}(CWnd*\ pParent\ \textcolor{comment}{/*=NULL*/})}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00024}00024\ \ \ \ \ :\ CDialog(\mbox{\hyperlink{class_c_opc_enumerate_dlg}{COpcEnumerateDlg}}::IDD,\ pParent)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00025}00025\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ac8b431d729c80e6d882141384e74e615}{m\_hIcon}}\ =\ AfxGetApp()-\/>LoadIcon(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_browse_2resource_8h_a9772c84d39896ad00b9aeb34b15d324d}{IDR\_MAINFRAME}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00027}00027\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ae75e32a7bc5123607254e4873e6b07dd}{m\_serverBrowser}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_server_browser}{ServerBrowser}}(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}localhost"{}}));}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00029}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a7355dac3adcd9ba8115ea7d74c66f216}{00029}}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a7355dac3adcd9ba8115ea7d74c66f216}{COpcEnumerateDlg::\string~COpcEnumerateDlg}}()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00030}00030\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00031}00031\ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ae75e32a7bc5123607254e4873e6b07dd}{m\_serverBrowser}};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{for}\ (\mbox{\hyperlink{class_c_opc_enumerate_dlg_a4bf0281e1c505923debe6643630efe0e}{m\_browserDataIterator}}\ =\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a0f94c13ccd293a85af4b0f0bdb9eb378}{m\_browserData}}.begin();\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a4bf0281e1c505923debe6643630efe0e}{m\_browserDataIterator}}\ !=\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a0f94c13ccd293a85af4b0f0bdb9eb378}{m\_browserData}}.end();\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a4bf0281e1c505923debe6643630efe0e}{m\_browserDataIterator}}++)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00034}00034\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}(*m\_browserDataIterator);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00036}00036\ \ \ \ \ \}\ \textcolor{comment}{//end\ for}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00038}00038\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ae014b6fc8870dcafb1effd4a2474e66d}{m\_application}}-\/>\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_application_a7d6f254d55df21ea39306935d9f40e45}{terminate}}();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00039}00039\ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp_aa42637532672d54390c1218183803bc3}{releaseApplication}}();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00040}00040\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00042}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a52609fe0f4f59170f7bfceedcc70150d}{00042}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a52609fe0f4f59170f7bfceedcc70150d}{COpcEnumerateDlg::DoDataExchange}}(CDataExchange*\ pDX)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00044}00044\ \ \ \ \ CDialog::DoDataExchange(pDX);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\{\{AFX\_DATA\_MAP(COpcEnumerateDlg)}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00046}00046\ \ \ \ \ DDX\_Control(pDX,\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_browse_2resource_8h_a70e140f5e0faa9db30e17ece1b3c5e14}{IDC\_TREE1}},\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\}\}AFX\_DATA\_MAP}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00048}00048\ \ \ \ \ DDX\_Control(pDX,\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_o_p_c_enumerate_2resource_8h_ad123446cb35c803caf42a339fc842813}{IDC\_EDIT1}},\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a0533b8adbb99526e8d47549e639974ee}{urlEditBox}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00051}00051\ BEGIN\_MESSAGE\_MAP(\mbox{\hyperlink{class_c_opc_enumerate_dlg}{COpcEnumerateDlg}},\ CDialog)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00052}00052\ \ \ \ \ \textcolor{comment}{//\{\{AFX\_MSG\_MAP(COpcEnumerateDlg)}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00053}00053\ \ \ \ \ ON\_WM\_PAINT()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00054}00054\ \ \ \ \ ON\_WM\_QUERYDRAGICON()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00055}00055\ \ \ \ \ ON\_NOTIFY(TVN\_ITEMEXPANDING,\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_browse_2resource_8h_a70e140f5e0faa9db30e17ece1b3c5e14}{IDC\_TREE1}},\ OnItemexpandingTree)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\}\}AFX\_MSG\_MAP}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00058}00058\ \textcolor{comment}{//\ \ ON\_NOTIFY(NM\_CLICK,\ IDC\_TREE1,\ OnNMClickTree1)}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00059}00059\ END\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00062}00062\ \textcolor{comment}{//\ COpcEnumerateDlg\ message\ handlers}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00064}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c4b0bc91d1cdc75e01795a4914aa101}{00064}}\ BOOL\ \mbox{\hyperlink{class_c_opc_enumerate_dlg}{COpcEnumerateDlg}}::OnInitDialog()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00065}00065\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ \mbox{\hyperlink{_o_tcommon_8h_a14bc2dfa42241600d567369cd25ddc70}{S\_OK}};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00067}00067\ \ \ \ \ CDialog::OnInitDialog();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ icon\ for\ this\ dialog.\ \ The\ framework\ does\ this\ automatically}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ \ when\ the\ application's\ main\ window\ is\ not\ a\ dialog}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00070}00070\ \ \ \ \ SetIcon(m\_hIcon,\ TRUE);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ big\ icon}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00071}00071\ \ \ \ \ SetIcon(m\_hIcon,\ FALSE);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ small\ icon}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00072}00072\ \ \ \ \ VERIFY(m\_imgList.Create(\mbox{\hyperlink{_c_09_09_2samples_2client_2_a_e_browse_2resource_8h_a9ba29b4fd29fffb052e23e0cf2b077bb}{IDB\_BITMAP\_TREE}},\ 16,\ 0,\ RGB(255,\ 0,\ 255)));}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00073}00073\ \ \ \ \ m\_tree.SetImageList(\&m\_imgList,\ TVSIL\_NORMAL);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00074}00074\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ application}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00075}00075\ \ \ \ \ m\_application\ =\ \mbox{\hyperlink{_client_application_8cpp_a31ec06679cfb224fed64dff1ad265a10}{getApplication}}();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00076}00076\ \ \ \ \ m\_application-\/>setVersionOtb(447);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00077}00077\ \ \ \ \ m\_application-\/>enableTracing(}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a0a9b47e17f7a037741a09af10ed674b5aee9a36142dfd29ef521abd7367fa3766}{EnumTraceGroup\_ALL}},}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a0a9b47e17f7a037741a09af10ed674b5aee9a36142dfd29ef521abd7367fa3766}{EnumTraceGroup\_ALL}},}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a0a9b47e17f7a037741a09af10ed674b5a7828a20c725fb89ee0dfdb8ce5eeedb1}{EnumTraceGroup\_CLIENT}},}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_trace_8h_a0a9b47e17f7a037741a09af10ed674b5a7828a20c725fb89ee0dfdb8ce5eeedb1}{EnumTraceGroup\_CLIENT}},}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Trace.txt"{}}),}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ 1000000,}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ 2);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{comment}{//\ \ TODO\ -\/\ binary\ license\ activation}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ \ Fill\ in\ your\ binary\ license\ activation\ keys\ here}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//\ \ NOTE:\ you\ can\ activate\ one\ or\ all\ of\ the\ features\ at\ the\ same\ time}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ \ firstly\ activate\ the\ COM-\/DA\ Client\ feature}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{comment}{//\ result\ =\ getApplication()-\/>activate(EnumFeature\_DA\_CLIENT,\ \_T("{}XXXX-\/XXXX-\/XXXX-\/XXXX-\/XXXX"{}));}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00094}00094\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ \ activate\ the\ XML-\/DA\ Client\ Feature}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{comment}{//\ result\ =\ getApplication()-\/>activate(EnumFeature\_XMLDA\_CLIENT,\ \_T("{}XXXX-\/XXXX-\/XXXX-\/XXXX-\/XXXX"{}));}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00102}00102\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{comment}{//\ \ activate\ the\ COM-\/AE\ Client\ Feature}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00107}00107\ \ \ \ \ \textcolor{comment}{//\ result\ =\ getApplication()-\/>activate(EnumFeature\_AE\_CLIENT,\ \_T("{}XXXX-\/XXXX-\/XXXX-\/XXXX-\/XXXX"{}));}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00110}00110\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{comment}{//\ \ END\ TODO\ -\/\ binary\ license\ activation}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00116}00116\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(m\_application-\/>initialize()))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00117}00117\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ CreateMainTree();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00119}00119\ \ \ \ \ \}\ \ \ \textcolor{comment}{//\ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{return}\ TRUE;\ \ \textcolor{comment}{//\ return\ TRUE\ \ unless\ you\ set\ the\ focus\ to\ a\ control}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00122}00122\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00124}00124\ \textcolor{comment}{//\ If\ you\ add\ a\ minimize\ button\ to\ your\ dialog,\ you\ will\ need\ the\ code\ below}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00125}00125\ \textcolor{comment}{//\ \ to\ draw\ the\ icon.\ \ For\ MFC\ applications\ using\ the\ document/view\ model,}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00126}00126\ \textcolor{comment}{//\ \ this\ is\ automatically\ done\ for\ you\ by\ the\ framework.}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00128}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a8b3908553a065a5870444b49d389c71d}{00128}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a8b3908553a065a5870444b49d389c71d}{COpcEnumerateDlg::OnPaint}}()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00129}00129\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (IsIconic())}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00131}00131\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ CPaintDC\ dc(\textcolor{keyword}{this});\ \textcolor{comment}{//\ device\ context\ for\ painting}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ SendMessage(WM\_ICONERASEBKGND,\ (WPARAM)\ dc.GetSafeHdc(),\ 0);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Center\ icon\ in\ client\ rectangle}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cxIcon\ =\ GetSystemMetrics(SM\_CXICON);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cyIcon\ =\ GetSystemMetrics(SM\_CYICON);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ CRect\ rect;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ GetClientRect(\&rect);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ (rect.Width()\ -\/\ cxIcon\ +\ 1)\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ (rect.Height()\ -\/\ cyIcon\ +\ 1)\ /\ 2;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ icon}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ dc.DrawIcon(x,\ y,\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ac8b431d729c80e6d882141384e74e615}{m\_hIcon}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00143}00143\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00145}00145\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ CDialog::OnPaint();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00147}00147\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00148}00148\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00149}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a532209b29fbb8dfa9041653551719847}{00149}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a532209b29fbb8dfa9041653551719847}{COpcEnumerateDlg::CreateMainTree}}()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00150}00150\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00151}00151\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.DeleteAllItems();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ Create\ the\ main\ structure}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00153}00153\ \ \ \ \ TVINSERTSTRUCT\ tvInsert;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00154}00154\ \ \ \ \ tvInsert.hParent\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00155}00155\ \ \ \ \ tvInsert.hInsertAfter\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00156}00156\ \ \ \ \ tvInsert.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00157}00157\ \ \ \ \ tvInsert.item.pszText\ =\ (LPTSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Local"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00158}00158\ \ \ \ \ tvInsert.item.lParam\ =\ (LPARAM)\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Local"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00159}00159\ \ \ \ \ HTREEITEM\ hRootNode\ =\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvInsert);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00160}00160\ \ \ \ \ TV\_INSERTSTRUCT\ tvDAV1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00161}00161\ \ \ \ \ tvDAV1.hParent\ =\ hRootNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00162}00162\ \ \ \ \ tvDAV1.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00163}00163\ \ \ \ \ tvDAV1.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00164}00164\ \ \ \ \ tvDAV1.item.pszText\ =\ (LPTSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V1"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00165}00165\ \ \ \ \ tvDAV1.item.lParam\ =\ (LPARAM)(LPCSTR)\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V1"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00166}00166\ \ \ \ \ tvDAV1.item.cChildren\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00167}00167\ \ \ \ \ tvDAV1.item.iImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00168}00168\ \ \ \ \ tvDAV1.item.iSelectedImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00169}00169\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvDAV1);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00170}00170\ \ \ \ \ TV\_INSERTSTRUCT\ tvDAV2;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00171}00171\ \ \ \ \ tvDAV2.hParent\ =\ hRootNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00172}00172\ \ \ \ \ tvDAV2.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00173}00173\ \ \ \ \ tvDAV2.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00174}00174\ \ \ \ \ tvDAV2.item.pszText\ =\ (LPTSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V2"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00175}00175\ \ \ \ \ tvDAV2.item.lParam\ \ =\ (LPARAM)(LPCSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V2"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00176}00176\ \ \ \ \ tvDAV2.item.cChildren\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00177}00177\ \ \ \ \ tvDAV2.item.iImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00178}00178\ \ \ \ \ tvDAV2.item.iSelectedImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00179}00179\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvDAV2);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00180}00180\ \ \ \ \ TV\_INSERTSTRUCT\ tvDAV3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00181}00181\ \ \ \ \ tvDAV3.hParent\ =\ hRootNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00182}00182\ \ \ \ \ tvDAV3.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00183}00183\ \ \ \ \ tvDAV3.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00184}00184\ \ \ \ \ tvDAV3.item.pszText\ =\ (LPTSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V3"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00185}00185\ \ \ \ \ tvDAV3.item.lParam\ =\ (LPARAM)(LPCSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V3"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00186}00186\ \ \ \ \ tvDAV3.item.cChildren\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00187}00187\ \ \ \ \ tvDAV3.item.iImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00188}00188\ \ \ \ \ tvDAV3.item.iSelectedImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00189}00189\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvDAV3);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00190}00190\ \ \ \ \ TV\_INSERTSTRUCT\ tvDAE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00191}00191\ \ \ \ \ tvDAE.hParent\ =\ hRootNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00192}00192\ \ \ \ \ tvDAE.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00193}00193\ \ \ \ \ tvDAE.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00194}00194\ \ \ \ \ tvDAE.item.pszText\ =\ (LPTSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Alarms\ and\ Events"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00195}00195\ \ \ \ \ tvDAE.item.lParam\ =\ (LPARAM)(LPCSTR)\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Alarms\ and\ Events"{}});}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00196}00196\ \ \ \ \ tvDAE.item.cChildren\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00197}00197\ \ \ \ \ tvDAE.item.iImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00198}00198\ \ \ \ \ tvDAE.item.iSelectedImage\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00199}00199\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvDAE);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00200}00200\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00202}\mbox{\hyperlink{class_c_opc_enumerate_dlg_ada144627a2d944f3291fa246ed0e9dd8}{00202}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ada144627a2d944f3291fa246ed0e9dd8}{COpcEnumerateDlg::DeleteChildItems}}(HTREEITEM\ hItem)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00203}00203\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00204}00204\ \ \ \ \ \textcolor{comment}{//\ Delete\ all\ items\ of\ the\ tree\ starting\ at\ hItem}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00205}00205\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.ItemHasChildren(hItem))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00206}00206\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ HTREEITEM\ hNextItem;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ HTREEITEM\ hChildItem\ =\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.GetChildItem(hItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (hChildItem\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ hNextItem\ =\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.GetNextItem(hChildItem,\ TVGN\_NEXT);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ada144627a2d944f3291fa246ed0e9dd8}{DeleteChildItems}}(hChildItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.DeleteItem(hChildItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ hChildItem\ =\ hNextItem;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00217}00217\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00218}00218\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00220}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a76e2ad497e4eb206ac4363154560cea6}{00220}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a76e2ad497e4eb206ac4363154560cea6}{COpcEnumerateDlg::BrowseServers}}(\mbox{\hyperlink{_enums_8h_af959b7be0521b1cb0af124e14ef74ee8}{EnumOPCSpecification}}\ specification\ ,\ HTREEITEM\ hItem)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00221}00221\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00222}00222\ \ \ \ \ \textcolor{comment}{//\ clear\ child\ items}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00223}00223\ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ada144627a2d944f3291fa246ed0e9dd8}{DeleteChildItems}}(hItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00224}00224\ \ \ \ \ std::vector<ServerBrowserData*>\ serverData;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00225}00225\ \ \ \ \ \mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_execution_options}{ExecutionOptions}}\ executionOptions;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00226}00226\ \ \ \ \ executionOptions.\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_execution_options_a986b0b7ee854b5099dd29e4b15d9e949}{setExecutionContext}}(\mbox{\hyperlink{class_c_opc_enumerate_dlg_ae75e32a7bc5123607254e4873e6b07dd}{m\_serverBrowser}}-\/>\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_server_browser_a80d3beaa58479d49c26b0b2620d2558c}{getUserData}}());}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00227}00227\ \ \ \ \ \textcolor{keywordtype}{long}\ result\ =\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ae75e32a7bc5123607254e4873e6b07dd}{m\_serverBrowser}}-\/>\mbox{\hyperlink{class_softing_o_p_c_toolbox_client_1_1_server_browser_aadc17d9b61a25937d9bbdfa2ec0c61d7}{browse}}(}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ specification,}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_o_p_c_toolbox_client_a6f39d3f62963db5559721508c37dfdf7a4fe836893555b9cc9263d31bfe640768}{EnumServerBrowserData\_ALL}},}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ serverData,}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NULL);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00233}00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(result))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00234}00234\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ count\ =\ serverData.size();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ TV\_INSERTSTRUCT\ tvDescription;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.hParent\ =\ hItem;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.item.pszText\ =\ (LPTSTR)(LPCTSTR)\ serverData[i]-\/>getDescription().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.item.lParam\ =\ (LPARAM)(LPCTSTR)\ serverData[i]-\/>getUrl().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.item.cChildren\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.item.iImage\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ tvDescription.item.iSelectedImage\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ HTREEITEM\ hDescriptionNode\ =\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvDescription);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ TV\_INSERTSTRUCT\ tvClsId;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.hParent\ =\ hDescriptionNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.item.pszText\ =\ (LPTSTR)(LPCTSTR)\ serverData[i]-\/>getClsId().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.item.lParam\ =\ (LPARAM)(LPCTSTR)\ serverData[i]-\/>getUrl().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.item.cChildren\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.item.iImage\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ tvClsId.item.iSelectedImage\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvClsId);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ TV\_INSERTSTRUCT\ tvProgId;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.hParent\ =\ hDescriptionNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.item.pszText\ =\ (LPTSTR)(LPCTSTR)\ serverData[i]-\/>getProgId().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.item.lParam\ =\ (LPARAM)(LPCTSTR)serverData[i]-\/>getUrl().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.item.cChildren\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.item.iImage\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgId.item.iSelectedImage\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvProgId);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ TV\_INSERTSTRUCT\ tvProgIdVersionIndependent;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.hParent\ =\ hDescriptionNode;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.hInsertAfter\ =\ TVI\_LAST;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.item.mask\ =\ TVIF\_TEXT\ |\ TVIF\_PARAM\ |\ TVIF\_CHILDREN\ |\ TVIF\_IMAGE\ |\ TVIF\_SELECTEDIMAGE;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.item.pszText\ =\ (LPTSTR)(LPCTSTR)\ serverData[i]-\/>getProgIdVersionIndependent().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.item.lParam\ =\ (LPARAM)(LPCTSTR)serverData[i]-\/>getUrl().c\_str();}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.item.cChildren\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.item.iImage\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ tvProgIdVersionIndependent.item.iSelectedImage\ =\ 3;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a5c1159d561ced63d58a207f746822f95}{m\_tree}}.InsertItem(\&tvProgIdVersionIndependent);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a0f94c13ccd293a85af4b0f0bdb9eb378}{m\_browserData}}.push\_back(serverData[i]);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//end\ for}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00281}00281\ \ \ \ \ \}\ \textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00282}00282\ \}\textcolor{comment}{//end\ BrowseServers}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00284}00284\ \textcolor{comment}{//\ The\ system\ calls\ this\ to\ obtain\ the\ cursor\ to\ display\ while\ the\ user\ drags}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00285}00285\ \textcolor{comment}{//\ \ the\ minimized\ window.}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00286}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a8fa7a9d64487e5b823fec102c1d7ffd4}{00286}}\ HCURSOR\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a8fa7a9d64487e5b823fec102c1d7ffd4}{COpcEnumerateDlg::OnQueryDragIcon}}()}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00287}00287\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00288}00288\ \ \ \ \ \textcolor{keywordflow}{return}\ (HCURSOR)\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_ac8b431d729c80e6d882141384e74e615}{m\_hIcon}};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00289}00289\ \}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00293}\mbox{\hyperlink{class_c_opc_enumerate_dlg_a59819a0c301826c5604852aaa18bf582}{00293}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a59819a0c301826c5604852aaa18bf582}{COpcEnumerateDlg::OnItemexpandingTree}}(NMHDR*\ pNMHDR,\ LRESULT*\ pResult)}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00294}00294\ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00295}00295\ \ \ \ \ this-\/>\mbox{\hyperlink{class_c_opc_enumerate_dlg_a0533b8adbb99526e8d47549e639974ee}{urlEditBox}}.SetWindowText(\mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}"{}}));}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00296}00296\ \ \ \ \ NMTREEVIEW*\ pTV\ =\ (NMTREEVIEW*)pNMHDR;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00297}00297\ \ \ \ \ HTREEITEM\ hItem\ =\ pTV-\/>itemNew.hItem;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00298}00298\ \ \ \ \ \textcolor{keywordtype}{bool}\ writeUrl\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00299}00299\ \ \ \ \ \mbox{\hyperlink{_o_s_compat_8h_ae3cdb259224c52f39057157adfb0c854}{tstring}}\ \ tvName\ =\ (LPCTSTR)pTV-\/>itemNew.lParam;}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00301}00301\ \ \ \ \ \textcolor{keywordflow}{if}\ (tvName\ ==\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V1"{}}))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00302}00302\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00303}00303\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a76e2ad497e4eb206ac4363154560cea6}{BrowseServers}}(\mbox{\hyperlink{_enums_8h_ae5d1aa9f42f57b0526f744c228ae37e8a6f0ab7cf242b34697ab261d4f8837034}{EnumOPCSpecification\_DA10}},\ hItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00304}00304\ \ \ \ \ \ \ \ \ writeUrl\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00305}00305\ \ \ \ \ \}\ \textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00307}00307\ \ \ \ \ \textcolor{keywordflow}{if}\ (tvName\ ==\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V2"{}}))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00308}00308\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a76e2ad497e4eb206ac4363154560cea6}{BrowseServers}}(\mbox{\hyperlink{_enums_8h_ae5d1aa9f42f57b0526f744c228ae37e8a4b70542614d16bc16be1f16dea27bda1}{EnumOPCSpecification\_DA20}},\ hItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ writeUrl\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00311}00311\ \ \ \ \ \}\ \textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00313}00313\ \ \ \ \ \textcolor{keywordflow}{if}\ (tvName\ ==\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Data\ Access\ V3"{}}))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00314}00314\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a76e2ad497e4eb206ac4363154560cea6}{BrowseServers}}(\mbox{\hyperlink{_enums_8h_ae5d1aa9f42f57b0526f744c228ae37e8a14e36646c15a2c5d7a86017c404e3e0d}{EnumOPCSpecification\_DA30}},\ hItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ writeUrl\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00317}00317\ \ \ \ \ \}\ \textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00319}00319\ \ \ \ \ \textcolor{keywordflow}{if}\ (tvName\ ==\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Alarms\ and\ Events"{}}))}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00320}00320\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_c_opc_enumerate_dlg_a76e2ad497e4eb206ac4363154560cea6}{BrowseServers}}(\mbox{\hyperlink{_enums_8h_ae5d1aa9f42f57b0526f744c228ae37e8aa6e668924aae1b4310c208ddec3816fc}{EnumOPCSpecification\_AE10}},\ hItem);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ writeUrl\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00323}00323\ \ \ \ \ \}\ \textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00325}00325\ \ \ \ \ writeUrl\ =\ writeUrl\ \&\&\ (tvName\ !=\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}Local"{}}));}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00327}00327\ \ \ \ \ \textcolor{keywordflow}{if}\ (writeUrl\ ==\ \textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00328}00328\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ LPCTSTR\ url\ =\ (LPCTSTR)(pTV-\/>itemNew.lParam);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_c_opc_enumerate_dlg_a0533b8adbb99526e8d47549e639974ee}{urlEditBox}}.SetWindowText(url);}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00331}00331\ \ \ \ \ \}\ \textcolor{comment}{//end\ if}}
+\DoxyCodeLine{\Hypertarget{_opc_enumerate_dlg_8cpp_source_l00332}00332\ \}}
+
+\end{DoxyCode}

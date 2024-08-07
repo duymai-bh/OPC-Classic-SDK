@@ -1,0 +1,818 @@
+\doxysection{Client\+Data\+Control.\+cs}
+\hypertarget{_client_data_control_8cs_source}{}\label{_client_data_control_8cs_source}\index{NET/src/client/Control/ClientDataControl.cs@{NET/src/client/Control/ClientDataControl.cs}}
+\mbox{\hyperlink{_client_data_control_8cs}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00001}00001\ \textcolor{keyword}{using\ }System.Collections;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00002}00002\ \textcolor{keyword}{using\ }System.ComponentModel;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00003}00003\ \textcolor{keyword}{using\ }System.ComponentModel.Design.Serialization;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00004}00004\ \textcolor{keyword}{using\ }System;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00005}00005\ \textcolor{keyword}{using\ }System.Data;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00006}00006\ \textcolor{keyword}{using\ }System.Diagnostics;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00007}00007\ \textcolor{keyword}{using\ }System.Windows.Forms;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00008}00008\ \textcolor{keyword}{using\ }System.Runtime.InteropServices;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00010}\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control}{00010}}\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control}{Softing.OPCToolbox.Client.Control}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00011}00011\ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00020}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control}{00020}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespace_data_control}{DataControl}}\ :}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00021}00021\ \ \ \ \ \ \ \ \ IList,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00022}00022\ \ \ \ \ \ \ \ \ ICollection,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00023}00023\ \ \ \ \ \ \ \ \ IEnumerable,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00024}00024\ \ \ \ \ \ \ \ \ IComponent,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00025}00025\ \ \ \ \ \ \ \ \ IBindingList,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00026}00026\ \ \ \ \ \ \ \ \ ITypedList}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00027}00027\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00028}00028\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Constructor}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00038}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a677a3842a15583301a8b0e28b27cd473}{00038}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a677a3842a15583301a8b0e28b27cd473}{DataControl}}()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00039}00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ this.m\_list\ =\ \textcolor{keyword}{new}\ ArrayList();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00041}00041\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ constructor}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00045}00045\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00047}00047\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Events}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00058}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_abe78ac573ff913f00ce6fac1aec64712}{00058}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_a9d87f486ecfa5b8fd7eb4d5e54bd05ae}{ControlDataChangedEventHandler}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_abe78ac573ff913f00ce6fac1aec64712}{DataChanged}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00061}00061\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00063}00063\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Attributes}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_session}{ControlDaSession}}\ m\_session\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_session}{ControlDaSession}}(\textcolor{keywordtype}{string}.Empty);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_session}{ControlDaSession}}\ m\_newSession\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}\ m\_instance\ =\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application}{Application}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a5f29d66e26c5bfea90932a3ddb673111}{Instance}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ ArrayList\ m\_list\ =\ \textcolor{keyword}{new}\ ArrayList();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00071}00071\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00073}00073\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Private\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ HandleSessionShutdownWithReconnection(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ obj,\ \textcolor{keywordtype}{string}\ reason)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ MessageBox.Show(\textcolor{stringliteral}{"{}Server\ shutdown\ "{}}\ +\ reason\ +\ \textcolor{stringliteral}{"{}!"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ reconnect\ automatically}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ HandleSessionShutdownWithoutReconnection(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{ObjectSpaceElement}}\ obj,\ \textcolor{keywordtype}{string}\ reason)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ MessageBox.Show(\textcolor{stringliteral}{"{}Server\ shutdown\ "{}}\ +\ reason);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ do\ not\ reconnect\ automatically}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ControlSubscription\_DataChange(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{DaSubscription}}\ aDaSubscription,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{DaItem}}[]\ changedItems,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}[]\ newValues,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ changedItems.Length;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ControlDaItem[]\ controlItems\ =\ \textcolor{keyword}{new}\ ControlDaItem[count];}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.Contains(changedItems[i]))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ this.IndexOf(changedItems[i]);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{DaItem}})\ \textcolor{keyword}{this}[index]).ValueQT\ =\ newValues[i];}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{null}\ !=\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}}(\textcolor{keyword}{this},\ \textcolor{keyword}{new}\ ListChangedEventArgs(ListChangedType.ItemChanged,\ i));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlItems[i]\ =\ (ControlDaItem)\ changedItems[i];}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.OnDataChange((ControlDaSubscription)\ aDaSubscription,\ controlItems,\ newValues,\ results);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(\mbox{\hyperlink{_trace_8h_a02dbd1090ea4d03998aaf568c7ded9fc}{EnumTraceLevel}}.ERR,\ \mbox{\hyperlink{_trace_8h_ad2725a11430348ec412e72b436f03bff}{EnumTraceGroup}}.CLIENT,\ \textcolor{stringliteral}{"{}DataControl.DataControl\_DataChange"{}},\ exc.Message);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00119}00119\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00121}00121\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00136}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a4ebe1ca5859ddc6701f6c70e17619d23}{00136}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a4ebe1ca5859ddc6701f6c70e17619d23}{Start}}()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a62f29711a6f7776236179eecb11829ad}{Clear}}();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a726b9c7e69432a19c52a5e6246dde0df}{BinaryLicenseDa}}\ !=\ \textcolor{keywordtype}{string}.Empty)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a7931666b2e742683122960cc188169dc}{Activate}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a78425db01a1d56d0000023d17f969742}{EnumFeature}}.DA\_CLIENT,\ \textcolor{keyword}{this}.BinaryLicenseDa);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2a0ae20eae51e0f92a12e1fe2cc1bcb5}{BinaryLicenseXmlDa}}\ !=\ \textcolor{keywordtype}{string}.Empty)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a7931666b2e742683122960cc188169dc}{Activate}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a78425db01a1d56d0000023d17f969742}{EnumFeature}}.DA\_CLIENT,\ \textcolor{keyword}{this}.BinaryLicenseXmlDa);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_ac9819cabeef44be2a170ab801a422e0c}{Initialize}}();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_session}{ControlDaSession}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.StoredUrl);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_adad48543ed7997c058bf01c5e3982338}{Connect}}(\textcolor{keyword}{false},\ \textcolor{keyword}{true},\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession.ShutdownRequest\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a43222f736b0f5c8e5985f0cf8df1300c}{ShutdownEventHandler}}(HandleSessionShutdownWithReconnection);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a431b0488ba5a77ff2ddc54e1e3e49850}{SubscriptionList}}.Length\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription}{ControlDaSubscription}}\ currentSubscription\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a431b0488ba5a77ff2ddc54e1e3e49850}{SubscriptionList}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription}{ControlDaSubscription}}\ controlSubscription\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription}{ControlDaSubscription}}(}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription_a4b150f27a801375876dff270722a32b3}{StoredUpdateRate}},}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controlSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a59c2fe2415c5d499318660181ce786c1}{Valid}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription.Name\ =\ currentSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription_a052bfc4e9f2b92d5e9b9f1adeb1aab5d}{StoredName}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription.StoredName\ =\ controlSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a92edbeea0114eb969f2389fcc0fb6ca7}{Name}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription.StoredUpdateRate\ =\ controlSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a0a524a77fe793c1b6b7f5ba68217fe62}{RequestedUpdateRate}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription.IsActivated\ =\ currentSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription_a42b547d68fbd808c9c11521332145036}{IsActivated}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription.DataChanged\ +=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa9c4a5c975c48f0d672acf1bb0a307f7}{DataChangedEventHandler}}(ControlSubscription\_DataChange);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{DaItem}}[]\ items\ =\ currentSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a9f66152e5c42275b5efafc5ef194e94e}{ItemList}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ items.Length;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_item}{ControlDaItem}}\ controlItem\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_item}{ControlDaItem}}(}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_item}{ControlDaItem}})\ items[i]).StoredId,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.Add(controlItem);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ for}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (controlSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription_a42b547d68fbd808c9c11521332145036}{IsActivated}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlSubscription.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_adad48543ed7997c058bf01c5e3982338}{Connect}}(\textcolor{keyword}{true},\ \textcolor{keyword}{true},\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ foreach}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_session.Handle\ =\ m\_newSession.Handle;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}DataControl.Start"{}},}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00207}00207\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ Start}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ Stop()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00222}00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_newSession\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription}{ControlDaSubscription}}\ currentSubscription\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a431b0488ba5a77ff2ddc54e1e3e49850}{SubscriptionList}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currentSubscription.DataChanged\ -\/=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa9c4a5c975c48f0d672acf1bb0a307f7}{DataChangedEventHandler}}(ControlSubscription\_DataChange);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession.ShutdownRequest\ -\/=\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a43222f736b0f5c8e5985f0cf8df1300c}{ShutdownEventHandler}}(HandleSessionShutdownWithoutReconnection);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8cca4f71157ad2626b526605f54c805f}{Disconnect}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8cca4f71157ad2626b526605f54c805f}{Disconnect}}(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{ExecutionOptions}}());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (ControlDaSubscription\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp_a410b0286462959c4fc2878bc34413c89}{subscription}}\ \textcolor{keywordflow}{in}\ m\_newSession.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_a431b0488ba5a77ff2ddc54e1e3e49850}{SubscriptionList}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (ControlDaItem\ item\ \textcolor{keywordflow}{in}\ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp_a410b0286462959c4fc2878bc34413c89}{subscription}}.ItemList)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp_a410b0286462959c4fc2878bc34413c89}{subscription}}.RemoveDaItem(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ foreach}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session_ad0ba618e75557d7ddbe3c022330a116b}{RemoveDaSubscription}}(\mbox{\hyperlink{_c_09_09_2samples_2client_2_d_a_console_test_2_console_8cpp_a410b0286462959c4fc2878bc34413c89}{subscription}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ foreach}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a98634ea4021f02d1337794587af44266}{RemoveDaSession}}(m\_newSession);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_ae8d6ec05226df00e43c5fb5612d938e4}{Terminate}}();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_newSession\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(\mbox{\hyperlink{_trace_8h_a02dbd1090ea4d03998aaf568c7ded9fc}{EnumTraceLevel}}.ERR,\ \mbox{\hyperlink{_trace_8h_ad2725a11430348ec412e72b436f03bff}{EnumTraceGroup}}.CLIENT,\ \textcolor{stringliteral}{"{}DataControl.Stop"{}},\ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00254}00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00267}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a0f9dac3ca137918cb60e6dc515e6b382}{00267}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_item}{ControlDaItem}}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a0f9dac3ca137918cb60e6dc515e6b382}{GetItem}}(\textcolor{keywordtype}{string}\ subscriptionName,\ \textcolor{keywordtype}{string}\ itemID)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00268}00268\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a54b6d4635071a140b72643fa8f5420ed}{Count}};\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\textcolor{keyword}{this}[i].StoredId\ ==\ itemID)\ \&\&\ (\textcolor{keyword}{this}[i].\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{DaSubscription}}.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a92edbeea0114eb969f2389fcc0fb6ca7}{Name}}\ ==\ subscriptionName))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this}[i];}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,\ \textcolor{stringliteral}{"{}DataControl.GetItem"{}},\ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00287}00287\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00289}00289\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Internal\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnDataChange(\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription}{ControlDaSubscription}}\ aDaSubscription,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_item}{ControlDaItem}}[]\ items,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}[]\ values,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}[]\ results)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00301}00301\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_abe78ac573ff913f00ce6fac1aec64712}{DataChanged}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_abe78ac573ff913f00ce6fac1aec64712}{DataChanged}}(aDaSubscription,\ items,\ values,\ results);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (Exception\ exc)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_instance.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_application_a76e3e667c60cb7e230402f296f139acf}{Trace}}(}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_aec2d989e0bd8d33e45f036984106169b}{EnumTraceLevel}}.ERR,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_a5040fd1f3d043cd57384c6b8209e8634}{EnumTraceGroup}}.CLIENT,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}DataControl.OnDataChange"{}},}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exc.ToString());}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00317}00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00323}00323\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnValidate(\textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00324}00324\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (value\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentNullException(\textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00329}00329\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ OnValidate}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00330}00330\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00335}00335\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ Add(ControlDaItem\ item)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00336}00336\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ this.List.Add(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00338}00338\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ Add}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00345}00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ Contains(DaItem\ item)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00346}00346\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.List.Contains(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00348}00348\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00355}00355\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{int}\ IndexOf(DaItem\ item)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00356}00356\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.List.IndexOf(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00358}00358\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00365}00365\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ Insert(\textcolor{keywordtype}{int}\ index,\ ControlDaItem\ item)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00366}00366\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ this.List.Insert(index,\ item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00368}00368\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00373}00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ ControlDaItem\ \textcolor{keyword}{this}[\textcolor{keywordtype}{int}\ index]}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00374}00374\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ ((ControlDaItem)\ (this.List[index]));\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ this.List[index]\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00377}00377\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00383}00383\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ Remove(ControlDaItem\ item)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00384}00384\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ this.List.Remove(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00386}00386\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ IList\ List}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00389}00389\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00391}00391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00392}00392\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00393}00393\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00394}00394\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00396}00396\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ Public\ Properties}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00397}00397\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00406}00406\ \ \ \ \ \ \ \ \ [Bindable(\textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00407}00407\ \ \ \ \ \ \ \ \ [BrowsableAttribute(\textcolor{keyword}{true})]}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00408}00408\ \ \ \ \ \ \ \ \ [EditorAttribute(typeof\ (ValueEditor),\ typeof\ (System.Drawing.Design.UITypeEditor))]}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00409}00409\ \ \ \ \ \ \ \ \ [DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Visible)]}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00410}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a86d853faa8eb05b4a54390815030de38}{00410}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_session}{ControlDaSession}}\ \mbox{\hyperlink{namespace_session}{Session}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00411}00411\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}};\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00414}00414\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00423}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a726b9c7e69432a19c52a5e6246dde0df}{00423}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a726b9c7e69432a19c52a5e6246dde0df}{BinaryLicenseDa}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00424}00424\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.m\_binaryLicenseDa;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_session.m\_binaryLicenseDa\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00427}00427\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ BinaryLicenseDa}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00436}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2a0ae20eae51e0f92a12e1fe2cc1bcb5}{00436}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2a0ae20eae51e0f92a12e1fe2cc1bcb5}{BinaryLicenseXmlDa}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00437}00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a33edea3c830fe047b92494f3d6cac191}{m\_session}}.m\_binaryLicenseXmlDa;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_session.m\_binaryLicenseXmlDa\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00440}00440\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ BinaryLicenseXmlDa}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00445}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{00445}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{protected}\ ArrayList\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00446}00446\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.m\_list\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ ArrayList();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.m\_list;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ \ \ end\ get}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00455}00455\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ InnerList}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00456}00456\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00460}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab5cfed2d5ceadfdd2888c93544564fad}{00460}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab5cfed2d5ceadfdd2888c93544564fad}{Capacity}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00461}00461\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Capacity;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ this.InnerList.Capacity\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00464}00464\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ Capacity}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00466}00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00467}00467\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00468}00468\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00469}00469\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IList\ Members}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00470}00470\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00471}00471\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00472}00472\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ IList.Add(\textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00473}00473\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ OnValidate(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Add(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00476}00476\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00481}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a62f29711a6f7776236179eecb11829ad}{00481}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a62f29711a6f7776236179eecb11829ad}{Clear}}()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00482}00482\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Clear();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00484}00484\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ Clear}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00485}00485\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00486}00486\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IList.Contains(\textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00487}00487\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Contains(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00489}00489\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ Contains}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00490}00490\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ IList.IndexOf(\textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00492}00492\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.IndexOf(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00494}00494\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ IndexOf}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00496}00496\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ IList.Insert(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00497}00497\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((index\ <\ 0)\ ||\ (index\ >\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Count))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}index"{}},\ index,\ \textcolor{stringliteral}{"{}Index\ not\ valid!"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ this.OnValidate(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Insert(index,\ value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00504}00504\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ \ end\ Insert}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00505}00505\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00506}00506\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IList.IsFixedSize}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00507}00507\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.IsFixedSize;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00509}00509\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00510}00510\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00511}00511\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ IList.IsReadOnly}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00512}00512\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.IsReadOnly;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00514}00514\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00515}00515\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00516}00516\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ IList.Remove(\textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00517}00517\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ this.OnValidate(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.IndexOf(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ <\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentException(\textcolor{stringliteral}{"{}Element\ to\ be\ removed\ not\ found!"{}},\ \textcolor{stringliteral}{"{}value"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.RemoveAt(index);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00526}00526\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00532}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2b6c3acba13a1afca290c52dda64634a}{00532}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2b6c3acba13a1afca290c52dda64634a}{RemoveAt}}(\textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00533}00533\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((index\ <\ 0)\ ||\ (index\ >\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Count))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}index"{}},\ index,\ \textcolor{stringliteral}{"{}Index\ not\ valid!"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00538}00538\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}\ obj\ =\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}[index];}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ OnValidate(obj);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.RemoveAt(index);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00542}00542\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00543}00543\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}\ IList.this[\textcolor{keywordtype}{int}\ index]}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00545}00545\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((index\ <\ 0)\ ||\ (index\ >\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Count))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}index"{}},\ index,\ \textcolor{stringliteral}{"{}Index\ not\ valid!"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}[index];}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((index\ <\ 0)\ ||\ (index\ >\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Count))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \textcolor{keyword}{new}\ ArgumentOutOfRangeException(\textcolor{stringliteral}{"{}index"{}},\ index,\ \textcolor{stringliteral}{"{}Index\ not\ valid!"{}});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OnValidate(value);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}[index]\ =\ value;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00563}00563\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00565}00565\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00566}00566\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00567}00567\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00568}00568\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00569}00569\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ ICollection\ Members}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00570}00570\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00571}00571\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00572}00572\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ICollection.CopyTo(Array\ array,\ \textcolor{keywordtype}{int}\ index)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00573}00573\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.CopyTo(array,\ index);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00575}00575\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00576}00576\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00580}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a54b6d4635071a140b72643fa8f5420ed}{00580}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a54b6d4635071a140b72643fa8f5420ed}{Count}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00581}00581\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this.m\_list\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_list.Count;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00590}00590\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00591}00591\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00592}00592\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ICollection.IsSynchronized}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00593}00593\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.IsSynchronized;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00595}00595\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00600}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2fddea3ba6eb474279fe1c8049dbe918}{00600}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{object}\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a2fddea3ba6eb474279fe1c8049dbe918}{SyncRoot}}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00601}00601\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.SyncRoot;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00603}00603\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00604}00604\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00605}00605\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00606}00606\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00607}00607\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00608}00608\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00609}00609\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IEnumerable\ Members}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00610}00610\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00611}00611\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00616}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a6fcf2f8ac32a0f1b3884f9b10047f323}{00616}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ IEnumerator\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a6fcf2f8ac32a0f1b3884f9b10047f323}{GetEnumerator}}()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00617}00617\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.GetEnumerator();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00619}00619\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00620}00620\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00621}00621\ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00622}00622\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00623}00623\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00624}00624\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IComponent\ Implementation}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00625}00625\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ ISite\ m\_Site\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00626}00626\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00634}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a031e88c3b261fea0c44f52a1c33fe182}{00634}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ EventHandler\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a031e88c3b261fea0c44f52a1c33fe182}{Disposed}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00635}00635\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00639}00639\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ System.ComponentModel.ISite\ Site}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00640}00640\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_Site;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ m\_Site\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00643}00643\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00644}00644\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00651}00651\ \ \ \ \ \ \ \ \ System.ComponentModel.ISite\ System.ComponentModel.IComponent.Site}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00652}00652\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ Site;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00654}00654\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{set}\ \{\ Site\ =\ value;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00655}00655\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00656}00656\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00660}00660\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ Dispose()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00661}00661\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00662}00662\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a62f29711a6f7776236179eecb11829ad}{Clear}}();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00663}00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{null}\ !=\ Disposed)\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a031e88c3b261fea0c44f52a1c33fe182}{Disposed}}(\textcolor{keyword}{this},\ System.EventArgs.Empty);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00664}00664\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00665}00665\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00669}00669\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ System.IDisposable.Dispose()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00670}00670\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ Dispose();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00672}00672\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00673}00673\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00674}00674\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00675}00675\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00676}00676\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IBindingList\ Implementation}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00677}00677\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IBindingList\ Editing\ Properties}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00685}\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{00685}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{event}\ ListChangedEventHandler\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00686}00686\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00687}00687\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_AllowEditItems\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00688}00688\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_AllowNewItems\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00689}00689\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_AllowRemoveItems\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00690}00690\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00694}00694\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ AllowEdit}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00695}00695\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00696}00696\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_AllowEditItems;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00697}00697\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00698}00698\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00699}00699\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.AllowEdit}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00700}00700\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00701}00701\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ AllowEdit;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00702}00702\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00703}00703\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00707}00707\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ AllowNew}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00708}00708\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00709}00709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_AllowNewItems;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00710}00710\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00711}00711\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00712}00712\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.AllowNew}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00713}00713\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00714}00714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ AllowNew;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00715}00715\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00716}00716\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00720}00720\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ AllowRemove}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00721}00721\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00722}00722\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_AllowRemoveItems;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00723}00723\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00724}00724\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00725}00725\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.AllowRemove}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00726}00726\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00727}00727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ AllowRemove;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00728}00728\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00729}00729\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00730}00730\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00731}00731\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00732}00732\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IBindingList\ Features\ Properties}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00733}00733\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_SupportsChangeNotification\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00734}00734\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_SupportsSearching\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00735}00735\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ m\_SupportsSorting\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00736}00736\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00740}00740\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ SupportsChangeNotification}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00741}00741\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00742}00742\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_SupportsChangeNotification;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00743}00743\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00744}00744\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00745}00745\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.SupportsChangeNotification}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00746}00746\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00747}00747\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ SupportsChangeNotification;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00748}00748\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00749}00749\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00753}00753\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ SupportsSearching}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00754}00754\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00755}00755\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_SupportsSearching;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00756}00756\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00757}00757\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00758}00758\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.SupportsSearching}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00759}00759\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00760}00760\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ SupportsSearching;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00761}00761\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00762}00762\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00766}00766\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ SupportsSorting}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00767}00767\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00768}00768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_SupportsSorting;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00769}00769\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00770}00770\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00771}00771\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.SupportsSorting}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00772}00772\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00773}00773\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ SupportsSorting;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00774}00774\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00775}00775\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00776}00776\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00777}00777\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00778}00778\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IBindingList\ Editing\ Methods}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00783}00783\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{object}\ AddNew()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00784}00784\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00785}00785\ \ \ \ \ \ \ \ \ \ \ \ \ ControlDaItem\ item\ =\ \textcolor{keyword}{new}\ ControlDaItem(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00786}00786\ \ \ \ \ \ \ \ \ \ \ \ \ this.Add(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00787}00787\ \ \ \ \ \ \ \ \ \ \ \ \ item.CancelAddNew\ +=\ \textcolor{keyword}{new}\ ControlDaItem.CancelAddNewEventHandler(this.CancelAddNew);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00788}00788\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ item;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00789}00789\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00790}00790\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00791}00791\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}\ System.ComponentModel.IBindingList.AddNew()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00792}00792\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00793}00793\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AddNew();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00794}00794\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00795}00795\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00796}00796\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ CancelAddNew(ControlDaItem\ item,\ \textcolor{keywordtype}{bool}\ Remove)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00797}00797\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00798}00798\ \ \ \ \ \ \ \ \ \ \ \ \ item.CancelAddNew\ -\/=\ \textcolor{keyword}{new}\ ControlDaItem.CancelAddNewEventHandler(this.CancelAddNew);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00799}00799\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((Remove))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00800}00800\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00801}00801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.Remove(item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00802}00802\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00803}00803\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00804}00804\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00811}00811\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnInsertComplete(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00812}00812\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00813}00813\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//base.OnInsertComplete(\ index,\ value\ );}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00814}00814\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{null}\ !=\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00815}00815\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}}(\textcolor{keyword}{this},\ \textcolor{keyword}{new}\ ListChangedEventArgs(ListChangedType.ItemAdded,\ index));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00816}00816\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00817}00817\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00824}00824\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ OnRemoveComplete(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{object}\ value)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00825}00825\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00826}00826\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//base.OnRemoveComplete(\ index,\ value\ );}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00827}00827\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{null}\ !=\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}})}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00828}00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}}(\textcolor{keyword}{this},\ \textcolor{keyword}{new}\ ListChangedEventArgs(ListChangedType.ItemDeleted,\ index));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00829}00829\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00830}00830\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00831}00831\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00832}00832\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00833}00833\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IBindingList\ Sorting\ Features}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00834}00834\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ PropertyDescriptor\ m\_SortProperty;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00835}00835\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ ListSortDirection\ m\_SortDirection;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00836}00836\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ ArrayList\ m\_OriginalList;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00837}00837\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00841}00841\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ System.ComponentModel.ListSortDirection\ SortDirection}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00842}00842\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00843}00843\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_SortDirection;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00844}00844\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00845}00845\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00846}00846\ \ \ \ \ \ \ \ \ System.ComponentModel.ListSortDirection\ System.ComponentModel.IBindingList.SortDirection}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00847}00847\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00848}00848\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ SortDirection;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00849}00849\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00850}00850\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00854}00854\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ System.ComponentModel.PropertyDescriptor\ SortProperty}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00855}00855\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00856}00856\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_SortProperty;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00857}00857\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00858}00858\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00859}00859\ \ \ \ \ \ \ \ \ System.ComponentModel.PropertyDescriptor\ System.ComponentModel.IBindingList.SortProperty}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00860}00860\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00861}00861\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ SortProperty;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00862}00862\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00863}00863\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00867}00867\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{bool}\ IsSorted}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00868}00868\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00869}00869\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ m\_SortProperty\ ==\ \textcolor{keyword}{null};\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00870}00870\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00871}00871\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00872}00872\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ System.ComponentModel.IBindingList.IsSorted}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00873}00873\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00874}00874\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{get}\ \{\ \textcolor{keywordflow}{return}\ IsSorted;\ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00875}00875\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00876}00876\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00877}00877\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ SaveList()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00878}00878\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00879}00879\ \ \ \ \ \ \ \ \ \ \ \ \ m\_OriginalList\ =\ \textcolor{keyword}{new}\ ArrayList(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00880}00880\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00881}00881\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00882}00882\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ ResetList(ArrayList\ NewList)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00883}00883\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00884}00884\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a62f29711a6f7776236179eecb11829ad}{Clear}}();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00885}00885\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (ControlDaItem\ m\_item\ \textcolor{keywordflow}{in}\ NewList)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00886}00886\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00887}00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this.Add(m\_item);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00888}00888\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00889}00889\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00890}00890\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00891}00891\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ DoSort()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00892}00892\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00893}00893\ \ \ \ \ \ \ \ \ \ \ \ \ this.\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_ab83f17b9e9fe209bbdfb4bcb6bf33de7}{InnerList}}.Sort(\textcolor{keyword}{new}\ ValueComparer(m\_SortProperty,\ m\_SortDirection));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00894}00894\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00895}00895\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00901}00901\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ ApplySort(System.ComponentModel.PropertyDescriptor\ property,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00902}00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.ComponentModel.ListSortDirection\ direction)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00903}00903\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00904}00904\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SortProperty\ =\ property;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00905}00905\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SortDirection\ =\ direction;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00906}00906\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((m\_OriginalList\ ==\ \textcolor{keyword}{null}))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00907}00907\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00908}00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SaveList();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00909}00909\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00910}00910\ \ \ \ \ \ \ \ \ \ \ \ \ DoSort();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00911}00911\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{null}\ !=\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}})\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}}(\textcolor{keyword}{this},\ \textcolor{keyword}{new}\ ListChangedEventArgs(ListChangedType.Reset,\ 0));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00912}00912\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00913}00913\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00914}00914\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ System.ComponentModel.IBindingList.ApplySort(System.ComponentModel.PropertyDescriptor\ property,}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00915}00915\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.ComponentModel.ListSortDirection\ direction)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00916}00916\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00917}00917\ \ \ \ \ \ \ \ \ \ \ \ \ ApplySort(property,\ direction);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00918}00918\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00919}00919\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00923}00923\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ RemoveSort()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00924}00924\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00925}00925\ \ \ \ \ \ \ \ \ \ \ \ \ ResetList(m\_OriginalList);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00926}00926\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SortDirection\ =\ ((System.ComponentModel.ListSortDirection)\ (0));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00927}00927\ \ \ \ \ \ \ \ \ \ \ \ \ m\_SortProperty\ =\ \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00928}00928\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{null}\ !=\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}})\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_data_control_a590c62c7e818bf2707ba5419a19e9398}{ListChanged}}(\textcolor{keyword}{this},\ \textcolor{keyword}{new}\ ListChangedEventArgs(ListChangedType.Reset,\ 0));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00929}00929\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00930}00930\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00931}00931\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ System.ComponentModel.IBindingList.RemoveSort()}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00932}00932\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00933}00933\ \ \ \ \ \ \ \ \ \ \ \ \ RemoveSort();}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00934}00934\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00935}00935\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00936}00936\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00937}00937\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00938}00938\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ IBindingList\ Other\ Features}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00945}00945\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{int}\ Find(System.ComponentModel.PropertyDescriptor\ property,\ \textcolor{keywordtype}{object}\ key)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00946}00946\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00947}00947\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00948}00948\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00949}00949\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (idx\ =\ 0;\ idx\ <=\ this.Count\ -\/\ 1;\ idx++)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00950}00950\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00951}00951\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{object}\ value\ =\ \textcolor{keyword}{property}.GetValue(\textcolor{keyword}{this}[idx]);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00952}00952\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (property.Name)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00953}00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00954}00954\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \textcolor{stringliteral}{"{}ValueToString"{}}:}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00955}00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((value\ ==\ key))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00956}00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00957}00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ idx;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00958}00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00959}00959\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00960}00960\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00961}00961\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((value\ ==\ key))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00962}00962\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00963}00963\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ idx;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00964}00964\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00965}00965\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00966}00966\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00967}00967\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00968}00968\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((result\ !=\ -\/1))}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00969}00969\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00970}00970\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00971}00971\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00972}00972\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00973}00973\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00974}00974\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00975}00975\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00976}00976\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ System.ComponentModel.IBindingList.Find(System.ComponentModel.PropertyDescriptor\ property,\ \textcolor{keywordtype}{object}\ key)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00977}00977\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00978}00978\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Find(property,\ key);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00979}00979\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00980}00980\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00985}00985\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ AddIndex(System.ComponentModel.PropertyDescriptor\ property)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00986}00986\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00987}00987\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00988}00988\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00989}00989\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ System.ComponentModel.IBindingList.AddIndex(System.ComponentModel.PropertyDescriptor\ property)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00990}00990\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00991}00991\ \ \ \ \ \ \ \ \ \ \ \ \ AddIndex(property);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00992}00992\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00993}00993\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00998}00998\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{void}\ RemoveIndex(System.ComponentModel.PropertyDescriptor\ property)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l00999}00999\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01000}01000\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01001}01001\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01002}01002\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ System.ComponentModel.IBindingList.RemoveIndex(System.ComponentModel.PropertyDescriptor\ property)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01003}01003\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01004}01004\ \ \ \ \ \ \ \ \ \ \ \ \ RemoveIndex(property);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01005}01005\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01006}01006\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01007}01007\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01008}01008\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01009}01009\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01010}01010\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01011}01011\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#region\ ITypedList\ Implementation}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01017}01017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ PropertyDescriptorCollection\ GetItemProperties(PropertyDescriptor[]\ listAccessors)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01018}01018\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01019}01019\ \ \ \ \ \ \ \ \ \ \ \ \ PropertyDescriptorCollection\ m\_OriginalList\ =\ TypeDescriptor.GetProperties(typeof\ (DaItem));}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01020}01020\ \ \ \ \ \ \ \ \ \ \ \ \ PropertyDescriptorCollection\ m\_SortedList\ =\ m\_OriginalList.Sort(\textcolor{keyword}{new}\ \textcolor{keywordtype}{string}[]\ \{\});}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01021}01021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ m\_SortedList;}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01022}01022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01023}01023\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01024}01024\ \ \ \ \ \ \ \ \ PropertyDescriptorCollection\ System.ComponentModel.ITypedList.GetItemProperties(PropertyDescriptor[]\ listAccessors)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01025}01025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01026}01026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GetItemProperties(listAccessors);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01027}01027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01028}01028\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01034}01034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{internal}\ \textcolor{keywordtype}{string}\ GetListName(PropertyDescriptor[]\ listAccessors)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01035}01035\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01036}01036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Softing\ Data\ Control"{}};}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01037}01037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01038}01038\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01039}01039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ System.ComponentModel.ITypedList.GetListName(PropertyDescriptor[]\ listAccessors)}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01040}01040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01041}01041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ GetListName(listAccessors);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01042}01042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01043}01043\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01044}01044\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01045}01045\ \ \ \ \ \}\ \textcolor{comment}{//\ end\ class\ DataControl}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01046}01046\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01047}01047\ \textcolor{preprocessor}{\ \ \ \ \#region\ }\textcolor{comment}{//Public\ Delegates}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01048}01048\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01049}01049\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01061}\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_a9d87f486ecfa5b8fd7eb4d5e54bd05ae}{01061}}\ \ \ \ \ \textcolor{keyword}{public}\ delegate\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_a9d87f486ecfa5b8fd7eb4d5e54bd05ae}{ControlDataChangedEventHandler}}(}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01062}01062\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription}{ControlDaSubscription}}\ aControlSubscription,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_item}{ControlDaItem}}[]\ items,\ \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{ValueQT}}[]\ values,\ \textcolor{keywordtype}{int}[]\ results);}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01063}01063\ }
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01064}01064\ \textcolor{preprocessor}{\ \ \ \ \#endregion}}
+\DoxyCodeLine{\Hypertarget{_client_data_control_8cs_source_l01065}01065\ \}}
+
+\end{DoxyCode}

@@ -3,6 +3,7 @@
 
 #ifdef SOFEATURE_DCOM
 
+#include "stdafx.h"
 #include "SOCmnTrace.h"
 
 #ifndef SOFLAG_DEMO_VERSION
@@ -481,13 +482,18 @@ extern DWORD g_demoStamp;
 //-----------------------------------------------------------------------------
 // SOSrvComObject                                                             |
 //-----------------------------------------------------------------------------
+//extern unsigned long InternalAddRef();
+//extern unsigned long InternalRelease();
+
 
 template <class Base> class SOSrvComObject : public Base
 {
 public:
 	typedef Base _BaseClass;
+    LONG m_internalCnt; // internal reference count
+    LONG m_tempCnt;     // temporary reference count for object protection
 
-	DECLARE_PROTECT_FINAL_CONSTRUCT();
+    DECLARE_PROTECT_FINAL_CONSTRUCT();
 
 	SOSrvComObject(void* = NULL)
 	{
@@ -500,8 +506,8 @@ public:
 	~SOSrvComObject()
 	{
 		// set refcount to 1 to protect destruction
-		m_dwRef = 1L;
-		FinalRelease();
+		Base::m_dwRef = 1L;
+		Base::FinalRelease();
 		_Module.Unlock();
 		_TRACE(SOCMNTRACE_L_INF, SOCMNTRACE_G_COM_OBJ_REF, (_T("free")));
 	}
@@ -533,7 +539,7 @@ public:
 	// release external reference to object
 	STDMETHOD_(ULONG, Release)()
 	{
-		lockMe();
+		Base::lockMe();
 		ULONG l = release(FALSE);
 		return l;
 	}
@@ -543,7 +549,7 @@ public:
 	{
 		ULONG intCnt;
 		ULONG rCnt;
-		lockMe();
+		Base::lockMe();
 
 		if (m_internalCnt)
 		{
@@ -554,8 +560,8 @@ public:
 		else
 		{
 			intCnt = 0;
-			rCnt = m_dwRef;
-			unlockMe();
+			rCnt = Base::m_dwRef;
+			Base::unlockMe();
 		}
 
 		if (refCnt)
@@ -570,7 +576,7 @@ public:
 	ULONG tempRelease(void)
 	{
 		LONG refCount;
-		lockMe();
+		Base::lockMe();
 
 		if (m_tempCnt)
 		{
@@ -579,8 +585,8 @@ public:
 		}
 		else
 		{
-			refCount = m_dwRef;
-			unlockMe();
+			refCount = Base::m_dwRef;
+			Base::unlockMe();
 		}
 
 		return (ULONG)refCount;
@@ -592,11 +598,11 @@ public:
 		ULONG l = InternalRelease();
 		_TRACE(SOCMNTRACE_L_DEB, SOCMNTRACE_G_COM_OBJ_REF, (_T("Release %lu"), l));
 
-		if ((!internal) && ((LONG)m_internalCnt == (m_dwRef - m_tempCnt)) && (l > 0))
+		if ((!internal) && ((LONG)m_internalCnt == (Base::m_dwRef - m_tempCnt)) && (l > 0))
 		{
-			unlockMe();
+			Base::unlockMe();
 
-			if (lastExternalReleaseWithInternalRefs())
+			if (Base::lastExternalReleaseWithInternalRefs())
 			{
 				return 0;
 			}
@@ -606,13 +612,13 @@ public:
 
 		if (l == 0)
 		{
-			disuniteMe();
-			unlockMe();
+			Base::disuniteMe();
+			Base::unlockMe();
 			SOCMN_FREE_OBJECT_THIS
 		}
 		else
 		{
-			unlockMe();
+			Base::unlockMe();
 		}
 
 		return l;
@@ -621,18 +627,18 @@ public:
 	// get the current reference count
 	ULONG getRefCount(void)
 	{
-		return m_dwRef;
+		return Base::m_dwRef;
 	}
 
 	// query for interface
 	STDMETHOD(QueryInterface)(IN REFIID iid, OUT void** ppvObject)
 	{
 		HRESULT res;
-		res = queryInterface(iid, ppvObject);
+		res = Base::queryInterface(iid, ppvObject);
 
 		if (res == E_NOTIMPL)
 		{
-			res = _InternalQueryInterface(iid, ppvObject);
+			res = Base::_InternalQueryInterface(iid, ppvObject);
 		}
 
 		return res;
@@ -640,8 +646,8 @@ public:
 
 	static HRESULT WINAPI CreateInstance(OUT SOSrvComObject<Base>** pp);
 
-	LONG m_internalCnt; // internal reference count
-	LONG m_tempCnt;     // temporary reference count for object protection
+	//LONG m_internalCnt; // internal reference count
+	//LONG m_tempCnt;     // temporary reference count for object protection
 }; // SOSrvComObject
 
 

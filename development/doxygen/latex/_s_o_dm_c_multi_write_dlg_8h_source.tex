@@ -1,0 +1,96 @@
+\doxysection{SODm\+CMulti\+Write\+Dlg.\+h}
+\hypertarget{_s_o_dm_c_multi_write_dlg_8h_source}{}\label{_s_o_dm_c_multi_write_dlg_8h_source}\index{core/src/demo/SOClient/SODmCMultiWriteDlg.h@{core/src/demo/SOClient/SODmCMultiWriteDlg.h}}
+\mbox{\hyperlink{_s_o_dm_c_multi_write_dlg_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SODMCMULTIWRITEDLG\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SODMCMULTIWRITEDLG\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00004}00004\ \textcolor{preprocessor}{\#ifdef\ SODMC\_DA}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_cell_combo_8h}{GridCtrl\_SRC\(\backslash\)GridCellCombo.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_cell_numeric_8h}{GridCtrl\_SRC\(\backslash\)GridCellNumeric.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_btn_cell_8h}{GridCtrl\_SRC\(\backslash\)GridBtnCell.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_dm_c_main_view_8h}{SODmCMainView.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_dm_c_item_8h}{SODmCItem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_dm_c_group_8h}{SODmCGroup.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2demo_2_s_o_client_2resource_8h}{resource.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00015}00015\ \textcolor{comment}{//\ check\ box\ and\ browse\ button\ has\ different\ columns}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00016}00016\ \textcolor{preprocessor}{\#define\ CFG\_COLWIDTH\_0\ \ 200\ }\textcolor{comment}{//\ Item}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00017}00017\ \textcolor{preprocessor}{\#define\ CFG\_COLWIDTH\_1\ \ 110\ }\textcolor{comment}{//\ Datatype}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00018}00018\ \textcolor{preprocessor}{\#define\ CFG\_COLWIDTH\_2\ \ 225\ }\textcolor{comment}{//\ Value}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00019}00019\ \textcolor{preprocessor}{\#define\ CFG\_COLWIDTH\_3\ \ 75\ \ }\textcolor{comment}{//\ StartIndex}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00021}00021\ \textcolor{comment}{//\ grid\ control\ columns}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00022}00022\ \textcolor{preprocessor}{\#define\ CFG\_COL\_ITEM\ \ \ \ \ \ \ \ 0\ \ \ }\textcolor{comment}{//\ item\ (disabled\ edit\ field)}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00023}00023\ \textcolor{preprocessor}{\#define\ CFG\_COL\_DATATYPE\ \ \ \ 1\ \ \ }\textcolor{comment}{//\ datatype\ (dropdown\ list)}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00024}00024\ \textcolor{preprocessor}{\#define\ CFG\_COL\_VALUE\ \ \ \ \ \ \ 2\ \ \ }\textcolor{comment}{//\ value\ (edit\ field)\ }}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00025}00025\ \textcolor{preprocessor}{\#define\ CFG\_COL\_INDEX\ \ \ \ \ \ \ 3\ \ \ }\textcolor{comment}{//\ value\ (edit\ field)\ }}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00027}00027\ \textcolor{preprocessor}{\#define\ CFG\_SZHEAD\_ITEM\ \ \ \ \ \_T("{}Item"{})\ \ }\textcolor{comment}{//\ item's\ caption\ \ \ (disabled\ edit\ field)}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00028}00028\ \textcolor{preprocessor}{\#define\ CFG\_SZHEAD\_DATATYPE\ \_T("{}Datatype"{})\ \ \ \ \ \ }\textcolor{comment}{//\ datatype\ (dropdown\ list)}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00029}00029\ \textcolor{preprocessor}{\#define\ CFG\_SZHEAD\_VALUE\ \ \ \ \_T("{}Value"{})\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ value\ (edit\ field)\ }}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00030}00030\ \textcolor{preprocessor}{\#define\ CFG\_SZHEAD\_INDEX\ \ \ \ \_T("{}Startindex"{})\ \ \ \ }\textcolor{comment}{//\ value\ (edit\ field)\ }}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00032}00032\ \textcolor{preprocessor}{\#define\ COLORREADONLY\ RGB(214,211,206)}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00034}00034\ \textcolor{preprocessor}{\#define\ MULTIWRITE\_MINWIDTH\ 300}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00035}00035\ \textcolor{preprocessor}{\#define\ MULTIWRITE\_MINHEIGHT\ 200}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00037}00037\ \textcolor{preprocessor}{\#define\ IDC\_OCTCFGGRID\ \ 100}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00039}00039\ \textcolor{comment}{//\ SODmCMultiWriteDlg\ dialog}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00042}00042\ \textcolor{keyword}{class\ }SODmCItemList\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_s_o_cmn_data}{SOCmnData}}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00044}00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00045}00045\ \ \ \ \ SODmCItemList()}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00046}00046\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00047}00047\ \ \ \ \ \ \ \ \ m\_itemList.create(\mbox{\hyperlink{_s_o_cmn_list_8h_ac593df5614d6c2888df633c94d50c32c}{SOCMNLIST\_TYPE\_ORG\_LIST}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_adce9ffe0945f5b360551a4b28679ba6f}{SOCMNLIST\_TYPE\_KEY\_NO}}\ |\ \mbox{\hyperlink{_s_o_cmn_list_8h_a28857c21fcedec7a723aa8493a2881b9}{SOCMNLIST\_TYPE\_OBJ\_OBJECT}});}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00049}00049\ \ \ \ \ \string~SODmCItemList()}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ m\_itemList.destroy();}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ m\_group.release();}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00055}00055\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_pointer}{SOCmnPointer<SODaCGroup>}}\ m\_group;}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00056}00056\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList<SODaCItem>}}\ m\_itemList;}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00057}00057\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00059}00059\ \textcolor{keyword}{class\ }SODmCMultiWriteDlg\ :\ \textcolor{keyword}{public}\ CDialog}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00060}00060\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00061}00061\ \ \ \ \ DECLARE\_DYNAMIC(SODmCMultiWriteDlg)}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00063}00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00064}00064\ \ \ \ \ SODmCMultiWriteDlg(CWnd*\ pParent\ =\ NULL);\ \ \ \textcolor{comment}{//\ standard\ constructor}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~SODmCMultiWriteDlg();}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ AFX\ Message\ handlers}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00068}00068\ \ \ \ \ afx\_msg\ \textcolor{keywordtype}{void}\ OnSize(UINT\ nType,\ \textcolor{keywordtype}{int}\ cx\ ,\ \textcolor{keywordtype}{int}\ cy);}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00069}00069\ \ \ \ \ afx\_msg\ \textcolor{keywordtype}{void}\ OnSizing(UINT\ nSide,\ LPRECT\ lpRect);}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00070}00070\ \ \ \ \ afx\_msg\ \textcolor{keywordtype}{void}\ OnBnClickedOk();}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00072}00072\ \ \ \ \ \textcolor{comment}{//\ Dialog\ Data}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00073}00073\ \ \ \ \ \textcolor{keyword}{enum}\ \{\ IDD\ =\ \mbox{\hyperlink{core_2src_2demo_2_s_o_client_2resource_8h_a463b3ae9eead35831470013e0758b6ae}{IDD\_MULTIWRITE}}\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00074}00074\ \ \ \ \ \mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}}*\ m\_pGridCtrl;}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00075}00075\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeGridCtrl(\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}}\&\ gridCtrl);}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{void}\ OnInitialUpdate();}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{void}\ addCaptionRowToGridCtrl(\mbox{\hyperlink{class_c_grid_ctrl}{CGridCtrl}}\&\ gridCtrl);}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{void}\ getComboOptions(CStringArray\&\ rOptions);}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00080}00080\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00081}00081\ \ \ \ \ DECLARE\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00082}00082\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ DoDataExchange(CDataExchange*\ pDX);\ \ \ \ \textcolor{comment}{//\ DDX/DDV\ support}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00083}00083\ \ \ \ \ virtual\ BOOL\ OnInitDialog();}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_list}{SOCmnList}}<SODmCItemList>\ m\_lstGroupList;}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00086}00086\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00088}00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SODMC\_DA}}
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{_s_o_dm_c_multi_write_dlg_8h_source_l00090}00090\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_SODMCMULTIWRITEDLG\_H\_}}
+
+\end{DoxyCode}

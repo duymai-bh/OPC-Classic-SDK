@@ -8,6 +8,7 @@
 
 class SOSrvHTTPHandler;
 class SOSrvHTTPHandlerData;
+class SOCmnStringEx;
 
 #define SOSRVHTTP_FLAG_CONNECTION_CLOSE		  0x01
 #define MAX_ACCEPTED_HTTP_HEADER_SIZE_BYTES   16384

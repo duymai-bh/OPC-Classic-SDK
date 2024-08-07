@@ -1,0 +1,4 @@
+var interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_auto_hide_strip_factory =
+[
+    [ "CreateAutoHideStrip", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_auto_hide_strip_factory.html#a77ecc25fb4a9472c71ebf24b8479382b", null ]
+];

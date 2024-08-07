@@ -1,0 +1,895 @@
+\doxysection{Softing.\+OPCToolbox.\+Client.\+Da\+Subscription Class Reference}
+\hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{}\label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+
+
+Inheritance diagram for Softing.\+OPCToolbox.\+Client.\+Da\+Subscription\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Softing.\+OPCToolbox.\+Client.\+Da\+Subscription\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/constructor\mbox{[}@name="{}\+Da\+Subscription"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Initializes a new instance of the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{Da\+Subscription} class with the value indicated by an update rate and a \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session} object to whom to be added. After creating it, the {\bfseries{\doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{Da\+Subscription}}} object is added to the session it is meant to belong.
+
+
+\begin{DoxyParams}{Parameters}
+{\em update\+Rate} & The cyclic rate that the active \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item} objects have to be read.\\
+\hline
+{\em parent\+Session} & The session to whom the subscription is to be added.\\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad262e2210c1bf020128e866584aebf83}{Da\+Subscription}} (uint update\+Rate, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session}} parent\+Session)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Remove\+Da\+Item"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Removes an item (\doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item} object) from the subscription (\doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription}{Da\+Subscription} object).
+
+
+\begin{DoxyParams}{Parameters}
+{\em an\+Item} & The item to be removed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of removing the item.
+\end{DoxyReturn}
+
+
+$<$note$>$ If a large number of DA Items is to be removed, it is recommended to first disconnect the DA Subscription, remove the required DA Items and then reconnect the DA Subscription. Not following this recommendation may lead to performance-\/related problems with removal of DA Items (for a large number of items). Please see FAQ for more details on this matter. $<$/note$>$
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a63254939c5536a9621717cbcc97cbff5}{Remove\+Da\+Item}} (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}} an\+Item)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Read"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Reads the current values for a set of items that belong to the subscription.
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Age} & The oldest (in milliseconds) acceptable cached value when reading an item.\\
+\hline
+{\em items} & A list with the items whose values are to be read.\\
+\hline
+{\em values} & A list with the read values.\\
+\hline
+{\em results} & A list with the result of the read for each item. \\
+\hline
+{\em execution\+Options} & Specifies the modality of execution for reading items.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of reading values for a set of items that belong to a subscription.
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542}{Read}} (uint max\+Age, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]} items, out \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{Value\+QT}}\mbox{[}$\,$\mbox{]} values, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Write"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Writes the value, quality and timestamp for a set of items that belong to the subscription.
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & A list with the items to be written.\\
+\hline
+{\em values} & A list with the values to be written.\\
+\hline
+{\em results} & A list with the result of the write for each item. \\
+\hline
+{\em execution\+Options} & Specifies the modality of execution for writing items.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of writing values for the items that belong to the subscription.
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784}{Write}} (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]} items, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{Value\+QT}}\mbox{[}$\,$\mbox{]} values, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Validate\+Da\+Items"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Validates a set of items(checks if they could be added to the subscription without error).
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & A list with items to be validated.\\
+\hline
+{\em results} & A list with the result of the validate for each item.\\
+\hline
+{\em execution\+Options} & Specifies the modality of execution for validating items.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of validating items.
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a8934a31d869d0cc8279e45dee21c13bf}{Validate\+Da\+Items}} (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]} items, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Get\+Da\+Item\+Attributes\+From\+Server"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Updates the attributes of the items that belong to a subscription. The update is made from the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & A list with the items whose attributes are to be updated. \\
+\hline
+{\em what\+Attributes} & A list with all the item attributes to be updated.\\
+\hline
+{\em results} & A list with the result of the update for each item attribute. \\
+\hline
+{\em execution\+Options} & Specifies the modality of execution for updating attributes from a server.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of updating attributes from the server.
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c}{Get\+Da\+Item\+Attributes\+From\+Server}} (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]} items, \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{Enum\+Object\+Attribute}}\mbox{[}$\,$\mbox{]} what\+Attributes, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Set\+Da\+Item\+Attributes\+To\+Server"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Updates the attributes of the items that belong to a subscription. The update is made to the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em items} & A list with the items whose attributes are to be updated. \\
+\hline
+{\em what\+Attributes} & A list with all the item attributes to be updated.\\
+\hline
+{\em results} & A list with the result of the update for each item attribute. \\
+\hline
+{\em execution\+Options} & Specifies the modality of execution for updating attributes to a server.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of updating attributes to the server.
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a}{Set\+Da\+Item\+Attributes\+To\+Server}} (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]} items, \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{Enum\+Object\+Attribute}}\mbox{[}$\,$\mbox{]} what\+Attributes, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{Softing.\+OPCToolbox.\+Client.\+Object\+Space\+Element}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_ac3b786e6a2c007dc4af0348c68415d65}{Object\+Space\+Element}} ()
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+override int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_ab5b1e7ae386de97b7bc1314b3b9e866a}{Get\+Hash\+Code}} ()
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_aaf2666604822b560ad72cfa4e59185ff}{Perform\+State\+Transition}} (bool deep, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_adad48543ed7997c058bf01c5e3982338}{Connect}} (bool deep, bool active, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8cca4f71157ad2626b526605f54c805f}{Disconnect}} (\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a9bf6232914e3be9e891a62819ed28cbd}{Get\+Attributes\+From\+Server}} (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{Enum\+Object\+Attribute}}\mbox{[}$\,$\mbox{]} what\+Attributes, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a733f2bfe3ff8c1d2e33110f1c3678d89}{Set\+Attributes\+To\+Server}} (\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{Enum\+Object\+Attribute}}\mbox{[}$\,$\mbox{]} what\+Attributes, out int\mbox{[}$\,$\mbox{]} results, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Da\+Subscription"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Contructs a subscription object by de-\/serializing it from the stream.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae769663c633083c4104661c453ebb77a}{Da\+Subscription}} (Serialization\+Info info, Streaming\+Context context)
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Protected Attributes}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/field\mbox{[}@name="{}m\+\_\+item\+List"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em A list with all the items (\doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item} objects) belonging to the subscription.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+Hashtable \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a539af7903642a5c618537c7a076617d9}{m\+\_\+item\+List}} = new Hashtable()
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/field\mbox{[}@name="{}m\+\_\+session"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em The session (\doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session} object) to which the subscription belongs.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a520f31d269a5ec2a57526dfaaf632090}{m\+\_\+session}} = null
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Properties}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Da\+Session"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets or sets the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Softing.\+OPCToolbox.\+Client.\+Da\+Session} object to which the subscription belongs.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae2a90c4c1565ea8bc8712e23d8848f96}{Da\+Session}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Item\+List"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets the list with the items belonging to the subscription.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a9f66152e5c42275b5efafc5ef194e94e}{Item\+List}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Requested\+Update\+Rate"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets or sets the speed (in milliseconds)requested for scanning the active item objects.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+uint \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a0a524a77fe793c1b6b7f5ba68217fe62}{Requested\+Update\+Rate}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Revised\+Update\+Rate"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets the actual speed with which the values of the active item objects are scanned.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+uint \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a53af99f09508e362514fbacec9b3606b}{Revised\+Update\+Rate}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Requested\+Keep\+Alive\+Time"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets or sets the requested maximum period between updates sent to the client. Clients can set the keep-\/alive time for a subscription to cause the server to provide client callbacks on the subscription when there are no new events to report. Clients can then be assured of the health of the server and subscription without resorting to pinging the server with calls to Get\+Status. Using this facility, a client can expect a callback (data or keep-\/alive) within the specified keep-\/alive.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+uint \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a62cc9164bf3441bed01b12d684327288}{Requested\+Keep\+Alive\+Time}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Revised\+Keep\+Alive\+Time"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets the actual maximum period between updates sent to the client.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+uint \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_aaf8b50dc4a9f09b61524f0a4b69ee139}{Revised\+Keep\+Alive\+Time}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa85c2a2efa644a4275b3457333dd9064}{Enum\+Data\+Retrieval\+Mode}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae90c3f32481038354451014ac04d85cc}{Data\+Retreival\+Mode}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Name"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets or sets a symbolic name for the subscription object that describes its semantic significance (e.\+g "{}\+Temperatures\+\_\+on\+\_\+\+Floor\+\_\+1"{})
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a92edbeea0114eb969f2389fcc0fb6ca7}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Deadband"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets or sets the minimum percentage change required to trigger a data update for an item.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a05b324100b7ada15bcaac70f884f3cec}{Deadband}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Time\+Bias"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Gets or sets the deviation from GMT(\+Greenwich Mean Time) in minutes.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a90d6a4c1adb0ad46e6b5c13194f62507}{Time\+Bias}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Properties inherited from \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{Softing.\+OPCToolbox.\+Client.\+Object\+Space\+Element}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a59c2fe2415c5d499318660181ce786c1}{Valid}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{Enum\+Object\+State}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a989524c3637254dfb672d5b8b04d0179}{Current\+State}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aadc189c27a61ec50a56481c74c20ab60}{Enum\+Object\+State}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a98a8611bdd096a794a4d3421040d0679}{Target\+State}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Events}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Data\+Changed"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Occurs when the client is notified about the changes in the items values for the items that belong to the subscription. This event is raised at a time interval equal with the subscription\textquotesingle{}s update rate, only if at least one of the items that belong to the subscription change its value.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa9c4a5c975c48f0d672acf1bb0a307f7}{Data\+Changed\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a2a3e5661f70501250a2d4a2e91e04936}{Data\+Changed}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Data\+Changed\+Ex"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Occurs when the client is notified about the changes in the items values for the items that belong to the subscription. This event is raised at a time interval equal with the subscription\textquotesingle{}s update rate, only if at least one of the items that belong to the subscription change its value.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a4dbf634dc9f3bfdff77477953308422d}{Data\+Changed\+Ex\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a20e5aa027324b4f0a2fc9d3ffa2f53c0}{Data\+Changed\+Ex}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Validate\+Da\+Items\+Completed"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Occurs when validating items completes. para\texorpdfstring{$>$}{>}{\bfseries{C\#, Visual Basic, C++}}This event is raised by asynchronously executing the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a8934a31d869d0cc8279e45dee21c13bf}{Validate\+Da\+Items} method.
+
+para\texorpdfstring{$>$}{>}{\bfseries{Unmanaged C++}}The method is called after the method \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a8934a31d869d0cc8279e45dee21c13bf}{Validate\+Da\+Items} has been asynchronously executed.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a6fea56a162954efbb8b915b1c5231a13}{Validate\+Da\+Items\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad462559e42241fce25c2bc96ed167d86}{Validate\+Da\+Items\+Completed}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Get\+Da\+Item\+Attributes\+From\+Server\+Completed"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Occurs when updating some item attributes from the server completes.
+
+{\bfseries{C\#, Visual Basic, C++}}This event is raised by asynchronously executing the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c}{Get\+Da\+Item\+Attributes\+From\+Server} method.
+
+{\bfseries{Unmanaged C++}}This method is called after the method \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c}{Get\+Da\+Item\+Attributes\+From\+Server} has been asynchronously executed.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acf2a383b1f6658295ab0624a841d908a}{Get\+Da\+Item\+Attributes\+From\+Server\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a7d4d2df7499dbe9f6329ae40b1b93403}{Get\+Da\+Item\+Attributes\+From\+Server\+Completed}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Set\+Da\+Item\+Attributes\+To\+Server\+Completed"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Occurs when updating some item attributes to the server completes.
+
+{\bfseries{C\#, Visual Basic, C++}}This event is raised by asynchronously executing the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a}{Set\+Da\+Item\+Attributes\+To\+Server} method.
+
+{\bfseries{Unmanaged C++}}This method is called after the method \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a}{Set\+Da\+Item\+Attributes\+To\+Server} has been asynchronously executed.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ac61c8ed4bef0597952d9e699ea8f1bac}{Set\+Da\+Item\+Attributes\+To\+Server\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a02d5dc66bf080a71b7b13d4adc27389d}{Set\+Da\+Item\+Attributes\+To\+Server\+Completed}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ ="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Read\+Completed"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}\par
+{\em Occurs when reading some item values completes.
+
+{\bfseries{C\#, Visual Basic, C++}}This event is raised by asynchronously executing the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542}{Read} method.
+
+{\bfseries{Unmanaged C++}}This method is called after the method \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542}{Read} has been asynchronously executed.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} }\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ab3ff52b39fc11a441eb7af2a823ecdda}{Subscription\+Read\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae8085c432881d1e71d6d3ea40dc243df}{Read\+Completed}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Events inherited from \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{Softing.\+OPCToolbox.\+Client.\+Object\+Space\+Element}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a844ab0d390a4871112738573aa1e8147}{State\+Change\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a8532ff5484896702dd06449560ec699c}{State\+Change\+Completed}}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_afd10f91297a595ea4e0b677740e688cf}{Get\+Attributes\+From\+Server\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a3ae90a6ca9a1b1449c1f617cd42517e8}{Get\+Attributes\+From\+Server\+Completed}}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a86c829714d592fb09f6dd873369b6635}{Set\+Attributes\+To\+Server\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a35ac86197a8b4d8cd5ab18a384ce0176}{Set\+Attributes\+To\+Server\+Completed}}
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a15e852da2a7e28fe02bfd70e972630f1}{Perform\+State\+Transition\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a499221f5ceca1d199d9a44c2f11de55c}{Perform\+State\+Transition\+Completed}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{="{}\+Da\+Subscription"{}\mbox{]}/event\mbox{[}@name="{}\+Write\+Completed"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}
+Occurs when writing some item values completes.
+
+{\bfseries{C\#, Visual Basic, C++}}This event is raised by asynchronously executing the \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784}{Write} method.
+
+{\bfseries{Unmanaged C++}}This method is called after the method \doxylink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784}{Write} has been asynchronously executed.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a5871e4b504b0b0a4598ed7af989fbc68}{Subscription\+Write\+Event\+Handler}} \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ac237efeba52a218824037172a350e795}{Write\+Completed}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{="{}\+Da\+Subscription"{}\mbox{]}/property\mbox{[}@name="{}\+Locale\+Id"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}
+Gets or sets the valid language identifier for the current subscription.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} \begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a28ed633489f7c12623528e7fede8b63c}{Locale\+Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Get\+Object\+Data"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}
+Serializes a subscription object into a stream.
+
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} \begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a47b5f1e673ac5541b7a111c903b789aa}{Get\+Object\+Data}} (Serialization\+Info info, Streaming\+Context context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{="{}\+Da\+Subscription"{}\mbox{]}/method\mbox{[}@name="{}\+Refresh"{}\mbox{]}/doc/\texorpdfstring{$\ast$}{*}\textquotesingle{}}
+Reads all the active items of the subscription if the subscription is active.
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Age} & The oldest (in milliseconds) acceptable cached value when reading an item.\\
+\hline
+{\em execution\+Options} & Specifies the modality of execution for refreshing the subscription.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of refreshing the subscription.
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<}include file=\textquotesingle{}TBNC.\+doc.\+xml\textquotesingle{} path=\textquotesingle{}//class\mbox{[} /\texorpdfstring{$>$}{>} \begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a155f02ad4e5d85f1384ccc68eda32c22}{Refresh}} (uint max\+Age, \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}} execution\+Options)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{Softing.\+OPCToolbox.\+Client.\+Object\+Space\+Element}}}
+\begin{DoxyCompactItemize}
+\item 
+const uint \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a54ab16588503f4506426fdd360714a49}{MAX\+\_\+\+AGE\+\_\+\+DEVICE}} = 0
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+const uint \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element_a5a23d0e7ad25cbf98e384c23c1f322a1}{MAX\+\_\+\+AGE\+\_\+\+CACHE}} = 0x\+FFFFFFFF
+\end{DoxyCompactItemize}
+\doxysubsection*{Package Functions inherited from \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_object_space_element}{Softing.\+OPCToolbox.\+Client.\+Object\+Space\+Element}}}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00187}{187}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad262e2210c1bf020128e866584aebf83}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!DaSubscription@{DaSubscription}}
+\index{DaSubscription@{DaSubscription}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{DaSubscription()}{DaSubscription()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad262e2210c1bf020128e866584aebf83} 
+Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Da\+Subscription (\begin{DoxyParamCaption}\item[{uint}]{update\+Rate}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session}}}]{parent\+Session}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00203}{203}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad262e2210c1bf020128e866584aebf83_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae769663c633083c4104661c453ebb77a}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!DaSubscription@{DaSubscription}}
+\index{DaSubscription@{DaSubscription}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{DaSubscription()}{DaSubscription()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae769663c633083c4104661c453ebb77a} 
+Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Da\+Subscription (\begin{DoxyParamCaption}\item[{Serialization\+Info}]{info}{, }\item[{Streaming\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l02396}{2396}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae769663c633083c4104661c453ebb77a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!GetDaItemAttributesFromServer@{GetDaItemAttributesFromServer}}
+\index{GetDaItemAttributesFromServer@{GetDaItemAttributesFromServer}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{GetDaItemAttributesFromServer()}{GetDaItemAttributesFromServer()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Get\+Da\+Item\+Attributes\+From\+Server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]}}]{items}{, }\item[{\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{Enum\+Object\+Attribute}}\mbox{[}$\,$\mbox{]}}]{what\+Attributes}{, }\item[{out int\mbox{[}$\,$\mbox{]}}]{results}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}}}]{execution\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01963}{1963}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_af88119024983f1724f67b67eb2186d5c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a47b5f1e673ac5541b7a111c903b789aa}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!GetObjectData@{GetObjectData}}
+\index{GetObjectData@{GetObjectData}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{GetObjectData()}{GetObjectData()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a47b5f1e673ac5541b7a111c903b789aa} 
+virtual void Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Get\+Object\+Data (\begin{DoxyParamCaption}\item[{Serialization\+Info}]{info}{, }\item[{Streaming\+Context}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_control_1_1_control_da_subscription_afa37cf7f8344fea06a700ea9e424d600}{Softing.\+OPCToolbox.\+Client.\+Control.\+Control\+Da\+Subscription}}.
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l02412}{2412}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a47b5f1e673ac5541b7a111c903b789aa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!Read@{Read}}
+\index{Read@{Read}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{Read()}{Read()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Read (\begin{DoxyParamCaption}\item[{uint}]{max\+Age}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]}}]{items}{, }\item[{out \mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{Value\+QT}}\mbox{[}$\,$\mbox{]}}]{values}{, }\item[{out int\mbox{[}$\,$\mbox{]}}]{results}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}}}]{execution\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01675}{1675}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a987ce42e9721615d98b19b9083b5e542_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a155f02ad4e5d85f1384ccc68eda32c22}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!Refresh@{Refresh}}
+\index{Refresh@{Refresh}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{Refresh()}{Refresh()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a155f02ad4e5d85f1384ccc68eda32c22} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Refresh (\begin{DoxyParamCaption}\item[{uint}]{max\+Age}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}}}]{execution\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l02112}{2112}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a155f02ad4e5d85f1384ccc68eda32c22_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a63254939c5536a9621717cbcc97cbff5}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!RemoveDaItem@{RemoveDaItem}}
+\index{RemoveDaItem@{RemoveDaItem}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{RemoveDaItem()}{RemoveDaItem()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a63254939c5536a9621717cbcc97cbff5} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Remove\+Da\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}}]{an\+Item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01617}{1617}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a63254939c5536a9621717cbcc97cbff5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a63254939c5536a9621717cbcc97cbff5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!SetDaItemAttributesToServer@{SetDaItemAttributesToServer}}
+\index{SetDaItemAttributesToServer@{SetDaItemAttributesToServer}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{SetDaItemAttributesToServer()}{SetDaItemAttributesToServer()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Set\+Da\+Item\+Attributes\+To\+Server (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]}}]{items}{, }\item[{\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acff84680792f24b3e393e9d3bc2e3bec}{Enum\+Object\+Attribute}}\mbox{[}$\,$\mbox{]}}]{what\+Attributes}{, }\item[{out int\mbox{[}$\,$\mbox{]}}]{results}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}}}]{execution\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l02039}{2039}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a84132a79b235ea6d353015e9e274ad8a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a8934a31d869d0cc8279e45dee21c13bf}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!ValidateDaItems@{ValidateDaItems}}
+\index{ValidateDaItems@{ValidateDaItems}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{ValidateDaItems()}{ValidateDaItems()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a8934a31d869d0cc8279e45dee21c13bf} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Validate\+Da\+Items (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]}}]{items}{, }\item[{out int\mbox{[}$\,$\mbox{]}}]{results}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}}}]{execution\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01897}{1897}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a8934a31d869d0cc8279e45dee21c13bf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!Write@{Write}}
+\index{Write@{Write}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{Write()}{Write()}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784} 
+virtual int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Write (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}}\mbox{[}$\,$\mbox{]}}]{items}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_value_q_t}{Value\+QT}}\mbox{[}$\,$\mbox{]}}]{values}{, }\item[{out int\mbox{[}$\,$\mbox{]}}]{results}{, }\item[{\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_execution_options}{Execution\+Options}}}]{execution\+Options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01779}{1779}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a584872037426c4a8f8d49e1b1751c784_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a539af7903642a5c618537c7a076617d9}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!m\_itemList@{m\_itemList}}
+\index{m\_itemList@{m\_itemList}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{m\_itemList}{m\_itemList}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a539af7903642a5c618537c7a076617d9} 
+Hashtable Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+m\+\_\+item\+List = new Hashtable()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00340}{340}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a520f31d269a5ec2a57526dfaaf632090}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!m\_session@{m\_session}}
+\index{m\_session@{m\_session}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{m\_session}{m\_session}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a520f31d269a5ec2a57526dfaaf632090} 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+m\+\_\+session = null\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00349}{349}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+
+
+\doxysubsection{Property Documentation}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae2a90c4c1565ea8bc8712e23d8848f96}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!DaSession@{DaSession}}
+\index{DaSession@{DaSession}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{DaSession}{DaSession}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae2a90c4c1565ea8bc8712e23d8848f96} 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_session}{Da\+Session}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Da\+Session\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00364}{364}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae90c3f32481038354451014ac04d85cc}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!DataRetreivalMode@{DataRetreivalMode}}
+\index{DataRetreivalMode@{DataRetreivalMode}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{DataRetreivalMode}{DataRetreivalMode}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae90c3f32481038354451014ac04d85cc} 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa85c2a2efa644a4275b3457333dd9064}{Enum\+Data\+Retrieval\+Mode}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Data\+Retreival\+Mode\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00809}{809}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a05b324100b7ada15bcaac70f884f3cec}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!Deadband@{Deadband}}
+\index{Deadband@{Deadband}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{Deadband}{Deadband}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a05b324100b7ada15bcaac70f884f3cec} 
+float Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Deadband\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01032}{1032}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a9f66152e5c42275b5efafc5ef194e94e}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!ItemList@{ItemList}}
+\index{ItemList@{ItemList}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{ItemList}{ItemList}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a9f66152e5c42275b5efafc5ef194e94e} 
+\mbox{\hyperlink{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_item}{Da\+Item}} \mbox{[}$\,$\mbox{]} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Item\+List\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00377}{377}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a28ed633489f7c12623528e7fede8b63c}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!LocaleId@{LocaleId}}
+\index{LocaleId@{LocaleId}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{LocaleId}{LocaleId}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a28ed633489f7c12623528e7fede8b63c} 
+string Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Locale\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01294}{1294}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a92edbeea0114eb969f2389fcc0fb6ca7}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!Name@{Name}}
+\index{Name@{Name}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a92edbeea0114eb969f2389fcc0fb6ca7} 
+string Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00888}{888}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a62cc9164bf3441bed01b12d684327288}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!RequestedKeepAliveTime@{RequestedKeepAliveTime}}
+\index{RequestedKeepAliveTime@{RequestedKeepAliveTime}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{RequestedKeepAliveTime}{RequestedKeepAliveTime}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a62cc9164bf3441bed01b12d684327288} 
+uint Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Requested\+Keep\+Alive\+Time\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00615}{615}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a0a524a77fe793c1b6b7f5ba68217fe62}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!RequestedUpdateRate@{RequestedUpdateRate}}
+\index{RequestedUpdateRate@{RequestedUpdateRate}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{RequestedUpdateRate}{RequestedUpdateRate}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a0a524a77fe793c1b6b7f5ba68217fe62} 
+uint Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Requested\+Update\+Rate\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00404}{404}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_aaf8b50dc4a9f09b61524f0a4b69ee139}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!RevisedKeepAliveTime@{RevisedKeepAliveTime}}
+\index{RevisedKeepAliveTime@{RevisedKeepAliveTime}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{RevisedKeepAliveTime}{RevisedKeepAliveTime}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_aaf8b50dc4a9f09b61524f0a4b69ee139} 
+uint Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Revised\+Keep\+Alive\+Time\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00746}{746}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a53af99f09508e362514fbacec9b3606b}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!RevisedUpdateRate@{RevisedUpdateRate}}
+\index{RevisedUpdateRate@{RevisedUpdateRate}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{RevisedUpdateRate}{RevisedUpdateRate}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a53af99f09508e362514fbacec9b3606b} 
+uint Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Revised\+Update\+Rate\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00541}{541}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a90d6a4c1adb0ad46e6b5c13194f62507}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!TimeBias@{TimeBias}}
+\index{TimeBias@{TimeBias}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{TimeBias}{TimeBias}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a90d6a4c1adb0ad46e6b5c13194f62507} 
+int Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Time\+Bias\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l01163}{1163}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+
+
+\doxysubsection{Event Documentation}
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a2a3e5661f70501250a2d4a2e91e04936}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!DataChanged@{DataChanged}}
+\index{DataChanged@{DataChanged}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{DataChanged}{DataChanged}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a2a3e5661f70501250a2d4a2e91e04936} 
+virtual \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_aa9c4a5c975c48f0d672acf1bb0a307f7}{Data\+Changed\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Data\+Changed}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00251}{251}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a20e5aa027324b4f0a2fc9d3ffa2f53c0}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!DataChangedEx@{DataChangedEx}}
+\index{DataChangedEx@{DataChangedEx}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{DataChangedEx}{DataChangedEx}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a20e5aa027324b4f0a2fc9d3ffa2f53c0} 
+virtual \mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a4dbf634dc9f3bfdff77477953308422d}{Data\+Changed\+Ex\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Data\+Changed\+Ex}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00261}{261}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a7d4d2df7499dbe9f6329ae40b1b93403}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!GetDaItemAttributesFromServerCompleted@{GetDaItemAttributesFromServerCompleted}}
+\index{GetDaItemAttributesFromServerCompleted@{GetDaItemAttributesFromServerCompleted}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{GetDaItemAttributesFromServerCompleted}{GetDaItemAttributesFromServerCompleted}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a7d4d2df7499dbe9f6329ae40b1b93403} 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_acf2a383b1f6658295ab0624a841d908a}{Get\+Da\+Item\+Attributes\+From\+Server\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Get\+Da\+Item\+Attributes\+From\+Server\+Completed}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00283}{283}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae8085c432881d1e71d6d3ea40dc243df}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!ReadCompleted@{ReadCompleted}}
+\index{ReadCompleted@{ReadCompleted}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{ReadCompleted}{ReadCompleted}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ae8085c432881d1e71d6d3ea40dc243df} 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ab3ff52b39fc11a441eb7af2a823ecdda}{Subscription\+Read\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Read\+Completed}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00305}{305}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a02d5dc66bf080a71b7b13d4adc27389d}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!SetDaItemAttributesToServerCompleted@{SetDaItemAttributesToServerCompleted}}
+\index{SetDaItemAttributesToServerCompleted@{SetDaItemAttributesToServerCompleted}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{SetDaItemAttributesToServerCompleted}{SetDaItemAttributesToServerCompleted}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_a02d5dc66bf080a71b7b13d4adc27389d} 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_ac61c8ed4bef0597952d9e699ea8f1bac}{Set\+Da\+Item\+Attributes\+To\+Server\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Set\+Da\+Item\+Attributes\+To\+Server\+Completed}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00294}{294}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad462559e42241fce25c2bc96ed167d86}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!ValidateDaItemsCompleted@{ValidateDaItemsCompleted}}
+\index{ValidateDaItemsCompleted@{ValidateDaItemsCompleted}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{ValidateDaItemsCompleted}{ValidateDaItemsCompleted}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ad462559e42241fce25c2bc96ed167d86} 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a6fea56a162954efbb8b915b1c5231a13}{Validate\+Da\+Items\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Validate\+Da\+Items\+Completed}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00272}{272}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+\Hypertarget{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ac237efeba52a218824037172a350e795}\index{Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}!WriteCompleted@{WriteCompleted}}
+\index{WriteCompleted@{WriteCompleted}!Softing.OPCToolbox.Client.DaSubscription@{Softing.OPCToolbox.Client.DaSubscription}}
+\doxysubsubsection{\texorpdfstring{WriteCompleted}{WriteCompleted}}
+{\footnotesize\ttfamily \label{class_softing_1_1_o_p_c_toolbox_1_1_client_1_1_da_subscription_ac237efeba52a218824037172a350e795} 
+\mbox{\hyperlink{namespace_softing_1_1_o_p_c_toolbox_1_1_client_a5871e4b504b0b0a4598ed7af989fbc68}{Subscription\+Write\+Event\+Handler}} Softing.\+OPCToolbox.\+Client.\+Da\+Subscription.\+Write\+Completed}
+
+
+
+Definition at line \mbox{\hyperlink{_client_da_subscription_8cs_source_l00316}{316}} of file \mbox{\hyperlink{_client_da_subscription_8cs_source}{Client\+Da\+Subscription.\+cs}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+NET/src/client/\+Da/\mbox{\hyperlink{_client_da_subscription_8cs}{Client\+Da\+Subscription.\+cs}}\end{DoxyCompactItemize}

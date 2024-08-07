@@ -1,0 +1,1085 @@
+\doxysection{Client\+Job.\+cpp}
+\hypertarget{_client_job_8cpp_source}{}\label{_client_job_8cpp_source}\index{core/src/OTB/ClientJob.cpp@{core/src/OTB/ClientJob.cpp}}
+\mbox{\hyperlink{_client_job_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00001}00001\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00002}00002\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00003}00003\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Softing\ Industrial\ Automation\ GmbH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Richard-\/Reitzner-\/Allee\ 6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00005}00005\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 85540\ Haar,\ Germany\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00007}00007\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ This\ is\ a\ part\ of\ the\ Softing\ OPC\ Toolkit\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00008}00008\ \textcolor{comment}{//\ \ \ \ \ \ \ \ Copyright\ (c)\ 2005-\/2020\ Softing\ Industrial\ Automation\ GmbH\ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00009}00009\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ All\ Rights\ Reserved\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00010}00010\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00011}00011\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00012}00012\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00013}00013\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OPC\ Toolkit\ -\/\ OTC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00014}00014\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00015}00015\ \textcolor{comment}{//\ \ Filename\ \ \ \ :\ ClientJob.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00016}00016\ \textcolor{comment}{//\ \ Version\ \ \ \ \ :\ 4.47.1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00017}00017\ \textcolor{comment}{//\ \ Date\ \ \ \ \ \ \ \ :\ 27-\/July-\/2020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00018}00018\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00019}00019\ \textcolor{comment}{//\ \ Description\ :\ \ Client\ Toolkit\ tasks\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00020}00020\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00021}00021\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_o_t_b_2_std_afx_8h}{stdafx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00025}00025\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_client_job_8h}{ClientJob.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00028}00028\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_o_t_b_2_client_da_session_8h}{ClientDASession.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_o_t_b_2_client_da_subscription_8h}{ClientDASubscription.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00031}00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_2src_2_o_t_b_2_client_da_item_8h}{ClientDAItem.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_s_o_cmn_handle_manager_8h}{SOCmnHandleManager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00033}00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00035}00035\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00036}00036\ \textcolor{comment}{//\ ClientJob\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00037}00037\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00039}\mbox{\hyperlink{class_client_job_af3169716b4e7aef18aa93147ed1a3f83}{00039}}\ \mbox{\hyperlink{class_client_job_af3169716b4e7aef18aa93147ed1a3f83}{ClientJob::ClientJob}}(}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00040}00040\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{class_s_o_clt_element}{SOCltElement}}*\ pElement,}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00041}00041\ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___o_t_c_execution_options}{OTCExecutionOptions}}*\ pExecutionOptions)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00042}00042\ \ \ \ \ :\ \mbox{\hyperlink{class_s_o_clt_task}{SOCltTask}}(pElement)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00043}00043\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00044}00044\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a7d8ad762da57fb9d54a0a6de3892f309}{CLIENTJOB\_TYPE\_UNKNOWN}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00045}00045\ \ \ \ \ \mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}}.\mbox{\hyperlink{struct___o_t_c_execution_options_adbc782c170b499bb8ca679e739c9a54c}{m\_executionType}}\ =\ \mbox{\hyperlink{_client_job_8h_a0cf77d2a23fbc233131e9d7db304c336}{OTC\_EXECUTIONTYPE\_ASYCHRONOUS\_EXECUTE}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00046}00046\ \ \ \ \ \mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}}.\mbox{\hyperlink{struct___o_t_c_execution_options_a8f1f26d611069bc47de803bf33c5787f}{m\_executionContext}}\ =\ pExecutionOptions-\/>m\_executionContext;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{class_client_job_aaaee6dd2f3ae4332de08b6af689ca29f}{m\_deep}}\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{class_client_job_ac78f160274ab17fa1c69c49586d62cf6}{m\_fromServer}}\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00051}00051\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00052}00052\ \ \ \ \ m\_itemCount\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00053}00053\ \ \ \ \ m\_ppItems\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00054}00054\ \ \ \ \ m\_pItemIDs\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00055}00055\ \ \ \ \ m\_pItemPaths\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00056}00056\ \ \ \ \ m\_maxAge\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00057}00057\ \ \ \ \ m\_pValues\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00058}00058\ \ \ \ \ m\_pGetPropertiesOptions\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00059}00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00060}00060\ \ \ \ \ \mbox{\hyperlink{class_client_job_a8183a5b7ba052258fa7a0bf32853eb0e}{m\_whatOPCSpec}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00061}00061\ \ \ \ \ \mbox{\hyperlink{class_client_job_a58e6aa80c367800e6e32c6f126e5ded9}{m\_whatServerData}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{class_client_job_a45cb29f34f656710c83033caa10ac65e}{m\_addressSpaceElementHandle}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00063}00063\ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00066}\mbox{\hyperlink{class_client_job_a47be5f5d88b4b66e0a7afa3acb220d7d}{00066}}\ \mbox{\hyperlink{class_client_job_a47be5f5d88b4b66e0a7afa3acb220d7d}{ClientJob::\string~ClientJob}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00067}00067\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00069}00069\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00070}00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(\mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00073}00073\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00074}00074\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00077}00077\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]-\/>release();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_ppItems);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pItemIDs)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00090}00090\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pItemIDs[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pItemIDs);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pItemPaths)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00100}00100\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pItemPaths[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pItemPaths);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pValues)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00110}00110\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ ::VariantClear(m\_pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pValues);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00120}00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pGetPropertiesOptions)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00121}00121\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pGetPropertiesOptions-\/>m\_pPropertyIDs)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pGetPropertiesOptions-\/>m\_pPropertyIDs);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pGetPropertiesOptions-\/>m\_pPropertyNames)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_pGetPropertiesOptions-\/>m\_propertyCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_pGetPropertiesOptions-\/>m\_pPropertyNames[i]\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}((\textcolor{keywordtype}{void}*)m\_pGetPropertiesOptions-\/>m\_pPropertyNames[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}((\textcolor{keywordtype}{void}*)m\_pGetPropertiesOptions-\/>m\_pPropertyNames);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(m\_pGetPropertiesOptions);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00141}00141\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00143}00143\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00146}00146\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_acb09ea4168a90d3c623c51a8775f5daa}{m\_elementNameFilter}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}((\textcolor{keywordtype}{void}*)\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_acb09ea4168a90d3c623c51a8775f5daa}{m\_elementNameFilter}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a810df2f1bf0e7453c8de3aa57f19fe8f}{m\_vendorFilter}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}((\textcolor{keywordtype}{void}*)\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a810df2f1bf0e7453c8de3aa57f19fe8f}{m\_vendorFilter}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00157}00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00158}00158\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00159}00159\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00161}\mbox{\hyperlink{class_client_job_af050b0df4ac87991d338af425b86ccea}{00161}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_af050b0df4ac87991d338af425b86ccea}{ClientJob::execute}}()}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00162}00162\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00163}00163\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_aa310e6cee2dce11319393a535cb7e7df}{SOCMN\_TRY}}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00164}00164\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00166}00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a098e3f7d63c8a311be5fa74cd65a1fff}{CLIENTJOB\_TYPE\_PERFORMSTATETRANSITION}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00168}00168\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_aedbdb8d31a63bc2e39df0dbfbeafaeee}{OTCPerformStateTransition}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \mbox{\hyperlink{class_client_job_aaaee6dd2f3ae4332de08b6af689ca29f}{m\_deep}},\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00172}00172\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a0ca843dd62077d614139df6b5cb55dac}{CLIENTJOB\_TYPE\_READ}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00175}00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_itemCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LONG*\ pResults;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValueData}}*\ pValues;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pResults\ =\ (LONG*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(LONG));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pValues\ =\ (\mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValueData}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValueData}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pValues[i].m\_pValue\ =\ (OTVariant*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\textcolor{keyword}{sizeof}(OTVariant));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::VariantInit(pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}\ *p\_SODaCItem\_Handles\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles\ =\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles[i]\ =\ m\_ppItems[i]-\/>getOpcHandle();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a5f7df621acb4e56817aa61efb3f7f0bb}{OTCRead}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_itemCount,\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)p\_SODaCItem\_Handles,\ m\_pItemIDs,\ m\_pItemPaths,\ m\_maxAge,\ pValues,\ pResults,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pResults);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\_SODaCItem\_Handles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(p\_SODaCItem\_Handles);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::VariantClear(pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pValues);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ E\_INVALIDARG;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a37c6b0e0ac6c6ba5e23882ff9b56ac06}{CLIENTJOB\_TYPE\_WRITE}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_itemCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LONG*\ pResults;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pResults\ =\ (LONG*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(LONG));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}\ *p\_SODaCItem\_Handles\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles\ =\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (DWORD\ i\ =\ 0;\ i\ <\ m\_itemCount;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles[i]\ =\ m\_ppItems[i]-\/>getOpcHandle();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a596c054ad27f9db9702a2cdb8f95d501}{OTCWrite}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_itemCount,\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)p\_SODaCItem\_Handles,\ (LPTSTR*)m\_pItemIDs,\ (LPTSTR*)m\_pItemPaths,\ m\_pValues,\ pResults,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\_SODaCItem\_Handles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(p\_SODaCItem\_Handles);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pResults);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ E\_INVALIDARG;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00255}00255\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a8c041e306371982cf17f8799d32dc5da}{CLIENTJOB\_TYPE\_UPDATEATTRIBUTES}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}}\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LONG*\ pResults;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pResults\ =\ (LONG*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}}\ *\ \textcolor{keyword}{sizeof}(LONG));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a063cbad3b40d823427d40f880238438b}{OTCUpdateAttributes}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \mbox{\hyperlink{class_client_job_ac78f160274ab17fa1c69c49586d62cf6}{m\_fromServer}},\ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}},\ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}},\ pResults,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pResults);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ E\_INVALIDARG;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_abe88cdbd510eb80573f30189be05382a}{CLIENTJOB\_TYPE\_BROWSEADDRESSSPACE}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ addressSpaceElementDataCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_address_space_element_data}{OTCAddressSpaceElementData}}*\ pAddressSpaceElement;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a9c2d0d908b6650268b95abad538a26a9}{OTCBrowseAddressSpace}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \mbox{\hyperlink{class_client_job_a45cb29f34f656710c83033caa10ac65e}{m\_addressSpaceElementHandle}},\ (LPTSTR)(LPCTSTR)\mbox{\hyperlink{class_client_job_a0cdad3e6b007534b81f575efed3ed60a}{m\_addressSpaceElementID}},\ (LPTSTR)(LPCTSTR)\mbox{\hyperlink{class_client_job_a53d5771c3414bdeae2ece833ac70fd66}{m\_addressSpaceElementPath}},\ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}},\ \&addressSpaceElementDataCount,\ \&pAddressSpaceElement,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))\ \&\&\ (pAddressSpaceElement\ !=\ NULL))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ addressSpaceElementDataCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pAddressSpaceElement[i].m\_itemID)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAddressSpaceElement[i].m\_itemID);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pAddressSpaceElement[i].m\_itemPath)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAddressSpaceElement[i].m\_itemPath);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00293}00293\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pAddressSpaceElement[i].m\_name)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAddressSpaceElement[i].m\_name);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAddressSpaceElement);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00302}00302\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00304}00304\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a7ff7ca23589be0e06cf317d39f3bcef7}{CLIENTJOB\_TYPE\_UPDATEITEMATTRIBUTES}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00307}00307\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_itemCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LONG*\ pResults;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pResults\ =\ (LONG*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(LONG));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}\ *p\_SODaCItem\_Handles\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles\ =\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (DWORD\ i\ =\ 0;\ i\ <\ m\_itemCount;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles[i]\ =\ m\_ppItems[i]-\/>getOpcHandle();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a8c03cccd451567041d9706f702969e70}{OTCUpdateDAItemAttributes}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_itemCount,\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)p\_SODaCItem\_Handles,\ \mbox{\hyperlink{class_client_job_ac78f160274ab17fa1c69c49586d62cf6}{m\_fromServer}},\ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}},\ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}},\ pResults,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\_SODaCItem\_Handles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(p\_SODaCItem\_Handles);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pResults);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ E\_INVALIDARG;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00335}00335\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00336}00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a112f8fe68b13a7f333c57df29721e3b2}{CLIENTJOB\_TYPE\_GETPROPERTIES}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00339}00339\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ propertyDataCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_d_a_property_data}{OTCDAPropertyData}}*\ pProperty;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a15a64e92dfe00f4293169ea20d75337b}{OTCGetDAProperties}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \mbox{\hyperlink{class_client_job_a45cb29f34f656710c83033caa10ac65e}{m\_addressSpaceElementHandle}},\ (LPTSTR)(LPCTSTR)\mbox{\hyperlink{class_client_job_a0cdad3e6b007534b81f575efed3ed60a}{m\_addressSpaceElementID}},\ (LPTSTR)(LPCTSTR)\mbox{\hyperlink{class_client_job_a53d5771c3414bdeae2ece833ac70fd66}{m\_addressSpaceElementPath}},\ m\_pGetPropertiesOptions,\ \&propertyDataCount,\ \&pProperty,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))\ \&\&\ (pProperty\ !=\ NULL))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ propertyDataCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pProperty[i].m\_itemID)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pProperty[i].m\_itemID);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00353}00353\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pProperty[i].m\_itemPath)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pProperty[i].m\_itemPath);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pProperty[i].m\_description)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pProperty[i].m\_description);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pProperty[i].m\_name)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pProperty[i].m\_name);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ::VariantClear(pProperty[i].m\_value.m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pProperty[i].m\_value.m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pProperty);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00375}00375\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00378}00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a26fe5d0ba65ddca86b5124cfefd13795}{CLIENTJOB\_TYPE\_VALIDATEITEMS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_itemCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LONG*\ pResults;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pResults\ =\ (LONG*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(LONG));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}\ *p\_SODaCItem\_Handles\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles\ =\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (DWORD\ i\ =\ 0;\ i\ <\ m\_itemCount;\ ++i)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_SODaCItem\_Handles[i]\ =\ m\_ppItems[i]-\/>getOpcHandle();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a15f6f990989eeff7d82eba2d43282b95}{OTCValidateDAItems}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_itemCount,\ (\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*)p\_SODaCItem\_Handles,\ pResults,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (p\_SODaCItem\_Handles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(p\_SODaCItem\_Handles);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pResults);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ E\_INVALIDARG;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00407}00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00408}00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00409}00409\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00410}00410\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_AE}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00412}00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a6dfa5375cc5f0cc43f75e6acb8db2a7f}{CLIENTJOB\_TYPE\_ACKNOWLEDGECONDITIONS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00413}00413\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_eventCount\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LONG*\ pResults;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pResults\ =\ (LONG*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_eventCount\ *\ \textcolor{keyword}{sizeof}(LONG));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a1daa3f42f5c371c247eb60c7f6b1ddd0}{OTCAcknowledgeAEConditions}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_ackId,\ m\_ackComment,\ m\_eventCount,\ m\_pEventData,\ pResults,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pResults);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ E\_INVALIDARG;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00425}00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00426}00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00428}00428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a11d3e974634cea3704bc8756d2b1691d}{CLIENTJOB\_TYPE\_REFRESHCONDITIONS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a21e0bceefe40f831f10eed68fc6f1043}{OTCRefreshAEConditions}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_cancelRefresh,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00432}00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a3a6753630b140b3bd17cf834a6b6bcf1}{CLIENTJOB\_TYPE\_QUERYSOURCECONDITIONS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00433}00433\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ count;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ LPTSTR*\ pConditionNames;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a7b5a228e2805645f5ade75c9ef4bbedc}{OTCQueryAESourceConditions}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_sourcePath,\ \&count,\ \&pConditionNames,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00437}00437\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pConditionNames[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00446}00446\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pConditionNames);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00449}00449\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00450}00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_aedc561061af306e6765438af5a0aa8d2}{CLIENTJOB\_TYPE\_GETCONDITIONSTATE}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00453}00453\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data}{OTCAEConditionStateData}}\ conditionState;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a13f52aa3e62a6c475bc418ae4f33e531}{OTCGetAEConditionState}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_sourcePath,\ m\_conditionName,\ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}},\ m\_pAttributeIds,\ \&conditionState,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00457}00457\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_ac5c210cab99105a4291ee8bb1270e77e}{m\_actSubConditionName}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_ae9d80511bf0e8dab97800b02087a1143}{m\_actSubConditionDescription}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_afc2967d155a3a0168c0418953c026c77}{m\_actSubConditionDefinition}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a1dea0ab814f82c1d503ceb333f61b2f9}{m\_ackID}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_abe329a0585dd869112aa51a007511683}{m\_ackComment}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a746bbfe3fa4cf6237922cfda284d2d07}{m\_subConditionCount}}\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a746bbfe3fa4cf6237922cfda284d2d07}{m\_subConditionCount}};\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a2cd8a3c79e8495ea79a45e5e2798c508}{m\_pSubConditionDefinition}}[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a0ceac66c0f66292ebc091fcec300405d}{m\_pSubConditionDescription}}[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a81630f040cfe5c364cbd3ed63e5427c0}{m\_pSubConditionName}}[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00474}00474\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a2cd8a3c79e8495ea79a45e5e2798c508}{m\_pSubConditionDefinition}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_ae2da96423f4be1e823a766f6149bcf60}{m\_pSubConditionSeverity}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a0ceac66c0f66292ebc091fcec300405d}{m\_pSubConditionDescription}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a81630f040cfe5c364cbd3ed63e5427c0}{m\_pSubConditionName}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a5728475676286da977572c97d2fb1055}{m\_eventAttrCount}}\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a5728475676286da977572c97d2fb1055}{m\_eventAttrCount}};\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SOCmnVariant::variantClear(\&conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a2a4a6af6281e56abb0c9b25110f56d89}{m\_pEventAttrs}}[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a5f8753de32f41cebb16785ea42cac335}{m\_pAttrErrors}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(conditionState.\mbox{\hyperlink{struct___o_t_c_a_e_condition_state_data_a2a4a6af6281e56abb0c9b25110f56d89}{m\_pEventAttrs}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00492}00492\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00493}00493\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00494}00494\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00495}00495\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a8adefaf41d2782e3c2984a21c4f8d3b5}{CLIENTJOB\_TYPE\_QUERYAVAILABLEFILTERS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00496}00496\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ availableFilters;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a2fdb7152c3ebade07c695a345d781373}{OTCQueryAvailableAEFilters}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \&availableFilters,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00499}00499\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00500}00500\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00501}00501\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00502}00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_ab8106771c6b32645d2d7523ae96291a7}{CLIENTJOB\_TYPE\_QUERYCATEGORIES}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00503}00503\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ count;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD*\ pEventTypes;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD*\ pCategoryIds;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ LPTSTR*\ pCategoryDescriptions;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a53d9cefdc9a85e88d9fbb12452b46d1a}{OTCQueryAECategories}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \&count,\ \&pEventTypes,\ \&pCategoryIds,\ \&pCategoryDescriptions,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00509}00509\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pEventTypes);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pCategoryIds);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00515}00515\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pCategoryDescriptions[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pCategoryDescriptions);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00523}00523\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00524}00524\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00526}00526\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_ad2d2707790f554d12c54df7b395b8dd0}{CLIENTJOB\_TYPE\_QUERYATTRIBUTES}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00527}00527\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ count;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD*\ pAttributeIds;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ LPTSTR*\ pAttributeDescriptions;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ WORD*\ pAttributeDatatypes;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_ae5636e8f942dd217c086402e2d29ef0c}{OTCQueryAEAttributes}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_categoryId,\ \&count,\ \&pAttributeIds,\ \&pAttributeDescriptions,\ \&pAttributeDatatypes,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00533}00533\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAttributeIds);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAttributeDatatypes);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00539}00539\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAttributeDescriptions[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00544}00544\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pAttributeDescriptions);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00547}00547\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00549}00549\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_abb2b14341930883381a03f2342e3c264}{CLIENTJOB\_TYPE\_QUERYCONDITIONS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00551}00551\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ count;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ LPTSTR*\ pConditionNames;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a2681fc7b04781551efa5d8ab401cb1b8}{OTCQueryAEConditions}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_categoryId,\ \&count,\ \&pConditionNames,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00555}00555\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00559}00559\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pConditionNames[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pConditionNames);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00567}00567\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00568}00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00569}00569\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a61e0cdd9d66c2cdec4022fb299259648}{CLIENTJOB\_TYPE\_QUERYSUBCONDITIONS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ count;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ LPTSTR*\ pSubConditionNames;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a104d53448a7db89d52180b83f6263e21}{OTCQueryAESubConditions}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_conditionName,\ \&count,\ \&pSubConditionNames,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00575}00575\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00579}00579\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pSubConditionNames[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pSubConditionNames);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00587}00587\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00588}00588\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00589}00589\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00590}00590\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_ae8dc7088425b62eac360eef0569171a5}{CLIENTJOB\_TYPE\_ENABLECONDITIONS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00591}00591\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a0901d8d49e997875ef28a0b72678cd85}{OTCEnableAEConditions}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ m\_enable,\ m\_areaOrSource,\ m\_sourcePath,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00593}00593\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00595}00595\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_AE}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00597}00597\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a2dfaec0ad8ef68541cc4f6bccc6da32e}{CLIENTJOB\_TYPE\_BROWSESERVER}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00598}00598\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ serverDataCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_server_data}{OTCServerData}}*\ pServerData\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a0c5845f9b1d27c2f11a08260ef659343}{OTCBrowseServer}}(\mbox{\hyperlink{class_client_job_a2e508abc98b5b4f3f797633cb5d8776c}{m\_ipAddress}},\ \mbox{\hyperlink{class_client_job_a8183a5b7ba052258fa7a0bf32853eb0e}{m\_whatOPCSpec}},\ \mbox{\hyperlink{class_client_job_a58e6aa80c367800e6e32c6f126e5ded9}{m\_whatServerData}},\ \&serverDataCount,\ \&pServerData,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00603}00603\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{_o_tcommon_8h_a1eff4fb052d6e497649f6a06b4ac222a}{SUCCEEDED}}(\mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}))\ \&\&\ (pServerData\ !=\ NULL))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ serverDataCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00607}00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00608}00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_clsid)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00610}00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_clsid);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00611}00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00612}00612\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00613}00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_progId)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_progId);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00617}00617\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_vProgId)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_vProgId);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00622}00622\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_description)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_description);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00627}00627\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pServerData[i].m\_url)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData[i].m\_url);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00633}00633\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(pServerData);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00636}00636\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00637}00637\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00638}00638\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00639}00639\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a986470ee40e0416c290d7b5f1bafd3c8}{CLIENTJOB\_TYPE\_GETSERVERSTATUS}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00640}00640\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct___o_t_c_server_status}{OTCServerStatus}}\ status;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&status,\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct___o_t_c_server_status}{OTCServerStatus}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00643}00643\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a5bd3a62cd947bcd79f390dc39c96cf10}{OTCGetServerStatus}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \&status,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00644}00644\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.\mbox{\hyperlink{struct___o_t_c_server_status_ade9057713287a1dae86ffb364fa7c8c6}{m\_vendorInfo}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(status.\mbox{\hyperlink{struct___o_t_c_server_status_ade9057713287a1dae86ffb364fa7c8c6}{m\_vendorInfo}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00649}00649\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.\mbox{\hyperlink{struct___o_t_c_server_status_acdb9926d24fe8a054adc6d95bd92f752}{m\_productVersion}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00651}00651\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00652}00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(status.\mbox{\hyperlink{struct___o_t_c_server_status_acdb9926d24fe8a054adc6d95bd92f752}{m\_productVersion}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00654}00654\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00655}00655\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.\mbox{\hyperlink{struct___o_t_c_server_status_a6a7d81b8e536db9f0c96adece8f4ad24}{m\_statusInfo}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00657}00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(status.\mbox{\hyperlink{struct___o_t_c_server_status_a6a7d81b8e536db9f0c96adece8f4ad24}{m\_statusInfo}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00658}00658\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00659}00659\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\&status.\mbox{\hyperlink{struct___o_t_c_server_status_a07fc03ee2fd11099986960188239c972}{m\_supportedLCIDs}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00661}00661\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00662}00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(status.\mbox{\hyperlink{struct___o_t_c_server_status_a07fc03ee2fd11099986960188239c972}{m\_supportedLCIDs}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00663}00663\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00664}00664\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00665}00665\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00666}00666\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00667}00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a8fc3651ade89b8c5772df72f9a0aa970}{CLIENTJOB\_TYPE\_GETERRORSTRING}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00668}00668\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00669}00669\ \ \ \ \ \ \ \ \ \ \ \ \ LPTSTR\ errorString\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00670}00670\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_ab39d1205f71e91311f6b78d0258d7dee}{OTCGetErrorString}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \mbox{\hyperlink{class_client_job_a3df4f35a6d66b51d480711238ae5844b}{m\_errorCode}},\ \&errorString,\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00671}00671\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (errorString)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00674}00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_o_tcommon_8h_afe1825004f42373b87c281e4751a6a30}{OTFreeMemory}}(errorString);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00676}00676\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00677}00677\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00678}00678\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00679}00679\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_a7135f394ceb377908543f9672d79f19c}{CLIENTJOB\_TYPE\_LOGON}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00680}00680\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00681}00681\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_a3a98f94618381217f9c06a98381f511c}{OTCLogon}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \mbox{\hyperlink{class_client_job_aac6f2bdb04f692b70fc60b33f6fdd9fd}{m\_userName}},\ \mbox{\hyperlink{class_client_job_ab66c339b35362e0be2da7a393ec381a8}{m\_password}},\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00682}00682\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00683}00683\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00684}00684\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00685}00685\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{_client_job_8h_af4f7c2d5a36d3cd654a079a356462824}{CLIENTJOB\_TYPE\_LOGOFF}}:}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00686}00686\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_s_o_clt_task_a6d10dee9eb2862fc46c277d951276c9a}{m\_res}}\ =\ \mbox{\hyperlink{_o_t_client_8h_afbee8e2719661a59173df369f75eaa44}{OTCLogoff}}((\mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}})\mbox{\hyperlink{class_s_o_clt_task_a5537a29e0fa95f2149764d3686ad5c4c}{m\_element}}-\/>getOpcHandle(),\ \&\mbox{\hyperlink{class_client_job_a947339bdcd22af05d59e5f18aaaab983}{m\_executionOptions}});}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00688}00688\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00689}00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00690}00690\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00691}00691\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00692}00692\ \ \ \ \ \mbox{\hyperlink{_s_o_cmn_exception_8h_a578798cd5be2d489756ab8bdc1510bcc}{SOCMN\_CATCH}}(...)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00693}00693\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00694}00694\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00695}00695\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00696}00696\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00697}\mbox{\hyperlink{class_client_job_ac26ecf4b60058a7511d64224e4ae0659}{00697}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_ac26ecf4b60058a7511d64224e4ae0659}{ClientJob::performStateTransition}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BOOL\ deep)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00698}00698\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00699}00699\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a098e3f7d63c8a311be5fa74cd65a1fff}{CLIENTJOB\_TYPE\_PERFORMSTATETRANSITION}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00700}00700\ \ \ \ \ \mbox{\hyperlink{class_client_job_aaaee6dd2f3ae4332de08b6af689ca29f}{m\_deep}}\ =\ (BYTE)deep;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00701}00701\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00702}00702\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00703}\mbox{\hyperlink{class_client_job_af9fa32930d2cbfb97f53be736b403d9f}{00703}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_af9fa32930d2cbfb97f53be736b403d9f}{ClientJob::updateAttributes}}(BYTE\ fromServer,\ DWORD\ attributeCount,\ DWORD*\ pWhatAttributes)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00704}00704\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00705}00705\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00706}00706\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a8c041e306371982cf17f8799d32dc5da}{CLIENTJOB\_TYPE\_UPDATEATTRIBUTES}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00707}00707\ \ \ \ \ \mbox{\hyperlink{class_client_job_ac78f160274ab17fa1c69c49586d62cf6}{m\_fromServer}}\ =\ fromServer;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00708}00708\ \ \ \ \ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}}\ =\ attributeCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00709}00709\ \ \ \ \ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}}\ =\ (DWORD*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(attributeCount\ *\ \textcolor{keyword}{sizeof}(DWORD));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00710}00710\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00711}00711\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ attributeCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00712}00712\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00713}00713\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}}[i]\ =\ pWhatAttributes[i];}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00714}00714\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00715}00715\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00716}00716\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00717}00717\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00718}00718\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00719}\mbox{\hyperlink{class_client_job_a50263d2ef22b20e180af6c3cd2d0fe30}{00719}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a50263d2ef22b20e180af6c3cd2d0fe30}{ClientJob::updateItemAttributes}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ itemCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*\ pItemHandles,\ BYTE\ fromServer,\ DWORD\ attributeCount,\ DWORD*\ pWhatAttributes)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00720}00720\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00721}00721\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00722}00722\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a7ff7ca23589be0e06cf317d39f3bcef7}{CLIENTJOB\_TYPE\_UPDATEITEMATTRIBUTES}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00723}00723\ \ \ \ \ m\_itemCount\ =\ itemCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00724}00724\ \ \ \ \ m\_ppItems\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}**)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00725}00725\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00726}00726\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00727}00727\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00728}00728\ \ \ \ \ \ \ \ \ m\_ppItems[i]\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*)(\textcolor{keywordtype}{void}*)\mbox{\hyperlink{_s_o_cmn_handle_manager_8h_a14c362e617f3817bdc82810c658113e3}{GET\_MEMORY\_ADDRESS}}(pItemHandles[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00729}00729\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00730}00730\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00731}00731\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]-\/>addRef();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00732}00732\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00733}00733\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00734}00734\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00735}00735\ \ \ \ \ \mbox{\hyperlink{class_client_job_ac78f160274ab17fa1c69c49586d62cf6}{m\_fromServer}}\ =\ fromServer;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00736}00736\ \ \ \ \ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}}\ =\ attributeCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00737}00737\ \ \ \ \ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}}\ =\ (DWORD*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(attributeCount\ *\ \textcolor{keyword}{sizeof}(DWORD));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00738}00738\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00739}00739\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ attributeCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00740}00740\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00741}00741\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a657f4960bdc160f2faf8fa8a884a63ea}{m\_pWhatAttributes}}[i]\ =\ pWhatAttributes[i];}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00742}00742\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00743}00743\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00744}00744\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00745}\mbox{\hyperlink{class_client_job_a102b89cef8ca3fc0906d27359e441900}{00745}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a102b89cef8ca3fc0906d27359e441900}{ClientJob::read}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ itemCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*\ pItemHandles,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR*\ pItemIDs,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR*\ pItemPaths,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ maxAge)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00746}00746\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00747}00747\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00748}00748\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a0ca843dd62077d614139df6b5cb55dac}{CLIENTJOB\_TYPE\_READ}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00749}00749\ \ \ \ \ m\_itemCount\ =\ itemCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00750}00750\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00751}00751\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemHandles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00752}00752\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00753}00753\ \ \ \ \ \ \ \ \ m\_ppItems\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}**)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00754}00754\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00755}00755\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00756}00756\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00757}00757\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*)(\textcolor{keywordtype}{void}*)\mbox{\hyperlink{_s_o_cmn_handle_manager_8h_a14c362e617f3817bdc82810c658113e3}{GET\_MEMORY\_ADDRESS}}(pItemHandles[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00758}00758\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00759}00759\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00760}00760\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]-\/>addRef();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00761}00761\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00762}00762\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00763}00763\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00764}00764\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00765}00765\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemIDs\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00766}00766\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00767}00767\ \ \ \ \ \ \ \ \ m\_pItemIDs\ =\ (LPTSTR*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(LPTSTR*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00768}00768\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00769}00769\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00770}00770\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00771}00771\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pItemIDs[i]\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pItemIDs[i])\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00772}00772\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}(m\_pItemIDs[i],\ pItemIDs[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00773}00773\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00774}00774\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00775}00775\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00776}00776\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemPaths\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00777}00777\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00778}00778\ \ \ \ \ \ \ \ \ m\_pItemPaths\ =\ (LPTSTR*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(LPTSTR*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00779}00779\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00780}00780\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00781}00781\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00782}00782\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pItemPaths[i]\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pItemPaths[i])\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00783}00783\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}(m\_pItemPaths[i],\ pItemPaths[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00784}00784\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00785}00785\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00786}00786\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00787}00787\ \ \ \ \ m\_maxAge\ =\ maxAge;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00788}00788\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00789}00789\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00790}\mbox{\hyperlink{class_client_job_a42f6cecad958c07b26922d25dea79fae}{00790}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a42f6cecad958c07b26922d25dea79fae}{ClientJob::write}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ itemCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*\ pItemHandles,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR*\ pItemIDs,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR*\ pItemPaths,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValueData}}*\ pValues)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00791}00791\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00792}00792\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00793}00793\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a37c6b0e0ac6c6ba5e23882ff9b56ac06}{CLIENTJOB\_TYPE\_WRITE}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00794}00794\ \ \ \ \ m\_itemCount\ =\ itemCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00795}00795\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00796}00796\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemHandles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00797}00797\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00798}00798\ \ \ \ \ \ \ \ \ m\_ppItems\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}**)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00799}00799\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00800}00800\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00801}00801\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00802}00802\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*)(\textcolor{keywordtype}{void}*)\mbox{\hyperlink{_s_o_cmn_handle_manager_8h_a14c362e617f3817bdc82810c658113e3}{GET\_MEMORY\_ADDRESS}}(pItemHandles[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00803}00803\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00804}00804\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00805}00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]-\/>addRef();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00806}00806\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00807}00807\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00808}00808\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00809}00809\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00810}00810\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemIDs\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00811}00811\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00812}00812\ \ \ \ \ \ \ \ \ m\_pItemIDs\ =\ (LPTSTR*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(LPTSTR*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00813}00813\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00814}00814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00815}00815\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00816}00816\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pItemIDs[i]\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pItemIDs[i])\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00817}00817\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}(m\_pItemIDs[i],\ pItemIDs[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00818}00818\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00819}00819\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00820}00820\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00821}00821\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemPaths\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00822}00822\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00823}00823\ \ \ \ \ \ \ \ \ m\_pItemPaths\ =\ (LPTSTR*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(LPTSTR*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00824}00824\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00825}00825\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00826}00826\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00827}00827\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pItemPaths[i]\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pItemPaths[i])\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00828}00828\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}(m\_pItemPaths[i],\ pItemPaths[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00829}00829\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00830}00830\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00831}00831\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00832}00832\ \ \ \ \ m\_pValues\ =\ (\mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValueData}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_o_t_client_8h_a78953912d6eadcefe019fd89be530daf}{OTCValueData}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00833}00833\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00834}00834\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00835}00835\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00836}00836\ \ \ \ \ \ \ \ \ m\_pValues[i].m\_pValue\ =\ (OTVariant*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\textcolor{keyword}{sizeof}(OTVariant));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00837}00837\ \ \ \ \ \ \ \ \ ::VariantInit(m\_pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00838}00838\ \ \ \ \ \ \ \ \ SOCmnVariant::variantCopy(m\_pValues[i].m\_pValue,\ pValues[i].m\_pValue);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00839}00839\ \ \ \ \ \ \ \ \ m\_pValues[i].m\_quality\ =\ pValues[i].m\_quality;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00840}00840\ \textcolor{preprocessor}{\#ifdef\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00841}00841\ \ \ \ \ \ \ \ \ m\_pValues[i].m\_timestamp.dwHighDateTime\ =\ pValues[i].m\_timestamp.dwHighDateTime;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00842}00842\ \ \ \ \ \ \ \ \ m\_pValues[i].m\_timestamp.dwLowDateTime\ =\ pValues[i].m\_timestamp.dwLowDateTime;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00843}00843\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00844}00844\ \textcolor{preprocessor}{\#ifdef\ SOOS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00845}00845\ \ \ \ \ \ \ \ \ m\_pValues[i].m\_timestamp.tv\_sec\ =\ pValues[i].m\_timestamp.tv\_sec;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00846}00846\ \ \ \ \ \ \ \ \ m\_pValues[i].m\_timestamp.tv\_usec\ =\ pValues[i].m\_timestamp.tv\_usec;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00847}00847\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00848}00848\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00849}00849\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00850}00850\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00851}\mbox{\hyperlink{class_client_job_aacbae3e0929fe43c8fcb9f17006bedf5}{00851}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_aacbae3e0929fe43c8fcb9f17006bedf5}{ClientJob::validateItems}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ itemCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}*\ pItemHandles)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00852}00852\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00853}00853\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00854}00854\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a26fe5d0ba65ddca86b5124cfefd13795}{CLIENTJOB\_TYPE\_VALIDATEITEMS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00855}00855\ \ \ \ \ m\_itemCount\ =\ itemCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00856}00856\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00857}00857\ \ \ \ \ \textcolor{keywordflow}{if}\ (pItemHandles\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00858}00858\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00859}00859\ \ \ \ \ \ \ \ \ m\_ppItems\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}**)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(itemCount\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00860}00860\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00861}00861\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ itemCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00862}00862\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00863}00863\ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]\ =\ (\mbox{\hyperlink{class_s_o_da_c_item}{SODaCItem}}*)(\textcolor{keywordtype}{void}*)\mbox{\hyperlink{_s_o_cmn_handle_manager_8h_a14c362e617f3817bdc82810c658113e3}{GET\_MEMORY\_ADDRESS}}(pItemHandles[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00864}00864\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_ppItems[i])}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00865}00865\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00866}00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_ppItems[i]-\/>addRef();}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00867}00867\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00868}00868\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00869}00869\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00870}00870\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00871}00871\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00872}\mbox{\hyperlink{class_client_job_ace7b71b0837118965e87c6fa91617ed1}{00872}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_ace7b71b0837118965e87c6fa91617ed1}{ClientJob::getProperties}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}\ addressSpaceElementHandle,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ addressSpaceElementID,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ addressSpaceElementPath,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___o_t_c_get_d_a_properties_options}{OTCGetDAPropertiesOptions}}*\ pGetPropertiesOptions)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00873}00873\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00874}00874\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00875}00875\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a112f8fe68b13a7f333c57df29721e3b2}{CLIENTJOB\_TYPE\_GETPROPERTIES}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00876}00876\ \ \ \ \ \mbox{\hyperlink{class_client_job_a45cb29f34f656710c83033caa10ac65e}{m\_addressSpaceElementHandle}}\ =\ addressSpaceElementHandle;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00877}00877\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00878}00878\ \ \ \ \ \textcolor{keywordflow}{if}\ (addressSpaceElementID)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00879}00879\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00880}00880\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a0cdad3e6b007534b81f575efed3ed60a}{m\_addressSpaceElementID}}\ =\ addressSpaceElementID;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00881}00881\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00882}00882\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00883}00883\ \ \ \ \ \textcolor{keywordflow}{if}\ (addressSpaceElementPath)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00884}00884\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00885}00885\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a53d5771c3414bdeae2ece833ac70fd66}{m\_addressSpaceElementPath}}\ =\ addressSpaceElementPath;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00886}00886\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00887}00887\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00888}00888\ \ \ \ \ \textcolor{keywordflow}{if}\ (pGetPropertiesOptions)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00889}00889\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00890}00890\ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions\ =\ (\mbox{\hyperlink{struct___o_t_c_get_d_a_properties_options}{OTCGetDAPropertiesOptions}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct___o_t_c_get_d_a_properties_options}{OTCGetDAPropertiesOptions}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00891}00891\ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_getLocalFromAddressSpaceElement\ =\ pGetPropertiesOptions-\/>m\_getLocalFromAddressSpaceElement;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00892}00892\ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_whatPropertyData\ =\ pGetPropertiesOptions-\/>m\_whatPropertyData;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00893}00893\ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_propertyCount\ =\ pGetPropertiesOptions-\/>m\_propertyCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00894}00894\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00895}00895\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGetPropertiesOptions-\/>m\_pPropertyIDs\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00896}00896\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00897}00897\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_pPropertyIDs\ =\ (DWORD*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_pGetPropertiesOptions-\/>m\_propertyCount\ *\ \textcolor{keyword}{sizeof}(DWORD));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00898}00898\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00899}00899\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_pGetPropertiesOptions-\/>m\_propertyCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00900}00900\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00901}00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_pPropertyIDs[i]\ =\ pGetPropertiesOptions-\/>m\_pPropertyIDs[i];}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00902}00902\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00903}00903\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00904}00904\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00905}00905\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pGetPropertiesOptions-\/>m\_pPropertyNames\ !=\ NULL)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00906}00906\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00907}00907\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_pPropertyNames\ =\ (LPTSTR*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(m\_pGetPropertiesOptions-\/>m\_propertyCount\ *\ \textcolor{keyword}{sizeof}(LPTSTR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00908}00908\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00909}00909\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ m\_pGetPropertiesOptions-\/>m\_propertyCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00910}00910\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00911}00911\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_pGetPropertiesOptions-\/>m\_pPropertyNames[i]\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pGetPropertiesOptions-\/>m\_pPropertyNames[i])\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00912}00912\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}((LPTSTR)m\_pGetPropertiesOptions-\/>m\_pPropertyNames[i],\ pGetPropertiesOptions-\/>m\_pPropertyNames[i]);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00913}00913\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00914}00914\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00915}00915\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00916}00916\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00917}00917\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00918}00918\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_DA}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00919}00919\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00920}\mbox{\hyperlink{class_client_job_a12c5790ae93ff85e1537eb84d888f49e}{00920}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a12c5790ae93ff85e1537eb84d888f49e}{ClientJob::browseServer}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ ipAddress,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ whatOPCSpec,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ whatServerData)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00921}00921\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00922}00922\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a2dfaec0ad8ef68541cc4f6bccc6da32e}{CLIENTJOB\_TYPE\_BROWSESERVER}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00923}00923\ \ \ \ \ \mbox{\hyperlink{class_client_job_a2e508abc98b5b4f3f797633cb5d8776c}{m\_ipAddress}}\ =\ ipAddress;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00924}00924\ \ \ \ \ \mbox{\hyperlink{class_client_job_a8183a5b7ba052258fa7a0bf32853eb0e}{m\_whatOPCSpec}}\ =\ whatOPCSpec;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00925}00925\ \ \ \ \ \mbox{\hyperlink{class_client_job_a58e6aa80c367800e6e32c6f126e5ded9}{m\_whatServerData}}\ =\ whatServerData;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00926}00926\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00927}00927\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00928}\mbox{\hyperlink{class_client_job_a8af0f8b95300182a4ab8236aa006455e}{00928}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a8af0f8b95300182a4ab8236aa006455e}{ClientJob::browseAddressSpace}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{_o_t_client_8h_ab02e66a911a1080c03aafb81e0c888b0}{OTCObjectHandle}}\ addressSpaceElementHandle,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ addressSpaceElementID,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ addressSpaceElementPath,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___o_t_c_address_space_browse_options}{OTCAddressSpaceBrowseOptions}}*\ pBrowseOptions)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00929}00929\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00930}00930\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_abe88cdbd510eb80573f30189be05382a}{CLIENTJOB\_TYPE\_BROWSEADDRESSSPACE}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00931}00931\ \ \ \ \ \mbox{\hyperlink{class_client_job_a45cb29f34f656710c83033caa10ac65e}{m\_addressSpaceElementHandle}}\ =\ addressSpaceElementHandle;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00932}00932\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00933}00933\ \ \ \ \ \textcolor{keywordflow}{if}\ (addressSpaceElementID)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00934}00934\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00935}00935\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a0cdad3e6b007534b81f575efed3ed60a}{m\_addressSpaceElementID}}\ =\ addressSpaceElementID;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00936}00936\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00937}00937\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00938}00938\ \ \ \ \ \textcolor{keywordflow}{if}\ (addressSpaceElementPath)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00939}00939\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00940}00940\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a53d5771c3414bdeae2ece833ac70fd66}{m\_addressSpaceElementPath}}\ =\ addressSpaceElementPath;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00941}00941\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00942}00942\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00943}00943\ \ \ \ \ \textcolor{keywordflow}{if}\ (pBrowseOptions)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00944}00944\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00945}00945\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}\ =\ (\mbox{\hyperlink{struct___o_t_c_address_space_browse_options}{OTCAddressSpaceBrowseOptions}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct___o_t_c_address_space_browse_options}{OTCAddressSpaceBrowseOptions}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00946}00946\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a5cb48871b7a7270ffe4a316f9369e1bf}{m\_accessRightsFilter}}\ =\ pBrowseOptions-\/>m\_accessRightsFilter;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00947}00947\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_ac38e898853eee76be7b694fe3bd73a75}{m\_datatypeFilter}}\ =\ pBrowseOptions-\/>m\_datatypeFilter;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00948}00948\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a35cca3c3f156cad800f80b1e9a59d031}{m\_maxElements}}\ =\ pBrowseOptions-\/>m\_maxElements;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00949}00949\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a2bbd5adeb03df7a5d015d02c185c63e8}{m\_retrieveItemID}}\ =\ pBrowseOptions-\/>m\_retrieveItemID;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00950}00950\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a0327f292a73dc429c4ca44963ee91179}{m\_retrieveProperties}}\ =\ pBrowseOptions-\/>m\_retrieveProperties;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00951}00951\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_ad3792571cb439c6a1b6a61180976dfa7}{m\_retrievePropertyValues}}\ =\ pBrowseOptions-\/>m\_retrievePropertyValues;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00952}00952\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a7a0119409c247e83c5ca6b00ca2e5709}{m\_type}}\ =\ pBrowseOptions-\/>m\_type;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00953}00953\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a644fb460f948afc8bb36369053fce340}{m\_forceBrowseUp}}\ =\ pBrowseOptions-\/>m\_forceBrowseUp;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00954}00954\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00955}00955\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pBrowseOptions-\/>m\_elementNameFilter)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00956}00956\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00957}00957\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_acb09ea4168a90d3c623c51a8775f5daa}{m\_elementNameFilter}}\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pBrowseOptions-\/>m\_elementNameFilter)\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00958}00958\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}((LPTSTR)\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_acb09ea4168a90d3c623c51a8775f5daa}{m\_elementNameFilter}},\ pBrowseOptions-\/>m\_elementNameFilter);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00959}00959\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00960}00960\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00961}00961\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pBrowseOptions-\/>m\_vendorFilter)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00962}00962\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00963}00963\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a810df2f1bf0e7453c8de3aa57f19fe8f}{m\_vendorFilter}}\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pBrowseOptions-\/>m\_vendorFilter)\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00964}00964\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}((LPTSTR)\mbox{\hyperlink{class_client_job_a044d2f709a5dc051b1c59ed59b683d6b}{m\_pBrowseOptions}}-\/>\mbox{\hyperlink{struct___o_t_c_address_space_browse_options_a810df2f1bf0e7453c8de3aa57f19fe8f}{m\_vendorFilter}},\ pBrowseOptions-\/>m\_vendorFilter);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00965}00965\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00966}00966\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00967}00967\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00968}00968\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00969}00969\ \textcolor{preprocessor}{\#ifdef\ OTB\_CLIENT\_AE}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00970}00970\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00971}00971\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_aac0bda63a72907ce985fe435b985f59d}{ClientJob::refreshConditions}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ cancelRefresh)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00972}00972\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00973}00973\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a11d3e974634cea3704bc8756d2b1691d}{CLIENTJOB\_TYPE\_REFRESHCONDITIONS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00974}00974\ \ \ \ \ m\_cancelRefresh\ =\ cancelRefresh;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00975}00975\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00976}00976\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00977}00977\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a45a092d3d43552a04e1dbfba5ed72eb0}{ClientJob::acknowledgeConditions}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ ackID,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ ackComment,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ count,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ \mbox{\hyperlink{struct___o_t_c_event_data}{OTCEventData}}*\ pEvents)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00978}00978\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00979}00979\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00980}00980\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a6dfa5375cc5f0cc43f75e6acb8db2a7f}{CLIENTJOB\_TYPE\_ACKNOWLEDGECONDITIONS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00981}00981\ \ \ \ \ m\_ackId\ =\ ackID;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00982}00982\ \ \ \ \ m\_ackComment\ =\ ackComment;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00983}00983\ \ \ \ \ m\_eventCount\ =\ count;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00984}00984\ \ \ \ \ m\_pEventData\ =\ (\mbox{\hyperlink{struct___o_t_c_event_data}{OTCEventData}}*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(count\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct___o_t_c_event_data}{OTCEventData}}));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00985}00985\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00986}00986\ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ count;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00987}00987\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00988}00988\ \ \ \ \ \ \ \ \ m\_pEventData[i].m\_cookie\ =\ pEvents[i].m\_cookie;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00989}00989\ \ \ \ \ \ \ \ \ m\_pEventData[i].m\_activeTime\ =\ pEvents[i].m\_activeTime;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00990}00990\ \ \ \ \ \ \ \ \ m\_pEventData[i].m\_conditionName\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pEvents[i].m\_conditionName)\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00991}00991\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}(m\_pEventData[i].m\_conditionName,\ pEvents[i].m\_conditionName);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00992}00992\ \ \ \ \ \ \ \ \ m\_pEventData[i].m\_sourcePath\ =\ (LPTSTR)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}((DWORD)(\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(pEvents[i].m\_sourcePath)\ +\ 1)\ *\ \textcolor{keyword}{sizeof}(TCHAR));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00993}00993\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_a_console_8cpp_a181225a46a4d86ddcbcd23bfc0982dee}{\_tcscpy}}(m\_pEventData[i].m\_sourcePath,\ pEvents[i].m\_sourcePath);}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00994}00994\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00995}00995\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00996}00996\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00997}00997\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_aca358ed6325d5f5a675b1882c3a5f1ae}{ClientJob::queryAvailableFilters}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00998}00998\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l00999}00999\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a8adefaf41d2782e3c2984a21c4f8d3b5}{CLIENTJOB\_TYPE\_QUERYAVAILABLEFILTERS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01000}01000\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01001}01001\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01002}01002\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a7eabd994606a602d92be2fba507aa206}{ClientJob::queryCategories}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01003}01003\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01004}01004\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_ab8106771c6b32645d2d7523ae96291a7}{CLIENTJOB\_TYPE\_QUERYCATEGORIES}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01005}01005\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01006}01006\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01007}01007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a8ac710ae0c37e9c4386e65c66603980f}{ClientJob::queryAttributes}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ categoryId)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01008}01008\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01009}01009\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_ad2d2707790f554d12c54df7b395b8dd0}{CLIENTJOB\_TYPE\_QUERYATTRIBUTES}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01010}01010\ \ \ \ \ m\_categoryId\ =\ categoryId;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01011}01011\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01012}01012\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01013}01013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a83061c23e01870dff93ba5d1ed7ce29f}{ClientJob::queryConditions}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ categoryId)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01014}01014\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01015}01015\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_abb2b14341930883381a03f2342e3c264}{CLIENTJOB\_TYPE\_QUERYCONDITIONS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01016}01016\ \ \ \ \ m\_categoryId\ =\ categoryId;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01017}01017\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01018}01018\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01019}01019\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_aaed697da891f8aa9a706e24a94e7fda8}{ClientJob::querySubConditions}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ conditionName)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01020}01020\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01021}01021\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a61e0cdd9d66c2cdec4022fb299259648}{CLIENTJOB\_TYPE\_QUERYSUBCONDITIONS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01022}01022\ \ \ \ \ m\_conditionName\ =\ conditionName;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01023}01023\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01024}01024\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01025}01025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a64a42d55a6bfc7ec903c84bdc06a1b54}{ClientJob::querySourceConditions}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ sourcePath)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01026}01026\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01027}01027\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a3a6753630b140b3bd17cf834a6b6bcf1}{CLIENTJOB\_TYPE\_QUERYSOURCECONDITIONS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01028}01028\ \ \ \ \ m\_sourcePath\ =\ sourcePath;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01029}01029\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01030}01030\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01031}01031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_ac3a3e0a694bd65511e8f01cb0f8c5beb}{ClientJob::getConditionState}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ sourcePath,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ conditionName,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ attributeCount,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD*\ pAttributeIds)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01032}01032\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01033}01033\ \ \ \ \ DWORD\ i;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01034}01034\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_aedc561061af306e6765438af5a0aa8d2}{CLIENTJOB\_TYPE\_GETCONDITIONSTATE}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01035}01035\ \ \ \ \ m\_conditionName\ =\ conditionName;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01036}01036\ \ \ \ \ m\_sourcePath\ =\ sourcePath;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01037}01037\ \ \ \ \ \mbox{\hyperlink{class_client_job_a8424c3680a03786ff1e9c29fd0e7391d}{m\_attributeCount}}\ =\ attributeCount;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01038}01038\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01039}01039\ \ \ \ \ \textcolor{keywordflow}{if}\ ((attributeCount\ >\ 0)\ \&\&\ (m\_pAttributeIds\ !=\ NULL))}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01040}01040\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01041}01041\ \ \ \ \ \ \ \ \ m\_pAttributeIds\ =\ (DWORD*)\mbox{\hyperlink{_o_tcommon_8h_adde2b1d726542d4713db8807b982e90d}{OTAllocateMemory}}(attributeCount\ *\ \textcolor{keyword}{sizeof}(DWORD));}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01042}01042\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01043}01043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ i\ <\ attributeCount;\ i++)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01044}01044\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01045}01045\ \ \ \ \ \ \ \ \ \ \ \ \ m\_pAttributeIds[i]\ =\ pAttributeIds[i];}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01046}01046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01047}01047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01048}01048\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01049}01049\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01050}01050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a186b0350cec9be43af757f2c33813bad}{ClientJob::enableConditions}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ enable,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ BYTE\ areaOrSource,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ path)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01051}01051\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01052}01052\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_ae8dc7088425b62eac360eef0569171a5}{CLIENTJOB\_TYPE\_ENABLECONDITIONS}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01053}01053\ \ \ \ \ m\_sourcePath\ =\ path;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01054}01054\ \ \ \ \ m\_enable\ =\ enable;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01055}01055\ \ \ \ \ m\_areaOrSource\ =\ areaOrSource;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01056}01056\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01057}01057\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01058}01058\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT\_AE}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01059}01059\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01060}\mbox{\hyperlink{class_client_job_ad893b4d1ac4eb00e403d4ccd6dd1fa4a}{01060}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_ad893b4d1ac4eb00e403d4ccd6dd1fa4a}{ClientJob::getErrorString}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LONG\ \mbox{\hyperlink{xmlparse_8c_adf47938902be0f6a9c144226d02fd634}{errorCode}})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01061}01061\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01062}01062\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a8fc3651ade89b8c5772df72f9a0aa970}{CLIENTJOB\_TYPE\_GETERRORSTRING}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01063}01063\ \ \ \ \ \mbox{\hyperlink{class_client_job_a3df4f35a6d66b51d480711238ae5844b}{m\_errorCode}}\ =\ \mbox{\hyperlink{xmlparse_8c_adf47938902be0f6a9c144226d02fd634}{errorCode}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01064}01064\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01065}01065\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01066}\mbox{\hyperlink{class_client_job_ab24da15cc8879cb7a027d536b0fb7da9}{01066}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_ab24da15cc8879cb7a027d536b0fb7da9}{ClientJob::logon}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ userName,\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPTSTR\ password)}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01067}01067\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01068}01068\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_a7135f394ceb377908543f9672d79f19c}{CLIENTJOB\_TYPE\_LOGON}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01069}01069\ \ \ \ \ \mbox{\hyperlink{class_client_job_aac6f2bdb04f692b70fc60b33f6fdd9fd}{m\_userName}}\ =\ userName;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01070}01070\ \ \ \ \ \mbox{\hyperlink{class_client_job_ab66c339b35362e0be2da7a393ec381a8}{m\_password}}\ =\ password;}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01071}01071\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01072}01072\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01073}\mbox{\hyperlink{class_client_job_a1e556e69c0e06acacf0d0229796f3c14}{01073}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_client_job_a1e556e69c0e06acacf0d0229796f3c14}{ClientJob::logoff}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01074}01074\ \{}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01075}01075\ \ \ \ \ \mbox{\hyperlink{class_client_job_a0bf11a1de7258ce6e92fea451402f28c}{m\_jobType}}\ =\ \mbox{\hyperlink{_client_job_8h_af4f7c2d5a36d3cd654a079a356462824}{CLIENTJOB\_TYPE\_LOGOFF}};}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01076}01076\ \}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01077}01077\ }
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01078}01078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ OTB\_CLIENT}}
+\DoxyCodeLine{\Hypertarget{_client_job_8cpp_source_l01079}01079\ }
+
+\end{DoxyCode}

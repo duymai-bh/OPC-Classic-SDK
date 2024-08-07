@@ -1,0 +1,656 @@
+\doxysection{SOCmn\+Os\+Compat.\+h}
+\hypertarget{_s_o_cmn_os_compat_8h_source}{}\label{_s_o_cmn_os_compat_8h_source}\index{core/src/include/SOCmnOsCompat.h@{core/src/include/SOCmnOsCompat.h}}
+\mbox{\hyperlink{_s_o_cmn_os_compat_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOCMNOSCOMPAT\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOCMNOSCOMPAT\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00004}00004\ \textcolor{preprocessor}{\#if\ !defined(SOOS\_WINDOWS)\ \&\&\ !defined(SOOS\_LINUX)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00005}00005\ \textcolor{preprocessor}{\#error\ fatal:\ unsupported\ platform!}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00006}00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00010}00010\ \textcolor{preprocessor}{\#ifndef\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00012}00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <malloc.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00015}00015\ \textcolor{preprocessor}{\#ifndef\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00017}00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00019}00019\ \textcolor{preprocessor}{\#ifdef\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00020}00020\ \textcolor{preprocessor}{\#define\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00021}00021\ \textcolor{preprocessor}{\#ifndef\ FD\_SETSIZE}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00022}00022\ \textcolor{preprocessor}{\#define\ FD\_SETSIZE\ 256}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00023}00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00025}00025\ \textcolor{preprocessor}{\#undef\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00026}00026\ \textcolor{preprocessor}{\#ifndef\ SOFLAG\_NO\_ATL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00027}00027\ \textcolor{preprocessor}{\#define\ \_ATL\_STATIC\_REGISTRY}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00028}00028\ \textcolor{preprocessor}{\#include\ <atlbase.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00029}00029\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFLAG\_NO\_ATL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00031}00031\ \textcolor{preprocessor}{\#pragma\ warning\ (disable:4100)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00033}00033\ \textcolor{preprocessor}{\#ifndef\ LLONG\_MAX}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00034}00034\ \textcolor{preprocessor}{\#define\ LLONG\_MAX\ \ \ \ \ 0x7fffffffffffffff}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00035}00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00036}00036\ \textcolor{preprocessor}{\#ifndef\ LLONG\_MIN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00037}00037\ \textcolor{preprocessor}{\#define\ LLONG\_MIN\ \ \ \ \ 0x8000000000000000}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00038}00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00039}00039\ \textcolor{preprocessor}{\#ifndef\ ULLONG\_MAX}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00040}00040\ \textcolor{preprocessor}{\#define\ ULLONG\_MAX\ \ \ \ 0xffffffffffffffff}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00041}00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00044}00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOOS\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00046}00046\ \textcolor{preprocessor}{\#ifdef\ SOOS\_LINUX}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00047}00047\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00048}00048\ \textcolor{preprocessor}{\#include\ <assert.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00049}00049\ \textcolor{preprocessor}{\#include\ <errno.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00050}00050\ \textcolor{preprocessor}{\#include\ <ctype.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00051}00051\ \textcolor{preprocessor}{\#include\ <wchar.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00052}00052\ \textcolor{preprocessor}{\#include\ <fcntl.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00053}00053\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00054}00054\ \textcolor{preprocessor}{\#include\ <sys/time.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00055}00055\ \textcolor{preprocessor}{\#include\ <sys/times.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00056}00056\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00057}00057\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00058}00058\ \textcolor{preprocessor}{\#include\ <alloca.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00060}00060\ \textcolor{preprocessor}{\#ifndef\ SODEVENV\_CYGWIN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00061}00061\ \textcolor{preprocessor}{\#include\ <endian.h>}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00062}00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00065}00065\ \textcolor{preprocessor}{\#define\ SOFLAG\_NO\_DLLS}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00067}00067\ \textcolor{preprocessor}{\#ifndef\ SODEVENV\_CYGWIN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00068}00068\ \textcolor{preprocessor}{\#define\ \_stdcall}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00069}00069\ \textcolor{preprocessor}{\#define\ \_\_cdecl}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00070}00070\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00071}00071\ \textcolor{preprocessor}{\#define\ IN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00072}00072\ \textcolor{preprocessor}{\#define\ OUT}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00073}00073\ \textcolor{preprocessor}{\#define\ OPTIONAL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00075}00075\ \textcolor{preprocessor}{\#define\ \_T(text)\ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00076}00076\ \textcolor{preprocessor}{\#define\ \_tcscpy\ \ \ \ \ strcpy}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00077}00077\ \textcolor{preprocessor}{\#define\ \_tcscat\ \ \ \ \ strcat}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00078}00078\ \textcolor{preprocessor}{\#define\ \_tcsdup\ \ \ \ \ strdup}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00079}00079\ \textcolor{preprocessor}{\#define\ \_tcsstr\ \ \ \ \ strstr}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00080}00080\ \textcolor{preprocessor}{\#define\ \_tcschr\ \ \ \ \ strchr}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00081}00081\ \textcolor{preprocessor}{\#define\ \_tcsrchr\ \ \ \ strrchr}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00082}00082\ \textcolor{preprocessor}{\#define\ \_tcscmp\ \ \ \ \ strcmp}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00083}00083\ \textcolor{preprocessor}{\#define\ \_tcsicmp\ \ \ \ strcasecmp}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00084}00084\ \textcolor{preprocessor}{\#define\ \_tcslen\ \ \ \ \ strlen}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00085}00085\ \textcolor{preprocessor}{\#define\ \_tcspbrk\ \ \ \ strpbrk}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00086}00086\ \textcolor{preprocessor}{\#define\ \_tcsncpy\ \ \ \ strncpy}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00087}00087\ \textcolor{preprocessor}{\#define\ \_tcstoul\ \ \ \ strtoul}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00088}00088\ \textcolor{preprocessor}{\#define\ \_tcstol\ \ \ \ \ strtol}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00089}00089\ \textcolor{preprocessor}{\#define\ \_tcstod\ \ \ \ \ strtod}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00090}00090\ \textcolor{preprocessor}{\#define\ \_tcsncmp\ \ \ \ strncmp}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00091}00091\ \textcolor{preprocessor}{\#define\ \_tcstoi64\ \ \ strtoll}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00092}00092\ \textcolor{preprocessor}{\#define\ \_tcstoui64\ \ strtoull}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00093}00093\ \textcolor{preprocessor}{\#define\ \_tcstok\ \ \ \ \ strtok}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00094}00094\ \textcolor{preprocessor}{\#define\ \_tfopen\ \ \ \ \ fopen}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00096}00096\ \textcolor{preprocessor}{\#define\ \_tcsdec(\_cpc1,\ \_cpc2)\ ((\_cpc1)>=(\_cpc2)\ ?\ NULL\ :\ (\_cpc2)-\/1)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00097}00097\ \textcolor{preprocessor}{\#define\ \_tcsinc(\_pc)\ \ ((\_pc)+1)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00099}00099\ \textcolor{preprocessor}{\#define\ \_tprintf\ \ \ \ printf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00100}00100\ \textcolor{preprocessor}{\#define\ \_ftprintf\ \ \ fprintf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00101}00101\ \textcolor{preprocessor}{\#define\ \_stprintf\ \ \ sprintf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00102}00102\ \textcolor{preprocessor}{\#define\ \_sntprintf\ \ snprintf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00103}00103\ \textcolor{preprocessor}{\#define\ \_vstprintf\ \ vsprintf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00104}00104\ \textcolor{preprocessor}{\#define\ \_vsntprintf\ vsnprintf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00105}00105\ \textcolor{preprocessor}{\#define\ \_tscanf\ \ \ \ \ scanf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00106}00106\ \textcolor{preprocessor}{\#define\ \_ftscanf\ \ \ \ fscanf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00107}00107\ \textcolor{preprocessor}{\#define\ \_stscanf\ \ \ \ sscanf}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00109}00109\ \textcolor{preprocessor}{\#define\ lstrlen\ \ \ \ \ strlen}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00110}00110\ \textcolor{preprocessor}{\#define\ lstrcpy\ \ \ \ \ strcpy}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00111}00111\ \textcolor{preprocessor}{\#define\ lstrcat\ \ \ \ \ strcat}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00113}00113\ \textcolor{comment}{/*\ ctype-\/functions\ */}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00115}00115\ \textcolor{preprocessor}{\#define\ \_istalnum\ \ \ isalnum}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00116}00116\ \textcolor{preprocessor}{\#define\ \_istalpha\ \ \ isalpha}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00117}00117\ \textcolor{preprocessor}{\#define\ \_istdigit\ \ \ isdigit}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00118}00118\ \textcolor{preprocessor}{\#define\ \_istxdigit\ \ isxdigit}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00119}00119\ \textcolor{preprocessor}{\#define\ \_istgraph\ \ \ isgraph}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00120}00120\ \textcolor{preprocessor}{\#define\ \_istlower\ \ \ islower}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00121}00121\ \textcolor{preprocessor}{\#define\ \_istprint\ \ \ isprint}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00122}00122\ \textcolor{preprocessor}{\#define\ \_istpunct\ \ \ ispunct}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00123}00123\ \textcolor{preprocessor}{\#define\ \_istspace\ \ \ isspace}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00124}00124\ \textcolor{preprocessor}{\#define\ \_istupper\ \ \ isupper}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00126}00126\ \textcolor{preprocessor}{\#define\ \_totupper\ \ \ toupper}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00127}00127\ \textcolor{preprocessor}{\#define\ \_totlower\ \ \ tolower}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00129}00129\ \textcolor{preprocessor}{\#define\ USES\_CONVERSION}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00130}00130\ \textcolor{preprocessor}{\#define\ T2A(text)\ \ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00131}00131\ \textcolor{preprocessor}{\#define\ T2CA(text)\ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00132}00132\ \textcolor{preprocessor}{\#define\ A2T(text)\ \ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00133}00133\ \textcolor{preprocessor}{\#define\ A2CT(text)\ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00134}00134\ \textcolor{preprocessor}{\#define\ OLE2CT(text)\ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00135}00135\ \textcolor{preprocessor}{\#define\ OLE2T(text)\ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00136}00136\ \textcolor{preprocessor}{\#define\ T2OLE(text)\ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00137}00137\ \textcolor{preprocessor}{\#define\ T2COLE(text)\ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00138}00138\ \textcolor{preprocessor}{\#define\ OLESTR(text)\ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00140}00140\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ VOID;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00141}00141\ \textcolor{keyword}{typedef}\ VOID*\ \ \ \ \ \ \ \ \ LPVOID;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00143}00143\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ CHAR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00144}00144\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{char}\ \ \ \ \ \ \ \ \ \ TCHAR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00145}00145\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{wchar\_t}\ \ \ \ \ \ \ WCHAR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00146}00146\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \_TUCHAR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00147}00147\ \textcolor{comment}{//typedef\ WCHAR\ \ \ \ \ \ \ \ \ OLECHAR;}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00149}00149\ \textcolor{keyword}{typedef}\ CHAR*\ \ \ \ \ \ \ \ \ LPSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00150}00150\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ CHAR*\ \ \ LPCSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00151}00151\ \textcolor{keyword}{typedef}\ TCHAR*\ \ \ \ \ \ \ \ LPTSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00152}00152\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ TCHAR*\ LPCTSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00153}00153\ \textcolor{keyword}{typedef}\ WCHAR*\ \ \ \ \ \ \ \ LPWSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00154}00154\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{const}\ WCHAR*\ LPCWSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00155}00155\ \textcolor{comment}{//typedef\ OLECHAR*\ \ \ \ \ \ LPOLESTR;}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00156}00156\ \textcolor{comment}{//typedef\ const\ OLECHAR*\ LPCOLESTR;}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00158}00158\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \ BYTE;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00159}00159\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ WORD;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00160}00160\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \ DWORD;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00161}00161\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ USHORT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00162}00162\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \ ULONG;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00163}00163\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ ULONGLONG;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00164}00164\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{short}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ SHORT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00165}00165\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \ \ \ \ \ \ \ \ \ \ LONG;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00166}00166\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \ \ \ \ \ LONGLONG;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00167}00167\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ FLOAT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00168}00168\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ DOUBLE;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00169}00169\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ INT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00170}00170\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ UINT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00171}00171\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ BOOL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00172}00172\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ CLIPFORMAT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00174}00174\ \textcolor{preprocessor}{\#define\ TRUE\ 1}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00175}00175\ \textcolor{preprocessor}{\#define\ FALSE\ 0}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00177}00177\ \textcolor{keyword}{typedef}\ LONG\ \ \ \ \ \ \ \ \ \ \ \ HRESULT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00178}00178\ \textcolor{preprocessor}{\#define\ S\_OK\ \ \ \ \ \ \ \ \ \ \ \ 0x00000000L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00179}00179\ \textcolor{preprocessor}{\#define\ S\_FALSE\ \ \ \ \ \ \ \ \ 0x00000001L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00180}00180\ \textcolor{preprocessor}{\#define\ E\_NOTIMPL\ \ \ \ \ \ \ 0x80004001L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00181}00181\ \textcolor{preprocessor}{\#define\ E\_FAIL\ \ \ \ \ \ \ \ \ \ 0x80004005L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00182}00182\ \textcolor{preprocessor}{\#define\ E\_UNEXPECTED\ \ \ \ 0x8000FFFFL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00183}00183\ \textcolor{preprocessor}{\#define\ DISP\_E\_TYPEMISMATCH\ 0x80020005L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00184}00184\ \textcolor{preprocessor}{\#define\ DISP\_E\_BADVARTYPE\ \ \ 0x80020008L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00185}00185\ \textcolor{preprocessor}{\#define\ DISP\_E\_OVERFLOW\ \ \ \ \ 0x8002000AL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00186}00186\ \textcolor{preprocessor}{\#define\ DISP\_E\_BADINDEX\ \ \ \ \ 0x8002000BL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00187}00187\ \textcolor{preprocessor}{\#define\ DISP\_E\_UNKNOWNLCID\ \ 0x8002000CL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00188}00188\ \textcolor{preprocessor}{\#define\ DISP\_E\_ARRAYISLOCKED\ \ \ \ 0x8002000DL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00189}00189\ \textcolor{preprocessor}{\#define\ E\_ACCESSDENIED\ \ 0x80070005L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00190}00190\ \textcolor{preprocessor}{\#define\ E\_OUTOFMEMORY\ \ \ 0x8007000EL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00191}00191\ \textcolor{preprocessor}{\#define\ E\_INVALIDARG\ \ \ \ 0x80070057L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00192}00192\ \textcolor{preprocessor}{\#define\ RPC\_E\_INVALID\_DATA\ \ 0x8001000FL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00193}00193\ \textcolor{preprocessor}{\#define\ RPC\_E\_SERVERFAULT\ \ \ 0x80010105L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00194}00194\ \textcolor{preprocessor}{\#define\ E\_PENDING\ \ \ \ \ \ \ \ \ \ \ 0x8000000AL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00195}00195\ \textcolor{preprocessor}{\#define\ E\_ABORT\ 0x80004004L}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00197}00197\ \textcolor{preprocessor}{\#define\ SUCCEEDED(Status)\ ((LONG)(void\ *)(Status)\ >=\ 0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00198}00198\ \textcolor{preprocessor}{\#define\ FAILED(Status)\ ((LONG)(void\ *)(Status)<0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00200}00200\ \textcolor{keyword}{typedef}\ DWORD\ \ \ \ \ \ \ \ \ \ LCID;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00202}00202\ \textcolor{preprocessor}{\#define\ MAKEWORD(a,\ b)\ \ \ \ \ \ ((WORD)(((BYTE)(a))\ |\ ((WORD)((BYTE)(b)))\ <<\ 8))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00203}00203\ \textcolor{preprocessor}{\#define\ MAKELONG(a,\ b)\ \ \ \ \ \ ((LONG)(((WORD)(a))\ |\ ((DWORD)((WORD)(b)))\ <<\ 16))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00204}00204\ \textcolor{preprocessor}{\#define\ LOWORD(l)\ \ \ \ \ \ \ \ \ \ \ ((WORD)(l))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00205}00205\ \textcolor{preprocessor}{\#define\ HIWORD(l)\ \ \ \ \ \ \ \ \ \ \ ((WORD)(((DWORD)(l)\ >>\ 16)\ \&\ 0xFFFF))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00206}00206\ \textcolor{preprocessor}{\#define\ LOBYTE(w)\ \ \ \ \ \ \ \ \ \ \ ((BYTE)(w))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00207}00207\ \textcolor{preprocessor}{\#define\ HIBYTE(w)\ \ \ \ \ \ \ \ \ \ \ ((BYTE)(((WORD)(w)\ >>\ 8)\ \&\ 0xFF))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00209}00209\ \textcolor{preprocessor}{\#define\ \_\_max(a,b)\ \ (((a)\ >\ (b))\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00210}00210\ \textcolor{preprocessor}{\#define\ \_\_min(a,b)\ \ (((a)\ <\ (b))\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00212}00212\ \textcolor{preprocessor}{\#ifndef\ LLONG\_MAX}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00213}00213\ \textcolor{preprocessor}{\#define\ LLONG\_MAX\ 9223372036854775807LL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00214}00214\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00215}00215\ \textcolor{preprocessor}{\#ifndef\ LLONG\_MIN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00216}00216\ \textcolor{preprocessor}{\#define\ LLONG\_MIN\ (-\/LLONG\_MAX-\/1)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00217}00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00218}00218\ \textcolor{preprocessor}{\#ifndef\ ULLONG\_MAX}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00219}00219\ \textcolor{preprocessor}{\#define\ ULLONG\_MAX\ (LLONG\_MAX\ *\ 2ULL\ +\ 1)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00220}00220\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00223}00223\ \textcolor{preprocessor}{\#ifdef\ SOFEATURE\_CMN\_VARIANT}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00225}00225\ \textcolor{keyword}{typedef}\ WORD\ VARTYPE;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00227}00227\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{short}\ \textcolor{keywordtype}{int}\ VARIANT\_BOOL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00228}00228\ \textcolor{preprocessor}{\#define\ VARIANT\_TRUE\ ((VARIANT\_BOOL)-\/1)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00229}00229\ \textcolor{preprocessor}{\#define\ VARIANT\_FALSE\ ((VARIANT\_BOOL)0)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00231}00231\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }tagDEC}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00232}00232\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00233}00233\ \ \ \ \ USHORT\ wReserved;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00234}00234\ \ \ \ \ BYTE\ scale;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00235}00235\ \ \ \ \ BYTE\ sign;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00236}00236\ \ \ \ \ ULONG\ Hi32;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00237}00237\ \ \ \ \ ULONGLONG\ Lo64;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00238}00238\ \}\ \ DECIMAL;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00240}00240\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{union\ }tagCY}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00241}00241\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00242}00242\ \ \ \ \ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00243}00243\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00244}00244\ \textcolor{preprocessor}{\#ifndef\ SODEVENV\_CYGWIN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00245}00245\ \textcolor{preprocessor}{\#if\ \_\_BYTE\_ORDER\ ==\ \_\_BIG\_ENDIAN}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00246}00246\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ Hi;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Lo;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00248}00248\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Lo;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ Hi;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00251}00251\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00252}00252\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ Lo;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \ \ \ \ \ Hi;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00255}00255\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00256}00256\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00257}00257\ \ \ \ \ LONGLONG\ int64;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00258}00258\ \}\ CY;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00260}00260\ \textcolor{keyword}{typedef}\ LPTSTR\ BSTR;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00261}00261\ \textcolor{keyword}{typedef}\ CY\ CURRENCY;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00262}00262\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }timeval\ DATE;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00263}00263\ \textcolor{keyword}{class\ }IUnknown;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00264}00264\ \textcolor{keyword}{class\ }IDispatch;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00265}00265\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ \ }tagSAFEARRAYBOUND}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00266}00266\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00267}00267\ \ \ \ \ ULONG\ cElements;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00268}00268\ \ \ \ \ LONG\ lLbound;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00269}00269\ \}\ \ \ SAFEARRAYBOUND;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00271}00271\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }tagSAFEARRAYBOUND*\ LPSAFEARRAYBOUND;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00273}00273\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ \ }tagSAFEARRAY}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00274}00274\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00275}00275\ \ \ \ \ USHORT\ cDims;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00276}00276\ \ \ \ \ USHORT\ fFeatures;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00277}00277\ \ \ \ \ ULONG\ cbElements;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00278}00278\ \ \ \ \ ULONG\ cLocks;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00279}00279\ \ \ \ \ LPVOID\ pvData;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00280}00280\ \ \ \ \ SAFEARRAYBOUND\ rgsabound[\ 1\ ];}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00281}00281\ \}\ \ \ SAFEARRAY;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00282}00282\ \textcolor{keyword}{typedef}\ SAFEARRAY*\ LPSAFEARRAY;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00284}00284\ \textcolor{preprocessor}{\#define\ FADF\_BSTR\ \ \ \ \ \ \ 0x100}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00285}00285\ \textcolor{preprocessor}{\#define\ FADF\_UNKNOWN\ \ \ \ 0x200}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00286}00286\ \textcolor{preprocessor}{\#define\ FADF\_DISPATCH\ \ \ 0x400}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00287}00287\ \textcolor{preprocessor}{\#define\ FADF\_VARIANT\ \ \ \ 0x800}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00289}00289\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }tagVARIANT\ VARIANT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00291}00291\ \textcolor{keyword}{struct\ }tagVARIANT}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00292}00292\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00293}00293\ \ \ \ \ VARTYPE\ vt;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00294}00294\ \ \ \ \ WORD\ wReserved1;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00295}00295\ \ \ \ \ WORD\ wReserved2;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00296}00296\ \ \ \ \ WORD\ wReserved3;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00297}00297\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00298}00298\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00299}00299\ \ \ \ \ \ \ \ \ LONG\ lVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00300}00300\ \ \ \ \ \ \ \ \ BYTE\ bVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00301}00301\ \ \ \ \ \ \ \ \ SHORT\ iVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00302}00302\ \ \ \ \ \ \ \ \ FLOAT\ fltVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00303}00303\ \ \ \ \ \ \ \ \ DOUBLE\ dblVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00304}00304\ \ \ \ \ \ \ \ \ VARIANT\_BOOL\ boolVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00305}00305\ \ \ \ \ \ \ \ \ CY\ cyVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00306}00306\ \ \ \ \ \ \ \ \ DATE\ date;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00307}00307\ \ \ \ \ \ \ \ \ BSTR\ bstrVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00308}00308\ \ \ \ \ \ \ \ \ IUnknown*\ punkVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00309}00309\ \ \ \ \ \ \ \ \ IDispatch*\ pdispVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00310}00310\ \ \ \ \ \ \ \ \ SAFEARRAY*\ parray;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00311}00311\ \ \ \ \ \ \ \ \ VARIANT*\ pvarVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00312}00312\ \ \ \ \ \ \ \ \ CHAR\ cVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00313}00313\ \ \ \ \ \ \ \ \ USHORT\ uiVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00314}00314\ \ \ \ \ \ \ \ \ ULONG\ ulVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00315}00315\ \ \ \ \ \ \ \ \ LONGLONG\ llVal;\ \ \ \textcolor{comment}{/*\ <-\/-\/\ NOT\ UNDER\ WINDOWS,\ use\ V\_I8(\&var)\ \ */}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00316}00316\ \ \ \ \ \ \ \ \ ULONGLONG\ ullVal;\ \textcolor{comment}{/*\ <-\/-\/\ NOT\ UNDER\ WINDOWS,\ use\ V\_UI8(\&var)\ */}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00317}00317\ \ \ \ \ \ \ \ \ INT\ intVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00318}00318\ \ \ \ \ \ \ \ \ UINT\ uintVal;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00319}00319\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00320}00320\ \};}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00322}00322\ \textcolor{keyword}{typedef}\ VARIANT*\ LPVARIANT;}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00324}00324\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SOFEATURE\_CMN\_VARIANT}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00327}00327\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00328}00328\ \textcolor{comment}{//\ \ Language\ IDs.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00329}00329\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00330}00330\ \textcolor{comment}{//\ \ The\ following\ two\ combinations\ of\ primary\ language\ ID\ and}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00331}00331\ \textcolor{comment}{//\ \ sublanguage\ ID\ have\ special\ semantics:}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00332}00332\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00333}00333\ \textcolor{comment}{//\ \ \ \ Primary\ Language\ ID\ \ \ Sublanguage\ ID\ \ \ \ \ \ Result}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00334}00334\ \textcolor{comment}{//\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00335}00335\ \textcolor{comment}{//\ \ \ \ LANG\_NEUTRAL\ \ \ \ \ \ \ \ \ \ SUBLANG\_NEUTRAL\ \ \ \ \ Language\ neutral}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00336}00336\ \textcolor{comment}{//\ \ \ \ LANG\_NEUTRAL\ \ \ \ \ \ \ \ \ \ SUBLANG\_DEFAULT\ \ \ \ \ User\ default\ language}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00337}00337\ \textcolor{comment}{//\ \ \ \ LANG\_NEUTRAL\ \ \ \ \ \ \ \ \ \ SUBLANG\_SYS\_DEFAULT\ System\ default\ language}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00338}00338\ \textcolor{comment}{//\ \ \ \ LANG\_INVARIANT\ \ \ \ \ \ \ \ SUBLANG\_NEUTRAL\ \ \ \ \ Invariant\ locale}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00339}00339\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00341}00341\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00342}00342\ \textcolor{comment}{//\ \ Primary\ language\ IDs.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00343}00343\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00345}00345\ \textcolor{preprocessor}{\#define\ LANG\_NEUTRAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00346}00346\ \textcolor{preprocessor}{\#define\ LANG\_INVARIANT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x7f}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00348}00348\ \textcolor{preprocessor}{\#define\ LANG\_AFRIKAANS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x36}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00349}00349\ \textcolor{preprocessor}{\#define\ LANG\_ALBANIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1c}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00350}00350\ \textcolor{preprocessor}{\#define\ LANG\_ARABIC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00351}00351\ \textcolor{preprocessor}{\#define\ LANG\_ARMENIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2b}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00352}00352\ \textcolor{preprocessor}{\#define\ LANG\_ASSAMESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x4d}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00353}00353\ \textcolor{preprocessor}{\#define\ LANG\_AZERI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2c}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00354}00354\ \textcolor{preprocessor}{\#define\ LANG\_BASQUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2d}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00355}00355\ \textcolor{preprocessor}{\#define\ LANG\_BELARUSIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x23}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00356}00356\ \textcolor{preprocessor}{\#define\ LANG\_BENGALI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x45}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00357}00357\ \textcolor{preprocessor}{\#define\ LANG\_BULGARIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00358}00358\ \textcolor{preprocessor}{\#define\ LANG\_CATALAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x03}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00359}00359\ \textcolor{preprocessor}{\#define\ LANG\_CHINESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x04}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00360}00360\ \textcolor{preprocessor}{\#define\ LANG\_CROATIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00361}00361\ \textcolor{preprocessor}{\#define\ LANG\_CZECH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x05}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00362}00362\ \textcolor{preprocessor}{\#define\ LANG\_DANISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x06}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00363}00363\ \textcolor{preprocessor}{\#define\ LANG\_DIVEHI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x65}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00364}00364\ \textcolor{preprocessor}{\#define\ LANG\_DUTCH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x13}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00365}00365\ \textcolor{preprocessor}{\#define\ LANG\_ENGLISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x09}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00366}00366\ \textcolor{preprocessor}{\#define\ LANG\_ESTONIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x25}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00367}00367\ \textcolor{preprocessor}{\#define\ LANG\_FAEROESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x38}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00368}00368\ \textcolor{preprocessor}{\#define\ LANG\_FARSI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x29}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00369}00369\ \textcolor{preprocessor}{\#define\ LANG\_FINNISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0b}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00370}00370\ \textcolor{preprocessor}{\#define\ LANG\_FRENCH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0c}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00371}00371\ \textcolor{preprocessor}{\#define\ LANG\_GALICIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x56}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00372}00372\ \textcolor{preprocessor}{\#define\ LANG\_GEORGIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x37}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00373}00373\ \textcolor{preprocessor}{\#define\ LANG\_GERMAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x07}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00374}00374\ \textcolor{preprocessor}{\#define\ LANG\_GREEK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x08}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00375}00375\ \textcolor{preprocessor}{\#define\ LANG\_GUJARATI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x47}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00376}00376\ \textcolor{preprocessor}{\#define\ LANG\_HEBREW\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0d}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00377}00377\ \textcolor{preprocessor}{\#define\ LANG\_HINDI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x39}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00378}00378\ \textcolor{preprocessor}{\#define\ LANG\_HUNGARIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0e}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00379}00379\ \textcolor{preprocessor}{\#define\ LANG\_ICELANDIC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0f}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00380}00380\ \textcolor{preprocessor}{\#define\ LANG\_INDONESIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x21}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00381}00381\ \textcolor{preprocessor}{\#define\ LANG\_ITALIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00382}00382\ \textcolor{preprocessor}{\#define\ LANG\_JAPANESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x11}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00383}00383\ \textcolor{preprocessor}{\#define\ LANG\_KANNADA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x4b}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00384}00384\ \textcolor{preprocessor}{\#define\ LANG\_KASHMIRI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x60}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00385}00385\ \textcolor{preprocessor}{\#define\ LANG\_KAZAK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x3f}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00386}00386\ \textcolor{preprocessor}{\#define\ LANG\_KONKANI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x57}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00387}00387\ \textcolor{preprocessor}{\#define\ LANG\_KOREAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x12}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00388}00388\ \textcolor{preprocessor}{\#define\ LANG\_KYRGYZ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x40}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00389}00389\ \textcolor{preprocessor}{\#define\ LANG\_LATVIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x26}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00390}00390\ \textcolor{preprocessor}{\#define\ LANG\_LITHUANIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x27}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00391}00391\ \textcolor{preprocessor}{\#define\ LANG\_MACEDONIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2f\ \ \ }\textcolor{comment}{//\ the\ Former\ Yugoslav\ Republic\ of\ Macedonia}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00392}00392\ \textcolor{preprocessor}{\#define\ LANG\_MALAY\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x3e}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00393}00393\ \textcolor{preprocessor}{\#define\ LANG\_MALAYALAM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x4c}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00394}00394\ \textcolor{preprocessor}{\#define\ LANG\_MANIPURI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x58}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00395}00395\ \textcolor{preprocessor}{\#define\ LANG\_MARATHI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x4e}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00396}00396\ \textcolor{preprocessor}{\#define\ LANG\_MONGOLIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x50}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00397}00397\ \textcolor{preprocessor}{\#define\ LANG\_NEPALI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x61}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00398}00398\ \textcolor{preprocessor}{\#define\ LANG\_NORWEGIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x14}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00399}00399\ \textcolor{preprocessor}{\#define\ LANG\_ORIYA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x48}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00400}00400\ \textcolor{preprocessor}{\#define\ LANG\_POLISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x15}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00401}00401\ \textcolor{preprocessor}{\#define\ LANG\_PORTUGUESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x16}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00402}00402\ \textcolor{preprocessor}{\#define\ LANG\_PUNJABI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x46}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00403}00403\ \textcolor{preprocessor}{\#define\ LANG\_ROMANIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x18}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00404}00404\ \textcolor{preprocessor}{\#define\ LANG\_RUSSIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x19}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00405}00405\ \textcolor{preprocessor}{\#define\ LANG\_SANSKRIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x4f}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00406}00406\ \textcolor{preprocessor}{\#define\ LANG\_SERBIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00407}00407\ \textcolor{preprocessor}{\#define\ LANG\_SINDHI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x59}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00408}00408\ \textcolor{preprocessor}{\#define\ LANG\_SLOVAK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1b}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00409}00409\ \textcolor{preprocessor}{\#define\ LANG\_SLOVENIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x24}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00410}00410\ \textcolor{preprocessor}{\#define\ LANG\_SPANISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00411}00411\ \textcolor{preprocessor}{\#define\ LANG\_SWAHILI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x41}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00412}00412\ \textcolor{preprocessor}{\#define\ LANG\_SWEDISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1d}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00413}00413\ \textcolor{preprocessor}{\#define\ LANG\_SYRIAC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x5a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00414}00414\ \textcolor{preprocessor}{\#define\ LANG\_TAMIL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x49}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00415}00415\ \textcolor{preprocessor}{\#define\ LANG\_TATAR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x44}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00416}00416\ \textcolor{preprocessor}{\#define\ LANG\_TELUGU\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x4a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00417}00417\ \textcolor{preprocessor}{\#define\ LANG\_THAI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1e}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00418}00418\ \textcolor{preprocessor}{\#define\ LANG\_TURKISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1f}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00419}00419\ \textcolor{preprocessor}{\#define\ LANG\_UKRAINIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x22}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00420}00420\ \textcolor{preprocessor}{\#define\ LANG\_URDU\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00421}00421\ \textcolor{preprocessor}{\#define\ LANG\_UZBEK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x43}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00422}00422\ \textcolor{preprocessor}{\#define\ LANG\_VIETNAMESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00423}00423\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00424}00424\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00425}00425\ \textcolor{comment}{//\ \ Sublanguage\ IDs.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00426}00426\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00427}00427\ \textcolor{comment}{//\ \ The\ name\ immediately\ following\ SUBLANG\_\ dictates\ which\ primary}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00428}00428\ \textcolor{comment}{//\ \ language\ ID\ that\ sublanguage\ ID\ can\ be\ combined\ with\ to\ form\ a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00429}00429\ \textcolor{comment}{//\ \ valid\ language\ ID.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00430}00430\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00432}00432\ \textcolor{preprocessor}{\#define\ SUBLANG\_NEUTRAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x00\ \ \ \ }\textcolor{comment}{//\ language\ neutral}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00433}00433\ \textcolor{preprocessor}{\#define\ SUBLANG\_DEFAULT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ user\ default}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00434}00434\ \textcolor{preprocessor}{\#define\ SUBLANG\_SYS\_DEFAULT\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ system\ default}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00435}00435\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00436}00436\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_SAUDI\_ARABIA\ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Saudi\ Arabia)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00437}00437\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_IRAQ\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Iraq)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00438}00438\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_EGYPT\ \ \ \ \ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Egypt)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00439}00439\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_LIBYA\ \ \ \ \ \ \ \ \ \ \ \ \ 0x04\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Libya)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00440}00440\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_ALGERIA\ \ \ \ \ \ \ \ \ \ \ 0x05\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Algeria)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00441}00441\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_MOROCCO\ \ \ \ \ \ \ \ \ \ \ 0x06\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Morocco)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00442}00442\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_TUNISIA\ \ \ \ \ \ \ \ \ \ \ 0x07\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Tunisia)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00443}00443\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_OMAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x08\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Oman)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00444}00444\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_YEMEN\ \ \ \ \ \ \ \ \ \ \ \ \ 0x09\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Yemen)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00445}00445\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_SYRIA\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0a\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Syria)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00446}00446\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_JORDAN\ \ \ \ \ \ \ \ \ \ \ \ 0x0b\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Jordan)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00447}00447\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_LEBANON\ \ \ \ \ \ \ \ \ \ \ 0x0c\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Lebanon)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00448}00448\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_KUWAIT\ \ \ \ \ \ \ \ \ \ \ \ 0x0d\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Kuwait)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00449}00449\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_UAE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0e\ \ \ \ }\textcolor{comment}{//\ Arabic\ (U.A.E)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00450}00450\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_BAHRAIN\ \ \ \ \ \ \ \ \ \ \ 0x0f\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Bahrain)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00451}00451\ \textcolor{preprocessor}{\#define\ SUBLANG\_ARABIC\_QATAR\ \ \ \ \ \ \ \ \ \ \ \ \ 0x10\ \ \ \ }\textcolor{comment}{//\ Arabic\ (Qatar)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00452}00452\ \textcolor{preprocessor}{\#define\ SUBLANG\_AZERI\_LATIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Azeri\ (Latin)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00453}00453\ \textcolor{preprocessor}{\#define\ SUBLANG\_AZERI\_CYRILLIC\ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Azeri\ (Cyrillic)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00454}00454\ \textcolor{preprocessor}{\#define\ SUBLANG\_CHINESE\_TRADITIONAL\ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Chinese\ (Taiwan)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00455}00455\ \textcolor{preprocessor}{\#define\ SUBLANG\_CHINESE\_SIMPLIFIED\ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Chinese\ (PR\ China)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00456}00456\ \textcolor{preprocessor}{\#define\ SUBLANG\_CHINESE\_HONGKONG\ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ Chinese\ (Hong\ Kong\ S.A.R.,\ P.R.C.)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00457}00457\ \textcolor{preprocessor}{\#define\ SUBLANG\_CHINESE\_SINGAPORE\ \ \ \ \ \ \ \ 0x04\ \ \ \ }\textcolor{comment}{//\ Chinese\ (Singapore)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00458}00458\ \textcolor{preprocessor}{\#define\ SUBLANG\_CHINESE\_MACAU\ \ \ \ \ \ \ \ \ \ \ \ 0x05\ \ \ \ }\textcolor{comment}{//\ Chinese\ (Macau\ S.A.R.)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00459}00459\ \textcolor{preprocessor}{\#define\ SUBLANG\_DUTCH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Dutch}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00460}00460\ \textcolor{preprocessor}{\#define\ SUBLANG\_DUTCH\_BELGIAN\ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Dutch\ (Belgian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00461}00461\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_US\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ English\ (USA)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00462}00462\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_UK\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ English\ (UK)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00463}00463\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_AUS\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ English\ (Australian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00464}00464\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_CAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x04\ \ \ \ }\textcolor{comment}{//\ English\ (Canadian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00465}00465\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_NZ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x05\ \ \ \ }\textcolor{comment}{//\ English\ (New\ Zealand)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00466}00466\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_EIRE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x06\ \ \ \ }\textcolor{comment}{//\ English\ (Irish)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00467}00467\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_SOUTH\_AFRICA\ \ \ \ \ 0x07\ \ \ \ }\textcolor{comment}{//\ English\ (South\ Africa)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00468}00468\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_JAMAICA\ \ \ \ \ \ \ \ \ \ 0x08\ \ \ \ }\textcolor{comment}{//\ English\ (Jamaica)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00469}00469\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_CARIBBEAN\ \ \ \ \ \ \ \ 0x09\ \ \ \ }\textcolor{comment}{//\ English\ (Caribbean)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00470}00470\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_BELIZE\ \ \ \ \ \ \ \ \ \ \ 0x0a\ \ \ \ }\textcolor{comment}{//\ English\ (Belize)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00471}00471\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_TRINIDAD\ \ \ \ \ \ \ \ \ 0x0b\ \ \ \ }\textcolor{comment}{//\ English\ (Trinidad)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00472}00472\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_ZIMBABWE\ \ \ \ \ \ \ \ \ 0x0c\ \ \ \ }\textcolor{comment}{//\ English\ (Zimbabwe)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00473}00473\ \textcolor{preprocessor}{\#define\ SUBLANG\_ENGLISH\_PHILIPPINES\ \ \ \ \ \ 0x0d\ \ \ \ }\textcolor{comment}{//\ English\ (Philippines)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00474}00474\ \textcolor{preprocessor}{\#define\ SUBLANG\_FRENCH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ French}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00475}00475\ \textcolor{preprocessor}{\#define\ SUBLANG\_FRENCH\_BELGIAN\ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ French\ (Belgian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00476}00476\ \textcolor{preprocessor}{\#define\ SUBLANG\_FRENCH\_CANADIAN\ \ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ French\ (Canadian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00477}00477\ \textcolor{preprocessor}{\#define\ SUBLANG\_FRENCH\_SWISS\ \ \ \ \ \ \ \ \ \ \ \ \ 0x04\ \ \ \ }\textcolor{comment}{//\ French\ (Swiss)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00478}00478\ \textcolor{preprocessor}{\#define\ SUBLANG\_FRENCH\_LUXEMBOURG\ \ \ \ \ \ \ \ 0x05\ \ \ \ }\textcolor{comment}{//\ French\ (Luxembourg)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00479}00479\ \textcolor{preprocessor}{\#define\ SUBLANG\_FRENCH\_MONACO\ \ \ \ \ \ \ \ \ \ \ \ 0x06\ \ \ \ }\textcolor{comment}{//\ French\ (Monaco)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00480}00480\ \textcolor{preprocessor}{\#define\ SUBLANG\_GERMAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ German}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00481}00481\ \textcolor{preprocessor}{\#define\ SUBLANG\_GERMAN\_SWISS\ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ German\ (Swiss)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00482}00482\ \textcolor{preprocessor}{\#define\ SUBLANG\_GERMAN\_AUSTRIAN\ \ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ German\ (Austrian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00483}00483\ \textcolor{preprocessor}{\#define\ SUBLANG\_GERMAN\_LUXEMBOURG\ \ \ \ \ \ \ \ 0x04\ \ \ \ }\textcolor{comment}{//\ German\ (Luxembourg)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00484}00484\ \textcolor{preprocessor}{\#define\ SUBLANG\_GERMAN\_LIECHTENSTEIN\ \ \ \ \ 0x05\ \ \ \ }\textcolor{comment}{//\ German\ (Liechtenstein)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00485}00485\ \textcolor{preprocessor}{\#define\ SUBLANG\_ITALIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Italian}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00486}00486\ \textcolor{preprocessor}{\#define\ SUBLANG\_ITALIAN\_SWISS\ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Italian\ (Swiss)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00487}00487\ \textcolor{preprocessor}{\#define\ SUBLANG\_KASHMIRI\_SASIA\ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Kashmiri\ (South\ Asia)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00488}00488\ \textcolor{preprocessor}{\#define\ SUBLANG\_KASHMIRI\_INDIA\ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ For\ app\ compatibility\ only}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00489}00489\ \textcolor{preprocessor}{\#define\ SUBLANG\_KOREAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Korean\ (Extended\ Wansung)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00490}00490\ \textcolor{preprocessor}{\#define\ SUBLANG\_LITHUANIAN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Lithuanian}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00491}00491\ \textcolor{preprocessor}{\#define\ SUBLANG\_MALAY\_MALAYSIA\ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Malay\ (Malaysia)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00492}00492\ \textcolor{preprocessor}{\#define\ SUBLANG\_MALAY\_BRUNEI\_DARUSSALAM\ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Malay\ (Brunei\ Darussalam)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00493}00493\ \textcolor{preprocessor}{\#define\ SUBLANG\_NEPALI\_INDIA\ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Nepali\ (India)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00494}00494\ \textcolor{preprocessor}{\#define\ SUBLANG\_NORWEGIAN\_BOKMAL\ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Norwegian\ (Bokmal)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00495}00495\ \textcolor{preprocessor}{\#define\ SUBLANG\_NORWEGIAN\_NYNORSK\ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Norwegian\ (Nynorsk)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00496}00496\ \textcolor{preprocessor}{\#define\ SUBLANG\_PORTUGUESE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Portuguese}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00497}00497\ \textcolor{preprocessor}{\#define\ SUBLANG\_PORTUGUESE\_BRAZILIAN\ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Portuguese\ (Brazilian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00498}00498\ \textcolor{preprocessor}{\#define\ SUBLANG\_SERBIAN\_LATIN\ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Serbian\ (Latin)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00499}00499\ \textcolor{preprocessor}{\#define\ SUBLANG\_SERBIAN\_CYRILLIC\ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ Serbian\ (Cyrillic)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00500}00500\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Castilian)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00501}00501\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_MEXICAN\ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Mexican)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00502}00502\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_MODERN\ \ \ \ \ \ \ \ \ \ \ 0x03\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Spain)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00503}00503\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_GUATEMALA\ \ \ \ \ \ \ \ 0x04\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Guatemala)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00504}00504\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_COSTA\_RICA\ \ \ \ \ \ \ 0x05\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Costa\ Rica)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00505}00505\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_PANAMA\ \ \ \ \ \ \ \ \ \ \ 0x06\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Panama)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00506}00506\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_DOMINICAN\_REPUBLIC\ 0x07\ \ }\textcolor{comment}{//\ Spanish\ (Dominican\ Republic)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00507}00507\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_VENEZUELA\ \ \ \ \ \ \ \ 0x08\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Venezuela)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00508}00508\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_COLOMBIA\ \ \ \ \ \ \ \ \ 0x09\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Colombia)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00509}00509\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_PERU\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0a\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Peru)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00510}00510\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_ARGENTINA\ \ \ \ \ \ \ \ 0x0b\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Argentina)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00511}00511\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_ECUADOR\ \ \ \ \ \ \ \ \ \ 0x0c\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Ecuador)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00512}00512\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_CHILE\ \ \ \ \ \ \ \ \ \ \ \ 0x0d\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Chile)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00513}00513\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_URUGUAY\ \ \ \ \ \ \ \ \ \ 0x0e\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Uruguay)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00514}00514\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_PARAGUAY\ \ \ \ \ \ \ \ \ 0x0f\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Paraguay)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00515}00515\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_BOLIVIA\ \ \ \ \ \ \ \ \ \ 0x10\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Bolivia)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00516}00516\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_EL\_SALVADOR\ \ \ \ \ \ 0x11\ \ \ \ }\textcolor{comment}{//\ Spanish\ (El\ Salvador)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00517}00517\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_HONDURAS\ \ \ \ \ \ \ \ \ 0x12\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Honduras)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00518}00518\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_NICARAGUA\ \ \ \ \ \ \ \ 0x13\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Nicaragua)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00519}00519\ \textcolor{preprocessor}{\#define\ SUBLANG\_SPANISH\_PUERTO\_RICO\ \ \ \ \ \ 0x14\ \ \ \ }\textcolor{comment}{//\ Spanish\ (Puerto\ Rico)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00520}00520\ \textcolor{preprocessor}{\#define\ SUBLANG\_SWEDISH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Swedish}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00521}00521\ \textcolor{preprocessor}{\#define\ SUBLANG\_SWEDISH\_FINLAND\ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Swedish\ (Finland)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00522}00522\ \textcolor{preprocessor}{\#define\ SUBLANG\_URDU\_PAKISTAN\ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Urdu\ (Pakistan)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00523}00523\ \textcolor{preprocessor}{\#define\ SUBLANG\_URDU\_INDIA\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Urdu\ (India)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00524}00524\ \textcolor{preprocessor}{\#define\ SUBLANG\_UZBEK\_LATIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ }\textcolor{comment}{//\ Uzbek\ (Latin)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00525}00525\ \textcolor{preprocessor}{\#define\ SUBLANG\_UZBEK\_CYRILLIC\ \ \ \ \ \ \ \ \ \ \ 0x02\ \ \ \ }\textcolor{comment}{//\ Uzbek\ (Cyrillic)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00526}00526\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00527}00527\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00528}00528\ \textcolor{comment}{//\ \ Sorting\ IDs.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00529}00529\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00531}00531\ \textcolor{preprocessor}{\#define\ SORT\_DEFAULT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ sorting\ default}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00533}00533\ \textcolor{preprocessor}{\#define\ SORT\_JAPANESE\_XJIS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ Japanese\ XJIS\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00534}00534\ \textcolor{preprocessor}{\#define\ SORT\_JAPANESE\_UNICODE\ \ \ \ \ \ \ \ \ \ \ \ 0x1\ \ \ \ \ }\textcolor{comment}{//\ Japanese\ Unicode\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00536}00536\ \textcolor{preprocessor}{\#define\ SORT\_CHINESE\_BIG5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ Chinese\ BIG5\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00537}00537\ \textcolor{preprocessor}{\#define\ SORT\_CHINESE\_PRCP\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ PRC\ Chinese\ Phonetic\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00538}00538\ \textcolor{preprocessor}{\#define\ SORT\_CHINESE\_UNICODE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x1\ \ \ \ \ }\textcolor{comment}{//\ Chinese\ Unicode\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00539}00539\ \textcolor{preprocessor}{\#define\ SORT\_CHINESE\_PRC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2\ \ \ \ \ }\textcolor{comment}{//\ PRC\ Chinese\ Stroke\ Count\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00540}00540\ \textcolor{preprocessor}{\#define\ SORT\_CHINESE\_BOPOMOFO\ \ \ \ \ \ \ \ \ \ \ \ 0x3\ \ \ \ \ }\textcolor{comment}{//\ Traditional\ Chinese\ Bopomofo\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00541}00541\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00542}00542\ \textcolor{preprocessor}{\#define\ SORT\_KOREAN\_KSC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ Korean\ KSC\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00543}00543\ \textcolor{preprocessor}{\#define\ SORT\_KOREAN\_UNICODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x1\ \ \ \ \ }\textcolor{comment}{//\ Korean\ Unicode\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00544}00544\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00545}00545\ \textcolor{preprocessor}{\#define\ SORT\_GERMAN\_PHONE\_BOOK\ \ \ \ \ \ \ \ \ \ \ 0x1\ \ \ \ \ }\textcolor{comment}{//\ German\ Phone\ Book\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00546}00546\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00547}00547\ \textcolor{preprocessor}{\#define\ SORT\_HUNGARIAN\_DEFAULT\ \ \ \ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ Hungarian\ Default\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00548}00548\ \textcolor{preprocessor}{\#define\ SORT\_HUNGARIAN\_TECHNICAL\ \ \ \ \ \ \ \ \ 0x1\ \ \ \ \ }\textcolor{comment}{//\ Hungarian\ Technical\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00549}00549\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00550}00550\ \textcolor{preprocessor}{\#define\ SORT\_GEORGIAN\_TRADITIONAL\ \ \ \ \ \ \ \ 0x0\ \ \ \ \ }\textcolor{comment}{//\ Georgian\ Traditional\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00551}00551\ \textcolor{preprocessor}{\#define\ SORT\_GEORGIAN\_MODERN\ \ \ \ \ \ \ \ \ \ \ \ \ 0x1\ \ \ \ \ }\textcolor{comment}{//\ Georgian\ Modern\ order}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00553}00553\ \textcolor{comment}{//\ end\_r\_winnt}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00554}00554\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00555}00555\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00556}00556\ \textcolor{comment}{//\ \ A\ language\ ID\ is\ a\ 16\ bit\ value\ which\ is\ the\ combination\ of\ a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00557}00557\ \textcolor{comment}{//\ \ primary\ language\ ID\ and\ a\ secondary\ language\ ID.\ \ The\ bits\ are}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00558}00558\ \textcolor{comment}{//\ \ allocated\ as\ follows:}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00559}00559\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00560}00560\ \textcolor{comment}{//\ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00561}00561\ \textcolor{comment}{//\ \ \ \ \ \ \ |\ \ \ \ \ Sublanguage\ ID\ \ \ \ |\ \ \ Primary\ Language\ ID\ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00562}00562\ \textcolor{comment}{//\ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00563}00563\ \textcolor{comment}{//\ \ \ \ \ \ \ \ 15\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 10\ 9\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \ \ bit}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00564}00564\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00565}00565\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00566}00566\ \textcolor{comment}{//\ \ Language\ ID\ creation/extraction\ macros:}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00567}00567\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00568}00568\ \textcolor{comment}{//\ \ \ \ MAKELANGID\ \ \ \ -\/\ construct\ language\ id\ from\ a\ primary\ language\ id\ and}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00569}00569\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a\ sublanguage\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00570}00570\ \textcolor{comment}{//\ \ \ \ PRIMARYLANGID\ -\/\ extract\ primary\ language\ id\ from\ a\ language\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00571}00571\ \textcolor{comment}{//\ \ \ \ SUBLANGID\ \ \ \ \ -\/\ extract\ sublanguage\ id\ from\ a\ language\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00572}00572\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00573}00573\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00574}00574\ \textcolor{preprocessor}{\#define\ MAKELANGID(p,\ s)\ \ \ \ \ \ \ ((((WORD\ \ )(s))\ <<\ 10)\ |\ (WORD\ \ )(p))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00575}00575\ \textcolor{preprocessor}{\#define\ PRIMARYLANGID(lgid)\ \ \ \ ((WORD\ \ )(lgid)\ \&\ 0x3ff)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00576}00576\ \textcolor{preprocessor}{\#define\ SUBLANGID(lgid)\ \ \ \ \ \ \ \ ((WORD\ \ )(lgid)\ >>\ 10)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00577}00577\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00578}00578\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00579}00579\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00580}00580\ \textcolor{comment}{//\ \ A\ locale\ ID\ is\ a\ 32\ bit\ value\ which\ is\ the\ combination\ of\ a}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00581}00581\ \textcolor{comment}{//\ \ language\ ID,\ a\ sort\ ID,\ and\ a\ reserved\ area.\ \ The\ bits\ are}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00582}00582\ \textcolor{comment}{//\ \ allocated\ as\ follows:}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00583}00583\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00584}00584\ \textcolor{comment}{//\ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00585}00585\ \textcolor{comment}{//\ \ \ \ \ \ \ |\ \ \ Reserved\ \ |\ Sort\ ID\ |\ \ \ \ \ \ Language\ ID\ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00586}00586\ \textcolor{comment}{//\ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00587}00587\ \textcolor{comment}{//\ \ \ \ \ \ \ \ 31\ \ \ \ \ \ \ \ \ 20\ 19\ \ \ \ \ 16\ 15\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \ \ bit}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00588}00588\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00589}00589\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00590}00590\ \textcolor{comment}{//\ \ Locale\ ID\ creation/extraction\ macros:}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00591}00591\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00592}00592\ \textcolor{comment}{//\ \ \ \ MAKELCID\ \ \ \ \ \ \ \ \ \ \ \ -\/\ construct\ the\ locale\ id\ from\ a\ language\ id\ and\ a\ sort\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00593}00593\ \textcolor{comment}{//\ \ \ \ MAKESORTLCID\ \ \ \ \ \ \ \ -\/\ construct\ the\ locale\ id\ from\ a\ language\ id,\ sort\ id,\ and\ sort\ version.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00594}00594\ \textcolor{comment}{//\ \ \ \ LANGIDFROMLCID\ \ \ \ \ \ -\/\ extract\ the\ language\ id\ from\ a\ locale\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00595}00595\ \textcolor{comment}{//\ \ \ \ SORTIDFROMLCID\ \ \ \ \ \ -\/\ extract\ the\ sort\ id\ from\ a\ locale\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00596}00596\ \textcolor{comment}{//\ \ \ \ SORTVERSIONFROMLCID\ -\/\ extract\ the\ sort\ version\ from\ a\ locale\ id.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00597}00597\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00598}00598\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00599}00599\ \textcolor{preprocessor}{\#define\ NLS\_VALID\_LOCALE\_MASK\ \ 0x000fffff}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00600}00600\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00601}00601\ \textcolor{preprocessor}{\#define\ MAKELCID(lgid,\ srtid)\ \ ((DWORD)((((DWORD)((WORD\ \ )(srtid)))\ <<\ 16)\ |\ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00602}00602\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((DWORD)((WORD\ \ )(lgid)))))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00603}00603\ \textcolor{preprocessor}{\#define\ MAKESORTLCID(lgid,\ srtid,\ ver)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00604}00604\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((DWORD)((MAKELCID(lgid,\ srtid))\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00605}00605\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((DWORD)((WORD\ \ )(ver)))\ <<\ 20)))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00606}00606\ \textcolor{preprocessor}{\#define\ LANGIDFROMLCID(lcid)\ \ \ ((WORD\ \ )(lcid))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00607}00607\ \textcolor{preprocessor}{\#define\ SORTIDFROMLCID(lcid)\ \ \ ((WORD\ \ )((((DWORD)(lcid))\ >>\ 16)\ \&\ 0xf))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00608}00608\ \textcolor{preprocessor}{\#define\ SORTVERSIONFROMLCID(lcid)\ \ ((WORD\ \ )((((DWORD)(lcid))\ >>\ 20)\ \&\ 0xf))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00609}00609\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00610}00610\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00611}00611\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00612}00612\ \textcolor{comment}{//\ \ Default\ System\ and\ User\ IDs\ for\ language\ and\ locale.}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00613}00613\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00614}00614\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00615}00615\ \textcolor{preprocessor}{\#define\ LANG\_SYSTEM\_DEFAULT\ \ \ \ (MAKELANGID(LANG\_NEUTRAL,\ SUBLANG\_SYS\_DEFAULT))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00616}00616\ \textcolor{preprocessor}{\#define\ LANG\_USER\_DEFAULT\ \ \ \ \ \ (MAKELANGID(LANG\_NEUTRAL,\ SUBLANG\_DEFAULT))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00617}00617\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00618}00618\ \textcolor{preprocessor}{\#define\ LOCALE\_SYSTEM\_DEFAULT\ \ (MAKELCID(LANG\_SYSTEM\_DEFAULT,\ SORT\_DEFAULT))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00619}00619\ \textcolor{preprocessor}{\#define\ LOCALE\_USER\_DEFAULT\ \ \ \ (MAKELCID(LANG\_USER\_DEFAULT,\ SORT\_DEFAULT))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00620}00620\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00621}00621\ \textcolor{preprocessor}{\#define\ LOCALE\_NEUTRAL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00622}00622\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ (MAKELCID(MAKELANGID(LANG\_NEUTRAL,\ SUBLANG\_NEUTRAL),\ SORT\_DEFAULT))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00623}00623\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00624}00624\ \textcolor{preprocessor}{\#define\ LOCALE\_INVARIANT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00625}00625\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ (MAKELCID(MAKELANGID(LANG\_INVARIANT,\ SUBLANG\_NEUTRAL),\ SORT\_DEFAULT))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00626}00626\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00627}00627\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SOOS\_LINUX\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00628}00628\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00629}00629\ \textcolor{preprocessor}{\#ifdef\ SOFLAG\_NO\_ATL}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00630}00630\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00631}00631\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ GetSystemTimeAsFileTime(FILETIME*\ pFiletime);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00632}00632\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00633}00633\ \textcolor{preprocessor}{\#define\ USES\_CONVERSION}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00634}00634\ \textcolor{preprocessor}{\#define\ T2A(text)\ \ \ \ \ (LPSTR)text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00635}00635\ \textcolor{preprocessor}{\#define\ T2CA(text)\ \ \ \ (LPCSTR)text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00636}00636\ \textcolor{preprocessor}{\#define\ A2T(text)\ \ \ \ \ (LPTSTR)text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00637}00637\ \textcolor{preprocessor}{\#define\ A2CT(text)\ \ \ \ (LPCTSTR)text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00638}00638\ \textcolor{preprocessor}{\#define\ OLE2CT(text)\ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00639}00639\ \textcolor{preprocessor}{\#define\ OLE2T(text)\ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00640}00640\ \textcolor{preprocessor}{\#define\ T2OLE(text)\ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00641}00641\ \textcolor{preprocessor}{\#define\ T2COLE(text)\ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00642}00642\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00643}00643\ \textcolor{preprocessor}{\#define\ W2CT(text)\ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00644}00644\ \textcolor{preprocessor}{\#define\ TC2W(text)\ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00645}00645\ \textcolor{preprocessor}{\#define\ T2CW(text)\ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00646}00646\ \textcolor{preprocessor}{\#define\ W2T(text)\ \ \ \ \ text}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00647}00647\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00648}00648\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00649}00649\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_os_compat_8h_source_l00650}00650\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_SOCMNOSCOMAT\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

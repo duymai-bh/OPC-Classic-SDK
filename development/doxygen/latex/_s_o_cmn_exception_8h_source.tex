@@ -1,0 +1,48 @@
+\doxysection{SOCmn\+Exception.\+h}
+\hypertarget{_s_o_cmn_exception_8h_source}{}\label{_s_o_cmn_exception_8h_source}\index{core/src/include/SOCmnException.h@{core/src/include/SOCmnException.h}}
+\mbox{\hyperlink{_s_o_cmn_exception_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ \_SOCMNEXCEPTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ \_SOCMNEXCEPTION\_H\_}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00004}00004\ \textcolor{preprocessor}{\#pragma\ pack(push,\ 4)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00007}00007\ \textcolor{preprocessor}{\#ifndef\ SOOS\_WINDOWS\_CE}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00008}\mbox{\hyperlink{_s_o_cmn_exception_8h_aa310e6cee2dce11319393a535cb7e7df}{00008}}\ \textcolor{preprocessor}{\#define\ SOCMN\_TRY\ \ \ \ \ \ \ try}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00009}\mbox{\hyperlink{_s_o_cmn_exception_8h_a578798cd5be2d489756ab8bdc1510bcc}{00009}}\ \textcolor{preprocessor}{\#define\ SOCMN\_CATCH(e)\ \ catch(e)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00010}\mbox{\hyperlink{_s_o_cmn_exception_8h_ab2e9de7443827c50bf5a27ae4389b66f}{00010}}\ \textcolor{preprocessor}{\#define\ SOCMN\_THROW(e)\ \ throw\ e;}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00011}00011\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00012}00012\ \textcolor{preprocessor}{\#define\ SOCMN\_TRY}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00013}00013\ \textcolor{preprocessor}{\#define\ SOCMN\_CATCH(e)\ \ if\ (FALSE)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ SOCMN\_THROW(e)\ \ \{;\}}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00015}00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00017}\mbox{\hyperlink{_s_o_cmn_exception_8h_acbb77b1610fe1be6339c7f98a8e61a9f}{00017}}\ \textcolor{preprocessor}{\#define\ SOCMNEXCEPTION\_ID\_OUTOFMEMORY\ \ \ 0x00000001}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00018}\mbox{\hyperlink{_s_o_cmn_exception_8h_ababf423b36396f160e37b292449f3af6}{00018}}\ \textcolor{preprocessor}{\#define\ SOCMNEXCEPTION\_ID\_SERIALIZATION\ 0x00000002}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00019}\mbox{\hyperlink{_s_o_cmn_exception_8h_a11c400bd18b005851e36b76fa1344b93}{00019}}\ \textcolor{preprocessor}{\#define\ SOCMNEXCEPTION\_DESCRIPTION\_OUTOFMEMORY\ \ \ \ \ \ \_T("{}Out\ of\ memory"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00020}\mbox{\hyperlink{_s_o_cmn_exception_8h_a00ca34d1614c5eddc4479a70955b0b44}{00020}}\ \textcolor{preprocessor}{\#define\ SOCMNEXCEPTION\_DESCRIPTION\_SERIALIZATION\ \ \ \ \_T("{}Serialization\ error"{})}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00022}00022\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00023}00023\ \textcolor{comment}{//\ SOCmnException\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00024}00024\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00026}\mbox{\hyperlink{class_s_o_cmn_exception}{00026}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{_s_o_cmn_8h_a69f963f395d61209ddb974ce62bc2886}{SOCMN\_EXPORT}}\ \mbox{\hyperlink{class_s_o_cmn_exception}{SOCmnException}}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00027}00027\ \{}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00028}00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00029}00029\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_exception}{SOCmnException}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00030}00030\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_exception}{SOCmnException}}(\mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ DWORD\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{_o_tcommon_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}}\ LPCTSTR\ description);}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00031}00031\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_exception}{\string~SOCmnException}}();}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00033}\mbox{\hyperlink{class_s_o_cmn_exception_a803e34e971b5922e146ffa5345e9c5ef}{00033}}\ \ \ \ \ DWORD\ \mbox{\hyperlink{class_s_o_cmn_exception_a803e34e971b5922e146ffa5345e9c5ef}{m\_id}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ exception\ id}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00034}\mbox{\hyperlink{class_s_o_cmn_exception_af65d3629a6e5367bf67f7eeacd63e7bf}{00034}}\ \ \ \ \ \mbox{\hyperlink{class_s_o_cmn_string}{SOCmnString}}\ \mbox{\hyperlink{class_s_o_cmn_exception_af65d3629a6e5367bf67f7eeacd63e7bf}{m\_description}};\ \ \textcolor{comment}{//\ exception\ description}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00035}00035\ \};\ \textcolor{comment}{//\ SOCmnException}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00037}\mbox{\hyperlink{_s_o_cmn_exception_8h_a5ea65a20cdb762fb66c2246402988f3b}{00037}}\ \textcolor{preprocessor}{\#define\ SOCMN\_THROW\_EXCEPTION(id,\ desc)\ SOCMN\_THROW(SOCmnException(id,\ desc))}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00038}\mbox{\hyperlink{_s_o_cmn_exception_8h_a8602f7ee4304b1e84306fd49a0ae6d45}{00038}}\ \textcolor{preprocessor}{\#define\ SOCMN\_THROW\_EXCEPTION\_OUTOPFMEMORY()\ SOCMN\_THROW\_EXCEPTION(SOCMNEXCEPTION\_ID\_OUTOFMEMORY,\ SOCMNEXCEPTION\_DESCRIPTION\_OUTOFMEMORY)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00039}\mbox{\hyperlink{_s_o_cmn_exception_8h_a38968ab55d8ad68aecdd9d31744a5918}{00039}}\ \textcolor{preprocessor}{\#define\ SOCMN\_THROW\_EXCEPTION\_SERIALIZATION()\ SOCMN\_THROW\_EXCEPTION(SOCMNEXCEPTION\_ID\_SERIALIZATION,\ SOCMNEXCEPTION\_DESCRIPTION\_SERIALIZATION)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00041}00041\ \textcolor{preprocessor}{\#pragma\ pack(pop)}}
+\DoxyCodeLine{\Hypertarget{_s_o_cmn_exception_8h_source_l00042}00042\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,285 @@
+\doxysection{In\+Place\+Edit.\+cpp}
+\hypertarget{_in_place_edit_8cpp_source}{}\label{_in_place_edit_8cpp_source}\index{core/src/demo/SOClient/GridCtrl\_SRC/InPlaceEdit.cpp@{core/src/demo/SOClient/GridCtrl\_SRC/InPlaceEdit.cpp}}
+\mbox{\hyperlink{_in_place_edit_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00001}00001\ \textcolor{comment}{//\ InPlaceEdit.cpp\ :\ implementation\ file}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00002}00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00003}00003\ \textcolor{comment}{//\ Adapted\ by\ Chris\ Maunder\ <cmaunder@mail.com>}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00004}00004\ \textcolor{comment}{//\ Copyright\ (c)\ 1998-\/2002.\ All\ Rights\ Reserved.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00005}00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00006}00006\ \textcolor{comment}{//\ The\ code\ contained\ in\ this\ file\ is\ based\ on\ the\ original}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00007}00007\ \textcolor{comment}{//\ CInPlaceEdit\ from\ http://www.codeguru.com/listview/edit\_subitems.shtml}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00008}00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00009}00009\ \textcolor{comment}{//\ This\ code\ may\ be\ used\ in\ compiled\ form\ in\ any\ way\ you\ desire.\ This}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00010}00010\ \textcolor{comment}{//\ file\ may\ be\ redistributed\ unmodified\ by\ any\ means\ PROVIDING\ it\ is}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00011}00011\ \textcolor{comment}{//\ not\ sold\ for\ profit\ without\ the\ authors\ written\ consent,\ and}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00012}00012\ \textcolor{comment}{//\ providing\ that\ this\ notice\ and\ the\ authors\ name\ and\ all\ copyright}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00013}00013\ \textcolor{comment}{//\ notices\ remains\ intact.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00014}00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00015}00015\ \textcolor{comment}{//\ An\ email\ letting\ me\ know\ how\ you\ are\ using\ it\ would\ be\ nice\ as\ well.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00016}00016\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00017}00017\ \textcolor{comment}{//\ This\ file\ is\ provided\ "{}as\ is"{}\ with\ no\ expressed\ or\ implied\ warranty.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00018}00018\ \textcolor{comment}{//\ The\ author\ accepts\ no\ liability\ for\ any\ damage/loss\ of\ business\ that}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00019}00019\ \textcolor{comment}{//\ this\ product\ may\ cause.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00020}00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00021}00021\ \textcolor{comment}{//\ For\ use\ with\ CGridCtrl\ v2.10+}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00022}00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00023}00023\ \textcolor{comment}{//\ History:}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00024}00024\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ 10\ May\ 1998\ \ Uses\ GVN\_\ notifications\ instead\ of\ LVN\_,}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00025}00025\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Sends\ notification\ messages\ to\ the\ parent,}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00026}00026\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instead\ of\ the\ parent's\ parent.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00027}00027\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ 15\ May\ 1998\ \ There\ was\ a\ problem\ when\ editing\ with\ the\ in-\/place\ editor,}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00028}00028\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ there\ arises\ a\ general\ protection\ fault\ in\ user.exe,\ with\ a}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00029}00029\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ few\ qualifications:}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00030}00030\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1)\ This\ only\ happens\ with\ owner-\/drawn\ buttons;}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00031}00031\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (2)\ This\ only\ happens\ in\ Win95}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00032}00032\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (3)\ This\ only\ happens\ if\ the\ handler\ for\ the\ button\ does\ not}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00033}00033\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ create\ a\ new\ window\ (even\ an\ AfxMessageBox\ will\ avoid\ the}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00034}00034\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crash)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00035}00035\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (4)\ This\ will\ not\ happen\ if\ Spy++\ is\ running.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00036}00036\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PreTranslateMessage\ was\ added\ to\ route\ messages\ correctly.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00037}00037\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (Matt\ Weagle\ found\ and\ fixed\ this\ problem)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00038}00038\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ 26\ Jul\ 1998\ \ Removed\ the\ ES\_MULTILINE\ style\ -\/\ that\ fixed\ a\ few\ probs!}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00039}00039\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 6\ Aug\ 1998\ \ Added\ nID\ to\ the\ constructor\ param\ list}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00040}00040\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ 6\ Sep\ 1998\ \ Space\ no\ longer\ clears\ selection\ when\ starting\ edit\ (Franco\ Bez)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00041}00041\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ 10\ Apr\ 1999\ \ Enter,\ Tab\ and\ Esc\ key\ prob\ fixed\ (Koay\ Kah\ Hoe)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00042}00042\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Workaround\ for\ bizzare\ "{}shrinking\ window"{}\ problem\ in\ CE}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00043}00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00046}00046\ \textcolor{preprocessor}{\#include\ "{}stdafx.h"{}}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00047}00047\ \textcolor{preprocessor}{\#include\ "{}TCHAR.h"{}}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00048}00048\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_in_place_edit_8h}{InPlaceEdit.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00050}00050\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_grid_ctrl_8h}{GridCtrl.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00052}00052\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00053}00053\ \textcolor{preprocessor}{\#define\ new\ DEBUG\_NEW}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00054}00054\ \textcolor{preprocessor}{\#undef\ THIS\_FILE}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00055}00055\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ THIS\_FILE[]\ =\ \_\_FILE\_\_;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00056}00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00059}00059\ \textcolor{comment}{//\ CInPlaceEdit}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00061}\mbox{\hyperlink{class_c_in_place_edit_a3f2d8f9dda5d107379c9f091a5b87bc5}{00061}}\ \mbox{\hyperlink{class_c_in_place_edit_a3f2d8f9dda5d107379c9f091a5b87bc5}{CInPlaceEdit::CInPlaceEdit}}(CWnd*\ pParent,\ CRect\&\ rect,\ DWORD\ dwStyle,\ UINT\ nID,}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nRow,\ \textcolor{keywordtype}{int}\ nColumn,\ CString\ sInitText,}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UINT\ nFirstChar)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00064}00064\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00065}00065\ \ \ \ \ m\_sInitText\ \ \ \ \ =\ sInitText;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00066}00066\ \ \ \ \ m\_nRow\ \ \ \ \ \ \ \ \ \ =\ nRow;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00067}00067\ \ \ \ \ m\_nColumn\ \ \ \ \ \ \ =\ nColumn;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00068}00068\ \ \ \ \ m\_nLastChar\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00069}00069\ \ \ \ \ m\_bExitOnArrows\ =\ (nFirstChar\ !=\ VK\_LBUTTON);\ \ \ \ \textcolor{comment}{//\ If\ mouse\ click\ brought\ us\ here,}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{comment}{//\ then\ no\ exit\ on\ arrows}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00071}00071\ \ \ \ \ m\_Rect\ =\ rect;\ \ \textcolor{comment}{//\ For\ bizarre\ CE\ bug.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00072}00072\ \ \ \ \ DWORD\ dwEditStyle\ =\ WS\_BORDER\ |\ WS\_CHILD\ |\ WS\_VISIBLE\ |\ ES\_AUTOHSCROLL\ \textcolor{comment}{//|ES\_MULTILINE}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ dwStyle;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00075}00075\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Create(dwEditStyle,\ rect,\ pParent,\ nID))}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00076}00076\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00080}00080\ \ \ \ \ SetFont(pParent-\/>GetFont());}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00081}00081\ \ \ \ \ SetWindowText(sInitText);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00082}00082\ \ \ \ \ SetFocus();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00084}00084\ \ \ \ \ \textcolor{keywordflow}{switch}\ (nFirstChar)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00085}00085\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_LBUTTON:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_RETURN:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ SetSel((\textcolor{keywordtype}{int})\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(m\_sInitText),\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_BACK:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ SetSel((\textcolor{keywordtype}{int})\mbox{\hyperlink{_d_a_console_8cpp_ad253c68ce58b12b277fedc2d785d7977}{\_tcslen}}(m\_sInitText),\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_TAB:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00096}00096\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_DOWN:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_UP:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_RIGHT:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_LEFT:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_NEXT:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_PRIOR:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00102}00102\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_HOME:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_SPACE:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{case}\ VK\_END:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ SetSel(0,\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ SetSel(0,\ -\/1);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{comment}{//\ Added\ by\ KiteFly.\ When\ entering\ DBCS\ chars\ into\ cells\ the\ first\ char\ was\ being\ lost}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00113}00113\ \ \ \ \ \textcolor{comment}{//\ SenMessage\ changed\ to\ PostMessage\ (John\ Lagerquist)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (nFirstChar\ <\ 0x80)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00115}00115\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ PostMessage(WM\_CHAR,\ nFirstChar);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00117}00117\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ PostMessage(WM\_IME\_CHAR,\ nFirstChar);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00122}00122\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00124}\mbox{\hyperlink{class_c_in_place_edit_ab4ed408b825eff92e8f2331b5856aacc}{00124}}\ \mbox{\hyperlink{class_c_in_place_edit_ab4ed408b825eff92e8f2331b5856aacc}{CInPlaceEdit::\string~CInPlaceEdit}}()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00125}00125\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00126}00126\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00128}00128\ BEGIN\_MESSAGE\_MAP(\mbox{\hyperlink{class_c_in_place_edit}{CInPlaceEdit}},\ CEdit)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00129}00129\ \ \ \ \ \textcolor{comment}{//\{\{AFX\_MSG\_MAP(CInPlaceEdit)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00130}00130\ \ \ \ \ ON\_WM\_KILLFOCUS()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00131}00131\ \ \ \ \ ON\_WM\_CHAR()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00132}00132\ \ \ \ \ ON\_WM\_KEYDOWN()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00133}00133\ \ \ \ \ ON\_WM\_GETDLGCODE()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00134}00134\ \ \ \ \ ON\_WM\_CREATE()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00135}00135\ \ \ \ \ \textcolor{comment}{//\}\}AFX\_MSG\_MAP}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00136}00136\ END\_MESSAGE\_MAP()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00139}00139\ \textcolor{comment}{//\ CInPlaceEdit\ message\ handlers}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00141}00141\ \textcolor{comment}{//\ If\ an\ arrow\ key\ (or\ associated)\ is\ pressed,\ then\ exit\ if}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00142}00142\ \textcolor{comment}{//\ \ a)\ The\ Ctrl\ key\ was\ down,\ or}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00143}00143\ \textcolor{comment}{//\ \ b)\ m\_bExitOnArrows\ ==\ TRUE}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00144}\mbox{\hyperlink{class_c_in_place_edit_ab02762430f9adc26bf78b992dd0569c6}{00144}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_in_place_edit}{CInPlaceEdit}}::OnKeyDown(UINT\ nChar,\ UINT\ nRepCnt,\ UINT\ nFlags)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00145}00145\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{if}\ ((nChar\ ==\ VK\_PRIOR\ ||\ nChar\ ==\ VK\_NEXT\ ||}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ nChar\ ==\ VK\_DOWN\ \ ||\ nChar\ ==\ VK\_UP\ \ \ ||}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ nChar\ ==\ VK\_RIGHT\ ||\ nChar\ ==\ VK\_LEFT)\ \&\&}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ (m\_bExitOnArrows\ ||\ GetKeyState(VK\_CONTROL)\ <\ 0))}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00150}00150\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ m\_nLastChar\ =\ nChar;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ GetParent()-\/>SetFocus();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00154}00154\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00156}00156\ \ \ \ \ CEdit::OnKeyDown(nChar,\ nRepCnt,\ nFlags);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00157}00157\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00159}00159\ \textcolor{comment}{//\ As\ soon\ as\ this\ edit\ loses\ focus,\ kill\ it.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00160}\mbox{\hyperlink{class_c_in_place_edit_aefcf417ae93324a24823d1a5cdc8ff03}{00160}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_in_place_edit_aefcf417ae93324a24823d1a5cdc8ff03}{CInPlaceEdit::OnKillFocus}}(CWnd*\ pNewWnd)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00161}00161\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00162}00162\ \ \ \ \ CEdit::OnKillFocus(pNewWnd);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00163}00163\ \ \ \ \ \mbox{\hyperlink{class_c_in_place_edit_a895656a9d876ca289a8136afd7987b63}{EndEdit}}();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00164}00164\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00166}\mbox{\hyperlink{class_c_in_place_edit_a987b83ad28536341405911d6a6ceea62}{00166}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_in_place_edit_a987b83ad28536341405911d6a6ceea62}{CInPlaceEdit::OnChar}}(UINT\ nChar,\ UINT\ nRepCnt,\ UINT\ nFlags)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00167}00167\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (nChar\ ==\ VK\_TAB\ ||\ nChar\ ==\ VK\_RETURN)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00169}00169\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00170}00170\ \ \ \ \ \ \ \ \ m\_nLastChar\ =\ nChar;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00171}00171\ \ \ \ \ \ \ \ \ GetParent()-\/>SetFocus();\ \ \ \ \textcolor{comment}{//\ This\ will\ destroy\ this\ window}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00173}00173\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00175}00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (nChar\ ==\ VK\_ESCAPE)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00176}00176\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ SetWindowText(m\_sInitText);\ \ \ \ \textcolor{comment}{//\ restore\ previous\ text}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ m\_nLastChar\ =\ nChar;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ GetParent()-\/>SetFocus();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00181}00181\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00183}00183\ \ \ \ \ CEdit::OnChar(nChar,\ nRepCnt,\ nFlags);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{comment}{//\ Resize\ edit\ control\ if\ needed}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00185}00185\ \ \ \ \ \textcolor{comment}{//\ Get\ text\ extent}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00186}00186\ \ \ \ \ CString\ str;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00187}00187\ \ \ \ \ GetWindowText(str);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00188}00188\ \ \ \ \ \textcolor{comment}{//\ add\ some\ extra\ buffer}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00189}00189\ \ \ \ \ str\ +=\ \mbox{\hyperlink{_o_s_compat_8h_ae936e4c15227768f7da4e0951def89c8}{\_T}}(\textcolor{stringliteral}{"{}\ \ "{}});}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00190}00190\ \ \ \ \ CWindowDC\ dc(\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00191}00191\ \ \ \ \ CFont*\ pFontDC\ =\ dc.SelectObject(GetFont());}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00192}00192\ \ \ \ \ CSize\ size\ =\ dc.GetTextExtent(str);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00193}00193\ \ \ \ \ dc.SelectObject(pFontDC);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00194}00194\ \ \ \ \ \textcolor{comment}{//\ Get\ client\ rect}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00195}00195\ \ \ \ \ CRect\ ParentRect;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00196}00196\ \ \ \ \ GetParent()-\/>GetClientRect(\&ParentRect);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00198}00198\ \ \ \ \ \textcolor{comment}{//\ Check\ whether\ control\ needs\ to\ be\ resized}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00199}00199\ \ \ \ \ \textcolor{comment}{//\ and\ whether\ there\ is\ space\ to\ grow}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00200}00200\ \ \ \ \ \textcolor{keywordflow}{if}\ (size.cx\ >\ m\_Rect.Width())}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00201}00201\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size.cx\ +\ m\_Rect.left\ <\ ParentRect.right)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Rect.right\ =\ m\_Rect.left\ +\ size.cx;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00207}00207\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ m\_Rect.right\ =\ ParentRect.right;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00210}00210\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ MoveWindow(\&m\_Rect);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00212}00212\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00213}00213\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00215}\mbox{\hyperlink{class_c_in_place_edit_ae8858e9db9fb9702d9c32444823d2a34}{00215}}\ UINT\ \mbox{\hyperlink{class_c_in_place_edit_ae8858e9db9fb9702d9c32444823d2a34}{CInPlaceEdit::OnGetDlgCode}}()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00216}00216\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00217}00217\ \ \ \ \ \textcolor{keywordflow}{return}\ DLGC\_WANTALLKEYS;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00218}00218\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00221}00221\ \textcolor{comment}{//\ CInPlaceEdit\ overrides}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00223}00223\ \textcolor{comment}{//\ Stoopid\ win95\ accelerator\ key\ problem\ workaround\ -\/\ Matt\ Weagle.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00224}\mbox{\hyperlink{class_c_in_place_edit_aebaf597eea377b63519b85390ccb9e48}{00224}}\ BOOL\ \mbox{\hyperlink{class_c_in_place_edit_aebaf597eea377b63519b85390ccb9e48}{CInPlaceEdit::PreTranslateMessage}}(MSG*\ pMsg)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00225}00225\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00226}00226\ \ \ \ \ \textcolor{comment}{//\ Catch\ the\ Alt\ key\ so\ we\ don't\ choke\ if\ focus\ is\ going\ to\ an\ owner\ drawn\ button}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00227}00227\ \ \ \ \ \textcolor{keywordflow}{if}\ (pMsg-\/>message\ ==\ WM\_SYSCHAR)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00228}00228\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00230}00230\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00232}00232\ \ \ \ \ \textcolor{keywordflow}{return}\ CWnd::PreTranslateMessage(pMsg);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00233}00233\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00235}00235\ \textcolor{comment}{//\ Auto\ delete}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00236}\mbox{\hyperlink{class_c_in_place_edit_a07927b2524e9cca938ef437bdfc8bd34}{00236}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_in_place_edit_a07927b2524e9cca938ef437bdfc8bd34}{CInPlaceEdit::PostNcDestroy}}()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00237}00237\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00238}00238\ \ \ \ \ CEdit::PostNcDestroy();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00239}00239\ \ \ \ \ \textcolor{keyword}{delete}\ \textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00240}00240\ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00243}00243\ \textcolor{comment}{//\ CInPlaceEdit\ implementation}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00245}\mbox{\hyperlink{class_c_in_place_edit_a895656a9d876ca289a8136afd7987b63}{00245}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_c_in_place_edit_a895656a9d876ca289a8136afd7987b63}{CInPlaceEdit::EndEdit}}()}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00246}00246\ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00247}00247\ \ \ \ \ CString\ str;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00248}00248\ \ \ \ \ \textcolor{comment}{//\ EFW\ -\/\ BUG\ FIX\ -\/\ Clicking\ on\ a\ grid\ scroll\ bar\ in\ a\ derived\ class}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00249}00249\ \ \ \ \ \textcolor{comment}{//\ that\ validates\ input\ can\ cause\ this\ to\ get\ called\ multiple\ times}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00250}00250\ \ \ \ \ \textcolor{comment}{//\ causing\ assertions\ because\ the\ edit\ control\ goes\ away\ the\ first\ time.}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00251}00251\ \ \ \ \ \textcolor{keyword}{static}\ BOOL\ bAlreadyEnding\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00253}00253\ \ \ \ \ \textcolor{keywordflow}{if}\ (bAlreadyEnding)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00254}00254\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00256}00256\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00258}00258\ \ \ \ \ bAlreadyEnding\ =\ TRUE;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00259}00259\ \ \ \ \ GetWindowText(str);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00260}00260\ \ \ \ \ \textcolor{comment}{//\ Send\ Notification\ to\ parent}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00261}00261\ \ \ \ \ \mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o}{GV\_DISPINFO}}\ dispinfo;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00262}00262\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a32d6f16552d41d0162b7312e8654a71a}{hdr}}.hwndFrom\ =\ GetSafeHwnd();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00263}00263\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a32d6f16552d41d0162b7312e8654a71a}{hdr}}.idFrom\ \ \ =\ GetDlgCtrlID();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00264}00264\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a32d6f16552d41d0162b7312e8654a71a}{hdr}}.code\ \ \ \ \ =\ \mbox{\hyperlink{_grid_ctrl_8h_a15ef37f4c9ae229c520bf8e8dc958de8}{GVN\_ENDLABELEDIT}};}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00265}00265\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a3f06e4cfcf5443d193da8e620887d3fa}{item}}.\mbox{\hyperlink{struct___g_v___i_t_e_m_a655bcdb65b4462f3299c0b8e2ce31f4e}{mask}}\ \ \ \ =\ LVIF\_TEXT\ |\ LVIF\_PARAM;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00266}00266\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a3f06e4cfcf5443d193da8e620887d3fa}{item}}.\mbox{\hyperlink{struct___g_v___i_t_e_m_abbf676c573590179712a96a04a977dbb}{row}}\ \ \ \ \ =\ m\_nRow;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00267}00267\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a3f06e4cfcf5443d193da8e620887d3fa}{item}}.\mbox{\hyperlink{struct___g_v___i_t_e_m_a86da2dd5007ed800d74001041f379ba5}{col}}\ \ \ \ \ =\ m\_nColumn;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00268}00268\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a3f06e4cfcf5443d193da8e620887d3fa}{item}}.\mbox{\hyperlink{struct___g_v___i_t_e_m_a3f34b70b6fb646c1636cb5b2cc9ac55b}{strText}}\ \ =\ str;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00269}00269\ \ \ \ \ dispinfo.\mbox{\hyperlink{structtag_g_v___d_i_s_p_i_n_f_o_a3f06e4cfcf5443d193da8e620887d3fa}{item}}.\mbox{\hyperlink{struct___g_v___i_t_e_m_ac4c7dfb98b8be24b661c242e112bf930}{lParam}}\ \ =\ (LPARAM)\ m\_nLastChar;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00270}00270\ \ \ \ \ CWnd*\ pOwner\ =\ GetOwner();}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00272}00272\ \ \ \ \ \textcolor{keywordflow}{if}\ (pOwner)}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00273}00273\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ pOwner-\/>SendMessage(WM\_NOTIFY,\ GetDlgCtrlID(),\ (LPARAM)\&dispinfo);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00275}00275\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00277}00277\ \ \ \ \ \textcolor{comment}{//\ Close\ this\ window\ (PostNcDestroy\ will\ delete\ this)}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00278}00278\ \ \ \ \ \textcolor{keywordflow}{if}\ (IsWindow(GetSafeHwnd()))}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00279}00279\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ SendMessage(WM\_CLOSE,\ 0,\ 0);}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00281}00281\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00283}00283\ \ \ \ \ bAlreadyEnding\ =\ FALSE;}
+\DoxyCodeLine{\Hypertarget{_in_place_edit_8cpp_source_l00284}00284\ \}}
+
+\end{DoxyCode}
