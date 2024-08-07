@@ -1,5 +1,0 @@
-var dir_0a41fe9fa644bd78585f750bbb640f24 =
-[
-    [ "CS", "dir_0a4e3e8c894aa4c71e3268630a8f69d9.html", "dir_0a4e3e8c894aa4c71e3268630a8f69d9" ],
-    [ "WinFormsUI", "dir_00683ff65371b41b732940f325a30118.html", "dir_00683ff65371b41b732940f325a30118" ]
-];

@@ -1,9 +1,0 @@
-var _dock_panel_extender_8cs =
-[
-    [ "WeifenLuo.WinFormsUI.Docking.DockPanelExtender", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender.html", "class_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender" ],
-    [ "WeifenLuo.WinFormsUI.Docking.DockPanelExtender.IDockPaneFactory", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_factory.html", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_factory" ],
-    [ "WeifenLuo.WinFormsUI.Docking.DockPanelExtender.IFloatWindowFactory", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_float_window_factory.html", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_float_window_factory" ],
-    [ "WeifenLuo.WinFormsUI.Docking.DockPanelExtender.IDockPaneCaptionFactory", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_caption_factory.html", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_caption_factory" ],
-    [ "WeifenLuo.WinFormsUI.Docking.DockPanelExtender.IDockPaneStripFactory", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_strip_factory.html", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_dock_pane_strip_factory" ],
-    [ "WeifenLuo.WinFormsUI.Docking.DockPanelExtender.IAutoHideStripFactory", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_auto_hide_strip_factory.html", "interface_weifen_luo_1_1_win_forms_u_i_1_1_docking_1_1_dock_panel_extender_1_1_i_auto_hide_strip_factory" ]
-];

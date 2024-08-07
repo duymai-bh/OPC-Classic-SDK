@@ -1,4 +1,0 @@
-var interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_get_server_status =
-[
-    [ "invoke", "interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_get_server_status.html#ac41d7d02790b237749d34367e11f074c", null ]
-];

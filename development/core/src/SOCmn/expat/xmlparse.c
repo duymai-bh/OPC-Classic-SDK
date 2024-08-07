@@ -251,7 +251,7 @@ typedef struct {
   int nDefaultAtts;
   int allocDefaultAtts;
   DEFAULT_ATTRIBUTE *defaultAtts;
-} ELEMENT_TYPE_MOD;
+} ELEMENT_TYPE;
 
 typedef struct {
   HASH_TABLE generalEntities;
@@ -349,7 +349,7 @@ static enum XML_Error
 addBinding(XML_Parser parser, PREFIX *prefix, const ATTRIBUTE_ID *attId,
            const XML_Char *uri, BINDING **bindingsPtr);
 static int
-defineAttribute(ELEMENT_TYPE_MOD *type, ATTRIBUTE_ID *, XML_Bool isCdata, 
+defineAttribute(ELEMENT_TYPE *type, ATTRIBUTE_ID *, XML_Bool isCdata, 
                 XML_Bool isId, const XML_Char *dfltValue, XML_Parser parser);
 static enum XML_Error
 storeAttributeValue(XML_Parser parser, const ENCODING *, XML_Bool isCdata,
@@ -361,7 +361,7 @@ static ATTRIBUTE_ID *
 getAttributeId(XML_Parser parser, const ENCODING *enc, const char *start,
                const char *end);
 static int
-setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE_MOD *);
+setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *);
 static enum XML_Error
 storeEntityValue(XML_Parser parser, const ENCODING *enc, const char *start,
                  const char *end);
@@ -421,7 +421,7 @@ poolAppendString(STRING_POOL *pool, const XML_Char *s);
 
 static int FASTCALL nextScaffoldPart(XML_Parser parser);
 static XML_Content * build_model(XML_Parser parser);
-static ELEMENT_TYPE_MOD *
+static ELEMENT_TYPE *
 getElementType(XML_Parser parser, const ENCODING *enc,
                const char *ptr, const char *end);
 
@@ -512,7 +512,7 @@ struct XML_ParserStruct {
   const XML_Char *m_declAttributeType;
   const XML_Char *m_declNotationName;
   const XML_Char *m_declNotationPublicId;
-  ELEMENT_TYPE_MOD *m_declElementType;
+  ELEMENT_TYPE *m_declElementType;
   ATTRIBUTE_ID *m_declAttributeId;
   XML_Bool m_declAttributeIsCdata;
   XML_Bool m_declAttributeIsId;
@@ -965,7 +965,7 @@ XML_ExternalEntityParserCreate(XML_Parser oldParser,
   XML_AttlistDeclHandler oldAttlistDeclHandler = attlistDeclHandler;
   XML_EntityDeclHandler oldEntityDeclHandler = entityDeclHandler;
   XML_XmlDeclHandler oldXmlDeclHandler = xmlDeclHandler;
-  ELEMENT_TYPE_MOD * oldDeclElementType = declElementType;
+  ELEMENT_TYPE * oldDeclElementType = declElementType;
 
   void *oldUserData = userData;
   void *oldHandlerArg = handlerArg;
@@ -2605,7 +2605,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
           BINDING **bindingsPtr)
 {
   DTD * const dtd = _dtd;  /* save one level of indirection */
-  ELEMENT_TYPE_MOD *elementType;
+  ELEMENT_TYPE *elementType;
   int nDefaultAtts;
   const XML_Char **appAtts;   /* the attribute list for the application */
   int attIndex = 0;
@@ -2618,13 +2618,13 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
   const XML_Char *localPart;
 
   /* lookup the element type name */
-  elementType = (ELEMENT_TYPE_MOD *)lookup(&dtd->elementTypes, tagNamePtr->str,0);
+  elementType = (ELEMENT_TYPE *)lookup(&dtd->elementTypes, tagNamePtr->str,0);
   if (!elementType) {
     const XML_Char *name = poolCopyString(&dtd->pool, tagNamePtr->str);
     if (!name)
       return XML_ERROR_NO_MEMORY;
-    elementType = (ELEMENT_TYPE_MOD *)lookup(&dtd->elementTypes, name,
-                                         sizeof(ELEMENT_TYPE_MOD));
+    elementType = (ELEMENT_TYPE *)lookup(&dtd->elementTypes, name,
+                                         sizeof(ELEMENT_TYPE));
     if (!elementType)
       return XML_ERROR_NO_MEMORY;
     if (ns && !setElementTypePrefix(parser, elementType))
@@ -4477,7 +4477,7 @@ doProlog(XML_Parser parser,
       quant = XML_CQUANT_PLUS;
     elementContent:
       if (dtd->in_eldecl) {
-        ELEMENT_TYPE_MOD *el;
+        ELEMENT_TYPE *el;
         const XML_Char *name;
         int nameLen;
         const char *nxt = (quant == XML_CQUANT_NONE
@@ -5218,7 +5218,7 @@ reportDefault(XML_Parser parser, const ENCODING *enc,
 
 
 static int
-defineAttribute(ELEMENT_TYPE_MOD *type, ATTRIBUTE_ID *attId, XML_Bool isCdata,
+defineAttribute(ELEMENT_TYPE *type, ATTRIBUTE_ID *attId, XML_Bool isCdata,
                 XML_Bool isId, const XML_Char *value, XML_Parser parser)
 {
   DEFAULT_ATTRIBUTE *att;
@@ -5262,7 +5262,7 @@ defineAttribute(ELEMENT_TYPE_MOD *type, ATTRIBUTE_ID *attId, XML_Bool isCdata,
 }
 
 static int
-setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE_MOD *elementType)
+setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *elementType)
 {
   DTD * const dtd = _dtd;  /* save one level of indirection */
   const XML_Char *name;
@@ -5545,7 +5545,7 @@ dtdReset(DTD *p, const XML_Memory_Handling_Suite *ms)
   HASH_TABLE_ITER iter;
   hashTableIterInit(&iter, &(p->elementTypes));
   for (;;) {
-    ELEMENT_TYPE_MOD *e = (ELEMENT_TYPE_MOD *)hashTableIterNext(&iter);
+    ELEMENT_TYPE *e = (ELEMENT_TYPE *)hashTableIterNext(&iter);
     if (!e)
       break;
     if (e->allocDefaultAtts != 0)
@@ -5587,7 +5587,7 @@ dtdDestroy(DTD *p, XML_Bool isDocEntity, const XML_Memory_Handling_Suite *ms)
   HASH_TABLE_ITER iter;
   hashTableIterInit(&iter, &(p->elementTypes));
   for (;;) {
-    ELEMENT_TYPE_MOD *e = (ELEMENT_TYPE_MOD *)hashTableIterNext(&iter);
+    ELEMENT_TYPE *e = (ELEMENT_TYPE *)hashTableIterNext(&iter);
     if (!e)
       break;
     if (e->allocDefaultAtts != 0)
@@ -5671,16 +5671,16 @@ dtdCopy(DTD *newDtd, const DTD *oldDtd, const XML_Memory_Handling_Suite *ms)
 
   for (;;) {
     int i;
-    ELEMENT_TYPE_MOD *newE;
+    ELEMENT_TYPE *newE;
     const XML_Char *name;
-    const ELEMENT_TYPE_MOD *oldE = (ELEMENT_TYPE_MOD *)hashTableIterNext(&iter);
+    const ELEMENT_TYPE *oldE = (ELEMENT_TYPE *)hashTableIterNext(&iter);
     if (!oldE)
       break;
     name = poolCopyString(&(newDtd->pool), oldE->name);
     if (!name)
       return 0;
-    newE = (ELEMENT_TYPE_MOD *)lookup(&(newDtd->elementTypes), name,
-                                  sizeof(ELEMENT_TYPE_MOD));
+    newE = (ELEMENT_TYPE *)lookup(&(newDtd->elementTypes), name,
+                                  sizeof(ELEMENT_TYPE));
     if (!newE)
       return 0;
     if (oldE->nDefaultAtts) {
@@ -6238,7 +6238,7 @@ build_model (XML_Parser parser)
   return ret;
 }
 
-static ELEMENT_TYPE_MOD *
+static ELEMENT_TYPE *
 getElementType(XML_Parser parser,
                const ENCODING *enc,
                const char *ptr,
@@ -6246,11 +6246,11 @@ getElementType(XML_Parser parser,
 {
   DTD * const dtd = _dtd;  /* save one level of indirection */
   const XML_Char *name = poolStoreString(&dtd->pool, enc, ptr, end);
-  ELEMENT_TYPE_MOD *ret;
+  ELEMENT_TYPE *ret;
 
   if (!name)
     return NULL;
-  ret = (ELEMENT_TYPE_MOD *) lookup(&dtd->elementTypes, name, sizeof(ELEMENT_TYPE_MOD));
+  ret = (ELEMENT_TYPE *) lookup(&dtd->elementTypes, name, sizeof(ELEMENT_TYPE));
   if (!ret)
     return NULL;
   if (ret->name != name)

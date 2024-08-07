@@ -77,8 +77,8 @@ typedef int            SOCKET;
 #define MSG_NOSIGNAL 0
 #define SHUT_RD      SD_RECEIVE
 #ifndef SOOS_WINDOWS_CE
-#define SHUT_WR      0x01 // DUY
-#define SHUT_RDWR    0x02 // DUY
+#define SHUT_WR      SD_SEND
+#define SHUT_RDWR    SD_BOTH
 #else
 #if _WIN32_WCE > 300
 #define SHUT_WR      SD_SEND

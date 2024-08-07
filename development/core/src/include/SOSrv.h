@@ -3,81 +3,81 @@
 
 #ifndef SOFEATURE_CMN_OPCSERVER
 #define SOFEATURE_CMN_OPCSERVER
-#endif // end SOFEATURE_CMN_OPCSERVER
+#endif
 
 #ifdef UNDER_CE
 #ifndef SOOS_WINDOWS_CE
 #define SOOS_WINDOWS_CE
 #endif
-#endif // end UNDER_CE
+#endif
 
 #ifdef DEBUG
 #ifndef _DEBUG
 #define _DEBUG
 #endif
-#endif // end DEBUG
+#endif
 
 #if defined(WIN32) || defined(WIN64)
 // import libraries
 
 #ifndef SOFLAG_NO_FORCE_LIBS
-//#ifndef SOSRV
-//#ifndef SOOS_WINDOWS_CE
-//#if !defined(SOFLAG_DEMO_VERSION)
-//#if defined(_DEBUG)
-//#if defined(_DLL)
-//#if defined(_UNICODE)
-//#pragma comment(lib, "SOSrvUDD.lib")
-//#else
-//#pragma comment(lib, "SOSrvADD.lib")
-//#endif
-//#else
-//#if defined(_UNICODE)
-//#pragma comment(lib, "SOSrvUSD.lib")
-//#else
-//#pragma comment(lib, "SOSrvASD.lib")
-//#endif
-//#endif
-//#else
-//#if defined(_DLL)
-//#if defined(_UNICODE)
-//#pragma comment(lib, "SOSrvUD.lib")
-//#else
-//#pragma comment(lib, "SOSrvAD.lib")
-//#endif // end _UNICODE
-//#else
-//#if defined(_UNICODE)
-//#pragma comment(lib, "SOSrvUS.lib")
-//#else
-////#pragma comment(lib, "SOSrvAS.lib")
-//#endif
-//#endif // end _DLL
-//#endif // end _DEBUG
-//#else
-//#if !defined(_UNICODE)
-//#pragma comment(lib, "SOSrvASO.lib")
-//#endif
-//#endif // end SOFLAG_DEMO_VERSION
-//#else
-//#if !defined(SOFLAG_DEMO_VERSION)
-//#if defined(_DEBUG)
-//#pragma comment(lib, "SOSrvD.lib")
-//#else
-//#pragma comment(lib, "SOSrv.lib")
-//#endif
-//#else
-//#pragma comment(lib, "SOSrvO.lib")
-//#endif
-//#endif // SOOS_WINDOWS_CE
-//#endif // SOSRV
-//
-//// the default SOCmn library implements both
-//#ifndef SOFEATURE_CMN_OPCCLIENT
-//#define SOFEATURE_CMN_OPCCLIENT
-//#endif
-//#ifndef SOFEATURE_CMN_OPCSERVER
-//#define SOFEATURE_CMN_OPCSERVER
-//#endif
+#ifndef SOSRV
+#ifndef SOOS_WINDOWS_CE
+#if !defined(SOFLAG_DEMO_VERSION)
+#if defined(_DEBUG)
+#if defined(_DLL)
+#if defined(_UNICODE)
+#pragma comment(lib, "SOSrvUDD.lib")
+#else
+#pragma comment(lib, "SOSrvADD.lib")
+#endif
+#else
+#if defined(_UNICODE)
+#pragma comment(lib, "SOSrvUSD.lib")
+#else
+#pragma comment(lib, "SOSrvASD.lib")
+#endif
+#endif
+#else
+#if defined(_DLL)
+#if defined(_UNICODE)
+#pragma comment(lib, "SOSrvUD.lib")
+#else
+#pragma comment(lib, "SOSrvAD.lib")
+#endif
+#else
+#if defined(_UNICODE)
+#pragma comment(lib, "SOSrvUS.lib")
+#else
+#pragma comment(lib, "SOSrvAS.lib")
+#endif
+#endif
+#endif
+#else
+#if !defined(_UNICODE)
+#pragma comment(lib, "SOSrvASO.lib")
+#endif
+#endif
+#else
+#if !defined(SOFLAG_DEMO_VERSION)
+#if defined(_DEBUG)
+#pragma comment(lib, "SOSrvD.lib")
+#else
+#pragma comment(lib, "SOSrv.lib")
+#endif
+#else
+#pragma comment(lib, "SOSrvO.lib")
+#endif
+#endif
+#endif
+
+// the default SOCmn library implements both
+#ifndef SOFEATURE_CMN_OPCCLIENT
+#define SOFEATURE_CMN_OPCCLIENT
+#endif
+#ifndef SOFEATURE_CMN_OPCSERVER
+#define SOFEATURE_CMN_OPCSERVER
+#endif
 
 #endif // !SOFLAG_NO_FORCE_LIBS
 
@@ -130,23 +130,23 @@ inline void __stdcall _com_issue_error(HRESULT) { };
 
 #ifdef SOFEATURE_SOAP
 #include <SOSrvHttp.h>
-#endif // end SOFEATURE_SOAP
+#endif
 
 #ifdef SOFEATURE_TUNNEL
 #include <SOSrvTP.h>
-#endif // end SOFEATURE_TUNNEL
-#endif // end SOFLAG_NO_FORCE_HEADERS
+#endif // SOFEATURE_TUNNEL
+#endif
 
 #ifdef SOFEATURE_DCOM
 #ifndef SOFLAG_SUPPORT_DCOM
 #define SOFLAG_SUPPORT_DCOM
-#endif // end SOFLAG_SUPPORT_DCOM
-#endif // end SOFEATURE_DCOM
+#endif
+#endif
 
 #ifdef SOFEATURE_SOAP
 #ifndef SOFLAG_SUPPORT_SOAP
 #define SOFLAG_SUPPORT_SOAP
-#endif // end SOFLAG_SUPPORT_SOAP
-#endif //end SOFEATURE_SOAP
+#endif
+#endif
 
 #endif

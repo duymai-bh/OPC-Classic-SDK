@@ -4,7 +4,7 @@
 #ifdef SOFEATURE_SOAP
 
 #pragma pack(push, 4)
-#include "StdAfx.h"
+
 
 class SOSrvHTTPRequest : public SOCmnObject
 {

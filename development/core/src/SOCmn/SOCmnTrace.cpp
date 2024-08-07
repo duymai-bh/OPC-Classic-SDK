@@ -153,7 +153,6 @@ HRESULT SOCmnTraceHandler::saveTraceOptions(void)
 
 SOCmnTrace* getSOCmnTrace(void)
 {
-	//createTraceObject();
 	_ASSERTION((g_trace != NULL), "Before calling getSOCmnTrace the trace object must be created by createTraceObject!");
 	return g_trace;
 }

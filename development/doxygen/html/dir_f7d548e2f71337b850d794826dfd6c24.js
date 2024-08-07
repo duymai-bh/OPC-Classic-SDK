@@ -1,4 +1,0 @@
-var dir_f7d548e2f71337b850d794826dfd6c24 =
-[
-    [ "softing", "dir_61a621709f0668fd04eb04262191c753.html", "dir_61a621709f0668fd04eb04262191c753" ]
-];

@@ -1,4 +1,0 @@
-var interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_query_a_e_attributes =
-[
-    [ "invoke", "interfacecom_1_1softing_1_1opc_1_1client_1_1impl_1_1jna_1_1_o_t_client_1_1_o_t_c_on_query_a_e_attributes.html#a25361efea677ff972fcdd9d4c63a6ef3", null ]
-];

@@ -1,4 +1,0 @@
-var dir_b905b547250e11d9eca86a366abb2968 =
-[
-    [ "CS", "dir_c3682d4b5c5deb56368124727660679b.html", "dir_c3682d4b5c5deb56368124727660679b" ]
-];

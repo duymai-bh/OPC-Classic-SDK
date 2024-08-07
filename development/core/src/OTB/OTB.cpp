@@ -364,7 +364,7 @@ LPTSTR OTAPI_CALL OTVariantToString(IN OTVariant* pValue, IN DWORD stringLen, IN
 // the Softing version is inside the private file License.cpp !
 LONG OTAPI_CALL OTActivate(IN BYTE feature, IN LPTSTR key, IN BYTE forceDemo)
 {
-//	!! YOU HAVE TO ADD YOUR LICENSE CODES IN THIS FUNCTION, and afterwards remove this line !!
+	!! YOU HAVE TO ADD YOUR LICENSE CODES IN THIS FUNCTION, and afterwards remove this line !!
 	SOCmnTrace *pTrace = ::getSOCmnTrace();
 
 	switch (feature)

@@ -22,7 +22,6 @@
 //                                                                            |
 //-----------------------------------------------------------------------------
 #include "stdafx.h"
-#include <iostream>
 
 #ifdef SOSRV
 
@@ -2376,7 +2375,7 @@ LPCTSTR SOSrvConverter::LCID2string(
 			break;
 
 		case 0x0C07:
-			string = _T("Deutsch (ï¿½sterreich)");
+			string = _T("Deutsch (Österreich)");
 			break;
 
 		case 0x0409:
@@ -2469,7 +2468,7 @@ LPCTSTR SOSrvConverter::serverState2string(
 		switch (serverStatus)
 		{
 		case OPC_STATUS_RUNNING:
-			string = _T("Lï¿½uft");
+			string = _T("Läuft");
 			break;
 
 		case OPC_STATUS_FAILED:
@@ -2560,11 +2559,11 @@ LPCTSTR SOSrvConverter::publicState2string(IN SOCmnString& buffer, IN BOOL pub, 
 		}
 		else if (noTempl)
 		{
-			buffer = _T("ï¿½ffentlich");
+			buffer = _T("öffentlich");
 		}
 		else
 		{
-			buffer = _T("ï¿½ffentliche Vorlage");
+			buffer = _T("öffentliche Vorlage");
 		}
 
 		break;
@@ -2617,7 +2616,7 @@ LPCTSTR SOSrvConverter::euType2string(IN SOCmnString& buffer, IN OPCEUTYPE euTyp
 		}
 		else
 		{
-			buffer = _T("Aufzï¿½hlung");
+			buffer = _T("Aufzählung");
 		}
 
 		break;
@@ -3022,7 +3021,7 @@ LPCTSTR SOSrvConverter::authentificationLevel2string(IN SOCmnString& string, IN 
 			break;
 
 		case RPC_C_AUTHN_LEVEL_PKT_INTEGRITY:
-			string = _T("Paketintegritï¿½t");
+			string = _T("Paketintegrität");
 			break;
 
 		case RPC_C_AUTHN_LEVEL_PKT_PRIVACY:

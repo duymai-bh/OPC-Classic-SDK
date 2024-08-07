@@ -187,31 +187,31 @@ class SOCmnObject;
 
 #define SOCMNOBJECTLOCK_ARRAY_MASK 0x07FF
 
-class SOCmnObjectLock
+class SOCMN_EXPORT SOCmnObjectLock
 {
 public:
-	SOCMN_EXPORT SOCmnObjectLock();
-	SOCMN_EXPORT ~SOCmnObjectLock();
+	SOCmnObjectLock();
+	~SOCmnObjectLock();
 
 	// gain access to the sync object
-	SOCMN_EXPORT static BOOL lock(SOCmnObject* pObj)
+	static BOOL lock(SOCmnObject* pObj)
 	{
 		return getObjectLock(pObj)->lock();
 	}
 
 	// release access to the sync object
-	SOCMN_EXPORT static BOOL unlock(SOCmnObject* pObj)
+	static BOOL unlock(SOCmnObject* pObj)
 	{
 		return getObjectLock(pObj)->unlock();
 	}
 
-	SOCMN_EXPORT static SOCmnSync* getObjectLock(IN SOCmnObject* pObj);
-	SOCMN_EXPORT static SOCmnSync* getObjectLockV(IN void* pVoid);
+	static SOCmnSync* getObjectLock(IN SOCmnObject* pObj);
+	static SOCmnSync* getObjectLockV(IN void* pVoid);
 
-	SOCMN_EXPORT static void releaseObjectLock(IN SOCmnObject* pObj, IN SOCmnSync* sync);
-	SOCMN_EXPORT static void releaseObjectLockV(IN void* pVoid, IN SOCmnSync* sync);
+	static void releaseObjectLock(IN SOCmnObject* pObj, IN SOCmnSync* sync);
+	static void releaseObjectLockV(IN void* pVoid, IN SOCmnSync* sync);
 
-	SOCMN_EXPORT void checkSyncs(void);
+	void checkSyncs(void);
 
 protected:
 	SOCmnList<SOCmnSyncCounter> m_syncCounterList;

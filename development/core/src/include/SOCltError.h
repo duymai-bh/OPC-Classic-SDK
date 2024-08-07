@@ -1,25 +1,3 @@
-//-----------------------------------------------------------------------------
-//                                                                            |
-//                   Softing Industrial Automation GmbH                       |
-//                        Richard-Reitzner-Allee 6                            |
-//                           85540 Haar, Germany                              |
-//                                                                            |
-//                 This is a part of the Softing OPC Toolkit                  |
-//        Copyright (c) 2005-2020 Softing Industrial Automation GmbH          |
-//                           All Rights Reserved                              |
-//                                                                            |
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-//                           OPC Toolkit - SOClt                              |
-//                                                                            |
-//  Filename    : SOCltError.mc                                               |
-//  Version     : 4.47.1                                                      |
-//  Date        : 27-July-2020                                                |
-//                                                                            |
-//  Description : This file contains client toolkit specific exit texts       |
-//                                                                            |
-//-----------------------------------------------------------------------------
-
 #ifndef _SOCLT_ERROR_H_
 #define _SOCLT_ERROR_H_
 
@@ -57,9 +35,9 @@
 //
 // Define the severity codes
 //
+#define STATUS_SEVERITY_WARNING          0x2
 #define STATUS_SEVERITY_SUCCESS          0x0
 #define STATUS_SEVERITY_INFORMATIONAL    0x1
-#define STATUS_SEVERITY_WARNING          0x2
 #define STATUS_SEVERITY_ERROR            0x3
 
 

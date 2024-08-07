@@ -1,5 +1,0 @@
-var _client_address_space_element_browse_options_8h =
-[
-    [ "SoftingOPCToolboxClient::AddressSpaceElementBrowseOptions", "class_softing_o_p_c_toolbox_client_1_1_address_space_element_browse_options.html", "class_softing_o_p_c_toolbox_client_1_1_address_space_element_browse_options" ],
-    [ "SoftingOPCToolboxClient::DaAddressSpaceElementBrowseOptions", "class_softing_o_p_c_toolbox_client_1_1_da_address_space_element_browse_options.html", "class_softing_o_p_c_toolbox_client_1_1_da_address_space_element_browse_options" ]
-];

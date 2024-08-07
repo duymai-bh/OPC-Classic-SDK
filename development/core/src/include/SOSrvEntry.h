@@ -2,7 +2,6 @@
 #define _SOSRVENTRY_H_
 
 #include <opcda.h>
-#include "OTServer.h"
 #include "SOCmnObject.h"
 #include "SOSrvWatch.h"
 #ifdef SOFEATURE_SOAP
@@ -171,7 +170,7 @@ class SOCmnTrace;
 class SOSrvObjectRoot;
 class SOSrvWatch;
 
- typedef struct _OTSAddressSpaceElementData OTSAddressSpaceElementData;
+typedef struct _OTSAddressSpaceElementData OTSAddressSpaceElementData;
 
 typedef struct _OTSAddressSpaceElementDataEx
 {
