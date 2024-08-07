@@ -266,7 +266,7 @@
 
 // OPC Toolkit includes
 #include <SOCmnCfg.h>
-#undef SOFEATURE_WATCH
+// #undef SOFEATURE_WATCH
 #include <SOCmnOsCompat.h>
 #ifdef SODAC
 #include <SODaC.h>
